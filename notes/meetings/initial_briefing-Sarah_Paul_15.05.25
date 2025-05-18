@@ -1,0 +1,71 @@
+Meeting - Sarah & Paul
+Aim: for nz to have a platform with tools for each pillars - should there be a new outbreak of some disease, we can run from target selection to therapeutic testing
+
+RNA platform - report to co-directors Gary Evans (CEO), Kirsten ... (CEO) , Neb (COO)
+
+along with the team, MB (entre manufacturing and epidemic readiness) + leadership team
+
+
+3 projects (flagships): decided by end of may and early june
+- human health
+- human health
+- agricultural space (animal health)
+
+-> could be human health, agriculture, or conservation
+
+mRNA, a little of the target protein expressed in usually human muscle cells
+
+Target selection: stage 1 -> payload design -> formulation -> preclinical testing -> research grade manufacturing (make mRNA and encapsulation)(SERVICE)-> advisor QC and development -> commercial grade process development and manufacture (SCALING in NZ - previous experience not in mRNA products) -> clinical testing (not necessarily clinical trials)
+
+Biotech (SARAH WORKS THERE)-> mRNA commercial grade manufacturing - mRNA factories based in Melbourne
+
+e.g. if we want to get rid of strep A -> how to find a good target for an mRNA based vaccine/therapeutics
+
+Step 1: reviewing what software and previous literature available for selecting a good antigen target from some pathogen/cancer 
+-e.g. positive selection genes - important and interacting with the human immune system
+-> e.g. covid now circulating has 100+ synonymous changes while only 4 non-synonymous changes
+
+build some assemblies and screen through genes in a pathogen where potential mRNA vaccine targets would be effective to prime the immune system
+
+look at exports -> do any of the proteins have export peptides attached: more likely to interact with the human immune system
+look at toxins -> e.g. H pylori - positive selection and exported out of the bacteria (not required for the growth of the bacteria) - lessen the damage/severity of the infection 
+transmembrane protein domains; extracellular targets
+
+
+can we design mRNAs that are expressed in specific target cells - tissue specificity (DESIGN PILLAR) - MOSTLY IRRELEVANT
+RNA stability - structure and RNA stability in terms of degradation
+
+Start thinking about:
+Target selection: build an indication agnostic pipeline to identify the best targets
+-> prophylactic mRNA vaccines and therapeutic immunotherapy mRNA - different 
+
+START HERE: make pipelines:
+- for infectious disease: antigens, build immunity, right part of the antigens (instead of making the protein directly, it is encoded to an mRNA): find the specific fragment/region and design and possibilities may affect the target selection
+
+- for cancer: cancer immunotherapeutic is more complicated  - re-purposable for other diseases (cardiovascular and autoimmune diseases)
+
+different strategies to start:
+
+1. literature reviews - initially you don't need to reinvent the wheel - use and improve on existing software and pipelines (tools), identify some candidate approaches and data
+
+2. putting together some test datasets - what are some successful mRNA vaccine targets - putt out some target proteins matched with the genome (handy for prototyping)
+
+other team members Zahid - working on the project 2 days a week (experimental biologists) help with understanding the biology, patent database (sequence search tools), publication database, and putting together datasets
+
+As soon as we can get a prediction/ list of antigen targets - Zahid can do experimental validation (tests will look like knockout mutations, immunogenic assays, make mRNA constructs, rapid screening platform to test multiple mRNA constructs (higher throughput - minimum is 5-10, likely tens of constructs))
+-> inform predictions to make it a bit better - many iterations until good performance
+
+
+also Alex and team - based in Australia Sydney & Italy (fold AI cofounder for RNA): subcontracted to help with this work - more AI models/ more elaborate AI models
+-> plenty of AI models - comparing the performances of existing AI models (simple machine learning approaches to see if it is approachable)
+-> once we find the good characteristics and properties: then we can make a more sophisticated models
+
+distribute workloads with the dev team
+
+Weekly - semiregular code reviews with Paul team
+Monthly catchups - or more with specific teams
+Time wise: best case 10 AM NZ time (TBD consult with everybody)
+NOVEMBER MEETING IN AUCKLAND
+
+CONNECT WITH THE OTHER PEOPLE IN THE TEAM - ALWAYS ASK QUESTIONS IN CASE OTHERS HAVE FOUND THE ANSWERS
+"ERR000047_2.fastq" "ERR000050_2.fastq" "ERR000057_2.fastq" "ERR000058_1.fastq" "ERR000060_1.fastq" "ERR000060_2.fastq" "ERR000064_2.fastq" "ERR000066_2.fastq" "ERR000068_1.fastq" "ERR000069_2.fastq" "ERR000071_1.fastq" "ERR000072_1.fastq" "ERR000074_1.fastq" "ERR000077_2.fastq" "ERR000080_1.fastq" "ERR000080_2.fastq" "ERR000085_1.fastq" "ERR000091_1.fastq" "ERR000094_1.fastq" "ERR000096_1.fastq" "ERR000098_2.fastq" "ERR000102_2.fastq" "ERR000132_1.fastq" "ERR000162_2.fastq" "ERR000166_2.fastq" "ERR000169_1.fastq" "ERR000169_2.fastq" "ERR000216_2.fastq" "ERR000225_1.fastq" "ERR000225_2.fastq" "ERR000228_1.fastq" "ERR000252_1.fastq" "ERR000286_2.fastq" "ERR000288_1.fastq" "ERR000292_1.fastq" "ERR000294_1.fastq" "ERR000300_1.fastq" "ERR000300_2.fastq" "ERR000307_1.fastq" "ERR000316_1.fastq" "ERR000316_2.fastq" "ERR000323_1.fastq" "ERR000333_1.fastq" "ERR000333_2.fastq" "ERR000336_1.fastq" "ERR000341_2.fastq" "ERR000345_1.fastq" "ERR000351_1.fastq" "ERR000368_1.fastq" "ERR000377_2.fastq" "ERR000381_1.fastq" "ERR000381_2.fastq" "ERR000382_1.fastq" "ERR000383_1.fastq" "ERR000389_1.fastq" "ERR000389_2.fastq" "ERR000390_1.fastq" "ERR000391_2.fastq" "ERR000396_1.fastq" "ERR000399_2.fastq" "ERR000483_1.fastq" "ERR000484_2.fastq" "ERR000485_2.fastq" "ERR000486_2.fastq" "ERR000487_2.fastq" "ERR000489_1.fastq" "ERR000489_2.fastq" "ERR000491_1.fastq" "ERR000491_2.fastq" "ERR000495_1.fastq" "ERR000504_1.fastq" "ERR000505_2.fastq" "ERR000508_2.fastq" "ERR000512_2.fastq" "ERR000514_1.fastq" "ERR000514_2.fastq" "ERR000516_1.fastq" "ERR000520_2.fastq" "ERR000523_2.fastq" "ERR000524_2.fastq" "ERR000525_1.fastq" "ERR000528_1.fastq" "ERR000529_2.fastq" "ERR000530_2.fastq" "ERR000531_1.fastq" "ERR000534_1.fastq" "ERR000534_2.fastq" "ERR000537_1.fastq" "ERR000540_1.fastq" "ERR000541_1.fastq" "ERR000545_1.fastq" "ERR000546_1.fastq" "ERR000548_1.fastq" "ERR000549_2.fastq" 
