@@ -1,0 +1,36 @@
+,,,,
+Pillar,Universal Flu,S. Aureus,Lupus (mCAR),Chronic HepB
+Design,"Develop a cutting-edge antigen discovery and screening pipeline leveraging H1, H3 and H5 consensus sequence data for HA protein design","use of AI to rationally select additional antigens
+refinement of transcript design – shift from secreted to transmembrane form
+Design refinements for allelic variation","Design and synthesis of mRNA sequences (fluorescent protein, CAR) ","AI-technology will used to refine current sequence selections
+design of mouse and human vaccines for maximum HLA coverage
+microRNA design for tissue-sepcific expression"
+Payload,"Explore different formats: circular, self-amplifying, UTRs, nucleoside modifications, immune-boosting elements [handled in pillar projects?]",?,,"
+"
+Formulation,"Novel LNP formulation, lung targeting",formulation development - capacity to tune LNPs,In vitro testing of RNA-LNP formulations for stability,"Novel LNP formulation, liver TRM targeting"
+QC,"New methods for sa/circ formats if applicable. Optimised manufacture of target antigen.
+Support transition to GMP.",Optimised manufacture of target antigen. Support transition to GMP,Optimised manufacture of non-immunogenic mRNA. Support transition to GMP.,"New purification methods relevant to TRM response. Optimise manufacture of target mRNA.
+Support transition to GMP."
+Preclin,"deep immunoprofiling in high througput using flow cytometry to track antigen-specific CD4, CD8 and B cells
+CITEseq to sequence highly functional antibodies",?,In vitro testing of RNA-LNP formulations for immunogenicity,"measure immune responses to murine vaccines, including liver TRM (?)"
+Manufacture,"m/sa/circ RNA production under GMP
+LNP production under GMP
+novel lipid production under GMP","mRNA production under GMP
+LNP production under GMP
+novel lipid production under GMP","mRNA production under GMP
+LNP production under GMP
+","mRNA production under GMP
+LNP production under GMP
+novel lipid production under GMP"
+Clinical,develop multiplexed clinical assays for antibody responses to vaccination?,"engage with established network of infectious disease clinicians
+Serological testing of clinical samples (SNAP trial) for reactivity to relevant S. aureus antigens",,
+Central Facility,produce research quantities of all vaccines [including sa and circRNA vaccines?],produce research quantities of all vaccines,produce research quantities of all formulations,"produce research quantities of all mRNA vaccines
+"
+External,"flu challenge models (LC lab)
+human PBMC proof-of-principle study (MIMR)","mouse challenge model (UoA)
+in vitro functional assays: neut of virulence factors (UoA)","existing proprietary CAR constructs
+In vitro testing of RNA-LNP formulations for apoptosis induction, protein expression (MIMR)
+mRNA CAR T-cell generation and functional testing in primary human T-cells in vitro and in vivo (MIMR)
+CAR T-cell production under GMP (BioOra)","obtain siRNA (CRO?)
+Mouse disease models (CRO/Uni) 
+Human PBMC proof-of-principle data (UoA)"
