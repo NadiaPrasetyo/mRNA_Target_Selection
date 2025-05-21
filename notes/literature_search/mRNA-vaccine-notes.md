@@ -1,21 +1,22 @@
 Existing mRNA Vaccines used for:
-- COVID-19: BNT162b2
+- COVID-19: BNT162b2, 
 - Zika virus
+- Influenza
 
 Pipeline steps for epitope selection, prediction, and evaluation:
 1. Choose pathogen of interest:
-Universal Flu (influnenza),S. Aureus,Lupus (mCAR),Chronic HepB
+Universal Flu (influnenza),Staphylococcus aureus,Lupus (mCAR),Chronic HepB
 
-2. Survey existing literature to understand mechanism of actiona dn attempted treatments
+2. Survey existing literature to understand mechanism of actiona and attempted treatments
 
 3. Select target proteins (review common ones from other pathogens to get ideas)
 
 4. Retrieve amino acid sequence from the NCBI protein database
 
 5. Predict epitopes of the protein - use Immune Epitope Database and Analysis Resource (IEDB)
-5.1. predict MHC-1 epitopes - binds with MHC-1 for all cell antigen presentation
-5.2. predict MHC-2 epitopes - binds with MHC-2 of antigen presenting cells to trigger adaptive immune response
-5.3. predict B cell epitopes - binds with B cells to initiate antibody production and immunity memory
+    5.1. predict MHC-1 epitopes - binds with MHC-1 for all cell antigen presentation
+    5.2. predict MHC-2 epitopes - binds with MHC-2 of antigen presenting cells to trigger adaptive immune response
+    5.3. predict B cell epitopes - binds with B cells to initiate antibody production and immunity memory
 
 6. Evaluate epitopes:
 - allergenicity
