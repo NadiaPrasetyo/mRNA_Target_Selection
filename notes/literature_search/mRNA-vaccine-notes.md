@@ -3,7 +3,8 @@ Existing mRNA Vaccines used for:
 - Zika virus
 - Influenza
 
-Pipeline steps for epitope selection, prediction, and evaluation:
+## Pipeline steps for epitope selection, prediction, and evaluation:
+
 1. Choose pathogen of interest:
 Universal Flu (influnenza),Staphylococcus aureus,Lupus (mCAR),Chronic HepB
 
@@ -28,7 +29,8 @@ Universal Flu (influnenza),Staphylococcus aureus,Lupus (mCAR),Chronic HepB
 - generation of IFN-y
 - predict presence and location of signal peptides, mitochondrial, chloroplast, and thylakoid luminal transit peptides
 
-Tools to use:
+## Tools to use:
+
 - Machine learning:
     - feed-forward neural networks
     - restricted boltzmann machine (RBM)
@@ -55,11 +57,11 @@ Tools to use:
     - AlgPred (http://crdd.osdd.net/raghava/algpred/) - testing epitopes allergenicity
     - AllergenFP (https://ddg-pharmfac.net/AllergenFP/) - testing epitopes allergenicity
     - VaxiJen (https://www.ddg-pharmfac.net/vaxijen/VaxiJen/VaxiJen.html, https://www.ddg-pharmfac.net/vaxijen3/home/) - testing epitope immunogenicity
-    - IFNepitope (http://crdd.osdd.net/raghava/ifnepitope/) - analyse epitope capacity to generate interferon-gamma (IFN-y) max accuracy 82.10%
+    - IFNepitope (http://crdd.osdd.net/raghava/ifnepitope/) - analyse epitope capacity to generate interferon-gamma (IFN-y) *max accuracy 82.10%*
     - SignalP and TargetP (https://services.healthtech.dtu.dk/services/SignalP-5.0/, https://services.healthtech.dtu.dk/services/TargetP-2.0/) - predict and localize proteins and peptides
     - PEP-FOLD 3.0 (https://bioserv.rpbs.univ-paris-diderot.fr/services/PEP-FOLD3/)
 
-observe protein-protein interactions between HLA/MHC with epitopes (molecular docking):
+- observe protein-protein interactions between HLA/MHC with epitopes (molecular docking):
     - Autodock Vina
     - Autodock
     - CrankPep (ADCP)
