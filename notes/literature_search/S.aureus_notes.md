@@ -39,6 +39,9 @@ MW2, N315, Mu50, JH1, JH9, RF122	|Clinical isolates with varying resistance and 
 7. https://academic.oup.com/jac/article-abstract/64/3/441/776075?redirectedFrom=fulltext
 8. https://journals.asm.org/doi/10.1128/jb.01000-07
 
+### The ones we need to care about:
+   - !!Fill in later once email gets
+
 - diseases and pathogenicity: cause skin infections, food poisoning, pneumonia, endocarditis, osteomyelitis, toxic shock syndrome, and severe cases with bacteremia
 - has various virulence factors and forms biofilms
 
@@ -65,7 +68,7 @@ MW2, N315, Mu50, JH1, JH9, RF122	|Clinical isolates with varying resistance and 
 
 ### Complete list of *S. aureus* virulence factors:
 
-Name |Gene |Target |Action |Key characteristics 
+**Name** |**Gene** |**Target** |**Action** |**Key characteristics** 
 -----|-----|-------|-------|-------------------
 Adenosine synthase A |adsA |ATP, dAMP |Increase adenosine, anti-inflammatory, suppress ROS in phagocytes. Generate dAdo from NETs, blocks caspase 3, apoptosis of macrophages. Inhibits Th1/Th17 immunity by attenuating NLRP3-mediated release of IL-1β |Cell wall anchored enzyme; core genome encoded
 Aureolysin |aur |C3 |Zinc-dependent metalloprotease, Inhibits phagocytosis and complement  |Core genome 
@@ -106,3 +109,20 @@ Staphylokinase | sak | Plasminogen, fibronectin, C3, IgG , Antimicrobial Peptide
 Staphopain cysteine protease | scpA | CXCR2 | Inhibition of chemotaxis | Core genome encoded
 Toxic shock syndrome toxin-1 (TSST1) | tst | Vβ2 TCR, MHC class II α-chain | T cell superantigen | Pathogenicity island, SaPI1
 Von Willebrand factor-binding protein (vWbp) | vwb | Prothrombin, fibrinogen, factor XIII, fibronectin | Inhibition of phagocytosis | Core genome encoded
+
+### Sequence motifs for *S. aureus* antigens:??? **(FIND OUT)**
+
+## ANALYSIS STEPS:
+1. Fetch the amino acid sequence for all antigens of all strains of *S. aureus*:
+    - use the NCBI protein database UniProt
+    
+    
+2. Fetch the amino acid sequence fo the targets of the antigens:
+    - get the PDB identifier of each protein (MHC1, MHC2, )
+    - use search query: https://search.rcsb.org/rcsbsearch/v2/query
+      - Tutorial: https://search.rcsb.org/index.html#search-api
+        - return type: entry (list of PDB IDs)
+        - query language: full query DSL (domain-specific language) based on JSON
+      - `In GET method, search request should be sent as a URL-encoded query string in json parameter: https://search.rcsb.org/rcsbsearch/v2/query?json={search-request}.`
+    - use: https://www.rcsb.org/docs/programmatic-access/web-apis-overview to fetch aa seq.
+    - 

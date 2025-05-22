@@ -1,0 +1,40 @@
+They have a candidate vaccine for S. aureus -> protein based: construct with multiple S. aureus proteins linked together into one protein
+
+Reese Langley: looking at 6 circulating strains of S. aureus that explains 95% of the infections globally
+-> covers all of those: focus on these different 6 stains:
+    - 
+
+Prefered protein database: UniProt, Pfam (interpro)
+
+How to get sequence motifs of antigens - automate looking for candidate antigens of different pathogen:
+- Paul knows absolutely nothing about: find some machine learnign tools
+- look for in previous publications and literature based on experimental validations
+    -> most people use complete proteins (not chopped up into domains): least well conserved parts of the protein (c and n ends of proteins)
+
+List of ideas:
+- if we have poor literature: what are the features that make something a reasonable antigen candidate:
+    - exported: signal peptides - annotated: from SignalP
+    - transmembrane proteins: predict if they are interal and external
+    - external proteins
+    - cell-wall anchored proteins
+    - toxins - have to consider how rapidly the toxin changes (evolution)
+    - things that are under positive selection - e.g. spike protein is one of the fastest changing molecules: 100+ non-synonymous changes and only 4 synonymous changes compared to the wuhan
+        -> change the vaccine often enough (what we do now with flu and covid)
+        -> cheap for mRNA but expensive testing
+- how would I find the different features from each pathogen
+- could use evolutionary information - jackhammer (self-made alignments, multiple iterations), eggnog (protein full length alignment database)* based on JUST the 6 genomes
+=> How would I make a pipeline
+get the corresponding proteomes from the different species, 
+
+
+1. get the epitopes from IEDB
+2. map to the genome of the pathogen - find out the motifs and features why these are good epitopes
+3. find more potential antigens from that information
+4. get the epitopes/predict the epitopes from each antigens from pathogens
+5. take the epitopes - and see if they conform for any of the features
+6. use data for training model
+
++ use existing patents for training data
++ vaccine databases for training data
++ epitope databases for training data
+=> train own model

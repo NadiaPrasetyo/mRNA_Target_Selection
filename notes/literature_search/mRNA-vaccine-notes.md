@@ -41,9 +41,9 @@ Universal Flu (influnenza),Staphylococcus aureus,Lupus (mCAR),Chronic HepB
     - attention mechanism
     - generative models
 
-- NCBI bioinformatic databases (https://www.ncbi.nlm.nih.gov):
+- NCBI bioinformatic databases (https://www.ncbi.nlm.nih.gov): to get FASTA of proteins/antigens amino acid sequence
     - BLASTp (https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE=Proteins) - assess identity of epitopes to human proteins
-- protein data bank (https://www.rcsb.org/)
+- protein data bank (https://www.rcsb.org/): to get the target proteins which the antigens interact with: MHC1, MHC2, B-cell, T-cell etc
 - IEDB (https://www.iedb.org/):
     - MHC-1 binding prediction tool (http://tools.iedb.org/mhci/, https://nextgen-tools.iedb.org/)
     - MHC-2 binding prediction tool (http://tools.iedb.org/mhcii/, https://nextgen-tools.iedb.org/)
@@ -60,6 +60,7 @@ Universal Flu (influnenza),Staphylococcus aureus,Lupus (mCAR),Chronic HepB
     - IFNepitope (http://crdd.osdd.net/raghava/ifnepitope/) - analyse epitope capacity to generate interferon-gamma (IFN-y) *max accuracy 82.10%*
     - SignalP and TargetP (https://services.healthtech.dtu.dk/services/SignalP-5.0/, https://services.healthtech.dtu.dk/services/TargetP-2.0/) - predict and localize proteins and peptides
     - PEP-FOLD 3.0 (https://bioserv.rpbs.univ-paris-diderot.fr/services/PEP-FOLD3/)
+    - TMHMM 2.0 (https://services.healthtech.dtu.dk/services/TMHMM-2.0/)
 
 - observe protein-protein interactions between HLA/MHC with epitopes (molecular docking):
     - Autodock Vina
