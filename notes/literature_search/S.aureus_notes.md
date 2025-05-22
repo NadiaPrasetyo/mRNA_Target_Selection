@@ -113,12 +113,20 @@ Von Willebrand factor-binding protein (vWbp) | vwb | Prothrombin, fibrinogen, fa
 ### Sequence motifs for *S. aureus* antigens:??? **(FIND OUT)**
 
 ## ANALYSIS STEPS:
-1. Fetch the amino acid sequence for all antigens of all strains of *S. aureus*:
-    - use the NCBI protein database UniProt
-    
-    
-2. Fetch the amino acid sequence fo the targets of the antigens:
-    - get the PDB identifier of each protein (MHC1, MHC2, )
+1. Go through literature to get a list of potential antigens (list above) *done: data/literature-sourced/S.aureus/Howden2023_S.aureus_virulence-factor-list.xlsx*
+2. Go through IEDB to get a list of potential antigens (https://www.iedb.org/home_v3.php) *done: data/literature-sourced/S.aureus/IEDB_S.aureus_antigen_table.xlsx*
+   - NOTE: Figure out how to do this without going to the website: can download the whole database: (https://www.iedb.org/database_export_v3.php) - but have to automate the downloading and updating (via weekly CI/CD pipeline)
+3. Vaccine database & Patent database to get a list of potential antigens **!Figure out the suitable databases**
+4. Fetch the amino acid sequence for all antigens of all strains of *S. aureus*:
+    - use the NCBI protein database UniProt to get the prot sequence of potential antigens
+    - > figure out how to automate fetching without(?) using the Web API for efficiency
+    - URL destination: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/
+    - Docummentation: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+    - use Entrez Direct unix CL tool: https://www.ncbi.nlm.nih.gov/books/NBK179288/
+5. Analyse the protein sequence for sequence motifs and features that makes them good antigens for *S. aureus* **!Find or create script to do this**
+
+6. Fetch the amino acid sequence for the targets of the antigens:
+    - get the PDB identifier of each protein (MHC1, MHC2, T-cell, B-cell)
     - use search query: https://search.rcsb.org/rcsbsearch/v2/query
       - Tutorial: https://search.rcsb.org/index.html#search-api
         - return type: entry (list of PDB IDs)
