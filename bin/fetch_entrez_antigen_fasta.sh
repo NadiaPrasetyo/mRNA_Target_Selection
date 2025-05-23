@@ -1,28 +1,18 @@
 #!/bin/bash
 
-INPUT_CSV="data/S.aureus/entrez_queries.csv"
+INPUT_CSV="data/S.aureus/entrez_queries.tsv"
 OUTPUT_FILE="data/S.aureus/fetched_antigens.fasta"
 
-tail -n +2 "$INPUT_CSV" | awk -F',' '
-    BEGIN { OFS=","; }
-    {
-        line = $0
-        gsub("\"", "", line)   # ✅ remove quotes safely
-        split(line, fields, /,/)
-        antigen = fields[1]
-        query1 = fields[2]
-        query2 = fields[3]
+# Ensure output file is fresh
+> "$OUTPUT_FILE"
 
-        print "===FETCH===" antigen "---" query1 "---" query2
-    }
-
-' | while IFS='---' read -r marker antigen query1 query2; do
-    if [[ $marker != "===FETCH===" ]]; then continue; fi
-
+# Skip header, process TSV
+tail -n +2 "$INPUT_TSV" | while IFS=$'\t' read -r antigen query1 query2; do
     echo "🔍 Fetching: $antigen"
-
+    
+    # Primary query (SwissProt)
     result=$(esearch -db protein -query "$query1" | efetch -format fasta 2>/dev/null)
-
+    
     if [[ -n "$result" ]]; then
         echo "$result" >> "$OUTPUT_FILE"
         echo " ✅ SwissProt sequence found."
@@ -37,5 +27,6 @@ tail -n +2 "$INPUT_CSV" | awk -F',' '
         fi
     fi
 
+    # Respect EDirect rate limits
     sleep 0.3
 done
