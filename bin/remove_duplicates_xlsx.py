@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import csv
 
 
 # === CONFIGURATION ===
@@ -37,5 +38,10 @@ for antigen in new_only:
     query_rows.append((antigen, query1, query2))
 
 # === SAVE TO TSV ===
-pd.DataFrame(query_rows, columns=["Antigen", "SwissProtQuery", "FallbackQuery"]).to_csv(tsv_output, sep='\t', index=False)
+
+with open(tsv_output, "w", newline='', encoding='utf-8') as f:
+    writer = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_NONE, escapechar='\\')
+    writer.writerow(["Antigen", "SwissProtQuery", "FallbackQuery"])
+    for row in query_rows:
+        writer.writerow(row)
 print(f"✅ Wrote {len(query_rows)} cleaned antigen queries to {tsv_output}")
