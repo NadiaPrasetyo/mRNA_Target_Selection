@@ -66,3 +66,7 @@ echo "🚀 Fetching FASTA sequences from NCBI..."
 bin/fetch_entrez_antigen_fasta.sh "$ENTREZ_TSV" "$OUTPUT_FILE"
 
 echo "✅ Completed: Output FASTA written to $OUTPUT_FILE"
+echo "🗑️ Cleaning up temporary files..."
+rm -rf "$TMP_DIR"
+echo "🧹 Temporary files removed."
+echo "✅ All done!"
