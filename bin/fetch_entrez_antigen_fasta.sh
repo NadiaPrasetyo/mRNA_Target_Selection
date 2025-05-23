@@ -24,14 +24,14 @@ for line in "${lines[@]}"; do
 
     echo "🔍 Fetching: $antigen"
 
-    # Primary query (SwissProt)
+    # Primary query (UniProt/SwissProt)
     result=$(esearch -db protein -query "$query1" | efetch -format fasta 2>/dev/null)
 
     if [[ -n "$result" ]]; then
         echo "$result" > "$TMP_DIR/${antigen// /_}.fasta"
-        echo " ✅ SwissProt sequence found."
+        echo " ✅ UniProt/SwissProt sequence found."
     else
-        echo " ⚠️ SwissProt not found, trying fallback..."
+        echo " ⚠️ UniProt/SwissProt not found, trying fallback..."
         result=$(esearch -db protein -query "$query2" | efetch -format fasta 2>/dev/null)
         if [[ -n "$result" ]]; then
             echo "$result" > "$TMP_DIR/${antigen// /_}.fasta"

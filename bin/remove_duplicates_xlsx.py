@@ -4,7 +4,7 @@ import csv
 import unicodedata
 import argparse
 
-# PARSE ARGS
+# === PARSE ARGS ===
 parser = argparse.ArgumentParser()
 parser.add_argument('--file_with_ids', required=True)
 parser.add_argument('--file_new_antigens', required=True)
@@ -16,15 +16,30 @@ file_with_ids = args.file_with_ids
 file_new_antigens = args.file_new_antigens
 tsv_output = args.tsv_output
 
-
 # === CLEANING FUNCTION ===
 def clean_antigen_name(name):
-    # Remove parentheses and their contents, truncate at commas or slashes
-    name = re.sub(r'\(.*?\)', '', name)
-    name = re.split(r'[,/]', name)[0]
-    name = name.strip()
-    # 👇 Normalize to ASCII
+    if not isinstance(name, str):
+        return ""
+    
+    # Normalize to ASCII and lowercase
     name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
+    name = name.lower()
+
+    # Remove contents inside parentheses or brackets
+    name = re.sub(r'\(.*?\)', '', name)
+    name = re.sub(r'\[.*?\]', '', name)
+
+    # Remove known Greek letter prefixes (e.g. alpha-, gamma-)
+    name = re.sub(r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?', '', name, flags=re.IGNORECASE)
+
+    # Remove after comma, slash, or semicolon
+    name = re.split(r'[,/;]', name)[0]
+
+    # Remove extra whitespace, non-word characters on ends
+    name = re.sub(r'\s+', ' ', name)
+    name = name.strip()
+    name = re.sub(r'^\W+|\W+$', '', name)
+
     return name
 
 # === LOAD AND CLEAN DATA ===
