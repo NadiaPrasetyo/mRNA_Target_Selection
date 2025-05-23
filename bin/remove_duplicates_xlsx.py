@@ -1,10 +1,11 @@
 import pandas as pd
 import re
+import csv
 
 # === CONFIGURATION ===
 file_with_ids = "data/S.aureus/IEDB_S.aureus_antigen_table.xlsx"     # First file with UniProt IDs
 file_new_antigens = "data/S.aureus/Howden2023_S.aureus_virulence-factor-list.xlsx" # Second file with just names
-query_list_output = "data/S.aureus/entrez_queries.txt"
+query_csv = "data/S.aureus/entrez_queries.csv"
 
 
 # === CLEANING FUNCTION ===
@@ -26,12 +27,12 @@ new_antigens = df_new.iloc[:, 0].dropna().map(clean_antigen_name)
 # === FIND UNIQUE TO NEW LIST ===
 new_only = sorted(set(new_antigens) - set(known_antigens_cleaned))
 
-# === GENERATE QUERY FILE ===
-with open(query_list_output, "w") as f:
+with open(query_csv, mode="w", newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerow(["Antigen", "SwissProtQuery", "FallbackQuery"])
     for antigen in new_only:
-        # Escape embedded quotes properly
-        swissprot_query = f'"{antigen} [All Fields] NOT partial[All Fields] AND \\"Staphylococcus aureus\\"[Organism] AND swissprot[filter]"'
-        fallback_query = f'"{antigen} [All Fields] NOT partial[All Fields] AND \\"Staphylococcus aureus\\"[Organism]"'
-        f.write(f"{antigen}|||{swissprot_query}|||{fallback_query}\n")
+        swissprot = f'{antigen} [All Fields] NOT partial[All Fields] AND "Staphylococcus aureus"[Organism] AND swissprot[filter]'
+        fallback = f'{antigen} [All Fields] NOT partial[All Fields] AND "Staphylococcus aureus"[Organism]'
+        writer.writerow([antigen, swissprot, fallback])
 
-print(f"✅ Prepared {len(new_only)} queries in '{query_list_output}'")
+print(f"✅ Wrote {len(new_only)} cleaned antigen queries to {query_csv}")
