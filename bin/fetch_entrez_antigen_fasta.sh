@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INPUT_CSV="data/S.aureus/entrez_queries.tsv"
+INPUT_TSV="data/S.aureus/entrez_queries.tsv"
 OUTPUT_FILE="data/S.aureus/fetched_antigens.fasta"
 
 # Ensure output file is fresh
