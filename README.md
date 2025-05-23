@@ -31,7 +31,7 @@ bin/fetch_more_antigens.sh {ExcelFile1}.xlsx {ExcelFile2}.xlsx... -o {OutputDire
 ```
 To fetch antigen sequences from IEDB or literature antigen list that contains UniProt identifiers:
 ```bash
-bin/IEDB_antigen_to_fasta.sh [curl|wget] {input}.xlsx -o {output}.txt
+bin/IEDB_antigen_to_fasta.sh [curl|wget] {input}.xlsx -o {output}.fasta
 ```
 
 ## Future Updates

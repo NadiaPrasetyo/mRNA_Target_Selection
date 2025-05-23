@@ -5,7 +5,7 @@ import argparse
 # === ARGUMENT PARSING ===
 parser = argparse.ArgumentParser(description="Extract UniProt IDs from an IEDB Excel table.")
 parser.add_argument('--input', '-i', required=True, help="Path to input Excel file")
-parser.add_argument('--output', '-o', required=True, help="Path to output text file")
+parser.add_argument('--output', '-o', required=True, help="Path to intermediate UniProt ID text file")
 args = parser.parse_args()
 
 input_excel = args.input
@@ -20,11 +20,11 @@ uniprot_ids = []
 missing_uniprot = []
 
 for name in antigen_names:
-    match = re.search(r'UniProt:([A-Z0-9]+)', name)
+    match = re.search(r'UniProt:([A-Z0-9]+)', str(name))
     if match:
         uniprot_ids.append(match.group(1))
     else:
-        missing_uniprot.append(name.strip())
+        missing_uniprot.append(str(name).strip())
 
 # === WRITE TO TEXT FILE ===
 with open(output_txt, "w") as f:
@@ -38,4 +38,4 @@ with open(output_txt, "w") as f:
         for item in missing_uniprot:
             f.write("\n# " + item)
 
-print(f"Wrote {len(uniprot_ids)} UniProt IDs and {len(missing_uniprot)} unmatched antigen names to '{output_txt}'")
+print(f"[INFO] Wrote {len(uniprot_ids)} UniProt IDs to temporary file '{output_txt}'")
