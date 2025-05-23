@@ -6,6 +6,7 @@ file_with_ids = "data/S.aureus/IEDB_S.aureus_antigen_table.xlsx"     # First fil
 file_new_antigens = "data/S.aureus/Howden2023_S.aureus_virulence-factor-list.xlsx" # Second file with just names
 query_list_output = "data/S.aureus/entrez_queries.txt"
 
+
 # === CLEANING FUNCTION ===
 def clean_antigen_name(name):
     # Remove parentheses and their contents, and truncate at commas or slashes
@@ -28,8 +29,9 @@ new_only = sorted(set(new_antigens) - set(known_antigens_cleaned))
 # === GENERATE QUERY FILE ===
 with open(query_list_output, "w") as f:
     for antigen in new_only:
-        query = f'"{antigen} [All Fields] NOT partial[All Fields] AND \\"Staphylococcus aureus\\"[Organism] AND swissprot[filter]"'
+        # Escape embedded quotes properly
+        swissprot_query = f'"{antigen} [All Fields] NOT partial[All Fields] AND \\"Staphylococcus aureus\\"[Organism] AND swissprot[filter]"'
         fallback_query = f'"{antigen} [All Fields] NOT partial[All Fields] AND \\"Staphylococcus aureus\\"[Organism]"'
-        f.write(f"{antigen}|||{query}|||{fallback_query}\n")
+        f.write(f"{antigen}|||{swissprot_query}|||{fallback_query}\n")
 
-print(f"Prepared {len(new_only)} Entrez queries (excluding partials) in '{query_list_output}'")
+print(f"✅ Prepared {len(new_only)} queries in '{query_list_output}'")
