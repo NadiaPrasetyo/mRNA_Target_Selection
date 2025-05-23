@@ -1,9 +1,15 @@
 import pandas as pd
 import re
+import argparse
 
-# === CONFIGURATION ===
-input_excel = "data/S.aureus/IEDB_S.aureus_antigen_table.xlsx"  # Replace with your actual file name
-output_txt = "data/S.aureus/uniprot_ids.txt"
+# === ARGUMENT PARSING ===
+parser = argparse.ArgumentParser(description="Extract UniProt IDs from an IEDB Excel table.")
+parser.add_argument('--input', '-i', required=True, help="Path to input Excel file")
+parser.add_argument('--output', '-o', required=True, help="Path to output text file")
+args = parser.parse_args()
+
+input_excel = args.input
+output_txt = args.output
 
 # === READ EXCEL FILE ===
 df = pd.read_excel(input_excel)
@@ -30,6 +36,6 @@ with open(output_txt, "w") as f:
     if missing_uniprot:
         f.write("# Antigens without UniProt IDs")
         for item in missing_uniprot:
-            f.write("\n# "+ item )
+            f.write("\n# " + item)
 
 print(f"Wrote {len(uniprot_ids)} UniProt IDs and {len(missing_uniprot)} unmatched antigen names to '{output_txt}'")
