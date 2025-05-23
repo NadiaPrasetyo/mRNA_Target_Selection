@@ -5,7 +5,7 @@ output_dir="data/S.aureus/fasta_results"
 mkdir -p "$output_dir"
 
 # Clear the output file if it exists
-> "$OUTPUT_FILE"
+> "$output_dir"
 
 while IFS='|||' read -r antigen query swissprot_query fallback_query; do
     echo "Fetching: $antigen"
@@ -15,7 +15,7 @@ while IFS='|||' read -r antigen query swissprot_query fallback_query; do
              efetch -format fasta 2>/dev/null)
 
     if [[ -n "$result" ]]; then
-        echo "$result" >> "$OUTPUT_FILE"
+        echo "$result" >> "$output_dir"
         echo " - SwissProt sequence retrieved."
     else
         echo " - SwissProt not found, trying general S. aureus proteins..."
@@ -23,7 +23,7 @@ while IFS='|||' read -r antigen query swissprot_query fallback_query; do
                  efetch -format fasta 2>/dev/null)
 
         if [[ -n "$result" ]]; then
-            echo "$result" >> "$OUTPUT_FILE"
+            echo "$result" >> "$output_dir"
             echo " - Fallback sequence retrieved."
         else
             echo " WARNING:  FAILURE ( $(date) )"
@@ -33,4 +33,4 @@ while IFS='|||' read -r antigen query swissprot_query fallback_query; do
 
     # Slight delay for safety
     sleep 0.3
-done < "$INPUT_FILE"
+done < "$input"
