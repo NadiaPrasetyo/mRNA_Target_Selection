@@ -1,13 +1,21 @@
 import pandas as pd
 import re
 import csv
-import unicodedata  # 👈 Add this import
+import unicodedata
+import argparse
 
+# PARSE ARGS
+parser = argparse.ArgumentParser()
+parser.add_argument('--file_with_ids', required=True)
+parser.add_argument('--file_new_antigens', required=True)
+parser.add_argument('--tsv_output', required=True)
+args = parser.parse_args()
 
 # === CONFIGURATION ===
-file_with_ids = "data/S.aureus/IEDB_S.aureus_antigen_table.xlsx"
-file_new_antigens = "data/S.aureus/Howden2023_S.aureus_virulence-factor-list.xlsx"
-tsv_output = "data/S.aureus/entrez_queries.tsv"
+file_with_ids = args.file_with_ids
+file_new_antigens = args.file_new_antigens
+tsv_output = args.tsv_output
+
 
 # === CLEANING FUNCTION ===
 def clean_antigen_name(name):

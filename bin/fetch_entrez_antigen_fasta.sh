@@ -1,21 +1,23 @@
 #!/bin/bash
 
-INPUT_TSV="data/S.aureus/entrez_queries.tsv"
-OUTPUT_FILE="data/S.aureus/fetched_antigens.fasta"
-TMP_DIR="data/S.aureus/tmp_fasta"
+set -euo pipefail
 
-# Prepare output and temp folder
-> "$OUTPUT_FILE"
+INPUT_TSV="$1"
+OUTPUT_FILE="$2"
+TMP_DIR="intermediate/tmp_fasta_$(date +%s)"
+
+# === SETUP ===
 mkdir -p "$TMP_DIR"
+> "$OUTPUT_FILE"
 
-# Read all lines except header into an array
+# === READ TSV & FETCH SEQUENCES ===
 mapfile -t lines < <(tail -n +2 "$INPUT_TSV")
 
 for line in "${lines[@]}"; do
     # Extract fields by splitting on tabs
     IFS=$'\t' read -r antigen query1 query2 <<< "$line"
 
-    # Strip carriage returns/newlines from variables (fix Windows line endings)
+    # Clean carriage returns
     antigen=$(echo "$antigen" | tr -d '\r\n')
     query1=$(echo "$query1" | tr -d '\r\n')
     query2=$(echo "$query2" | tr -d '\r\n')
@@ -39,12 +41,13 @@ for line in "${lines[@]}"; do
         fi
     fi
 
-    sleep 0.3
 done
 
-# Concatenate all individual fasta files into the final output
-cat "$TMP_DIR"/*.fasta > "$OUTPUT_FILE"
-
+# === COMBINE RESULTS ===
 echo "🧬 Concatenating individual FASTA files..."
+cat "$TMP_DIR"/*.fasta > "$OUTPUT_FILE"
 echo "✅ Final combined FASTA written to $OUTPUT_FILE"
 
+# === CLEANUP ===
+rm -rf "$TMP_DIR"
+echo "🧹 Temporary files removed."
