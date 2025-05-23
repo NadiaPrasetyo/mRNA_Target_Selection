@@ -1,11 +1,12 @@
 import pandas as pd
 import re
 import csv
+import unicodedata  # 👈 Add this import
 
 
 # === CONFIGURATION ===
-file_with_ids = "data/S.aureus/IEDB_S.aureus_antigen_table.xlsx"     # First file with UniProt IDs
-file_new_antigens = "data/S.aureus/Howden2023_S.aureus_virulence-factor-list.xlsx" # Second file with just names
+file_with_ids = "data/S.aureus/IEDB_S.aureus_antigen_table.xlsx"
+file_new_antigens = "data/S.aureus/Howden2023_S.aureus_virulence-factor-list.xlsx"
 tsv_output = "data/S.aureus/entrez_queries.tsv"
 
 # === CLEANING FUNCTION ===
@@ -13,7 +14,10 @@ def clean_antigen_name(name):
     # Remove parentheses and their contents, truncate at commas or slashes
     name = re.sub(r'\(.*?\)', '', name)
     name = re.split(r'[,/]', name)[0]
-    return name.strip()
+    name = name.strip()
+    # 👇 Normalize to ASCII
+    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
+    return name
 
 # === LOAD AND CLEAN DATA ===
 df_with_ids = pd.read_excel(file_with_ids)
@@ -38,10 +42,10 @@ for antigen in new_only:
     query_rows.append((antigen, query1, query2))
 
 # === SAVE TO TSV ===
-
 with open(tsv_output, "w", newline='', encoding='utf-8') as f:
     writer = csv.writer(f, delimiter='\t', quoting=csv.QUOTE_NONE, escapechar='\\')
     writer.writerow(["Antigen", "SwissProtQuery", "FallbackQuery"])
     for row in query_rows:
         writer.writerow(row)
+
 print(f"✅ Wrote {len(query_rows)} cleaned antigen queries to {tsv_output}")
