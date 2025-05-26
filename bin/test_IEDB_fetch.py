@@ -24,7 +24,7 @@ if response.status_code == 200:
     data = response.json()
 
     # Save to CSV
-    output_file = "antigen_results.csv"
+    output_file = "data/S.aureus/antigen_results.csv"
     if data:
         fieldnames = data[0].keys()
         with open(output_file, mode="w", newline='', encoding='utf-8') as csvfile:
