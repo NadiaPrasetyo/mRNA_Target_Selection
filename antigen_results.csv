@@ -1,0 +1,69 @@
+parent_source_antigen_iri,parent_source_antigen_names,source_organism_names,host_organism_names
+taxon_protein:1280-other,['Other Staphylococcus aureus protein'],"['Staphylococcus aureus', 'Staphylococcus aureus Cowan 1']","['Homo sapiens (human)', 'Oryctolagus cuniculus (rabbit)']"
+UNIPROT:O80066,['LukS-PV (UniProt:O80066)'],['Staphylococcus phage PVL (Staphylococcus aureus bacteriophage PVL)'],"['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P14738,['Fibronectin-binding protein A (UniProt:P14738)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus COL', 'Staphylococcus aureus subsp. aureus NCTC 8325 (Staphylococcus aureus subsp. aureus str. NCTC 8325)', 'Staphylococcus aureus subsp. aureus str. Newman (Staphylococcus aureus subsp. aureus strain Newman)']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus (mouse)', 'Oryctolagus cuniculus New Zealand White']"
+UNIPROT:Q2FUX4,['Neutral metalloproteinase (UniProt:Q2FUX4)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2FUY2,['Clumping factor B (UniProt:Q2FUY2)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2FV70,['SSD domain-containing protein (UniProt:Q2FV70)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FV72,['Ferrous iron transport protein B (UniProt:Q2FV72)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FVH8,"['Membrane protein, putative (UniProt:Q2FVH8)']",['Staphylococcus aureus subsp. aureus N315'],['Homo sapiens (human)']
+UNIPROT:Q2FVI5,['Bcr/CflA family efflux transporter (UniProt:Q2FVI5)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2FVK2,['Gamma-hemolysin component C (UniProt:Q2FVK2)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus USA300_FPR3757', 'Staphylococcus aureus subsp. aureus USA300_TCH1516 (Staphylococcus aureus subsp. aureus str. USA300_TCH1516)']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Mus musculus (mouse)', 'Mus musculus ND4 Swiss Webster']"
+UNIPROT:Q2FVK3,"['Gamma-hemolysin h-gamma-ii subunit, putative (UniProt:Q2FVK3)']",['Staphylococcus aureus'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus ND4 Swiss Webster']"
+UNIPROT:Q2FVL8,"['Assimilatory nitrite reductase [NAD(P)H], large subunit, putative (UniProt:Q2FVL8)']",['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FVV4,['CPBP family intramembrane metalloprotease SdpB (UniProt:Q2FVV4)'],['Staphylococcus aureus subsp. aureus N315'],['Homo sapiens (human)']
+UNIPROT:Q2FVX4,"['Molybdenum ABC transporter, periplasmic molybdate-binding protein (UniProt:Q2FVX4)']",['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FWC1,['Pyrimidine-nucleoside phosphorylase (UniProt:Q2FWC1)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FWC4,['Peptidase M20 domain-containing protein 2 (UniProt:Q2FWC4)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2FWD6,['Putative aldehyde dehydrogenase (UniProt:Q2FWD6)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FWN4,['Chaperonin GroEL (UniProt:Q2FWN4)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FWP0,['Uncharacterized leukocidin-like protein 1 (UniProt:Q2FWP0)'],['Staphylococcus aureus subsp. aureus USA300 (Staphylococcus aureus subsp. aureus str. USA300)'],['Homo sapiens (human)']
+UNIPROT:Q2FWS0,['Phi PVL orf 51-like protein (UniProt:Q2FWS0)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FWV3,['Staphylokinase (UniProt:Q2FWV3)'],['Staphylococcus aureus'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Oryctolagus cuniculus (rabbit)', 'Papio (baboon)', 'Papio hamadryas (baboon)']"
+UNIPROT:Q2FWW3,['Aminotransferase class I/classII domain-containing protein (UniProt:Q2FWW3)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FWW7,"['ABC transporter, ATP-binding protein, putative (UniProt:Q2FWW7)']",['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FX09,['Response regulator protein VraR (UniProt:Q2FX09)'],['Staphylococcus aureus subsp. aureus N315'],['Homo sapiens (human)']
+UNIPROT:Q2FX65,['Phage tape measure protein (UniProt:Q2FX65)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FX68,['Phi ETA orf 56-like protein (UniProt:Q2FX68)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FXB0,['Leucotoxin LukEv (UniProt:Q2FXB0)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus CN1 (Staphylococcus aureus subsp. aureus str. CN1)']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Mus musculus (mouse)', 'Mus musculus ND4 Swiss Webster']"
+UNIPROT:Q2FXJ6,['Serine protease HtrA-like (UniProt:Q2FXJ6)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2FXN2,['Amino acid permease/ SLC12A domain-containing protein (UniProt:Q2FXN2)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2FXX5,['Enterotoxin family protein (UniProt:Q2FXX5)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus MRSA252 (Staphylococcus aureus subsp. aureus str. MRSA252)']","['Camelus bactrianus (camel)', 'Homo sapiens (human)', 'Lama glama (llama)', 'Mus musculus BALB/c', 'Mus musculus (mouse)', 'Oryctolagus cuniculus albino', 'Oryctolagus cuniculus (rabbit)', 'Ovis aries (domestic sheep)']"
+UNIPROT:Q2FY60,"['6-phosphogluconate dehydrogenase, decarboxylating (UniProt:Q2FY60)']",['Staphylococcus aureus subsp. aureus JH1 (Staphylococcus aureus subsp. aureus str. JH1)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR15 Tg']"
+UNIPROT:Q2FYP2,"['ABC transporter, ATP-binding protein, putative (UniProt:Q2FYP2)']",['Staphylococcus aureus subsp. aureus MRSA252 (Staphylococcus aureus subsp. aureus str. MRSA252)'],['Homo sapiens (human)']
+UNIPROT:Q2FYV4,['Homoserine dehydrogenase (UniProt:Q2FYV4)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FZ49,['Chromosome partition protein Smc (UniProt:Q2FZ49)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FZ93,['Phospho-N-acetylmuramoyl-pentapeptide-transferase (UniProt:Q2FZ93)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2FZB1,['Staphylococcal/Streptococcal toxin beta-grasp domain-containing protein (UniProt:Q2FZB1)'],['Staphylococcus aureus'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus (mouse)', 'Oryctolagus cuniculus (rabbit)']"
+UNIPROT:Q2FZF0,['Iron-regulated surface determinant protein B (UniProt:Q2FZF0)'],"['Staphylococcus aureus', 'Staphylococcus aureus USA300-ISMMS1']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6']"
+UNIPROT:Q2FZK7,['Bifunctional autolysin (UniProt:Q2FZK7)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G010,['Thermonuclease (UniProt:Q2G010)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus MW2']","['Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus B10.A', 'Mus musculus B10.A(2R)', 'Mus musculus B10.A(4R)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Mus musculus (C57BL/6 X A/J)', 'Mus musculus CBA/J', 'Mus musculus (mouse)', 'Mus musculus NOD']"
+UNIPROT:Q2G015,['Clumping factor A (UniProt:Q2G015)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus str. Newman (Staphylococcus aureus subsp. aureus strain Newman)']","['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:Q2G034,['DUF4887 domain-containing protein (UniProt:Q2G034)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G080,['EamA domain-containing protein (UniProt:Q2G080)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G091,"['ABC transporter, ATP-binding protein (UniProt:Q2G091)']",['Staphylococcus aureus'],"['Homo sapiens (human)', 'Mus musculus Ob.1A12 TCR Tg']"
+UNIPROT:Q2G0A2,['Quinolone resistance protein NorA (UniProt:Q2G0A2)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G0B3,['ABC transporter ATP-binding protein/permease (UniProt:Q2G0B3)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G0N9,['Large ribosomal subunit protein uL10 (UniProt:Q2G0N9)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G0V8,['Phosphatidic acid phosphatase type 2/haloperoxidase domain-containing protein (UniProt:Q2G0V8)'],['Staphylococcus aureus subsp. aureus N315'],['Homo sapiens (human)']
+UNIPROT:Q2G122,['5-methyltetrahydropteroyltriglutamate--homocysteine methyltransferase (UniProt:Q2G122)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G155,['Lipase 2 (UniProt:Q2G155)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G168,['Putative hemin transport system permease protein HrtB (UniProt:Q2G168)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G1E2,"['Membrane protein, putative (UniProt:Q2G1E2)']",['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G1F5,['Solute-binding protein family 5 domain-containing protein (UniProt:Q2G1F5)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G1K8,"['Capsular polysaccharide biosynthesis protein, putative (UniProt:Q2G1K8)']",['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G1L3,"['Replication initiation protein, putative (UniProt:Q2G1L3)']",['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G1N0,['Staphyloferrin B transporter (UniProt:Q2G1N0)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G1P2,['EamA domain-containing protein (UniProt:Q2G1P2)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G1U1,['Rqc2 homolog RqcH (UniProt:Q2G1U1)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G1X0,['Alpha-hemolysin (UniProt:Q2G1X0)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus NCTC 8325 (Staphylococcus aureus subsp. aureus str. NCTC 8325)', 'Staphylococcus aureus subsp. aureus TCH60 (Staphylococcus aureus subsp. aureus str. TCH60)']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)']"
+UNIPROT:Q2G282,['Peroxide-responsive repressor PerR (UniProt:Q2G282)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G2B2,['Surface protein G (UniProt:Q2G2B2)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G2D5,['6-phospho-beta-galactosidase (UniProt:Q2G2D5)'],['Staphylococcus aureus'],['Homo sapiens (human)']
+UNIPROT:Q2G2D8,"['ABC transporter, substrate-binding protein, putative (UniProt:Q2G2D8)']","['Staphylococcus aureus', 'Staphylococcus aureus A9635']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus (mouse)']"
+UNIPROT:Q2G2G3,['Divalent metal cation transporter MntH (UniProt:Q2G2G3)'],['Staphylococcus aureus subsp. aureus NCTC 8325 (Staphylococcus aureus subsp. aureus str. NCTC 8325)'],['Homo sapiens (human)']
+UNIPROT:Q2G2G6,['DUF4064 domain-containing protein (UniProt:Q2G2G6)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G2K9,['M50 family metallopeptidase (UniProt:Q2G2K9)'],['Staphylococcus aureus subsp. aureus N315'],['Homo sapiens (human)']
+UNIPROT:Q2G2Q0,['DNA gyrase subunit A (UniProt:Q2G2Q0)'],['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G2W1,"['Drug resistance transporter, EmrB/QacA subfamily, putative (UniProt:Q2G2W1)']",['Staphylococcus aureus subsp. aureus COL'],['Homo sapiens (human)']
+UNIPROT:Q2G2Y0,['Staphylococcal superantigen-like 7 (UniProt:Q2G2Y0)'],"['Staphylococcus aureus', 'Staphylococcus aureus subsp. aureus MN8']","['Homo sapiens (human)', 'Oryctolagus cuniculus New Zealand White']"
