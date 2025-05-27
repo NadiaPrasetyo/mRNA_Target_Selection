@@ -1,8 +1,7 @@
 import requests
-import json
 import csv
 
-# Corrected API URL with proper query syntax
+# API URL with proper query syntax
 url = "https://query-api.iedb.org/antigen_search"
 params = {
     "host_organism_name": "ilike.*human*", 
@@ -12,12 +11,16 @@ params = {
 
 # Headers with Accept and Prefer
 headers = {
-    "Accept": "application/json",   # Explicitly requesting JSON
-    "Prefer": "count=exact"
+    "Accept": "application/json",   # Requesting JSON
+    "Prefer": "count=exact" # Requesting exact count of the total results
 }
 
-# Make the request
-response = requests.get(url, params=params, headers=headers)
+try:
+    # Make the request
+    response = requests.get(url, params=params, headers=headers)
+except requests.exceptions.RequestException as e:
+    print(f"❌ An error occurred while making the request: {e}")
+    exit(1)
 
 # Check for success
 if response.status_code == 200:

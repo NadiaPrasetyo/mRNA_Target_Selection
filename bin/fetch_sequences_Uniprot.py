@@ -4,6 +4,27 @@ import requests
 import sys
 import os
 import re
+import subprocess
+import xml.etree.ElementTree as ET
+
+def fetch_protein_data_ncbi(strain_query):
+    try:
+        cmd = f'esearch -db protein -query "{strain_query}" | efetch -format xml'
+        output = subprocess.check_output(cmd, shell=True, text=True)
+        root = ET.fromstring(output)
+
+        # Print one entry for inspection (only if you ask for it)
+        for seq_record in root.findall(".//GBSeq"):
+            print("[NCBI] Sample Entry:")
+            print(ET.tostring(seq_record, encoding='unicode'))
+            break
+
+        return root.findall(".//GBSeq")
+
+    except subprocess.CalledProcessError as e:
+        print(f"[ERROR] NCBI fetch failed for strain: {strain_query}\n{e}")
+        return []
+
 
 def fetch_protein_data(embl_id):
     url = f"https://www.ebi.ac.uk/proteins/api/proteins/EMBL:{embl_id}?offset=0&size=-1&reviewed=true"
@@ -100,6 +121,43 @@ def parse_protein_entry(entry, strain, keywords):
         print(f"[ERROR] Failed to parse protein entry for strain {strain} ({entry.get('accession', 'N/A')}): {e}")
         return None
 
+def parse_ncbi_protein_entry(entry, strain, keywords):
+    try:
+        accession = entry.findtext("GBSeq_primary-accession", "")
+        protein_name = entry.findtext("GBSeq_definition", "")
+        sequence = entry.findtext("GBSeq_sequence", "").upper()
+
+        short_name_joined = entry.findtext("GBSeq_locus", "")
+
+        if not protein_matches(protein_name, short_name_joined, keywords):
+            return None
+
+        features = []
+        for feat in entry.findall(".//GBFeature"):
+            key = feat.findtext("GBFeature_key", "")
+            if key == "Region":
+                desc = ""
+                for qual in feat.findall("GBFeature_quals/GBQualifier"):
+                    if qual.findtext("GBQualifier_name") == "note":
+                        desc = qual.findtext("GBQualifier_value")
+                loc = feat.findtext("GBFeature_location", "")
+                features.append(f"{desc} ({loc})")
+
+        return {
+            "strain": strain,
+            "uniprot_accession": accession,
+            "protein_name": protein_name,
+            "short_name": short_name_joined,
+            "function": "",  # Not always available in NCBI
+            "domains": "",   # Could extract from qualifiers if present
+            "features": ";".join(features),
+            "sequence": sequence
+        }
+
+    except Exception as e:
+        print(f"[ERROR] Failed to parse NCBI protein entry for strain {strain}: {e}")
+        return None
+
 
 def main(pathogen):
     pathogen_dir = os.path.join("data", pathogen)
@@ -135,8 +193,15 @@ def main(pathogen):
 
             entries = fetch_protein_data(embl_id)
             if not entries:
-                print(f"[WARN] No protein entries found for EMBL ID {embl_id}")
-                continue
+                print(f"[WARN] No UniProt entries found for EMBL ID {embl_id}, trying NCBI...")
+                ncbi_entries = fetch_protein_data_ncbi(strain)
+                for entry in ncbi_entries:
+                    # You will need a new `parse_ncbi_protein_entry` function
+                    parsed = parse_ncbi_protein_entry(entry, strain, antigen_keywords)
+                    if parsed:
+                        protein_data.append(parsed)
+                        matched_count += 1
+
 
             print(f"  [INFO] Found {len(entries)} protein entries")
 
