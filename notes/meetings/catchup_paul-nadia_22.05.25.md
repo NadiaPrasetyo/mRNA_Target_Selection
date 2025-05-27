@@ -2,7 +2,22 @@ They have a candidate vaccine for S. aureus -> protein based: construct with mul
 
 Reese Langley: looking at 6 circulating strains of S. aureus that explains 95% of the infections globally
 -> covers all of those: focus on these different 6 stains:
-    - 
+    - CC1
+    - CC5
+    - CC8
+    - CC22
+    - CC30
+    - CC93
+
+>The 6 Clonal Complexes that cover the majority of Staphylococcus aureus infections are CC1, CC5, CC8, CC22, CC30, and CC93
+>
+>I have attached a word doc with a table providing information on the genomes I got my SSL sequences from.
+>
+>I have also included the nucleotide and aa seqs of all SSLs (SSL3, SSL7, and SSL11 variants in our vaccine combinations)
+
+ 
+
+I’ve also included some papers on ssl (old name set) evolution."
 
 Prefered protein database: UniProt, Pfam (interpro)
 

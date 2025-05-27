@@ -50,9 +50,9 @@ different strategies to start:
 
 2. putting together some test datasets - what are some successful mRNA vaccine targets - putt out some target proteins matched with the genome (handy for prototyping)
 
-other team members Zahid - working on the project 2 days a week (experimental biologists) help with understanding the biology, patent database (sequence search tools), publication database, and putting together datasets
+other team members Zohaib - working on the project 2 days a week (experimental biologists) help with understanding the biology, patent database (sequence search tools), publication database, and putting together datasets
 
-As soon as we can get a prediction/ list of antigen targets - Zahid can do experimental validation (tests will look like knockout mutations, immunogenic assays, make mRNA constructs, rapid screening platform to test multiple mRNA constructs (higher throughput - minimum is 5-10, likely tens of constructs))
+As soon as we can get a prediction/ list of antigen targets - Zohaib can do experimental validation (tests will look like knockout mutations, immunogenic assays, make mRNA constructs, rapid screening platform to test multiple mRNA constructs (higher throughput - minimum is 5-10, likely tens of constructs))
 -> inform predictions to make it a bit better - many iterations until good performance
 
 
