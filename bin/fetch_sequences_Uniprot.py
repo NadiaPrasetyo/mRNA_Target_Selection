@@ -5,7 +5,8 @@ import sys
 import os
 import re
 import subprocess
-import xml.etree.ElementTree as ET
+from Bio import SeqIO
+from io import StringIO
 import unicodedata
 
 def clean_antigen_name(name):
@@ -40,15 +41,54 @@ def fetch_protein_data_ncbi(strain_name, antigen_name):
     query = f'"{strain_full}"[All Fields] AND ("{antigen_name}" [Protein Name] OR "{antigen_name}"[All Fields])'
 
     try:
-        # Wrap entire query in single quotes so shell sees it as one argument
-        cmd = f'esearch -db protein -query \'{query}\' | efetch -format xml'
+        cmd = f"esearch -db protein -query '{query}' | efetch -format gp"
         output = subprocess.check_output(cmd, shell=True, text=True)
-        root = ET.fromstring(output)
-        return root.findall(".//GBSeq")
-    except subprocess.CalledProcessError as e:
-        print(f"[ERROR] NCBI fetch failed for strain: {strain_name}, antigen: {antigen_name}\n{e}")
-        return []
 
+        if not output.strip():
+            print(f"[WARN] Empty GenPept result for strain: {strain_name}, antigen: {antigen_name}")
+            return ""
+
+        return output
+
+    except subprocess.CalledProcessError as e:
+        print(f"[ERROR] NCBI fetch failed for strain: {strain_name}, antigen: {antigen_name}")
+        print(f"  [DEBUG] Command error: {e}")
+        return ""
+
+def parse_genpept_entries(gp_text, strain, keywords):
+    parsed = []
+    try:
+        records = SeqIO.parse(StringIO(gp_text), "genbank")
+        for record in records:
+            protein_name = record.description
+            short_name = record.name
+            sequence = str(record.seq)
+
+            if not protein_matches(protein_name, short_name, keywords):
+                continue
+
+            features = []
+            for feat in record.features:
+                if feat.type in ("CDS", "mat_peptide", "transit_peptide", "Region", "Protein"):
+                    desc = feat.qualifiers.get("product", [""])[0]
+                    loc = str(feat.location)
+                    features.append(f"{desc} ({loc})")
+
+            parsed.append({
+                "strain": strain,
+                "uniprot_accession": record.id,
+                "protein_name": protein_name,
+                "short_name": short_name,
+                "function": "",
+                "domains": "",
+                "features": ";".join(features),
+                "sequence": sequence
+            })
+
+    except Exception as e:
+        print(f"[ERROR] Failed to parse GenPept for strain {strain}: {e}")
+
+    return parsed
 
 def fetch_protein_data(embl_id):
     url = f"https://www.ebi.ac.uk/proteins/api/proteins/EMBL:{embl_id}?offset=0&size=-1&reviewed=true"
@@ -225,12 +265,12 @@ def main(pathogen):
             if not entries:
                 print(f"[WARN] No UniProt entries found for EMBL ID {embl_id}, trying NCBI...")
                 for antigen in antigen_names:
-                    ncbi_entries = fetch_protein_data_ncbi(strain, antigen)
-                    for entry in ncbi_entries:
-                        parsed = parse_ncbi_protein_entry(entry, strain, {antigen.lower()})
-                        if parsed:
-                            protein_data.append(parsed)
-                            matched_count += 1
+                    gp_text = fetch_protein_data_ncbi(strain, antigen)
+                    parsed_entries = parse_genpept_entries(gp_text, strain, {antigen.lower()})
+                    for parsed in parsed_entries:
+                        protein_data.append(parsed)
+                        matched_count += 1
+
 
             print(f"  [INFO] Found {len(entries)} protein entries")
 
