@@ -22,7 +22,9 @@ def clean_antigen_name(name):
     name = re.sub(r'\[.*?\]', '', name)
 
     # Remove Greek letter prefixes
-    name = re.sub(r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?', '', name, flags=re.IGNORECASE)
+    name = re.sub(
+        r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?',
+        '', name, flags=re.IGNORECASE)
 
     # Trim after comma, slash, or semicolon
     name = re.split(r'[,/;]', name)[0]
@@ -32,13 +34,17 @@ def clean_antigen_name(name):
     name = name.strip()
     name = re.sub(r'^\W+|\W+$', '', name)
 
+    # Remove plural 's' or 'es' from end of words (simple heuristic)
+    name = ' '.join([re.sub(r'(es|s)$', '', word) if len(word) > 3 else word for word in name.split()])
+
     return name
+
 
 def fetch_protein_data_ncbi(strain_name, antigen_name):
     strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
 
     # Full query string with properly quoted parts
-    query = f'"{strain_full}"[All Fields] AND "{antigen_name}"[All Fields]'
+    query = f'"{strain_full}"[All Fields] AND {antigen_name}[All Fields]'
 
     try:
         cmd = f"esearch -db protein -query '{query}' | efetch -format gp"
