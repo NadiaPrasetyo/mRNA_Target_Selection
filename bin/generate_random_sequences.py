@@ -9,7 +9,10 @@ from io import StringIO
 from Bio import SeqIO
 import subprocess
 
-from fetch_protein_data import (
+# Add the directory of the current script (i.e., 'bin/') to the module path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from fetch_sequences_Uniprot_NCBI import (
     load_antigen_keywords,
     protein_matches,
     parse_protein_entry,
@@ -17,6 +20,7 @@ from fetch_protein_data import (
     fetch_protein_data_ncbi,
     parse_genpept_entries
 )
+
 
 def random_dna_sequence(length):
     return ''.join(random.choices('ACGT', k=length))
