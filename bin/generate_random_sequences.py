@@ -1,12 +1,8 @@
 import os
 import sys
 import csv
-import json
 import random
 import requests
-import subprocess
-import re
-from io import StringIO
 from Bio import SeqIO
 from fetch_sequences_Uniprot_NCBI import (
     clean_antigen_name,
@@ -19,37 +15,61 @@ from fetch_sequences_Uniprot_NCBI import (
     extract_keywords
 )
 
-UNIPROT_URL = "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=-1&organism=Staphylococcus%20aureus"
-
-def fetch_all_uniprot_proteins():
-    print("[INFO] Fetching protein names from UniProt...")
+def fetch_random_uniprot_protein_names(n=200, organism="Staphylococcus aureus", antigen_keywords=set()):
     headers = {"Accept": "application/json"}
+    encoded_org = requests.utils.quote(organism)
+
+    # Step 1: Get max number of records
+    print(f"[INFO] Fetching record count for organism: {organism}")
     try:
-        r = requests.get(UNIPROT_URL, headers=headers)
-        r.raise_for_status()
-        proteins = r.json()
-        names = []
-        for entry in proteins:
-            name = entry.get("protein", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
-            if name:
-                names.append(name)
-        print(f"[INFO] Retrieved {len(names)} protein names from UniProt")
-        return names
+        test_url = f"https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=1&organism={encoded_org}"
+        response = requests.get(test_url, headers=headers)
+        response.raise_for_status()
+        max_records = int(response.headers.get("x-pagination-totalrecords", 0))
+        if max_records == 0:
+            print(f"[FATAL] No proteins found for organism: {organism}")
+            return []
+        print(f"[INFO] Found {max_records} total protein records for organism.")
     except Exception as e:
-        print(f"[ERROR] Failed to fetch from UniProt: {e}")
+        print(f"[ERROR] Failed to get protein count: {e}")
         return []
 
-def get_random_non_antigen_proteins(all_proteins, antigen_keywords, n=200):
-    clean_set = []
-    for name in all_proteins:
-        if not any(kw in name.lower() for kw in antigen_keywords):
-            clean_set.append(name)
-    random.shuffle(clean_set)
-    selected = clean_set[:n]
-    print(f"[INFO] Selected {len(selected)} random non-antigen proteins")
-    return selected
+    # Step 2: Sample random protein names
+    selected_names = set()
+    tried_offsets = set()
 
-def main(pathogen):
+    print(f"[INFO] Sampling {n} random proteins (excluding antigens)...")
+    while len(selected_names) < n and len(tried_offsets) < max_records:
+        offset = random.randint(0, max_records - 1)
+        if offset in tried_offsets:
+            continue
+        tried_offsets.add(offset)
+
+        try:
+            url = f"https://www.ebi.ac.uk/proteins/api/proteins?offset={offset}&size=1&organism={encoded_org}"
+            r = requests.get(url, headers=headers)
+            r.raise_for_status()
+            entries = r.json()
+
+            if not isinstance(entries, list):
+                continue
+
+            for entry in entries:
+                name = entry.get("protein", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
+                if name and not any(kw in name.lower() for kw in antigen_keywords):
+                    selected_names.add(name)
+                    print(f"  [INFO] Sampled: {name} ({len(selected_names)}/{n})")
+
+        except Exception as e:
+            print(f"[WARN] Offset {offset} failed: {e}")
+            continue
+
+    if len(selected_names) < n:
+        print(f"[WARN] Only collected {len(selected_names)} proteins out of {n} requested.")
+
+    return list(selected_names)
+
+def main(pathogen, organism):
     pathogen_dir = os.path.join("data", pathogen)
     strains_file = os.path.join(pathogen_dir, f"{pathogen}_strains.csv")
     antigens_file = os.path.join(pathogen_dir, f"{pathogen}_compiled_antigens.csv")
@@ -60,8 +80,7 @@ def main(pathogen):
         return
 
     antigen_keywords = load_antigen_keywords(antigens_file)
-    all_protein_names = fetch_all_uniprot_proteins()
-    random_proteins = get_random_non_antigen_proteins(all_protein_names, antigen_keywords)
+    random_proteins = fetch_random_uniprot_protein_names(n=200, organism=organism, antigen_keywords=antigen_keywords)
 
     with open(strains_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -115,7 +134,7 @@ def main(pathogen):
     print(f"[DONE] Wrote {total_matched} matched sequences to {output_file}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python generate_random_proteins_per_strain.py <pathogen_subfolder>")
+    if len(sys.argv) < 3:
+        print("Usage: python generate_random_proteins_per_strain.py <pathogen_subfolder> <organism_name>")
     else:
-        main(sys.argv[1])
+        main(sys.argv[1], sys.argv[2])
