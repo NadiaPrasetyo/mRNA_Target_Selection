@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 def fetch_protein_data_ncbi(strain_name, antigen_name):
     strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
-    antigen_escaped = antigen_name.replace('"', '')  # Avoid breaking inner quotes
+    antigen_escaped = f'{antigen_name}'
 
     # Full query string with properly quoted parts
     query = f'"{strain_full}"[All Fields] AND ("{antigen_escaped}"[Protein Name] OR "{antigen_escaped}"[All Fields])'
