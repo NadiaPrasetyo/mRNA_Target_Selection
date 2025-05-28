@@ -34,9 +34,6 @@ def clean_antigen_name(name):
     name = name.strip()
     name = re.sub(r'^\W+|\W+$', '', name)
 
-    # Remove plural 's' or 'es' from end of words (simple heuristic)
-    name = ' '.join([re.sub(r'(es|s)$', '', word) if len(word) > 3 else word for word in name.split()])
-
     return name
 
 
