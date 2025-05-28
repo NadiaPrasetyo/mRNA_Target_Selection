@@ -7,23 +7,17 @@ import re
 import subprocess
 import xml.etree.ElementTree as ET
 
-def fetch_protein_data_ncbi(strain_query):
+def fetch_protein_data_ncbi(strain_name, antigen_name):
+    query = f'"{strain_name}"[All Fields] AND ({antigen_name}[Protein Name] OR "{antigen_name}"[All Fields])'
     try:
-        cmd = f'esearch -db protein -query "{strain_query}" | efetch -format xml'
+        cmd = f'esearch -db protein -query "{query}" | efetch -format xml'
         output = subprocess.check_output(cmd, shell=True, text=True)
         root = ET.fromstring(output)
-
-        # Print one entry for inspection (only if you ask for it)
-        for seq_record in root.findall(".//GBSeq"):
-            print("[NCBI] Sample Entry:")
-            print(ET.tostring(seq_record, encoding='unicode'))
-            break
-
         return root.findall(".//GBSeq")
-
     except subprocess.CalledProcessError as e:
-        print(f"[ERROR] NCBI fetch failed for strain: {strain_query}\n{e}")
+        print(f"[ERROR] NCBI fetch failed for strain: {strain_name}, antigen: {antigen_name}\n{e}")
         return []
+
 
 
 def fetch_protein_data(embl_id):
@@ -47,16 +41,17 @@ def extract_keywords(antigen_name):
     words = clean.split()
     return " ".join(words[:3]).lower()
 
-def load_antigen_keywords(antigen_file):
-    keywords = set()
+def load_antigen_names(antigen_file):
+    antigens = set()
     with open(antigen_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            raw_name = row.get("antigen_name", "")
-            if raw_name:
-                keywords.add(extract_keywords(raw_name))
-    print(f"[INFO] Loaded {len(keywords)} antigen keyword patterns")
-    return keywords
+            name = row.get("antigen_name", "").strip()
+            if name:
+                antigens.add(name)
+    print(f"[INFO] Loaded {len(antigens)} antigen names")
+    return list(antigens)
+
 
 def protein_matches(protein_name, short_name, keywords):
     haystack = f"{protein_name} {short_name}".lower()
@@ -172,7 +167,7 @@ def main(pathogen):
         print(f"[FATAL] Antigen file not found: {antigens_file}")
         return
 
-    antigen_keywords = load_antigen_keywords(antigens_file)
+    antigen_names = load_antigen_names(antigens_file)
 
     protein_data = []
     strain_count = 0
@@ -194,13 +189,14 @@ def main(pathogen):
             entries = fetch_protein_data(embl_id)
             if not entries:
                 print(f"[WARN] No UniProt entries found for EMBL ID {embl_id}, trying NCBI...")
-                ncbi_entries = fetch_protein_data_ncbi(strain)
-                for entry in ncbi_entries:
-                    # You will need a new `parse_ncbi_protein_entry` function
-                    parsed = parse_ncbi_protein_entry(entry, strain, antigen_keywords)
-                    if parsed:
-                        protein_data.append(parsed)
-                        matched_count += 1
+                for antigen in antigen_names:
+                    ncbi_entries = fetch_protein_data_ncbi(strain, antigen)
+                    for entry in ncbi_entries:
+                        parsed = parse_ncbi_protein_entry(entry, strain, {antigen.lower()})
+                        if parsed:
+                            protein_data.append(parsed)
+                            matched_count += 1
+
 
 
             print(f"  [INFO] Found {len(entries)} protein entries")
