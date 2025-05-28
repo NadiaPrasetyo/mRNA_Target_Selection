@@ -8,6 +8,7 @@ This repository provides a flexible and scalable pipeline designed to extract, p
    - pandas
    - openpyxl
    - requests
+   - biopython
 
 2. NCBI Entrez Direct
 To install Entrez Direct (EDirect), open a terminal and run one of the following commands:
