@@ -9,10 +9,10 @@ import xml.etree.ElementTree as ET
 
 def fetch_protein_data_ncbi(strain_name, antigen_name):
     strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
-    antigen_escaped = f'{antigen_name}'
+    antigen_escaped = f'"{antigen_name}"'
 
     # Full query string with properly quoted parts
-    query = f'"{strain_full}"[All Fields] AND ("{antigen_escaped}"[Protein Name] OR "{antigen_escaped}"[All Fields])'
+    query = f'"{strain_full}"[All Fields] AND ({antigen_name} [Protein Name] OR {antigen_escaped}[All Fields])'
 
     try:
         # Wrap entire query in single quotes so shell sees it as one argument
