@@ -81,13 +81,6 @@ def parse_genpept_entries(gp_text, strain, keywords):
             if not protein_matches(protein_name, short_name, keywords):
                 continue
 
-            features = []
-            for feat in record.features:
-                if feat.type in ("CDS", "mat_peptide", "transit_peptide", "Region", "Protein"):
-                    desc = feat.qualifiers.get("product", [""])[0]
-                    loc = str(feat.location)
-                    features.append(f"{desc} ({loc})")
-
             parsed.append({
                 "strain": strain,
                 "uniprot_accession": record.id,
@@ -95,7 +88,6 @@ def parse_genpept_entries(gp_text, strain, keywords):
                 "short_name": short_name,
                 "function": "",
                 "domains": "",
-                "features": ";".join(features),
                 "sequence": sequence
             })
 
@@ -177,18 +169,6 @@ def parse_protein_entry(entry, strain, keywords):
                 if domain_name:
                     domains.append(domain_name)
 
-        features = []
-        for f in entry.get("features", []):
-            if f.get("type") == "VARIANT":
-                original = f.get("original", "")
-                variations = f.get("variation", [])
-                features.append(f"{original}:{','.join(variations)}")
-            elif f.get("type") == "PEPTIDE":
-                desc = f.get("description", "")
-                begin = f.get("begin", "")
-                end = f.get("end", "")
-                features.append(f"{desc} ({begin}-{end})")
-
         sequence = entry.get("sequence", {}).get("sequence", "")
 
         return {
@@ -198,7 +178,6 @@ def parse_protein_entry(entry, strain, keywords):
             "short_name": short_name_joined,
             "function": function,
             "domains": ";".join(domains),
-            "features": ";".join(features),
             "sequence": sequence
         }
 
@@ -216,16 +195,6 @@ def parse_ncbi_protein_entry(entry, strain, keywords):
         if not protein_matches(protein_name, short_name_joined, keywords):
             return None
 
-        features = []
-        for feat in entry.findall(".//GBFeature"):
-            key = feat.findtext("GBFeature_key", "")
-            if key == "Region":
-                desc = ""
-                for qual in feat.findall("GBFeature_quals/GBQualifier"):
-                    if qual.findtext("GBQualifier_name") == "note":
-                        desc = qual.findtext("GBQualifier_value")
-                loc = feat.findtext("GBFeature_location", "")
-                features.append(f"{desc} ({loc})")
 
         return {
             "strain": strain,
@@ -234,7 +203,6 @@ def parse_ncbi_protein_entry(entry, strain, keywords):
             "short_name": short_name_joined,
             "function": "",
             "domains": "",
-            "features": ";".join(features),
             "sequence": sequence
         }
 
@@ -301,7 +269,7 @@ def main(pathogen):
         return
 
     with open(output_file, 'w', newline='') as outfile:
-        fieldnames = ["strain", "uniprot_accession", "protein_name", "short_name", "function", "domains", "features", "sequence"]
+        fieldnames = ["strain", "uniprot_accession", "protein_name", "short_name", "function", "domains", "sequence"]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(protein_data)
