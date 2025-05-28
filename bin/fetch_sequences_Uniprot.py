@@ -202,7 +202,7 @@ def main(pathogen):
             print(f"  [INFO] Found {len(entries)} protein entries")
 
             for entry in entries:
-                parsed = parse_protein_entry(entry, strain, antigen_keywords)
+                parsed = parse_protein_entry(entry, strain, antigen_names)
                 if parsed:
                     protein_data.append(parsed)
                     matched_count += 1
