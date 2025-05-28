@@ -8,7 +8,11 @@ import subprocess
 import xml.etree.ElementTree as ET
 
 def fetch_protein_data_ncbi(strain_name, antigen_name):
-    query = f'"{strain_name}"[All Fields] AND ({antigen_name}[Protein Name] OR "{antigen_name}"[All Fields])'
+    strain_escaped = f'"Staphylococcus aureus subsp. aureus {strain_name}"'
+    antigen_escaped = f'"{antigen_name}"'
+
+    query = f'{strain_escaped}[All Fields] AND ({antigen_name} [Protein Name] OR {antigen_escaped}[All Fields])'
+
     try:
         cmd = f'esearch -db protein -query "{query}" | efetch -format xml'
         output = subprocess.check_output(cmd, shell=True, text=True)
