@@ -100,21 +100,31 @@ def main(pathogen, organism):
             entries = []
             parsed_entries = []
 
+            match_found = False
+
+            # Try UniProt (EMBL ID)
             if embl_id:
                 entries = fetch_protein_data(embl_id)
                 for entry in entries:
                     parsed = parse_protein_entry(entry, strain, keywords)
                     if parsed:
                         parsed["random_protein_name"] = protein_name
-                        parsed_entries.append(parsed)
+                        protein_data.append(parsed)
+                        total_matched += 1
+                        match_found = True
+                        break  # Only take the first match
 
-            if not parsed_entries:
+            # Fallback: Try NCBI if UniProt failed
+            if not match_found:
                 gp_text = fetch_protein_data_ncbi(strain, protein_name)
                 if gp_text:
                     ncbi_parsed = parse_genpept_entries(gp_text, strain, keywords)
-                    for item in ncbi_parsed:
-                        item["random_protein_name"] = protein_name
-                        parsed_entries.append(item)
+                    if ncbi_parsed:
+                        first_ncbi = ncbi_parsed[0]
+                        first_ncbi["random_protein_name"] = protein_name
+                        protein_data.append(first_ncbi)
+                        total_matched += 1
+
 
             protein_data.extend(parsed_entries)
             total_matched += len(parsed_entries)
