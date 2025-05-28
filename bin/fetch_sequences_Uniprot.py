@@ -38,7 +38,7 @@ def fetch_protein_data_ncbi(strain_name, antigen_name):
     strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
 
     # Full query string with properly quoted parts
-    query = f'"{strain_full}"[All Fields] AND ("{antigen_name}" [Protein Name] OR "{antigen_name}"[All Fields])'
+    query = f'"{strain_full}"[All Fields] AND "{antigen_name}"[All Fields]'
 
     try:
         cmd = f"esearch -db protein -query '{query}' | efetch -format gp"
