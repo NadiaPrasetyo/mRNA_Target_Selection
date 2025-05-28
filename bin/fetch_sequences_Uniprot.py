@@ -18,8 +18,6 @@ def fetch_protein_data_ncbi(strain_name, antigen_name):
         print(f"[ERROR] NCBI fetch failed for strain: {strain_name}, antigen: {antigen_name}\n{e}")
         return []
 
-
-
 def fetch_protein_data(embl_id):
     url = f"https://www.ebi.ac.uk/proteins/api/proteins/EMBL:{embl_id}?offset=0&size=-1&reviewed=true"
     headers = {"Accept": "application/json"}
@@ -34,29 +32,38 @@ def fetch_protein_data(embl_id):
         print(f"[ERROR] Network exception for EMBL ID {embl_id}: {e}")
         return []
 
-def extract_keywords(antigen_name):
+def extract_keywords(antigen_name, max_words=3):
     clean = re.sub(r"\(.*?\)", "", antigen_name)
     clean = re.sub(r"\[|\]|UniProt:[A-Z0-9]+", "", clean)
     clean = clean.replace("'", "").strip()
     words = clean.split()
-    return " ".join(words[:3]).lower()
+    return " ".join(words[:max_words]).lower()
+
+def load_antigen_keywords(antigen_file):
+    keywords = set()
+    with open(antigen_file, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            raw_name = row.get("antigen_name", "")
+            if raw_name:
+                keywords.add(extract_keywords(raw_name))
+    print(f"[INFO] Loaded {len(keywords)} antigen keyword patterns (UniProt)")
+    return keywords
 
 def load_antigen_names(antigen_file):
-    antigens = set()
+    names = []
     with open(antigen_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             name = row.get("antigen_name", "").strip()
             if name:
-                antigens.add(name)
-    print(f"[INFO] Loaded {len(antigens)} antigen names")
-    return list(antigens)
-
+                names.append(name)
+    print(f"[INFO] Loaded {len(names)} antigen names (NCBI)")
+    return names
 
 def protein_matches(protein_name, short_name, keywords):
     haystack = f"{protein_name} {short_name}".lower()
     return any(kw in haystack for kw in keywords)
-
 
 def parse_protein_entry(entry, strain, keywords):
     try:
@@ -65,19 +72,15 @@ def parse_protein_entry(entry, strain, keywords):
         protein_name = entry.get("protein", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
         short_name_joined = entry.get("id", "")
 
-
-        # Match using simplified antigen keywords
         if not protein_matches(protein_name, short_name_joined, keywords):
             return None
 
-        # Extract function
         function = ""
         for comment in entry.get("comments", []):
             if comment.get("type") == "FUNCTION":
                 function = comment.get("text", [{}])[0].get("value", "")
                 break
 
-        # Extract domains from InterPro or Pfam
         domains = []
         for ref in entry.get("dbReferences", []):
             if ref["type"] in ("InterPro", "Pfam"):
@@ -85,7 +88,6 @@ def parse_protein_entry(entry, strain, keywords):
                 if domain_name:
                     domains.append(domain_name)
 
-        # Extract features
         features = []
         for f in entry.get("features", []):
             if f.get("type") == "VARIANT":
@@ -98,7 +100,6 @@ def parse_protein_entry(entry, strain, keywords):
                 end = f.get("end", "")
                 features.append(f"{desc} ({begin}-{end})")
 
-        # Extract sequence
         sequence = entry.get("sequence", {}).get("sequence", "")
 
         return {
@@ -121,7 +122,6 @@ def parse_ncbi_protein_entry(entry, strain, keywords):
         accession = entry.findtext("GBSeq_primary-accession", "")
         protein_name = entry.findtext("GBSeq_definition", "")
         sequence = entry.findtext("GBSeq_sequence", "").upper()
-
         short_name_joined = entry.findtext("GBSeq_locus", "")
 
         if not protein_matches(protein_name, short_name_joined, keywords):
@@ -143,8 +143,8 @@ def parse_ncbi_protein_entry(entry, strain, keywords):
             "uniprot_accession": accession,
             "protein_name": protein_name,
             "short_name": short_name_joined,
-            "function": "",  # Not always available in NCBI
-            "domains": "",   # Could extract from qualifiers if present
+            "function": "",
+            "domains": "",
             "features": ";".join(features),
             "sequence": sequence
         }
@@ -152,7 +152,6 @@ def parse_ncbi_protein_entry(entry, strain, keywords):
     except Exception as e:
         print(f"[ERROR] Failed to parse NCBI protein entry for strain {strain}: {e}")
         return None
-
 
 def main(pathogen):
     pathogen_dir = os.path.join("data", pathogen)
@@ -167,7 +166,8 @@ def main(pathogen):
         print(f"[FATAL] Antigen file not found: {antigens_file}")
         return
 
-    antigen_names = load_antigen_names(antigens_file)
+    antigen_keywords = load_antigen_keywords(antigens_file)  # for UniProt
+    antigen_names = load_antigen_names(antigens_file)        # for NCBI
 
     protein_data = []
     strain_count = 0
@@ -197,12 +197,10 @@ def main(pathogen):
                             protein_data.append(parsed)
                             matched_count += 1
 
-
-
             print(f"  [INFO] Found {len(entries)} protein entries")
 
             for entry in entries:
-                parsed = parse_protein_entry(entry, strain, antigen_names)
+                parsed = parse_protein_entry(entry, strain, antigen_keywords)
                 if parsed:
                     protein_data.append(parsed)
                     matched_count += 1
