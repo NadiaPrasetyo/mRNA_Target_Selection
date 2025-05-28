@@ -34,6 +34,17 @@ def clean_antigen_name(name):
     name = name.strip()
     name = re.sub(r'^\W+|\W+$', '', name)
 
+    # Remove s and es on the last word
+    name_parts = name.split()
+    if name_parts:
+        last_word = name_parts[-1]
+        if last_word.endswith('s'):
+            last_word = last_word[:-1]
+        elif last_word.endswith('es'):
+            last_word = last_word[:-2]
+        name_parts[-1] = last_word
+        name = ' '.join(name_parts)
+
     return name
 
 
@@ -41,7 +52,7 @@ def fetch_protein_data_ncbi(strain_name, antigen_name):
     strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
 
     # Full query string with properly quoted parts
-    query = f'"{strain_full}"[All Fields] AND {antigen_name}[All Fields]'
+    query = f'"{strain_full}"[All Fields] AND ({antigen_name}[All Fields] OR "{antigen_name}"[All Fields])'
 
     try:
         cmd = f"esearch -db protein -query '{query}' | efetch -format gp"
