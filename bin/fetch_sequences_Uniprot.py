@@ -6,13 +6,38 @@ import os
 import re
 import subprocess
 import xml.etree.ElementTree as ET
+import unicodedata
+
+def clean_antigen_name(name):
+    if not isinstance(name, str):
+        return ""
+
+    # Normalize to ASCII and lowercase
+    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
+    name = name.lower()
+
+    # Remove contents inside parentheses or brackets
+    name = re.sub(r'\(.*?\)', '', name)
+    name = re.sub(r'\[.*?\]', '', name)
+
+    # Remove Greek letter prefixes
+    name = re.sub(r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?', '', name, flags=re.IGNORECASE)
+
+    # Trim after comma, slash, or semicolon
+    name = re.split(r'[,/;]', name)[0]
+
+    # Clean whitespace and punctuation
+    name = re.sub(r'\s+', ' ', name)
+    name = name.strip()
+    name = re.sub(r'^\W+|\W+$', '', name)
+
+    return name
 
 def fetch_protein_data_ncbi(strain_name, antigen_name):
     strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
-    antigen_escaped = f'"{antigen_name}"'
 
     # Full query string with properly quoted parts
-    query = f'"{strain_full}"[All Fields] AND ({antigen_name} [Protein Name] OR {antigen_escaped}[All Fields])'
+    query = f'"{strain_full}"[All Fields] AND ("{antigen_name}" [Protein Name] OR "{antigen_name}"[All Fields])'
 
     try:
         # Wrap entire query in single quotes so shell sees it as one argument
@@ -64,9 +89,12 @@ def load_antigen_names(antigen_file):
         for row in reader:
             name = row.get("antigen_name", "").strip()
             if name:
-                names.append(name)
-    print(f"[INFO] Loaded {len(names)} antigen names (NCBI)")
+                cleaned = clean_antigen_name(name)
+                if cleaned:
+                    names.append(cleaned)
+    print(f"[INFO] Loaded {len(names)} cleaned antigen names (NCBI)")
     return names
+
 
 def protein_matches(protein_name, short_name, keywords):
     haystack = f"{protein_name} {short_name}".lower()
