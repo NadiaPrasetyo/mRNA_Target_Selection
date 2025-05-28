@@ -8,19 +8,22 @@ import subprocess
 import xml.etree.ElementTree as ET
 
 def fetch_protein_data_ncbi(strain_name, antigen_name):
-    strain_escaped = f'"Staphylococcus aureus subsp. aureus {strain_name}"'
-    antigen_escaped = f'"{antigen_name}"'
+    strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
+    antigen_escaped = antigen_name.replace('"', '')  # Avoid breaking inner quotes
 
-    query = f'{strain_escaped}[All Fields] AND ({antigen_name} [Protein Name] OR {antigen_escaped}[All Fields])'
+    # Full query string with properly quoted parts
+    query = f'"{strain_full}"[All Fields] AND ("{antigen_escaped}"[Protein Name] OR "{antigen_escaped}"[All Fields])'
 
     try:
-        cmd = f'esearch -db protein -query "{query}" | efetch -format xml'
+        # Wrap entire query in single quotes so shell sees it as one argument
+        cmd = f'esearch -db protein -query \'{query}\' | efetch -format xml'
         output = subprocess.check_output(cmd, shell=True, text=True)
         root = ET.fromstring(output)
         return root.findall(".//GBSeq")
     except subprocess.CalledProcessError as e:
         print(f"[ERROR] NCBI fetch failed for strain: {strain_name}, antigen: {antigen_name}\n{e}")
         return []
+
 
 def fetch_protein_data(embl_id):
     url = f"https://www.ebi.ac.uk/proteins/api/proteins/EMBL:{embl_id}?offset=0&size=-1&reviewed=true"
