@@ -1,119 +1,121 @@
-import csv
 import os
-import re
 import sys
+import csv
+import json
 import random
-import string
 import requests
+import subprocess
+import re
 from io import StringIO
 from Bio import SeqIO
-import subprocess
-
-# Add the directory of the current script (i.e., 'bin/') to the module path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from fetch_sequences_Uniprot_NCBI import (
+    clean_antigen_name,
     load_antigen_keywords,
     protein_matches,
     parse_protein_entry,
     fetch_protein_data,
     fetch_protein_data_ncbi,
-    parse_genpept_entries
+    parse_genpept_entries,
+    extract_keywords
 )
 
+UNIPROT_URL = "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=-1&organism=Staphylococcus%20aureus"
 
-def random_dna_sequence(length):
-    return ''.join(random.choices('ACGT', k=length))
+def fetch_all_uniprot_proteins():
+    print("[INFO] Fetching protein names from UniProt...")
+    headers = {"Accept": "application/json"}
+    try:
+        r = requests.get(UNIPROT_URL, headers=headers)
+        r.raise_for_status()
+        proteins = r.json()
+        names = []
+        for entry in proteins:
+            name = entry.get("protein", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
+            if name:
+                names.append(name)
+        print(f"[INFO] Retrieved {len(names)} protein names from UniProt")
+        return names
+    except Exception as e:
+        print(f"[ERROR] Failed to fetch from UniProt: {e}")
+        return []
 
-def get_antigen_lengths(antigen_file):
-    lengths = []
-    with open(antigen_file, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            seq = row.get("sequence", "")
-            if seq:
-                lengths.append(len(seq))
-    return lengths
+def get_random_non_antigen_proteins(all_proteins, antigen_keywords, n=200):
+    clean_set = []
+    for name in all_proteins:
+        if not any(kw in name.lower() for kw in antigen_keywords):
+            clean_set.append(name)
+    random.shuffle(clean_set)
+    selected = clean_set[:n]
+    print(f"[INFO] Selected {len(selected)} random non-antigen proteins")
+    return selected
 
-def generate_non_antigens(pathogen, target_count=200):
+def main(pathogen):
     pathogen_dir = os.path.join("data", pathogen)
     strains_file = os.path.join(pathogen_dir, f"{pathogen}_strains.csv")
-    antigens_file = os.path.join(pathogen_dir, f"{pathogen}_compiled_proteins.csv")
-    output_file = os.path.join(pathogen_dir, f"{pathogen}_non_antigens.csv")
+    antigens_file = os.path.join(pathogen_dir, f"{pathogen}_compiled_antigens.csv")
+    output_file = os.path.join(pathogen_dir, f"{pathogen}_random_proteins.csv")
 
     if not os.path.exists(strains_file) or not os.path.exists(antigens_file):
-        print("[FATAL] Required files missing.")
+        print("[FATAL] Missing input files.")
         return
 
     antigen_keywords = load_antigen_keywords(antigens_file)
-    antigen_lengths = get_antigen_lengths(antigens_file)
-    length_range = (min(antigen_lengths), max(antigen_lengths)) if antigen_lengths else (150, 450)
-
-    collected = []
-    strain_count = 0
+    all_protein_names = fetch_all_uniprot_proteins()
+    random_proteins = get_random_non_antigen_proteins(all_protein_names, antigen_keywords)
 
     with open(strains_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
-        for row in reader:
-            if len(collected) >= target_count:
-                break
+        strain_list = list(reader)
 
-            strain = row.get("Strain", "")
-            embl_id = row.get("EMBL_ID", "")
-            if not embl_id:
-                continue
+    protein_data = []
+    total_matched = 0
 
-            print(f"[INFO] Trying strain {strain} (EMBL: {embl_id})")
+    for protein_name in random_proteins:
+        keywords = {kw.lower() for kw in extract_keywords(protein_name).split()}
+        print(f"[INFO] Processing protein: {protein_name}")
 
-            entries = fetch_protein_data(embl_id)
-            if not entries:
-                print(f"[INFO] Falling back to NCBI for {strain}")
-                dummy_antigen = "hypothetical protein"  # Generic fallback
-                gp_text = fetch_protein_data_ncbi(strain, dummy_antigen)
-                ncbi_entries = parse_genpept_entries(gp_text, strain, set())
+        for strain_row in strain_list:
+            strain = strain_row.get("Strain", "")
+            embl_id = strain_row.get("EMBL_ID", "")
 
-                for entry in ncbi_entries:
-                    if len(collected) >= target_count:
-                        break
-                    if not protein_matches(entry["protein_name"], entry["short_name"], antigen_keywords):
-                        collected.append(entry)
-                continue
+            entries = []
+            parsed_entries = []
 
-            for entry in entries:
-                if len(collected) >= target_count:
-                    break
-                parsed = parse_protein_entry(entry, strain, set())  # Don't use keywords here
-                if parsed and not protein_matches(parsed["protein_name"], parsed["short_name"], antigen_keywords):
-                    collected.append(parsed)
+            if embl_id:
+                entries = fetch_protein_data(embl_id)
+                for entry in entries:
+                    parsed = parse_protein_entry(entry, strain, keywords)
+                    if parsed:
+                        parsed["random_protein_name"] = protein_name
+                        parsed_entries.append(parsed)
 
-            strain_count += 1
+            if not parsed_entries:
+                gp_text = fetch_protein_data_ncbi(strain, protein_name)
+                if gp_text:
+                    ncbi_parsed = parse_genpept_entries(gp_text, strain, keywords)
+                    for item in ncbi_parsed:
+                        item["random_protein_name"] = protein_name
+                        parsed_entries.append(item)
 
-    # Fill with random sequences if we’re short
-    while len(collected) < target_count:
-        rand_len = random.randint(*length_range)
-        fake_seq = random_dna_sequence(rand_len)
-        collected.append({
-            "strain": "synthetic",
-            "uniprot_accession": f"SYN{len(collected)+1}",
-            "protein_name": "Random Sequence",
-            "short_name": f"random_seq_{len(collected)+1}",
-            "function": "",
-            "domains": "",
-            "sequence": fake_seq
-        })
+            protein_data.extend(parsed_entries)
+            total_matched += len(parsed_entries)
 
-    print(f"[DONE] Collected {len(collected)} non-antigen entries")
+        print(f"  [INFO] Matched {total_matched} entries so far.")
 
-    with open(output_file, 'w', newline='') as outfile:
-        fieldnames = ["strain", "uniprot_accession", "protein_name", "short_name", "function", "domains", "sequence"]
+    if not protein_data:
+        print("[WARN] No matches found.")
+        return
+
+    with open(output_file, "w", newline='') as outfile:
+        fieldnames = ["random_protein_name", "strain", "uniprot_accession", "protein_name", "short_name", "function", "domains", "sequence"]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(collected)
+        writer.writerows(protein_data)
 
-    print(f"[OUTPUT] Wrote non-antigens to: {output_file}")
+    print(f"[DONE] Wrote {total_matched} matched sequences to {output_file}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python generate_non_antigens.py <pathogen_subfolder>")
+        print("Usage: python generate_random_proteins_per_strain.py <pathogen_subfolder>")
     else:
-        generate_non_antigens(sys.argv[1])
+        main(sys.argv[1])
