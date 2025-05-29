@@ -1,283 +1,188 @@
 import csv
-import json
 import requests
-import sys
 import os
 import re
-import subprocess
-from Bio import SeqIO
-from io import StringIO
 import unicodedata
+import sys
+
+UNIPROT_API_BASE = "https://www.ebi.ac.uk/proteins/api/proteins"
 
 def clean_antigen_name(name):
     if not isinstance(name, str):
         return ""
+    name = name.strip()
+    if name.startswith("[") and name.endswith("]"):
+        name = name[1:-1].strip()
+    if name.startswith("'") and name.endswith("'"):
+        name = name[1:-1].strip()
 
-    # Normalize to ASCII and lowercase
     name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
     name = name.lower()
-
-    # Remove contents inside parentheses or brackets
     name = re.sub(r'\(.*?\)', '', name)
     name = re.sub(r'\[.*?\]', '', name)
-
-    # Remove Greek letter prefixes
-    name = re.sub(
-        r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?',
-        '', name, flags=re.IGNORECASE)
-
-    # Trim after comma, slash, or semicolon
+    name = re.sub(r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?', '', name, flags=re.IGNORECASE)
     name = re.split(r'[,/;]', name)[0]
-
-    # Clean whitespace and punctuation
-    name = re.sub(r'\s+', ' ', name)
-    name = name.strip()
+    name = re.sub(r'\s+', ' ', name).strip()
     name = re.sub(r'^\W+|\W+$', '', name)
-
-    # Remove s and es on the last word
-    name_parts = name.split()
-    if name_parts:
-        last_word = name_parts[-1]
-        if last_word.endswith('s'):
-            last_word = last_word[:-1]
-        elif last_word.endswith('es'):
-            last_word = last_word[:-2]
-        name_parts[-1] = last_word
-        name = ' '.join(name_parts)
-
     return name
 
 
-def fetch_protein_data_ncbi(strain_name, antigen_name):
-    strain_full = f'Staphylococcus aureus subsp. aureus {strain_name}'
-
-    # Full query string with properly quoted parts
-    query = f'"{strain_full}"[All Fields] AND ({antigen_name}[All Fields] OR "{antigen_name}"[All Fields])'
-
-    try:
-        cmd = f"esearch -db protein -query '{query}' | efetch -format gp"
-        output = subprocess.check_output(cmd, shell=True, text=True)
-
-        if not output.strip():
-            print(f"[WARN] Empty GenPept result for strain: {strain_name}, antigen: {antigen_name}")
-            return ""
-
-        return output
-
-    except subprocess.CalledProcessError as e:
-        print(f"[ERROR] NCBI fetch failed for strain: {strain_name}, antigen: {antigen_name}")
-        print(f"  [DEBUG] Command error: {e}")
-        return ""
-
-def parse_genpept_entries(gp_text, strain, keywords):
-    parsed = []
-    try:
-        records = SeqIO.parse(StringIO(gp_text), "genbank")
-        for record in records:
-            protein_name = record.description
-            short_name = record.name
-            sequence = str(record.seq)
-
-            if not protein_matches(protein_name, short_name, keywords):
-                continue
-
-            parsed.append({
-                "strain": strain,
-                "uniprot_accession": record.id,
-                "protein_name": protein_name,
-                "short_name": short_name,
-                "function": "",
-                "domains": "",
-                "sequence": sequence
-            })
-
-    except Exception as e:
-        print(f"[ERROR] Failed to parse GenPept for strain {strain}: {e}")
-
-    return parsed
-
-def fetch_protein_data(embl_id):
-    url = f"https://www.ebi.ac.uk/proteins/api/proteins/EMBL:{embl_id}?offset=0&size=-1&reviewed=true"
+def fetch_uniprot_by_accession(accession, organism):
+    url = f"{UNIPROT_API_BASE}?offset=0&size=-1&accession={accession}&organism={organism.replace(' ', '%20')}"
     headers = {"Accept": "application/json"}
     try:
         response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            print(f"[ERROR] API failed for EMBL ID {embl_id}: HTTP {response.status_code}")
-            return []
-    except requests.exceptions.RequestException as e:
-        print(f"[ERROR] Network exception for EMBL ID {embl_id}: {e}")
-        return []
-
-def extract_keywords(antigen_name, max_words=3):
-    clean = re.sub(r"\(.*?\)", "", antigen_name)
-    clean = re.sub(r"\[|\]|UniProt:[A-Z0-9]+", "", clean)
-    clean = clean.replace("'", "").strip()
-    words = clean.split()
-    return " ".join(words[:max_words]).lower()
-
-def load_antigen_keywords(antigen_file):
-    keywords = set()
-    with open(antigen_file, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            raw_name = row.get("antigen_name", "")
-            if raw_name:
-                keywords.add(extract_keywords(raw_name))
-    print(f"[INFO] Loaded {len(keywords)} antigen keyword patterns (UniProt)")
-    return keywords
-
-def load_antigen_names(antigen_file):
-    names = []
-    with open(antigen_file, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            name = row.get("antigen_name", "").strip()
-            if name:
-                cleaned = clean_antigen_name(name)
-                if cleaned:
-                    names.append(cleaned)
-    print(f"[INFO] Loaded {len(names)} cleaned antigen names (NCBI)")
-    return names
+        if response.ok:
+            data = response.json()
+            if isinstance(data, list) and data:
+                return data[0]  # Return the first result
+            elif isinstance(data, dict):  # Just in case a single dict is returned
+                return data
+    except requests.RequestException as e:
+        print(f"[ERROR] Request failed for accession {accession}: {e}")
+    return None
 
 
-def protein_matches(protein_name, short_name, keywords):
-    haystack = f"{protein_name} {short_name}".lower()
-    return any(kw in haystack for kw in keywords)
+def fetch_uniprot_by_gene(gene_name, organism):
+    headers = {"Accept": "application/json"}
+    query = f"{UNIPROT_API_BASE}?offset=0&size=-1&gene={gene_name}&organism={organism}"
+    try:
+        response = requests.get(query, headers=headers)
+        if response.ok:
+            data = response.json()
+            return data[0] if data else None
+    except requests.RequestException:
+        pass
+    return None
 
-def parse_protein_entry(entry, strain, keywords):
+def parse_uniprot_entry(entry):
     try:
         accession = entry.get("accession", "")
+        organism = entry.get("organism", {}).get("names", [{}])[0].get("value", "").lower()
         name = entry.get("id", "")
-        protein_name = entry.get("protein", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
-        short_name_joined = entry.get("id", "")
 
-        if not protein_matches(protein_name, short_name_joined, keywords):
-            return None
+        # Handle protein name (fallback to submittedName if recommendedName is missing)
+        protein_data = entry.get("protein", {})
+        protein_name = ""
+        if "recommendedName" in protein_data:
+            protein_name = protein_data["recommendedName"].get("fullName", {}).get("value", "")
+        elif "submittedName" in protein_data:
+            protein_name = protein_data["submittedName"][0].get("fullName", {}).get("value", "")
 
+        # Extract function comment
         function = ""
         for comment in entry.get("comments", []):
             if comment.get("type") == "FUNCTION":
                 function = comment.get("text", [{}])[0].get("value", "")
                 break
 
-        domains = []
-        for ref in entry.get("dbReferences", []):
-            if ref["type"] in ("InterPro", "Pfam"):
-                domain_name = ref.get("properties", {}).get("entry name", "")
-                if domain_name:
-                    domains.append(domain_name)
+        # Extract domains
+        domains = [
+            ref.get("properties", {}).get("entry name", "")
+            for ref in entry.get("dbReferences", [])
+            if ref["type"] in ("InterPro", "Pfam")
+        ]
+
+        # Extract features: include type, description, and location
+        features = []
+        for feat in entry.get("features", []):
+            feat_type = feat.get("type", "")
+            desc = feat.get("description", "")
+            begin = feat.get("begin", "")
+            end = feat.get("end", "")
+            if begin and end:
+                features.append(f"{feat_type}:{desc}({begin}-{end})")
 
         sequence = entry.get("sequence", {}).get("sequence", "")
 
         return {
-            "strain": strain,
             "uniprot_accession": accession,
+            "organism_name": organism,
             "protein_name": protein_name,
-            "short_name": short_name_joined,
+            "short_name": name,
             "function": function,
             "domains": ";".join(domains),
+            "features": ";".join(features),
             "sequence": sequence
         }
-
     except Exception as e:
-        print(f"[ERROR] Failed to parse protein entry for strain {strain} ({entry.get('accession', 'N/A')}): {e}")
+        print(f"[ERROR] Failed to parse entry for {entry.get('accession', 'unknown')}: {e}")
         return None
 
-def parse_ncbi_protein_entry(entry, strain, keywords):
-    try:
-        accession = entry.findtext("GBSeq_primary-accession", "")
-        protein_name = entry.findtext("GBSeq_definition", "")
-        sequence = entry.findtext("GBSeq_sequence", "").upper()
-        short_name_joined = entry.findtext("GBSeq_locus", "")
 
-        if not protein_matches(protein_name, short_name_joined, keywords):
-            return None
+def load_antigen_records(file_path):
+    records = []
+    with open(file_path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            antigen = {
+                "antigen_name": clean_antigen_name(row.get("antigen_name", "")),
+                "gene_name": row.get("gene_name", "").strip(),
+                "uniprot_id": row.get("Uniprot_ID", "").strip()
+            }
+            records.append(antigen)
+    return records
 
-
-        return {
-            "strain": strain,
-            "uniprot_accession": accession,
-            "protein_name": protein_name,
-            "short_name": short_name_joined,
-            "function": "",
-            "domains": "",
-            "sequence": sequence
-        }
-
-    except Exception as e:
-        print(f"[ERROR] Failed to parse NCBI protein entry for strain {strain}: {e}")
-        return None
-
-def main(pathogen):
+def main(pathogen, organism):
     pathogen_dir = os.path.join("data", pathogen)
-    strains_file = os.path.join(pathogen_dir, f"{pathogen}_strains.csv")
-    antigens_file = os.path.join(pathogen_dir, f"{pathogen}_compiled_antigens.csv")
-    output_file = os.path.join(pathogen_dir, f"{pathogen}_compiled_proteins.csv")
+    organism_tag = organism.replace(" ", "_").lower()
+    antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_antigens.csv")
+    output_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv")
 
-    if not os.path.exists(strains_file):
-        print(f"[FATAL] Strains file not found: {strains_file}")
-        return
     if not os.path.exists(antigens_file):
         print(f"[FATAL] Antigen file not found: {antigens_file}")
         return
 
-    antigen_keywords = load_antigen_keywords(antigens_file)  # for UniProt
-    antigen_names = load_antigen_names(antigens_file)        # for NCBI
-
+    antigen_records = load_antigen_records(antigens_file)
     protein_data = []
-    strain_count = 0
-    matched_count = 0
+    seen_accessions = set()
 
-    with open(strains_file, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            strain_count += 1
-            strain = row.get("Strain", "")
-            embl_id = row.get("EMBL_ID", "")
+    for record in antigen_records:
+        antigen_name = record["antigen_name"]
+        gene_name = record["gene_name"]
+        uniprot_id = record["uniprot_id"]
 
-            if not embl_id:
-                print(f"[WARN] Missing EMBL ID for strain: {strain}")
-                continue
+        print(f"[INFO] Processing antigen: {antigen_name}")
 
-            print(f"[INFO] Processing strain {strain} (EMBL: {embl_id}) [{strain_count}]")
+        entry = None
+        used_method = None
 
-            entries = fetch_protein_data(embl_id)
-            if not entries:
-                print(f"[WARN] No UniProt entries found for EMBL ID {embl_id}, trying NCBI...")
-                for antigen in antigen_names:
-                    gp_text = fetch_protein_data_ncbi(strain, antigen)
-                    parsed_entries = parse_genpept_entries(gp_text, strain, {antigen.lower()})
-                    for parsed in parsed_entries:
-                        protein_data.append(parsed)
-                        matched_count += 1
+        if uniprot_id:
+            print(f"  [DEBUG] Attempting fetch by accession: {uniprot_id}")
+            entry = fetch_uniprot_by_accession(uniprot_id, organism)
+            used_method = "accession"
+        elif gene_name:
+            print(f"  [DEBUG] Attempting fetch by gene: {gene_name}")
+            entry = fetch_uniprot_by_gene(gene_name, organism)
+            used_method = "gene"
 
+        if entry:
+            parsed = parse_uniprot_entry(entry)
 
-            print(f"  [INFO] Found {len(entries)} protein entries")
+            if parsed and parsed["uniprot_accession"] not in seen_accessions:
+                protein_data.append(parsed)
+                seen_accessions.add(parsed["uniprot_accession"])
+                print(f"  [✓] {used_method.upper()} match: {parsed['uniprot_accession']}")
+            else:
+                print("  [WARN] Entry found but could not be parsed or is duplicate")
+        else:
+            print("  [WARN] No entry found for antigen")
 
-            for entry in entries:
-                parsed = parse_protein_entry(entry, strain, antigen_keywords)
-                if parsed:
-                    protein_data.append(parsed)
-                    matched_count += 1
-
-            print(f"  [INFO] Matched {matched_count} proteins so far")
 
     if not protein_data:
-        print("[WARN] No matching proteins found. CSV not written.")
+        print("[WARN] No matching proteins found.")
         return
 
     with open(output_file, 'w', newline='') as outfile:
-        fieldnames = ["strain", "uniprot_accession", "protein_name", "short_name", "function", "domains", "sequence"]
+        fieldnames = ["uniprot_accession", "protein_name", "short_name", "function", "domains", "features", "sequence", "organism_name"]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(protein_data)
 
-    print(f"[DONE] Wrote {matched_count} proteins to: {output_file}")
+    print(f"[DONE] Wrote {len(protein_data)} proteins to: {output_file}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python fetch_protein_data.py <pathogen_subfolder>")
+    if len(sys.argv) < 3:
+        print("Usage: python fetch_protein_data.py <pathogen_subfolder> <organism_name>")
     else:
-        main(sys.argv[1])
+        main(sys.argv[1], sys.argv[2])
