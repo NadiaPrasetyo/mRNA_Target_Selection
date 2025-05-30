@@ -1,9 +1,48 @@
+"""
+/**
+ * @file compile_antigens.py
+ * @brief Compiles antigen data from IEDB and literature sources for a given organism.
+ *
+ * This script aggregates antigen information from IEDB CSV files and literature/patent Excel files
+ * for a specified organism. It standardizes the data format and outputs a single compiled CSV file.
+ *
+ * General Flow:
+ *   1. Loads IEDB antigen data from a CSV file.
+ *   2. Loads literature/patent antigen data from Excel files.
+ *   3. Standardizes and merges the data from all sources.
+ *   4. Outputs a compiled CSV file containing all antigen information.
+ *
+ * Parameters:
+ *   short_name (str): Short identifier for the organism (used as a directory name).
+ *   long_name (str): Full organism name (used for file naming and metadata).
+ *
+ * Usage:
+ *   python compile_antigens.py <short_name> <long_name>
+ *
+ * Example:
+ *   python compile_antigens.py sars_cov_2 "SARS-CoV-2"
+ *
+ * @author Nadia
+ */
+"""
+
 import sys
 import pandas as pd
 import os
 from glob import glob
 import re
 
+"""
+/**
+* @brief Extracts the UniProt ID from an IRI string.
+*
+* This function parses a given IRI (Internationalized Resource Identifier) and extracts
+* the UniProt accession if present.
+*
+* @param iri (str): The IRI string potentially containing a UniProt ID.
+* @return (str or None): The extracted UniProt ID, or None if not found or input is NaN.
+*/
+"""
 def extract_uniprot_id(iri):
     if pd.isna(iri):
         return None
@@ -12,6 +51,17 @@ def extract_uniprot_id(iri):
         return f"{match.group(1)}"
     return None
 
+"""
+/**
+* @brief Loads and standardizes antigen data from an IEDB CSV file.
+*
+* Reads a CSV file containing IEDB antigen data, renames columns to a standard format,
+* extracts UniProt IDs, and adds metadata columns.
+*
+* @param file_path (str): Path to the IEDB antigen CSV file.
+* @return (pd.DataFrame): Standardized DataFrame with antigen information.
+*/
+"""
 def load_iedb_antigens(file_path):
     if not os.path.exists(file_path):
         print(f"Warning: IEDB file not found: {file_path}. Skipping.")
@@ -33,6 +83,18 @@ def load_iedb_antigens(file_path):
     df_out["source"] = "IEDB"
     return df_out[["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"]]
 
+"""
+/**
+* @brief Loads and standardizes antigen data from a literature/patent Excel file.
+*
+* Reads an Excel file containing antigen data from literature or patents, standardizes
+* the columns, and adds metadata.
+*
+* @param file_path (str): Path to the literature/patent Excel file.
+* @param source_organism (str): Name of the source organism.
+* @return (pd.DataFrame): Standardized DataFrame with antigen information.
+*/
+"""
 def load_literature_antigens(file_path, source_organism):
     if not os.path.exists(file_path):
         print(f"Warning: Literature file not found: {file_path}. Skipping.")
@@ -47,6 +109,18 @@ def load_literature_antigens(file_path, source_organism):
     df_out["source"] = "literature"
     return df_out[["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"]]
 
+"""
+/**
+* @brief Main pipeline for compiling antigen data from all sources for a given organism.
+*
+* Loads IEDB and literature antigen data, standardizes and merges them, and writes the
+* compiled data to a CSV file.
+*
+* @param short_name (str): Short identifier for the organism.
+* @param long_name (str): Full organism name.
+* @return: None
+*/
+    """
 def main(short_name, long_name):
     organism_tag = str(long_name).replace(" ", "_").lower()
     base_path = f"data/{short_name}"
@@ -74,6 +148,13 @@ def main(short_name, long_name):
     combined_df.to_csv(output_file, index=False)
     print(f"Compiled antigen data saved to: {output_file}")
 
+"""
+/**
+* @brief Entry point for the script. Parses arguments and runs the main pipeline.
+*
+* Expects two command-line arguments: short_name and long_name.
+*/
+"""
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Usage: python compile_antigens.py <short_name> <long_name>")
