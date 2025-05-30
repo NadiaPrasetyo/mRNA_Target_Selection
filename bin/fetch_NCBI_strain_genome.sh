@@ -8,49 +8,73 @@ if [ "$#" -ne 2 ]; then
     exit 1
 fi
 
+# Arguments
 PATHOGEN_DIR="$1"
 CSV_FILE="$2"
 CSV_PATH="data/${PATHOGEN_DIR}/${CSV_FILE}"
 OUTPUT_DIR="data/${PATHOGEN_DIR}/strain_genomes"
 
+# Temp files
+EMBL_LIST_FILE=$(mktemp)
+FASTA_BULK_FILE=$(mktemp)
+
+# Make sure output directory exists
 mkdir -p "$OUTPUT_DIR"
 
-# Max number of parallel jobs
-MAX_JOBS=3
+# Create a mapping of EMBL_ID to Strain
+declare -A strain_map
 
-# Function to fetch a strain's sequence
-fetch_sequence() {
-    local strain="$1"
-    local embl_id="$2"
-    local output_file="$3"
-
-    if [ -n "$embl_id" ]; then
-        echo "Fetching $strain ($embl_id)..."
-        esearch -db nucleotide -query "${embl_id}[Accession]" | efetch -format fasta > "$output_file" 2>/dev/null
-        if [ $? -ne 0 ]; then
-            echo "Error fetching $strain ($embl_id)"
-        fi
-    else
-        echo "Skipping $strain: missing EMBL_ID"
-    fi
-}
-
-# Limit parallel jobs
-parallel_jobs() {
-    while (( $(jobs -rp | wc -l) >= MAX_JOBS )); do
-        wait -n
-    done
-}
-
-# Read and process each line (skip header)
+# Read CSV and build EMBL list and map
 tail -n +2 "$CSV_PATH" | while IFS=, read -r Strain EMBL_ID CC LocusTag
 do
-    OUTPUT_FILE="${OUTPUT_DIR}/${Strain}.fasta"
-    parallel_jobs
-    fetch_sequence "$Strain" "$EMBL_ID" "$OUTPUT_FILE" &
+    if [ -n "$EMBL_ID" ]; then
+        echo "$EMBL_ID" >> "$EMBL_LIST_FILE"
+        strain_map["$EMBL_ID"]="$Strain"
+    else
+        echo "Skipping $Strain: missing EMBL_ID"
+    fi
 done
 
-# Wait for all background jobs to finish
-wait
+# Fetch all sequences in bulk
+echo "Fetching all EMBL IDs in bulk..."
+efetch -db nucleotide -format fasta -id "$(paste -sd, "$EMBL_LIST_FILE")" > "$FASTA_BULK_FILE"
 
-echo "All FASTA sequences saved to $OUTPUT_DIR"
+# Split bulk FASTA into individual files by header match
+echo "Splitting bulk FASTA..."
+awk -v outdir="$OUTPUT_DIR" -v csv="$CSV_PATH" '
+    BEGIN {
+        FS=",";
+        while ((getline < csv) > 0) {
+            if (NR == 1) continue; # skip header
+            strain[$2] = $1;
+        }
+    }
+    /^>/ {
+        if (seq != "") {
+            print seq > file;
+            close(file);
+        }
+        id = substr($1, 2);  # remove ">"
+        gsub(/ .*/, "", id); # keep accession only
+        name = strain[id];
+        if (name == "") name = id; # fallback
+        file = outdir "/" name ".fasta";
+        print $0 > file;
+        seq = "";
+        next;
+    }
+    {
+        seq = seq $0 "\n";
+    }
+    END {
+        if (seq != "") {
+            print seq > file;
+            close(file);
+        }
+    }
+' "$FASTA_BULK_FILE"
+
+# Cleanup temp files
+rm -f "$EMBL_LIST_FILE" "$FASTA_BULK_FILE"
+
+echo "Done. Sequences saved to $OUTPUT_DIR"
