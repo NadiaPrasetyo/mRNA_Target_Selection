@@ -8,6 +8,10 @@ This repository provides a flexible and scalable pipeline designed to extract, p
    - pandas==2.2.3
    - Requests==2.32.3
 
+2. MMseqs2
+   > # install via conda
+   > conda install -c conda-forge -c bioconda mmseqs2
+   > github: https://github.com/soedinglab/MMseqs2
 
 ## Project Structure
 ```
