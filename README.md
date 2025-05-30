@@ -8,11 +8,66 @@ This repository provides a flexible and scalable pipeline designed to extract, p
    - pandas==2.2.3
    - Requests==2.32.3
 
-2. MMseqs2
-   > # install via conda
-   > conda install -c conda-forge -c bioconda mmseqs2
-   > github: https://github.com/soedinglab/MMseqs2
+2. NCBI Entrez Direct
+To install Entrez Direct (EDirect), open a terminal and run one of the following commands:
 
+```sh
+sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
+```
+or
+```sh
+sh -c "$(wget -q https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh -O -)"
+```
+
+This will create an `edirect` folder in your home directory and may suggest adding EDirect to your `PATH`. You can do this by running:
+
+```sh
+echo "export PATH=\$HOME/edirect:\$PATH" >> $HOME/.bash_profile
+```
+
+After installation, set the `PATH` for your current session:
+
+```sh
+export PATH=${HOME}/edirect:${PATH}
+```
+
+3. Seqkit
+Install using Conda or Mamba
+```
+# conda or mamba
+conda install -c bioconda seqkit
+```
+
+Usage: https://bioinf.shenwei.me/seqkit/usage/#translate
+
+4. MMseqs2 (github: https://github.com/soedinglab/MMseqs2)
+Installing options:
+```sh
+# install by brew
+brew install mmseqs2
+
+# install via conda
+conda install -c conda-forge -c bioconda mmseqs2
+
+# install docker
+docker pull ghcr.io/soedinglab/mmseqs2
+
+# MMseqs2-GPU mostly-static AVX2 build requiring glibc >= 2.29 and nvidia driver >=525.60.13 (see below)
+wget https://mmseqs.com/latest/mmseqs-linux-gpu.tar.gz; tar xvfz mmseqs-linux-gpu.tar.gz; export PATH=$(pwd)/mmseqs/bin/:$PATH
+
+# static build with AVX2 (fastest)
+wget https://mmseqs.com/latest/mmseqs-linux-avx2.tar.gz; tar xvfz mmseqs-linux-avx2.tar.gz; export PATH=$(pwd)/mmseqs/bin/:$PATH
+
+# static build with SSE4.1
+wget https://mmseqs.com/latest/mmseqs-linux-sse41.tar.gz; tar xvfz mmseqs-linux-sse41.tar.gz; export PATH=$(pwd)/mmseqs/bin/:$PATH
+
+# static build with SSE2 (slowest, for very old systems)
+wget https://mmseqs.com/latest/mmseqs-linux-sse2.tar.gz; tar xvfz mmseqs-linux-sse2.tar.gz; export PATH=$(pwd)/mmseqs/bin/:$PATH
+
+# macOS (universal, works on Apple Silicon and Intel Macs)
+wget https://mmseqs.com/latest/mmseqs-osx-universal.tar.gz; tar xvfz mmseqs-osx-universal.tar.gz; export PATH=$(pwd)/mmseqs/bin/:$PATH
+```
+    
 ## Project Structure
 ```
 mRNA_Target_Selection/
@@ -125,5 +180,5 @@ python bin/generate_random_sequences.py S.aureus "Staphylococcus aureus"
 
 ## References
 - `{ReferenceDocumentation}` 
-- 
+- Kans J. Entrez Direct: E-utilities on the Unix Command Line. 2013 Apr 23 [Updated 2025 Mar 25]. In: Entrez Programming Utilities Help [Internet]. Bethesda (MD): National Center for Biotechnology Information (US); 2010-. Available from: https://www.ncbi.nlm.nih.gov/books/NBK179288/
 - Vita R, Blazeska N, Marrama D; IEDB Curation Team Members; Duesing S, Bennett J, Greenbaum J, De Almeida Mendes M, Mahita J, Wheeler DK, Cantrell JR, Overton JA, Natale DA, Sette A, Peters B. The Immune Epitope Database (IEDB): 2024 update. Nucleic Acids Res. 2025 Jan 6;53(D1):D436-D443. doi: 10.1093/nar/gkae1092. PMID: 39558162; PMCID: PMC11701597. Available from: [www.iedb.org](https://www.iedb.org/)
