@@ -66,7 +66,7 @@ done
 set -- "${POSITIONAL[@]}"
 
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 [--threads N] <pathogen_directory> <file_name.csv>"
+    echo "Usage: $0 [--threads N] <pathogen_directory> <strain_file_name.csv>"
     exit 1
 fi
 
