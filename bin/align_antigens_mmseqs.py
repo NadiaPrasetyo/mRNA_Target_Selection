@@ -59,14 +59,13 @@ def extract_best_hits(tsv_path, output_path):
         for hit in best_hits.values():
             f_out.write(hit['line'] + "\n")
 
-def main(pathogen_dir, num_threads):
+def main(pathogen_dir, pathogen_name, num_threads):
     base_dir = Path(f"data/{pathogen_dir}")
-    antigen_csv = base_dir / f"{pathogen_dir}_compiled_proteins.csv"
+    antigen_csv = base_dir / f"{pathogen_name}_compiled_proteins.csv"
     strain_dir = base_dir / "strain_genomes"
     results_dir = base_dir / "mmseqs_results"
-    results_dir.mkdir(exist_ok=True) # Ensure results directory exists
+    results_dir.mkdir(exist_ok=True)
 
-    #check if the files and directories exist
     if not antigen_csv.exists():
         print(f"Error: Antigen CSV file {antigen_csv} does not exist.")
         sys.exit(1)
@@ -79,8 +78,6 @@ def main(pathogen_dir, num_threads):
     if not base_dir.exists() or not base_dir.is_dir():
         print(f"Error: Base directory {base_dir} does not exist.")
         sys.exit(1)
-
-
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".fasta") as tmp:
         antigen_fasta = tmp.name
@@ -101,12 +98,14 @@ def main(pathogen_dir, num_threads):
     print("All alignments complete.")
 
 if __name__ == "__main__":
-
-    if len(sys.argv) < 2:
-        print("Usage: align_antigens_mmseqs.py <pathogen_directory> [--threads N]")
+    if len(sys.argv) < 3:
+        print("Usage: align_antigens_mmseqs.py <pathogen_directory> <pathogen_name> [--threads N]")
         sys.exit(1)
+
     pathogen_directory = sys.argv[1]
-    threads = 4 # Default to 4 threads
+    pathogen_name = sys.argv[2]
+    threads = 4  # default
+
     if "--threads" in sys.argv:
         idx = sys.argv.index("--threads")
         try:
@@ -114,8 +113,9 @@ if __name__ == "__main__":
         except (IndexError, ValueError):
             print("Invalid value for --threads. Must be an integer.")
             sys.exit(1)
+
     if threads < 2:
         print("Please specify at least 2 threads with --threads.")
         sys.exit(1)
 
-    main(pathogen_directory, threads)
+    main(pathogen_directory, pathogen_name, threads)

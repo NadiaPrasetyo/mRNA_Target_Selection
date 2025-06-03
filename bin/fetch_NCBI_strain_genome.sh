@@ -199,11 +199,4 @@ xargs -P "$NUM_THREADS" -I {} bash -c '
 
 echo "Translation complete."
 
-echo "Aligning antigens using MMseqs2..."
-python align_antigens_mmseqs.py "$PATHOGEN_DIR" --threads "$NUM_THREADS"
-if [ $? -ne 0 ]; then
-    echo "Error during MMseqs2 alignment. Please check the logs."
-    exit 1
-fi
-echo "MMseqs2 alignment completed successfully."
 echo "Done."
