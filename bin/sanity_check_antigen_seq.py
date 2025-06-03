@@ -29,24 +29,39 @@ def clean_uniprot_iri(iri):
 
 def load_antigens(antigen_file):
     antigens = {}
+    antigen_names = {}  # Map antigen_id -> antigen_name
+
     with open(antigen_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             acc = row['uniprot_accession']
             seq = row['sequence']
             antigens[acc] = seq
-    return antigens
+
+            # Assuming antigen CSV has column 'protein_name'
+            antigen_name = row.get('protein_name', '').strip()
+            if acc not in antigen_names and antigen_name:
+                antigen_names[acc] = antigen_name
+    return antigens, antigen_names
 
 def load_epitopes(epitope_file):
     epitope_map = defaultdict(list)
+    antigen_names = {}  # Map antigen_id -> antigen_name
     with open(epitope_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             ep_seq = row['linear_sequence']
             raw_iri = row['parent_source_antigen_iris']
             cleaned_uniprot = clean_uniprot_iri(raw_iri)
+
+            # Assuming epitope CSV has column 'parent_source_antigen_name'
+            antigen_name = row.get('parent_source_antigen_name', '').strip()
+            if cleaned_uniprot not in antigen_names and antigen_name:
+                antigen_names[cleaned_uniprot] = antigen_name
+
             epitope_map[cleaned_uniprot].append(ep_seq)
-    return epitope_map
+    return epitope_map, antigen_names
+
 
 def write_fasta(filehandle, sequences_dict):
     for name, seq in sequences_dict.items():
@@ -122,8 +137,8 @@ def main():
         os.makedirs(output_dir, exist_ok=True)
 
     print("[1] Loading antigen and epitope data...")
-    antigens = load_antigens(antigen_file)
-    epitope_map = load_epitopes(epitope_file)
+    antigens, protein_names = load_antigens(antigen_file)
+    epitope_map, antigen_names = load_epitopes(epitope_file)
 
     summary_stats = []
 
@@ -175,25 +190,37 @@ def main():
 
             summary_stats.append({
                 'antigen_id': antigen_id,
+                'antigen_name': antigen_names.get(antigen_id, protein_names.get(antigen_id, '')),
                 'expected_epitopes': total_epitopes,
                 'mapped_epitopes': mapped_count,
                 'not_mapped_epitopes': not_mapped_count,
                 'unmapped_epitope_seqs': ";".join(unmapped_epitopes) if unmapped_epitopes else ""
             })
 
+    # Add antigens with no epitopes expected, with zero counts
+    proteins_no_epitopes = [acc for acc in antigens.keys() if acc not in epitope_map]
+    for acc in proteins_no_epitopes:
+        summary_stats.append({
+            'antigen_id': acc,
+            'antigen_name': protein_names.get(acc, ''),
+            'expected_epitopes': 0,
+            'mapped_epitopes': 0,
+            'not_mapped_epitopes': 0,
+            'unmapped_epitope_seqs': ''
+        })
 
     # Write summary CSV
     summary_csv_path = os.path.join(output_dir, f"{pathogen_name}_epitope_mapping_summary.csv")
     print(f"\n[4] Writing epitope mapping summary to: {summary_csv_path}")
 
     with open(summary_csv_path, 'w', newline='') as csvfile:
-        fieldnames = ['antigen_id', 'expected_epitopes', 'mapped_epitopes', 'not_mapped_epitopes', 'unmapped_epitope_seqs']
+        fieldnames = ['antigen_id', 'antigen_name', 'expected_epitopes', 'mapped_epitopes', 'not_mapped_epitopes', 'unmapped_epitope_seqs']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         for row in summary_stats:
             writer.writerow(row)
 
     print("\n✅ All searches complete. Summary file created. Temporary files cleaned up automatically.")
-
+    
 if __name__ == "__main__":
     main()
