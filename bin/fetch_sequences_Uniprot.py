@@ -32,7 +32,7 @@ import requests
 import os
 import re
 import unicodedata
-import sys
+import argparse
 
 UNIPROT_API_BASE = "https://www.ebi.ac.uk/proteins/api/proteins"
 
@@ -275,7 +275,12 @@ def main(pathogen, organism):
  */
 """
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python fetch_protein_data.py <pathogen_subfolder> <organism_name>")
-    else:
-        main(sys.argv[1], sys.argv[2])
+    parser = argparse.ArgumentParser(
+        description="Fetch protein sequence and metadata from UniProt based on antigen data.",
+        usage="python fetch_sequences_Uniprot.py <pathogen_directory> <pathogen_name>"
+    )
+    parser.add_argument("pathogen_directory", help="Directory name under data/")
+    parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    args = parser.parse_args()
+
+    main(args.pathogen_directory, args.pathogen_name)

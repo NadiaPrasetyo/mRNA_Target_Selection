@@ -32,26 +32,24 @@
 
 import requests
 import csv
-import sys
 import os
+import argparse
 
 # IEDB API endpoints
 antigen_url = "https://query-api.iedb.org/antigen_search"
 epitope_url = "https://query-api.iedb.org/epitope_search"
 
-# Parse command-line arguments
-if len(sys.argv) > 2:
-    output_folder = f'data/{sys.argv[1]}'
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-        print(f"📁 Output folder '{output_folder}' will be created.")
+parser = argparse.ArgumentParser(
+    description="Fetches antigen and epitope data for a given organism from the IEDB API.",
+    usage="python fetch_iedb_data.py <output_folder> <source_organism>"
+)
+parser.add_argument("output_folder", help="Directory name under data/")
+parser.add_argument("source_organism", help='Full organism name (e.g., "SARS-CoV-2")')
+args = parser.parse_args()
 
-    source_organism = sys.argv[2].lower()
-    organism_tag = source_organism.replace(" ", "_")
-else:
-    print("❌ Please provide the output folder and source organism name as arguments.\n"
-          "Usage: python script.py <output_folder> <source_organism>")
-    exit(1)
+output_folder = f"data/{args.output_folder}"
+source_organism = args.source_organism.lower()
+organism_tag = source_organism.replace(" ", "_")
 
 os.makedirs(output_folder, exist_ok=True)
 

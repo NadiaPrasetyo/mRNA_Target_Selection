@@ -29,10 +29,10 @@
 """
 
 import os
-import sys
 import csv
 import random
 import requests
+import argparse
 from bin.fetch_sequences_Uniprot import parse_uniprot_entry  # ✅ using shared parser
 
 """
@@ -227,7 +227,12 @@ def main(pathogen, organism):
  */
 """
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python generate_random_proteins_per_strain.py <pathogen_subfolder> <organism_name>")
-    else:
-        main(sys.argv[1], sys.argv[2])
+    parser = argparse.ArgumentParser(
+        description="Fetch random reviewed UniProt protein entries for a given organism, excluding known antigens.",
+        usage="python generate_random_proteins_per_strain.py <pathogen_directory> <pathogen_name>"
+    )
+    parser.add_argument("pathogen_directory", help="Directory name under data/")
+    parser.add_argument("pathogen_name", help='Full organism name (e.g., "staphylococcus aureus")')
+    args = parser.parse_args()
+
+    main(args.pathogen_directory, args.pathogen_name)

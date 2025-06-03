@@ -26,11 +26,11 @@
  */
 """
 
-import sys
 import pandas as pd
 import os
 from glob import glob
 import re
+import argparse
 
 """
 /**
@@ -156,12 +156,15 @@ def main(short_name, long_name):
 */
 """
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python compile_antigens.py <short_name> <long_name>")
-        sys.exit(1)
-    short_name = sys.argv[1]
-    long_name = sys.argv[2]
-    if not os.path.exists(f"data/{short_name}"):
-        os.makedirs(f"data/{short_name}")
-        print(f"Created directory: data/{short_name}")
-    main(short_name, long_name)
+    parser = argparse.ArgumentParser(
+        description="Compile antigen data from IEDB and literature sources for a given organism.",
+        usage="python compile_antigens.py <pathogen_directory> <pathogen_name>"
+    )
+    parser.add_argument("pathogen_directory", help="Directory name under data/")
+    parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    args = parser.parse_args()
+
+    if not os.path.exists(f"data/{args.pathogen_directory}"):
+        os.makedirs(f"data/{args.pathogen_directory}")
+        print(f"Created directory: data/{args.pathogen_directory}")
+    main(args.pathogen_directory, args.pathogen_name)

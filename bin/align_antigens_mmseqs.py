@@ -5,6 +5,7 @@ import sys
 import subprocess
 import tempfile
 import shutil
+import argparse
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
@@ -59,12 +60,13 @@ def extract_best_hits(tsv_path, output_path):
         for hit in best_hits.values():
             f_out.write(hit['line'] + "\n")
 
-def main(pathogen_dir, pathogen_name, num_threads):
+def main(pathogen_dir, pathogen_name, num_threads, output_dir):
     base_dir = Path(f"data/{pathogen_dir}")
     antigen_csv = base_dir / f"{pathogen_name}_compiled_proteins.csv"
     strain_dir = base_dir / "strain_genomes"
-    results_dir = base_dir / "mmseqs_results"
-    results_dir.mkdir(exist_ok=True)
+    results_dir = Path(base_dir/output_dir)
+    results_dir.mkdir(parents=True, exist_ok=True)
+
 
     if not antigen_csv.exists():
         print(f"Error: Antigen CSV file {antigen_csv} does not exist.")
@@ -97,25 +99,30 @@ def main(pathogen_dir, pathogen_name, num_threads):
     os.remove(antigen_fasta)
     print("All alignments complete.")
 
+import argparse
+
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: align_antigens_mmseqs.py [--threads N] <pathogen_directory> <pathogen_name>")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description="Align antigens to strain genomes using MMseqs2"
+    )
+    parser.add_argument("pathogen_directory", help="Directory name under data/")
+    parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    parser.add_argument("--threads", type=int, default=4, help="Number of threads (default: 4)")
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Custom output directory (default: data/<pathogen_directory>/mmseqs_results)"
+    )
 
-    pathogen_directory = sys.argv[2]
-    pathogen_name = sys.argv[3]
-    threads = 4  # default
+    args = parser.parse_args()
 
-    if "--threads" in sys.argv:
-        idx = sys.argv.index("--threads")
-        try:
-            threads = int(sys.argv[idx + 1])
-        except (IndexError, ValueError):
-            print("Invalid value for --threads. Must be an integer.")
-            sys.exit(1)
-
-    if threads < 2:
+    if args.threads < 2:
         print("Please specify at least 2 threads with --threads.")
         sys.exit(1)
 
-    main(pathogen_directory, pathogen_name, threads)
+    # Set default output dir if not provided
+    if args.output_dir is None:
+        args.output_dir = f"mmseqs_results"
+
+    main(args.pathogen_directory, args.pathogen_name, args.threads, args.output_dir)
+

@@ -4,6 +4,7 @@ import sys
 import subprocess
 import tempfile
 from collections import defaultdict
+import argparse
 
 def clean_uniprot_iri(iri):
     """
@@ -104,13 +105,18 @@ def parse_mmseqs_results(mmseqs_result_file):
     return matched_queries
 
 def main():
-    if len(sys.argv) != 4:
-        print('Usage: python bin/sanity_check_antigen_seq.py <pathogen_dir> "<pathogen_name>" <output_dir>')
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description="Check mapping of IEDB epitopes to compiled antigen sequences using MMseqs2.",
+        usage="python bin/sanity_check_antigen_seq.py <pathogen_directory> <pathogen_name> <output_dir>"
+    )
+    parser.add_argument("pathogen_directory", help="Directory name under data/")
+    parser.add_argument("pathogen_name", help='Full organism name (e.g., "staphylococcus aureus")')
+    parser.add_argument("output_dir", help="Output directory name under data/<pathogen_directory>/")
+    args = parser.parse_args()
 
-    pathogen_dir = sys.argv[1]
-    pathogen_name = sys.argv[2].replace(" ", "_").lower()
-    user_output_dir = sys.argv[3]
+    pathogen_dir = args.pathogen_directory
+    pathogen_name = args.pathogen_name.replace(" ", "_").lower()
+    user_output_dir = args.output_dir
 
     check_mmseqs_installed()
 
