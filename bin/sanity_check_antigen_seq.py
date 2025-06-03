@@ -73,6 +73,21 @@ def check_mmseqs_installed():
         print("❌ ERROR: mmseqs2 executable not found. Please install mmseqs2 and ensure it is in your PATH.")
         sys.exit(1)
 
+def parse_mmseqs_results(mmseqs_result_file):
+    """
+    Parse mmseqs .m8 file to extract matched query IDs (epitope IDs).
+    Return a set of matched query sequence IDs.
+    """
+    matched_queries = set()
+    with open(mmseqs_result_file) as f:
+        for line in f:
+            if line.strip():
+                parts = line.strip().split('\t')
+                if len(parts) >= 1:
+                    query_id = parts[0]
+                    matched_queries.add(query_id)
+    return matched_queries
+
 def main():
     if len(sys.argv) != 4:
         print('Usage: python bin/sanity_check_antigen_seq.py <pathogen_dir> "<pathogen_name>" <output_dir>')
@@ -80,12 +95,12 @@ def main():
 
     pathogen_dir = sys.argv[1]
     pathogen_name = sys.argv[2].replace(" ", "_").lower()
-    
-    # Check mmseqs2 installed
+    user_output_dir = sys.argv[3]
+
     check_mmseqs_installed()
 
     data_dir = os.path.join("data", pathogen_dir)
-    output_dir = os.path.join(data_dir, sys.argv[3])
+    output_dir = os.path.join(data_dir, user_output_dir)
 
     # Check data directory exists
     if not os.path.isdir(data_dir):
@@ -110,6 +125,8 @@ def main():
     antigens = load_antigens(antigen_file)
     epitope_map = load_epitopes(epitope_file)
 
+    summary_stats = []
+
     with tempfile.TemporaryDirectory() as tmp_dir:
         print(f"[2] Writing antigen FASTA in temp directory: {tmp_dir}")
         antigen_fasta_path = os.path.join(tmp_dir, f"{pathogen_name}_antigens.fasta")
@@ -122,21 +139,61 @@ def main():
                 print(f"  ⚠️ Antigen '{antigen_id}' not found in antigen dataset. Skipping...")
                 continue
 
-            query_fasta_path = os.path.join(tmp_dir, f"{antigen_id}_epitopes.fasta")
-            with open(query_fasta_path, 'w') as f:
-                write_epitope_fasta(f, epitopes, antigen_id)
-
             output_file = os.path.join(output_dir, f"mmseqs_result_{antigen_id}.m8")
-            print(f"  ↳ Searching epitopes of antigen '{antigen_id}'...")
-            try:
-                run_mmseqs_easy_search(query_fasta_path, antigen_fasta_path, output_file, tmp_dir)
-            except subprocess.CalledProcessError:
-                print(f"  ❌ MMseqs search failed for {antigen_id}")
-                continue
 
-            print(f"    Results saved: {output_file}")
+            if os.path.isfile(output_file):
+                print(f"  ↳ MMseqs results for antigen '{antigen_id}' already exist. Skipping search and analyzing existing results...")
+            else:
+                query_fasta_path = os.path.join(tmp_dir, f"{antigen_id}_epitopes.fasta")
+                with open(query_fasta_path, 'w') as f:
+                    write_epitope_fasta(f, epitopes, antigen_id)
 
-    print("\n✅ All searches complete. Temporary directory and files cleaned up automatically.")
+                print(f"  ↳ Searching epitopes of antigen '{antigen_id}'...")
+                try:
+                    run_mmseqs_easy_search(query_fasta_path, antigen_fasta_path, output_file, tmp_dir)
+                except subprocess.CalledProcessError:
+                    print(f"  ❌ MMseqs search failed for {antigen_id}")
+                    continue
+
+                print(f"    Results saved: {output_file}")
+
+            # Analyze results
+            matched_queries = parse_mmseqs_results(output_file)
+
+            total_epitopes = len(epitopes)
+            mapped_count = 0
+            unmapped_epitopes = []
+
+            for i, seq in enumerate(epitopes):
+                epitope_id = f"{antigen_id}_epi_{i}"
+                if epitope_id in matched_queries:
+                    mapped_count += 1
+                else:
+                    unmapped_epitopes.append(seq)
+
+            not_mapped_count = total_epitopes - mapped_count
+
+            summary_stats.append({
+                'antigen_id': antigen_id,
+                'expected_epitopes': total_epitopes,
+                'mapped_epitopes': mapped_count,
+                'not_mapped_epitopes': not_mapped_count,
+                'unmapped_epitope_seqs': ";".join(unmapped_epitopes) if unmapped_epitopes else ""
+            })
+
+
+    # Write summary CSV
+    summary_csv_path = os.path.join(output_dir, f"{pathogen_name}_epitope_mapping_summary.csv")
+    print(f"\n[4] Writing epitope mapping summary to: {summary_csv_path}")
+
+    with open(summary_csv_path, 'w', newline='') as csvfile:
+        fieldnames = ['antigen_id', 'expected_epitopes', 'mapped_epitopes', 'not_mapped_epitopes', 'unmapped_epitope_seqs']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in summary_stats:
+            writer.writerow(row)
+
+    print("\n✅ All searches complete. Summary file created. Temporary files cleaned up automatically.")
 
 if __name__ == "__main__":
     main()
