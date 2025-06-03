@@ -62,7 +62,8 @@ def extract_best_hits(tsv_path, output_path):
 
 def main(pathogen_dir, pathogen_name, num_threads, output_dir):
     base_dir = Path(f"data/{pathogen_dir}")
-    antigen_csv = base_dir / f"{pathogen_name}_compiled_proteins.csv"
+    pathogen_tag = pathogen_name.replace(" ", "_").lower()
+    antigen_csv = base_dir / f"{pathogen_tag}_compiled_proteins.csv"
     strain_dir = base_dir / "strain_genomes"
     results_dir = Path(base_dir/output_dir)
     results_dir.mkdir(parents=True, exist_ok=True)
