@@ -98,12 +98,12 @@ def main(pathogen_dir, pathogen_name, num_threads):
     print("All alignments complete.")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: align_antigens_mmseqs.py <pathogen_directory> <pathogen_name> [--threads N]")
+    if len(sys.argv) < 2:
+        print("Usage: align_antigens_mmseqs.py [--threads N] <pathogen_directory> <pathogen_name>")
         sys.exit(1)
 
-    pathogen_directory = sys.argv[1]
-    pathogen_name = sys.argv[2]
+    pathogen_directory = sys.argv[2]
+    pathogen_name = sys.argv[3]
     threads = 4  # default
 
     if "--threads" in sys.argv:
