@@ -75,17 +75,17 @@ def check_mmseqs_installed():
 
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python script.py <pathogen_dir> <pathogen_name> <output_dir>")
+        print('Usage: python bin/sanity_check_antigen_seq.py <pathogen_dir> "<pathogen_name>" <output_dir>')
         sys.exit(1)
 
     pathogen_dir = sys.argv[1]
-    pathogen_name = sys.argv[2]
-    output_dir = sys.argv[3]
-
+    pathogen_name = sys.argv[2].replace(" ", "_").lower()
+    
     # Check mmseqs2 installed
     check_mmseqs_installed()
 
     data_dir = os.path.join("data", pathogen_dir)
+    output_dir = os.path.join(data_dir, sys.argv[3])
 
     # Check data directory exists
     if not os.path.isdir(data_dir):
