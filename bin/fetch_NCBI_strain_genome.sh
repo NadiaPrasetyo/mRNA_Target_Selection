@@ -84,6 +84,13 @@ if ! command -v seqkit &> /dev/null; then
     exit 1
 fi
 
+# Check if mmseqs2 is installed
+if ! command -v mmseqs &> /dev/null; then
+    echo "Error: 'mmseqs' is not installed. Please install it before running this script."
+    echo "Visit https://github.com/soedinglab/MMseqs2 for installation instructions."
+    exit 1
+fi
+
 
 PATHOGEN_DIR="$1"
 CSV_FILE="$2"
@@ -192,4 +199,11 @@ xargs -P "$NUM_THREADS" -I {} bash -c '
 
 echo "Translation complete."
 
+echo "Aligning antigens using MMseqs2..."
+python align_antigens_mmseqs.py "$PATHOGEN_DIR" --threads "$NUM_THREADS"
+if [ $? -ne 0 ]; then
+    echo "Error during MMseqs2 alignment. Please check the logs."
+    exit 1
+fi
+echo "MMseqs2 alignment completed successfully."
 echo "Done."

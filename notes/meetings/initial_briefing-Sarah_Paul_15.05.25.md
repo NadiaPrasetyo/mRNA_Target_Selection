@@ -1,70 +1,152 @@
-Meeting - Sarah & Paul
-Aim: for nz to have a platform with tools for each pillars - should there be a new outbreak of some disease, we can run from target selection to therapeutic testing
+# Meeting Notes: Sarah & Paul
 
-RNA platform - report to co-directors Gary Evans (CEO), Kirsten ... (CEO) , Neb (COO)
+**Aim:**  
+For NZ to have a platform with tools for each pillar—should there be a new outbreak of some disease, we can run from target selection to therapeutic testing.
 
-along with the team, MB (entre manufacturing and epidemic readiness) + leadership team
+---
 
+## RNA Platform
 
-3 projects (flagships): decided by end of may and early june
-- human health
-- human health
-- agricultural space (animal health)
+- **Reporting to Co-Directors:**  
+    - Gary Evans (CEO)  
+    - Kirsten ... (CEO)  
+    - Neb (COO)
+- **Team:**  
+    - MB (entre manufacturing and epidemic readiness)  
+    - Leadership team
 
--> could be human health, agriculture, or conservation
+---
 
-mRNA, a little of the target protein expressed in usually human muscle cells
+## Flagship Projects (Decided by end of May/early June)
 
-Target selection: stage 1 -> payload design -> formulation -> preclinical testing -> research grade manufacturing (make mRNA and encapsulation)(SERVICE)-> advisor QC and development -> commercial grade process development and manufacture (SCALING in NZ - previous experience not in mRNA products) -> clinical testing (not necessarily clinical trials)
+1. Human health
+2. Human health
+3. Agricultural space (animal health)
 
-Biotech (SARAH WORKS THERE)-> mRNA commercial grade manufacturing - mRNA factories based in Melbourne
+> Could be human health, agriculture, or conservation.
 
-e.g. if we want to get rid of strep A -> how to find a good target for an mRNA based vaccine/therapeutics
+---
 
-Step 1: reviewing what software and previous literature available for selecting a good antigen target from some pathogen/cancer 
--e.g. positive selection genes - important and interacting with the human immune system
--> e.g. covid now circulating has 100+ synonymous changes while only 4 non-synonymous changes
+## mRNA Overview
 
-build some assemblies and screen through genes in a pathogen where potential mRNA vaccine targets would be effective to prime the immune system
+- A little of the target protein is expressed, usually in human muscle cells.
 
-look at exports -> do any of the proteins have export peptides attached: more likely to interact with the human immune system
-look at toxins -> e.g. H pylori - positive selection and exported out of the bacteria (not required for the growth of the bacteria) - lessen the damage/severity of the infection 
-transmembrane protein domains; extracellular targets
+---
 
+## Target Selection Pipeline
 
-can we design mRNAs that are expressed in specific target cells - tissue specificity (DESIGN PILLAR) - MOSTLY IRRELEVANT
-RNA stability - structure and RNA stability in terms of degradation
+1. **Stage 1:** Target selection
+2. Payload design
+3. Formulation
+4. Preclinical testing
+5. Research grade manufacturing (make mRNA and encapsulation) *(SERVICE)*
+6. Advisor QC and development
+7. Commercial grade process development and manufacture *(SCALING in NZ – previous experience not in mRNA products)*
+8. Clinical testing *(not necessarily clinical trials)*
 
-Start thinking about:
-Target selection: build an indication agnostic pipeline to identify the best targets
--> prophylactic mRNA vaccines and therapeutic immunotherapy mRNA - different 
+---
 
-START HERE: make pipelines:
-- for infectious disease: antigens, build immunity, right part of the antigens (instead of making the protein directly, it is encoded to an mRNA): find the specific fragment/region and design and possibilities may affect the target selection
+## Biotech
 
-- for cancer: cancer immunotherapeutic is more complicated  - re-purposable for other diseases (cardiovascular and autoimmune diseases)
+- Sarah works there.
+- mRNA commercial grade manufacturing.
+- mRNA factories based in Melbourne.
 
-different strategies to start:
+---
 
-1. literature reviews - initially you don't need to reinvent the wheel - use and improve on existing software and pipelines (tools), identify some candidate approaches and data
+## Example: Strep A
 
-2. putting together some test datasets - what are some successful mRNA vaccine targets - putt out some target proteins matched with the genome (handy for prototyping)
+- How to find a good target for an mRNA-based vaccine/therapeutic.
 
-other team members Zohaib - working on the project 2 days a week (experimental biologists) help with understanding the biology, patent database (sequence search tools), publication database, and putting together datasets
+---
 
-As soon as we can get a prediction/ list of antigen targets - Zohaib can do experimental validation (tests will look like knockout mutations, immunogenic assays, make mRNA constructs, rapid screening platform to test multiple mRNA constructs (higher throughput - minimum is 5-10, likely tens of constructs))
--> inform predictions to make it a bit better - many iterations until good performance
+## Step 1: Review Existing Resources
 
+- Review software and previous literature for selecting a good antigen target from a pathogen/cancer.
+    - E.g., positive selection genes—important and interacting with the human immune system.
+    - Example: COVID now circulating has 100+ synonymous changes, but only 4 non-synonymous changes.
 
-also Alex and team - based in Australia Sydney & Italy (fold AI cofounder for RNA): subcontracted to help with this work - more AI models/ more elaborate AI models
--> plenty of AI models - comparing the performances of existing AI models (simple machine learning approaches to see if it is approachable)
--> once we find the good characteristics and properties: then we can make a more sophisticated models
+---
 
-distribute workloads with the dev team
+## Screening for Vaccine Targets
 
-Weekly - semiregular code reviews with Paul team
-Monthly catchups - or more with specific teams
-Time wise: best case 10 AM NZ time (TBD consult with everybody)
-NOVEMBER MEETING IN AUCKLAND
+- Build assemblies and screen genes in a pathogen for potential mRNA vaccine targets to prime the immune system.
+- Look at:
+    - **Exports:** Do any proteins have export peptides attached? More likely to interact with the human immune system.
+    - **Toxins:** E.g., *H. pylori*—positive selection and exported out of the bacteria (not required for growth); lessen infection severity.
+    - **Transmembrane protein domains; extracellular targets**
 
-CONNECT WITH THE OTHER PEOPLE IN THE TEAM - ALWAYS ASK QUESTIONS IN CASE OTHERS HAVE FOUND THE ANSWERS
+---
+
+## Design Considerations
+
+- Can we design mRNAs expressed in specific target cells? *(Tissue specificity – DESIGN PILLAR, mostly irrelevant)*
+- RNA stability—structure and degradation.
+
+---
+
+## Next Steps
+
+- **Target selection:** Build an indication-agnostic pipeline to identify the best targets.
+    - Prophylactic mRNA vaccines vs. therapeutic immunotherapy mRNA—different approaches.
+
+---
+
+## Pipelines
+
+- **Infectious Disease:**  
+    - Antigens, build immunity, right part of the antigens (encoded as mRNA, not protein directly).
+    - Find specific fragment/region; design and possibilities may affect target selection.
+
+- **Cancer:**  
+    - Cancer immunotherapeutics are more complicated.
+    - Potentially re-purposable for other diseases (cardiovascular, autoimmune).
+
+---
+
+## Strategies
+
+1. **Literature reviews:**  
+     - Use and improve on existing software and pipelines (tools).
+     - Identify candidate approaches and data.
+
+2. **Test datasets:**  
+     - Collect successful mRNA vaccine targets.
+     - Match target proteins with the genome (useful for prototyping).
+
+---
+
+## Team Members
+
+- **Zohaib:**  
+    - Working 2 days/week on the project (experimental biologist).
+    - Helps with biology, patent database (sequence search tools), publication database, and datasets.
+
+- **Experimental Validation:**  
+    - As soon as we have a prediction/list of antigen targets, Zohaib can do experimental validation.
+    - Tests: knockout mutations, immunogenic assays, mRNA constructs, rapid screening platform (higher throughput: minimum 5–10, likely tens of constructs).
+    - Iterative process to improve predictions.
+
+- **Alex & Team:**  
+    - Based in Sydney & Italy (Fold AI cofounder for RNA).
+    - Subcontracted for this work—more AI models, more elaborate approaches.
+    - Compare performances of existing AI models (simple ML approaches to see if approachable).
+    - Once good characteristics/properties are found, develop more sophisticated models.
+
+---
+
+## Workflow & Meetings
+
+- Distribute workloads with the dev team.
+- **Weekly:** Semi-regular code reviews with Paul’s team.
+- **Monthly:** Catchups (or more) with specific teams.
+- **Time:** Best case 10 AM NZ time (TBD, consult with everybody).
+- **November:** Meeting in Auckland.
+
+---
+
+## General Advice
+
+- Connect with other people in the team.
+- Always ask questions—others may have found the answers.
+
