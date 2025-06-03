@@ -66,26 +66,45 @@ def run_mmseqs_easy_search(query_fasta, target_fasta, output_file, tmp_dir):
     ]
     subprocess.run(cmd, check=True)
 
+def check_mmseqs_installed():
+    try:
+        subprocess.run(['mmseqs'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except FileNotFoundError:
+        print("❌ ERROR: mmseqs2 executable not found. Please install mmseqs2 and ensure it is in your PATH.")
+        sys.exit(1)
+
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python script.py <pathogen_dir> <pathogen_name>")
+    if len(sys.argv) != 4:
+        print("Usage: python script.py <pathogen_dir> <pathogen_name> <output_dir>")
         sys.exit(1)
 
     pathogen_dir = sys.argv[1]
     pathogen_name = sys.argv[2]
+    output_dir = sys.argv[3]
+
+    # Check mmseqs2 installed
+    check_mmseqs_installed()
+
     data_dir = os.path.join("data", pathogen_dir)
 
+    # Check data directory exists
     if not os.path.isdir(data_dir):
-        print(f"Error: Directory '{data_dir}' does not exist.")
+        print(f"❌ ERROR: Data directory '{data_dir}' does not exist.")
         sys.exit(1)
 
     epitope_file = os.path.join(data_dir, f"{pathogen_name}_IEDB_epitope.csv")
     antigen_file = os.path.join(data_dir, f"{pathogen_name}_compiled_proteins.csv")
 
-    for file in [epitope_file, antigen_file]:
-        if not os.path.isfile(file):
-            print(f"Error: Required file '{file}' does not exist.")
+    # Check files exist
+    for f in [epitope_file, antigen_file]:
+        if not os.path.isfile(f):
+            print(f"❌ ERROR: Required file '{f}' does not exist.")
             sys.exit(1)
+
+    # Check/create output directory
+    if not os.path.exists(output_dir):
+        print(f"Output directory '{output_dir}' does not exist. Creating it...")
+        os.makedirs(output_dir, exist_ok=True)
 
     print("[1] Loading antigen and epitope data...")
     antigens = load_antigens(antigen_file)
@@ -107,7 +126,7 @@ def main():
             with open(query_fasta_path, 'w') as f:
                 write_epitope_fasta(f, epitopes, antigen_id)
 
-            output_file = os.path.join(tmp_dir, f"mmseqs_result_{antigen_id}.m8")
+            output_file = os.path.join(output_dir, f"mmseqs_result_{antigen_id}.m8")
             print(f"  ↳ Searching epitopes of antigen '{antigen_id}'...")
             try:
                 run_mmseqs_easy_search(query_fasta_path, antigen_fasta_path, output_file, tmp_dir)
@@ -117,7 +136,7 @@ def main():
 
             print(f"    Results saved: {output_file}")
 
-print("\n✅ All searches complete. Temporary directory and files cleaned up automatically.")
+    print("\n✅ All searches complete. Temporary directory and files cleaned up automatically.")
 
 if __name__ == "__main__":
     main()
