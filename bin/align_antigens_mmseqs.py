@@ -21,30 +21,31 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
 def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch_qseq=False):
     strain_fasta = Path(strain_fasta_path)
     strain_name = strain_fasta.stem.replace("_translated", "")
-    raw_result = results_dir / f"{strain_name}_alignment.tsv"  # MMseqs2 output is tab-separated
-    best_result = results_dir / f"{strain_name}_best_hits.tsv"  # output best hits also as TSV
+    raw_result = results_dir / f"{strain_name}_alignment.tsv"
+    best_result = results_dir / f"{strain_name}_best_hits.tsv"
     antigen_seqs_out = results_dir / f"{strain_name}_matched_antigens.fasta"
 
-    output_fields = [
-        "query", "target", "pident", "nident", "alnlen",
-        "evalue", "bits", "mismatch", "qcov", "tcov", "tstart", "tend", "tseq"
-    ]
+    with tempfile.TemporaryDirectory() as tmpdir:
+        output_fields = [
+            "query", "target", "pident", "nident", "alnlen",
+            "evalue", "bits", "mismatch", "qcov", "tcov", "tstart", "tend", "tseq"
+        ]
+        if fetch_qseq:
+            output_fields.append("qseq")
 
-    if fetch_qseq:
-        output_fields.append("qseq")
+        subprocess.run([
+            "mmseqs", "easy-search",
+            antigen_fasta, str(strain_fasta),
+            str(raw_result), tmpdir,
+            "--format-mode", "4",
+            "--format-output", ",".join(output_fields)
+        ], check=True)
 
-    subprocess.run([
-        "mmseqs", "easy-search",
-        antigen_fasta, str(strain_fasta),
-        str(raw_result), tmpdir,
-        "--format-mode", "4",
-        "--format-output", ",".join(output_fields)
-    ], check=True)
-
-    extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out, fetch_qseq)
+        extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out, fetch_qseq)
 
     print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
+
 
 def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq):
     best_hits = {}
