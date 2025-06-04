@@ -42,7 +42,12 @@ def extract_best_hits_with_sequences(csv_path, output_path, fasta_out_path):
     best_hits = {}
 
     with open(csv_path) as f:
+        print("First line:", line.strip())
+        header_skipped = False
         for line in f:
+            if not header_skipped:
+                header_skipped = True
+                continue  # skip header row
             parts = line.strip().split('\t')
             if len(parts) < 11:
                 continue
