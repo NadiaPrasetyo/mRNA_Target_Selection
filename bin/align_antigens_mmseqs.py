@@ -21,8 +21,8 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
 def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir):
     strain_fasta = Path(strain_fasta_path)
     strain_name = strain_fasta.stem.replace("_translated", "")
-    raw_result = results_dir / f"{strain_name}_alignment.tsv"  # keep extension as .tsv since MMseqs2 outputs tab-delimited
-    best_result = results_dir / f"{strain_name}_best_hits.csv"
+    raw_result = results_dir / f"{strain_name}_alignment.tsv"  # MMseqs2 output is tab-separated
+    best_result = results_dir / f"{strain_name}_best_hits.tsv"  # output best hits also as TSV
     antigen_seqs_out = results_dir / f"{strain_name}_matched_antigens.fasta"
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -38,7 +38,7 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir):
         print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
 
-def extract_best_hits_with_sequences(raw_tsv_path, output_csv_path, fasta_out_path):
+def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path):
     best_hits = {}
 
     with open(raw_tsv_path) as f:
@@ -71,14 +71,13 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_csv_path, fasta_out_pa
                     'tseq': tseq,
                 }
 
-    # Save best hits to CSV
-    with open(output_csv_path, 'w', newline='') as f_out:
-        writer = csv.DictWriter(f_out, fieldnames=[
-            "query", "target", "pident", "tstart", "tend", "qseq", "tseq"
-        ])
-        writer.writeheader()
+    # Save best hits as TSV (tab-separated)
+    with open(output_tsv_path, 'w', newline='') as f_out:
+        header = ["query", "target", "pident", "tstart", "tend", "qseq", "tseq"]
+        f_out.write('\t'.join(header) + '\n')
         for hit in best_hits.values():
-            writer.writerow(hit)
+            row = [str(hit[h]) for h in header]
+            f_out.write('\t'.join(row) + '\n')
 
     # Write matched target sequences to FASTA
     with open(fasta_out_path, 'w') as fasta_out:
