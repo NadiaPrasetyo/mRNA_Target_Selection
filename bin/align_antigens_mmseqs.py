@@ -21,8 +21,9 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
 def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir):
     strain_fasta = Path(strain_fasta_path)
     strain_name = strain_fasta.stem.replace("_translated", "")
-    raw_result = results_dir / f"{strain_name}_alignment.tsv"
-    best_result = results_dir / f"{strain_name}_best_hits.tsv"
+    raw_result = results_dir / f"{strain_name}_alignment.csv"
+    best_result = results_dir / f"{strain_name}_best_hits.csv"
+    antigen_seqs_out = results_dir / f"{strain_name}_matched_antigens.fasta"
 
     with tempfile.TemporaryDirectory() as tmpdir:
         subprocess.run([
@@ -30,35 +31,49 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir):
             antigen_fasta, str(strain_fasta),
             str(raw_result), tmpdir,
             "--format-mode", "4",
-            "--format-output", "query,target,pident,nident,alnlen,evalue,bits"
+            "--format-output", "query,target,pident,nident,alnlen,evalue,bits,tstart,tend,qseq,tseq"
         ], check=True)
-        extract_best_hits(raw_result, best_result)
-        print(f"[✓] {strain_name} aligned and best hits saved.")
+
+        extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out)
+        print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
 
-def extract_best_hits(tsv_path, output_path):
+def extract_best_hits_with_sequences(csv_path, output_path, fasta_out_path):
     best_hits = {}
 
-    with open(tsv_path) as f:
-        next(f)  # skip header
+    with open(csv_path) as f:
         for line in f:
             parts = line.strip().split('\t')
-            if len(parts) < 7:
+            if len(parts) < 11:
                 continue
             query, target, pident = parts[0], parts[1], float(parts[2])
+            tstart, tend = parts[7], parts[8]
+            qseq, tseq = parts[9], parts[10]
 
             if query not in best_hits or pident > best_hits[query]['pident']:
                 best_hits[query] = {
                     'query': query,
                     'target': target,
                     'pident': pident,
+                    'tstart': tstart,
+                    'tend': tend,
+                    'qseq': qseq,
+                    'tseq': tseq,
                     'line': line.strip()
                 }
 
+    # Save best hits TSV
     with open(output_path, 'w') as f_out:
-        f_out.write("query\ttarget\tpident\tnident\talnlen\tevalue\tbits\n")
+        f_out.write("query\ttarget\tpident\tnident\talnlen\tevalue\tbits\ttstart\ttend\tqseq\ttseq\n")
         for hit in best_hits.values():
             f_out.write(hit['line'] + "\n")
+
+    # Write target matched sequences to FASTA
+    with open(fasta_out_path, 'w') as fasta_out:
+        for hit in best_hits.values():
+            header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
+            fasta_out.write(f">{header}\n{hit['tseq']}\n")
+
 
 def main(pathogen_dir, pathogen_name, num_threads, output_dir):
     base_dir = Path(f"data/{pathogen_dir}")
