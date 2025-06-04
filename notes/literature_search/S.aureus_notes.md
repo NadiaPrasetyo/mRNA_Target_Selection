@@ -123,6 +123,7 @@ Von Willebrand factor-binding protein (vWbp) | vwb | Prothrombin, fibrinogen, fa
     - URL destination: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/
     - Docummentation: https://www.ncbi.nlm.nih.gov/books/NBK25497/
     - use Entrez Direct unix CL tool: https://www.ncbi.nlm.nih.gov/books/NBK179288/
+  
 5. Analyse the protein sequence for sequence motifs and features that makes them good antigens for *S. aureus* **!Find or create script to do this**
 
 6. Fetch the amino acid sequence for the targets of the antigens:
