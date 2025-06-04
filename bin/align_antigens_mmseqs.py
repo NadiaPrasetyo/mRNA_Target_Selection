@@ -18,46 +18,57 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
             seq = row['sequence'].replace('\r', '').replace('\n', '')
             f_out.write(f">antigen_{idx}|{acc}|{name}\n{seq}\n")
 
-def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir):
+def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch_qseq=False):
     strain_fasta = Path(strain_fasta_path)
     strain_name = strain_fasta.stem.replace("_translated", "")
     raw_result = results_dir / f"{strain_name}_alignment.tsv"  # MMseqs2 output is tab-separated
     best_result = results_dir / f"{strain_name}_best_hits.tsv"  # output best hits also as TSV
     antigen_seqs_out = results_dir / f"{strain_name}_matched_antigens.fasta"
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        subprocess.run([
-            "mmseqs", "easy-search",
-            antigen_fasta, str(strain_fasta),
-            str(raw_result), tmpdir,
-            "--format-mode", "4",
-            "--format-output", "query,target,pident,nident,alnlen,evalue,bits,tstart,tend,qseq,tseq"
-        ], check=True)
+    output_fields = [
+        "query", "target", "pident", "nident", "alnlen",
+        "evalue", "bits", "mismatch", "qcov", "tcov", "tstart", "tend", "tseq"
+    ]
 
-        extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out)
-        print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
+    if fetch_qseq:
+        output_fields.append("qseq")
+
+    subprocess.run([
+        "mmseqs", "easy-search",
+        antigen_fasta, str(strain_fasta),
+        str(raw_result), tmpdir,
+        "--format-mode", "4",
+        "--format-output", ",".join(output_fields)
+    ], check=True)
+
+    extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out, fetch_qseq)
+
+    print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
 
-def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path):
+def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq):
     best_hits = {}
-
     with open(raw_tsv_path) as f:
-        first_line = f.readline()
-        if not first_line.lower().startswith("query"):
-            print(f"Warning: Expected header in {raw_tsv_path}, but not found. Processing line as data.")
-            lines = [first_line] + f.readlines()
-        else:
-            lines = f.readlines()
+        lines = f.readlines()
+        if lines and lines[0].lower().startswith("query"):
+            lines = lines[1:]
 
         for line in lines:
             parts = line.strip().split('\t')
-            if len(parts) < 11:
+            if len(parts) < 13:
                 continue
+
             try:
-                query, target, pident = parts[0], parts[1], float(parts[2])
-                tstart, tend = parts[7], parts[8]
-                qseq, tseq = parts[9], parts[10]
-            except ValueError:
+                query, target = parts[0], parts[1]
+                pident = float(parts[2])
+                evalue = parts[5]
+                mismatch = parts[7]
+                qcov = parts[8]
+                tcov = parts[9]
+                tstart, tend = parts[10], parts[11]
+                tseq = parts[12]
+                qseq = parts[13] if fetch_qseq and len(parts) > 13 else ""
+            except (IndexError, ValueError):
                 continue
 
             if query not in best_hits or pident > best_hits[query]['pident']:
@@ -65,28 +76,32 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
                     'query': query,
                     'target': target,
                     'pident': pident,
+                    'evalue': evalue,
+                    'mismatch': mismatch,
+                    'qcov': qcov,
+                    'tcov': tcov,
                     'tstart': tstart,
                     'tend': tend,
-                    'qseq': qseq,
                     'tseq': tseq,
+                    'qseq': qseq,
                 }
 
-    # Save best hits as TSV (tab-separated)
-    with open(output_tsv_path, 'w', newline='') as f_out:
-        header = ["query", "target", "pident", "tstart", "tend", "qseq", "tseq"]
-        f_out.write('\t'.join(header) + '\n')
+    headers = ["query", "target", "pident", "evalue", "mismatch", "qcov", "tcov", "tstart", "tend", "tseq"]
+    if fetch_qseq:
+        headers.append("qseq")
+
+    with open(output_tsv_path, 'w') as f_out:
+        f_out.write('\t'.join(headers) + '\n')
         for hit in best_hits.values():
-            row = [str(hit[h]) for h in header]
+            row = [str(hit[h]) for h in headers]
             f_out.write('\t'.join(row) + '\n')
 
-    # Write matched target sequences to FASTA
     with open(fasta_out_path, 'w') as fasta_out:
         for hit in best_hits.values():
             header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
             fasta_out.write(f">{header}\n{hit['tseq']}\n")
 
-
-def main(pathogen_dir, pathogen_name, num_threads, output_dir):
+def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq):
     base_dir = Path(f"data/{pathogen_dir}")
     pathogen_tag = pathogen_name.replace(" ", "_").lower()
     antigen_csv = base_dir / f"{pathogen_tag}_compiled_proteins.csv"
@@ -117,7 +132,7 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir):
 
     with ProcessPoolExecutor(max_workers=num_threads) as executor:
         futures = {
-            executor.submit(run_mmseqs2_and_process, f, antigen_fasta, results_dir): f
+            executor.submit(run_mmseqs2_and_process, f, antigen_fasta, results_dir, fetch_qseq): f
             for f in strain_fastas
         }
         for future in as_completed(futures):
@@ -140,6 +155,11 @@ if __name__ == "__main__":
         default=None,
         help="Custom output directory (default: data/<pathogen_directory>/mmseqs_results)"
     )
+    parser.add_argument(
+        "--fetch-qseq",
+        action="store_true",
+        help="Include qseq (query sequence) in MMseqs2 output"
+    )
 
     args = parser.parse_args()
 
@@ -151,5 +171,4 @@ if __name__ == "__main__":
     if args.output_dir is None:
         args.output_dir = f"mmseqs_results"
 
-    main(args.pathogen_directory, args.pathogen_name, args.threads, args.output_dir)
-
+    main(args.pathogen_directory, args.pathogen_name, args.threads, args.output_dir, args.fetch_qseq)
