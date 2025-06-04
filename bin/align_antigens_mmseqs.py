@@ -21,7 +21,7 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
 def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir):
     strain_fasta = Path(strain_fasta_path)
     strain_name = strain_fasta.stem.replace("_translated", "")
-    raw_result = results_dir / f"{strain_name}_alignment.csv"
+    raw_result = results_dir / f"{strain_name}_alignment.tsv"  # keep extension as .tsv since MMseqs2 outputs tab-delimited
     best_result = results_dir / f"{strain_name}_best_hits.csv"
     antigen_seqs_out = results_dir / f"{strain_name}_matched_antigens.fasta"
 
@@ -38,22 +38,27 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir):
         print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
 
-def extract_best_hits_with_sequences(csv_path, output_path, fasta_out_path):
+def extract_best_hits_with_sequences(raw_tsv_path, output_csv_path, fasta_out_path):
     best_hits = {}
 
-    with open(csv_path) as f:
-        print("First line:", line.strip())
-        header_skipped = False
-        for line in f:
-            if not header_skipped:
-                header_skipped = True
-                continue  # skip header row
+    with open(raw_tsv_path) as f:
+        first_line = f.readline()
+        if not first_line.lower().startswith("query"):
+            print(f"Warning: Expected header in {raw_tsv_path}, but not found. Processing line as data.")
+            lines = [first_line] + f.readlines()
+        else:
+            lines = f.readlines()
+
+        for line in lines:
             parts = line.strip().split('\t')
             if len(parts) < 11:
                 continue
-            query, target, pident = parts[0], parts[1], float(parts[2])
-            tstart, tend = parts[7], parts[8]
-            qseq, tseq = parts[9], parts[10]
+            try:
+                query, target, pident = parts[0], parts[1], float(parts[2])
+                tstart, tend = parts[7], parts[8]
+                qseq, tseq = parts[9], parts[10]
+            except ValueError:
+                continue
 
             if query not in best_hits or pident > best_hits[query]['pident']:
                 best_hits[query] = {
@@ -64,16 +69,18 @@ def extract_best_hits_with_sequences(csv_path, output_path, fasta_out_path):
                     'tend': tend,
                     'qseq': qseq,
                     'tseq': tseq,
-                    'line': line.strip()
                 }
 
-    # Save best hits TSV
-    with open(output_path, 'w') as f_out:
-        f_out.write("query\ttarget\tpident\tnident\talnlen\tevalue\tbits\ttstart\ttend\tqseq\ttseq\n")
+    # Save best hits to CSV
+    with open(output_csv_path, 'w', newline='') as f_out:
+        writer = csv.DictWriter(f_out, fieldnames=[
+            "query", "target", "pident", "tstart", "tend", "qseq", "tseq"
+        ])
+        writer.writeheader()
         for hit in best_hits.values():
-            f_out.write(hit['line'] + "\n")
+            writer.writerow(hit)
 
-    # Write target matched sequences to FASTA
+    # Write matched target sequences to FASTA
     with open(fasta_out_path, 'w') as fasta_out:
         for hit in best_hits.values():
             header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
