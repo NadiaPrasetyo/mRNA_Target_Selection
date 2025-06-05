@@ -27,8 +27,8 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
                     json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
                     if json_path:
                         json_paths.append(json_path)
-                        print(f"📝 Wrote JSON for {seq_id}")
                         total += 1
+                        print(f"📝 Wrote JSON for {seq_id}")
                 seq_id = line.strip()
                 seq_data = []
             else:
@@ -38,8 +38,8 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
             json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
             if json_path:
                 json_paths.append(json_path)
-                print(f"📝 Wrote JSON for {seq_id}")
                 total += 1
+                print(f"📝 Wrote JSON for {seq_id}")
 
     print(f"📦 Total sequences parsed: {total}")
     return json_paths
@@ -112,17 +112,11 @@ def run_prediction(tool_path, json_file, output_dir):
         print(f"❌ Exception during processing {json_file.name}")
         traceback.print_exc()
 
-def process_fasta(tool_path, fasta_file, output_dir, allele_list, peptide_lengths):
-    print(f"🧬 Starting FASTA: {fasta_file.name}")
-    json_files = parse_fasta_to_jsons(fasta_file, output_dir, allele_list, peptide_lengths)
-    for json_file in json_files:
-        run_prediction(tool_path, json_file, output_dir)
-
 def main():
-    parser = argparse.ArgumentParser(description="Run IEDB MHCI predictions split by FASTA sequence.")
+    parser = argparse.ArgumentParser(description="Run IEDB MHCI predictions in parallel for a single FASTA.")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence directory inside pathogen_dir/")
-    parser.add_argument("--threads", type=int, default=2, help="Number of parallel FASTA files to process")
+    parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads for sequence prediction")
     args = parser.parse_args()
 
     iedb_dir = input("Enter full path to IEDB tool folder (<50 chars): ").strip()
@@ -136,16 +130,23 @@ def main():
         print(f"No FASTA files found in {search_path}")
         return
 
+    # 🚨 Only use first FASTA file for testing
+    test_fasta = fasta_files[0]
+    print(f"🧬 Processing FASTA file: {test_fasta.name}")
+
     output_dir = Path("outputs") / args.pathogen_dir / args.sequence_dir
     output_dir.mkdir(parents=True, exist_ok=True)
 
     allele_list = ["HLA-A*02:01", "HLA-A*01:01"]
     peptide_lengths = [8, 11]
 
+    json_files = parse_fasta_to_jsons(test_fasta, output_dir, allele_list, peptide_lengths)
+
+    # 🔁 Run predictions in parallel
     with ThreadPoolExecutor(max_workers=args.threads) as executor:
         futures = [
-            executor.submit(process_fasta, tool_path, fasta_file, output_dir, allele_list, peptide_lengths)
-            for fasta_file in fasta_files
+            executor.submit(run_prediction, tool_path, json_file, output_dir)
+            for json_file in json_files
         ]
         for f in futures:
             f.result()
