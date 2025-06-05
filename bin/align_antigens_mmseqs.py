@@ -110,7 +110,7 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
             "--format-output", ",".join(output_fields)
         ], check=True)
 
-        extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out, fetch_qseq)
+        extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out, fetch_qseq, strain_fasta_path)
 
     print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
@@ -129,7 +129,7 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
  * @return: None
  */
 """
-def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq):
+def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq, strain_fasta_path):
     best_hits = {}
 
     # Load all target sequences into a dict for slicing
