@@ -8,12 +8,24 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
 def check_iedb_tool(iedb_dir):
-    tool_path = Path(iedb_dir) / "src" / "tcell_mhci.py"
-    if not tool_path.exists():
-        raise FileNotFoundError(f"IEDB tool not found at {tool_path}")
-    return str(tool_path)
+    if "bcell" in iedb_dir.lower():
+        tool_type = "BCell"
+        tool_path = Path(iedb_dir) / "bcell_standalone.py"
+    elif "tc1" in iedb_dir.lower():
+        tool_type = "MHCI"
+        tool_path = Path(iedb_dir) / "src" / "tcell_mhci.py"
+    elif "tc2" in iedb_dir.lower():
+        tool_type = "MHCII"
+        tool_path = Path(iedb_dir) / "src" / "tcell_mhcii.py"
+    else:
+        raise ValueError("Unable to infer tool type from path. Include 'bcell', 'tc1', or 'tc2' in the path.")
 
-def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
+    if not tool_path.exists():
+        raise FileNotFoundError(f"Tool not found at {tool_path}")
+
+    return str(tool_path), tool_type
+
+def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths, tool_type, strain_name):
     json_paths = []
     total = 0
 
@@ -24,7 +36,7 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
         for line in infile:
             if line.startswith(">"):
                 if seq_id:
-                    json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
+                    json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths, tool_type, strain_name)
                     if json_path:
                         json_paths.append(json_path)
                         total += 1
@@ -35,7 +47,7 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
                 seq_data.append(line.strip())
 
         if seq_id and seq_data:
-            json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
+            json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths, tool_type, strain_name)
             if json_path:
                 json_paths.append(json_path)
                 total += 1
@@ -44,20 +56,20 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
     print(f"📦 Total sequences parsed: {total}")
     return json_paths
 
-def write_json(seq_id_line, seq_lines, output_dir, alleles, peptide_lengths):
+def write_json(seq_id_line, seq_lines, output_dir, alleles, peptide_lengths, tool_type, strain_name):
     header = seq_id_line.strip()
     if not header.startswith(">"):
         print(f"⚠️ Invalid FASTA header: {header}")
         return None
 
-    header = header[1:]
+    antigen_id = header[1:].split()[0]
     sequence = "".join(seq_lines).replace("*", "").strip()
 
     if not sequence:
-        print(f"⚠️ Empty sequence for {header}")
+        print(f"⚠️ Empty sequence for {antigen_id}")
         return None
 
-    input_sequence_text = f">{header}\n{sequence}"
+    input_sequence_text = f">{antigen_id}\n{sequence}"
 
     json_data = {
         "input_sequence_text": input_sequence_text,
@@ -71,8 +83,8 @@ def write_json(seq_id_line, seq_lines, output_dir, alleles, peptide_lengths):
         ]
     }
 
-    name = header.replace(" ", "_").replace("/", "_").replace("|", "_")[:40]
-    json_path = Path(output_dir) / f"{name}.json"
+    filename = f"{antigen_id}_{strain_name}_{tool_type}.json"
+    json_path = Path(output_dir) / filename
 
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
@@ -108,21 +120,19 @@ def run_prediction(tool_path, json_file, output_dir):
         print(e.stdout.strip())
         print("📥 STDERR:")
         print(e.stderr.strip())
-    except Exception as ex:
+    except Exception:
         print(f"❌ Exception during processing {json_file.name}")
         traceback.print_exc()
 
 def main():
-    parser = argparse.ArgumentParser(description="Run IEDB MHCI predictions in parallel for a single FASTA.")
+    parser = argparse.ArgumentParser(description="Run IEDB predictions in parallel for FASTA sequences.")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence directory inside pathogen_dir/")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads for sequence prediction")
     args = parser.parse_args()
 
-    iedb_dir = input("Enter full path to IEDB tool folder (<50 chars): ").strip()
-    if len(iedb_dir) > 50:
-        raise ValueError("IEDB path must be under 50 characters.")
-    tool_path = check_iedb_tool(iedb_dir)
+    iedb_dir = input("Enter full path to IEDB tool folder: ").strip()
+    tool_path, tool_type = check_iedb_tool(iedb_dir)
 
     search_path = Path("data") / args.pathogen_dir / args.sequence_dir
     fasta_files = list(search_path.glob("*.fasta"))
@@ -130,23 +140,24 @@ def main():
         print(f"No FASTA files found in {search_path}")
         return
 
-    # 🚨 Only use first FASTA file for testing
-    test_fasta = fasta_files[0]
-    print(f"🧬 Processing FASTA file: {test_fasta.name}")
-
-    output_dir = Path("outputs") / args.pathogen_dir / args.sequence_dir
+    output_dir = Path("data") / args.pathogen_dir / "epitope_outputs"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     allele_list = ["HLA-A*02:01", "HLA-A*01:01"]
     peptide_lengths = [8, 11]
+    strain_name = args.sequence_dir
 
-    json_files = parse_fasta_to_jsons(test_fasta, output_dir, allele_list, peptide_lengths)
+    all_json_files = []
+    for fasta_file in fasta_files:
+        print(f"🧬 Processing FASTA file: {fasta_file.name}")
+        json_files = parse_fasta_to_jsons(fasta_file, output_dir, allele_list, peptide_lengths, tool_type, strain_name)
+        all_json_files.extend(json_files)
 
     # 🔁 Run predictions in parallel
     with ThreadPoolExecutor(max_workers=args.threads) as executor:
         futures = [
             executor.submit(run_prediction, tool_path, json_file, output_dir)
-            for json_file in json_files
+            for json_file in all_json_files
         ]
         for f in futures:
             f.result()
