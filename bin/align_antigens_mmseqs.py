@@ -50,6 +50,7 @@ import shutil
 import argparse
 from Bio import SeqIO
 from pathlib import Path
+from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 """
@@ -72,6 +73,8 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
             name = row['protein_name']
             seq = row['sequence'].replace('\r', '').replace('\n', '')
             f_out.write(f">antigen_{idx}|{acc}|{name}\n{seq}\n")
+
+
 
 """
 /**
@@ -110,7 +113,7 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
             "--format-output", ",".join(output_fields)
         ], check=True)
 
-        extract_best_hits_with_sequences(raw_result, best_result, antigen_seqs_out, fetch_qseq, strain_fasta_path)
+        extract_best_hits_with_sequences(strain_fasta_path,raw_result, best_result, antigen_seqs_out, fetch_qseq)
 
     print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
@@ -129,12 +132,11 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
  * @return: None
  */
 """
-def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq, strain_fasta_path):
+def extract_best_hits_with_sequences(strain_fasta_path, raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq):
     best_hits = {}
 
     # Load all target sequences into a dict for slicing
     target_seqs = {}
-    strain_fasta_path = raw_tsv_path.with_name(raw_tsv_path.stem.replace("_alignment", "") + "_translated.fasta")
     for record in SeqIO.parse(str(strain_fasta_path), "fasta"):
         target_seqs[record.id] = str(record.seq)
 
@@ -156,14 +158,25 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
                 qcov = parts[8]
                 tcov = parts[9]
                 tstart, tend = int(parts[10]), int(parts[11])
+                taln = parts[12]
                 qseq = parts[13] if fetch_qseq and len(parts) > 13 else ""
             except (IndexError, ValueError):
                 continue
 
             if query not in best_hits or pident > best_hits[query]['pident']:
                 target_seq = target_seqs.get(target, "")
-                # Convert 0-based slicing for Python
-                sliced_tseq = target_seq[tstart:tend] if tstart < tend else target_seq[tend:tstart][::-1]
+
+                # MMseqs uses 1-based inclusive coordinates; Python slicing is 0-based and exclusive at end
+                if target_seq:
+                    if tstart < tend:
+                        tseq_slice = target_seq[tstart - 1:tend]
+                    elif tstart > tend:
+                        tseq_slice = target_seq[tend - 1:tstart][::-1]  # Reverse if alignment is on opposite strand
+                    else:
+                        tseq_slice = ""
+                else:
+                    tseq_slice = ""
+
                 best_hits[query] = {
                     'query': query,
                     'target': target,
@@ -174,11 +187,12 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
                     'tcov': tcov,
                     'tstart': tstart,
                     'tend': tend,
-                    'tseq_slice': sliced_tseq,
+                    'taln': taln,
+                    'tseq_slice': tseq_slice,
                     'qseq': qseq,
                 }
 
-    headers = ["query", "target", "pident", "evalue", "mismatch", "qcov", "tcov", "tstart", "tend"]
+    headers = ["query", "target", "pident", "evalue", "mismatch", "qcov", "tcov", "tstart", "tend", "taln"]
     if fetch_qseq:
         headers.append("qseq")
 
