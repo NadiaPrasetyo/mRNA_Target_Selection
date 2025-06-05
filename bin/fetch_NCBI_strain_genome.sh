@@ -191,12 +191,25 @@ xargs -P "$NUM_THREADS" -I {} bash -c '
     translated="${fasta%.fasta}_translated.fasta"
     if [ ! -f "$translated" ]; then
         echo "Translating: $(basename "$fasta")"
-        seqkit translate -f 1 -M "$fasta" > "$translated" --trim
+        seqkit translate -f 1 -M "$fasta" > "$translated"
     else
         echo "Translation already exists for: $(basename "$fasta")"
     fi
 '
 
 echo "Translation complete."
+# Function to remove asterisks from translated FASTA files
+remove_asterisks_from_translations() {
+    echo "Removing asterisks from translated FASTA files..."
+    for file in "$OUTPUT_DIR"/*_translated.fasta; do
+        if [ -f "$file" ]; then
+            sed -i 's/\*//g' "$file"
+        fi
+    done
+    echo "Asterisks removed from translated files."
+}
+
+# Call the function after translation
+remove_asterisks_from_translations
 
 echo "Done."
