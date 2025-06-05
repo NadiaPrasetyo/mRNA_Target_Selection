@@ -48,6 +48,7 @@ import subprocess
 import tempfile
 import shutil
 import argparse
+from Bio import SeqIO
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
@@ -130,6 +131,13 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
 """
 def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq):
     best_hits = {}
+
+    # Load all target sequences into a dict for slicing
+    target_seqs = {}
+    strain_fasta_path = raw_tsv_path.with_name(raw_tsv_path.stem.replace("_alignment", "") + "_translated.fasta")
+    for record in SeqIO.parse(str(strain_fasta_path), "fasta"):
+        target_seqs[record.id] = str(record.seq)
+
     with open(raw_tsv_path) as f:
         lines = f.readlines()
         if lines and lines[0].lower().startswith("query"):
@@ -147,13 +155,15 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
                 mismatch = parts[7]
                 qcov = parts[8]
                 tcov = parts[9]
-                tstart, tend = parts[10], parts[11]
-                taln = parts[12]
+                tstart, tend = int(parts[10]), int(parts[11])
                 qseq = parts[13] if fetch_qseq and len(parts) > 13 else ""
             except (IndexError, ValueError):
                 continue
 
             if query not in best_hits or pident > best_hits[query]['pident']:
+                target_seq = target_seqs.get(target, "")
+                # Convert 0-based slicing for Python
+                sliced_tseq = target_seq[tstart:tend] if tstart < tend else target_seq[tend:tstart][::-1]
                 best_hits[query] = {
                     'query': query,
                     'target': target,
@@ -164,11 +174,11 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
                     'tcov': tcov,
                     'tstart': tstart,
                     'tend': tend,
-                    'taln': taln,
+                    'tseq_slice': sliced_tseq,
                     'qseq': qseq,
                 }
 
-    headers = ["query", "target", "pident", "evalue", "mismatch", "qcov", "tcov", "tstart", "tend", "taln"]
+    headers = ["query", "target", "pident", "evalue", "mismatch", "qcov", "tcov", "tstart", "tend"]
     if fetch_qseq:
         headers.append("qseq")
 
@@ -181,7 +191,7 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
     with open(fasta_out_path, 'w') as fasta_out:
         for hit in best_hits.values():
             header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
-            fasta_out.write(f">{header}\n{hit['taln']}\n")
+            fasta_out.write(f">{header}\n{hit['tseq_slice']}\n")
 
 """
 /**
