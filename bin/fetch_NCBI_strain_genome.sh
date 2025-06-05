@@ -191,7 +191,7 @@ xargs -P "$NUM_THREADS" -I {} bash -c '
     translated="${fasta%.fasta}_translated.fasta"
     if [ ! -f "$translated" ]; then
         echo "Translating: $(basename "$fasta")"
-        seqkit translate -f 1 -M "$fasta" > "$translated"
+        seqkit translate -f 1 -M "$fasta" > "$translated" --trim
     else
         echo "Translation already exists for: $(basename "$fasta")"
     fi
