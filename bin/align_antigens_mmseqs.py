@@ -96,7 +96,7 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
     with tempfile.TemporaryDirectory() as tmpdir:
         output_fields = [
             "query", "target", "pident", "nident", "alnlen",
-            "evalue", "bits", "mismatch", "qcov", "tcov", "tstart", "tend", "tseq"
+            "evalue", "bits", "mismatch", "qcov", "tcov", "tstart", "tend", "taln"
         ]
         if fetch_qseq:
             output_fields.append("qseq")
@@ -148,7 +148,7 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
                 qcov = parts[8]
                 tcov = parts[9]
                 tstart, tend = parts[10], parts[11]
-                tseq = parts[12]
+                taln = parts[12]
                 qseq = parts[13] if fetch_qseq and len(parts) > 13 else ""
             except (IndexError, ValueError):
                 continue
@@ -164,11 +164,11 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
                     'tcov': tcov,
                     'tstart': tstart,
                     'tend': tend,
-                    'tseq': tseq,
+                    'taln': taln,
                     'qseq': qseq,
                 }
 
-    headers = ["query", "target", "pident", "evalue", "mismatch", "qcov", "tcov", "tstart", "tend", "tseq"]
+    headers = ["query", "target", "pident", "evalue", "mismatch", "qcov", "tcov", "tstart", "tend", "taln"]
     if fetch_qseq:
         headers.append("qseq")
 
@@ -181,7 +181,7 @@ def extract_best_hits_with_sequences(raw_tsv_path, output_tsv_path, fasta_out_pa
     with open(fasta_out_path, 'w') as fasta_out:
         for hit in best_hits.values():
             header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
-            fasta_out.write(f">{header}\n{hit['tseq']}\n")
+            fasta_out.write(f">{header}\n{hit['taln']}\n")
 
 """
 /**

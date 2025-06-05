@@ -198,6 +198,7 @@ xargs -P "$NUM_THREADS" -I {} bash -c '
 '
 
 echo "Translation complete."
+
 # Function to remove asterisks from translated FASTA files
 remove_asterisks_from_translations() {
     echo "Removing asterisks from translated FASTA files..."
