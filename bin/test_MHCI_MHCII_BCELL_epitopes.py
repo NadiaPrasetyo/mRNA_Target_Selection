@@ -2,6 +2,8 @@ import argparse
 import os
 import subprocess
 import json
+import time
+import traceback
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
@@ -12,10 +14,9 @@ def check_iedb_tool(iedb_dir):
     return str(tool_path)
 
 def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
-    """
-    Split multi-sequence FASTA into per-sequence JSON files.
-    """
     json_paths = []
+    total = 0
+
     with open(fasta_path, 'r') as infile:
         seq_id = None
         seq_data = []
@@ -26,26 +27,40 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
                     json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
                     if json_path:
                         json_paths.append(json_path)
+                        print(f"📝 Wrote JSON for {seq_id}")
+                        total += 1
                 seq_id = line.strip()
                 seq_data = []
             else:
                 seq_data.append(line.strip())
 
-        # Write the last sequence
         if seq_id and seq_data:
             json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
             if json_path:
                 json_paths.append(json_path)
+                print(f"📝 Wrote JSON for {seq_id}")
+                total += 1
 
+    print(f"📦 Total sequences parsed: {total}")
     return json_paths
 
-def write_json(seq_id, seq_lines, output_dir, alleles, peptide_lengths):
-    sequence = "".join(seq_lines).replace("*", "")
-    if not sequence:
+def write_json(seq_id_line, seq_lines, output_dir, alleles, peptide_lengths):
+    header = seq_id_line.strip()
+    if not header.startswith(">"):
+        print(f"⚠️ Invalid FASTA header: {header}")
         return None
 
+    header = header[1:]  # Remove '>'
+    sequence = "".join(seq_lines).replace("*", "").strip()
+
+    if not sequence:
+        print(f"⚠️ Empty sequence for {header}")
+        return None
+
+    input_sequence_text = f">{header}\n{sequence}"
+
     json_data = {
-        "input_sequence_text": f"{seq_id}\n{sequence}",
+        "input_sequence_text": input_sequence_text,
         "peptide_length_range": peptide_lengths,
         "alleles": ",".join(alleles),
         "predictors": [
@@ -56,11 +71,15 @@ def write_json(seq_id, seq_lines, output_dir, alleles, peptide_lengths):
         ]
     }
 
-    name = seq_id[1:].replace(" ", "_").replace("/", "_")[:40]
+    # Make a safe filename
+    name = header.replace(" ", "_").replace("/", "_").replace("|", "_")[:40]
     json_path = Path(output_dir) / f"{name}.json"
+
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
+
     return json_path
+
 
 def run_prediction(tool_path, json_file, output_dir):
     out_base = Path(json_file).stem
@@ -71,11 +90,30 @@ def run_prediction(tool_path, json_file, output_dir):
         "-o", str(output_prefix),
         "-f", "json"
     ]
+    print(f"🔄 Running prediction for: {json_file.name}")
+
     try:
-        subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        print(f"✅ Done: {json_file.name}")
-    except subprocess.CalledProcessError:
+        start_time = time.time()
+        result = subprocess.run(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            check=True
+        )
+        elapsed = time.time() - start_time
+        print(f"✅ Success: {json_file.name} ({elapsed:.2f}s)")
+    except subprocess.CalledProcessError as e:
         print(f"❌ Failed: {json_file.name}")
+        print("📄 Command:", ' '.join(cmd))
+        print("📤 STDOUT:")
+        print(e.stdout.strip())
+        print("📥 STDERR:")
+        print(e.stderr.strip())
+    except Exception as ex:
+        print(f"❌ Exception during processing {json_file.name}")
+        traceback.print_exc()
+
 
 def main():
     parser = argparse.ArgumentParser(description="Run IEDB MHCI predictions split by FASTA sequence.")
