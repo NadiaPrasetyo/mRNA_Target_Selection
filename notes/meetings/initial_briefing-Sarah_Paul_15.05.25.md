@@ -127,7 +127,7 @@ For NZ to have a platform with tools for each pillar—should there be a new out
     - Tests: knockout mutations, immunogenic assays, mRNA constructs, rapid screening platform (higher throughput: minimum 5–10, likely tens of constructs).
     - Iterative process to improve predictions.
 
-- **Alex & Team:**  
+- **Alex (Sydney) & Team:**  
     - Based in Sydney & Italy (Fold AI cofounder for RNA).
     - Subcontracted for this work—more AI models, more elaborate approaches.
     - Compare performances of existing AI models (simple ML approaches to see if approachable).
