@@ -25,7 +25,7 @@ def check_iedb_tool(iedb_dir):
 
     return str(tool_path), tool_type
 
-def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths, tool_type, strain_name):
+def parse_fasta_to_jsons(fasta_path, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
     json_paths = []
     total = 0
 
@@ -36,7 +36,7 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths, tool_
         for line in infile:
             if line.startswith(">"):
                 if seq_id:
-                    json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths, tool_type, strain_name)
+                    json_path = write_json(seq_id, seq_data, temp_dir, alleles, peptide_lengths, tool_type, strain_name)
                     if json_path:
                         json_paths.append(json_path)
                         total += 1
@@ -47,7 +47,7 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths, tool_
                 seq_data.append(line.strip())
 
         if seq_id and seq_data:
-            json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths, tool_type, strain_name)
+            json_path = write_json(seq_id, seq_data, temp_dir, alleles, peptide_lengths, tool_type, strain_name)
             if json_path:
                 json_paths.append(json_path)
                 total += 1
@@ -56,7 +56,7 @@ def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths, tool_
     print(f"📦 Total sequences parsed: {total}")
     return json_paths
 
-def write_json(seq_id_line, seq_lines, output_dir, alleles, peptide_lengths, tool_type, strain_name):
+def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
     header = seq_id_line.strip()
     if not header.startswith(">"):
         print(f"⚠️ Invalid FASTA header: {header}")
@@ -83,8 +83,9 @@ def write_json(seq_id_line, seq_lines, output_dir, alleles, peptide_lengths, too
         ]
     }
 
-    filename = f"{antigen_id}_{strain_name}_{tool_type}.json"
-    json_path = Path(output_dir) / filename
+    safe_antigen_id = antigen_id.replace(" ", "_").replace("/", "_").replace("|", "_")
+    filename = f"{safe_antigen_id}_{strain_name}_{tool_type}.json"
+    json_path = Path(temp_dir) / filename
 
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
@@ -134,23 +135,27 @@ def main():
     iedb_dir = input("Enter full path to IEDB tool folder: ").strip()
     tool_path, tool_type = check_iedb_tool(iedb_dir)
 
-    search_path = Path("data") / args.pathogen_dir / args.sequence_dir
+    strain_name = args.sequence_dir
+    base_path = Path("data") / args.pathogen_dir
+
+    search_path = base_path / args.sequence_dir
     fasta_files = list(search_path.glob("*.fasta"))
     if not fasta_files:
         print(f"No FASTA files found in {search_path}")
         return
 
-    output_dir = Path("data") / args.pathogen_dir / "epitope_outputs"
+    temp_json_dir = base_path / "temp_jsons"
+    output_dir = base_path / "epitope_outputs"
+    temp_json_dir.mkdir(parents=True, exist_ok=True)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     allele_list = ["HLA-A*02:01", "HLA-A*01:01"]
     peptide_lengths = [8, 11]
-    strain_name = args.sequence_dir
 
     all_json_files = []
     for fasta_file in fasta_files:
         print(f"🧬 Processing FASTA file: {fasta_file.name}")
-        json_files = parse_fasta_to_jsons(fasta_file, output_dir, allele_list, peptide_lengths, tool_type, strain_name)
+        json_files = parse_fasta_to_jsons(fasta_file, temp_json_dir, allele_list, peptide_lengths, tool_type, strain_name)
         all_json_files.extend(json_files)
 
     # 🔁 Run predictions in parallel
