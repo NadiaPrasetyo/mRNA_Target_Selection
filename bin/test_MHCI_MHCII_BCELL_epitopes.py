@@ -3,6 +3,7 @@ import os
 import subprocess
 import json
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 
 def check_iedb_tool(iedb_dir):
     tool_path = Path(iedb_dir) / "src" / "tcell_mhci.py"
@@ -10,28 +11,43 @@ def check_iedb_tool(iedb_dir):
         raise FileNotFoundError(f"IEDB tool not found at {tool_path}")
     return str(tool_path)
 
-def find_first_fasta_file(pathogen_dir, sequence_dir):
-    search_path = Path("data") / pathogen_dir / sequence_dir
-    if not search_path.exists():
-        raise FileNotFoundError(f"Directory not found: {search_path}")
-    fasta_files = list(search_path.rglob("*.fasta"))
-    return fasta_files[0] if fasta_files else None
+def parse_fasta_to_jsons(fasta_path, output_dir, alleles, peptide_lengths):
+    """
+    Split multi-sequence FASTA into per-sequence JSON files.
+    """
+    json_paths = []
+    with open(fasta_path, 'r') as infile:
+        seq_id = None
+        seq_data = []
 
-def clean_fasta_file(original_fasta, cleaned_fasta):
-    with open(original_fasta, "r") as infile, open(cleaned_fasta, "w") as outfile:
         for line in infile:
             if line.startswith(">"):
-                outfile.write(line)
+                if seq_id:
+                    json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
+                    if json_path:
+                        json_paths.append(json_path)
+                seq_id = line.strip()
+                seq_data = []
             else:
-                # Remove asterisk characters
-                cleaned_seq = line.replace("*", "").strip()
-                outfile.write(cleaned_seq + "\n")
+                seq_data.append(line.strip())
 
-def generate_input_json(cleaned_fasta_path, output_json_path, allele_list, peptide_lengths):
+        # Write the last sequence
+        if seq_id and seq_data:
+            json_path = write_json(seq_id, seq_data, output_dir, alleles, peptide_lengths)
+            if json_path:
+                json_paths.append(json_path)
+
+    return json_paths
+
+def write_json(seq_id, seq_lines, output_dir, alleles, peptide_lengths):
+    sequence = "".join(seq_lines).replace("*", "")
+    if not sequence:
+        return None
+
     json_data = {
-        "input_sequence_text_file_path": str(cleaned_fasta_path),
+        "input_sequence_text": f"{seq_id}\n{sequence}",
         "peptide_length_range": peptide_lengths,
-        "alleles": ",".join(allele_list),
+        "alleles": ",".join(alleles),
         "predictors": [
             {
                 "type": "binding",
@@ -39,26 +55,33 @@ def generate_input_json(cleaned_fasta_path, output_json_path, allele_list, pepti
             }
         ]
     }
-    with open(output_json_path, "w") as f:
-        json.dump(json_data, f, indent=2)
 
-def run_prediction(tool_path, json_file, output_prefix):
+    name = seq_id[1:].replace(" ", "_").replace("/", "_")[:40]
+    json_path = Path(output_dir) / f"{name}.json"
+    with open(json_path, "w") as f:
+        json.dump(json_data, f, indent=2)
+    return json_path
+
+def run_prediction(tool_path, json_file, output_dir):
+    out_base = Path(json_file).stem
+    output_prefix = Path(output_dir) / out_base
     cmd = [
         "python3", tool_path,
-        "-j", json_file,
-        "-o", output_prefix,
+        "-j", str(json_file),
+        "-o", str(output_prefix),
         "-f", "json"
     ]
     try:
-        subprocess.run(cmd, check=True)
-        print(f"✅ Prediction succeeded: {output_prefix}.json")
-    except subprocess.CalledProcessError as e:
-        print(f"❌ Prediction failed: {e}")
+        subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print(f"✅ Done: {json_file.name}")
+    except subprocess.CalledProcessError:
+        print(f"❌ Failed: {json_file.name}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Test IEDB Class I T Cell prediction on a single FASTA file.")
+    parser = argparse.ArgumentParser(description="Run IEDB MHCI predictions split by FASTA sequence.")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence directory inside pathogen_dir/")
+    parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     args = parser.parse_args()
 
     iedb_dir = input("Enter full path to IEDB tool folder (<50 chars): ").strip()
@@ -66,27 +89,28 @@ def main():
         raise ValueError("IEDB path must be under 50 characters.")
     tool_path = check_iedb_tool(iedb_dir)
 
-    first_fasta = find_first_fasta_file(args.pathogen_dir, args.sequence_dir)
-    if not first_fasta:
-        print("No FASTA file found.")
+    search_path = Path("data") / args.pathogen_dir / args.sequence_dir
+    fasta_files = list(search_path.glob("*.fasta"))
+    if not fasta_files:
+        print(f"No FASTA files found in {search_path}")
         return
 
-    print(f"🧪 Testing with: {first_fasta.name}")
+    test_fasta = fasta_files[0]
+    print(f"🧪 Processing: {test_fasta.name}")
 
     output_dir = Path("outputs") / args.pathogen_dir / args.sequence_dir
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    cleaned_fasta = output_dir / f"{first_fasta.stem}_cleaned.fasta"
-    json_file = output_dir / f"{first_fasta.stem}_input.json"
-    output_prefix = output_dir / f"{first_fasta.stem}"
-
-    clean_fasta_file(first_fasta, cleaned_fasta)
-
     allele_list = ["HLA-A*02:01", "HLA-A*01:01"]
     peptide_lengths = [8, 11]
 
-    generate_input_json(cleaned_fasta, json_file, allele_list, peptide_lengths)
-    run_prediction(tool_path, str(json_file), str(output_prefix))
+    # Step 1: Generate per-sequence JSON files
+    json_files = parse_fasta_to_jsons(test_fasta, output_dir, allele_list, peptide_lengths)
+
+    # Step 2: Run predictions in parallel
+    with ThreadPoolExecutor(max_workers=args.threads) as executor:
+        for json_file in json_files:
+            executor.submit(run_prediction, tool_path, json_file, output_dir)
 
 if __name__ == "__main__":
     main()
