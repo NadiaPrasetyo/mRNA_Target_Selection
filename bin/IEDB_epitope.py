@@ -32,8 +32,10 @@ def main():
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing IEDB tools")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--peptide-lengths", nargs=2, type=int, metavar=('MIN', 'MAX'), default=[8, 11],
-                        help="Peptide length range (min max)")
+    parser.add_argument("--peptide-lengths", "-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
+                    default=[9, 11],
+                    help="Minimum and maximum peptide lengths to consider")
+
     parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell"], default=None,
                         help="Specify which tools to run (default: all detected tools)")
 
@@ -92,12 +94,7 @@ def main():
     # Prepare output directories
     temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path)
 
-    # Prepare peptide length range list for parsing
-    min_len, max_len = args.peptide_lengths
-    if min_len > max_len:
-        print(f"⚠️ Peptide length min ({min_len}) is greater than max ({max_len}). Swapping.")
-        min_len, max_len = max_len, min_len
-    peptide_lengths = list(range(min_len, max_len + 1))
+    peptide_lengths = args.peptide_lengths  # Already [min, max]
 
     all_jobs = []
     for tool_type, tool_path in final_tools.items():

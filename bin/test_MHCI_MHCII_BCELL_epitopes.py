@@ -106,8 +106,10 @@ def main():
     parser.add_argument("--allele-panel", choices=["mhci-27", "mhcii-7", "mhcii-27", "custom"], default="mhci-27",
                         help="Allele panel to use for prediction")
     parser.add_argument("--custom-alleles", nargs="+", help="List of custom alleles (only if --allele-panel custom)")
-    parser.add_argument("--peptide-lengths", "-pl", nargs="+", type=int, default=[9, 10, 11],
-                        help="Peptide lengths to consider for prediction")
+    parser.add_argument("--peptide-lengths", "-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
+                    default=[9, 11],
+                    help="Minimum and maximum peptide lengths to consider")
+
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     args = parser.parse_args()
 
