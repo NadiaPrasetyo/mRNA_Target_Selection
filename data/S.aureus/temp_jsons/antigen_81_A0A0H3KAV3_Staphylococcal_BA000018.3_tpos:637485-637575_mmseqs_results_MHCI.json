@@ -1,0 +1,14 @@
+{
+  "input_sequence_text": ">antigen_81|A0A0H3KAV3|Staphylococcal|BA000018.3|tpos:637485-637575\nFQISGVTNTEKLPTPIELPLKVKVHGKDSPLKYWPKFDKKQLAISTLDFEIRHQLTQIHGLYRSSDKTGGYWKITMNDGSTYQSDLSKKFE",
+  "peptide_length_range": [
+    8,
+    11
+  ],
+  "alleles": "HLA-A*02:01,HLA-A*01:01",
+  "predictors": [
+    {
+      "type": "binding",
+      "method": "netmhcpan_ba"
+    }
+  ]
+}

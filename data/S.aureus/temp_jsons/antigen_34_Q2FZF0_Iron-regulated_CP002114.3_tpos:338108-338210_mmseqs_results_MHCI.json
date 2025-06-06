@@ -1,0 +1,14 @@
+{
+  "input_sequence_text": ">antigen_34|Q2FZF0|Iron-regulated|CP002114.3|tpos:338108-338210\nYEVYKYNTNDTSIANDYFNKPAKYIKKNGKLYVQITVNHSHWITGMSIEGHKEKIISKNTAKDERTSEFEVSKLNGKVDGKIDVYIDEKVNGKPFKYDHHYNI",
+  "peptide_length_range": [
+    8,
+    11
+  ],
+  "alleles": "HLA-A*02:01,HLA-A*01:01",
+  "predictors": [
+    {
+      "type": "binding",
+      "method": "netmhcpan_ba"
+    }
+  ]
+}

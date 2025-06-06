@@ -1,0 +1,14 @@
+{
+  "input_sequence_text": ">antigen_72|A0AAX2YX78|Extracellular|BX571857.1|tpos:704357-704508\nMKLKSFVTATLALGLLSTVGAALPSHEASADSNNGYKELTMDGKHTVPYTISVDGITALHRTYFVFPENKKVLYQEIDSKVKNELASQRGVTTEKINNAQTATYTLTLNDGNKKVVNLKKNDDAKNSIDPSTIKQIQIVVKFENEELHEANA",
+  "peptide_length_range": [
+    8,
+    11
+  ],
+  "alleles": "HLA-A*02:01,HLA-A*01:01",
+  "predictors": [
+    {
+      "type": "binding",
+      "method": "netmhcpan_ba"
+    }
+  ]
+}
