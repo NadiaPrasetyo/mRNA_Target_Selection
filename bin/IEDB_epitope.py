@@ -109,15 +109,19 @@ def main():
 
         for fasta_file in fasta_files:
             print(f"🧬 Processing {fasta_file.name}")
-            json_paths = common.parse_fasta_to_jsons(
-                fasta_file,
-                temp_json_dir,
-                alleles,
-                peptide_lengths,
-                tool_type,
-                args.sequence_dir
-            )
-            all_jobs.extend([(tool_type, tool_path, jp) for jp in json_paths])
+            if tool_type == "BCell":
+                all_jobs.append((tool_type, tool_path, fasta_file))
+            else:
+                json_paths = common.parse_fasta_to_jsons(
+                    fasta_file,
+                    temp_json_dir,
+                    alleles,
+                    peptide_lengths,
+                    tool_type,
+                    args.sequence_dir
+                )
+                all_jobs.extend([(tool_type, tool_path, jp) for jp in json_paths])
+
 
     if not all_jobs:
         print("❌ No jobs to run. Exiting.")

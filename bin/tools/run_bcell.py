@@ -1,13 +1,79 @@
 import subprocess
 from pathlib import Path
 
-def run(json_file, tool_path, output_dir):
-    out_base = Path(json_file).stem
-    output_prefix = Path(output_dir) / out_base
-    cmd = ["python3", tool_path, "-j", str(json_file), "-o", str(output_prefix), "-f", "json"]
-    try:
-        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
-        print(f"✅ BCell done: {json_file.name}")
-    except subprocess.CalledProcessError as e:
-        print(f"❌ BCell error: {json_file.name}")
-        print(e.stderr)
+BCELL_METHODS = [
+    "Chou-Fasman",
+    "Emini",
+    "Karplus-Schulz",
+    "Kolaskar-Tongaonkar",
+    "Parker",
+    "Bepipred",
+    "Bepipred-2.0"
+]
+
+def patch_configure(configure_path: Path):
+    """
+    Patch configure.py to replace deprecated pip import and usage.
+    This replaces:
+    - from pip._internal.utils.misc import get_installed_distributions
+      with
+      import pkg_resources
+    - get_installed_distributions() calls with pkg_resources.working_set
+    """
+    if not configure_path.exists():
+        print(f"configure.py not found at {configure_path}, skipping patch.")
+        return
+
+    # Read content
+    text = configure_path.read_text()
+
+    if "from pip._internal.utils.misc import get_installed_distributions" not in text:
+        print("No deprecated import found in configure.py, skipping patch.")
+        return
+
+    print("Patching configure.py to fix pip import issue...")
+
+    # Replace import line
+    text = text.replace(
+        "from pip._internal.utils.misc import get_installed_distributions",
+        "import pkg_resources"
+    )
+    # Replace function calls
+    text = text.replace(
+        "get_installed_distributions()",
+        "pkg_resources.working_set"
+    )
+
+    # Backup original
+    backup_path = configure_path.with_suffix(".py.bak")
+    if not backup_path.exists():
+        configure_path.rename(backup_path)
+        print(f"Backed up original configure.py to {backup_path}")
+
+    # Write patched file
+    configure_path.write_text(text)
+    print("Patch applied successfully.")
+
+def run(fasta_file: Path, tool_path: str, output_dir: Path):
+    fasta_stem = fasta_file.stem
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Patch configure.py before running any method
+    configure_py_path = Path(tool_path).parent / "configure.py"
+    patch_configure(configure_py_path)
+
+    for method in BCELL_METHODS:
+        method_output = output_dir / f"{fasta_stem}_{method.replace(' ', '_')}.txt"
+        cmd = [
+            "python3",
+            tool_path,
+            "-m", method,
+            "-f", str(fasta_file),
+            "-o", str(method_output)
+        ]
+        try:
+            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
+            print(f"✅ BCell [{method}] done: {fasta_file.name}")
+        except subprocess.CalledProcessError as e:
+            print(f"❌ BCell [{method}] error: {fasta_file.name}")
+            print(e.stderr)

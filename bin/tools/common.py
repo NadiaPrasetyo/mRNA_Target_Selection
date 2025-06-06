@@ -99,14 +99,18 @@ def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_
     if not sequence:
         print(f"⚠️ Empty sequence for {antigen_id}")
         return None
+    if tool_type == "MHCI":
+        method = "netmhcpan_ba"
+    elif tool_type == "MHCII":
+        method = "netmhciipan_el"  # or _ba depending on your choice
+    else:
+        method = None  # Or skip
 
     json_data = {
         "input_sequence_text": f">{antigen_id}\n{sequence}",
         "peptide_length_range": peptide_lengths,
         "alleles": ",".join(a.strip() for a in alleles),
-        "predictors": [
-            {"type": "binding", "method": "netmhcpan_ba"}
-        ]
+        "predictors": [{"type": "binding", "method": method}]
     }
 
     safe_antigen_id = antigen_id.replace(" ", "_").replace("/", "_").replace("|", "_")
