@@ -32,10 +32,12 @@ def main():
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing IEDB tools")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--peptide-lengths", "-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
-                    default=[9, 11],
-                    help="Minimum and maximum peptide lengths to consider")
-
+    parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
+                    default=[8, 11],
+                    help="Min and max peptide lengths for MHCI (default 8-11)")
+    parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
+                        default=[11, 25],
+                        help="Min and max peptide lengths for MHCII (default 11-25)")
     parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell"], default=None,
                         help="Specify which tools to run (default: all detected tools)")
 
@@ -94,8 +96,6 @@ def main():
     # Prepare output directories
     temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path)
 
-    peptide_lengths = args.peptide_lengths  # Already [min, max]
-
     all_jobs = []
     for tool_type, tool_path in final_tools.items():
         print(f"\n🧪 Preparing {tool_type} predictions")
@@ -105,7 +105,15 @@ def main():
         elif tool_type == "MHCII":
             alleles = common.get_alleles(tool_type, args.mhcii_allele_panel, args.mhcii_custom_alleles)
         else:  # BCell or others
-            alleles = []
+                alleles = []
+
+        # Select peptide lengths per tool
+        if tool_type == "MHCI":
+            peptide_lengths = args.mhci_peptide_lengths
+        elif tool_type == "MHCII":
+            peptide_lengths = args.mhcii_peptide_lengths
+        else:
+            peptide_lengths = None  # Or whatever default/empty
 
         for fasta_file in fasta_files:
             print(f"🧬 Processing {fasta_file.name}")
