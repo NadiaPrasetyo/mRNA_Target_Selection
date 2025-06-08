@@ -75,12 +75,10 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
     else:
         print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
         return ALLELE_PRESETS[tool_type]["default"]
-
-
 def check_iedb_tool(base_path):
     base = Path(base_path)
     paths = {
-        "BCell": base / "bcell_standalone" / "bcell_standalone.py",
+        "BCell": base / "bcell_standalone" / "predict_antibody_epitope.py",
         "MHCI": base / "ng_tc1-0.1.2-beta" / "src" / "tcell_mhci.py",
         "MHCII": base / "ng_tc2-0.1.1-beta" / "src" / "tcell_mhcii.py"
     }

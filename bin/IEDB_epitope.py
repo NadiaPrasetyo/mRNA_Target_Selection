@@ -1,4 +1,5 @@
 import argparse
+from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from tools import run_mhci, run_mhcii, run_bcell, common
@@ -11,6 +12,8 @@ tool_runners = {
 }
 
 def run_predictions_parallel(job_list, output_dir, max_threads):
+    print(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
+
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
         futures = [
             executor.submit(tool_runners[tool_type], json_file, tool_path, output_dir)
@@ -136,6 +139,17 @@ def main():
         sys.exit(1)
 
     print(f"\n🚀 Running predictions with {args.threads} threads...")
+
+    if not all_jobs:
+        print("❌ No jobs to run. Exiting.")
+        sys.exit(1)
+
+    # 📊 Job summary logging
+    job_counter = Counter([job[0] for job in all_jobs])
+    print("\n📋 Job Summary:")
+    for tool, count in job_counter.items():
+        print(f"  - {tool}: {count} job(s)")
+
     run_predictions_parallel(all_jobs, output_dir, args.threads)
     common.cleanup_temp(temp_json_dir)
     print("\n✅ Prediction complete.")
