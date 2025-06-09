@@ -75,6 +75,7 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
     else:
         print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
         return ALLELE_PRESETS[tool_type]["default"]
+    
 def check_iedb_tool(base_path):
     base = Path(base_path)
     paths = {
@@ -89,6 +90,14 @@ def check_iedb_tool(base_path):
             tools[key] = str(path)
     return tools
 
+def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
+    temp_txt_dir.mkdir(parents=True, exist_ok=True)
+    txt_files = []
+    for fasta_file in fasta_files:
+        txt_file = temp_txt_dir / (fasta_file.stem + ".txt")
+        txt_file.write_text(fasta_file.read_text())
+        txt_files.append(txt_file)
+    return txt_files
 
 def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
     header = seq_id_line.strip()

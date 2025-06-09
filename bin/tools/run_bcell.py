@@ -37,43 +37,43 @@ def patch_configure(configure_path: Path):
     text = text.replace(
         "from pip._internal.utils.misc import get_installed_distributions",
         "import pkg_resources"
-    )
-    # Replace function calls
-    text = text.replace(
+    ).replace(
         "get_installed_distributions()",
         "pkg_resources.working_set"
     )
 
-    # Backup original
     backup_path = configure_path.with_suffix(".py.bak")
     if not backup_path.exists():
         configure_path.rename(backup_path)
         print(f"Backed up original configure.py to {backup_path}")
 
-    # Write patched file
     configure_path.write_text(text)
     print("Patch applied successfully.")
 
-def run(fasta_file: Path, tool_path: str, output_dir: Path):
+def run(fasta_file: Path, tool_path: str, output_dir: Path, plot: bool = True):
     fasta_stem = fasta_file.stem
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Patch configure.py before running any method
+    # Patch deprecated imports if needed
     configure_py_path = Path(tool_path).parent / "configure.py"
     patch_configure(configure_py_path)
 
     for method in BCELL_METHODS:
-        method_output = output_dir / f"{fasta_stem}_{method.replace(' ', '_')}.txt"
+        print(f"Running BCell method: {method}...")
         cmd = [
             "python3",
             tool_path,
             "-m", method,
-            "-f", str(fasta_file),
-            "-o", str(method_output)
+            "-f", str(fasta_file)
         ]
+
+        if plot:
+            # Specify plot directory
+            cmd += ["--plot", str(output_dir)]
+
         try:
             result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
-            print(f"✅ BCell [{method}] done: {fasta_file.name}")
+            print(f"✅ BCell [{method}] completed for {fasta_file.name}")
         except subprocess.CalledProcessError as e:
-            print(f"❌ BCell [{method}] error: {fasta_file.name}")
-            print(e.stderr)
+            print(f"❌ BCell [{method}] failed for {fasta_file.name}")
+            print("Error:", e.stderr)

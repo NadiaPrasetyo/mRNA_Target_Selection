@@ -2,14 +2,26 @@ import argparse
 from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_mhci, run_mhcii, run_bcell, common
+from tools import run_mhci, run_mhcII, run_bcell, common
 import sys
 
 tool_runners = {
     "MHCI": run_mhci.run,
-    "MHCII": run_mhcii.run,
+    "MHCII": run_mhcII.run,
     "BCell": run_bcell.run
 }
+
+def is_job_completed(tool_type, input_path, base_output_dir):
+    """
+    Check if a job has already been processed by verifying if the expected result
+    JSON file exists in the appropriate tool-specific output subdirectory.
+    """
+    subdir = base_output_dir / tool_type.lower()
+    subdir.mkdir(parents=True, exist_ok=True)  # Make sure the directory exists
+    base_name = input_path.stem
+    result_filename = f"{base_name}_mmseqs_results_{tool_type.upper()}.json"
+    result_file = subdir / result_filename
+    return result_file.exists()
 
 def run_predictions_parallel(job_list, output_dir, max_threads):
     print(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
@@ -25,10 +37,9 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
 def main():
     parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell)",
                                      usage="iedb_epitope.py <pathogen_dir> <sequence_dir> --tool-root <tool_root> [options]")
-    example_with_options = ("iedb_epitope.py influenza sequences --tool-root /path/to/iedb/tools --threads 8 --peptide-lengths 8 11 --tools MHCI MHCII")
     parser.epilog = (
         f"Example usage:\n"
-        f"  {example_with_options}\n\n"
+        f"  iedb_epitope.py influenza sequences --tool-root /path/to/iedb/tools --threads 8 --peptide-lengths 8 11 --tools MHCI MHCII\n\n"
         "This script will run epitope predictions for the specified pathogen and sequence directories using the IEDB tools MHCI and MHCII with peptide length between 8-11 and with 8 parallel threads."
     )
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
@@ -36,15 +47,12 @@ def main():
     parser.add_argument("--tool-root", required=True, help="Root directory containing IEDB tools")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
-                    default=[8, 11],
-                    help="Min and max peptide lengths for MHCI (default 8-11)")
+                        default=[8, 11], help="Min and max peptide lengths for MHCI (default 8-11)")
     parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
-                        default=[11, 25],
-                        help="Min and max peptide lengths for MHCII (default 11-25)")
+                        default=[11, 25], help="Min and max peptide lengths for MHCII (default 11-25)")
     parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell"], default=None,
                         help="Specify which tools to run (default: all detected tools)")
 
-    # Allele panel and custom alleles for MHCI and MHCII
     parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default",
                         help="Allele panel for MHCI")
     parser.add_argument("--mhci-custom-alleles", nargs="+", default=None,
@@ -56,7 +64,6 @@ def main():
 
     args = parser.parse_args()
 
-    # Check base directories exist
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
     if not pathogen_path.exists() or not pathogen_path.is_dir():
@@ -73,30 +80,32 @@ def main():
         print(f"❌ Tool root directory does not exist or is not a directory: {tool_root}")
         sys.exit(1)
 
-    # Check available tools
     tool_map = common.check_iedb_tool(tool_root)
     if not tool_map:
         print(f"❌ No valid IEDB tools found in: {tool_root}")
         sys.exit(1)
 
-    # If user specified a subset of tools, filter
     selected_tools = set(args.tools) if args.tools else set(tool_map.keys())
     missing_tools = selected_tools - set(tool_map.keys())
     if missing_tools:
         print(f"⚠️ Warning: Tools requested but not found: {', '.join(missing_tools)}")
-    # Only keep detected + requested
+
     final_tools = {t: tool_map[t] for t in selected_tools if t in tool_map}
     if not final_tools:
         print("❌ No tools available to run after filtering.")
         sys.exit(1)
 
-    # Find FASTA files
     fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
     if not fasta_files:
         print(f"❌ No FASTA files found in {sequence_path}")
         sys.exit(1)
 
-    # Prepare output directories
+    # Convert fasta to txt if BCell is selected
+    txt_files = []
+    if "BCell" in final_tools:
+        temp_txt_dir = pathogen_path / "temp_txt"
+        txt_files = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
+
     temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path)
 
     all_jobs = []
@@ -105,26 +114,27 @@ def main():
 
         if tool_type == "MHCI":
             alleles = common.get_alleles(tool_type, args.mhci_allele_panel, args.mhci_custom_alleles)
-        elif tool_type == "MHCII":
-            alleles = common.get_alleles(tool_type, args.mhcii_allele_panel, args.mhcii_custom_alleles)
-        else:  # BCell or others
-                alleles = []
-
-        # Select peptide lengths per tool
-        if tool_type == "MHCI":
             peptide_lengths = args.mhci_peptide_lengths
         elif tool_type == "MHCII":
-            peptide_lengths = args.mhcii_peptide_lengths
+            alleles = common.get_alleles(tool_type, args.mhcII_allele_panel, args.mhcII_custom_alleles)
+            peptide_lengths = args.mhcII_peptide_lengths
         else:
-            peptide_lengths = None  # Or whatever default/empty
+            alleles = []
+            peptide_lengths = None
 
-        for fasta_file in fasta_files:
-            print(f"🧬 Processing {fasta_file.name}")
+        input_files = txt_files if tool_type == "BCell" else fasta_files
+        for input_file in input_files:
+            print(f"🧬 Processing {input_file.name}")
+
+            if is_job_completed(tool_type, input_file, output_dir):
+                print(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
+                continue
+            
             if tool_type == "BCell":
-                all_jobs.append((tool_type, tool_path, fasta_file))
+                all_jobs.append((tool_type, tool_path, input_file))
             else:
                 json_paths = common.parse_fasta_to_jsons(
-                    fasta_file,
+                    input_file,
                     temp_json_dir,
                     alleles,
                     peptide_lengths,
@@ -133,24 +143,19 @@ def main():
                 )
                 all_jobs.extend([(tool_type, tool_path, jp) for jp in json_paths])
 
-
     if not all_jobs:
         print("❌ No jobs to run. Exiting.")
         sys.exit(1)
 
     print(f"\n🚀 Running predictions with {args.threads} threads...")
 
-    if not all_jobs:
-        print("❌ No jobs to run. Exiting.")
-        sys.exit(1)
-
-    # 📊 Job summary logging
     job_counter = Counter([job[0] for job in all_jobs])
     print("\n📋 Job Summary:")
     for tool, count in job_counter.items():
         print(f"  - {tool}: {count} job(s)")
 
     run_predictions_parallel(all_jobs, output_dir, args.threads)
+
     common.cleanup_temp(temp_json_dir)
     print("\n✅ Prediction complete.")
 
