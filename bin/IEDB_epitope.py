@@ -2,12 +2,12 @@ import argparse
 from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_mhci, run_mhcII, run_bcell, common
+from tools import run_mhci, run_mhcii, run_bcell, common
 import sys
 
 tool_runners = {
     "MHCI": run_mhci.run,
-    "MHCII": run_mhcII.run,
+    "MHCII": run_mhcii.run,
     "BCell": run_bcell.run
 }
 
@@ -116,8 +116,8 @@ def main():
             alleles = common.get_alleles(tool_type, args.mhci_allele_panel, args.mhci_custom_alleles)
             peptide_lengths = args.mhci_peptide_lengths
         elif tool_type == "MHCII":
-            alleles = common.get_alleles(tool_type, args.mhcII_allele_panel, args.mhcII_custom_alleles)
-            peptide_lengths = args.mhcII_peptide_lengths
+            alleles = common.get_alleles(tool_type, args.mhcii_allele_panel, args.mhcii_custom_alleles)
+            peptide_lengths = args.mhcii_peptide_lengths
         else:
             alleles = []
             peptide_lengths = None
