@@ -1,5 +1,6 @@
 import subprocess
 from pathlib import Path
+import csv
 
 BCELL_METHODS = [
     "Chou-Fasman",
@@ -7,15 +8,11 @@ BCELL_METHODS = [
     "Karplus-Schulz",
     "Kolaskar-Tongaonkar",
     "Parker",
-    "Bepipred",
-    "Bepipred-2.0"
+    "Bepipred"
+    # exclude "BepiPred-2.0" as it requires additional dependencies that are not supported anymore
 ]
 
 def patch_numpy_float(util_path: Path):
-    """
-    Patches deprecated np.float usage in util.py to use float instead.
-    Specifically targets fill_between usage where np.float is used.
-    """
     if not util_path.exists():
         print(f"util.py not found at {util_path}, skipping patch.")
         return
@@ -29,7 +26,6 @@ def patch_numpy_float(util_path: Path):
 
     patched = content.replace("np.float(", "float(")
 
-    # Backup
     backup_path = util_path.with_suffix(".py.bak")
     if not backup_path.exists():
         util_path.rename(backup_path)
@@ -39,19 +35,10 @@ def patch_numpy_float(util_path: Path):
     print("Patch applied successfully.")
 
 def patch_configure(configure_path: Path):
-    """
-    Patch configure.py to replace deprecated pip import and usage.
-    This replaces:
-    - from pip._internal.utils.misc import get_installed_distributions
-      with
-      import pkg_resources
-    - get_installed_distributions() calls with pkg_resources.working_set
-    """
     if not configure_path.exists():
         print(f"configure.py not found at {configure_path}, skipping patch.")
         return
 
-    # Read content
     text = configure_path.read_text()
 
     if "from pip._internal.utils.misc import get_installed_distributions" not in text:
@@ -60,7 +47,6 @@ def patch_configure(configure_path: Path):
 
     print("Patching configure.py to fix pip import issue...")
 
-    # Replace import line
     text = text.replace(
         "from pip._internal.utils.misc import get_installed_distributions",
         "import pkg_resources"
@@ -77,17 +63,36 @@ def patch_configure(configure_path: Path):
     configure_path.write_text(text)
     print("Patch applied successfully.")
 
+def parse_and_save_to_csv(output: str, output_file: Path):
+    lines = output.strip().splitlines()
+    
+    # Find the header (might not always be on the same line)
+    for i, line in enumerate(lines):
+        if line.startswith("Position"):
+            header = line.split()
+            data_lines = lines[i+1:]
+            break
+    else:
+        print(f"No result header found in output.")
+        return
+
+    with output_file.open("w", newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(header)
+        for line in data_lines:
+            if line.strip():
+                writer.writerow(line.split())
+
 def run(fasta_file: Path, tool_path: str, output_dir: Path, plot: bool = True):
     fasta_stem = fasta_file.stem
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Patch deprecated imports if needed
+    # Patch deprecated imports
     configure_py_path = Path(tool_path).parent / "configure.py"
     patch_configure(configure_py_path)
-    # Patch deprecated np.float usage in util.py
+
     util_py_path = Path(tool_path).parent / "src" / "util.py"
     patch_numpy_float(util_py_path)
-
 
     for method in BCELL_METHODS:
         print(f"Running BCell method: {method}...")
@@ -99,12 +104,17 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path, plot: bool = True):
         ]
 
         if plot:
-            # Specify plot directory
             cmd += ["--plot", str(output_dir)]
 
         try:
             result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
             print(f"✅ BCell [{method}] completed for {fasta_file.name}")
+            
+            # Save output to CSV
+            csv_path = output_dir / f"{fasta_stem}_{method.replace(' ', '_')}.csv"
+            parse_and_save_to_csv(result.stdout, csv_path)
+            print(f"📄 Results saved to: {csv_path}")
+
         except subprocess.CalledProcessError as e:
             print(f"❌ BCell [{method}] failed for {fasta_file.name}")
             print("Error:", e.stderr)

@@ -9,16 +9,17 @@ def get_fasta_files(base_path: Path, sequence_subdir: str):
     fasta_files = list(seq_dir.glob("*.fasta"))
     return fasta_files
 
+def prepare_output_dirs(pathogen_path):
+    output_dir = pathogen_path / "epitope_outputs"
+    subdirs = ["bcell", "mhci", "mhcii"]
 
-def prepare_output_dirs(base_path: Path):
-    temp_json_dir = base_path / "temp_jsons"
-    output_dir = base_path / "epitope_outputs"
+    for sub in subdirs:
+        (output_dir / sub).mkdir(parents=True, exist_ok=True)
 
+    temp_json_dir = pathogen_path / "temp_json"
     temp_json_dir.mkdir(parents=True, exist_ok=True)
-    output_dir.mkdir(parents=True, exist_ok=True)
 
     return temp_json_dir, output_dir
-
 
 def cleanup_temp(temp_json_dir: Path):
     import shutil
