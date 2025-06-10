@@ -11,6 +11,33 @@ BCELL_METHODS = [
     "Bepipred-2.0"
 ]
 
+def patch_numpy_float(util_path: Path):
+    """
+    Patches deprecated np.float usage in util.py to use float instead.
+    Specifically targets fill_between usage where np.float is used.
+    """
+    if not util_path.exists():
+        print(f"util.py not found at {util_path}, skipping patch.")
+        return
+
+    content = util_path.read_text()
+    if "np.float(" not in content:
+        print("No deprecated np.float usage found in util.py, skipping patch.")
+        return
+
+    print("Patching util.py to replace np.float with float...")
+
+    patched = content.replace("np.float(", "float(")
+
+    # Backup
+    backup_path = util_path.with_suffix(".py.bak")
+    if not backup_path.exists():
+        util_path.rename(backup_path)
+        print(f"Backed up original util.py to {backup_path}")
+
+    util_path.write_text(patched)
+    print("Patch applied successfully.")
+
 def patch_configure(configure_path: Path):
     """
     Patch configure.py to replace deprecated pip import and usage.
@@ -57,6 +84,10 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path, plot: bool = True):
     # Patch deprecated imports if needed
     configure_py_path = Path(tool_path).parent / "configure.py"
     patch_configure(configure_py_path)
+    # Patch deprecated np.float usage in util.py
+    util_py_path = Path(tool_path).parent / "src" / "util.py"
+    patch_numpy_float(util_py_path)
+
 
     for method in BCELL_METHODS:
         print(f"Running BCell method: {method}...")
