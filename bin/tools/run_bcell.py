@@ -85,7 +85,9 @@ def parse_and_save_to_csv(output: str, output_file: Path):
 
 def run(fasta_file: Path, tool_path: str, output_dir: Path, plot: bool = True):
     fasta_stem = fasta_file.stem
+    output_dir = output_dir / "bcell"
     output_dir.mkdir(parents=True, exist_ok=True)
+
 
     # Patch deprecated imports
     configure_py_path = Path(tool_path).parent / "configure.py"
@@ -104,7 +106,10 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path, plot: bool = True):
         ]
 
         if plot:
-            cmd += ["--plot", str(output_dir)]
+            plot_dir = output_dir / "plots"
+            plot_dir.mkdir(parents=True, exist_ok=True)
+            cmd += ["--plot", str(plot_dir)]
+
 
         try:
             result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
