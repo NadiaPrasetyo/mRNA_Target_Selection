@@ -69,11 +69,12 @@ def main():
         print(f"❌ Tool root directory does not exist: {tool_root}")
         sys.exit(1)
 
-    # Validate tool environments
-    for tool in args.tools:
-        if not common.check_signalp_targetp_tmhmm(tool, tool_root):
-            print(f"❌ Required components missing for {tool}. Exiting.")
-            sys.exit(1)
+    found = common.check_signalp_targetp_tmhmm(tool_root)
+    if not found:
+        print(f"❌ Required components missing under {tool_root}. Exiting.")
+        sys.exit(1)
+
+
 
     epitope_root = base_path / "epitope_outputs"
     epitope_root.mkdir(parents=True, exist_ok=True)
