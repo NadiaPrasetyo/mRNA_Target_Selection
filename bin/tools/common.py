@@ -1,5 +1,31 @@
 import json
 from pathlib import Path
+import tempfile
+
+def ensure_writable_dir(path: Path) -> bool:
+    """
+    Ensure the directory exists and is writable.
+
+    Args:
+        path (Path): Directory path to check/create.
+
+    Returns:
+        bool: True if the directory exists and is writable, False otherwise.
+    """
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+    except Exception as e:
+        print(f"❌ Could not create directory {path}: {e}")
+        return False
+
+    try:
+        with tempfile.TemporaryFile(dir=path):
+            pass
+    except Exception as e:
+        print(f"❌ Directory not writable: {path} ({e})")
+        return False
+
+    return True
 
 def get_fasta_files(base_path: Path, sequence_subdir: str):
     seq_dir = base_path / sequence_subdir

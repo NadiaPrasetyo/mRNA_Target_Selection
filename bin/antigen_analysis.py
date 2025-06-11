@@ -14,7 +14,7 @@ TOOL_RUNNERS = {
 VALID_TOOLS = list(TOOL_RUNNERS.keys())
 
 
-def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, batch_size: int) -> None:
+def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, batch_size: int, tool_root: Path) -> None:
     output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.out"
     if output_file.exists():
         print(f"⏭️ Skipping {tool_name} for {input_file.name} (output already exists)")
@@ -24,7 +24,7 @@ def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, ba
         if tool_name in ("SIGNALP", "TARGETP"):
             runner_func(input_file, output_dir, batch_size)
         elif tool_name == "TMHMM":
-            runner_func(input_file, output_dir)
+            runner_func(tool_root / "tmhmm-2.0a", input_file, output_dir)
         else:
             print(f"⚠️ Unknown tool: {tool_name}")
             return
@@ -32,13 +32,11 @@ def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, ba
     except Exception as e:
         print(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
-
 def run_parallel_jobs(jobs, threads: int) -> None:
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = [executor.submit(run_tool, *job) for job in jobs]
         for f in futures:
             f.result()
-
 
 def main():
     parser = argparse.ArgumentParser(
@@ -60,10 +58,11 @@ def main():
         print(f"❌ Invalid input directory: {base_path}")
         sys.exit(1)
 
-    fasta_files = list(base_path.glob("*.fasta")) + list(base_path.glob("*.fa"))
+    fasta_files = common.get_fasta_files(Path("data") / args.pathogen_dir, args.sequence_dir)
     if not fasta_files:
-        print(f"❌ No FASTA files found in: {base_path}")
+        print("❌ No FASTA files found.")
         sys.exit(1)
+
 
     tool_root = Path(args.tool_root)
     if not tool_root.exists():
@@ -79,13 +78,14 @@ def main():
     epitope_root = base_path / "epitope_outputs"
     epitope_root.mkdir(parents=True, exist_ok=True)
 
+    epitope_root = Path("data") / args.pathogen_dir / args.sequence_dir / "epitope_outputs"
+
     jobs = []
     for tool_name in args.tools:
         tool_out_dir = epitope_root / tool_name.lower()
-        tool_out_dir.mkdir(parents=True, exist_ok=True)
 
-        if not os.access(tool_out_dir, os.W_OK):
-            print(f"❌ Output directory not writable: {tool_out_dir}")
+        if not common.ensure_writable_dir(tool_out_dir):
+            print(f"❌ Skipping {tool_name} due to output directory issue.")
             continue
 
         runner_func = TOOL_RUNNERS[tool_name]
@@ -97,6 +97,7 @@ def main():
                 continue
 
             jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size))
+
 
     if not jobs:
         print("❌ No jobs to run after validation. Exiting.")
