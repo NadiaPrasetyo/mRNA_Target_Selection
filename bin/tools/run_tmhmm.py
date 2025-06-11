@@ -60,7 +60,7 @@ def run(tmhmm_path: Path, input_fasta: Path, output_dir: Path):
     basename = input_fasta.stem
     output_file = output_dir / f"{basename}_tmhmm_result.txt"
 
-    cmd = [str(tmhmm_script), "-long", str(input_fasta)]
+    cmd = [str(tmhmm_script), str(input_fasta)]
 
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, check=True)
