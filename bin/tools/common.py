@@ -108,10 +108,20 @@ def check_signalp_targetp_tmhmm(tool_root: Path):
     Check if SIGNALP, TARGETP, and TMHMM executables/scripts exist under tool_root.
     You can adapt the filenames as per how you have installed them.
     """
+    signalp_path_1 = tool_root / "signalp-5.0b" / "bin" / "signalp"
+    signalp_path_2 = tool_root / "signalp-5.0b" / "bin" / "bin" / "signalp"
+
+    if signalp_path_1.exists():
+        signalp_path = signalp_path_1
+    elif signalp_path_2.exists():
+        signalp_path = signalp_path_2
+    else:
+        raise FileNotFoundError("SignalP executable not found in expected locations")
+
     tools = {
-        "SIGNALP": tool_root / "signalp" / "signalp",
-        "TARGETP": tool_root / "targetp" / "targetp",
-        "TMHMM": tool_root / "tmhmm" / "tmhmm"
+        "SIGNALP": signalp_path,
+        "TARGETP": tool_root / "targetp-2.0" / "bin" / "targetp",
+        "TMHMM": tool_root / "tmhmm-2.0c" / "bin" / "tmhmm"
     }
 
     found = {}

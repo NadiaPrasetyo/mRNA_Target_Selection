@@ -71,7 +71,7 @@ def main():
 
     # Validate tool environments
     for tool in args.tools:
-        if not common.check_tool_environment(tool, tool_root):
+        if not common.check_signalp_targetp_tmhmm(tool, tool_root):
             print(f"❌ Required components missing for {tool}. Exiting.")
             sys.exit(1)
 
