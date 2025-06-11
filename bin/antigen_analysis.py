@@ -1,0 +1,1 @@
+# run signalp, targetp, and tmhmm tools to predict signal peptides, targeting peptides, and transmembrane helices within the antigen sequences.
