@@ -77,6 +77,25 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
         print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
         return ALLELE_PRESETS[tool_type]["default"]
     
+def check_signalp_targetp_tmhmm(tool_root: Path):
+    """
+    Check if SIGNALP, TARGETP, and TMHMM executables/scripts exist under tool_root.
+    You can adapt the filenames as per how you have installed them.
+    """
+    tools = {
+        "SIGNALP": tool_root / "signalp" / "signalp",
+        "TARGETP": tool_root / "targetp" / "targetp",
+        "TMHMM": tool_root / "tmhmm" / "tmhmm"
+    }
+
+    found = {}
+    for name, path in tools.items():
+        if path.exists() and path.is_file():
+            found[name] = str(path)
+        else:
+            print(f"⚠️ {name} not found at expected path: {path}")
+    return found
+
 def check_iedb_tool(base_path):
     base = Path(base_path)
     paths = {

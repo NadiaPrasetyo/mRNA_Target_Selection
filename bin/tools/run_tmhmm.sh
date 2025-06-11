@@ -1,60 +1,99 @@
-#!/bin/bash
+# tools/run_tmhmm.py
+import subprocess
+from pathlib import Path
+import sys
+import shutil
+import os
 
-set -euo pipefail
+def patch_shebang(file_path: Path, perl_path: str):
+    """Ensure the shebang line of file_path points to perl_path."""
+    if not file_path.is_file():
+        print(f"Warning: {file_path} not found, skipping shebang patch.")
+        return
+    with file_path.open("r") as f:
+        lines = f.readlines()
+    if not lines:
+        print(f"Warning: {file_path} is empty, skipping shebang patch.")
+        return
+    current_shebang = lines[0].strip()
+    expected_shebang = f"#!{perl_path}"
+    if current_shebang != expected_shebang:
+        print(f"Patching shebang in {file_path} from {current_shebang} to {expected_shebang}")
+        lines[0] = expected_shebang + "\n"
+        file_path.write_text("".join(lines))
+    else:
+        print(f"Shebang in {file_path} is already correct.")
 
-# --- Input check and setup patch ---
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 /path/to/TMHMM2.0a /path/to/input.fasta /path/to/output_dir"
-    exit 1
-fi
 
-TMHMM_DIR=$(realpath "$1")
-INPUT_FASTA=$(realpath "$2")
-OUTPUT_DIR=$(realpath "$3")
+def run_tmhmm(tmhmm_dir: Path, input_fasta: Path, output_dir: Path):
+    # Resolve absolute paths
+    tmhmm_dir = tmhmm_dir.resolve()
+    input_fasta = input_fasta.resolve()
+    output_dir = output_dir.resolve()
 
-TMHMM_SCRIPT="$TMHMM_DIR/bin/tmhmm"
+    tmhmm_script = tmhmm_dir / "bin" / "tmhmm"
 
-# Check existence
-if [ ! -f "$TMHMM_SCRIPT" ]; then
-    echo "Error: tmhmm script not found in $TMHMM_DIR/bin/"
-    exit 1
-fi
+    if not tmhmm_script.is_file():
+        print(f"Error: tmhmm script not found in {tmhmm_dir / 'bin'}")
+        sys.exit(1)
 
-PERL=$(which perl)
+    perl_path = shutil.which("perl")
+    if perl_path is None:
+        print("Error: perl not found in PATH")
+        sys.exit(1)
 
-# Optional: validate required model and helper script files exist
-REQUIRED_FILES=(
-    "$TMHMM_DIR/lib/TMHMM2.0.model"
-    "$TMHMM_DIR/bin/tmhmmformat.pl"
-)
+    # Patch shebang for tmhmm and tmhmmformat.pl scripts
+    patch_shebang(tmhmm_dir / "bin" / "tmhmm", perl_path)
+    patch_shebang(tmhmm_dir / "bin" / "tmhmmformat.pl", perl_path)
 
-for f in "${REQUIRED_FILES[@]}"; do
-    if [ ! -f "$f" ]; then
-        echo "Missing required file: $f"
-        exit 1
-    fi
-done
+    required_files = [
+        tmhmm_dir / "lib" / "TMHMM2.0.model",
+        tmhmm_dir / "bin" / "tmhmmformat.pl"
+    ]   
 
-# Patch the script shebang (only if not already patched)
-if ! head -1 "$TMHMM_SCRIPT" | grep -q "$PERL"; then
-    cp "$TMHMM_SCRIPT" "$TMHMM_SCRIPT.bak"
-    sed -i "s|^#!/usr/bin/perl|#!$PERL|" "$TMHMM_SCRIPT"
-fi
+    for f in required_files:
+        if not f.is_file():
+            print(f"Missing required file: {f}")
+            sys.exit(1)
 
-mkdir -p "$OUTPUT_DIR"
+    # Ensure output directory exists
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-BASENAME=$(basename "$INPUT_FASTA")
-BASENAME="${BASENAME%.*}"
+    basename = input_fasta.stem
+    output_file = output_dir / f"{basename}_tmhmm_result.txt"
 
-OUTPUT_FILE="$OUTPUT_DIR/${BASENAME}_tmhmm_result.txt"
+    cmd = [str(tmhmm_script), "-long", str(input_fasta)]
 
-# --- Run TMHMM in long format ---
-"$TMHMM_SCRIPT" -long "$INPUT_FASTA" | \
-  awk '
-  /^#/ { print; next }
-  {
-    $1 = $1 "_tmhmm"
-    print
-  }' > "$OUTPUT_FILE"
+    # Run command and post-process output with Python (replace first field)
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error running TMHMM: {e.stderr}")
+        sys.exit(1)
 
-echo "✔ TMHMM run complete. Output saved to $OUTPUT_FILE"
+    lines = []
+    for line in proc.stdout.splitlines():
+        if line.startswith("#"):
+            lines.append(line)
+        else:
+            fields = line.split("\t")
+            if fields:
+                fields[0] = fields[0] + "_tmhmm"
+                lines.append("\t".join(fields))
+            else:
+                lines.append(line)
+
+    output_file.write_text("\n".join(lines) + "\n")
+
+    print(f"✔ TMHMM run complete. Output saved to {output_file}")
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Run TMHMM prediction")
+    parser.add_argument("tmhmm_dir", type=Path, help="Path to TMHMM2.0a directory")
+    parser.add_argument("input_fasta", type=Path, help="Input FASTA file")
+    parser.add_argument("output_dir", type=Path, help="Output directory")
+
+    args = parser.parse_args()
+    run_tmhmm(args.tmhmm_dir, args.input_fasta, args.output_dir)

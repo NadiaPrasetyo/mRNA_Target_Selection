@@ -1,82 +1,44 @@
 # antigen_analysis.py
 import argparse
+import sys
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-import subprocess
-import sys
+from tools import run_signalp, run_targetp, run_tmhmm, common
 
-tool_runners = {
-    "SIGNALP": "run_signalp.sh",
-    "TARGETP": "run_targetp.sh",
-    "TMHMM": "run_tmhmm.sh"
+TOOL_RUNNERS = {
+    "SIGNALP": run_signalp.run,
+    "TARGETP": run_targetp.run,
+    "TMHMM": run_tmhmm.run
 }
 
-# Define required directories and files per tool inside the tool root directory
-tool_requirements = {
-    "SIGNALP": {
-        "dirs": ["signalp/bin"],
-        "files": ["signalp/bin/signalp"]
-    },
-    "TARGETP": {
-        "dirs": ["targetp/bin"],
-        "files": ["targetp/bin/targetp"]
-    },
-    "TMHMM": {
-        "dirs": ["TMHMM2.0a/bin", "TMHMM2.0a/lib"],
-        "files": [
-            "TMHMM2.0a/bin/tmhmm",
-            "TMHMM2.0a/bin/decodeanhmm",
-            "TMHMM2.0a/bin/tmhmmformat.pl",
-            "TMHMM2.0a/lib/TMHMM2.0.model",
-            "TMHMM2.0a/lib/TMHMM2.0.options"
-        ]
-    }
-}
+VALID_TOOLS = list(TOOL_RUNNERS.keys())
 
 
-def check_tool_environment(tool_name, tool_root):
-    """Check existence of required dirs and files for a given tool."""
-    reqs = tool_requirements.get(tool_name, {})
-    dirs = reqs.get("dirs", [])
-    files = reqs.get("files", [])
-
-    missing_dirs = [d for d in dirs if not (tool_root / d).is_dir()]
-    missing_files = [f for f in files if not (tool_root / f).is_file()]
-
-    if missing_dirs:
-        print(f"❌ Missing required directories for {tool_name}: {missing_dirs}")
-    if missing_files:
-        print(f"❌ Missing required files for {tool_name}: {missing_files}")
-
-    return not (missing_dirs or missing_files)
-
-def run_tool(tool_name, tool_script_path, input_file, output_dir, batch_size):
+def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, batch_size: int) -> None:
     output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.out"
     if output_file.exists():
         print(f"⏭️ Skipping {tool_name} for {input_file.name} (output already exists)")
         return
 
     try:
-        with open(output_file, "w") as outfile:
-            if tool_name in ("SIGNALP", "TARGETP"):
-                cmd = [tool_script_path, str(input_file), str(output_dir), str(batch_size)]
-            elif tool_name == "TMHMM":
-                cmd = [tool_script_path, str(input_file), str(output_dir)]
-            else:
-                print(f"⚠️ Unknown tool: {tool_name}")
-                return
+        if tool_name in ("SIGNALP", "TARGETP"):
+            runner_func(input_file, output_dir, batch_size)
+        elif tool_name == "TMHMM":
+            runner_func(input_file, output_dir)
+        else:
+            print(f"⚠️ Unknown tool: {tool_name}")
+            return
+        print(f"✅ {tool_name} completed for {input_file.name}")
+    except Exception as e:
+        print(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
-            subprocess.run(cmd, stdout=outfile, stderr=subprocess.PIPE, check=True)
-            print(f"✅ {tool_name} completed for {input_file.name}")
 
-    except subprocess.CalledProcessError as e:
-        print(f"❌ {tool_name} failed for {input_file.name}: {e.stderr.decode()}")
-
-def run_parallel_jobs(jobs, threads):
+def run_parallel_jobs(jobs, threads: int) -> None:
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = [executor.submit(run_tool, *job) for job in jobs]
         for f in futures:
             f.result()
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -87,11 +49,9 @@ def main():
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing tool wrappers and executables")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--tools", nargs="+", choices=["SIGNALP", "TARGETP", "TMHMM"],
-                        default=["SIGNALP", "TARGETP", "TMHMM"],
+    parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS,
                         help="Specify which tools to run (default: all)")
-    parser.add_argument("--batch-size", type=int, default=10000,
-                        help="Batch size to use for SignalP (default: 10000)")
+    parser.add_argument("--batch-size", type=int, default=10000, help="Batch size for SignalP/TargetP (default: 10000)")
 
     args = parser.parse_args()
 
@@ -110,33 +70,17 @@ def main():
         print(f"❌ Tool root directory does not exist: {tool_root}")
         sys.exit(1)
 
-    # Check tools environment & scripts
-    valid_tools = []
-    for tool_name in args.tools:
-        # Check scripts exist
-        script_rel_path = tool_runners.get(tool_name)
-        script_abs_path = tool_root / script_rel_path
-        if not script_abs_path.exists():
-            print(f"❌ Tool script not found for {tool_name}: {script_abs_path}")
-            continue
+    # Validate tool environments
+    for tool in args.tools:
+        if not common.check_tool_environment(tool, tool_root):
+            print(f"❌ Required components missing for {tool}. Exiting.")
+            sys.exit(1)
 
-        # Check required dirs/files for tool
-        if not check_tool_environment(tool_name, tool_root):
-            print(f"❌ Environment check failed for tool {tool_name}, skipping.")
-            continue
-
-        valid_tools.append(tool_name)
-
-    if not valid_tools:
-        print("❌ No valid tools to run after environment checks. Exiting.")
-        sys.exit(1)
-
-    # Prepare output dirs per tool
     epitope_root = base_path / "epitope_outputs"
     epitope_root.mkdir(parents=True, exist_ok=True)
 
     jobs = []
-    for tool_name in valid_tools:
+    for tool_name in args.tools:
         tool_out_dir = epitope_root / tool_name.lower()
         tool_out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -144,26 +88,24 @@ def main():
             print(f"❌ Output directory not writable: {tool_out_dir}")
             continue
 
-        script_rel_path = tool_runners[tool_name]
-        script_abs_path = tool_root / script_rel_path
+        runner_func = TOOL_RUNNERS[tool_name]
 
         for fasta in fasta_files:
-            # Determine expected output filename
             output_file = tool_out_dir / f"{fasta.stem}_{tool_name.lower()}.out"
             if output_file.exists():
                 print(f"⏭️ Skipping {tool_name} for {fasta.name} (output already exists)")
                 continue
 
-            jobs.append((tool_name, str(script_abs_path), fasta, tool_out_dir, args.batch_size))
+            jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size))
 
     if not jobs:
-        print("❌ No jobs to run after checks. Exiting.")
+        print("❌ No jobs to run after validation. Exiting.")
         sys.exit(1)
 
-    print(f"\n🚀 Running {len(jobs)} jobs with {args.threads} threads...")
+    print(f"\n🚀 Running {len(jobs)} jobs using {args.threads} threads...")
     run_parallel_jobs(jobs, args.threads)
     print("\n✅ All predictions complete.")
 
+
 if __name__ == "__main__":
-    import os
     main()
