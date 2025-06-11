@@ -7,7 +7,6 @@ import shutil
 def patch_path_error(signalp_path: Path):
     # Paths to SignalP binaries
     script_dir = signalp_path.parent.resolve() #script directory is signalp/bin/signalp
-    print(f"[CHECK!!!!!!!!!] Script directory: {script_dir}")
     signalp_bin = script_dir / "signalp"
     expected_bin_dir = script_dir / "bin"
     expected_bin = expected_bin_dir / "signalp"
@@ -56,14 +55,11 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
     patch_path_error(signalp_path)
 
     print(f"[INFO] Running SignalP on: {input_fasta}")
-    print(f"[CHECK!!!!!!!!!!!!] SignalP path: {signalp_path}")
     print(f"[INFO] Output directory: {output_dir}")
-    print(f"[INFO] Output prefix: {prefix}")
 
     output_file = output_dir / f"{prefix}_signalp_phred.txt"
-
     cmd = [
-        str(signalp_path),
+        "./signalp",  # run by name inside the bin directory
         "-fasta", str(input_fasta),
         "-format", "long",
         "-mature",
@@ -75,7 +71,7 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
 
     with output_file.open("w") as outfile:
         try:
-            subprocess.run(cmd, stdout=outfile, stderr=subprocess.PIPE, check=True)
+            subprocess.run(cmd, cwd=signalp_path.parent, stdout=outfile, stderr=subprocess.PIPE, check=True)
         except subprocess.CalledProcessError as e:
             print(f"❌ SignalP failed: {e.stderr.decode()}")
             sys.exit(1)
