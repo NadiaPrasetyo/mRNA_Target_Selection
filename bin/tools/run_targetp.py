@@ -3,6 +3,7 @@ import subprocess
 from pathlib import Path
 import sys
 import shutil
+import os
 
 def run(targetp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 100):
     if not input_fasta.exists():

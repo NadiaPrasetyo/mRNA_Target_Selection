@@ -27,11 +27,11 @@ def patch_shebang(file_path: Path, perl_path: str):
 
 def run(tmhmm_path: Path, input_fasta: Path, output_dir: Path): 
     # Resolve absolute paths
-    tmhmm_dir = tmhmm_path.resolve()
+    tmhmm_dir = tmhmm_path.parent.parent.resolve() 
     input_fasta = input_fasta.resolve()
     output_dir = output_dir.resolve()
 
-    tmhmm_script = tmhmm_dir / "bin" / "tmhmm"
+    tmhmm_script = tmhmm_path.resolve()
 
     if not tmhmm_script.is_file():
         print(f"❌ Error: tmhmm script not found in {tmhmm_dir / 'bin'}")

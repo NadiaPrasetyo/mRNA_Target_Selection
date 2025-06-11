@@ -7,6 +7,7 @@ import shutil
 def patch_path_error(signalp_path: Path):
     # Paths to SignalP binaries
     script_dir = signalp_path.parent.resolve() #script directory is signalp/bin/signalp
+    print(f"[CHECK!!!!!!!!!] Script directory: {script_dir}")
     signalp_bin = script_dir / "signalp"
     expected_bin_dir = script_dir / "bin"
     expected_bin = expected_bin_dir / "signalp"
@@ -55,6 +56,7 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
     patch_path_error(signalp_path)
 
     print(f"[INFO] Running SignalP on: {input_fasta}")
+    print(f"[CHECK!!!!!!!!!!!!] SignalP path: {signalp_path}")
     print(f"[INFO] Output directory: {output_dir}")
     print(f"[INFO] Output prefix: {prefix}")
 
