@@ -36,7 +36,12 @@ def run_parallel_jobs(jobs, threads: int) -> None:
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = [executor.submit(run_tool, *job) for job in jobs]
         for f in futures:
-            f.result()
+            try:
+                f.result()
+            except TypeError as e:
+                print(f"❌ Job failed due to argument mismatch: {e}")
+            except Exception as e:
+                print(f"❌ Job failed with unexpected error: {e}")
 
 def main():
     parser = argparse.ArgumentParser(
@@ -97,7 +102,7 @@ def main():
                 print(f"⏭️ Skipping {tool_name} for {fasta.name} (output already exists)")
                 continue
 
-            jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size))
+            jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size, tool_root))
 
 
     if not jobs:
