@@ -3,6 +3,7 @@ import subprocess
 from pathlib import Path
 import sys
 import shutil
+from os.path import abspath
 
 def patch_path_error(signalp_path: Path):
     # Paths to SignalP binaries
@@ -28,8 +29,8 @@ def patch_path_error(signalp_path: Path):
 
 
 def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000):
-    input_fasta_abs = input_fasta.resolve()
-    output_dir_abs = output_dir.resolve()
+    input_fasta_abs = Path(abspath(str(input_fasta)))
+    output_dir_abs = Path(abspath(str(output_dir)))
     tmp_dir_abs = output_dir_abs / "tmp"
     tmp_dir_abs.mkdir(exist_ok=True)
 
