@@ -83,3 +83,28 @@ BEGIN { section = 0 }
 chmod +x "$TARGETP_SCRIPT"
 
 echo "✔ Configuration complete. Original backed up to: $TARGETP_SCRIPT.bak"
+
+#!/bin/bash
+
+# Usage: ./run_targetp.sh <input_fasta> <output_dir> <organism> <prefix>
+# Example: ./run_targetp.sh input.fasta results non-plant myrun
+
+set -euo pipefail
+
+if [ "$#" -lt 4 ]; then
+  echo "Usage: $0 <input_fasta> <output_dir> <organism: plant|non-plant> <prefix>"
+  exit 1
+fi
+
+FASTA=$1
+OUTPUT_DIR=$2
+ORGANISM=$3
+PREFIX=$4
+
+mkdir -p "$OUTPUT_DIR"
+
+targetp \
+  -fasta "$FASTA" \
+  -org "$ORGANISM" \
+  -format short \
+  > "$OUTPUT_DIR/${PREFIX}_targetp.txt"

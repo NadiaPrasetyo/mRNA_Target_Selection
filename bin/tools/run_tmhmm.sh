@@ -55,3 +55,24 @@ sed -i "s|TMHMM2.0.model|\"$TMHMM_DIR/lib/TMHMM2.0.model\"|g" "$TMHMM_SCRIPT"
 chmod +x "$TMHMM_SCRIPT"
 
 echo "✔ TMHMM configuration complete. Backup created at: $TMHMM_SCRIPT.bak"
+
+#!/bin/bash
+
+# Usage: ./run_tmhmm.sh <input_fasta> <output_dir> <prefix>
+# Example: ./run_tmhmm.sh input.fasta results myrun
+
+set -euo pipefail
+
+if [ "$#" -lt 3 ]; then
+  echo "Usage: $0 <input_fasta> <output_dir> <prefix>"
+  exit 1
+fi
+
+FASTA=$1
+OUTPUT_DIR=$2
+PREFIX=$3
+
+mkdir -p "$OUTPUT_DIR"
+
+# You can switch this to decodeanhmm + model if needed
+tmhmm "$FASTA" > "$OUTPUT_DIR/${PREFIX}_tmhmm.txt"
