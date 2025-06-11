@@ -5,34 +5,9 @@ import sys
 import shutil
 from os.path import abspath
 
-def patch_path_error(signalp_path: Path):
-    # Paths to SignalP binaries
-    script_dir = signalp_path.parent.resolve() #script directory is signalp/bin/signalp
-    signalp_bin = script_dir / "signalp"
-    expected_bin_dir = script_dir / "bin"
-    expected_bin = expected_bin_dir / "signalp"
-
-    # Patch: ensure expected_bin exists for tool compatibility
-    try:
-        if not expected_bin.exists():
-            print("[PATCH] signalp executable not found in nested bin/bin. Creating patched structure...")
-            expected_bin_dir.mkdir(parents=True, exist_ok=True)
-
-            if not signalp_bin.exists():
-                raise FileNotFoundError(f"Original signalp binary not found at {signalp_bin}")
-
-            shutil.copy(signalp_bin, expected_bin)
-            print(f"[PATCH] Copied signalp binary to: {expected_bin}")
-    except Exception as e:
-        print(f"❌ Failed to patch SignalP binary structure: {e}")
-        sys.exit(1)
-
-
 def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000):
     input_fasta_abs = Path(abspath(str(input_fasta)))
-    print(f"[INFO] Input FASTA absolute path: {input_fasta_abs}")
     output_dir_abs = Path(abspath(str(output_dir)))
-    print(f"[INFO] Output directory absolute path: {output_dir_abs}")
     tmp_dir_abs = output_dir_abs / "tmp"
     tmp_dir_abs.mkdir(exist_ok=True)
 
@@ -55,18 +30,14 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
         print("❌ No FASTA header found in input file.")
         sys.exit(1)
 
-    # Ensure SignalP binary is patched correctly
-    patch_path_error(signalp_path)
-
     print(f"[INFO] Running SignalP on: {input_fasta}")
     print(f"[INFO] Output directory: {output_dir}")
 
     output_file = output_dir_abs / f"{prefix}_signalp_phred.txt"
 
     cmd = [
-    "./signalp",
-    "-fasta", str(input_fasta_abs),
-        "-fasta", str(input_fasta),
+        "./signalp",
+        "-fasta", str(input_fasta_abs),
         "-format", "long",
         "-mature",
         "-prefix", prefix,
