@@ -30,7 +30,9 @@ def patch_path_error(signalp_path: Path):
 
 def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000):
     input_fasta_abs = Path(abspath(str(input_fasta)))
+    print(f"[INFO] Input FASTA absolute path: {input_fasta_abs}")
     output_dir_abs = Path(abspath(str(output_dir)))
+    print(f"[INFO] Output directory absolute path: {output_dir_abs}")
     tmp_dir_abs = output_dir_abs / "tmp"
     tmp_dir_abs.mkdir(exist_ok=True)
 
