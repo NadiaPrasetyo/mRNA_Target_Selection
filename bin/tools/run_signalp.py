@@ -28,6 +28,11 @@ def patch_path_error(signalp_path: Path):
 
 
 def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000):
+    input_fasta_abs = input_fasta.resolve()
+    output_dir_abs = output_dir.resolve()
+    tmp_dir_abs = output_dir_abs / "tmp"
+    tmp_dir_abs.mkdir(exist_ok=True)
+
     if not signalp_path.exists():
         print(f"❌ SignalP executable not found at: {signalp_path}")
         sys.exit(1)
@@ -35,10 +40,6 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
     if not input_fasta.exists():
         print(f"❌ Input FASTA file does not exist: {input_fasta}")
         sys.exit(1)
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-    tmp_dir = output_dir / "tmp"
-    tmp_dir.mkdir(exist_ok=True)
 
     # Extract FASTA header prefix
     prefix = None
@@ -57,16 +58,18 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
     print(f"[INFO] Running SignalP on: {input_fasta}")
     print(f"[INFO] Output directory: {output_dir}")
 
-    output_file = output_dir / f"{prefix}_signalp_phred.txt"
+    output_file = output_dir_abs / f"{prefix}_signalp_phred.txt"
+
     cmd = [
-        "./signalp",  # run by name inside the bin directory
+    "./signalp",
+    "-fasta", str(input_fasta_abs),
         "-fasta", str(input_fasta),
         "-format", "long",
         "-mature",
         "-prefix", prefix,
         "-batch", str(batch_size),
         "-stdout",
-        "-tmp", str(tmp_dir)
+        "-tmp", str(tmp_dir_abs)
     ]
 
     with output_file.open("w") as outfile:
