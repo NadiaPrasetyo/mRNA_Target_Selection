@@ -103,34 +103,38 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
         print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
         return ALLELE_PRESETS[tool_type]["default"]
     
-def check_signalp_targetp_tmhmm(tool_root: Path):
+def check_signalp_targetp_tmhmm(tool_root: Path) -> dict:
     """
-    Check if SIGNALP, TARGETP, and TMHMM executables/scripts exist under tool_root.
-    You can adapt the filenames as per how you have installed them.
+    Validates and returns paths to SignalP, TargetP, and TMHMM executables.
     """
-    signalp_path_1 = tool_root / "signalp-5.0b" / "bin" / "signalp"
-    signalp_path_2 = tool_root / "signalp-5.0b" / "bin" / "bin" / "signalp"
+    tools = {}
 
-    if signalp_path_1.exists():
-        signalp_path = signalp_path_1
-    elif signalp_path_2.exists():
-        signalp_path = signalp_path_2
-    else:
-        raise FileNotFoundError("SignalP executable not found in expected locations")
+    # Check SignalP
+    signalp_candidates = [
+        tool_root / "signalp-5.0b" / "bin" / "signalp",
+        tool_root / "signalp-5.0b" / "bin" / "bin" / "signalp"
+    ]
+    tools["SIGNALP"] = next((p for p in signalp_candidates if p.exists()), None)
 
-    tools = {
-        "SIGNALP": signalp_path,
-        "TARGETP": tool_root / "targetp-2.0" / "bin" / "targetp",
-        "TMHMM": tool_root / "tmhmm-2.0c" / "bin" / "tmhmm"
-    }
+    # Check TargetP
+    targetp_path = tool_root / "targetp-2.0" / "bin" / "targetp"
+    tools["TARGETP"] = targetp_path if targetp_path.exists() else None
 
-    found = {}
-    for name, path in tools.items():
-        if path.exists() and path.is_file():
-            found[name] = str(path)
-        else:
-            print(f"⚠️ {name} not found at expected path: {path}")
-    return found
+    # Check TMHMM
+    tmhmm_path = tool_root / "tmhmm-2.0c" / "bin" / "tmhmm"
+    tools["TMHMM"] = tmhmm_path if tmhmm_path.exists() else None
+
+    # Log missing tools
+    for tool, path in tools.items():
+        if not path:
+            print(f"❌ {tool} not found in expected location.")
+
+    # Raise error if any are missing
+    if not all(tools.values()):
+        raise FileNotFoundError("One or more required tools were not found under the given tool root.")
+
+    return tools
+
 
 def check_iedb_tool(base_path):
     base = Path(base_path)

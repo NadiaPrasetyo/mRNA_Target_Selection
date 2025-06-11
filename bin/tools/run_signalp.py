@@ -4,7 +4,34 @@ from pathlib import Path
 import sys
 import shutil
 
-def run(input_fasta: Path, output_dir: Path, batch_size: int = 10000):
+def patch_path_error(signalp_path: Path):
+    # Paths to SignalP binaries
+    script_dir = signalp_path.parent.resolve() #script directory is signalp/bin/signalp
+    signalp_bin = script_dir / "signalp"
+    expected_bin_dir = script_dir / "bin"
+    expected_bin = expected_bin_dir / "signalp"
+
+    # Patch: ensure expected_bin exists for tool compatibility
+    try:
+        if not expected_bin.exists():
+            print("[PATCH] signalp executable not found in nested bin/bin. Creating patched structure...")
+            expected_bin_dir.mkdir(parents=True, exist_ok=True)
+
+            if not signalp_bin.exists():
+                raise FileNotFoundError(f"Original signalp binary not found at {signalp_bin}")
+
+            shutil.copy(signalp_bin, expected_bin)
+            print(f"[PATCH] Copied signalp binary to: {expected_bin}")
+    except Exception as e:
+        print(f"❌ Failed to patch SignalP binary structure: {e}")
+        sys.exit(1)
+
+
+def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000):
+    if not signalp_path.exists():
+        print(f"❌ SignalP executable not found at: {signalp_path}")
+        sys.exit(1)
+
     if not input_fasta.exists():
         print(f"❌ Input FASTA file does not exist: {input_fasta}")
         sys.exit(1)
@@ -13,7 +40,7 @@ def run(input_fasta: Path, output_dir: Path, batch_size: int = 10000):
     tmp_dir = output_dir / "tmp"
     tmp_dir.mkdir(exist_ok=True)
 
-    # Extract first FASTA header prefix
+    # Extract FASTA header prefix
     prefix = None
     with input_fasta.open() as f:
         for line in f:
@@ -24,16 +51,8 @@ def run(input_fasta: Path, output_dir: Path, batch_size: int = 10000):
         print("❌ No FASTA header found in input file.")
         sys.exit(1)
 
-    # Paths to SignalP binaries
-    script_dir = Path(__file__).parent.resolve()
-    signalp_dir = script_dir / "signalp-5.0b"
-    signalp_bin = signalp_dir / "bin" / "signalp"
-    expected_bin_dir = signalp_dir / "bin" / "bin"
-    expected_bin = expected_bin_dir / "signalp"
-
-    if not expected_bin.exists():
-        expected_bin_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy(signalp_bin, expected_bin)
+    # Ensure SignalP binary is patched correctly
+    patch_path_error(signalp_path)
 
     print(f"[INFO] Running SignalP on: {input_fasta}")
     print(f"[INFO] Output directory: {output_dir}")
@@ -42,7 +61,7 @@ def run(input_fasta: Path, output_dir: Path, batch_size: int = 10000):
     output_file = output_dir / f"{prefix}_signalp_phred.txt"
 
     cmd = [
-        str(expected_bin),
+        str(signalp_path),
         "-fasta", str(input_fasta),
         "-format", "long",
         "-mature",
@@ -75,6 +94,7 @@ if __name__ == "__main__":
     parser.add_argument("input_fasta", type=Path, help="Input FASTA file")
     parser.add_argument("output_dir", type=Path, help="Output directory")
     parser.add_argument("--batch-size", type=int, default=10000, help="Batch size")
-
+    parser.add_argument("--signalp-path", type=Path, required=True, help="Path to signalp executable")
+    # then call:
     args = parser.parse_args()
-    run(args.input_fasta, args.output_dir, args.batch_size)
+    run(args.signalp_path, args.input_fasta, args.output_dir, args.batch_size)

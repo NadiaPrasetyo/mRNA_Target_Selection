@@ -14,7 +14,7 @@ TOOL_RUNNERS = {
 VALID_TOOLS = list(TOOL_RUNNERS.keys())
 
 
-def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, batch_size: int, tool_root: Path) -> None:
+def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, batch_size: int, tool_path: Path) -> None:
     output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.out"
     if output_file.exists():
         print(f"⏭️ Skipping {tool_name} for {input_file.name} (output already exists)")
@@ -22,9 +22,9 @@ def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, ba
 
     try:
         if tool_name in ("SIGNALP", "TARGETP"):
-            runner_func(input_file, output_dir, batch_size)
+            runner_func(tool_path, input_file, output_dir, batch_size)
         elif tool_name == "TMHMM":
-            runner_func(tool_root / "tmhmm-2.0a", input_file, output_dir)
+            runner_func(tool_path, input_file, output_dir)
         else:
             print(f"⚠️ Unknown tool: {tool_name}")
             return
@@ -74,12 +74,11 @@ def main():
         print(f"❌ Tool root directory does not exist: {tool_root}")
         sys.exit(1)
 
-    found = common.check_signalp_targetp_tmhmm(tool_root)
-    if not found:
-        print(f"❌ Required components missing under {tool_root}. Exiting.")
+    try:
+        tool_paths = common.check_signalp_targetp_tmhmm(tool_root)
+    except FileNotFoundError as e:
+        print(f"❌ {e}")
         sys.exit(1)
-
-
 
     epitope_root = base_path / "epitope_outputs"
     epitope_root.mkdir(parents=True, exist_ok=True)
@@ -102,7 +101,8 @@ def main():
                 print(f"⏭️ Skipping {tool_name} for {fasta.name} (output already exists)")
                 continue
 
-            jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size, tool_root))
+            tool_path = tool_paths.get(tool_name)
+            jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size, tool_path))
 
 
     if not jobs:

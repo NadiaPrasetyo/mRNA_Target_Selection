@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 import shutil
 
-def run(input_fasta: Path, output_dir: Path, batch_size: int = 100):
+def run(targetp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 100):
     if not input_fasta.exists():
         print(f"❌ Input FASTA file does not exist: {input_fasta}")
         sys.exit(1)
@@ -24,18 +24,9 @@ def run(input_fasta: Path, output_dir: Path, batch_size: int = 100):
         print("❌ No FASTA header found in input file.")
         sys.exit(1)
 
-    # Locate TargetP binary
-    script_dir = Path(__file__).parent.resolve()
-    targetp_bin = script_dir / "targetp-2.0" / "bin" / "targetp"
-
-    if not targetp_bin.exists() or not targetp_bin.is_file() or not os.access(targetp_bin, os.X_OK):
-        # fallback to system targetp in PATH
-        from shutil import which
-        system_targetp = which("targetp")
-        if system_targetp is None:
-            print(f"❌ Error: TargetP executable not found at {targetp_bin} or in PATH.")
-            sys.exit(1)
-        targetp_bin = Path(system_targetp)
+    if not targetp_path.exists() or not targetp_path.is_file() or not os.access(targetp_path, os.X_OK):
+        print(f"❌ Error: TargetP executable not found or not executable: {targetp_path}")
+        sys.exit(1)
 
     print(f"[INFO] Running TargetP on: {input_fasta}")
     print(f"[INFO] Output prefix: {prefix}")
@@ -44,7 +35,7 @@ def run(input_fasta: Path, output_dir: Path, batch_size: int = 100):
     output_file = output_dir / f"{prefix}_targetp.txt"
 
     cmd = [
-        str(targetp_bin),
+        str(targetp_path),
         "-fasta", str(input_fasta),
         "-org", "non-pl",
         "-format", "short",
@@ -73,13 +64,15 @@ def run(input_fasta: Path, output_dir: Path, batch_size: int = 100):
     print(f"[INFO] TargetP results written to: {output_file}")
 
 
+# Optional CLI interface for direct use
 if __name__ == "__main__":
     import argparse
     import os
     parser = argparse.ArgumentParser(description="Run TargetP prediction")
+    parser.add_argument("--targetp_path", type=Path, help="Path to TargetP binary")
     parser.add_argument("input_fasta", type=Path, help="Input FASTA file")
     parser.add_argument("output_dir", type=Path, help="Output directory")
     parser.add_argument("--batch-size", type=int, default=100, help="Batch size")
 
     args = parser.parse_args()
-    run(args.input_fasta, args.output_dir, args.batch_size)
+    run(args.targetp_path, args.input_fasta, args.output_dir, args.batch_size)
