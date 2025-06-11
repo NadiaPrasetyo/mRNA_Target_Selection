@@ -25,7 +25,7 @@ def patch_shebang(file_path: Path, perl_path: str):
         print(f"Shebang in {file_path} is already correct.")
 
 
-def run_tmhmm(tmhmm_dir: Path, input_fasta: Path, output_dir: Path):
+def run(tmhmm_dir: Path, input_fasta: Path, output_dir: Path):
     # Resolve absolute paths
     tmhmm_dir = tmhmm_dir.resolve()
     input_fasta = input_fasta.resolve()
@@ -96,4 +96,4 @@ if __name__ == "__main__":
     parser.add_argument("output_dir", type=Path, help="Output directory")
 
     args = parser.parse_args()
-    run_tmhmm(args.tmhmm_dir, args.input_fasta, args.output_dir)
+    run(args.tmhmm_dir, args.input_fasta, args.output_dir)

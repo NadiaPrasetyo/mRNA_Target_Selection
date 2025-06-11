@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 import shutil
 
-def run_targetp(input_fasta: Path, output_dir: Path, batch_size: int = 100):
+def run(input_fasta: Path, output_dir: Path, batch_size: int = 100):
     if not input_fasta.exists():
         print(f"❌ Input FASTA file does not exist: {input_fasta}")
         sys.exit(1)
@@ -82,4 +82,4 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, default=100, help="Batch size")
 
     args = parser.parse_args()
-    run_targetp(args.input_fasta, args.output_dir, args.batch_size)
+    run(args.input_fasta, args.output_dir, args.batch_size)
