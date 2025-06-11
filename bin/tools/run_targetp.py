@@ -64,6 +64,12 @@ def run(targetp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
 
     print(f"[INFO] TargetP results written to: {output_file}")
 
+    # move any artifacts to output directory
+    # Move extra generated files
+    for ext in ["_mature.fasta", ".gff3"]:
+        f = Path(f"{prefix}{ext}")
+        if f.exists():
+            shutil.move(str(f), output_dir)
 
 # Optional CLI interface for direct use
 if __name__ == "__main__":

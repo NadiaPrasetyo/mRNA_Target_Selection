@@ -15,7 +15,7 @@ VALID_TOOLS = list(TOOL_RUNNERS.keys())
 
 
 def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, batch_size: int, tool_path: Path) -> None:
-    output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.out"
+    output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.*"
     if output_file.exists():
         print(f"⏭️ Skipping {tool_name} for {input_file.name} (output already exists)")
         return
@@ -83,7 +83,7 @@ def main():
     epitope_root = base_path / "epitope_outputs"
     epitope_root.mkdir(parents=True, exist_ok=True)
 
-    epitope_root = Path("data") / args.pathogen_dir / args.sequence_dir / "epitope_outputs"
+    epitope_root = Path("data") / args.pathogen_dir / "epitope_outputs"
 
     jobs = []
     for tool_name in args.tools:

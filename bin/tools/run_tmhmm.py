@@ -83,6 +83,13 @@ def run(tmhmm_path: Path, input_fasta: Path, output_dir: Path):
     output_file.write_text("\n".join(lines) + "\n")
     print(f"✔ TMHMM run complete. Output saved to {output_file}")
 
+    # move any artifacts to output directory
+    # Move any TMHMM_* dirs into tmp/
+    for item in Path.cwd().glob("TMHMM_*"):
+        if item.is_dir():
+            tmp_dest = output_dir / "tmp"
+            tmp_dest.mkdir(exist_ok=True)
+            shutil.move(str(item), tmp_dest / item.name)
 
 if __name__ == "__main__":
     import argparse
