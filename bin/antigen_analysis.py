@@ -55,12 +55,14 @@ def main():
     parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS,
                         help="Specify which tools to run (default: all)")
     parser.add_argument("--batch-size", type=int, default=10000, help="Batch size for SignalP/TargetP (default: 10000)")
-
+    parser.add_argument("--output-dir", type=Path, default=Path("data") / "epitope_outputs",
+                        help="Base output directory for results (default: data/epitope_outputs)")
+    
     args = parser.parse_args()
 
-    base_path = Path("data") / args.pathogen_dir / args.sequence_dir
-    if not base_path.exists():
-        print(f"❌ Invalid input directory: {base_path}")
+    data_path = Path("data") / args.pathogen_dir / args.sequence_dir
+    if not data_path.exists():
+        print(f"❌ Invalid input directory: {data_path}")
         sys.exit(1)
 
     fasta_files = common.get_fasta_files(Path("data") / args.pathogen_dir, args.sequence_dir)
@@ -80,10 +82,9 @@ def main():
         print(f"❌ {e}")
         sys.exit(1)
 
-    epitope_root = base_path / "epitope_outputs"
+    # check that output directory exists or create it
+    epitope_root = data_path / args.output_dir
     epitope_root.mkdir(parents=True, exist_ok=True)
-
-    epitope_root = Path("data") / args.pathogen_dir / "epitope_outputs"
 
     jobs = []
     for tool_name in args.tools:

@@ -61,10 +61,16 @@ def main():
                         help="Allele panel for MHCII")
     parser.add_argument("--mhcii-custom-alleles", nargs="+", default=None,
                         help="Custom alleles list for MHCII if panel is 'custom'")
+    parser.add_argument("--output-dir", type=Path, default=Path("output"), default="epitope_outputs",
+                        help="Directory to save output files (default: 'output')")
 
     args = parser.parse_args()
 
     data_dir = Path("data")
+    # check that output directory exists or create it
+    output_dir = pathogen_path/args.output_dir
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
     pathogen_path = data_dir / args.pathogen_dir
     if not pathogen_path.exists() or not pathogen_path.is_dir():
         print(f"❌ Pathogen directory does not exist or is not a directory: {pathogen_path}")
@@ -106,7 +112,7 @@ def main():
         temp_txt_dir = pathogen_path / "temp_txt"
         txt_files = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
 
-    temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path)
+    temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path, output_dir)
 
     all_jobs = []
     for tool_type, tool_path in final_tools.items():

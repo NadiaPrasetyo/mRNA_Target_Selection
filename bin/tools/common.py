@@ -35,8 +35,8 @@ def get_fasta_files(base_path: Path, sequence_subdir: str):
     fasta_files = list(seq_dir.glob("*.fasta"))
     return fasta_files
 
-def prepare_output_dirs(pathogen_path):
-    output_dir = pathogen_path / "epitope_outputs"
+def prepare_output_dirs(pathogen_path, output_subdir):
+    output_dir = pathogen_path / output_subdir
     subdirs = ["bcell", "mhci", "mhcii"]
 
     for sub in subdirs:
