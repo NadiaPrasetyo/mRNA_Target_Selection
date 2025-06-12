@@ -52,29 +52,29 @@ def main():
                         default=[11, 25], help="Min and max peptide lengths for MHCII (default 11-25)")
     parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell"], default=None,
                         help="Specify which tools to run (default: all detected tools)")
-
     parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default",
-                        help="Allele panel for MHCI")
+                        help="Allele panel for MHCI. Choose 'default', 'extended', or 'custom'")
     parser.add_argument("--mhci-custom-alleles", nargs="+", default=None,
                         help="Custom alleles list for MHCI if panel is 'custom'")
     parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default",
-                        help="Allele panel for MHCII")
+                        help="Allele panel for MHCII. Choose 'default', 'extended', or 'custom'")
     parser.add_argument("--mhcii-custom-alleles", nargs="+", default=None,
                         help="Custom alleles list for MHCII if panel is 'custom'")
-    parser.add_argument("--output-dir", type=Path, default=Path("output"), default="epitope_outputs",
-                        help="Directory to save output files (default: 'output')")
+    parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"),
+                        help="Directory to save output files (default: 'epitope_outputs')")
 
     args = parser.parse_args()
 
     data_dir = Path("data")
-    # check that output directory exists or create it
-    output_dir = pathogen_path/args.output_dir
-    output_dir.mkdir(parents=True, exist_ok=True)
     
     pathogen_path = data_dir / args.pathogen_dir
     if not pathogen_path.exists() or not pathogen_path.is_dir():
         print(f"❌ Pathogen directory does not exist or is not a directory: {pathogen_path}")
         sys.exit(1)
+
+    # check that output directory exists or create it
+    output_dir = pathogen_path/args.output_dir
+    output_dir.mkdir(parents=True, exist_ok=True)    
 
     sequence_path = pathogen_path / args.sequence_dir
     if not sequence_path.exists() or not sequence_path.is_dir():

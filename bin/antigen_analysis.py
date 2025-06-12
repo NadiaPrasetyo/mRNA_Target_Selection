@@ -55,8 +55,8 @@ def main():
     parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS,
                         help="Specify which tools to run (default: all)")
     parser.add_argument("--batch-size", type=int, default=10000, help="Batch size for SignalP/TargetP (default: 10000)")
-    parser.add_argument("--output-dir", type=Path, default=Path("data") / "epitope_outputs",
-                        help="Base output directory for results (default: data/epitope_outputs)")
+    parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"),
+                        help="Base output directory for results (default: epitope_outputs)")
     
     args = parser.parse_args()
 
