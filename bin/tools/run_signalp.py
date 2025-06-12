@@ -19,28 +19,17 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
         print(f"❌ Input FASTA file does not exist: {input_fasta}")
         sys.exit(1)
 
-    # Extract FASTA header prefix
-    prefix = None
-    with input_fasta.open() as f:
-        for line in f:
-            if line.startswith(">"):
-                prefix = line[1:].split('|')[0]
-                break
-    if prefix is None:
-        print("❌ No FASTA header found in input file.")
-        sys.exit(1)
-
     print(f"[INFO] Running SignalP on: {input_fasta}")
     print(f"[INFO] Output directory: {output_dir}")
 
-    output_file = output_dir_abs / f"{prefix}_signalp_phred.txt"
+    basename = input_fasta.stem
+    output_file = output_dir_abs / f"{basename}_signalp_phred.txt"
 
     cmd = [
         "./signalp",
         "-fasta", str(input_fasta_abs),
         "-format", "long",
         "-mature",
-        "-prefix", prefix,
         "-batch", str(batch_size),
         "-stdout",
         "-tmp", str(tmp_dir_abs)
@@ -56,11 +45,18 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
     # Move plot file if it exists
     plot_files = list(output_dir.glob("*_plot.png"))
     if plot_files:
-        plot_file = output_dir / f"{prefix}_plot.png"
+        plot_file = output_dir / f"{basename}_plot.png"
         shutil.move(str(plot_files[0]), plot_file)
         print(f"[INFO] Plot saved to: {plot_file}")
 
     print(f"[INFO] SignalP results written to: {output_file}")
+
+    # Move extra generated files
+    for ext in ["_pred.txt", "_plot.png"]:
+        f = Path(f"{basename}{ext}")
+        if f.exists():
+            shutil.move(str(f), str(output_dir_abs / "tmp"))
+            print(f"[INFO] Moved {f.name} to tmp output directory")
 
 
 if __name__ == "__main__":
@@ -70,6 +66,6 @@ if __name__ == "__main__":
     parser.add_argument("output_dir", type=Path, help="Output directory")
     parser.add_argument("--batch-size", type=int, default=10000, help="Batch size")
     parser.add_argument("--signalp-path", type=Path, required=True, help="Path to signalp executable")
-    # then call:
+
     args = parser.parse_args()
     run(args.signalp_path, args.input_fasta, args.output_dir, args.batch_size)
