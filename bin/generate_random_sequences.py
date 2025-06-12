@@ -166,7 +166,7 @@ def main(pathogen, organism):
     organism_tag = organism.lower().replace(" ", "_")
     pathogen_dir = os.path.join("data", pathogen)
     antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv")
-    output_file = os.path.join(pathogen_dir, f"{organism_tag}_random_proteins.csv")
+    output_file = os.path.join(pathogen_dir, f"random_compiled_proteins.csv")
 
     if not os.path.exists(antigens_file):
         print("[FATAL] Missing antigen protein file.")
