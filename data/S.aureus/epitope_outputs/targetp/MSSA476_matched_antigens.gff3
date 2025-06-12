@@ -1,0 +1,15 @@
+##gff-version 3
+antigen_87|A0A0H3K7M3|Superantigen-like|BX571857.1|tpos:134616-134837	TargetP-2.0	signal_peptide	1	21	0.682857	.	.	.
+antigen_84|A0A0H3KAV8|Staphylococcal|BX571857.1|tpos:133950-134181	TargetP-2.0	signal_peptide	1	25	0.988645	.	.	.
+antigen_74|A0A0H2XIH9|Fibrinogen-binding|BX571857.1|tpos:359956-360120	TargetP-2.0	signal_peptide	1	24	0.887860	.	.	.
+antigen_83|Q2G1S6|Staphylococcal|BX571857.1|tpos:134607-134838	TargetP-2.0	signal_peptide	1	19	0.958544	.	.	.
+antigen_72|A0AAX2YX78|Extracellular|BX571857.1|tpos:704357-704508	TargetP-2.0	signal_peptide	1	21	0.999682	.	.	.
+antigen_65|Q2G2Y0|Staphylococcal|BX571857.1|tpos:134607-134840	TargetP-2.0	signal_peptide	1	19	0.958544	.	.	.
+antigen_66|A0A1S6DAJ0|5'-nucleotidase|BX571857.1|tpos:9706-10477	TargetP-2.0	signal_peptide	1	27	0.983603	.	.	.
+antigen_85|A0A2S1FUJ3|Superantigen-like|BX571857.1|tpos:134607-134840	TargetP-2.0	signal_peptide	1	19	0.958544	.	.	.
+antigen_86|A0A2S1FUJ1|Superantigen-like|BX571857.1|tpos:133950-134178	TargetP-2.0	signal_peptide	1	25	0.988645	.	.	.
+antigen_8|Q2FVK3|Gamma-hemolysin|BX571857.1|tpos:764965-765273	TargetP-2.0	signal_peptide	1	22	0.936095	.	.	.
+antigen_81|A0A0H3KAV3|Staphylococcal|BX571857.1|tpos:133950-134178	TargetP-2.0	signal_peptide	1	25	0.988645	.	.	.
+antigen_24|Q2FXB0|Leucotoxin|BX571857.1|tpos:764970-765268	TargetP-2.0	signal_peptide	1	17	0.843233	.	.	.
+antigen_7|Q2FVK2|Gamma-hemolysin|BX571857.1|tpos:765451-765765	TargetP-2.0	signal_peptide	1	22	0.932831	.	.	.
+antigen_0|P14738|Fibronectin-binding|BX571857.1|tpos:183425-183951	TargetP-2.0	signal_peptide	1	31	0.639095	.	.	.

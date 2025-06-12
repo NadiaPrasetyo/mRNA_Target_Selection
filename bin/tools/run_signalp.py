@@ -45,7 +45,7 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
     print(f"[INFO] SignalP results written to: {output_file}")
 
     # Move all *_plot.png and *_pred.txt files generated in the signalp working directory
-    for ext in ("*_plot.png", "*_pred.txt"):
+    for ext in ("*_plot.png", "*_pred.txt", "*_mature.fasta"):
         for artifact in signalp_path.parent.glob(ext):
             try:
                 dest = tmp_dir_abs / artifact.name
