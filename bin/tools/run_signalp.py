@@ -42,21 +42,17 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
             print(f"❌ SignalP failed: {e.stderr.decode()}")
             sys.exit(1)
 
-    # Move plot file if it exists
-    plot_files = list(output_dir.glob("*_plot.png"))
-    if plot_files:
-        plot_file = output_dir / f"{basename}_plot.png"
-        shutil.move(str(plot_files[0]), plot_file)
-        print(f"[INFO] Plot saved to: {plot_file}")
-
     print(f"[INFO] SignalP results written to: {output_file}")
 
-    # Move extra generated files
-    for ext in ["_pred.txt", "_plot.png"]:
-        f = Path(f"{basename}{ext}")
-        if f.exists():
-            shutil.move(str(f), str(output_dir_abs / "tmp"))
-            print(f"[INFO] Moved {f.name} to tmp output directory")
+    # Move all *_plot.png and *_pred.txt files generated in the signalp working directory
+    for ext in ("*_plot.png", "*_pred.txt"):
+        for artifact in signalp_path.parent.glob(ext):
+            try:
+                dest = tmp_dir_abs / artifact.name
+                shutil.move(str(artifact), dest)
+                print(f"[INFO] Moved artifact to tmp: {dest}")
+            except Exception as e:
+                print(f"[WARNING] Failed to move artifact {artifact.name}: {e}")
 
 
 if __name__ == "__main__":
