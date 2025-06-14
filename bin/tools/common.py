@@ -35,12 +35,12 @@ def get_fasta_files(base_path: Path, sequence_subdir: str):
     fasta_files = list(seq_dir.glob("*.fasta"))
     return fasta_files
 
-def prepare_output_dirs(pathogen_path, output_subdir):
+def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
     output_dir = pathogen_path / output_subdir
-    subdirs = ["bcell", "mhci", "mhcii"]
 
-    for sub in subdirs:
-        (output_dir / sub).mkdir(parents=True, exist_ok=True)
+    # Create only the needed tool subdirectories
+    for tool in selected_tools:
+        (output_dir / tool.lower()).mkdir(parents=True, exist_ok=True)
 
     temp_json_dir = pathogen_path / "temp_json"
     temp_json_dir.mkdir(parents=True, exist_ok=True)

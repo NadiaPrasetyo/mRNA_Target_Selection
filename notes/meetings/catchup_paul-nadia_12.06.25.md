@@ -16,7 +16,7 @@
 - **Evaluate epitope quality:**  
     - Allergenicity  
     - Antigenicity  
-    - Population coverage  
+    - Population coverage
     - Conservancy
 
 - **Simulate protein-protein interaction:**  

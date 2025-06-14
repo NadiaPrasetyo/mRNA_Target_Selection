@@ -13,15 +13,20 @@ tool_runners = {
 
 def is_job_completed(tool_type, input_path, base_output_dir):
     """
-    Check if a job has already been processed by verifying if the expected result
+    Check if a job has already been processed by verifying if a result
     JSON file exists in the appropriate tool-specific output subdirectory.
+    It checks for any file matching input file stem and tool type suffix.
     """
     subdir = base_output_dir / tool_type.lower()
-    subdir.mkdir(parents=True, exist_ok=True)  # Make sure the directory exists
+    subdir.mkdir(parents=True, exist_ok=True)
     base_name = input_path.stem
-    result_filename = f"{base_name}_mmseqs_results_{tool_type.upper()}.json"
-    result_file = subdir / result_filename
-    return result_file.exists()
+    expected_suffix = f"{tool_type.upper()}.json"
+
+    # Look for any JSON file that matches the input stem and ends with tool suffix
+    for file in subdir.glob(f"{base_name}*{expected_suffix}"):
+        if file.is_file():
+            return True
+    return False
 
 def run_predictions_parallel(job_list, output_dir, max_threads):
     print(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
@@ -73,7 +78,7 @@ def main():
         sys.exit(1)
 
     # check that output directory exists or create it
-    output_dir = pathogen_path/args.output_dir
+    output_dir = output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)    
 
     sequence_path = pathogen_path / args.sequence_dir
@@ -112,7 +117,7 @@ def main():
         temp_txt_dir = pathogen_path / "temp_txt"
         txt_files = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
 
-    temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path, output_dir)
+    temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
 
     all_jobs = []
     for tool_type, tool_path in final_tools.items():
