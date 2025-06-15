@@ -60,9 +60,10 @@ def main():
     
     args = parser.parse_args()
 
-    data_path = Path("data") / args.pathogen_dir / args.sequence_dir
-    if not data_path.exists():
-        print(f"❌ Invalid input directory: {data_path}")
+    data_path = Path("data") / args.pathogen_dir
+    sequence_path = data_path / args.sequence_dir
+    if not sequence_path.exists():
+        print(f"❌ Invalid input directory: {sequence_path}")
         sys.exit(1)
 
     fasta_files = common.get_fasta_files(Path("data") / args.pathogen_dir, args.sequence_dir)
