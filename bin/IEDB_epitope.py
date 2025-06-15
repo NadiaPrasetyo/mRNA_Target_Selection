@@ -168,7 +168,8 @@ def main():
     if not all_jobs:
         print("❌ No jobs to run. Exiting.")
         common.cleanup_temp(temp_json_dir)
-        common.cleanup_temp(temp_txt_dir)
+        if "BCell" in final_tools:
+            common.cleanup_temp(temp_txt_dir)
         sys.exit(1)
 
     print(f"\n🚀 Running predictions with {args.threads} threads...")
@@ -181,6 +182,8 @@ def main():
     run_predictions_parallel(all_jobs, output_dir, args.threads)
 
     common.cleanup_temp(temp_json_dir)
+    if "BCell" in final_tools:
+            common.cleanup_temp(temp_txt_dir)
     print("\n✅ Prediction complete.")
 
 if __name__ == "__main__":
