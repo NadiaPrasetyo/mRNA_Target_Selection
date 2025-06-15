@@ -14,17 +14,19 @@ tool_runners = {
 def is_job_completed(tool_type, input_path, base_output_dir):
     """
     Check if a job has already been processed by verifying if a result
-    JSON file exists in the appropriate tool-specific output subdirectory.
-    It checks for any file matching input file stem and tool type suffix.
+    JSON file exists in the tool-specific output directory.
+    Looks for any JSON file that contains the input's base name
+    and ends with the tool suffix.
     """
     subdir = base_output_dir / tool_type.lower()
     subdir.mkdir(parents=True, exist_ok=True)
+    print(f"🔍 Checking if {tool_type} job for {input_path.name} is completed in {base_output_dir}")
+
     base_name = input_path.stem
     expected_suffix = f"{tool_type.upper()}.json"
 
-    # Look for any JSON file that matches the input stem and ends with tool suffix
-    for file in subdir.glob(f"{base_name}*{expected_suffix}"):
-        if file.is_file():
+    for file in subdir.glob(f"*{expected_suffix}"):
+        if base_name in file.stem:
             return True
     return False
 
@@ -117,6 +119,7 @@ def main():
         temp_txt_dir = pathogen_path / "temp_txt"
         txt_files = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
 
+    # Prepare temporary JSON directory for MHCI and MHCII and output directories for all tools
     temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
 
     all_jobs = []
@@ -137,7 +140,7 @@ def main():
         for input_file in input_files:
             print(f"🧬 Processing {input_file.name}")
 
-            if is_job_completed(tool_type, input_file, output_dir):
+            if is_job_completed(tool_type, input_file, output_dir.parent):
                 print(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
                 continue
             
