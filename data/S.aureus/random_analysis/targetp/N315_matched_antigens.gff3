@@ -1,0 +1,8 @@
+##gff-version 3
+antigen_68|Q2FJK1|Uncharacterized|BA000018.3|tpos:144052-144315	TargetP-2.0	signal_peptide	1	24	0.885963	.	.	.
+antigen_43|P06886|Toxic|BA000018.3|tpos:637363-637596	TargetP-2.0	signal_peptide	1	22	0.987759	.	.	.
+antigen_174|Q2FHM8|DNA-directed|BA000018.3|tpos:368134-368205	TargetP-2.0	transit_peptide	1	26	0.832733	.	.	Note=Mitochondrion
+antigen_48|Q936F2|Uncharacterized|BA000018.3|tpos:33305-33558	TargetP-2.0	signal_peptide	1	21	0.991275	.	.	.
+antigen_30|P65288|Lipase|BA000018.3|tpos:113573-114250	TargetP-2.0	signal_peptide	1	31	0.736228	.	.	.
+antigen_115|Q7A7G0|Uncharacterized|BA000018.3|tpos:144052-144320	TargetP-2.0	signal_peptide	1	24	0.885963	.	.	.
+antigen_49|Q6GJN0|Uncharacterized|BA000018.3|tpos:144052-144320	TargetP-2.0	signal_peptide	1	24	0.885963	.	.	.
