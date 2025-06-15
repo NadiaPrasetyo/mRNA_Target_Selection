@@ -1,0 +1,460 @@
+# antigen_116|P0A0I7|Accessory|BX571857.1|tpos:87715-87925 Length: 211
+# antigen_116|P0A0I7|Accessory|BX571857.1|tpos:87715-87925 Number of predicted TMHs:  0
+# antigen_116|P0A0I7|Accessory|BX571857.1|tpos:87715-87925 Exp number of AAs in TMHs: 0.00092
+# antigen_116|P0A0I7|Accessory|BX571857.1|tpos:87715-87925 Exp number, first 60 AAs:  0
+# antigen_116|P0A0I7|Accessory|BX571857.1|tpos:87715-87925 Total prob of N-in:        0.04445
+antigen_116|P0A0I7|Accessory|BX571857.1|tpos:87715-87925_tmhmm	TMHMM2.0	outside	     1   211
+# antigen_10|Q2G023|SsrA-binding|BX571857.1|tpos:258962-259115 Length: 154
+# antigen_10|Q2G023|SsrA-binding|BX571857.1|tpos:258962-259115 Number of predicted TMHs:  0
+# antigen_10|Q2G023|SsrA-binding|BX571857.1|tpos:258962-259115 Exp number of AAs in TMHs: 0.02121
+# antigen_10|Q2G023|SsrA-binding|BX571857.1|tpos:258962-259115 Exp number, first 60 AAs:  0.00018
+# antigen_10|Q2G023|SsrA-binding|BX571857.1|tpos:258962-259115 Total prob of N-in:        0.35706
+antigen_10|Q2G023|SsrA-binding|BX571857.1|tpos:258962-259115_tmhmm	TMHMM2.0	outside	     1   154
+# antigen_20|Q5HHK8|Glycine|BX571857.1|tpos:108044-108152 Length: 109
+# antigen_20|Q5HHK8|Glycine|BX571857.1|tpos:108044-108152 Number of predicted TMHs:  0
+# antigen_20|Q5HHK8|Glycine|BX571857.1|tpos:108044-108152 Exp number of AAs in TMHs: 0.00299
+# antigen_20|Q5HHK8|Glycine|BX571857.1|tpos:108044-108152 Exp number, first 60 AAs:  0.00299
+# antigen_20|Q5HHK8|Glycine|BX571857.1|tpos:108044-108152 Total prob of N-in:        0.42993
+antigen_20|Q5HHK8|Glycine|BX571857.1|tpos:108044-108152_tmhmm	TMHMM2.0	outside	     1   109
+# antigen_29|P67371|DegV|BX571857.1|tpos:246130-246406 Length: 277
+# antigen_29|P67371|DegV|BX571857.1|tpos:246130-246406 Number of predicted TMHs:  0
+# antigen_29|P67371|DegV|BX571857.1|tpos:246130-246406 Exp number of AAs in TMHs: 0.0844300000000001
+# antigen_29|P67371|DegV|BX571857.1|tpos:246130-246406 Exp number, first 60 AAs:  0
+# antigen_29|P67371|DegV|BX571857.1|tpos:246130-246406 Total prob of N-in:        0.08130
+antigen_29|P67371|DegV|BX571857.1|tpos:246130-246406_tmhmm	TMHMM2.0	outside	     1   277
+# antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680 Length: 274
+# antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680 Number of predicted TMHs:  9
+# antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680 Exp number of AAs in TMHs: 176.21055
+# antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680 Exp number, first 60 AAs:  46.20529
+# antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680 Total prob of N-in:        0.30542
+# antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680 POSSIBLE N-term signal sequence
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	outside	     1     3
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	     4    23
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	inside	    24    29
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	    30    48
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	outside	    49    51
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	    52    69
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	inside	    70    81
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	    82   104
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	outside	   105   113
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	   114   133
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	inside	   134   149
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	   150   172
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	outside	   173   176
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	   177   195
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	inside	   196   201
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	   202   224
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	outside	   225   228
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	TMhelix	   229   251
+antigen_86|P60946|Putative|BX571857.1|tpos:713407-713680_tmhmm	TMHMM2.0	inside	   252   274
+# antigen_158|P65100|3-isopropylmalate|BX571857.1|tpos:653107-653454 Length: 348
+# antigen_158|P65100|3-isopropylmalate|BX571857.1|tpos:653107-653454 Number of predicted TMHs:  0
+# antigen_158|P65100|3-isopropylmalate|BX571857.1|tpos:653107-653454 Exp number of AAs in TMHs: 0.01197
+# antigen_158|P65100|3-isopropylmalate|BX571857.1|tpos:653107-653454 Exp number, first 60 AAs:  0.01094
+# antigen_158|P65100|3-isopropylmalate|BX571857.1|tpos:653107-653454 Total prob of N-in:        0.00862
+antigen_158|P65100|3-isopropylmalate|BX571857.1|tpos:653107-653454_tmhmm	TMHMM2.0	outside	     1   348
+# antigen_168|A0A0H3K6Z9|Staphylococcal|BX571857.1|tpos:134949-135179 Length: 231
+# antigen_168|A0A0H3K6Z9|Staphylococcal|BX571857.1|tpos:134949-135179 Number of predicted TMHs:  0
+# antigen_168|A0A0H3K6Z9|Staphylococcal|BX571857.1|tpos:134949-135179 Exp number of AAs in TMHs: 0.5476
+# antigen_168|A0A0H3K6Z9|Staphylococcal|BX571857.1|tpos:134949-135179 Exp number, first 60 AAs:  0.52523
+# antigen_168|A0A0H3K6Z9|Staphylococcal|BX571857.1|tpos:134949-135179 Total prob of N-in:        0.12515
+antigen_168|A0A0H3K6Z9|Staphylococcal|BX571857.1|tpos:134949-135179_tmhmm	TMHMM2.0	outside	     1   231
+# antigen_34|Q6GC27|Methionine|BX571857.1|tpos:143946-144286 Length: 341
+# antigen_34|Q6GC27|Methionine|BX571857.1|tpos:143946-144286 Number of predicted TMHs:  0
+# antigen_34|Q6GC27|Methionine|BX571857.1|tpos:143946-144286 Exp number of AAs in TMHs: 0.940439999999999
+# antigen_34|Q6GC27|Methionine|BX571857.1|tpos:143946-144286 Exp number, first 60 AAs:  0.02043
+# antigen_34|Q6GC27|Methionine|BX571857.1|tpos:143946-144286 Total prob of N-in:        0.06918
+antigen_34|Q6GC27|Methionine|BX571857.1|tpos:143946-144286_tmhmm	TMHMM2.0	outside	     1   341
+# antigen_95|Q7A7B2|Transcription-repair-coupling|BX571857.1|tpos:377481-377722 Length: 242
+# antigen_95|Q7A7B2|Transcription-repair-coupling|BX571857.1|tpos:377481-377722 Number of predicted TMHs:  0
+# antigen_95|Q7A7B2|Transcription-repair-coupling|BX571857.1|tpos:377481-377722 Exp number of AAs in TMHs: 0.00821999999999999
+# antigen_95|Q7A7B2|Transcription-repair-coupling|BX571857.1|tpos:377481-377722 Exp number, first 60 AAs:  0.00045
+# antigen_95|Q7A7B2|Transcription-repair-coupling|BX571857.1|tpos:377481-377722 Total prob of N-in:        0.06727
+antigen_95|Q7A7B2|Transcription-repair-coupling|BX571857.1|tpos:377481-377722_tmhmm	TMHMM2.0	outside	     1   242
+# antigen_84|A5ITJ2|Glutamate-1-semialdehyde|BX571857.1|tpos:601847-602274 Length: 428
+# antigen_84|A5ITJ2|Glutamate-1-semialdehyde|BX571857.1|tpos:601847-602274 Number of predicted TMHs:  0
+# antigen_84|A5ITJ2|Glutamate-1-semialdehyde|BX571857.1|tpos:601847-602274 Exp number of AAs in TMHs: 0.0720400000000001
+# antigen_84|A5ITJ2|Glutamate-1-semialdehyde|BX571857.1|tpos:601847-602274 Exp number, first 60 AAs:  0.00035
+# antigen_84|A5ITJ2|Glutamate-1-semialdehyde|BX571857.1|tpos:601847-602274 Total prob of N-in:        0.00534
+antigen_84|A5ITJ2|Glutamate-1-semialdehyde|BX571857.1|tpos:601847-602274_tmhmm	TMHMM2.0	outside	     1   428
+# antigen_79|Q2FK09|Transcriptional|BX571857.1|tpos:87715-87960 Length: 246
+# antigen_79|Q2FK09|Transcriptional|BX571857.1|tpos:87715-87960 Number of predicted TMHs:  0
+# antigen_79|Q2FK09|Transcriptional|BX571857.1|tpos:87715-87960 Exp number of AAs in TMHs: 0.25276
+# antigen_79|Q2FK09|Transcriptional|BX571857.1|tpos:87715-87960 Exp number, first 60 AAs:  0
+# antigen_79|Q2FK09|Transcriptional|BX571857.1|tpos:87715-87960 Total prob of N-in:        0.03483
+antigen_79|Q2FK09|Transcriptional|BX571857.1|tpos:87715-87960_tmhmm	TMHMM2.0	outside	     1   246
+# antigen_134|A7X1P4|DNA|BX571857.1|tpos:395831-397268 Length: 1438
+# antigen_134|A7X1P4|DNA|BX571857.1|tpos:395831-397268 Number of predicted TMHs:  0
+# antigen_134|A7X1P4|DNA|BX571857.1|tpos:395831-397268 Exp number of AAs in TMHs: 0.538600000000001
+# antigen_134|A7X1P4|DNA|BX571857.1|tpos:395831-397268 Exp number, first 60 AAs:  0.00149
+# antigen_134|A7X1P4|DNA|BX571857.1|tpos:395831-397268 Total prob of N-in:        0.00009
+antigen_134|A7X1P4|DNA|BX571857.1|tpos:395831-397268_tmhmm	TMHMM2.0	outside	     1  1438
+# antigen_150|O50581|ATP-dependent|BX571857.1|tpos:377369-377925 Length: 557
+# antigen_150|O50581|ATP-dependent|BX571857.1|tpos:377369-377925 Number of predicted TMHs:  0
+# antigen_150|O50581|ATP-dependent|BX571857.1|tpos:377369-377925 Exp number of AAs in TMHs: 0.00855
+# antigen_150|O50581|ATP-dependent|BX571857.1|tpos:377369-377925 Exp number, first 60 AAs:  0
+# antigen_150|O50581|ATP-dependent|BX571857.1|tpos:377369-377925 Total prob of N-in:        0.00276
+antigen_150|O50581|ATP-dependent|BX571857.1|tpos:377369-377925_tmhmm	TMHMM2.0	outside	     1   557
+# antigen_80|Q5HG90|Homoserine|BX571857.1|tpos:194984-195221 Length: 238
+# antigen_80|Q5HG90|Homoserine|BX571857.1|tpos:194984-195221 Number of predicted TMHs:  0
+# antigen_80|Q5HG90|Homoserine|BX571857.1|tpos:194984-195221 Exp number of AAs in TMHs: 1.96686
+# antigen_80|Q5HG90|Homoserine|BX571857.1|tpos:194984-195221 Exp number, first 60 AAs:  1.96637
+# antigen_80|Q5HG90|Homoserine|BX571857.1|tpos:194984-195221 Total prob of N-in:        0.06867
+antigen_80|Q5HG90|Homoserine|BX571857.1|tpos:194984-195221_tmhmm	TMHMM2.0	outside	     1   238
+# antigen_89|Q2YU53|Probable|BX571857.1|tpos:620749-621057 Length: 309
+# antigen_89|Q2YU53|Probable|BX571857.1|tpos:620749-621057 Number of predicted TMHs:  0
+# antigen_89|Q2YU53|Probable|BX571857.1|tpos:620749-621057 Exp number of AAs in TMHs: 0.02003
+# antigen_89|Q2YU53|Probable|BX571857.1|tpos:620749-621057 Exp number, first 60 AAs:  0.00018
+# antigen_89|Q2YU53|Probable|BX571857.1|tpos:620749-621057 Total prob of N-in:        0.04841
+antigen_89|Q2YU53|Probable|BX571857.1|tpos:620749-621057_tmhmm	TMHMM2.0	outside	     1   309
+# antigen_21|Q6GCF3|Putative|BX571857.1|tpos:105493-105714 Length: 222
+# antigen_21|Q6GCF3|Putative|BX571857.1|tpos:105493-105714 Number of predicted TMHs:  0
+# antigen_21|Q6GCF3|Putative|BX571857.1|tpos:105493-105714 Exp number of AAs in TMHs: 0.03624
+# antigen_21|Q6GCF3|Putative|BX571857.1|tpos:105493-105714 Exp number, first 60 AAs:  0.03287
+# antigen_21|Q6GCF3|Putative|BX571857.1|tpos:105493-105714 Total prob of N-in:        0.01292
+antigen_21|Q6GCF3|Putative|BX571857.1|tpos:105493-105714_tmhmm	TMHMM2.0	outside	     1   222
+# antigen_69|A5IQW9|Nucleotide-binding|BX571857.1|tpos:252926-253228 Length: 303
+# antigen_69|A5IQW9|Nucleotide-binding|BX571857.1|tpos:252926-253228 Number of predicted TMHs:  0
+# antigen_69|A5IQW9|Nucleotide-binding|BX571857.1|tpos:252926-253228 Exp number of AAs in TMHs: 0.31168
+# antigen_69|A5IQW9|Nucleotide-binding|BX571857.1|tpos:252926-253228 Exp number, first 60 AAs:  0.30923
+# antigen_69|A5IQW9|Nucleotide-binding|BX571857.1|tpos:252926-253228 Total prob of N-in:        0.16386
+antigen_69|A5IQW9|Nucleotide-binding|BX571857.1|tpos:252926-253228_tmhmm	TMHMM2.0	outside	     1   303
+# antigen_112|Q99V03|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Length: 247
+# antigen_112|Q99V03|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Number of predicted TMHs:  0
+# antigen_112|Q99V03|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Exp number of AAs in TMHs: 2.40916
+# antigen_112|Q99V03|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Exp number, first 60 AAs:  2.30097
+# antigen_112|Q99V03|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Total prob of N-in:        0.13386
+antigen_112|Q99V03|Spermidine/putrescine|BX571857.1|tpos:266419-266665_tmhmm	TMHMM2.0	outside	     1   247
+# antigen_164|Q6GIM9|Putative|BX571857.1|tpos:251818-251978 Length: 161
+# antigen_164|Q6GIM9|Putative|BX571857.1|tpos:251818-251978 Number of predicted TMHs:  0
+# antigen_164|Q6GIM9|Putative|BX571857.1|tpos:251818-251978 Exp number of AAs in TMHs: 4.81387
+# antigen_164|Q6GIM9|Putative|BX571857.1|tpos:251818-251978 Exp number, first 60 AAs:  0.55457
+# antigen_164|Q6GIM9|Putative|BX571857.1|tpos:251818-251978 Total prob of N-in:        0.47421
+antigen_164|Q6GIM9|Putative|BX571857.1|tpos:251818-251978_tmhmm	TMHMM2.0	outside	     1   161
+# antigen_195|A7X2E3|Holliday|BX571857.1|tpos:467208-467415 Length: 208
+# antigen_195|A7X2E3|Holliday|BX571857.1|tpos:467208-467415 Number of predicted TMHs:  0
+# antigen_195|A7X2E3|Holliday|BX571857.1|tpos:467208-467415 Exp number of AAs in TMHs: 0.02712
+# antigen_195|A7X2E3|Holliday|BX571857.1|tpos:467208-467415 Exp number, first 60 AAs:  0
+# antigen_195|A7X2E3|Holliday|BX571857.1|tpos:467208-467415 Total prob of N-in:        0.16073
+antigen_195|A7X2E3|Holliday|BX571857.1|tpos:467208-467415_tmhmm	TMHMM2.0	outside	     1   208
+# antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947 Length: 389
+# antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947 Number of predicted TMHs:  12
+# antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947 Exp number of AAs in TMHs: 258.37388
+# antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947 Exp number, first 60 AAs:  40.06542
+# antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947 Total prob of N-in:        0.00998
+# antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947 POSSIBLE N-term signal sequence
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	outside	     1     3
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	     4    22
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	inside	    23    28
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	    29    51
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	outside	    52    73
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	    74    96
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	inside	    97   104
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   105   124
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	outside	   125   127
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   128   150
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	inside	   151   156
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   157   179
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	outside	   180   202
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   203   225
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	inside	   226   231
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   232   254
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	outside	   255   266
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   267   289
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	inside	   290   295
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   296   318
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	outside	   319   322
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   323   345
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	inside	   346   364
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	TMhelix	   365   387
+antigen_14|A5IRD0|Na(+)/H(+)|BX571857.1|tpos:206559-206947_tmhmm	TMHMM2.0	outside	   388   389
+# antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746 Length: 264
+# antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746 Number of predicted TMHs:  1
+# antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746 Exp number of AAs in TMHs: 17.90384
+# antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746 Exp number, first 60 AAs:  17.90384
+# antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746 Total prob of N-in:        0.91755
+# antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746 POSSIBLE N-term signal sequence
+antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746_tmhmm	TMHMM2.0	inside	     1     6
+antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746_tmhmm	TMHMM2.0	TMhelix	     7    24
+antigen_68|Q2FJK1|Uncharacterized|BX571857.1|tpos:138483-138746_tmhmm	TMHMM2.0	outside	    25   264
+# antigen_139|P65968|Ribosome-binding|BX571857.1|tpos:398854-398969 Length: 116
+# antigen_139|P65968|Ribosome-binding|BX571857.1|tpos:398854-398969 Number of predicted TMHs:  0
+# antigen_139|P65968|Ribosome-binding|BX571857.1|tpos:398854-398969 Exp number of AAs in TMHs: 0.00762
+# antigen_139|P65968|Ribosome-binding|BX571857.1|tpos:398854-398969 Exp number, first 60 AAs:  0.00762
+# antigen_139|P65968|Ribosome-binding|BX571857.1|tpos:398854-398969 Total prob of N-in:        0.37250
+antigen_139|P65968|Ribosome-binding|BX571857.1|tpos:398854-398969_tmhmm	TMHMM2.0	outside	     1   116
+# antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342 Length: 466
+# antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342 Number of predicted TMHs:  12
+# antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342 Exp number of AAs in TMHs: 258.66878
+# antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342 Exp number, first 60 AAs:  22.55512
+# antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342 Total prob of N-in:        0.98613
+# antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342 POSSIBLE N-term signal sequence
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	inside	     1    19
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	    20    42
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	outside	    43    61
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	    62    84
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	inside	    85    90
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	    91   113
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	outside	   114   117
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   118   140
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	inside	   141   159
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   160   182
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	outside	   183   191
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   192   211
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	inside	   212   241
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   242   264
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	outside	   265   278
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   279   301
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	inside	   302   312
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   313   332
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	outside	   333   336
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   337   354
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	inside	   355   374
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   375   397
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	outside	   398   406
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	TMhelix	   407   429
+antigen_146|Q8NXW9|Putative|BX571857.1|tpos:189877-190342_tmhmm	TMHMM2.0	inside	   430   466
+# antigen_12|A7X4W4|Peptide|BX571857.1|tpos:248350-248687 Length: 338
+# antigen_12|A7X4W4|Peptide|BX571857.1|tpos:248350-248687 Number of predicted TMHs:  0
+# antigen_12|A7X4W4|Peptide|BX571857.1|tpos:248350-248687 Exp number of AAs in TMHs: 0
+# antigen_12|A7X4W4|Peptide|BX571857.1|tpos:248350-248687 Exp number, first 60 AAs:  0
+# antigen_12|A7X4W4|Peptide|BX571857.1|tpos:248350-248687 Total prob of N-in:        0.01024
+antigen_12|A7X4W4|Peptide|BX571857.1|tpos:248350-248687_tmhmm	TMHMM2.0	outside	     1   338
+# antigen_26|Q5HHQ3|Nucleotide-binding|BX571857.1|tpos:252926-253228 Length: 303
+# antigen_26|Q5HHQ3|Nucleotide-binding|BX571857.1|tpos:252926-253228 Number of predicted TMHs:  0
+# antigen_26|Q5HHQ3|Nucleotide-binding|BX571857.1|tpos:252926-253228 Exp number of AAs in TMHs: 0.31168
+# antigen_26|Q5HHQ3|Nucleotide-binding|BX571857.1|tpos:252926-253228 Exp number, first 60 AAs:  0.30923
+# antigen_26|Q5HHQ3|Nucleotide-binding|BX571857.1|tpos:252926-253228 Total prob of N-in:        0.16386
+antigen_26|Q5HHQ3|Nucleotide-binding|BX571857.1|tpos:252926-253228_tmhmm	TMHMM2.0	outside	     1   303
+# antigen_63|P65177|Ribitol-5-phosphate|BX571857.1|tpos:83411-83648 Length: 238
+# antigen_63|P65177|Ribitol-5-phosphate|BX571857.1|tpos:83411-83648 Number of predicted TMHs:  0
+# antigen_63|P65177|Ribitol-5-phosphate|BX571857.1|tpos:83411-83648 Exp number of AAs in TMHs: 0.01059
+# antigen_63|P65177|Ribitol-5-phosphate|BX571857.1|tpos:83411-83648 Exp number, first 60 AAs:  0.01057
+# antigen_63|P65177|Ribitol-5-phosphate|BX571857.1|tpos:83411-83648 Total prob of N-in:        0.01477
+antigen_63|P65177|Ribitol-5-phosphate|BX571857.1|tpos:83411-83648_tmhmm	TMHMM2.0	outside	     1   238
+# antigen_193|P68821|Phosphoglycerate|BX571857.1|tpos:255911-256306 Length: 396
+# antigen_193|P68821|Phosphoglycerate|BX571857.1|tpos:255911-256306 Number of predicted TMHs:  0
+# antigen_193|P68821|Phosphoglycerate|BX571857.1|tpos:255911-256306 Exp number of AAs in TMHs: 0.0871199999999999
+# antigen_193|P68821|Phosphoglycerate|BX571857.1|tpos:255911-256306 Exp number, first 60 AAs:  0.00082
+# antigen_193|P68821|Phosphoglycerate|BX571857.1|tpos:255911-256306 Total prob of N-in:        0.01816
+antigen_193|P68821|Phosphoglycerate|BX571857.1|tpos:255911-256306_tmhmm	TMHMM2.0	outside	     1   396
+# antigen_87|Q2FXU5|Aspartate--tRNA|BX571857.1|tpos:163984-164439 Length: 456
+# antigen_87|Q2FXU5|Aspartate--tRNA|BX571857.1|tpos:163984-164439 Number of predicted TMHs:  0
+# antigen_87|Q2FXU5|Aspartate--tRNA|BX571857.1|tpos:163984-164439 Exp number of AAs in TMHs: 0.00637
+# antigen_87|Q2FXU5|Aspartate--tRNA|BX571857.1|tpos:163984-164439 Exp number, first 60 AAs:  0.00013
+# antigen_87|Q2FXU5|Aspartate--tRNA|BX571857.1|tpos:163984-164439 Total prob of N-in:        0.00666
+antigen_87|Q2FXU5|Aspartate--tRNA|BX571857.1|tpos:163984-164439_tmhmm	TMHMM2.0	outside	     1   456
+# antigen_135|Q5HFW9|Asparagine--tRNA|BX571857.1|tpos:163978-164419 Length: 442
+# antigen_135|Q5HFW9|Asparagine--tRNA|BX571857.1|tpos:163978-164419 Number of predicted TMHs:  0
+# antigen_135|Q5HFW9|Asparagine--tRNA|BX571857.1|tpos:163978-164419 Exp number of AAs in TMHs: 0.01822
+# antigen_135|Q5HFW9|Asparagine--tRNA|BX571857.1|tpos:163978-164419 Exp number, first 60 AAs:  0.00163
+# antigen_135|Q5HFW9|Asparagine--tRNA|BX571857.1|tpos:163978-164419 Total prob of N-in:        0.01888
+antigen_135|Q5HFW9|Asparagine--tRNA|BX571857.1|tpos:163978-164419_tmhmm	TMHMM2.0	outside	     1   442
+# antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751 Length: 269
+# antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751 Number of predicted TMHs:  1
+# antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751 Exp number of AAs in TMHs: 17.90058
+# antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751 Exp number, first 60 AAs:  17.90058
+# antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751 Total prob of N-in:        0.92452
+# antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751 POSSIBLE N-term signal sequence
+antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751_tmhmm	TMHMM2.0	inside	     1     6
+antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751_tmhmm	TMHMM2.0	TMhelix	     7    24
+antigen_115|Q7A7G0|Uncharacterized|BX571857.1|tpos:138483-138751_tmhmm	TMHMM2.0	outside	    25   269
+# antigen_113|Q2FKQ5|Chromosomal|BX571857.1|tpos:166-618 Length: 453
+# antigen_113|Q2FKQ5|Chromosomal|BX571857.1|tpos:166-618 Number of predicted TMHs:  0
+# antigen_113|Q2FKQ5|Chromosomal|BX571857.1|tpos:166-618 Exp number of AAs in TMHs: 0.02892
+# antigen_113|Q2FKQ5|Chromosomal|BX571857.1|tpos:166-618 Exp number, first 60 AAs:  0.00095
+# antigen_113|Q2FKQ5|Chromosomal|BX571857.1|tpos:166-618 Total prob of N-in:        0.00833
+antigen_113|Q2FKQ5|Chromosomal|BX571857.1|tpos:166-618_tmhmm	TMHMM2.0	outside	     1   453
+# antigen_177|P60611|Transcriptional|BX571857.1|tpos:87715-87960 Length: 246
+# antigen_177|P60611|Transcriptional|BX571857.1|tpos:87715-87960 Number of predicted TMHs:  0
+# antigen_177|P60611|Transcriptional|BX571857.1|tpos:87715-87960 Exp number of AAs in TMHs: 0.25276
+# antigen_177|P60611|Transcriptional|BX571857.1|tpos:87715-87960 Exp number, first 60 AAs:  0
+# antigen_177|P60611|Transcriptional|BX571857.1|tpos:87715-87960 Total prob of N-in:        0.03483
+antigen_177|P60611|Transcriptional|BX571857.1|tpos:87715-87960_tmhmm	TMHMM2.0	outside	     1   246
+# antigen_72|P99088|Enolase|BX571857.1|tpos:257110-257543 Length: 434
+# antigen_72|P99088|Enolase|BX571857.1|tpos:257110-257543 Number of predicted TMHs:  0
+# antigen_72|P99088|Enolase|BX571857.1|tpos:257110-257543 Exp number of AAs in TMHs: 0.3265
+# antigen_72|P99088|Enolase|BX571857.1|tpos:257110-257543 Exp number, first 60 AAs:  0
+# antigen_72|P99088|Enolase|BX571857.1|tpos:257110-257543 Total prob of N-in:        0.02534
+antigen_72|P99088|Enolase|BX571857.1|tpos:257110-257543_tmhmm	TMHMM2.0	outside	     1   434
+# antigen_45|Q6GJE0|Serine|BX571857.1|tpos:251895-251973 Length: 79
+# antigen_45|Q6GJE0|Serine|BX571857.1|tpos:251895-251973 Number of predicted TMHs:  0
+# antigen_45|Q6GJE0|Serine|BX571857.1|tpos:251895-251973 Exp number of AAs in TMHs: 0.85609
+# antigen_45|Q6GJE0|Serine|BX571857.1|tpos:251895-251973 Exp number, first 60 AAs:  0.85449
+# antigen_45|Q6GJE0|Serine|BX571857.1|tpos:251895-251973 Total prob of N-in:        0.21698
+antigen_45|Q6GJE0|Serine|BX571857.1|tpos:251895-251973_tmhmm	TMHMM2.0	outside	     1    79
+# antigen_61|Q6GIN8|Protein|BX571857.1|tpos:247386-248228 Length: 843
+# antigen_61|Q6GIN8|Protein|BX571857.1|tpos:247386-248228 Number of predicted TMHs:  0
+# antigen_61|Q6GIN8|Protein|BX571857.1|tpos:247386-248228 Exp number of AAs in TMHs: 0.00042
+# antigen_61|Q6GIN8|Protein|BX571857.1|tpos:247386-248228 Exp number, first 60 AAs:  0
+# antigen_61|Q6GIN8|Protein|BX571857.1|tpos:247386-248228 Total prob of N-in:        0.00003
+antigen_61|Q6GIN8|Protein|BX571857.1|tpos:247386-248228_tmhmm	TMHMM2.0	outside	     1   843
+# antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212 Length: 157
+# antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212 Number of predicted TMHs:  4
+# antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212 Exp number of AAs in TMHs: 71.24911
+# antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212 Exp number, first 60 AAs:  31.59662
+# antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212 Total prob of N-in:        0.58224
+# antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212 POSSIBLE N-term signal sequence
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	inside	     1     1
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	TMhelix	     2    16
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	outside	    17    25
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	TMhelix	    26    45
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	inside	    46    57
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	TMhelix	    58    80
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	outside	    81    99
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	TMhelix	   100   118
+antigen_91|Q6GIE0|Na(+)/H(+)|BX571857.1|tpos:207056-207212_tmhmm	TMHMM2.0	inside	   119   157
+# antigen_140|Q7A417|Putative|BX571857.1|tpos:726950-727266 Length: 317
+# antigen_140|Q7A417|Putative|BX571857.1|tpos:726950-727266 Number of predicted TMHs:  0
+# antigen_140|Q7A417|Putative|BX571857.1|tpos:726950-727266 Exp number of AAs in TMHs: 0.02504
+# antigen_140|Q7A417|Putative|BX571857.1|tpos:726950-727266 Exp number, first 60 AAs:  0.000490000000000001
+# antigen_140|Q7A417|Putative|BX571857.1|tpos:726950-727266 Total prob of N-in:        0.02680
+antigen_140|Q7A417|Putative|BX571857.1|tpos:726950-727266_tmhmm	TMHMM2.0	outside	     1   317
+# antigen_152|Q2FYU5|Small|BX571857.1|tpos:421301-421389 Length: 89
+# antigen_152|Q2FYU5|Small|BX571857.1|tpos:421301-421389 Number of predicted TMHs:  0
+# antigen_152|Q2FYU5|Small|BX571857.1|tpos:421301-421389 Exp number of AAs in TMHs: 0
+# antigen_152|Q2FYU5|Small|BX571857.1|tpos:421301-421389 Exp number, first 60 AAs:  0
+# antigen_152|Q2FYU5|Small|BX571857.1|tpos:421301-421389 Total prob of N-in:        0.68955
+antigen_152|Q2FYU5|Small|BX571857.1|tpos:421301-421389_tmhmm	TMHMM2.0	inside	     1    89
+# antigen_153|Q6GHG2|Small|BX571857.1|tpos:399640-399728 Length: 89
+# antigen_153|Q6GHG2|Small|BX571857.1|tpos:399640-399728 Number of predicted TMHs:  0
+# antigen_153|Q6GHG2|Small|BX571857.1|tpos:399640-399728 Exp number of AAs in TMHs: 0.00038
+# antigen_153|Q6GHG2|Small|BX571857.1|tpos:399640-399728 Exp number, first 60 AAs:  0.00038
+# antigen_153|Q6GHG2|Small|BX571857.1|tpos:399640-399728 Total prob of N-in:        0.63911
+antigen_153|Q6GHG2|Small|BX571857.1|tpos:399640-399728_tmhmm	TMHMM2.0	inside	     1    89
+# antigen_159|P12053|Replication|BX571857.1|tpos:43154-43266 Length: 113
+# antigen_159|P12053|Replication|BX571857.1|tpos:43154-43266 Number of predicted TMHs:  0
+# antigen_159|P12053|Replication|BX571857.1|tpos:43154-43266 Exp number of AAs in TMHs: 0.00093
+# antigen_159|P12053|Replication|BX571857.1|tpos:43154-43266 Exp number, first 60 AAs:  0
+# antigen_159|P12053|Replication|BX571857.1|tpos:43154-43266 Total prob of N-in:        0.70884
+antigen_159|P12053|Replication|BX571857.1|tpos:43154-43266_tmhmm	TMHMM2.0	inside	     1   113
+# antigen_119|Q99UI1|tRNA-2-methylthio-N(6)-dimethylallyladenosine|BX571857.1|tpos:406507-407020 Length: 514
+# antigen_119|Q99UI1|tRNA-2-methylthio-N(6)-dimethylallyladenosine|BX571857.1|tpos:406507-407020 Number of predicted TMHs:  0
+# antigen_119|Q99UI1|tRNA-2-methylthio-N(6)-dimethylallyladenosine|BX571857.1|tpos:406507-407020 Exp number of AAs in TMHs: 0.01496
+# antigen_119|Q99UI1|tRNA-2-methylthio-N(6)-dimethylallyladenosine|BX571857.1|tpos:406507-407020 Exp number, first 60 AAs:  0
+# antigen_119|Q99UI1|tRNA-2-methylthio-N(6)-dimethylallyladenosine|BX571857.1|tpos:406507-407020 Total prob of N-in:        0.00709
+antigen_119|Q99UI1|tRNA-2-methylthio-N(6)-dimethylallyladenosine|BX571857.1|tpos:406507-407020_tmhmm	TMHMM2.0	outside	     1   514
+# antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801 Length: 110
+# antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801 Number of predicted TMHs:  4
+# antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801 Exp number of AAs in TMHs: 77.95832
+# antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801 Exp number, first 60 AAs:  37.54803
+# antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801 Total prob of N-in:        0.74005
+# antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801 POSSIBLE N-term signal sequence
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	inside	     1     1
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	TMhelix	     2    20
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	outside	    21    29
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	TMhelix	    30    52
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	inside	    53    60
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	TMhelix	    61    83
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	outside	    84    86
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	TMhelix	    87   109
+antigen_182|Q2FFV9|Fluoride-specific|BX571857.1|tpos:573692-573801_tmhmm	TMHMM2.0	inside	   110   110
+# antigen_18|Q5HIH8|Putative|BX571857.1|tpos:157537-157636 Length: 100
+# antigen_18|Q5HIH8|Putative|BX571857.1|tpos:157537-157636 Number of predicted TMHs:  0
+# antigen_18|Q5HIH8|Putative|BX571857.1|tpos:157537-157636 Exp number of AAs in TMHs: 0.02495
+# antigen_18|Q5HIH8|Putative|BX571857.1|tpos:157537-157636 Exp number, first 60 AAs:  0.02495
+# antigen_18|Q5HIH8|Putative|BX571857.1|tpos:157537-157636 Total prob of N-in:        0.65358
+antigen_18|Q5HIH8|Putative|BX571857.1|tpos:157537-157636_tmhmm	TMHMM2.0	inside	     1   100
+# antigen_19|P68789|Elongation|BX571857.1|tpos:344811-345199 Length: 389
+# antigen_19|P68789|Elongation|BX571857.1|tpos:344811-345199 Number of predicted TMHs:  0
+# antigen_19|P68789|Elongation|BX571857.1|tpos:344811-345199 Exp number of AAs in TMHs: 0.00134
+# antigen_19|P68789|Elongation|BX571857.1|tpos:344811-345199 Exp number, first 60 AAs:  0
+# antigen_19|P68789|Elongation|BX571857.1|tpos:344811-345199 Total prob of N-in:        0.01608
+antigen_19|P68789|Elongation|BX571857.1|tpos:344811-345199_tmhmm	TMHMM2.0	outside	     1   389
+# antigen_2|A7X1Y9|Large|BX571857.1|tpos:421113-421161 Length: 49
+# antigen_2|A7X1Y9|Large|BX571857.1|tpos:421113-421161 Number of predicted TMHs:  0
+# antigen_2|A7X1Y9|Large|BX571857.1|tpos:421113-421161 Exp number of AAs in TMHs: 0
+# antigen_2|A7X1Y9|Large|BX571857.1|tpos:421113-421161 Exp number, first 60 AAs:  0
+# antigen_2|A7X1Y9|Large|BX571857.1|tpos:421113-421161 Total prob of N-in:        0.68162
+antigen_2|A7X1Y9|Large|BX571857.1|tpos:421113-421161_tmhmm	TMHMM2.0	inside	     1    49
+# antigen_43|P06886|Toxic|BX571857.1|tpos:134723-134837 Length: 115
+# antigen_43|P06886|Toxic|BX571857.1|tpos:134723-134837 Number of predicted TMHs:  0
+# antigen_43|P06886|Toxic|BX571857.1|tpos:134723-134837 Exp number of AAs in TMHs: 0
+# antigen_43|P06886|Toxic|BX571857.1|tpos:134723-134837 Exp number, first 60 AAs:  0
+# antigen_43|P06886|Toxic|BX571857.1|tpos:134723-134837 Total prob of N-in:        0.29509
+antigen_43|P06886|Toxic|BX571857.1|tpos:134723-134837_tmhmm	TMHMM2.0	outside	     1   115
+# antigen_82|A7X4V7|Serine|BX571857.1|tpos:153280-153448 Length: 169
+# antigen_82|A7X4V7|Serine|BX571857.1|tpos:153280-153448 Number of predicted TMHs:  0
+# antigen_82|A7X4V7|Serine|BX571857.1|tpos:153280-153448 Exp number of AAs in TMHs: 0.06738
+# antigen_82|A7X4V7|Serine|BX571857.1|tpos:153280-153448 Exp number, first 60 AAs:  0
+# antigen_82|A7X4V7|Serine|BX571857.1|tpos:153280-153448 Total prob of N-in:        0.05577
+antigen_82|A7X4V7|Serine|BX571857.1|tpos:153280-153448_tmhmm	TMHMM2.0	outside	     1   169
+# antigen_129|P63980|DNA|BX571857.1|tpos:396645-397122 Length: 478
+# antigen_129|P63980|DNA|BX571857.1|tpos:396645-397122 Number of predicted TMHs:  0
+# antigen_129|P63980|DNA|BX571857.1|tpos:396645-397122 Exp number of AAs in TMHs: 2.68254
+# antigen_129|P63980|DNA|BX571857.1|tpos:396645-397122 Exp number, first 60 AAs:  0.14009
+# antigen_129|P63980|DNA|BX571857.1|tpos:396645-397122 Total prob of N-in:        0.01950
+antigen_129|P63980|DNA|BX571857.1|tpos:396645-397122_tmhmm	TMHMM2.0	outside	     1   478
+# antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751 Length: 269
+# antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751 Number of predicted TMHs:  1
+# antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751 Exp number of AAs in TMHs: 17.90058
+# antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751 Exp number, first 60 AAs:  17.90058
+# antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751 Total prob of N-in:        0.92452
+# antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751 POSSIBLE N-term signal sequence
+antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751_tmhmm	TMHMM2.0	inside	     1     6
+antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751_tmhmm	TMHMM2.0	TMhelix	     7    24
+antigen_49|Q6GJN0|Uncharacterized|BX571857.1|tpos:138483-138751_tmhmm	TMHMM2.0	outside	    25   269
+# antigen_171|Q6GF16|2-isopropylmalate|BX571857.1|tpos:288831-289168 Length: 338
+# antigen_171|Q6GF16|2-isopropylmalate|BX571857.1|tpos:288831-289168 Number of predicted TMHs:  0
+# antigen_171|Q6GF16|2-isopropylmalate|BX571857.1|tpos:288831-289168 Exp number of AAs in TMHs: 0.0503500000000001
+# antigen_171|Q6GF16|2-isopropylmalate|BX571857.1|tpos:288831-289168 Exp number, first 60 AAs:  0.00036
+# antigen_171|Q6GF16|2-isopropylmalate|BX571857.1|tpos:288831-289168 Total prob of N-in:        0.08606
+antigen_171|Q6GF16|2-isopropylmalate|BX571857.1|tpos:288831-289168_tmhmm	TMHMM2.0	outside	     1   338
+# antigen_30|P65288|Lipase|BX571857.1|tpos:183424-183474 Length: 51
+# antigen_30|P65288|Lipase|BX571857.1|tpos:183424-183474 Number of predicted TMHs:  0
+# antigen_30|P65288|Lipase|BX571857.1|tpos:183424-183474 Exp number of AAs in TMHs: 10.7899
+# antigen_30|P65288|Lipase|BX571857.1|tpos:183424-183474 Exp number, first 60 AAs:  10.7899
+# antigen_30|P65288|Lipase|BX571857.1|tpos:183424-183474 Total prob of N-in:        0.63765
+# antigen_30|P65288|Lipase|BX571857.1|tpos:183424-183474 POSSIBLE N-term signal sequence
+antigen_30|P65288|Lipase|BX571857.1|tpos:183424-183474_tmhmm	TMHMM2.0	inside	     1    51
+# antigen_32|Q5HFH6|Elongation|BX571857.1|tpos:344809-345279 Length: 471
+# antigen_32|Q5HFH6|Elongation|BX571857.1|tpos:344809-345279 Number of predicted TMHs:  0
+# antigen_32|Q5HFH6|Elongation|BX571857.1|tpos:344809-345279 Exp number of AAs in TMHs: 0.04285
+# antigen_32|Q5HFH6|Elongation|BX571857.1|tpos:344809-345279 Exp number, first 60 AAs:  0.0002
+# antigen_32|Q5HFH6|Elongation|BX571857.1|tpos:344809-345279 Total prob of N-in:        0.01691
+antigen_32|Q5HFH6|Elongation|BX571857.1|tpos:344809-345279_tmhmm	TMHMM2.0	outside	     1   471
+# antigen_36|Q6GAB5|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Length: 247
+# antigen_36|Q6GAB5|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Number of predicted TMHs:  0
+# antigen_36|Q6GAB5|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Exp number of AAs in TMHs: 2.40916
+# antigen_36|Q6GAB5|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Exp number, first 60 AAs:  2.30097
+# antigen_36|Q6GAB5|Spermidine/putrescine|BX571857.1|tpos:266419-266665 Total prob of N-in:        0.13386
+antigen_36|Q6GAB5|Spermidine/putrescine|BX571857.1|tpos:266419-266665_tmhmm	TMHMM2.0	outside	     1   247
+# antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577 Length: 256
+# antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577 Number of predicted TMHs:  1
+# antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577 Exp number of AAs in TMHs: 20.40698
+# antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577 Exp number, first 60 AAs:  20.40681
+# antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577 Total prob of N-in:        0.95965
+# antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577 POSSIBLE N-term signal sequence
+antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577_tmhmm	TMHMM2.0	inside	     1     4
+antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577_tmhmm	TMHMM2.0	TMhelix	     5    27
+antigen_48|Q936F2|Uncharacterized|BX571857.1|tpos:25322-25577_tmhmm	TMHMM2.0	outside	    28   256
+# antigen_50|P63730|Carbamoyl|BX571857.1|tpos:373800-374165 Length: 366
+# antigen_50|P63730|Carbamoyl|BX571857.1|tpos:373800-374165 Number of predicted TMHs:  0
+# antigen_50|P63730|Carbamoyl|BX571857.1|tpos:373800-374165 Exp number of AAs in TMHs: 0.42542
+# antigen_50|P63730|Carbamoyl|BX571857.1|tpos:373800-374165 Exp number, first 60 AAs:  0.01346
+# antigen_50|P63730|Carbamoyl|BX571857.1|tpos:373800-374165 Total prob of N-in:        0.02241
+antigen_50|P63730|Carbamoyl|BX571857.1|tpos:373800-374165_tmhmm	TMHMM2.0	outside	     1   366
+# antigen_121|Q99U50|L-threonine|BX571857.1|tpos:654028-654361 Length: 334
+# antigen_121|Q99U50|L-threonine|BX571857.1|tpos:654028-654361 Number of predicted TMHs:  0
+# antigen_121|Q99U50|L-threonine|BX571857.1|tpos:654028-654361 Exp number of AAs in TMHs: 10.43252
+# antigen_121|Q99U50|L-threonine|BX571857.1|tpos:654028-654361 Exp number, first 60 AAs:  9e-05
+# antigen_121|Q99U50|L-threonine|BX571857.1|tpos:654028-654361 Total prob of N-in:        0.43099
+antigen_121|Q99U50|L-threonine|BX571857.1|tpos:654028-654361_tmhmm	TMHMM2.0	outside	     1   334
+# antigen_149|Q99QV7|Putative|BX571857.1|tpos:143946-144169 Length: 224
+# antigen_149|Q99QV7|Putative|BX571857.1|tpos:143946-144169 Number of predicted TMHs:  0
+# antigen_149|Q99QV7|Putative|BX571857.1|tpos:143946-144169 Exp number of AAs in TMHs: 1.17484
+# antigen_149|Q99QV7|Putative|BX571857.1|tpos:143946-144169 Exp number, first 60 AAs:  0.02683
+# antigen_149|Q99QV7|Putative|BX571857.1|tpos:143946-144169 Total prob of N-in:        0.15589
+antigen_149|Q99QV7|Putative|BX571857.1|tpos:143946-144169_tmhmm	TMHMM2.0	outside	     1   224
+# antigen_13|Q6GHM6|Guanylate|BX571857.1|tpos:376535-376741 Length: 207
+# antigen_13|Q6GHM6|Guanylate|BX571857.1|tpos:376535-376741 Number of predicted TMHs:  0
+# antigen_13|Q6GHM6|Guanylate|BX571857.1|tpos:376535-376741 Exp number of AAs in TMHs: 0.00293
+# antigen_13|Q6GHM6|Guanylate|BX571857.1|tpos:376535-376741 Exp number, first 60 AAs:  0.00279
+# antigen_13|Q6GHM6|Guanylate|BX571857.1|tpos:376535-376741 Total prob of N-in:        0.06065
+antigen_13|Q6GHM6|Guanylate|BX571857.1|tpos:376535-376741_tmhmm	TMHMM2.0	outside	     1   207
+# antigen_66|Q2FF66|3-isopropylmalate|BX571857.1|tpos:653107-653454 Length: 348
+# antigen_66|Q2FF66|3-isopropylmalate|BX571857.1|tpos:653107-653454 Number of predicted TMHs:  0
+# antigen_66|Q2FF66|3-isopropylmalate|BX571857.1|tpos:653107-653454 Exp number of AAs in TMHs: 0.01197
+# antigen_66|Q2FF66|3-isopropylmalate|BX571857.1|tpos:653107-653454 Exp number, first 60 AAs:  0.01094
+# antigen_66|Q2FF66|3-isopropylmalate|BX571857.1|tpos:653107-653454 Total prob of N-in:        0.00862
+antigen_66|Q2FF66|3-isopropylmalate|BX571857.1|tpos:653107-653454_tmhmm	TMHMM2.0	outside	     1   348
