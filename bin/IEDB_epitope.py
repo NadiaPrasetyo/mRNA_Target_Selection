@@ -23,7 +23,12 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     print(f"🔍 Checking if {tool_type} job for {input_path.name} is completed in {base_output_dir}")
 
     base_name = input_path.stem
-    expected_suffix = f"{tool_type.upper()}.json"
+    expected_suffix = f"{tool_type.upper()}.json" # e.g., "MHCI.json", "MHCII.json", "BCELL.txt"
+    # Check for any file that matches the base name and expected suffix
+    
+    # Check for any file that matches the base name and expected suffix
+    if tool_type == "BCell":
+        expected_suffix = ".txt"
 
     for file in subdir.glob(f"*{expected_suffix}"):
         if base_name in file.stem:
@@ -140,11 +145,10 @@ def main():
         for input_file in input_files:
             print(f"🧬 Processing {input_file.name}")
 
-            if is_job_completed(tool_type, input_file, output_dir.parent):
-                print(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
-                continue
-            
             if tool_type == "BCell":
+                if is_job_completed(tool_type, input_file, output_dir):
+                    print(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
+                    continue
                 all_jobs.append((tool_type, tool_path, input_file))
             else:
                 json_paths = common.parse_fasta_to_jsons(
@@ -155,7 +159,11 @@ def main():
                     tool_type,
                     args.sequence_dir
                 )
-                all_jobs.extend([(tool_type, tool_path, jp) for jp in json_paths])
+                for jp in json_paths:
+                    if is_job_completed(tool_type, jp, output_dir):
+                        print(f"⏩ Skipping {jp.name} — already processed.")
+                        continue
+                    all_jobs.append((tool_type, tool_path, jp))
 
     if not all_jobs:
         print("❌ No jobs to run. Exiting.")
