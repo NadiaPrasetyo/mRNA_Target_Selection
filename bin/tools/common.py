@@ -204,3 +204,23 @@ def parse_fasta_to_jsons(fasta_path, temp_dir, alleles, peptide_lengths, tool_ty
             path = write_json(seq_id, seq_data, temp_dir, alleles, peptide_lengths, tool_type, strain_name)
             if path: json_paths.append(path)
     return json_paths
+
+def check_epitope_evaluation_tools(tool_root: Path) -> dict:
+    """
+    Detects available evaluation tools (Allergenicity, Population Coverage, Conservation).
+    Returns a dictionary mapping tool names to their runner paths.
+    """
+    tool_map = {
+        "Allergenicity": tool_root / "algpred2" / "run_algpred2.py",
+        "PopCoverage": tool_root / "population_coverage" / "population_coverage.py",
+        "Conservation": tool_root / "epitope_cluster" / "cluster.py",
+    }
+
+    found = {}
+    for name, path in tool_map.items():
+        if path.exists():
+            found[name] = str(path)
+        else:
+            print(f"❌ {name} tool not found at: {path}")
+
+    return found
