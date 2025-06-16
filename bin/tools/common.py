@@ -219,8 +219,8 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     found = {}
     for name, path in tool_map.items():
         if path.exists():
-            found[name] = str(path)
+            found[name] = str(path.parent)
         else:
-            print(f"❌ {name} tool not found at: {path}")
+            print(f"❌ {name} tool not found at: {path.parent}")
 
     return found
