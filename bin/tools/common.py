@@ -212,7 +212,7 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     """
     tool_map = {
         "Allergenicity": tool_root / "algpred2" / "run_algpred2.py",
-        "PopCoverage": tool_root / "population_coverage" / "population_coverage.py",
+        "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
         "Conservation": tool_root / "epitope_cluster" / "cluster.py",
     }
 

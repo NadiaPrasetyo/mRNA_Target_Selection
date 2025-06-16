@@ -1,119 +1,136 @@
 import argparse
-from collections import Counter
-from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor
-from tools import run_allergenicity, run_population_coverage, run_conservation, common
 import sys
+from pathlib import Path
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 
-# Define which function runs which tool
+from tools import run_algpred, run_popcoverage, run_cluster, common
+
 tool_runners = {
-    "Allergenicity": run_allergenicity.run,
-    "PopulationCoverage": run_population_coverage.run,
-    "Conservation": run_conservation.run
+    "Allergenicity": run_algpred.run,
+    "PopCoverage": run_popcoverage.run,
+    "Conservation": run_cluster.run,
 }
 
 def is_job_completed(tool_type, input_path, base_output_dir):
-    """
-    Check if a job for the tool and input has already been processed.
-    """
     subdir = base_output_dir / tool_type.lower()
     subdir.mkdir(parents=True, exist_ok=True)
-
     base_name = input_path.stem
-    expected_suffix = ".json" if tool_type != "Allergenicity" else ".txt"
-    
+    expected_suffix = ".json" if tool_type == "Conservation" else ".txt"
     for file in subdir.glob(f"*{expected_suffix}"):
         if base_name in file.stem:
             return True
     return False
 
 def run_predictions_parallel(job_list, output_dir, max_threads):
-    print(f"\n⚙️ Running {len(job_list)} jobs in parallel using {max_threads} thread(s)...")
+    print(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
-        futures = [
-            executor.submit(tool_runners[tool], tool_path, input_file, output_dir)
-            for tool, tool_path, input_file in job_list
-        ]
+        futures = []
+        for tool_type, tool_path, input_file in job_list:
+            sub_output_dir = output_dir / tool_type.lower()
+
+            if tool_type == "Conservation" :
+                temp_json_dir = output_dir / "json_inputs"
+                json_paths = common.parse_fasta_to_jsons(
+                    input_file, temp_json_dir,
+                    alleles=[], peptide_lengths=[],
+                    tool_type="cluster", strain_name=input_file.stem[:-len("_matched_antigen")]
+                )
+                for json_path in json_paths:
+                    futures.append(
+                        executor.submit(tool_runners[tool_type], tool_path, json_path, sub_output_dir)
+                    )
+
+            elif tool_type == "PopCoverage":
+                temp_txt_dir = output_dir / "popcov_inputs"
+                txt_paths = common.parse_fasta_to_jsons(
+                    input_file, temp_txt_dir,
+                    alleles=[], peptide_lengths=[],
+                    tool_type="popcoverage", strain_name=input_file.stem[:-len("_matched_antigen")]
+                )
+                for txt_path in txt_paths:
+                    futures.append(
+                        executor.submit(tool_runners[tool_type], tool_path, txt_path, sub_output_dir)
+                    )
+
+            else:
+                futures.append(
+                    executor.submit(tool_runners[tool_type], tool_path, input_file, sub_output_dir)
+                )
+
         for f in futures:
             f.result()
 
 def main():
-    parser = argparse.ArgumentParser(description="Run allergenicity, population coverage, and conservation analysis")
+    parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Conservation")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
-    parser.add_argument("--tool-root", required=True, help="Path to directory containing tool executables")
+    parser.add_argument("--tool-root", required=True, help="Root directory containing analysis tools")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--tools", nargs="+", choices=["Allergenicity", "PopulationCoverage", "Conservation"],
-                        default=["Allergenicity", "PopulationCoverage", "Conservation"],
-                        help="Tools to run")
-    parser.add_argument("--output-dir", type=Path, default=Path("epitope_post_analysis_outputs"),
-                        help="Output directory to save results")
-
+    parser.add_argument("--tools", nargs="+", choices=["Allergenicity", "PopCoverage", "Conservation"], default=None,
+                        help="Specify which tools to run (default: all detected tools)")
+    parser.add_argument("--output-dir", type=Path, default=Path("evaluation_outputs"),
+                        help="Directory to save output files (default: 'evaluation_outputs')")
     args = parser.parse_args()
 
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
     sequence_path = pathogen_path / args.sequence_dir
-    output_dir = Path(args.output_dir)
+    output_dir = args.output_dir
+
+    for p in [pathogen_path, sequence_path, args.tool_root]:
+        if not Path(p).exists():
+            print(f"❌ Directory does not exist: {p}")
+            sys.exit(1)
+
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Validations
-    if not pathogen_path.exists():
-        print(f"❌ Pathogen directory does not exist: {pathogen_path}")
-        sys.exit(1)
-    if not sequence_path.exists():
-        print(f"❌ Sequence directory does not exist: {sequence_path}")
-        sys.exit(1)
-    if not Path(args.tool_root).exists():
-        print(f"❌ Tool root directory does not exist: {args.tool_root}")
+    tool_map = common.check_epitope_evaluation_tools(Path(args.tool_root))
+    selected_tools = set(args.tools) if args.tools else set(tool_map.keys())
+    missing_tools = selected_tools - set(tool_map.keys())
+    if missing_tools:
+        print(f"⚠️ Requested tools not found: {', '.join(missing_tools)}")
+
+    final_tools = {t: tool_map[t] for t in selected_tools if t in tool_map}
+    if not final_tools:
+        print("❌ No valid tools available. Exiting.")
         sys.exit(1)
 
-    # Fetch fasta files
     fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
     if not fasta_files:
         print(f"❌ No FASTA files found in {sequence_path}")
         sys.exit(1)
 
-    # Detect and map available tools
-    selected_tools = set(args.tools)
-    tool_map = {
-        "Allergenicity": Path(args.tool_root) / "algpred2" / "algpred2.py",
-        "PopulationCoverage": Path(args.tool_root) / "population_coverage" / "population_coverage.py",
-        "Conservation": Path(args.tool_root) / "cluster" / "cluster.py"
-    }
+    _, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
 
-    missing_tools = [tool for tool in selected_tools if not tool_map[tool].exists()]
-    if missing_tools:
-        print(f"❌ Tool(s) not found in tool-root: {', '.join(missing_tools)}")
+    jobs = []
+    for tool_type, tool_path in final_tools.items():
+        print(f"\n🧪 Preparing {tool_type} analysis...")
+        for input_file in fasta_files:
+            if is_job_completed(tool_type, input_file, output_dir):
+                print(f"⏩ Skipping {input_file.name} — already processed by {tool_type}")
+                continue
+            jobs.append((tool_type, tool_path, input_file))
+
+    if not jobs:
+        print("❌ No jobs to run. Exiting.")
+        # clean up any temporary directories created
+        common.cleanup_temp_dirs(temp_dir=output_dir / "json_inputs")
+        common.cleanup_temp_dirs(temp_dir=output_dir / "popcov_inputs")
         sys.exit(1)
 
-    final_tools = {tool: tool_map[tool] for tool in selected_tools}
+    print(f"\n🚀 Running {len(jobs)} evaluations with {args.threads} thread(s)...")
+    job_counter = Counter(j[0] for j in jobs)
+    print("\n📋 Job Summary:")
+    for k, v in job_counter.items():
+        print(f"  - {k}: {v} job(s)")
 
-    # Create output folders and prepare jobs
-    _, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
-    all_jobs = []
+    run_predictions_parallel(jobs, output_dir, args.threads)
+    print("\n✅ Evaluation complete.")
 
-    for tool, path in final_tools.items():
-        print(f"\n🧪 Preparing {tool} analysis")
-        for fasta_file in fasta_files:
-            if is_job_completed(tool, fasta_file, output_dir):
-                print(f"⏩ Skipping {fasta_file.name} — {tool} already done.")
-                continue
-            all_jobs.append((tool, path, fasta_file))
-
-    if not all_jobs:
-        print("✅ All jobs are already completed.")
-        sys.exit(0)
-
-    # Summary
-    print(f"\n📋 Job Summary:")
-    job_counter = Counter(job[0] for job in all_jobs)
-    for tool, count in job_counter.items():
-        print(f"  - {tool}: {count} job(s)")
-
-    run_predictions_parallel(all_jobs, output_dir, args.threads)
-
-    print("\n✅ All post-analysis tasks completed successfully.")
+    # clean up any temporary directories created
+    common.cleanup_temp_dirs(temp_dir=output_dir / "json_inputs")
+    common.cleanup_temp_dirs(temp_dir=output_dir / "popcov_inputs")
 
 if __name__ == "__main__":
     main()
