@@ -14,6 +14,7 @@ def run(tool_path: Path, input_json: Path, output_dir: Path,
         output_prefix (str): Optional output prefix (default: based on input_json name)
         output_format (str): Output format ('tsv' or 'json')
     """
+    tool_path = Path(tool_path)  # convert string to Path object
     script_path = tool_path/"run_cluster.py"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_prefix = output_prefix or input_json.stem.replace("_input", "")

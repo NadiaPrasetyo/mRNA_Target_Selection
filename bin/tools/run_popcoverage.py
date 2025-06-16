@@ -13,6 +13,7 @@ def run(tool_path: Path, input_file, output_dir, population="Global", mhc_class=
     - mhc_class (str): MHC class ('I', 'II', or 'combined')
     - plot (bool): Whether to generate a plot (default: False)
     """
+    tool_path = Path(tool_path)  # convert string to Path object
     script_path = tool_path / "calculate_population_coverage.py"
     output_dir.mkdir(parents=True, exist_ok=True)
 

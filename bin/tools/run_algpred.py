@@ -32,6 +32,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
         input_fasta (Path): Path to the input FASTA file
         output_dir (Path): Base output directory
     """
+    tool_path = Path(tool_path)  # convert string to Path object
     script_path = tool_path / "algpred2.py"
     if not script_path.exists():
         raise FileNotFoundError(f"AlgPred2 script not found: {script_path}")
