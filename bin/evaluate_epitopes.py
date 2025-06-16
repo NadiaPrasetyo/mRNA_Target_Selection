@@ -9,14 +9,14 @@ from tools import run_algpred, run_popcoverage, run_cluster, common
 tool_runners = {
     "Allergenicity": run_algpred.run,
     "PopCoverage": run_popcoverage.run,
-    "Conservation": run_cluster.run,
+    "Cluster": run_cluster.run,
 }
 
 def is_job_completed(tool_type, input_path, base_output_dir):
     subdir = base_output_dir / tool_type.lower()
     subdir.mkdir(parents=True, exist_ok=True)
     base_name = input_path.stem
-    expected_suffix = ".json" if tool_type == "Conservation" else ".txt"
+    expected_suffix = ".json" if tool_type == "Cluster" else ".txt"
     for file in subdir.glob(f"*{expected_suffix}"):
         if base_name in file.stem:
             return True
@@ -29,7 +29,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
         for tool_type, tool_path, input_file in job_list:
             sub_output_dir = output_dir / tool_type.lower()
 
-            if tool_type == "Conservation" :
+            if tool_type == "Cluster" :
                 temp_json_dir = output_dir / "json_inputs"
                 json_paths = common.parse_fasta_to_jsons(
                     input_file, temp_json_dir,
@@ -62,12 +62,12 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
             f.result()
 
 def main():
-    parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Conservation")
+    parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Cluster")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing analysis tools")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--tools", nargs="+", choices=["Allergenicity", "PopCoverage", "Conservation"], default=None,
+    parser.add_argument("--tools", nargs="+", choices=["Allergenicity", "PopCoverage", "Cluster"], default=None,
                         help="Specify which tools to run (default: all detected tools)")
     parser.add_argument("--output-dir", type=Path, default=Path("evaluation_outputs"),
                         help="Directory to save output files (default: 'evaluation_outputs')")

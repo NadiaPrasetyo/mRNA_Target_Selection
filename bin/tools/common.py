@@ -207,13 +207,13 @@ def parse_fasta_to_jsons(fasta_path, temp_dir, alleles, peptide_lengths, tool_ty
 
 def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     """
-    Detects available evaluation tools (Allergenicity, Population Coverage, Conservation).
+    Detects available evaluation tools (Allergenicity, Population Coverage, Cluster).
     Returns a dictionary mapping tool names to their runner paths.
     """
     tool_map = {
         "Allergenicity": tool_root / "algpred2" / "run_algpred2.py",
         "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
-        "Conservation": tool_root / "epitope_cluster" / "cluster.py",
+        "Cluster": tool_root / "epitope_cluster" / "cluster.py",
     }
 
     found = {}
