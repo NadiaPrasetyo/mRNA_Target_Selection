@@ -1,7 +1,7 @@
 import subprocess
 from pathlib import Path
 
-def run(tool_path, input_file, output_dir, population="Global", mhc_class="combined", plot=False):
+def run(tool_path: Path, input_file, output_dir, population="Global", mhc_class="combined", plot=False):
     """
     Run population coverage tool on a given input file.
 

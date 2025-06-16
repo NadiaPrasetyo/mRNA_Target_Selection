@@ -24,21 +24,21 @@ def patch_to_csv_sep(file_path: Path):
 
     print(f"🛠️ Patched .to_csv() in {file_path.name}, backup saved at {backup_path.name}")
 
-def run(tool_script: Path, input_fasta: Path, output_dir: Path):
+def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     """
     Runs AlgPred2.0 tool on the given FASTA file.
     Arguments:
-        tool_script (Path): Path to algpred2.py
+        tool_path (Path): Path to algpred2.py
         input_fasta (Path): Path to the input FASTA file
         output_dir (Path): Base output directory
     """
-    tool_script = Path(tool_script)
-    if not tool_script.exists():
-        raise FileNotFoundError(f"AlgPred2 script not found: {tool_script}")
+    script_path = tool_path / "algpred2.py"
+    if not script_path.exists():
+        raise FileNotFoundError(f"AlgPred2 script not found: {script_path}")
 
     # Pre-patch script if necessary
     try:
-        patch_to_csv_sep(tool_script)
+        patch_to_csv_sep(script_path)
     except Exception as e:
         print(f"⚠️ Could not patch CSV sep: {e}")
 
@@ -47,7 +47,7 @@ def run(tool_script: Path, input_fasta: Path, output_dir: Path):
     output_file = output_subdir / f"{input_fasta.stem}_ALGPRED.txt"
 
     cmd = [
-        "python3", str(tool_script),
+        "python3", str(script_path),
         "-i", str(input_fasta),
         "-o", str(output_file),
         "-m", "1",          # Model 1 (AAC + RF)
