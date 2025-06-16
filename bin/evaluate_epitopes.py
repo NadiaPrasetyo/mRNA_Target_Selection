@@ -30,7 +30,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
             sub_output_dir = output_dir / tool_type.lower()
 
             if tool_type == "Cluster" :
-                temp_json_dir = output_dir / "json_inputs"
+                temp_json_dir = output_dir / "json_inputs".mkdir(parents=True, exist_ok=True)
                 json_paths = common.parse_fasta_to_jsons(
                     input_file, temp_json_dir,
                     alleles=[], peptide_lengths=[],
@@ -42,7 +42,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
                     )
 
             elif tool_type == "PopCoverage":
-                temp_txt_dir = output_dir / "popcov_inputs"
+                temp_txt_dir = output_dir / "popcov_inputs".mkdir(parents=True, exist_ok=True)
                 txt_paths = common.parse_fasta_to_jsons(
                     input_file, temp_txt_dir,
                     alleles=[], peptide_lengths=[],

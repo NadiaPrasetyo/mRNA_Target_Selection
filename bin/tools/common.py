@@ -211,9 +211,9 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     Returns a dictionary mapping tool names to their runner paths.
     """
     tool_map = {
-        "Allergenicity": tool_root / "algpred2" / "run_algpred2.py",
+        "Allergenicity": tool_root / "algpred2" / "algpred2.py",
         "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
-        "Cluster": tool_root / "epitope_cluster" / "cluster.py",
+        "Cluster": tool_root / "ng_cluster-0.1.2-beta" / "src" / "run_cluster.py"
     }
 
     found = {}
