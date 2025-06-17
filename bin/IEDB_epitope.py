@@ -19,8 +19,9 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     and ends with the tool suffix.
     """
     subdir = base_output_dir / tool_type.lower()
-    subdir.mkdir(parents=True, exist_ok=True)
-    print(f"🔍 Checking if {tool_type} job for {input_path.name} is completed in {base_output_dir}")
+    if not subdir.exists():
+        print(f"❌ Output directory for {tool_type} does not exist: {subdir}")
+        return False
 
     base_name = input_path.stem
     expected_suffix = f"{tool_type.upper()}.json" # e.g., "MHCI.json", "MHCII.json", "BCELL.txt"
@@ -85,8 +86,7 @@ def main():
         sys.exit(1)
 
     # check that output directory exists or create it
-    output_dir = output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)    
+    output_dir = Path(args.output_dir)    
 
     sequence_path = pathogen_path / args.sequence_dir
     if not sequence_path.exists() or not sequence_path.is_dir():
