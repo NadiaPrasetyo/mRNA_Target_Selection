@@ -88,7 +88,7 @@ def is_job_completed(tool_type, input_path, base_output_dir):
 
     return False
 
-def run_predictions_parallel(job_list, output_dir, max_threads, args):
+def run_predictions_parallel(job_list, output_dir, epitope_dir, max_threads, args):
     """
     Run the specified jobs in parallel using a thread pool executor.
     Args:
@@ -111,8 +111,8 @@ def run_predictions_parallel(job_list, output_dir, max_threads, args):
                     futures.append(executor.submit(tool_runners[tool_type], tool_path, jp, sub_out))
             elif tool_type == "PopCoverage":
                 temp_txt = output_dir / "popcov_inputs"
-                mhci_ep = list((args.epitope_dir / "mhci").glob("*.json"))
-                mhcii_ep = list((args.epitope_dir / "mhcii").glob("*.json"))
+                mhci_ep = list((epitope_dir / "mhci").glob("*.json"))
+                mhcii_ep = list((epitope_dir / "mhcii").glob("*.json"))
                 for tool_class, files in [("MHCI", mhci_ep), ("MHCII", mhcii_ep)]:
                     for ep in files:
                         alleles = extract_epitopes.get_alleles_from_epitope_file(ep, tool_class.lower())
@@ -141,7 +141,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Cluster")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("epitope_dir", type=Path,
-                        help="Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
+                        help="Directory within the pathogen directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
     parser.add_argument("--tool-root", required=True, help="Root directory containing analysis tools")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
@@ -159,13 +159,12 @@ def main():
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
     output_dir = args.output_dir
+    epitope_dir = pathogen_path/args.epitope_dir
 
-    for p in [pathogen_path, args.tool_root, args.epitope_dir]:
+    for p in [pathogen_path, args.tool_root, epitope_dir]:
         if not Path(p).exists():
             print(f"❌ Directory does not exist: {p}")
             sys.exit(1)
-
-    output_dir.mkdir(parents=True, exist_ok=True)
 
     tool_map = common.check_epitope_evaluation_tools(Path(args.tool_root))
     selected_tools = set(args.tools) if args.tools else set(tool_map.keys())
@@ -181,11 +180,11 @@ def main():
     # Gather all JSON files from mhci, mhcii, bcell subdirectories
     epitope_json_files = []
     for sub in ["mhci", "mhcii", "bcell"]:
-        subdir = args.epitope_dir / sub
+        subdir = epitope_dir / sub
         if subdir.exists():
             epitope_json_files.extend(subdir.glob("*.json"))
     if not epitope_json_files:
-        print(f"❌ No epitope JSON files found in {args.epitope_dir}")
+        print(f"❌ No epitope JSON files found in {epitope_dir}")
         sys.exit(1)
 
     _, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
@@ -202,7 +201,7 @@ def main():
         sys.exit(0)
 
     logging.info(f"Launching {len(jobs)} job(s)")
-    run_predictions_parallel(jobs, output_dir, args.threads, args)
+    run_predictions_parallel(jobs, output_dir, epitope_dir, args.threads, args)
 
     common.cleanup_temp(output_dir / "json_inputs")
     common.cleanup_temp(output_dir / "popcov_inputs")
