@@ -4,7 +4,7 @@ evaluate_epitopes.py
 Command-line tool to evaluate predicted epitope sequences using multiple immunoinformatics tools.
 
 Overview:
-    - Runs evaluation tools (Allergenicity, Population Coverage, Cluster) on epitope FASTA files.
+    - Runs evaluation tools (Allergenicity, Population Coverage, Cluster) on epitope JSON files.
     - Supports parallel execution for efficient processing of multiple jobs.
     - Handles tool-specific input preparation and output validation.
     - Skips jobs if output already exists and passes validation checks.
@@ -12,21 +12,20 @@ Overview:
 
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
-    sequence_dir (str): Subdirectory inside pathogen_dir with epitope FASTA files.
+    epitope_dir (Path, required): Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs.
     --tool-root (str, required): Root directory containing the evaluation tools.
     --verbose (flag, optional): Enable verbose logging.
     --threads (int, optional): Number of parallel threads (default: 4).
     --tools (list, optional): Specify which tools to run (Allergenicity, PopCoverage, Cluster).
     --output-dir (Path, optional): Directory to save output files (default: evaluation_outputs).
-    --epitope-dir (Path, optional): Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs.
 
 Requirements:
     - Evaluation tools (Allergenicity, Population Coverage, Cluster) installed and available in tool-root.
-    - Epitope FASTA files present in the specified sequence directory.
+    - Epitope JSON files present in the specified epitope directory.
     - Python packages: argparse, concurrent.futures, pathlib, logging, json.
 
 Usage Example:
-    python evaluate_epitopes.py sars_cov_2 epitopes --tool-root tools/ --threads 8 --tools Allergenicity PopCoverage
+    python evaluate_epitopes.py sars_cov_2 --epitope-dir data/sars_cov_2/epitopes --tool-root tools/ --threads 8 --tools Allergenicity PopCoverage
 
 Outputs:
     <output_dir>/<tool_type>/*.txt or *.json   # Output files from each evaluation tool
@@ -58,7 +57,7 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     Looks for any file that contains the input's base name and ends with the tool-specific suffix.
     Args:
         tool_type (str): Type of the tool (e.g., "Allergenicity", "PopCoverage", "Cluster").
-        input_path (Path): Path to the input FASTA file.
+        input_path (Path): Path to the input JSON file.
         base_output_dir (Path): Base output directory where results are stored.
     Returns:
         bool: True if the job is completed (output file exists), False otherwise.
@@ -112,8 +111,8 @@ def run_predictions_parallel(job_list, output_dir, max_threads, args):
                     futures.append(executor.submit(tool_runners[tool_type], tool_path, jp, sub_out))
             elif tool_type == "PopCoverage":
                 temp_txt = output_dir / "popcov_inputs"
-                mhci_ep = list((args.epitope_dir / "mhci").glob("*.txt"))
-                mhcii_ep = list((args.epitope_dir / "mhcii").glob("*.txt"))
+                mhci_ep = list((args.epitope_dir / "mhci").glob("*.json"))
+                mhcii_ep = list((args.epitope_dir / "mhcii").glob("*.json"))
                 for tool_class, files in [("MHCI", mhci_ep), ("MHCII", mhcii_ep)]:
                     for ep in files:
                         alleles = extract_epitopes.get_alleles_from_epitope_file(ep, tool_class.lower())
@@ -137,11 +136,12 @@ def main():
     """
     Main function to parse command-line arguments and run the epitope evaluation pipeline.
     It checks for required directories, prepares output directories, and runs the specified tools
-    on the provided epitope FASTA files.
+    on the provided epitope JSON files.
     """
     parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Cluster")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
-    parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
+    parser.add_argument("--epitope-dir", type=Path, required=True,
+                        help="Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
     parser.add_argument("--tool-root", required=True, help="Root directory containing analysis tools")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
@@ -149,8 +149,6 @@ def main():
                         help="Specify which tools to run (default: all detected tools)")
     parser.add_argument("--output-dir", type=Path, default=Path("evaluation_outputs"),
                         help="Directory to save output files (default: 'evaluation_outputs')")
-    parser.add_argument("--epitope-dir", type=Path, required=False,
-                        help="Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
 
     args = parser.parse_args()
 
@@ -160,10 +158,9 @@ def main():
 
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
-    sequence_path = pathogen_path / args.sequence_dir
     output_dir = args.output_dir
 
-    for p in [pathogen_path, sequence_path, args.tool_root]:
+    for p in [pathogen_path, args.tool_root, args.epitope_dir]:
         if not Path(p).exists():
             print(f"❌ Directory does not exist: {p}")
             sys.exit(1)
@@ -181,16 +178,21 @@ def main():
         print("❌ No valid tools available. Exiting.")
         sys.exit(1)
 
-    fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
-    if not fasta_files:
-        print(f"❌ No FASTA files found in {sequence_path}")
+    # Gather all JSON files from mhci, mhcii, bcell subdirectories
+    epitope_json_files = []
+    for sub in ["mhci", "mhcii", "bcell"]:
+        subdir = args.epitope_dir / sub
+        if subdir.exists():
+            epitope_json_files.extend(subdir.glob("*.json"))
+    if not epitope_json_files:
+        print(f"❌ No epitope JSON files found in {args.epitope_dir}")
         sys.exit(1)
 
     _, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
 
     jobs = []
     for t, p in final_tools.items():
-        for f in fasta_files:
+        for f in epitope_json_files:
             if is_job_completed(t, f, output_dir):
                 logging.info(f"Skipping {f.name} for {t}")
                 continue
