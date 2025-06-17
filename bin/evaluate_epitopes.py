@@ -140,7 +140,7 @@ def main():
     """
     parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Cluster")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
-    parser.add_argument("--epitope-dir", type=Path, required=True,
+    parser.add_argument("epitope_dir", type=Path,
                         help="Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
     parser.add_argument("--tool-root", required=True, help="Root directory containing analysis tools")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
