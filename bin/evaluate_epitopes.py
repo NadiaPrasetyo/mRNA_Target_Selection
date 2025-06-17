@@ -3,7 +3,6 @@ import sys
 import logging
 import json
 from pathlib import Path
-from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 
 from tools import run_algpred, run_popcoverage, run_cluster, common, extract_epitopes
@@ -41,7 +40,6 @@ def is_job_completed(tool_type, input_path, base_output_dir):
 
     return False
 
-
 def run_predictions_parallel(job_list, output_dir, max_threads, args):
     logging.info(f"Starting parallel execution with {max_threads} thread(s) on {len(job_list)} jobs")
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
@@ -50,7 +48,8 @@ def run_predictions_parallel(job_list, output_dir, max_threads, args):
             sub_out = output_dir / tool_type.lower()
             if tool_type == "Cluster":
                 temp_dir = output_dir / "json_inputs"
-                alleles = args.mhci_alleles or []
+                alleles = extract_epitopes.get_alleles_from_epitope_file(input_file, "mhci") + \
+                          extract_epitopes.get_alleles_from_epitope_file(input_file, "mhcii")
                 jsons = common.parse_fasta_to_jsons(input_file, temp_dir, alleles, [], "cluster", input_file.stem)
                 for jp in jsons:
                     futures.append(executor.submit(tool_runners[tool_type], tool_path, jp, sub_out))
@@ -59,13 +58,14 @@ def run_predictions_parallel(job_list, output_dir, max_threads, args):
                 mhci_ep = list((args.epitope_dir / "mhci").glob("*.txt"))
                 mhcii_ep = list((args.epitope_dir / "mhcii").glob("*.txt"))
                 for tool_class, files in [("MHCI", mhci_ep), ("MHCII", mhcii_ep)]:
-                    alleles = common.get_alleles(tool_class, getattr(args, f"{tool_class.lower()}_allele_panel"), getattr(args, f"{tool_class.lower()}_alleles"))
                     for ep in files:
+                        alleles = extract_epitopes.get_alleles_from_epitope_file(ep, tool_class.lower())
                         out = temp_txt / f"{ep.stem}_{tool_class.lower()}.txt"
                         with open(ep) as fin, open(out, "w") as fout:
                             for l in fin:
                                 fq = l.strip()
-                                if fq: fout.write(f"{fq} {','.join(alleles)}\n")
+                                if fq:
+                                    fout.write(f"{fq} {','.join(alleles)}\n")
                         futures.append(executor.submit(tool_runners[tool_type], tool_path, out, sub_out))
             else:
                 futures.append(executor.submit(tool_runners[tool_type], tool_path, input_file, sub_out))
@@ -75,7 +75,6 @@ def run_predictions_parallel(job_list, output_dir, max_threads, args):
                 f.result()
             except Exception as e:
                 logging.error(f"Error in job: {e}")
-
 
 def main():
     parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Cluster")
@@ -89,17 +88,12 @@ def main():
     parser.add_argument("--output-dir", type=Path, default=Path("evaluation_outputs"),
                         help="Directory to save output files (default: 'evaluation_outputs')")
     parser.add_argument("--epitope-dir", type=Path, required=False,
-                    help="Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
-    parser.add_argument("--mhci-allele-panel", default="default", choices=["default", "extended", "custom"],
-                        help="Allele panel for MHCI")
-    parser.add_argument("--mhcii-allele-panel", default="default", choices=["default", "extended", "custom"],
-                        help="Allele panel for MHCII")
-    parser.add_argument("--mhci-alleles", nargs="+", default=None, help="Custom MHCI alleles if allele-panel=custom")
-    parser.add_argument("--mhcii-alleles", nargs="+", default=None, help="Custom MHCII alleles if allele-panel=custom")
+                        help="Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
 
     args = parser.parse_args()
 
-    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(asctime)s %(levelname)s %(message)s")
     logging.info("Starting epitope evaluation pipeline")
 
     data_dir = Path("data")
