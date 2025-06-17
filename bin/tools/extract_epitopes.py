@@ -1,8 +1,47 @@
+"""
+extract_epitopes.py
+Command-line tool to extract unique MHCI and MHCII epitopes from JSON output files.
+
+Overview:
+    - Scans specified directories for MHCI and MHCII epitope prediction JSON files.
+    - Extracts peptide sequences passing user-defined IC50 and percentile thresholds.
+    - Aggregates and deduplicates epitopes across all input files.
+    - Optionally writes the list of unique epitopes to an output file.
+
+Arguments:
+    epitope_dir (str): Directory containing 'mhci' and 'mhcii' subdirectories with JSON files.
+    --ic50-threshold (float, optional): IC50 threshold for MHCI epitopes (default: 500.0).
+    --mhci-percentile (float, optional): Percentile threshold for MHCI epitopes (default: 2.0).
+    --mhcii-percentile (float, optional): Percentile threshold for MHCII epitopes (default: 10.0).
+    --output-file (str, optional): Output file to save extracted epitopes.
+
+Requirements:
+    - JSON files with peptide prediction results in the specified directory structure.
+    - Python packages: argparse, pathlib, json.
+
+Usage Example:
+    python extract_epitopes.py results/epitopes --ic50-threshold 250 --mhci-percentile 1.5 --mhcii-percentile 5 --output-file selected_epitopes.txt
+
+Outputs:
+    Prints the number of peptides extracted from each file and the total unique epitopes.
+    Optionally writes sorted unique epitopes to the specified output file.
+
+Author: Nadia
+"""
 import json
 from pathlib import Path
 import argparse
 
 def extract_mhci_epitopes(file_path, ic50_threshold=500.0, percentile_threshold=2.0):
+    """
+    Extract MHCI epitopes from a JSON file based on IC50 and percentile thresholds.
+    Args:
+        file_path (str or Path): Path to the JSON file containing MHCI results.
+        ic50_threshold (float): IC50 threshold for filtering epitopes.
+        percentile_threshold (float): Percentile threshold for filtering epitopes.
+    Returns:
+        Set[str]: A set of unique peptide sequences that meet the thresholds.
+    """
     with open(file_path) as f:
         data = json.load(f)
 
@@ -21,6 +60,14 @@ def extract_mhci_epitopes(file_path, ic50_threshold=500.0, percentile_threshold=
     return epitopes
 
 def extract_mhcii_epitopes(file_path, percentile_threshold=10.0):
+    """
+    Extract MHCII epitopes from a JSON file based on percentile threshold.
+    Args:
+        file_path (str or Path): Path to the JSON file containing MHCII results.
+        percentile_threshold (float): Percentile threshold for filtering epitopes.
+    Returns:
+        Set[str]: A set of unique peptide sequences that meet the percentile threshold.
+    """
     with open(file_path) as f:
         data = json.load(f)
 
@@ -40,7 +87,13 @@ def extract_mhcii_epitopes(file_path, percentile_threshold=10.0):
 def extract_all_epitopes(epitope_dir, ic50_threshold=500.0, mhci_percentile=2.0, mhcii_percentile=10.0):
     """
     Collect unique epitopes from MHCI and MHCII JSON files under `epitope_dir/mhci/` and `epitope_dir/mhcii/`.
-    Returns: Set[str]
+    Args:
+        epitope_dir (str or Path): Directory containing 'mhci' and 'mhcii' subdirectories with JSON files.
+        ic50_threshold (float): IC50 threshold for MHCI epitopes.
+        mhci_percentile (float): Percentile threshold for MHCI epitopes.
+        mhcii_percentile (float): Percentile threshold for MHCII epitopes.
+    Returns: 
+        Set[str]
     """
     epitope_dir = Path(epitope_dir)
     mhci_dir = epitope_dir / "mhci"
@@ -58,6 +111,15 @@ def extract_all_epitopes(epitope_dir, ic50_threshold=500.0, mhci_percentile=2.0,
 
 
 def main(epitope_dir, ic50_threshold, mhci_percentile, mhcii_percentile, output_file):
+    """
+    Main function to extract and optionally save unique epitopes from specified directories.
+    Args:
+        epitope_dir (str or Path): Directory containing 'mhci' and 'mhcii' subdirectories with JSON files.
+        ic50_threshold (float): IC50 threshold for MHCI epitopes.
+        mhci_percentile (float): Percentile threshold for MHCI epitopes.
+        mhcii_percentile (float): Percentile threshold for MHCII epitopes.
+        output_file (str, optional): Output file to save extracted epitopes.
+    """
     epitope_dir = Path(epitope_dir)
     mhci_dir = epitope_dir / "mhci"
     mhcii_dir = epitope_dir / "mhcii"
@@ -85,6 +147,10 @@ def main(epitope_dir, ic50_threshold, mhci_percentile, mhcii_percentile, output_
         print(f"💾 Epitopes written to: {output_file}")
 
 if __name__ == "__main__":
+    """
+    Main entry point for the script to enable command-line execution.
+    Parses command-line arguments and calls the main function to extract epitopes.
+    """
     parser = argparse.ArgumentParser(description="Extract MHCI and MHCII epitopes from JSON output")
     parser.add_argument("epitope_dir", help="Directory containing 'mhci' and 'mhcii' subdirectories with JSON files")
     parser.add_argument("--ic50-threshold", type=float, default=500.0, help="IC50 threshold for MHCI epitopes")

@@ -1,31 +1,28 @@
 """
-/**
- * @file fetch_sequences_Uniprot.py
- * @brief Fetches protein sequence and metadata from UniProt based on antigen data.
- *
- * This script reads a compiled antigen CSV file containing antigen names, gene names,
- * and UniProt IDs. It queries the UniProt API to fetch full protein information
- * including sequence, function, domains, and features, then compiles and saves
- * the protein data into a new CSV file.
- *
- * General Flow:
- *   1. Load antigen records from a compiled CSV.
- *   2. For each antigen, fetch corresponding protein data via UniProt API.
- *   3. Parse and standardize protein metadata.
- *   4. Save compiled protein data to a CSV.
- *
- * Parameters:
- *   pathogen (str): Folder name for the pathogen (used for file paths).
- *   organism (str): Full name of the organism (used in UniProt queries).
- *
- * Usage:
- *   python fetch_sequences_Uniprot.py <pathogen> <organism>
- *
- * Example:
- *   python fetch_sequences_Uniprot.py sars_cov_2 "SARS-CoV-2"
- *
- * @author Nadia
- */
+fetch_sequences_Uniprot.py
+Command-line tool to fetch protein sequence and metadata from UniProt based on antigen data.
+
+Overview:
+    - Loads antigen records (antigen names, gene names, UniProt IDs) from a compiled CSV file.
+    - Queries the UniProt API to retrieve full protein information for each antigen.
+    - Parses and standardizes protein metadata including sequence, function, domains, and features.
+    - Compiles and saves the protein data into a new CSV file for downstream analysis.
+
+Arguments:
+    pathogen (str): Subdirectory under `data/` containing pathogen data and antigen CSV.
+    organism (str): Full name of the organism (used in UniProt queries).
+
+Requirements:
+    - Input CSV file with antigen data present in the specified pathogen directory.
+    - Python packages: argparse, csv, requests, os, re, unicodedata.
+
+Usage Example:
+    python fetch_sequences_Uniprot.py sars_cov_2 "SARS-CoV-2"
+
+Outputs:
+    data/<pathogen>/<organism>_compiled_proteins.csv   # Compiled protein metadata for the specified organism
+
+Author: Nadia
 """
 import csv
 import requests
@@ -36,18 +33,16 @@ import argparse
 
 UNIPROT_API_BASE = "https://www.ebi.ac.uk/proteins/api/proteins"
 
-"""
-/**
- * @brief Cleans and normalizes an antigen name.
- *
- * Removes special characters, normalizes Unicode to ASCII, strips Greek letters
- * and other extraneous tokens to return a clean, comparable name string.
- *
- * @param name (str): The antigen name to clean.
- * @return (str): The cleaned antigen name.
- */
-"""
 def clean_antigen_name(name):
+    """
+    Cleans and normalizes an antigen name by removing special characters,
+    normalizing Unicode to ASCII, and stripping Greek letters and other
+    extraneous tokens to return a clean, comparable name string.
+    Args:
+        name (str): The antigen name to clean.
+    Returns:
+        str: The cleaned antigen name.
+    """
     if not isinstance(name, str):
         return ""
     name = name.strip()
@@ -66,19 +61,16 @@ def clean_antigen_name(name):
     name = re.sub(r'^\W+|\W+$', '', name)
     return name
 
-"""
-/**
- * @brief Fetches UniProt data using a UniProt accession number.
- *
- * Queries the UniProt API for a given accession and organism. Returns
- * the first matching protein entry if found.
- *
- * @param accession (str): UniProt accession number.
- * @param organism (str): Organism name for the query.
- * @return (dict or None): JSON response from UniProt or None if failed.
- */
-"""
 def fetch_uniprot_by_accession(accession, organism):
+    """
+    Fetches UniProt data using a UniProt accession number.
+    Queries the UniProt API for a given accession and organism. 
+    Returns the first matching protein entry if found.
+    Args:
+        accession (str): UniProt accession number.
+        organism (str): Organism name for the query.
+    Returns:
+        dict or None: JSON response from UniProt or None if failed."""
     url = f"{UNIPROT_API_BASE}?offset=0&size=-1&accession={accession}&organism={organism.replace(' ', '%20')}"
     headers = {"Accept": "application/json"}
     try:
@@ -93,18 +85,17 @@ def fetch_uniprot_by_accession(accession, organism):
         print(f"[ERROR] Request failed for accession {accession}: {e}")
     return None
 
-"""
-/**
- * @brief Fetches UniProt data using a gene name.
- *
- * Queries the UniProt API by gene name and organism. Returns the first result if available.
- *
- * @param gene_name (str): Gene name to query.
- * @param organism (str): Organism name for the query.
- * @return (dict or None): JSON response from UniProt or None if no match found.
- */
-"""
 def fetch_uniprot_by_gene(gene_name, organism):
+    """
+    Fetches UniProt data using a gene name.
+    Queries the UniProt API for a given gene name and organism.
+    Returns the first matching protein entry if found.
+    Args:
+        gene_name (str): Gene name to query.
+        organism (str): Organism name for the query.
+    Returns:
+        dict or None: JSON response from UniProt or None if failed.
+    """
     headers = {"Accept": "application/json"}
     query = f"{UNIPROT_API_BASE}?offset=0&size=-1&gene={gene_name}&organism={organism}"
     try:
@@ -116,17 +107,14 @@ def fetch_uniprot_by_gene(gene_name, organism):
         pass
     return None
 
-"""
-/**
- * @brief Parses a UniProt protein entry into a structured dictionary.
- *
- * Extracts relevant metadata fields such as function, domains, features, and sequence.
- *
- * @param entry (dict): Raw JSON entry from UniProt API.
- * @return (dict or None): Structured dictionary of protein data or None if parsing fails.
- */
-"""
 def parse_uniprot_entry(entry):
+    """
+    Parses a UniProt protein entry and extracts relevant metadata.
+    Args:
+        entry (dict): Raw JSON entry from UniProt API.
+    Returns:
+        dict or None: Structured dictionary of protein data or None if parsing fails.
+    """
     try:
         accession = entry.get("accession", "")
         organism = entry.get("organism", {}).get("names", [{}])[0].get("value", "").lower()
@@ -176,17 +164,16 @@ def parse_uniprot_entry(entry):
         print(f"[ERROR] Failed to parse entry for {entry.get('accession', 'unknown')}: {e}")
         return None
 
-"""
-/**
- * @brief Loads antigen data from a CSV file.
- *
- * Reads the compiled antigen file and standardizes fields for downstream processing.
- *
- * @param file_path (str): Path to the antigen CSV file.
- * @return (list): List of antigen dictionaries with cleaned fields.
- */
-"""
 def load_antigen_records(file_path):
+    """
+    Loads antigen records from a CSV file and cleans the antigen names.
+    Parses the CSV file to extract antigen names, gene names, and UniProt IDs,
+    and cleans the antigen names using the `clean_antigen_name` function.
+    Args:
+        file_path (str): Path to the CSV file containing antigen data.
+    Returns:
+        list: List of dictionaries containing cleaned antigen records.
+    """
     records = []
     with open(file_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -199,18 +186,15 @@ def load_antigen_records(file_path):
             records.append(antigen)
     return records
 
-"""
-/**
- * @brief Main function for fetching and compiling UniProt protein data.
- *
- * Reads antigens, fetches UniProt entries by ID or gene, extracts relevant metadata,
- * and writes the compiled protein data to a CSV file.
- *
- * @param pathogen (str): Folder name of the pathogen.
- * @param organism (str): Full name of the organism to search against.
- */
-"""
 def main(pathogen, organism):
+    """
+    Main function to fetch and compile UniProt protein data based on antigen records.
+    Reads antigen data from a CSV file, queries UniProt for each antigen,
+    extracts relevant metadata, and writes the compiled protein data to a new CSV file.
+    Args:
+        pathogen (str): Subdirectory under `data/` containing pathogen data and antigen CSV.
+        organism (str): Full name of the organism to search against.
+    """
     pathogen_dir = os.path.join("data", pathogen)
     organism_tag = organism.replace(" ", "_").lower()
     antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_antigens.csv")
@@ -266,15 +250,8 @@ def main(pathogen, organism):
 
     print(f"[DONE] Wrote {len(protein_data)} proteins to: {output_file}")
 
-"""
-/**
- * @brief Entry point for the script. Parses CLI arguments and calls main().
- *
- * Usage:
- *   python fetch_sequences_Uniprot.py <pathogen_subfolder> <organism_name>
- */
-"""
 if __name__ == "__main__":
+    """Command-line interface for fetching protein sequences from UniProt based on antigen data."""
     parser = argparse.ArgumentParser(
         description="Fetch protein sequence and metadata from UniProt based on antigen data.",
         usage="python fetch_sequences_Uniprot.py <pathogen_directory> <pathogen_name>"

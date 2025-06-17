@@ -1,4 +1,33 @@
-# tools/run_signalp.py
+"""
+run_signalp.py
+Command-line tool to run SignalP predictions on protein FASTA files.
+
+Overview:
+    - Executes the SignalP executable on a given input FASTA file.
+    - Supports batch processing of sequences for large input files.
+    - Collects and organizes SignalP output files, including prediction results and artifacts.
+    - Handles temporary directories for intermediate files and moves generated artifacts for easy access.
+
+Arguments:
+    input_fasta (Path): Path to the input protein FASTA file.
+    output_dir (Path): Directory where SignalP results and artifacts will be stored.
+    --batch-size (int, optional): Number of sequences to process per batch (default: 10000).
+    --signalp-path (Path, required): Path to the SignalP executable.
+
+Requirements:
+    - SignalP executable available at the specified path.
+    - Python packages: argparse, pathlib, subprocess, shutil, os, sys.
+
+Usage Example:
+    python run_signalp.py proteins.fasta results/ --signalp-path /opt/signalp/signalp --batch-size 5000
+
+Outputs:
+    Writes SignalP prediction results to a text file in the output directory.
+    Moves generated artifact files (plots, predictions, mature sequences) to a temporary subdirectory.
+    Prints informative messages about progress and file locations.
+
+Author: Nadia
+"""
 import subprocess
 from pathlib import Path
 import sys
@@ -6,6 +35,14 @@ import shutil
 from os.path import abspath
 
 def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000):
+    """
+    Run SignalP on the given input FASTA file and save results to the specified output directory.
+    Args:
+        signalp_path (Path): Path to the SignalP executable.
+        input_fasta (Path): Path to the input protein FASTA file.
+        output_dir (Path): Directory where results will be saved.
+        batch_size (int): Number of sequences to process per batch (default: 10000).
+    """
     input_fasta_abs = Path(abspath(str(input_fasta)))
     output_dir_abs = Path(abspath(str(output_dir)))
     tmp_dir_abs = output_dir_abs / "tmp"
@@ -56,6 +93,11 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
 
 
 if __name__ == "__main__":
+    """Main entry point for the script to enable command-line execution.
+    Parses command-line arguments and runs the SignalP prediction.
+    Usage:
+        python run_signalp.py <input_fasta> <output_dir> --batch-size <batch_size> --signalp-path <signalp_path>
+    """
     import argparse
     parser = argparse.ArgumentParser(description="Run SignalP prediction")
     parser.add_argument("input_fasta", type=Path, help="Input FASTA file")

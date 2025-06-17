@@ -1,43 +1,35 @@
 """
-/**
- * @file align_antigens.py
- * @brief Aligns antigen protein sequences against strain genome sequences using MMseqs2.
- *
- * This script processes compiled antigen protein data and aligns them against translated
- * strain genome sequences using the MMseqs2 tool. It extracts best matches and saves
- * aligned antigen sequences and metadata to structured output files.
- *
- * General Flow:
- *   1. Converts antigen CSV to FASTA format.
- *   2. Searches each strain’s translated genome for matching antigens using MMseqs2.
- *   3. Extracts best hits and saves results to TSV and FASTA files.
- *   4. Optionally includes query sequences in output.
- *
- * Parameters:
- *   pathogen_directory (str): Folder under `data/` where the antigen and strain data are located.
- *   pathogen_name (str): Name of the pathogen (used to infer antigen file names).
- *   threads (int): Number of parallel workers to use.
- *   output_dir (str): Name of subdirectory for results under `data/<pathogen_directory>/`.
- *   fetch_qseq (bool): Whether to include query sequences in MMseqs2 output.
- *
- * Usage:
- *   python align_antigens.py <pathogen_directory> <pathogen_name> [--threads N] [--output-dir X] [--fetch-qseq]
- *
- * Example:
- *   python align_antigens.py sars_cov_2 "SARS-CoV-2" --threads 8 --fetch-qseq
- *
- * Output:
- *   - <output_dir>/<strain>_alignment.tsv
- *   - <output_dir>/<strain>_best_hits.tsv
- *   - <output_dir>/<strain>_matched_antigens.fasta
- *
- * Requires:
- *   - MMseqs2 installed and accessible in PATH
- *   - Antigen protein CSV with uniprot_accession, protein_name, sequence fields
- *   - Translated strain genome FASTA files in the format *_translated.fasta
- *
- * Author: [Your Name]
- */
+align_antigens_mmseqs.py
+
+Command-line tool to align antigen protein sequences against translated strain genome sequences using MMseqs2.
+
+Overview:
+    - Converts a compiled antigen CSV file to FASTA format.
+    - Aligns antigens to each strain's translated genome using MMseqs2.
+    - Extracts the best alignment hits for each antigen.
+    - Saves results as TSV (all alignments, best hits) and FASTA (matched antigen regions).
+
+Arguments:
+    pathogen_directory (str): Subdirectory under `data/` containing pathogen data.
+    pathogen_name (str): Scientific name of the pathogen (used to infer antigen file names).
+    --threads (int, optional): Number of parallel workers (default: 4).
+    --output-dir (str, optional): Output subdirectory (default: mmseqs_results).
+    --fetch-qseq (flag, optional): If set, includes query sequences in MMseqs2 output.
+
+Requirements:
+    - MMseqs2 installed and available in PATH.
+    - Antigen CSV file with columns: uniprot_accession, protein_name, sequence.
+    - Translated strain genome FASTA files named *_translated.fasta.
+
+Usage Example:
+    python align_antigens_mmseqs.py sars_cov_2 "SARS-CoV-2" --threads 8 --fetch-qseq
+
+Outputs:
+    <output_dir>/<strain>_alignment.tsv         # Raw MMseqs2 alignments
+    <output_dir>/<strain>_best_hits.tsv         # Best hit per antigen
+    <output_dir>/<strain>_matched_antigens.fasta # FASTA of matched antigen regions
+
+Author: Nadia
 """
 
 #!/usr/bin/env python3
@@ -53,19 +45,17 @@ from pathlib import Path
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-"""
-/**
- * @brief Converts antigen CSV records into a FASTA file.
- *
- * Each row in the input CSV is formatted into a FASTA record using accession,
- * protein name, and sequence fields.
- *
- * @param csv_path (str): Path to the antigen CSV file.
- * @param fasta_path (str): Output path for the generated FASTA file.
- * @return: None
- */
-"""
 def extract_antigens_to_fasta(csv_path, fasta_path):
+    """
+    Converts antigen CSV records into a FASTA file.
+    Each row in the input CSV is formatted into a FASTA record using the UniProt accession,
+    protein name, and sequence fields.
+    Parameters:
+        csv_path (str): Path to the antigen CSV file.
+        fasta_path (str): Output path for the generated FASTA file.
+    Returns:
+        None
+    """
     with open(csv_path, newline='') as csvfile, open(fasta_path, 'w') as f_out:
         reader = csv.DictReader(csvfile)
         for idx, row in enumerate(reader):
@@ -74,23 +64,19 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
             seq = row['sequence'].replace('\r', '').replace('\n', '')
             f_out.write(f">antigen_{idx}|{acc}|{name}\n{seq}\n")
 
-
-
-"""
-/**
- * @brief Runs MMseqs2 easy-search and processes alignment results.
- *
- * Executes alignment between antigens and a strain genome. Then extracts
- * the best hits and sequences from MMseqs2 output.
- *
- * @param strain_fasta_path (str): Path to strain's translated genome FASTA.
- * @param antigen_fasta (str): Path to antigen FASTA file.
- * @param results_dir (str): Directory to save output.
- * @param fetch_qseq (bool): If True, includes query sequences in the output.
- * @return: strain_name (str)
- */
-"""
 def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch_qseq=False):
+    """
+    Runs MMseqs2 easy-search and processes alignment results.
+    Executes sequence alignment between the provided antigen FASTA file and a strain's translated genome FASTA file using MMseqs2.
+    The function saves the raw alignment results, extracts the best hits, and writes matched antigen sequences to output files.
+    Args:
+        strain_fasta_path (str or Path): Path to the strain's translated genome FASTA file.
+        antigen_fasta (str or Path): Path to the antigen FASTA file.
+        results_dir (str or Path): Directory where output files will be saved.
+        fetch_qseq (bool, optional): If True, includes query sequences in the MMseqs2 output. Defaults to False.
+    Returns:
+        str: The name of the strain (derived from the input FASTA filename).
+    """
     strain_fasta = Path(strain_fasta_path)
     strain_name = strain_fasta.stem.replace("_translated", "")
     raw_result = results_dir / f"{strain_name}_alignment.tsv"
@@ -118,21 +104,21 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
     print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
 
-"""
-/**
- * @brief Extracts best alignment hits and writes them to TSV and FASTA.
- *
- * For each query, the best hit (based on percent identity) is retained and written to
- * a TSV summary and a FASTA with matched target sequences.
- *
- * @param raw_tsv_path (str): Path to raw MMseqs2 alignment TSV file.
- * @param output_tsv_path (str): Output path for filtered best hits TSV.
- * @param fasta_out_path (str): Output path for matched sequences FASTA.
- * @param fetch_qseq (bool): Whether to include query sequences in output.
- * @return: None
- */
-"""
 def extract_best_hits_with_sequences(strain_fasta_path, raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq):
+    """
+    Extracts the best alignment hits from MMseqs2 results and writes them to TSV and FASTA files.
+    For each query, retains the best hit based on percent identity and outputs:
+    - A TSV summary of the best hits.
+    - A FASTA file containing the matched target sequence slices.
+    Parameters:
+        strain_fasta_path (str): Path to the FASTA file containing all target sequences.
+        raw_tsv_path (str): Path to the raw MMseqs2 alignment TSV file.
+        output_tsv_path (str): Output path for the filtered best hits TSV file.
+        fasta_out_path (str): Output path for the matched target sequences FASTA file.
+        fetch_qseq (bool): Whether to include the query sequence in the output TSV.
+    Returns:
+        None
+    """
     best_hits = {}
 
     # Load all target sequences into a dict for slicing
@@ -207,22 +193,20 @@ def extract_best_hits_with_sequences(strain_fasta_path, raw_tsv_path, output_tsv
             header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
             fasta_out.write(f">{header}\n{hit['tseq_slice']}\n")
 
-"""
-/**
- * @brief Entry point to execute the antigen-to-strain alignment workflow.
- *
- * Validates input files and directories, prepares antigen FASTA, then runs
- * MMseqs2 alignments in parallel for each strain.
- *
- * @param pathogen_dir (str): Directory name under `data/`.
- * @param pathogen_name (str): Scientific name of the organism.
- * @param num_threads (int): Number of parallel processes to use.
- * @param output_dir (str): Output subdirectory name.
- * @param fetch_qseq (bool): If True, include query sequences in results.
- * @return: None
- */
-"""
 def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq):
+    """
+    Entry point to execute the antigen-to-strain alignment workflow.
+    Validates input files and directories, prepares an antigen FASTA file, and runs
+    MMseqs2 alignments in parallel for each strain genome.
+    Args:
+        pathogen_dir (str): Directory name under `data/` containing pathogen data.
+        pathogen_name (str): Scientific name of the organism.
+        num_threads (int): Number of parallel processes to use for alignment.
+        output_dir (str): Name of the output subdirectory for results.
+        fetch_qseq (bool): If True, include query sequences in the results.
+    Returns:
+        None
+    """
     base_dir = Path(f"data/{pathogen_dir}")
     pathogen_tag = pathogen_name.replace(" ", "_").lower()
     antigen_csv = base_dir / f"{pathogen_tag}_compiled_proteins.csv"
@@ -261,14 +245,8 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq):
     os.remove(antigen_fasta)
     print("All alignments complete.")
 
-"""
-/**
- * @brief CLI wrapper for align_antigens.py.
- *
- * Parses command-line arguments and invokes the main workflow.
- */
-"""
 if __name__ == "__main__":
+    
     parser = argparse.ArgumentParser(
         description="Align antigens to strain genomes using MMseqs2"
     )

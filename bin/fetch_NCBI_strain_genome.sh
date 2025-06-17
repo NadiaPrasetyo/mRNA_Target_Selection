@@ -1,42 +1,40 @@
-: '
-/**
- * fetch_NCBI_strain_genome.sh
- *
- * Purpose:
- *   This script automates the retrieval of nucleotide FASTA sequences from NCBI for a list of EMBL IDs
- *   specified in a CSV file. It maps each EMBL ID to a strain name, downloads all sequences in bulk,
- *   and splits them into individual FASTA files named after their respective strains.
- *
- *   After nucleotide sequences are fetched, the script uses `seqkit translate` to convert them into
- *   amino acid sequences. Translation is performed in parallel using multiple threads.
- *
- * Features:
- *   - Avoids re-downloading genome sequences if output files already exist.
- *   - Avoids re-translating sequences if translated files already exist.
- *   - Allows configurable parallel translation via --threads option.
- *   - Verifies that `seqkit` is installed before proceeding.
- *
- * Usage:
- *   ./fetch_NCBI_strain_genome.sh [--threads N] <pathogen_directory> <file_name.csv>
- *
- *   Options:
- *     --threads N           Number of threads to use for parallel translation (default: 4)
- *     <pathogen_directory>  Subdirectory under "data/" where the CSV and output will reside
- *     <file_name.csv>       CSV file (in the specified directory) with strain names and EMBL IDs
- *                           (columns: strain,embl_id)
- *
- * Example:
- *   ./fetch_NCBI_strain_genome.sh --threads 6 ecoli ecoli_strains.csv
- *
- * Output:
- *   - Individual FASTA files for each strain in:
- *       data/<pathogen_directory>/strain_genomes/
- *   - Translated amino acid FASTA files (one per strain), with suffix "_translated.fasta"
- *   - Log file of unmatched EMBL IDs: unmatched_ids.log (in the same output directory)
- *
- * Author: Nadia
- */
-'
+###############################################################################
+# fetch_NCBI_strain_genome.sh
+#
+# Description:
+#   Automates retrieval of nucleotide FASTA sequences from NCBI for a list of
+#   EMBL IDs specified in a CSV file. Maps each EMBL ID to a strain name,
+#   downloads all sequences in bulk, and splits them into individual FASTA files
+#   named after their respective strains.
+#
+#   After fetching nucleotide sequences, uses seqkit translate to convert them
+#   into amino acid sequences in parallel.
+#
+# Features:
+#   - Skips download if genome FASTA files already exist.
+#   - Skips translation if translated files already exist.
+#   - Configurable parallel translation via --threads option.
+#   - Checks for required tools: efetch, seqkit, mmseqs.
+#
+# Usage:
+#   ./fetch_NCBI_strain_genome.sh [--threads N] <pathogen_directory> <file_name.csv>
+#
+#   Options:
+#     --threads N           Number of threads for parallel translation (default: 4)
+#     <pathogen_directory>  Subdirectory under "data/" for CSV and output
+#     <file_name.csv>       CSV file (columns: strain,embl_id) in the specified directory
+#
+# Example:
+#   ./fetch_NCBI_strain_genome.sh --threads 6 ecoli ecoli_strains.csv
+#
+# Output:
+#   - Individual FASTA files for each strain in:
+#       data/<pathogen_directory>/strain_genomes/
+#   - Translated amino acid FASTA files with suffix "_translated.fasta"
+#   - Log file of unmatched EMBL IDs: unmatched_ids.log (in output directory)
+#
+# Author: Nadia
+###############################################################################
 #!/bin/bash
 set -e
 

@@ -1,3 +1,40 @@
+"""
+evaluate_epitopes.py
+
+Command-line tool to evaluate predicted epitope sequences using multiple immunoinformatics tools.
+
+Overview:
+    - Runs evaluation tools (Allergenicity, Population Coverage, Cluster) on epitope FASTA files.
+    - Supports parallel execution for efficient processing of multiple jobs.
+    - Handles tool-specific input preparation and output validation.
+    - Skips jobs if output already exists and passes validation checks.
+    - Cleans up temporary files generated during processing.
+
+Arguments:
+    pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
+    sequence_dir (str): Subdirectory inside pathogen_dir with epitope FASTA files.
+    --tool-root (str, required): Root directory containing the evaluation tools.
+    --verbose (flag, optional): Enable verbose logging.
+    --threads (int, optional): Number of parallel threads (default: 4).
+    --tools (list, optional): Specify which tools to run (Allergenicity, PopCoverage, Cluster).
+    --output-dir (Path, optional): Directory to save output files (default: evaluation_outputs).
+    --epitope-dir (Path, optional): Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs.
+
+Requirements:
+    - Evaluation tools (Allergenicity, Population Coverage, Cluster) installed and available in tool-root.
+    - Epitope FASTA files present in the specified sequence directory.
+    - Python packages: argparse, concurrent.futures, pathlib, logging, json.
+
+Usage Example:
+    python evaluate_epitopes.py sars_cov_2 epitopes --tool-root tools/ --threads 8 --tools Allergenicity PopCoverage
+
+Outputs:
+    <output_dir>/<tool_type>/*.txt or *.json   # Output files from each evaluation tool
+    <output_dir>/json_inputs/                  # Temporary JSON files for Cluster tool
+    <output_dir>/popcov_inputs/                # Temporary input files for PopCoverage tool
+
+Author: Nadia
+"""
 import argparse
 import sys
 import logging
@@ -7,6 +44,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from tools import run_algpred, run_popcoverage, run_cluster, common, extract_epitopes
 
+# Dictionary mapping tool names to their respective runner functions
 tool_runners = {
     "Allergenicity": run_algpred.run,
     "PopCoverage": run_popcoverage.run,
@@ -14,6 +52,17 @@ tool_runners = {
 }
 
 def is_job_completed(tool_type, input_path, base_output_dir):
+    """
+    Check if a job has already been processed by verifying if a result file exists
+    in the tool-specific output directory.
+    Looks for any file that contains the input's base name and ends with the tool-specific suffix.
+    Args:
+        tool_type (str): Type of the tool (e.g., "Allergenicity", "PopCoverage", "Cluster").
+        input_path (Path): Path to the input FASTA file.
+        base_output_dir (Path): Base output directory where results are stored.
+    Returns:
+        bool: True if the job is completed (output file exists), False otherwise.
+    """
     subdir = base_output_dir / tool_type.lower()
     expected_suffix = ".json" if tool_type == "Cluster" else ".txt"
 
@@ -41,6 +90,14 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     return False
 
 def run_predictions_parallel(job_list, output_dir, max_threads, args):
+    """
+    Run the specified jobs in parallel using a thread pool executor.
+    Args:
+        job_list (list): List of tuples containing (tool_type, tool_path, input_file).
+        output_dir (Path): Directory to save output files.
+        max_threads (int): Maximum number of threads to use for parallel execution.
+        args (argparse.Namespace): Parsed command-line arguments.
+    """
     logging.info(f"Starting parallel execution with {max_threads} thread(s) on {len(job_list)} jobs")
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
         futures = []
@@ -77,6 +134,11 @@ def run_predictions_parallel(job_list, output_dir, max_threads, args):
                 logging.error(f"Error in job: {e}")
 
 def main():
+    """
+    Main function to parse command-line arguments and run the epitope evaluation pipeline.
+    It checks for required directories, prepares output directories, and runs the specified tools
+    on the provided epitope FASTA files.
+    """
     parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Cluster")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")

@@ -1,4 +1,35 @@
-# tools/run_targetp.py
+"""
+run_targetp.py
+Command-line tool to run TargetP subcellular localization predictions on protein FASTA files.
+
+Overview:
+    - Validates the existence and executability of the TargetP binary and input FASTA file.
+    - Runs TargetP with specified parameters, including organism type, output format, batch size, and temporary directory.
+    - Writes TargetP prediction results to an output file in the specified directory.
+    - Moves generated plot and additional output files (e.g., mature FASTA, GFF3) to the output directory for convenience.
+
+Arguments:
+    targetp_path (Path): Path to the TargetP executable binary.
+    input_fasta (Path): Path to the input protein FASTA file.
+    output_dir (Path): Directory where output files will be written.
+    --batch-size (int, optional): Number of sequences to process per batch (default: 100).
+
+Requirements:
+    - TargetP binary installed and accessible at the specified path.
+    - Input protein FASTA file.
+    - Python packages: argparse, pathlib, subprocess, shutil, os, sys.
+
+Usage Example:
+    python run_targetp.py --targetp_path /usr/local/bin/targetp input_sequences.fasta results/targetp --batch-size 200
+
+Outputs:
+    - Writes TargetP prediction results to <output_dir>/<basename>_targetp.txt.
+    - Moves generated plot (if any) to <output_dir>/<basename>_targetp_plot.png.
+    - Moves additional files (e.g., mature FASTA, GFF3) to the output directory.
+    - Prints informative messages about progress and file locations.
+
+Author: Nadia
+"""
 import subprocess
 from pathlib import Path
 import sys
@@ -6,6 +37,14 @@ import shutil
 import os
 
 def run(targetp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 100):
+    """
+    Run TargetP on the provided input FASTA file and write results to the specified output directory.
+    Args:
+        targetp_path (Path): Path to the TargetP executable binary.
+        input_fasta (Path): Path to the input protein FASTA file.
+        output_dir (Path): Directory where output files will be written.
+        batch_size (int): Number of sequences to process per batch (default: 100).
+    """
     if not input_fasta.exists():
         print(f"❌ Input FASTA file does not exist: {input_fasta}")
         sys.exit(1)
@@ -62,6 +101,12 @@ def run(targetp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
 
 # Optional CLI interface for direct use
 if __name__ == "__main__":
+    """Command-line interface for running TargetP predictions.
+    This script allows users to specify the TargetP binary path, input FASTA file,
+    output directory, and batch size for processing sequences.
+    Usage:
+        python run_targetp.py --targetp_path /path/to/targetp input_sequences.fasta output_directory --batch-size 100
+    """
     import argparse
     parser = argparse.ArgumentParser(description="Run TargetP prediction")
     parser.add_argument("--targetp_path", type=Path, help="Path to TargetP binary")

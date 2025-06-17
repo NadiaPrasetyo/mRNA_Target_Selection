@@ -1,33 +1,26 @@
 """
-/**
- * @file fetch_iedb_data.py
- * @brief Fetches antigen and epitope data for a given organism from the IEDB API.
- *
- * This script queries the IEDB (Immune Epitope Database) API for antigen and epitope records
- * associated with a specified source organism, saving them to structured CSV files.
- *
- * General Flow:
- *   1. Parses command-line arguments for output folder and organism name.
- *   2. Constructs appropriate API query parameters for antigens and epitopes.
- *   3. Sends GET requests to IEDB antigen and epitope endpoints.
- *   4. Saves the returned JSON data to CSV files.
- *
- * Parameters:
- *   output_folder (str): Directory name where the results will be saved.
- *   source_organism (str): Scientific name of the target organism to query in IEDB.
- *
- * Usage:
- *   python fetch_iedb_data.py <output_folder> <source_organism>
- *
- * Example:
- *   python fetch_iedb_data.py sars_cov_2 "SARS-CoV-2"
- *
- * Output:
- *   - <output_folder>/<organism_tag>_IEDB_antigens.csv
- *   - <output_folder>/<organism_tag>_IEDB_epitope.csv
- *
- * @author Nadia
- */
+IEDB_fetch.py
+Command-line tool to fetch antigen and epitope data for a given organism from the IEDB API.
+
+Overview:
+    - Queries the IEDB (Immune Epitope Database) API for antigen and epitope records associated with a specified source organism.
+    - Saves the retrieved data as structured CSV files in a user-specified output directory.
+
+Arguments:
+    output_folder (str): Subdirectory under `data/` where results will be saved.
+    source_organism (str): Scientific name of the target organism to query (e.g., "SARS-CoV-2").
+
+Requirements:
+    - Python packages: requests, csv, argparse, os.
+
+Usage Example:
+    python IEDB_fetch.py sars_cov_2 "SARS-CoV-2"
+
+Outputs:
+    data/<output_folder>/<organism_tag>_IEDB_antigens.csv   # Antigen records for the organism
+    data/<output_folder>/<organism_tag>_IEDB_epitope.csv    # Epitope records for the organism
+
+Author: Nadia
 """
 
 import requests
@@ -39,6 +32,7 @@ import argparse
 antigen_url = "https://query-api.iedb.org/antigen_search"
 epitope_url = "https://query-api.iedb.org/epitope_search"
 
+# Argument parser setup
 parser = argparse.ArgumentParser(
     description="Fetches antigen and epitope data for a given organism from the IEDB API.",
     usage="python fetch_iedb_data.py <output_folder> <source_organism>"
@@ -53,20 +47,17 @@ organism_tag = source_organism.replace(" ", "_")
 
 os.makedirs(output_folder, exist_ok=True)
 
-"""
-/**
- * @brief Sends GET request to IEDB API and saves the response to a CSV file.
- *
- * This function queries a specified IEDB endpoint with given parameters. If results are
- * found, they are saved to a CSV file. Basic logging and error handling are included.
- *
- * @param url (str): The IEDB API endpoint to query.
- * @param params (dict): Dictionary of query parameters.
- * @param out_path (str): Path to the output CSV file.
- * @return: None
- */
-"""
 def fetch_and_save(url, params, out_path):
+    """
+    Fetch data from IEDB API and save to CSV file. Queries the specified URL with given parameters,
+    and writes the results to a CSV file at the specified output path. Handles errors and logs progress.
+    Args:
+        url (str): The IEDB API endpoint to query.
+        params (dict): Dictionary of query parameters.
+        out_path (str): Path to the output CSV file.
+    Returns:
+        None
+    """
     headers = {
         "Accept": "application/json",
         "Prefer": "count=exact"

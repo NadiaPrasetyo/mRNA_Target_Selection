@@ -1,3 +1,34 @@
+"""
+run_popcoverage.py
+Command-line utility to run the population coverage analysis tool on epitope-allele input files.
+
+Overview:
+    - Executes the calculate_population_coverage.py script for a given set of epitopes and HLA alleles.
+    - Supports analysis for specific populations and MHC classes (I, II, or combined).
+    - Optionally generates population coverage plots.
+    - Saves the population coverage results to a specified output directory.
+
+Arguments:
+    tool_path (Path): Path to the directory containing calculate_population_coverage.py.
+    input_file (Path): Path to the input .txt file with epitope and allele information.
+    output_dir (Path): Directory to save the population coverage results.
+    population (str, optional): Population name to analyze (default: 'Global').
+    mhc_class (str, optional): MHC class to analyze ('I', 'II', or 'combined'; default: 'combined').
+    plot (bool, optional): Whether to generate a population coverage plot (default: False).
+
+Requirements:
+    - calculate_population_coverage.py script available in the specified tool_path.
+    - Python packages: subprocess, pathlib.
+
+Usage Example:
+    python run_popcoverage.py /path/to/tools input_epitopes.txt results/ --population EastAsia --mhc_class I --plot
+
+Outputs:
+    - Writes the population coverage analysis results to a text file in the output directory.
+    - Optionally generates and saves a plot of the population coverage.
+
+Author: Nadia
+"""
 import subprocess
 from pathlib import Path
 

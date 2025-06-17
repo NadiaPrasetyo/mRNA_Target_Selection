@@ -1,12 +1,46 @@
 # tools/run_tmhmm.py
+"""
+run_tmhmm.py
+Command-line tool to run TMHMM transmembrane helix prediction on protein FASTA files.
+
+Overview:
+    - Ensures TMHMM Perl scripts have correct shebang lines for the current environment.
+    - Validates presence of required TMHMM files and scripts.
+    - Executes TMHMM prediction on the provided input FASTA file.
+    - Processes and annotates TMHMM output, appending '_tmhmm' to sequence identifiers.
+    - Saves results to a specified output directory and organizes TMHMM-generated artifacts.
+
+Arguments:
+    tmhmm_dir (Path): Path to the TMHMM2.0a installation directory.
+    input_fasta (Path): Input protein FASTA file for TMHMM prediction.
+    output_dir (Path): Directory to save TMHMM prediction results and artifacts.
+
+Requirements:
+    - TMHMM2.0a installed and accessible at the specified path.
+    - Perl interpreter available in the system PATH.
+    - Python packages: argparse, pathlib, subprocess, shutil, os.
+
+Usage Example:
+    python run_tmhmm.py /opt/TMHMM2.0a/bin/tmhmm input.fasta results/tmhmm
+
+Outputs:
+    - Writes TMHMM prediction results to <output_dir>/<input_basename>_tmhmm_result.txt.
+    - Moves TMHMM_* artifact directories to <output_dir>/tmp/.
+    - Prints status messages and error diagnostics to the console.
+
+Author: Nadia
+"""
 import subprocess
 from pathlib import Path
 import sys
 import shutil
-import os
 
 def patch_shebang(file_path: Path, perl_path: str):
-    """Ensure the shebang line of file_path points to perl_path."""
+    """Ensure the shebang line of file_path points to perl_path.
+    If the file does not exist or is empty, it will skip patching.
+    Args:
+        file_path (Path): Path to the script file to patch.
+        perl_path (str): Path to the Perl interpreter."""
     if not file_path.is_file():
         print(f"Warning: {file_path} not found, skipping shebang patch.")
         return
@@ -26,6 +60,12 @@ def patch_shebang(file_path: Path, perl_path: str):
 
 
 def run(tmhmm_path: Path, input_fasta: Path, output_dir: Path): 
+    """Run TMHMM prediction on the provided input FASTA file.
+    Args:
+        tmhmm_path (Path): Path to the TMHMM2.0a installation directory.
+        input_fasta (Path): Input protein FASTA file for TMHMM prediction.
+        output_dir (Path): Directory to save TMHMM prediction results and artifacts.
+    """
     # Resolve absolute paths
     tmhmm_dir = tmhmm_path.parent.parent.resolve() 
     input_fasta = input_fasta.resolve()
@@ -92,6 +132,11 @@ def run(tmhmm_path: Path, input_fasta: Path, output_dir: Path):
             shutil.move(str(item), tmp_dest / item.name)
 
 if __name__ == "__main__":
+    """Main entry point for the script to enable command-line execution.
+    Parses command-line arguments and runs the TMHMM prediction.
+    Usage:
+    python run_tmhmm.py /path/to/tmhmm2.0a/bin/tmhmm input.fasta output_dir
+    """
     import argparse
     parser = argparse.ArgumentParser(description="Run TMHMM prediction")
     parser.add_argument("tmhmm_dir", type=Path, help="Path to TMHMM2.0a directory")

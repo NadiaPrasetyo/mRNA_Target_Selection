@@ -1,40 +1,32 @@
 """
-/**
- * @file sanity_check_antigen_seq.py
- * @brief Validates mapping of IEDB epitope sequences to compiled antigen sequences using MMseqs2.
- *
- * This script checks if the epitope sequences fetched from IEDB can be mapped to the compiled
- * protein sequences (antigens) using MMseqs2. It parses antigen and epitope CSVs, performs pairwise
- * sequence alignment, and outputs mapping statistics.
- *
- * General Flow:
- *   1. Parses command-line arguments for data paths and organism name.
- *   2. Loads antigen and epitope sequences from CSV files.
- *   3. Writes sequences into FASTA files.
- *   4. Performs sequence similarity search using MMseqs2.
- *   5. Parses alignment results to compute mapping statistics.
- *   6. Outputs a CSV summary of epitope mapping success/failure.
- *
- * Parameters:
- *   pathogen_directory (str): Directory under `data/` containing antigen and epitope CSV files.
- *   pathogen_name (str): Full organism name (e.g., "Staphylococcus aureus").
- *   output_dir (str): Subdirectory name under `data/<pathogen_directory>/` for results.
- *
- * Usage:
- *   python sanity_check_antigen_seq.py <pathogen_directory> <pathogen_name> <output_dir>
- *
- * Example:
- *   python sanity_check_antigen_seq.py staph_aureus "Staphylococcus aureus" mmseqs_output
- *
- * Output:
- *   - data/<pathogen_directory>/<output_dir>/mmseqs_result_<antigen_id>.m8
- *   - data/<pathogen_directory>/<output_dir>/<pathogen_name>_epitope_mapping_summary.csv
- *
- * Requirements:
- *   - mmseqs2 must be installed and available in the system PATH.
- *
- * @author YourName
- */
+sanity_check_antigen_seq.py
+
+Command-line tool to validate mapping of IEDB epitope sequences to compiled antigen sequences using MMseqs2.
+
+Overview:
+    - Parses antigen and epitope CSV files for a specified pathogen.
+    - Writes antigen and epitope sequences to FASTA files.
+    - Runs MMseqs2 to align epitope sequences against compiled antigen sequences.
+    - Computes and summarizes mapping statistics for each antigen.
+    - Outputs per-antigen MMseqs2 results and a summary CSV.
+
+Arguments:
+    pathogen_directory (str): Subdirectory under `data/` containing antigen and epitope CSV files.
+    pathogen_name (str): Full organism name (e.g., "Staphylococcus aureus").
+    output_dir (str): Subdirectory under `data/<pathogen_directory>/` for results.
+
+Requirements:
+    - mmseqs2 must be installed and available in the system PATH.
+    - Input CSV files must be present in the specified data directory.
+
+Usage Example:
+    python sanity_check_antigen_seq.py staph_aureus "Staphylococcus aureus" mmseqs_output
+
+Outputs:
+    data/<pathogen_directory>/<output_dir>/mmseqs_result_<antigen_id>.m8      # MMseqs2 alignment results per antigen
+    data/<pathogen_directory>/<output_dir>/<pathogen_name>_epitope_mapping_summary.csv   # Mapping summary statistics
+
+Author: Nadia
 """
 
 import os
@@ -45,18 +37,16 @@ import tempfile
 from collections import defaultdict
 import argparse
 
-"""
-    /**
-     * @brief Cleans and standardizes UniProt IRIs from various formats.
-     *
-     * This function normalizes input strings like 'UNIPROT:O80066' or 
-     * 'http://identifiers.org/uniprot/O80066' to extract just the UniProt accession.
-     *
-     * @param iri (str): Raw antigen IRI from IEDB data.
-     * @return (str): Cleaned UniProt accession string.
-     */
-    """
 def clean_uniprot_iri(iri):
+    """
+    Cleans and standardizes UniProt IRIs from various formats.
+    This function normalizes input strings like 'UNIPROT:O80066' or
+    'http://identifiers.org/uniprot/O80066' to extract just the UniProt accession.
+    Args:
+        iri (str): Raw antigen IRI from IEDB data.
+    Returns:
+        str: Cleaned UniProt accession string.
+    """
     # For this example, assume you get a string: "['UNIPROT:O80066']"
     iri = iri.strip("[]'\" ")
     
@@ -71,17 +61,14 @@ def clean_uniprot_iri(iri):
     
     return iri
 
-"""
-    /**
-     * @brief Loads antigen sequences and names from a CSV file.
-     *
-     * Extracts UniProt accessions, protein sequences, and protein names.
-     *
-     * @param antigen_file (str): Path to the antigen CSV file.
-     * @return (tuple): Dictionary of {accession: sequence} and {accession: protein name}.
-     */
-    """
 def load_antigens(antigen_file):
+    """
+    Loads antigen sequences and names from a CSV file.
+    Extracts UniProt accessions, protein sequences, and protein names.
+    Args:
+        antigen_file (str): Path to the antigen CSV file.
+    Returns:
+        tuple: Dictionary of {accession: sequence} and {accession: protein name}."""
     antigens = {}
     antigen_names = {}  # Map antigen_id -> antigen_name
 
@@ -98,17 +85,15 @@ def load_antigens(antigen_file):
                 antigen_names[acc] = antigen_name
     return antigens, antigen_names
 
-"""
-    /**
-     * @brief Loads epitope sequences and parent antigen names from a CSV file.
-     *
-     * Maps cleaned antigen IRIs to their epitope sequences and names.
-     *
-     * @param epitope_file (str): Path to the epitope CSV file.
-     * @return (tuple): Dictionary of {antigen: [epitopes]} and {antigen: name}.
-     */
-    """
 def load_epitopes(epitope_file):
+    """
+    Loads epitope sequences and their parent antigen names from a CSV file.
+    Maps cleaned antigen IRIs to their epitope sequences and names.
+    Args:
+        epitope_file (str): Path to the epitope CSV file.
+    Returns:
+        tuple: Dictionary of {antigen_id: [epitopes]} and {antigen_id: antigen_name}.
+    """
     epitope_map = defaultdict(list)
     antigen_names = {}  # Map antigen_id -> antigen_name
     with open(epitope_file, newline='') as csvfile:
@@ -126,49 +111,45 @@ def load_epitopes(epitope_file):
             epitope_map[cleaned_uniprot].append(ep_seq)
     return epitope_map, antigen_names
 
-"""
-    /**
-     * @brief Writes antigen sequences to a FASTA file.
-     *
-     * @param filehandle (file object): File handle to write to.
-     * @param sequences_dict (dict): Mapping of name -> sequence.
-     * @return: None
-     */
-    """
 def write_fasta(filehandle, sequences_dict):
+    """
+    Writes sequences in FASTA format to the given file handle.
+    Each sequence is labeled with its name.
+    Args:
+        filehandle (file object): File handle to write to.
+        sequences_dict (dict): Dictionary mapping sequence names to sequences.
+    Returns:
+        None
+    """
     for name, seq in sequences_dict.items():
         filehandle.write(f">{name}\n{seq}\n")
 
-"""
-    /**
-     * @brief Writes epitope sequences in FASTA format for a given antigen.
-     *
-     * Each epitope sequence is labeled with an index and its associated antigen ID.
-     *
-     * @param filehandle (file object): File handle to write to.
-     * @param epitope_seqs (list): List of epitope sequences.
-     * @param antigen_id (str): Antigen identifier for labeling.
-     * @return: None
-     */
-    """
 def write_epitope_fasta(filehandle, epitope_seqs, antigen_id):
+    """
+    Writes epitope sequences in FASTA format for a given antigen.
+    Each epitope sequence is labeled with an index and its associated antigen ID.
+    Args:
+        filehandle (file object): File handle to write to.
+        epitope_seqs (list): List of epitope sequences.
+        antigen_id (str): Antigen identifier for labeling.
+    Returns:
+        None
+    """
     for i, seq in enumerate(epitope_seqs):
         filehandle.write(f">{antigen_id}_epi_{i}\n{seq}\n")
 
-"""
-    /**
-     * @brief Runs MMseqs2 easy-search between epitope and antigen FASTA files.
-     *
-     * Performs all-vs-all sequence search and writes results to an output file.
-     *
-     * @param query_fasta (str): Path to epitope FASTA file.
-     * @param target_fasta (str): Path to antigen FASTA file.
-     * @param output_file (str): Output file path for MMseqs results.
-     * @param tmp_dir (str): Temporary working directory for MMseqs2.
-     * @return: None
-     */
-    """
 def run_mmseqs_easy_search(query_fasta, target_fasta, output_file, tmp_dir):
+    """
+    Runs MMseqs2 easy-search command to align epitope sequences against antigen sequences.
+    Performs an all-vs-all sequence search and writes results to the specified output file.
+    Args:
+        query_fasta (str): Path to the FASTA file containing epitope sequences.
+        target_fasta (str): Path to the FASTA file containing antigen sequences.
+        output_file (str): Path to the output file where MMseqs2 results will be saved.
+        tmp_dir (str): Temporary directory for MMseqs2 operations.
+    Returns:
+        None
+    """
     cmd = [
         'mmseqs', 'easy-search',
         query_fasta, target_fasta, output_file, tmp_dir,
@@ -178,37 +159,27 @@ def run_mmseqs_easy_search(query_fasta, target_fasta, output_file, tmp_dir):
     ]
     subprocess.run(cmd, check=True)
 
-"""
-    /**
-     * @brief Runs MMseqs2 easy-search between epitope and antigen FASTA files.
-     *
-     * Performs all-vs-all sequence search and writes results to an output file.
-     *
-     * @param query_fasta (str): Path to epitope FASTA file.
-     * @param target_fasta (str): Path to antigen FASTA file.
-     * @param output_file (str): Output file path for MMseqs results.
-     * @param tmp_dir (str): Temporary working directory for MMseqs2.
-     * @return: None
-     */
-    """
 def check_mmseqs_installed():
+    """
+    Checks if MMseqs2 is installed and available in the system PATH.
+    If not found, prints an error message and exits the program.
+    Raises:
+        SystemExit: If MMseqs2 is not found in the PATH.
+    """
     try:
         subprocess.run(['mmseqs'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except FileNotFoundError:
         print("❌ ERROR: mmseqs2 executable not found. Please install mmseqs2 and ensure it is in your PATH.")
         sys.exit(1)
 
-"""
-    /**
-     * @brief Parses MMseqs2 result file to extract matched epitope query IDs.
-     *
-     * Reads result `.m8` format file and returns set of mapped query identifiers.
-     *
-     * @param mmseqs_result_file (str): Path to MMseqs2 output file.
-     * @return (set): Set of matched epitope IDs.
-     */
-    """
 def parse_mmseqs_results(mmseqs_result_file):
+    """
+    Parses the MMseqs2 result file to extract matched epitope query IDs.
+    Args:
+        mmseqs_result_file (str): Path to the MMseqs2 output file in `.m8` format.
+    Returns:
+        set: Set of matched epitope query IDs.
+    """
     matched_queries = set()
     with open(mmseqs_result_file) as f:
         for line in f:
@@ -219,17 +190,11 @@ def parse_mmseqs_results(mmseqs_result_file):
                     matched_queries.add(query_id)
     return matched_queries
 
-"""
-    /**
-     * @brief Main function coordinating epitope mapping workflow using MMseqs2.
-     *
-     * Handles argument parsing, file checks, data loading, FASTA generation,
-     * MMseqs2 execution, and summary statistics creation.
-     *
-     * @return: None
-     */
-    """
 def main():
+    """
+    Main function to run the epitope mapping sanity check using MMseqs2.
+    Parses command-line arguments, checks for required files, runs MMseqs2 searches,
+    and generates a summary CSV of mapping statistics."""
     parser = argparse.ArgumentParser(
         description="Check mapping of IEDB epitopes to compiled antigen sequences using MMseqs2.",
         usage="python bin/sanity_check_antigen_seq.py <pathogen_directory> <pathogen_name> <output_dir>"

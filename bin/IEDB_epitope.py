@@ -1,3 +1,37 @@
+"""
+IEDB_epitope.py
+Command-line tool to run IEDB epitope prediction tools (MHCI, MHCII, BCell) on input FASTA files for immunoinformatics analysis.
+Overview:
+    - Scans a specified pathogen sequence directory for FASTA files.
+    - Runs selected IEDB prediction tools (MHCI, MHCII, BCell) on each input file.
+    - Supports custom allele panels and peptide length ranges for MHCI and MHCII.
+    - Converts FASTA to TXT for BCell predictions as needed.
+    - Supports parallel execution of jobs for efficient processing.
+    - Organizes results into structured output directories and manages temporary files.
+Arguments:
+    pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
+    sequence_dir (str): Subdirectory under `pathogen_dir` containing FASTA files.
+    --tool-root (str, required): Root directory containing IEDB tool wrappers and executables.
+    --threads (int, optional): Number of parallel threads to use (default: 4).
+    --mhci-peptide-lengths (int, int, optional): Min and max peptide lengths for MHCI (default: 8 11).
+    --mhcii-peptide-lengths (int, int, optional): Min and max peptide lengths for MHCII (default: 11 25).
+    --tools (list, optional): List of tools to run (choices: MHCI, MHCII, BCell; default: all detected).
+    --mhci-allele-panel (str, optional): Allele panel for MHCI (choices: default, extended, custom; default: default).
+    --mhci-custom-alleles (list, optional): Custom alleles for MHCI if panel is 'custom'.
+    --mhcii-allele-panel (str, optional): Allele panel for MHCII (choices: default, extended, custom; default: default).
+    --mhcii-custom-alleles (list, optional): Custom alleles for MHCII if panel is 'custom'.
+    --output-dir (str, optional): Output directory for results (default: epitope_outputs).
+Requirements:
+    - IEDB tool wrappers and executables for MHCI, MHCII, and BCell available under `tool-root`.
+    - Input FASTA files present in the specified sequence directory.
+    - Python packages: argparse, pathlib, concurrent.futures, collections.
+Usage Example:
+    python IEDB_epitope.py influenza sequences --tool-root /opt/iedb_tools --threads 8 --mhci-peptide-lengths 8 11 --tools MHCI MHCII
+Outputs:
+    data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<TOOL>.json   # Prediction results for MHCI and MHCII
+    data/<pathogen_dir>/<output_dir>/bcell/<input_file>.txt            # Prediction results for BCell
+Author: Nadia
+"""
 import argparse
 from collections import Counter
 from pathlib import Path
@@ -5,6 +39,7 @@ from concurrent.futures import ThreadPoolExecutor
 from tools import run_mhci, run_mhcii, run_bcell, common
 import sys
 
+# Mapping of tool types to their respective runner functions
 tool_runners = {
     "MHCI": run_mhci.run,
     "MHCII": run_mhcii.run,
@@ -17,6 +52,12 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     JSON file exists in the tool-specific output directory.
     Looks for any JSON file that contains the input's base name
     and ends with the tool suffix.
+    Args:
+        tool_type (str): Type of tool (e.g., "MHCI", "MHCII", "BCell").
+        input_path (Path): Path to the input file.
+        base_output_dir (Path): Base output directory where results are stored.
+    Returns:
+        bool: True if the job has been completed (result file exists), False otherwise.
     """
     subdir = base_output_dir / tool_type.lower()
     if not subdir.exists():
@@ -37,6 +78,13 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     return False
 
 def run_predictions_parallel(job_list, output_dir, max_threads):
+    """
+    Run the prediction jobs in parallel using a thread pool executor.
+    Args:
+        job_list (list): List of tuples containing (tool_type, tool_path, input_file).
+        output_dir (Path): Base output directory for results.
+        max_threads (int): Maximum number of threads to use for parallel execution.
+    """
     print(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
 
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
@@ -48,6 +96,10 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
             f.result()
 
 def main():
+    """
+    Main function to parse arguments and run the IEDB epitope prediction tools.
+    It prepares the input files, checks for existing results, and runs the selected tools in parallel.
+    """
     parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell)",
                                      usage="iedb_epitope.py <pathogen_dir> <sequence_dir> --tool-root <tool_root> [options]")
     parser.epilog = (

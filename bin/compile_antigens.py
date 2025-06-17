@@ -1,29 +1,28 @@
 """
-/**
- * @file compile_antigens.py
- * @brief Compiles antigen data from IEDB and literature sources for a given organism.
- *
- * This script aggregates antigen information from IEDB CSV files and literature/patent Excel files
- * for a specified organism. It standardizes the data format and outputs a single compiled CSV file.
- *
- * General Flow:
- *   1. Loads IEDB antigen data from a CSV file.
- *   2. Loads literature/patent antigen data from Excel files.
- *   3. Standardizes and merges the data from all sources.
- *   4. Outputs a compiled CSV file containing all antigen information.
- *
- * Parameters:
- *   short_name (str): Short identifier for the organism (used as a directory name).
- *   long_name (str): Full organism name (used for file naming and metadata).
- *
- * Usage:
- *   python compile_antigens.py <short_name> <long_name>
- *
- * Example:
- *   python compile_antigens.py sars_cov_2 "SARS-CoV-2"
- *
- * @author Nadia
- */
+compile_antigens.py
+Command-line tool to compile antigen data from IEDB and literature sources for a given organism.
+
+Overview:
+    - Loads IEDB antigen data from a CSV file.
+    - Loads literature/patent antigen data from Excel files.
+    - Standardizes and merges antigen data from all sources.
+    - Outputs a compiled CSV file containing all antigen information.
+
+Arguments:
+    pathogen_directory (str): Subdirectory under `data/` containing pathogen data.
+    pathogen_name (str): Full organism name (used for file naming and metadata).
+
+Requirements:
+    - IEDB antigen CSV file and literature/patent Excel files present in the specified pathogen directory.
+    - Python packages: pandas, os, glob, re, argparse.
+
+Usage Example:
+    python compile_antigens.py sars_cov_2 "SARS-CoV-2"
+
+Outputs:
+    data/<pathogen_directory>/<organism_tag>_compiled_antigens.csv   # Compiled antigen data for the organism
+
+Author: Nadia
 """
 
 import pandas as pd
@@ -32,18 +31,16 @@ from glob import glob
 import re
 import argparse
 
-"""
-/**
-* @brief Extracts the UniProt ID from an IRI string.
-*
-* This function parses a given IRI (Internationalized Resource Identifier) and extracts
-* the UniProt accession if present.
-*
-* @param iri (str): The IRI string potentially containing a UniProt ID.
-* @return (str or None): The extracted UniProt ID, or None if not found or input is NaN.
-*/
-"""
 def extract_uniprot_id(iri):
+    """
+    Extracts the UniProt ID from a given IRI string.
+    This function parses a given IRI (Internationalized Resource Identifier) and extracts 
+    the UniProt accession if present.
+    Args:
+        iri (str): The IRI string containing the UniProt ID.
+    Returns:
+        str: The extracted UniProt ID, or None if not found.
+    """
     if pd.isna(iri):
         return None
     match = re.search(r"(?:UNIPROT:)?([A-Z0-9]+)$", iri)
@@ -51,18 +48,22 @@ def extract_uniprot_id(iri):
         return f"{match.group(1)}"
     return None
 
-"""
-/**
-* @brief Loads and standardizes antigen data from an IEDB CSV file.
-*
-* Reads a CSV file containing IEDB antigen data, renames columns to a standard format,
-* extracts UniProt IDs, and adds metadata columns.
-*
-* @param file_path (str): Path to the IEDB antigen CSV file.
-* @return (pd.DataFrame): Standardized DataFrame with antigen information.
-*/
-"""
 def load_iedb_antigens(file_path):
+    """
+    Loads antigen data from an IEDB CSV file, standardizes the columns, and extracts UniProt IDs.
+    This function reads the IEDB CSV file, renames columns to a standard format, extracts
+    UniProt IDs from the `parent_source_antigen_iri` column, and adds metadata columns.
+    Args:
+        file_path (str): Path to the IEDB CSV file.
+    Returns:
+        pd.DataFrame: Standardized DataFrame with columns:
+            - source_organism
+            - host_organisms
+            - antigen_name
+            - gene_name (set to None, as IEDB does not provide this)
+            - Uniprot_ID (extracted from parent_source_antigen_iri)
+            - source (set to "IEDB")
+    """
     if not os.path.exists(file_path):
         print(f"Warning: IEDB file not found: {file_path}. Skipping.")
         return pd.DataFrame()
@@ -83,19 +84,23 @@ def load_iedb_antigens(file_path):
     df_out["source"] = "IEDB"
     return df_out[["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"]]
 
-"""
-/**
-* @brief Loads and standardizes antigen data from a literature/patent Excel file.
-*
-* Reads an Excel file containing antigen data from literature or patents, standardizes
-* the columns, and adds metadata.
-*
-* @param file_path (str): Path to the literature/patent Excel file.
-* @param source_organism (str): Name of the source organism.
-* @return (pd.DataFrame): Standardized DataFrame with antigen information.
-*/
-"""
 def load_literature_antigens(file_path, source_organism):
+    """
+    Loads antigen data from a literature/patent Excel file, standardizes the columns, and adds metadata.
+    This function reads an Excel file containing antigen data, renames columns to a standard format,
+    and adds metadata columns for source organism and host organisms.
+    Args:
+        file_path (str): Path to the literature/patent Excel file.
+        source_organism (str): Name of the source organism (e.g. "staphylococcus aureus").
+    Returns:
+        pd.DataFrame: Standardized DataFrame with columns:
+            - source_organism
+            - host_organisms (set to "Homo sapiens")
+            - antigen_name
+            - gene_name
+            - Uniprot_ID (set to None, as literature does not provide this)
+            - source (set to "literature")
+    """
     if not os.path.exists(file_path):
         print(f"Warning: Literature file not found: {file_path}. Skipping.")
         return pd.DataFrame()
@@ -109,19 +114,10 @@ def load_literature_antigens(file_path, source_organism):
     df_out["source"] = "literature"
     return df_out[["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"]]
 
-"""
-/**
-* @brief Main pipeline for compiling antigen data from all sources for a given organism.
-*
-* Loads IEDB and literature antigen data, standardizes and merges them, and writes the
-* compiled data to a CSV file.
-*
-* @param short_name (str): Short identifier for the organism.
-* @param long_name (str): Full organism name.
-* @return: None
-*/
-    """
 def main(short_name, long_name):
+    """
+    Main entry point to compile various sources of antigens.
+    """
     organism_tag = str(long_name).replace(" ", "_").lower()
     base_path = f"data/{short_name}"
 

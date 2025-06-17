@@ -1,3 +1,25 @@
+"""
+common.py
+Common utility functions and constants for mRNA Target Selection pipeline.
+
+This module provides shared utilities for directory management, file handling, tool validation,
+allele panel selection, and FASTA/JSON conversion used throughout the mRNA Target Selection workflow.
+
+General Function:
+    - Ensures output and temporary directories exist and are writable.
+    - Locates and validates external tool executables (SignalP, TargetP, TMHMM, IEDB tools, etc.).
+    - Provides allele panel presets and selection logic for MHC-I and MHC-II.
+    - Converts FASTA files to text and JSON formats for downstream processing.
+    - Cleans up temporary directories and files.
+    - Includes helper functions for parsing and preparing input/output files.
+
+Constants:
+    - MHCI_DEFAULT, MHCI_EXTENDED: Default and extended allele panels for MHC-I.
+    - MHCII_DEFAULT, MHCII_EXTENDED: Default and extended allele panels for MHC-II.
+    - ALLELE_PRESETS: Dictionary mapping tool types to their allele panels.
+
+Author: Nadia
+"""
 import json
 from pathlib import Path
 import shutil
@@ -29,6 +51,14 @@ def ensure_writable_dir(path: Path) -> bool:
     return True
 
 def get_fasta_files(base_path: Path, sequence_subdir: str):
+    """
+    Get all FASTA files in the specified sequence subdirectory.
+    Args:
+        base_path (Path): Base directory path.
+        sequence_subdir (str): Subdirectory name containing FASTA files.
+    Returns:
+        list: List of Path objects for each FASTA file found.
+    """
     seq_dir = base_path / sequence_subdir
     if not seq_dir.exists() or not seq_dir.is_dir():
         print(f"❌ Sequence directory {seq_dir} does not exist or is not a directory.")
@@ -37,6 +67,15 @@ def get_fasta_files(base_path: Path, sequence_subdir: str):
     return fasta_files
 
 def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
+    """
+    Prepare output directories for the specified pathogen and tools.
+    Args:
+        pathogen_path (Path): Path to the pathogen directory.
+        output_subdir (str): Subdirectory name for output files.
+        selected_tools (list): List of selected tools to create subdirectories for.
+    Returns:
+        tuple: Paths to the temporary JSON directory and the output directory.
+    """
     output_dir = pathogen_path / output_subdir
 
     # Create only the needed tool subdirectories
@@ -49,11 +88,16 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
     return temp_json_dir, output_dir
 
 def cleanup_temp(temp_dir: Path):
+    """
+    Clean up temporary directory if it exists.
+    Args:
+        temp_dir (Path): Path to the temporary directory to clean up.
+    """
     if temp_dir.exists():
         shutil.rmtree(temp_dir)
         print(f"Cleaned temporary: {temp_dir}")
 
-
+""" Constants for MHC Allele Panels """
 MHCI_DEFAULT = [
     "HLA-A*02:01", "HLA-A*01:01"
 ]
@@ -91,6 +135,15 @@ ALLELE_PRESETS = {
 }
 
 def get_alleles(tool_type, panel="default", custom_alleles=None):
+    """
+    Get the list of alleles for the specified tool type and panel.
+    Args:
+        tool_type (str): Type of tool (e.g., "MHCI", "MHCII").
+        panel (str): Name of the allele panel ("default", "extended", or "custom").
+        custom_alleles (list, optional): List of custom alleles if panel is "custom".
+    Returns:
+        list: List of alleles for the specified tool type and panel.
+    """
     panel = panel.lower()
     if panel == "custom":
         if not custom_alleles:
@@ -106,6 +159,12 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
 def check_signalp_targetp_tmhmm(tool_root: Path) -> dict:
     """
     Validates and returns paths to SignalP, TargetP, and TMHMM executables.
+    Args:
+        tool_root (Path): Root directory where tools are expected to be located.
+    Returns:
+        dict: Dictionary mapping tool names to their executable paths.
+    Raises:
+        FileNotFoundError: If any of the required tools are not found in the expected locations.
     """
     tools = {}
 
@@ -137,6 +196,13 @@ def check_signalp_targetp_tmhmm(tool_root: Path) -> dict:
 
 
 def check_iedb_tool(base_path):
+    """
+    Check for the presence of IEDB epitope prediction tools and return their paths.
+    Args:
+        base_path (str): Base path where IEDB tools are expected to be located.
+    Returns:
+        dict: Dictionary mapping tool names to their executable paths.
+    """
     base = Path(base_path)
     paths = {
         "BCell": base / "bcell_standalone" / "predict_antibody_epitope.py",
@@ -151,6 +217,14 @@ def check_iedb_tool(base_path):
     return tools
 
 def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
+    """
+    Convert FASTA files to text format by copying their contents to .txt files.
+    Args:
+        fasta_files (list): List of Path objects for FASTA files.
+        temp_txt_dir (Path): Directory where the converted text files will be saved.
+    Returns:
+        list: List of Path objects for the created text files.
+    """
     temp_txt_dir.mkdir(parents=True, exist_ok=True)
     txt_files = []
     for fasta_file in fasta_files:
@@ -160,6 +234,20 @@ def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
     return txt_files
 
 def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name, method="netmhcpan_el"):
+    """
+    Write a JSON file for a given sequence ID and its associated sequence lines.
+    Args:
+        seq_id_line (str): The sequence ID line from the FASTA file.
+        seq_lines (list): List of sequence lines corresponding to the ID.
+        temp_dir (Path): Directory where the JSON file will be saved.
+        alleles (list): List of alleles to include in the JSON.
+        peptide_lengths (tuple): Tuple specifying the peptide length range (min, max).
+        tool_type (str): Type of tool for which this JSON is being generated.
+        strain_name (str): Name of the strain associated with this sequence.
+        method (str): Method to use for prediction, default is "netmhcpan_el".
+    Returns:
+        json_path (Path): Path to the created JSON file, or None if an error occurred.
+    """
     header = seq_id_line.strip()
     antigen_id = header[1:].split()[0]
     sequence = "".join(seq_lines).replace("*", "").strip()
@@ -189,6 +277,18 @@ def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_
     return json_path
 
 def parse_fasta_to_jsons(fasta_path, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
+    """
+    Parse a FASTA file and convert each sequence to a JSON file.
+    Args:
+        fasta_path (str): Path to the input FASTA file.
+        temp_dir (Path): Directory where JSON files will be saved.
+        alleles (list): List of alleles to include in the JSON.
+        peptide_lengths (tuple): Tuple specifying the peptide length range (min, max).
+        tool_type (str): Type of tool for which this JSON is being generated.
+        strain_name (str): Name of the strain associated with this sequence.
+    Returns:
+        list: List of paths to the created JSON files.
+    """
     json_paths, seq_id, seq_data = [], None, []
     with open(fasta_path, 'r') as infile:
         for line in infile:
@@ -207,7 +307,10 @@ def parse_fasta_to_jsons(fasta_path, temp_dir, alleles, peptide_lengths, tool_ty
 def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     """
     Detects available evaluation tools (Allergenicity, Population Coverage, Cluster).
-    Returns a dictionary mapping tool names to their runner paths.
+    Args:
+        tool_root (Path): Root directory where tools are expected to be located.
+    Returns:
+        dict: Dictionary mapping tool names to their executable paths.
     """
     tool_map = {
         "Allergenicity": tool_root / "algpred2" / "algpred2.py",
@@ -226,6 +329,7 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
 
 # Add __main__ with unittest
 if __name__ == "__main__":
+    """ Main function for unit testing of allele retrieval functionality. """
     import unittest
     class AlleleTests(unittest.TestCase):
         def test_default_mhci(self):
