@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import shutil
 import tempfile
 
 def ensure_writable_dir(path: Path) -> bool:
@@ -47,11 +48,10 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
 
     return temp_json_dir, output_dir
 
-def cleanup_temp(temp_json_dir: Path):
-    import shutil
-    if temp_json_dir.exists() and temp_json_dir.is_dir():
-        shutil.rmtree(temp_json_dir)
-        print("🧹 Cleaned up temporary JSON files.")
+def cleanup_temp(temp_dir: Path):
+    if temp_dir.exists():
+        shutil.rmtree(temp_dir)
+        print(f"Cleaned temporary: {temp_dir}")
 
 
 MHCI_DEFAULT = [
@@ -159,19 +159,18 @@ def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
         txt_files.append(txt_file)
     return txt_files
 
-def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
+def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name, method="netmhcpan_el"):
     header = seq_id_line.strip()
     antigen_id = header[1:].split()[0]
     sequence = "".join(seq_lines).replace("*", "").strip()
+    
     if not sequence:
         print(f"⚠️ Empty sequence for {antigen_id}")
         return None
-    if tool_type == "MHCI":
-        method = "netmhcpan_ba"
-    elif tool_type == "MHCII":
-        method = "netmhciipan_el"  # or _ba depending on your choice
-    else:
-        method = None  # Or skip
+
+    if method is None:
+        print(f"⚠️ Unknown tool type '{tool_type}' for {antigen_id}, skipping JSON generation.")
+        return None
 
     json_data = {
         "input_sequence_text": f">{antigen_id}\n{sequence}",
@@ -186,8 +185,8 @@ def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_
 
     with open(json_path, "w") as f:
         json.dump(json_data, f, indent=2)
-    return json_path
 
+    return json_path
 
 def parse_fasta_to_jsons(fasta_path, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
     json_paths, seq_id, seq_data = [], None, []
@@ -224,3 +223,21 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
             print(f"❌ {name} tool not found at: {path.parent}")
 
     return found
+
+# Add __main__ with unittest
+if __name__ == "__main__":
+    import unittest
+    class AlleleTests(unittest.TestCase):
+        def test_default_mhci(self):
+            self.assertTrue(len(get_alleles("MHCI")) >= len(MHCI_DEFAULT))
+
+        def test_custom(self):
+            custom = ["HLA-X*01", "HLA-Y*02"]
+            aa = get_alleles("MHCI", "custom", custom)
+            self.assertEqual(aa, custom)
+
+        def test_invalid_panel(self):
+            aa = get_alleles("MHCII", "NOT-FOUND")
+            self.assertEqual(aa, MHCII_DEFAULT)
+
+    unittest.main()
