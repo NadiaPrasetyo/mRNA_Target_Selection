@@ -4,6 +4,8 @@ import sys
 import json
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
+from collections import defaultdict
+import shutil
 
 from tools import run_algpred, run_popcoverage, run_cluster, common, extract_epitopes
 
@@ -140,47 +142,82 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
             jobs.append((tool, tool_path, file))
     return jobs
 
+
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
     Run the prepared jobs in parallel using a thread pool.
+
     Args:
         jobs (list): List of jobs to run, each as a tuple (tool, tool_path, file).
         output_dir (Path): Directory where outputs will be saved.
         epitope_dir (Path): Directory containing epitope data.
         max_threads (int): Maximum number of threads to use for parallel execution.
     """
+    output_dir = Path(output_dir)
+    epitope_dir = Path(epitope_dir)
+
+    popcov_inputs_dir = output_dir / "popcov_inputs"
+    fasta_inputs_dir = output_dir / "fasta_inputs"
+    json_inputs_dir = output_dir / "json_inputs"
+    temp_dirs = [popcov_inputs_dir, fasta_inputs_dir, json_inputs_dir]
+
+    # Extract epitopes once for PopCoverage
+    try:
+        epitope_map = extract_epitopes.extract_all_epitopes_by_file(epitope_dir)
+        extract_epitopes.write_allele_epitopes(epitope_map, popcov_inputs_dir)
+    except Exception as e:
+        logging.error(f"❌ Failed to extract/write PopCoverage epitopes: {e}")
+        epitope_map = {}
+
+    futures = []
+
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
-        futures = []
         for tool, tool_path, file in jobs:
+            file = Path(file)
             out_subdir = output_dir / tool.lower()
+
             if tool == "Cluster":
-                temp_dir = output_dir / "json_inputs"
-                epitope_data = extract_epitopes.extract_all_epitopes(file)
-                alleles = sorted({allele for _, allele in epitope_data})
-                json_inputs = common.reformat_epitope_json_for_cluster(file, temp_dir, alleles, file.stem)
-                for inp in json_inputs:
-                    futures.append(executor.submit(tool_runners[tool], tool_path, inp, out_subdir))
+                try:
+                    cluster_input = common.reformat_epitope_json_for_cluster(file, json_inputs_dir, file.stem)
+                    futures.append(executor.submit(tool_runners[tool], tool_path, cluster_input, out_subdir))
+                except Exception as e:
+                    logging.warning(f"⚠️ Cluster formatting failed for {file.name}: {e}")
+
             elif tool == "PopCoverage":
-                if "bcell" in str(file):
-                    continue  # skip bcell for PopCoverage
-                temp_dir = output_dir / "popcov_inputs"
-                epitope_data = extract_epitopes.extract_all_epitopes(epitope_dir)
-                grouped = {}
-                for peptide, allele in epitope_data:
-                    grouped.setdefault(allele, []).append(peptide)
-                for allele, peptides in grouped.items():
-                    temp_file = temp_dir / f"{allele.replace('*', '').replace(':', '')}.txt"
-                    with open(temp_file, "w") as f:
-                        for p in peptides:
-                            f.write(f"{p} {allele}\n")
-                    futures.append(executor.submit(tool_runners[tool], tool_path, temp_file, out_subdir))
+                if "bcell" in str(file).lower():
+                    continue  # Skip B-cell entries
+                for txt_file in popcov_inputs_dir.glob("*.txt"):
+                    if txt_file.exists() and txt_file.stat().st_size > 0:
+                        futures.append(executor.submit(tool_runners[tool], tool_path, txt_file, out_subdir))
+                    else:
+                        logging.warning(f"⚠️ Skipping missing/empty PopCoverage input: {txt_file}")
+
+            elif tool == "Allergenicity":
+                try:
+                    fasta_file = common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
+                    if fasta_file:
+                        futures.append(executor.submit(tool_runners[tool], tool_path, fasta_file, out_subdir))
+                except Exception as e:
+                    logging.warning(f"⚠️ FASTA generation failed for {file.name}: {e}")
+
             else:
                 futures.append(executor.submit(tool_runners[tool], tool_path, file, out_subdir))
+
+        # Wait for all futures to complete
         for future in futures:
             try:
                 future.result()
             except Exception as e:
-                logging.error(f"Job failed: {e}")
+                logging.error(f"❌ Job failed: {e}")
+
+    # Clean up temporary directories
+    for temp_dir in temp_dirs:
+        try:
+            if temp_dir.exists():
+                shutil.rmtree(temp_dir)
+                logging.info(f"🧹 Cleaned up temporary directory: {temp_dir}")
+        except Exception as e:
+            logging.warning(f"⚠️ Failed to clean up {temp_dir}: {e}")
 
 def main():
     """Main function to run the evaluation pipeline.

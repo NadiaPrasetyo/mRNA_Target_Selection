@@ -9,7 +9,8 @@ Author: Nadia
 import argparse
 import json
 from pathlib import Path
-from typing import Set, Tuple
+from typing import Set, Tuple, Dict, List
+from collections import defaultdict
 
 
 def extract_mhci_epitopes(file_path: Path, ic50_threshold: float, percentile_threshold: float) -> Set[Tuple[str, str]]:
@@ -30,7 +31,6 @@ def extract_mhcii_epitopes(file_path: Path, percentile_threshold: float) -> Set[
         percentile_threshold=percentile_threshold,
         mhc_class="mhcii"
     )
-
 
 def _extract_epitopes_from_file(
     file_path: Path,
@@ -77,58 +77,69 @@ def _extract_epitopes_from_file(
 
     return epitopes
 
-
-def extract_all_epitopes(
+def extract_all_epitopes_by_file(
     epitope_dir: Path,
     ic50_threshold: float = 500.0,
     mhci_percentile: float = 2.0,
     mhcii_percentile: float = 10.0
-) -> Set[Tuple[str, str]]:
+) -> Dict[str, List[Tuple[str, str]]]:
     """
-    Extracts all epitopes from both MHCI and MHCII subdirectories.
+    Extracts all epitopes from both MHCI and MHCII directories and groups them by source file name.
+    If a peptide has multiple allele entries, alleles are joined by a comma.
+    Returns:
+        Dict[str, List[Tuple[str, str]]]: filename -> list of (peptide, allele(s)) tuples
     """
-    all_epitopes = set()
-
+    epitope_map = defaultdict(lambda: defaultdict(set))
     mhci_dir = epitope_dir / "mhci"
     if mhci_dir.exists():
         for file in mhci_dir.glob("*.json"):
-            all_epitopes.update(extract_mhci_epitopes(file, ic50_threshold, mhci_percentile))
-
+            for peptide, allele in extract_mhci_epitopes(file, ic50_threshold, mhci_percentile):
+                epitope_map[file.name][peptide].add(allele)
     mhcii_dir = epitope_dir / "mhcii"
     if mhcii_dir.exists():
         for file in mhcii_dir.glob("*.json"):
-            all_epitopes.update(extract_mhcii_epitopes(file, mhcii_percentile))
+            for peptide, allele in extract_mhcii_epitopes(file, mhcii_percentile):
+                epitope_map[file.name][peptide].add(allele)
+    # Flatten to expected output: filename -> list of (peptide, allele(s)) tuples
+    result = {}
+    for filename, pep_allele_map in epitope_map.items():
+        tuples = []
+        for peptide, alleles in pep_allele_map.items():
+            tuples.append((peptide, ",".join(sorted(alleles))))
+        result[filename] = tuples
+    return result
 
-    return all_epitopes
-
-
-def write_epitopes_to_file(epitopes: Set[Tuple[str, str]], output_file: Path):
+def write_allele_epitopes(epitope_map: Dict[str, List[Tuple[str, str]]], output_dir: Path):
     """
-    Writes sorted epitopes to the output file.
+    Writes one file per source file in the specified output directory.
+    Each file contains only the (peptide, allele) tuples, one per line, tab-separated.
     """
-    with output_file.open("w") as f:
-        for peptide, allele in sorted(epitopes):
-            f.write(f"{peptide}\t{allele}\n")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for filename, tuples in epitope_map.items():
+        file_path = output_dir / f"{Path(filename).stem}.txt"
+        with file_path.open("w") as f:
+            for peptide, allele in sorted(set(tuples)):
+                f.write(f"{peptide}\t{allele}\n")
+        print(f"💾 Written: {file_path}")
 
-
-def main(epitope_dir, ic50_threshold, mhci_percentile, mhcii_percentile, output_file):
-    """
-    Extracts epitopes and optionally writes them to a file.
-    """
+def main(epitope_dir, ic50_threshold, mhci_percentile, mhcii_percentile, output_dir):
     epitope_dir = Path(epitope_dir)
-    all_epitopes = extract_all_epitopes(
+    if output_dir is not None:
+        output_dir = Path(output_dir)
+    else:
+        output_dir = epitope_dir  # Default to input dir if not provided
+
+    epitope_map = extract_all_epitopes_by_file(
         epitope_dir,
         ic50_threshold,
         mhci_percentile,
         mhcii_percentile
     )
 
-    print(f"✅ Total unique (peptide, allele) pairs: {len(all_epitopes)}")
-
-    if output_file:
-        output_file = Path(output_file)
-        write_epitopes_to_file(all_epitopes, output_file)
-        print(f"💾 Epitopes written to: {output_file}")
+    print(f"✅ Total alleles: {len(epitope_map)}")
+    total_peptides = sum(len(p) for p in epitope_map.values())
+    print(f"✅ Total unique (peptide, allele) pairs: {total_peptides}")
+    write_allele_epitopes(epitope_map, output_dir / "popcov_inputs")
 
 
 if __name__ == "__main__":

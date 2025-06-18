@@ -25,6 +25,111 @@ from pathlib import Path
 import shutil
 import tempfile
 
+def reformat_epitope_json_for_cluster(json_file, output_dir, basename_prefix):
+    """
+    Reformats input epitope JSON into the Cluster tool input format.
+
+    Args:
+        json_file (Path): Path to the epitope prediction JSON.
+        output_dir (Path): Directory to save reformatted JSON file(s).
+        basename_prefix (str): Prefix for output filename.
+
+    Returns:
+        List[Path]: Paths to generated JSON input files.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_files = []
+
+    with open(json_file) as f:
+        data = json.load(f)
+
+    results = data.get("results", [])
+    peptide_set = set()
+    for entry in results:
+        if entry.get("type") != "peptide_table":
+            continue
+
+        columns = entry.get("table_columns", [])
+        data_rows = entry.get("table_data", [])
+
+        try:
+            peptide_idx = columns.index("peptide")
+        except ValueError:
+            continue  # Required column missing
+
+        for row in data_rows:
+            peptide = row[peptide_idx]
+            peptide_set.add(peptide)
+
+    if not peptide_set:
+        print(f"⚠️ No peptides found for: {json_file}")
+        return []
+
+    # Build FASTA-style sequence text
+    fasta_lines = [f">Pep{i+1}\n{pep}" for i, pep in enumerate(sorted(peptide_set))]
+    cluster_input = {
+        "input_sequence_text": "\n".join(fasta_lines),
+        "method": "cluster-break",
+        "cluster_pct_identity": 0.7,
+        "peptide_length_range": [0, 0]
+    }
+
+    output_path = output_dir / f"{basename_prefix}_cluster_input.json"
+    with open(output_path, "w") as out_f:
+        json.dump(cluster_input, out_f, indent=2)
+    output_files.append(output_path)
+
+    return output_files
+
+def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
+    """
+    Parses a JSON file with peptide predictions and writes a FASTA file of unique peptides.
+
+    Args:
+        json_file (Path): Path to input JSON file.
+        output_dir (Path): Directory where output FASTA will be saved.
+        basename_prefix (str): Base prefix for output file name.
+
+    Returns:
+        Path: Path to the generated FASTA file.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    with open(json_file) as f:
+        data = json.load(f)
+
+    results = data.get("results", [])
+    peptides = set()
+
+    for entry in results:
+        if entry.get("type") != "peptide_table":
+            continue
+
+        columns = entry.get("table_columns", [])
+        data_rows = entry.get("table_data", [])
+
+        try:
+            peptide_idx = columns.index("peptide")
+        except ValueError:
+            continue  # No peptide column
+
+        for row in data_rows:
+            peptides.add(row[peptide_idx])
+
+    if not peptides:
+        print(f"⚠️ No peptides found in {json_file}")
+        return None
+
+    # Write to FASTA
+    fasta_lines = [f">seq{i+1}\n{pep}" for i, pep in enumerate(sorted(peptides))]
+    fasta_path = output_dir / f"{basename_prefix}.fasta"
+
+    with open(fasta_path, "w") as fasta_file:
+        fasta_file.write("\n".join(fasta_lines))
+
+    print(f"💾 FASTA written: {fasta_path}")
+    return fasta_path
+
 def ensure_writable_dir(path: Path) -> bool:
     """
     Ensure the directory exists and is writable.
