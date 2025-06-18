@@ -32,26 +32,29 @@ Author: Nadia
 import subprocess
 from pathlib import Path
 
-def run(tool_path: Path, input_file, output_dir, population="Global", mhc_class="combined", plot=False):
+def run(tool_path: Path, input_file: Path, output_dir: Path,
+        population="World", mhc_class="combined", plot=True):
     """
     Run population coverage tool on a given input file.
-
-    Parameters:
+    Args:
     - tool_path (Path): Path to the directory containing calculate_population_coverage.py
     - input_file (Path): Path to the input .txt file (epitope, allele format)
     - output_dir (Path): Directory to save the results
-    - population (str): Population name (default: 'Global')
+    - population (str): Population name (default: 'World')
     - mhc_class (str): MHC class ('I', 'II', or 'combined')
-    - plot (bool): Whether to generate a plot (default: False)
+    - plot (bool): Whether to generate a plot (default: True)
     """
-    tool_path = Path(tool_path)  # convert string to Path object
-    script_path = tool_path / "calculate_population_coverage.py"
+    tool_path = Path(tool_path)
+    output_dir = output_dir / "popcoverage"
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    script_path = tool_path / "calculate_population_coverage.py"
     output_prefix = input_file.stem
-    output_file = output_dir / f"{output_prefix}.txt"
 
-    # Build command
+    # Output files
+    output_txt = output_dir / f"{output_prefix}.txt"
+    plot_path = output_dir / f"{output_prefix}_plot.png"
+
     cmd = [
         "python", str(script_path),
         "-p", population,
@@ -60,17 +63,18 @@ def run(tool_path: Path, input_file, output_dir, population="Global", mhc_class=
     ]
 
     if plot:
-        plot_path = output_dir / f"{output_prefix}_plot"
-        cmd += ["--plot", str(plot_path)]
+        cmd += ["--plot", str(plot_path.with_suffix(""))]  # Script will add .png
 
     try:
         print(f"📊 Running PopCoverage: {input_file.name} for {population} (MHC-{mhc_class})")
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
 
-        # Save stdout to output file
-        with open(output_file, "w") as f:
+        with open(output_txt, "w") as f:
             f.write(result.stdout)
 
+        print(f"✅ PopCoverage results saved: {output_txt.name}")
+        if plot and plot_path.exists():
+            print(f"📈 Plot saved: {plot_path.name}")
     except subprocess.CalledProcessError as e:
         print(f"❌ PopCoverage failed for {input_file.name}")
         print(e.stderr)

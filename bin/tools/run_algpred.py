@@ -50,7 +50,7 @@ class CSVSeparatorFixer(ast.NodeTransformer):
             for kw in node.keywords:
                 if kw.arg == 'sep' and isinstance(kw.value, ast.Constant) and kw.value.value == '\n':
                     print(f"⚠️ Patching sep='\\n' on line {node.lineno}")
-                    kw.value = ast.Constant(value=',')  # Patch to comma
+                    kw.value = ast.Constant(value=',')
         return self.generic_visit(node)
 
 def patch_to_csv_sep(file_path: Path):
@@ -72,16 +72,13 @@ def patch_to_csv_sep(file_path: Path):
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     """
-    Runs AlgPred2.0 tool on the given FASTA file.
+    Runs AlgPred2.0 on the provided FASTA file.
     Args:
-        tool_path (Path): Path to algpred2.py
-        input_fasta (Path): Path to the input FASTA file
-        output_dir (Path): Base output directory
-    Raises:
-        FileNotFoundError: If algpred2.py script is not found in the specified tool_path.
-        subprocess.CalledProcessError: If AlgPred2.0 execution fails.
+        tool_path (Path): Path to the AlgPred2.0 directory containing algpred2.py.
+        input_fasta (Path): Path to the input protein FASTA file.
+        output_dir (Path): Directory where results will be stored.
     """
-    tool_path = Path(tool_path)  # convert string to Path object
+    tool_path = Path(tool_path)
     script_path = tool_path / "algpred2.py"
     if not script_path.exists():
         raise FileNotFoundError(f"AlgPred2 script not found: {script_path}")
@@ -94,14 +91,15 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
 
     output_subdir = output_dir / "algpred"
     output_subdir.mkdir(parents=True, exist_ok=True)
-    output_file = output_subdir / f"{input_fasta.stem}_ALGPRED.txt"
+
+    output_csv = output_subdir / f"{input_fasta.stem}_result.csv"
 
     cmd = [
         "python3", str(script_path),
         "-i", str(input_fasta),
-        "-o", str(output_file),
-        "-m", "1",          # Model 1 (AAC + RF)
-        "-d", "1"           # Display allergen peptides only
+        "-o", str(output_csv),
+        "-m", "1",
+        "-d", "1"
     ]
 
     print(f"🚀 Running AlgPred2 on {input_fasta.name}")
@@ -110,4 +108,11 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     except subprocess.CalledProcessError as e:
         print(f"❌ AlgPred2 failed: {e}")
     else:
-        print(f"✅ AlgPred2 completed: {output_file.name}")
+        if output_csv.exists():
+            print(f"✅ AlgPred2 output saved: {output_csv.name}")
+        else:
+            fallback = output_subdir / "outfile.csv"
+            if fallback.exists():
+                print(f"⚠️ Output fallback to: {fallback.name}")
+            else:
+                print(f"⚠️ No output CSV found.")

@@ -31,35 +31,41 @@ import subprocess
 from pathlib import Path
 
 def run(tool_path: Path, input_json: Path, output_dir: Path,
-        output_prefix: str = None,
-        output_format: str = "tsv"):
+        output_prefix: str = None, output_format: str = "tsv"):
     """
-    Runs the cluster tool using a preprocessed JSON input.
-
+    Run the clustering tool on JSON input and save in the requested format.
     Args:
-        tool_path (Path): Path to `run_cluster.py` (the clustering script)
-        input_json (Path): Pre-converted JSON input (via `common.parse_fasta_to_jsons`)
-        output_dir (Path): Directory where results will be saved
-        output_prefix (str): Optional output prefix (default: based on input_json name)
-        output_format (str): Output format ('tsv' or 'json')
+        tool_path (Path): Path to the directory containing the clustering script.
+        input_json (Path): Path to the preprocessed JSON input file.
+        output_dir (Path): Directory where clustering results will be saved.
+        output_prefix (str, optional): Prefix for output files (default: derived from input_json name).
+        output_format (str, optional): Output format ('tsv' or 'json', default: 'tsv').
+    Raises:
+        FileNotFoundError: If the input JSON file does not exist.
+        ValueError: If the output format is not supported.
     """
-    tool_path = Path(tool_path)  # convert string to Path object
-    script_path = tool_path/"run_cluster.py"
+    tool_path = Path(tool_path)
+    output_dir = output_dir / "cluster"
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    script_path = tool_path / "run_cluster.py"
     output_prefix = output_prefix or input_json.stem.replace("_input", "")
-    output_path = output_dir / output_prefix
+    output_base = output_dir / output_prefix
+    output_path = output_base.with_suffix(f".{output_format}")
 
     cmd = [
-        "python3", str(script_path),
+        "python", str(script_path),
         "-j", str(input_json),
-        "-o", str(output_path),
-        "-f", output_format
+        "-o", str(output_base),
+        "-f", output_format #Default to 'tsv' if not specified
     ]
 
-    print(f"🚀 Running cluster: {input_json.name}")
+    print(f"🧬 Running cluster: {input_json.name} -> {output_path.name}")
     try:
         subprocess.run(cmd, check=True)
+        if output_path.exists():
+            print(f"✅ Clustering output saved: {output_path.name}")
+        else:
+            print(f"⚠️ Expected output missing: {output_path.name}")
     except subprocess.CalledProcessError as e:
         print(f"❌ Clustering failed: {e}")
-    else:
-        print(f"✅ Output written: {output_path}.{output_format}")

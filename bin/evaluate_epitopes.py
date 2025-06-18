@@ -1,211 +1,224 @@
-"""
-evaluate_epitopes.py
-
-Command-line tool to evaluate predicted epitope sequences using multiple immunoinformatics tools.
-
-Overview:
-    - Runs evaluation tools (Allergenicity, Population Coverage, Cluster) on epitope JSON files.
-    - Supports parallel execution for efficient processing of multiple jobs.
-    - Handles tool-specific input preparation and output validation.
-    - Skips jobs if output already exists and passes validation checks.
-    - Cleans up temporary files generated during processing.
-
-Arguments:
-    pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
-    epitope_dir (Path, required): Directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs.
-    --tool-root (str, required): Root directory containing the evaluation tools.
-    --verbose (flag, optional): Enable verbose logging.
-    --threads (int, optional): Number of parallel threads (default: 4).
-    --tools (list, optional): Specify which tools to run (Allergenicity, PopCoverage, Cluster).
-    --output-dir (Path, optional): Directory to save output files (default: evaluation_outputs).
-
-Requirements:
-    - Evaluation tools (Allergenicity, Population Coverage, Cluster) installed and available in tool-root.
-    - Epitope JSON files present in the specified epitope directory.
-    - Python packages: argparse, concurrent.futures, pathlib, logging, json.
-
-Usage Example:
-    python evaluate_epitopes.py sars_cov_2 --epitope-dir data/sars_cov_2/epitopes --tool-root tools/ --threads 8 --tools Allergenicity PopCoverage
-
-Outputs:
-    <output_dir>/<tool_type>/*.txt or *.json   # Output files from each evaluation tool
-    <output_dir>/json_inputs/                  # Temporary JSON files for Cluster tool
-    <output_dir>/popcov_inputs/                # Temporary input files for PopCoverage tool
-
-Author: Nadia
-"""
 import argparse
-import sys
 import logging
+import sys
 import json
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
 from tools import run_algpred, run_popcoverage, run_cluster, common, extract_epitopes
 
-# Dictionary mapping tool names to their respective runner functions
+# Map tool names to their corresponding runner functions
 tool_runners = {
     "Allergenicity": run_algpred.run,
     "PopCoverage": run_popcoverage.run,
     "Cluster": run_cluster.run,
 }
 
-def is_job_completed(tool_type, input_path, base_output_dir):
-    """
-    Check if a job has already been processed by verifying if a result file exists
-    in the tool-specific output directory.
-    Looks for any file that contains the input's base name and ends with the tool-specific suffix.
-    Args:
-        tool_type (str): Type of the tool (e.g., "Allergenicity", "PopCoverage", "Cluster").
-        input_path (Path): Path to the input JSON file.
-        base_output_dir (Path): Base output directory where results are stored.
-    Returns:
-        bool: True if the job is completed (output file exists), False otherwise.
-    """
-    subdir = base_output_dir / tool_type.lower()
-    expected_suffix = ".json" if tool_type == "Cluster" else ".txt"
-
-    for file in subdir.glob(f"{input_path.stem}*{expected_suffix}"):
-        try:
-            if not file.exists() or file.stat().st_size == 0:
-                logging.warning(f"{tool_type}: Output file {file} is missing or empty.")
-                return False
-
-            if file.suffix == ".json":
-                with open(file) as f:
-                    data = json.load(f)
-                if tool_type == "Cluster" and "clusters" not in data:
-                    logging.warning(f"{tool_type}: Missing 'clusters' in {file}.")
-                    return False
-                if tool_type != "Cluster" and "results" not in data:
-                    logging.warning(f"{tool_type}: Missing 'results' in {file}.")
-                    return False
-
-            return True
-        except Exception as e:
-            logging.error(f"Failed to validate output {file}: {e}")
-            return False
-
-    return False
-
-def run_predictions_parallel(job_list, output_dir, epitope_dir, max_threads, args):
-    """
-    Run the specified jobs in parallel using a thread pool executor.
-    Args:
-        job_list (list): List of tuples containing (tool_type, tool_path, input_file).
-        output_dir (Path): Directory to save output files.
-        max_threads (int): Maximum number of threads to use for parallel execution.
-        args (argparse.Namespace): Parsed command-line arguments.
-    """
-    logging.info(f"Starting parallel execution with {max_threads} thread(s) on {len(job_list)} jobs")
-    with ThreadPoolExecutor(max_workers=max_threads) as executor:
-        futures = []
-        for tool_type, tool_path, input_file in job_list:
-            sub_out = output_dir / tool_type.lower()
-            if tool_type == "Cluster":
-                temp_dir = output_dir / "json_inputs"
-                alleles = extract_epitopes.get_alleles_from_epitope_file(input_file, "mhci") + \
-                          extract_epitopes.get_alleles_from_epitope_file(input_file, "mhcii")
-                jsons = common.parse_fasta_to_jsons(input_file, temp_dir, alleles, [], "cluster", input_file.stem)
-                for jp in jsons:
-                    futures.append(executor.submit(tool_runners[tool_type], tool_path, jp, sub_out))
-            elif tool_type == "PopCoverage":
-                temp_txt = output_dir / "popcov_inputs"
-                mhci_ep = list((epitope_dir / "mhci").glob("*.json"))
-                mhcii_ep = list((epitope_dir / "mhcii").glob("*.json"))
-                for tool_class, files in [("MHCI", mhci_ep), ("MHCII", mhcii_ep)]:
-                    for ep in files:
-                        alleles = extract_epitopes.get_alleles_from_epitope_file(ep, tool_class.lower())
-                        out = temp_txt / f"{ep.stem}_{tool_class.lower()}.txt"
-                        with open(ep) as fin, open(out, "w") as fout:
-                            for l in fin:
-                                fq = l.strip()
-                                if fq:
-                                    fout.write(f"{fq} {','.join(alleles)}\n")
-                        futures.append(executor.submit(tool_runners[tool_type], tool_path, out, sub_out))
-            else:
-                futures.append(executor.submit(tool_runners[tool_type], tool_path, input_file, sub_out))
-
-        for f in futures:
-            try:
-                f.result()
-            except Exception as e:
-                logging.error(f"Error in job: {e}")
-
-def main():
-    """
-    Main function to parse command-line arguments and run the epitope evaluation pipeline.
-    It checks for required directories, prepares output directories, and runs the specified tools
-    on the provided epitope JSON files.
-    """
-    parser = argparse.ArgumentParser(description="Run evaluation tools: Allergenicity, Population Coverage, Cluster")
-    parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
-    parser.add_argument("epitope_dir", type=Path,
-                        help="Directory within the pathogen directory containing epitope predictions with mhci/, mhcii/, and bcell/ subdirs")
-    parser.add_argument("--tool-root", required=True, help="Root directory containing analysis tools")
+def parse_arguments():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(description="Evaluate predicted epitopes using immunoinformatics tools.")
+    parser.add_argument("pathogen_dir", help="Subdirectory inside data/ for pathogen")
+    parser.add_argument("epitope_dir", type=Path, help="Epitope directory containing mhci/, mhcii/, and/or bcell/")
+    parser.add_argument("--tool-root", required=True, help="Root directory with tool scripts")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--tools", nargs="+", choices=["Allergenicity", "PopCoverage", "Cluster"], default=None,
-                        help="Specify which tools to run (default: all detected tools)")
-    parser.add_argument("--output-dir", type=Path, default=Path("evaluation_outputs"),
-                        help="Directory to save output files (default: 'evaluation_outputs')")
+    parser.add_argument("--tools", nargs="+", choices=["Allergenicity", "PopCoverage", "Cluster"], help="Tools to run")
+    parser.add_argument("--output-dir", type=Path, default=Path("evaluation_outputs"), help="Output directory")
+    return parser.parse_args()
 
-    args = parser.parse_args()
-
-    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
-                        format="%(asctime)s %(levelname)s %(message)s")
-    logging.info("Starting epitope evaluation pipeline")
-
-    data_dir = Path("data")
-    pathogen_path = data_dir / args.pathogen_dir
-    output_dir = args.output_dir
-    epitope_dir = pathogen_path/args.epitope_dir
-
-    for p in [pathogen_path, args.tool_root, epitope_dir]:
-        if not Path(p).exists():
-            print(f"❌ Directory does not exist: {p}")
+def check_directories(pathogen_path, tool_root, epitope_path):
+    """Check if the required directories exist.
+    Args:
+        pathogen_path (Path): Path to the pathogen directory.
+        tool_root (str): Path to the root directory of tools.
+        epitope_path (Path): Path to the epitope directory.
+    Raises:
+        SystemExit: If any directory does not exist.
+    """
+    for path in [pathogen_path, tool_root, epitope_path]:
+        if not Path(path).exists():
+            logging.error(f"❌ Directory does not exist: {path}")
             sys.exit(1)
 
-    tool_map = common.check_epitope_evaluation_tools(Path(args.tool_root))
-    selected_tools = set(args.tools) if args.tools else set(tool_map.keys())
-    missing_tools = selected_tools - set(tool_map.keys())
-    if missing_tools:
-        print(f"⚠️ Requested tools not found: {', '.join(missing_tools)}")
+def discover_epitope_files(epitope_dir):
+    """Discover epitope files in the specified directory.
+    Args:
+        epitope_dir (Path): Path to the epitope directory.
+    Returns:
+        list: List of discovered epitope files.
+    """
+    files = []
+    for subdir in ["mhci", "mhcii", "bcell"]:
+        path = epitope_dir / subdir
+        if path.exists():
+            files.extend(path.glob("*.json" if subdir != "bcell" else "*.csv"))
+    return files
 
-    final_tools = {t: tool_map[t] for t in selected_tools if t in tool_map}
-    if not final_tools:
-        print("❌ No valid tools available. Exiting.")
-        sys.exit(1)
+def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
+    """
+    Check if the output for a given tool and input file is valid.
+    
+    Args:
+        tool (str): Tool name ("Cluster", "PopCoverage", "AlgPred").
+        input_file (Path): Input file path.
+        output_dir (Path): Base output directory.
+    
+    Returns:
+        bool: True if the output is valid and complete, False otherwise.
+    """
+    tool = tool.lower()
+    stem = input_file.stem
+    out_dir = output_dir / tool
 
-    # Gather all JSON files from mhci, mhcii, bcell subdirectories
-    epitope_json_files = []
-    for sub in ["mhci", "mhcii", "bcell"]:
-        subdir = epitope_dir / sub
-        if subdir.exists():
-            epitope_json_files.extend(subdir.glob("*.json"))
-    if not epitope_json_files:
-        print(f"❌ No epitope JSON files found in {epitope_dir}")
-        sys.exit(1)
+    try:
+        if tool == "cluster":
+            # Expecting a JSON file with a "clusters" key
+            for file in out_dir.glob(f"{stem}*.json"):
+                if file.exists() and file.stat().st_size > 0:
+                    with open(file) as f:
+                        data = json.load(f)
+                    if "clusters" in data:
+                        return True
+            return False
 
-    _, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
+        elif tool == "popcoverage":
+            # Expecting .txt summary + .png plots
+            txt_ok = False
+            png_ok = False
 
+            for file in out_dir.glob(f"{stem}*.txt"):
+                if file.exists() and file.stat().st_size > 0:
+                    txt_ok = True
+                    break
+
+            for file in out_dir.glob(f"{stem}*.png"):
+                if file.exists() and file.stat().st_size > 0:
+                    png_ok = True
+                    break
+
+            return txt_ok and png_ok
+
+        elif tool == "algpred":
+            # Expecting .csv result, either named by input or fallback as outfile.csv
+            candidates = list(out_dir.glob(f"{stem}*.csv"))
+            if not candidates:
+                # Fallback check for default name
+                fallback = out_dir / "outfile.csv"
+                if fallback.exists() and fallback.stat().st_size > 0:
+                    return True
+                return False
+
+            for file in candidates:
+                if file.stat().st_size > 0:
+                    return True
+            return False
+
+        else:
+            # Unknown tool – consider invalid
+            return False
+
+    except Exception as e:
+        print(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
+        return False
+
+def prepare_jobs(epitope_files, tools_to_run, output_dir):
+    """
+    Prepare jobs for parallel execution based on available tools and epitope files.
+    Args:
+        epitope_files (list): List of epitope files to process.
+        tools_to_run (dict): Dictionary of tools to run with their paths.
+        output_dir (Path): Directory where outputs will be saved.
+    Returns:
+        list: List of jobs to run, each as a tuple (tool, tool_path, file).
+    """
     jobs = []
-    for t, p in final_tools.items():
-        for f in epitope_json_files:
-            if is_job_completed(t, f, output_dir):
-                logging.info(f"Skipping {f.name} for {t}")
+    for tool, tool_path in tools_to_run.items():
+        for file in epitope_files:
+            if is_output_valid(tool, file, output_dir):
+                logging.info(f"Skipping {file.name} for {tool}, already processed.")
                 continue
-            jobs.append((t, p, f))
-    if not jobs:
-        logging.info("No jobs to run; exiting.")
-        sys.exit(0)
+            jobs.append((tool, tool_path, file))
+    return jobs
 
-    logging.info(f"Launching {len(jobs)} job(s)")
-    run_predictions_parallel(jobs, output_dir, epitope_dir, args.threads, args)
+def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
+    """
+    Run the prepared jobs in parallel using a thread pool.
+    Args:
+        jobs (list): List of jobs to run, each as a tuple (tool, tool_path, file).
+        output_dir (Path): Directory where outputs will be saved.
+        epitope_dir (Path): Directory containing epitope data.
+        max_threads (int): Maximum number of threads to use for parallel execution.
+    """
+    with ThreadPoolExecutor(max_workers=max_threads) as executor:
+        futures = []
+        for tool, tool_path, file in jobs:
+            out_subdir = output_dir / tool.lower()
+            if tool == "Cluster":
+                temp_dir = output_dir / "json_inputs"
+                epitope_data = extract_epitopes.extract_all_epitopes(file)
+                alleles = sorted({allele for _, allele in epitope_data})
+                json_inputs = common.reformat_epitope_json_for_cluster(file, temp_dir, alleles, file.stem)
+                for inp in json_inputs:
+                    futures.append(executor.submit(tool_runners[tool], tool_path, inp, out_subdir))
+            elif tool == "PopCoverage":
+                if "bcell" in str(file):
+                    continue  # skip bcell for PopCoverage
+                temp_dir = output_dir / "popcov_inputs"
+                epitope_data = extract_epitopes.extract_all_epitopes(epitope_dir)
+                grouped = {}
+                for peptide, allele in epitope_data:
+                    grouped.setdefault(allele, []).append(peptide)
+                for allele, peptides in grouped.items():
+                    temp_file = temp_dir / f"{allele.replace('*', '').replace(':', '')}.txt"
+                    with open(temp_file, "w") as f:
+                        for p in peptides:
+                            f.write(f"{p} {allele}\n")
+                    futures.append(executor.submit(tool_runners[tool], tool_path, temp_file, out_subdir))
+            else:
+                futures.append(executor.submit(tool_runners[tool], tool_path, file, out_subdir))
+        for future in futures:
+            try:
+                future.result()
+            except Exception as e:
+                logging.error(f"Job failed: {e}")
+
+def main():
+    """Main function to run the evaluation pipeline.
+    Parses arguments, checks directories, discovers epitope files, prepares jobs, and runs them in parallel.
+    """
+    args = parse_arguments()
+    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
+                        format="%(asctime)s %(levelname)s: %(message)s")
+
+    pathogen_path = Path("data") / args.pathogen_dir
+    epitope_path = pathogen_path / args.epitope_dir
+    check_directories(pathogen_path, args.tool_root, epitope_path)
+
+    available_tools = common.check_epitope_evaluation_tools(Path(args.tool_root))
+    requested_tools = set(args.tools) if args.tools else set(available_tools.keys())
+    tools_to_run = {t: available_tools[t] for t in requested_tools if t in available_tools}
+    
+    if not tools_to_run:
+        logging.error("No valid tools found to run.")
+        sys.exit(1)
+
+    epitope_files = discover_epitope_files(epitope_path)
+    if not epitope_files:
+        logging.error(f"No epitope files found in {epitope_path}")
+        sys.exit(1)
+
+    _, output_dir = common.prepare_output_dirs(pathogen_path, args.output_dir, tools_to_run.keys())
+    jobs = prepare_jobs(epitope_files, tools_to_run, output_dir)
+
+    if not jobs:
+        logging.info("No jobs to run. All tasks are up-to-date.")
+        return
+
+    run_jobs_parallel(jobs, output_dir, epitope_path, args.threads)
 
     common.cleanup_temp(output_dir / "json_inputs")
     common.cleanup_temp(output_dir / "popcov_inputs")
-    logging.info("All done!")
+    logging.info("✅ Evaluation pipeline complete.")
 
 if __name__ == "__main__":
     main()
