@@ -84,21 +84,17 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
             return False
 
         elif tool == "popcoverage":
-            # Expecting .txt summary + .png plots
-            txt_ok = False
-            png_ok = False
+            # For PopCoverage, input is a .txt file, check if corresponding output exists
+            basename = input_file.stem
+            txt_file = output_dir / f"{basename}.txt"
+            png_file = output_dir / f"{basename}_plot.png"  # match what run_popcoverage actually writes
 
-            for file in out_dir.glob(f"{stem}*.txt"):
-                if file.exists() and file.stat().st_size > 0:
-                    txt_ok = True
-                    break
 
-            for file in out_dir.glob(f"{stem}*.png"):
-                if file.exists() and file.stat().st_size > 0:
-                    png_ok = True
-                    break
+            txt_ok = txt_file.exists() and txt_file.stat().st_size > 0
+            png_ok = png_file.exists() and png_file.stat().st_size > 0
 
-            return txt_ok or png_ok # At least one valid output file is required
+            return txt_ok or png_ok
+
 
         elif tool == "algpred":
             # Expecting .csv result, either named by input or fallback as outfile.csv

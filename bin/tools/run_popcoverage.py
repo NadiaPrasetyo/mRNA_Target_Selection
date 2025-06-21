@@ -45,7 +45,6 @@ def run(tool_path: Path, input_file: Path, output_dir: Path,
     - plot (bool): Whether to generate a plot (default: True)
     """
     tool_path = Path(tool_path)
-    output_dir = output_dir / "popcoverage"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     script_path = tool_path / "calculate_population_coverage.py"
