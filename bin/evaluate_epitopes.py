@@ -87,8 +87,6 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
             basename = input_file.stem
             out_dir = output_dir / "popcoverage"
             files = list(out_dir.glob(f"{basename}*.txt")) + list(out_dir.glob(f"{basename}*.png"))
-            for f in files:
-                logging.debug(f"🕵️ Checking PopCoverage output file: {f} (size: {f.stat().st_size})")
 
             return any(f.exists() and f.stat().st_size > 0 for f in files)
 
