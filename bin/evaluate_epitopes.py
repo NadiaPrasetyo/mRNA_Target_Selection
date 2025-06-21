@@ -98,7 +98,7 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
                     png_ok = True
                     break
 
-            return txt_ok and png_ok
+            return txt_ok or png_ok # At least one valid output file is required
 
         elif tool == "algpred":
             # Expecting .csv result, either named by input or fallback as outfile.csv
