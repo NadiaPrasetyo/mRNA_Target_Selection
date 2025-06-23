@@ -24,6 +24,8 @@ import json
 from pathlib import Path
 import shutil
 import tempfile
+import csv
+import re
 
 def reformat_epitope_json_for_cluster(json_file, output_dir, basename_prefix):
     """
@@ -81,9 +83,68 @@ def reformat_epitope_json_for_cluster(json_file, output_dir, basename_prefix):
 
     return output_files
 
+
+def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -> Path:
+    """
+    Parses a B-cell CSV file with peptide predictions and writes a FASTA file with contextual headers.
+
+    Args:
+        csv_file (Path): Path to input CSV file.
+        output_dir (Path): Directory where output FASTA will be saved.
+        basename_prefix (str): Base prefix for output file name.
+
+    Returns:
+        Path: Path to the generated FASTA file.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    fasta_lines = []
+    current_header = None
+    peptides = set()
+
+    with open(csv_file) as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if not row:
+                continue
+            if row[0].startswith("input:"):
+                # New block of peptides
+                peptides.clear()
+                header_str = row[1] if len(row) > 1 else ""
+                # antigen_86|A0A2S1FUJ1|Superantigen-like|HE681097.1|tpos:...
+                match = re.match(r"antigen_(\d+)\|([A-Z0-9]+)\|.*?\|([A-Z0-9.]+)", header_str)
+                if match:
+                    antigen_num, acc_num, strain_acc = match.groups()
+                    current_header = f">{antigen_num}|{acc_num}|{strain_acc}|bcell"
+                else:
+                    print(f"⚠️ Could not parse B-cell header: {row}")
+                    current_header = None
+            elif row[0] == "Position":
+                continue  # skip CSV header row
+            elif current_header and len(row) >= 5:
+                peptide = row[4].strip()
+                if peptide not in peptides:
+                    peptides.add(peptide)
+                    fasta_lines.append(f"{current_header}\n{peptide}")
+            else:
+                continue  # malformed line or no header context
+
+    if not fasta_lines:
+        print(f"⚠️ No peptides found in {csv_file}")
+        return None
+
+    fasta_path = output_dir / f"{basename_prefix}.fasta"
+    with open(fasta_path, "w") as f_out:
+        f_out.write("\n".join(fasta_lines))
+
+    print(f"💾 B-cell FASTA written: {fasta_path}")
+    return fasta_path
+
+
 def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
-    Parses a JSON file with peptide predictions and writes a FASTA file of unique peptides.
+    Parses a JSON file with peptide predictions and writes a FASTA file of unique peptides
+    with contextual headers based on the input file name, appending seq1, seq2, etc.
 
     Args:
         json_file (Path): Path to input JSON file.
@@ -120,15 +181,29 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str)
         print(f"⚠️ No peptides found in {json_file}")
         return None
 
-    # Write to FASTA
-    fasta_lines = [f">seq{i+1}\n{pep}" for i, pep in enumerate(sorted(peptides))]
-    fasta_path = output_dir / f"{basename_prefix}.fasta"
+    filename = json_file.name
+    match = re.match(
+        r"antigen_(\d+)_([A-Z0-9]+)_.*?_(BA[0-9.]+)_.*_(MHCI|MHCII)\.json", filename
+    )
+    if match:
+        antigen_num, acc_num, strain_acc, mhc_class = match.groups()
+        mhc_class = mhc_class.lower()
+        fasta_lines = [
+            f">antigen{antigen_num}|{acc_num}|{strain_acc}|{mhc_class}|seq{i+1}\n{pep}"
+            for i, pep in enumerate(sorted(peptides))
+        ]
+    else:
+        print(f"⚠️ Filename pattern not recognized for T-cell: {filename}")
+        return None
 
+    # Write to FASTA
+    fasta_path = output_dir / f"{basename_prefix}.fasta"
     with open(fasta_path, "w") as fasta_file:
         fasta_file.write("\n".join(fasta_lines))
 
     print(f"💾 FASTA written: {fasta_path}")
     return fasta_path
+
 
 def ensure_writable_dir(path: Path) -> bool:
     """
@@ -494,21 +569,34 @@ if __name__ == "__main__":
                     }
                 ]
             }
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp:
-                json_file = Path(tmp.name)
-                json_file.write_text(json.dumps(json_data))
+            # Create a permanent JSON file with a filename matching the required pattern
+            json_filename = "antigen_12_A0A2S1FUJ1_something_BA1.2_more_MHCI.json"
+            json_file = Path("/tmp") / json_filename
+            json_file.write_text(json.dumps(json_data))
 
-            # make temporary output directory
-            with tempfile.TemporaryDirectory() as temp_dir:
-                output_dir = Path(temp_dir)
-                output_dir.mkdir(parents=True, exist_ok=True)
-                fasta_path = parse_json_to_fasta(json_file, output_dir, "test_output")
-                self.assertTrue(fasta_path.exists())
-                self.assertTrue(fasta_path.suffix == ".fasta")
-                self.assertTrue(fasta_path.read_text().strip().startswith(">seq1"))
-                self.assertTrue("RLNKYTLHR" in fasta_path.read_text())
-                self.assertTrue("KYCPRLNKYTL" in fasta_path.read_text())
-                self.assertFalse("seq3" in fasta_path.read_text())  # Only unique peptides
-                            
+            # Use a permanent output directory and filename for inspection
+            output_dir = Path("/tmp/test_json_to_fasta")
+            output_dir.mkdir(parents=True, exist_ok=True)
+            fasta_path = parse_json_to_fasta(json_file, output_dir, "test_output")
+
+            self.assertIsNotNone(fasta_path)
+            self.assertTrue(fasta_path.exists())
+            self.assertEqual(fasta_path.suffix, ".fasta")
+            fasta_content = fasta_path.read_text().strip()
+            # The header should match the new contextual header format
+            self.assertTrue(fasta_content.startswith(">"))
+            self.assertIn("antigen12|A0A2S1FUJ1|BA1.2|mhci|seq1", fasta_content)
+            self.assertIn("RLNKYTLHR", fasta_content)
+            self.assertIn("KYCPRLNKYTL", fasta_content)
+            # Only two unique peptides, so only seq1 and seq2 should be present
+            self.assertIn("seq1", fasta_content)
+            self.assertIn("seq2", fasta_content)
+            self.assertNotIn("seq3", fasta_content)
+
+            #clean up
+            if fasta_path.exists():
+                fasta_path.unlink() # remove the created FASTA file
+            if json_file.exists():
+                json_file.unlink() # remove the created JSON file
 
     unittest.main()
