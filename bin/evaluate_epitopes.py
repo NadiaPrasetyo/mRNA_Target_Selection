@@ -74,13 +74,9 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
 
     try:
         if tool == "cluster":
-            # Expecting a JSON file with a "clusters" key
-            for file in out_dir.glob(f"{stem}*.json"):
+            for file in out_dir.glob(f"{stem}*.tsv"):
                 if file.exists() and file.stat().st_size > 0:
-                    with open(file) as f:
-                        data = json.load(f)
-                    if "clusters" in data:
-                        return True
+                    return True
             return False
 
         elif tool == "popcoverage":
@@ -168,8 +164,10 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
 
             if tool == "Cluster":
                 try:
-                    cluster_input = common.reformat_epitope_json_for_cluster(file, json_inputs_dir, file.stem)
-                    futures.append(executor.submit(tool_runners[tool], tool_path, cluster_input, out_subdir))
+                    fasta_file = common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
+                    if fasta_file:
+                        futures.append(executor.submit(tool_runners[tool], tool_path, fasta_file, out_subdir))
+
                 except Exception as e:
                     logging.warning(f"⚠️ Cluster formatting failed for {file.name}: {e}")
 

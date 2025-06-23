@@ -420,7 +420,7 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     tool_map = {
         "Allergenicity": tool_root / "algpred2" / "algpred2.py",
         "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
-        "Cluster": tool_root / "ng_cluster-0.1.2-beta" / "src" / "run_cluster.py"
+        "Cluster": tool_root / "miniconda3" / "bin" / "mmseqs"
     }
 
     found = {}
