@@ -449,4 +449,66 @@ if __name__ == "__main__":
             aa = get_alleles("MHCII", "NOT-FOUND")
             self.assertEqual(aa, MHCII_DEFAULT)
 
+    class JsonToFastaTests(unittest.TestCase):
+        def test_parse_json_to_fasta(self):
+            # Mock JSON data
+            json_data = {
+                "results": [
+                    {
+                    "method": "binding.netmhcpan_el",
+                    "type": "peptide_table",
+                    "table_columns": [
+                        "allele",
+                        "peptide",
+                        "core",
+                        "icore",
+                        "score",
+                        "percentile"
+                    ],
+                    "table_data": [
+                        [
+                        "HLA-A*31:01",
+                        "RLNKYTLHR",
+                        "RLNKYTLHR",
+                        "RLNKYTLHR",
+                        0.947356,
+                        0.01
+                        ],
+                        [
+                        "HLA-A*23:01",
+                        "KYCPRLNKYTL",
+                        "KYCPNKYTL",
+                        "KYCPRLNKYTL",
+                        0.408173,
+                        0.22
+                        ],
+                        [
+                        "HLA-A*03:01",
+                        "RLNKYTLHR",
+                        "RLNKYTLHR",
+                        "RLNKYTLHR",
+                        0.914693,
+                        0.03
+                        ]
+                    ]
+                    }
+                ]
+            }
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp:
+                json_file = Path(tmp.name)
+                json_file.write_text(json.dumps(json_data))
+
+            # make temporary output directory
+            with tempfile.TemporaryDirectory() as temp_dir:
+                output_dir = Path(temp_dir)
+                output_dir.mkdir(parents=True, exist_ok=True)
+                fasta_path = parse_json_to_fasta(json_file, output_dir, "test_output")
+                self.assertTrue(fasta_path.exists())
+                self.assertTrue(fasta_path.suffix == ".fasta")
+                self.assertTrue(fasta_path.read_text().strip().startswith(">seq1"))
+                self.assertTrue("RLNKYTLHR" in fasta_path.read_text())
+                self.assertTrue("KYCPRLNKYTL" in fasta_path.read_text())
+                self.assertFalse("seq3" in fasta_path.read_text())  # Only unique peptides
+                            
+
     unittest.main()

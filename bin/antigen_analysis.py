@@ -1,9 +1,9 @@
 """
 antigen_analysis.py
-Command-line tool to run SignalP, TargetP, and TMHMM predictors on input FASTA files for antigen analysis.
+Command-line tool to run SignalP and TargetP predictors on input FASTA files for antigen analysis.
 Overview:
     - Scans a specified pathogen sequence directory for FASTA files.
-    - Runs selected prediction tools (SignalP, TargetP, TMHMM) on each FASTA file.
+    - Runs selected prediction tools (SignalP, TargetP) on each FASTA file.
     - Supports parallel execution of jobs for efficient processing.
     - Organizes results into structured output directories.
 Arguments:
@@ -11,30 +11,30 @@ Arguments:
     sequence_dir (str): Subdirectory under `pathogen_dir` containing FASTA files.
     --tool-root (str, required): Root directory containing tool wrappers and executables.
     --threads (int, optional): Number of parallel threads to use (default: 4).
-    --tools (list, optional): List of tools to run (choices: SIGNALP, TARGETP, TMHMM; default: all).
+    --tools (list, optional): List of tools to run (choices: SIGNALP, TARGETP; default: both).
     --batch-size (int, optional): Batch size for SignalP/TargetP (default: 10000).
     --output-dir (str, optional): Output directory for results (default: epitope_outputs).
 Requirements:
-    - Tool wrappers and executables for SignalP, TargetP, and TMHMM available under `tool-root`.
+    - Tool wrappers and executables for SignalP and TargetP available under `tool-root`.
     - Input FASTA files present in the specified sequence directory.
     - Python packages: argparse, pathlib, concurrent.futures.
 Usage Example:
-    python antigen_analysis.py sars_cov_2 proteins --tool-root /opt/bio_tools --threads 8 --tools SIGNALP TMHMM
+    python antigen_analysis.py sars_cov_2 proteins --tool-root /opt/bio_tools --threads 8 --tools SIGNALP
 Outputs:
     data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<tool>.out   # Prediction results for each tool and input
 Author: Nadia
 """
+
 import argparse
 import sys
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_tmhmm, common
+from tools import run_signalp, run_targetp, common
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
     "SIGNALP": run_signalp.run,
-    "TARGETP": run_targetp.run,
-    "TMHMM": run_tmhmm.run
+    "TARGETP": run_targetp.run
 }
 
 # List of valid tools that can be run
@@ -45,29 +45,24 @@ def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, ba
     """
     Run a specific tool on the input file and save the output to the specified directory.
     Args:
-        tool_name (str): Name of the tool to run (e.g., SIGNALP, TARGETP, TMHMM).
+        tool_name (str): Name of the tool to run (e.g., SIGNALP, TARGETP).
         runner_func (function): Function to run the tool.
         input_file (Path): Path to the input FASTA file.
         output_dir (Path): Directory to save the output files.
         batch_size (int): Batch size for tools that support batching (e.g., SignalP, TargetP).
         tool_path (Path): Path to the tool executable.
     """
-    output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.*"
+    output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.out"
     if output_file.exists():
         print(f"⏭️ Skipping {tool_name} for {input_file.name} (output already exists)")
         return
 
     try:
-        if tool_name in ("SIGNALP", "TARGETP"):
-            runner_func(tool_path, input_file, output_dir, batch_size)
-        elif tool_name == "TMHMM":
-            runner_func(tool_path, input_file, output_dir)
-        else:
-            print(f"⚠️ Unknown tool: {tool_name}")
-            return
+        runner_func(tool_path, input_file, output_dir, batch_size)
         print(f"✅ {tool_name} completed for {input_file.name}")
     except Exception as e:
         print(f"❌ {tool_name} failed for {input_file.name}: {e}")
+
 
 def run_parallel_jobs(jobs, threads: int) -> None:
     """
@@ -86,12 +81,13 @@ def run_parallel_jobs(jobs, threads: int) -> None:
             except Exception as e:
                 print(f"❌ Job failed with unexpected error: {e}")
 
+
 def main():
     """
     Main function to parse arguments and run the antigen analysis pipeline.
     """
     parser = argparse.ArgumentParser(
-        description="Run SignalP, TargetP, and TMHMM on input FASTA files",
+        description="Run SignalP and TargetP on input FASTA files",
         usage="run_predictors.py <pathogen_dir> <sequence_dir> --tool-root <tool_root> [options]"
     )
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
@@ -99,11 +95,11 @@ def main():
     parser.add_argument("--tool-root", required=True, help="Root directory containing tool wrappers and executables")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS,
-                        help="Specify which tools to run (default: all)")
+                        help="Specify which tools to run (default: both)")
     parser.add_argument("--batch-size", type=int, default=10000, help="Batch size for SignalP/TargetP (default: 10000)")
     parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"),
                         help="Base output directory for results (default: epitope_outputs)")
-    
+
     args = parser.parse_args()
 
     data_path = Path("data") / args.pathogen_dir
@@ -112,11 +108,10 @@ def main():
         print(f"❌ Invalid input directory: {sequence_path}")
         sys.exit(1)
 
-    fasta_files = common.get_fasta_files(Path("data") / args.pathogen_dir, args.sequence_dir)
+    fasta_files = common.get_fasta_files(data_path, args.sequence_dir)
     if not fasta_files:
         print("❌ No FASTA files found.")
         sys.exit(1)
-
 
     tool_root = Path(args.tool_root)
     if not tool_root.exists():
@@ -124,12 +119,11 @@ def main():
         sys.exit(1)
 
     try:
-        tool_paths = common.check_signalp_targetp_tmhmm(tool_root)
+        tool_paths = common.check_signalp_targetp(tool_root)
     except FileNotFoundError as e:
         print(f"❌ {e}")
         sys.exit(1)
 
-    # check that output directory exists or create it
     epitope_root = data_path / args.output_dir
     epitope_root.mkdir(parents=True, exist_ok=True)
 
@@ -151,7 +145,6 @@ def main():
 
             tool_path = tool_paths.get(tool_name)
             jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size, tool_path))
-
 
     if not jobs:
         print("❌ No jobs to run after validation. Exiting.")
