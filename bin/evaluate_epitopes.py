@@ -117,14 +117,28 @@ def sanitize_fasta(input_path: Path, output_path: Path):
         output_path (Path): Path to the output sanitized FASTA file.
     """
     with open(input_path, "r", encoding="utf-8") as fin, open(output_path, "w", encoding="utf-8") as fout:
+        current_header = None
+        seq_count = 0
+        skipped = 0
+
         for line in fin:
             line = line.strip()
+            if not line:
+                continue
             if line.startswith(">"):
+                current_header = line
                 fout.write(line + "\n")
-            elif line:
-                # Uppercase, remove non-AA characters
-                clean_seq = re.sub(r"[^ACDEFGHIKLMNPQRSTVWY]", "", line.upper())
-                fout.write(clean_seq + "\n")
+            else:
+                seq = line.upper()
+                clean_seq = re.sub(r"[^ACDEFGHIKLMNPQRSTVWY]", "", seq)
+                if clean_seq:
+                    fout.write(clean_seq + "\n")
+                    seq_count += 1
+                else:
+                    logging.warning(f"⚠️ Invalid or empty sequence under header {current_header}: '{line}'")
+                    skipped += 1
+
+        logging.info(f"✅ {seq_count} sequences kept, ⚠️ {skipped} skipped in {input_path.name}")
 
 
 def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
