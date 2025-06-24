@@ -5,6 +5,7 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from collections import defaultdict
 import shutil
+import re
 
 from tools import run_algpred, run_popcoverage, run_cluster, common, extract_epitopes
 
@@ -108,6 +109,23 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
         print(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
         return 
     
+def sanitize_fasta(input_path: Path, output_path: Path):
+    """
+    Sanitize a FASTA file by ensuring all sequences are uppercase and contain only valid amino acids.
+    Args:
+        input_path (Path): Path to the input FASTA file.
+        output_path (Path): Path to the output sanitized FASTA file.
+    """
+    with open(input_path, "r", encoding="utf-8") as fin, open(output_path, "w", encoding="utf-8") as fout:
+        for line in fin:
+            line = line.strip()
+            if line.startswith(">"):
+                fout.write(line + "\n")
+            elif line:
+                # Uppercase, remove non-AA characters
+                clean_seq = re.sub(r"[^ACDEFGHIKLMNPQRSTVWY]", "", line.upper())
+                fout.write(clean_seq + "\n")
+
 
 def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
     """
@@ -132,17 +150,22 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
     # Step 1: Group input files
     for f in files:
         name = f.name.lower()
-        path = str(f)
+        lower_path = str(f).lower()
+        if "mhcii_" in lower_path:
+            directory = "mhcii"
+        elif "mhci_" in lower_path:
+            directory = "mhci"
+        else:
+            continue
 
-        if "mhci" in path or "mhcii" in path:
-            directory = "mhci" if "mhci" in path else "mhcii"
+        if "mhci" in lower_path or "mhcii" in lower_path:
             parts = name.split("_")
             antigen_number = parts[1] if len(parts) > 1 else "unknown"
             antigen_id = parts[2] if len(parts) > 2 else "unknown"
             key = f"{directory}_antigen{antigen_number}_{antigen_id}"
             grouped[key].append(f)
 
-        elif "bcell" in path:
+        elif "bcell" in lower_path:
             matched = False
             for method in BCELL_METHODS:
                 if method.lower() in name:
@@ -173,9 +196,12 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
                     logging.error(f"❌ FASTA not created for: {file_path.name}")
                     continue
 
+                # 🧼 Sanitize the FASTA file
+                sanitize_fasta(fasta_path, fasta_path)
+
                 lines = fasta_path.read_text().splitlines()
                 if not lines or all(not line.strip() for line in lines):
-                    logging.warning(f"⚠️ Empty FASTA file: {fasta_path.name}")
+                    logging.warning(f"⚠️ Empty FASTA file after sanitization: {fasta_path.name}")
                     continue
 
                 all_fasta_lines.extend(lines)

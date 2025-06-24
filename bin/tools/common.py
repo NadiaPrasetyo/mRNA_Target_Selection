@@ -272,8 +272,10 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
     for tool in selected_tools:
         (output_dir / tool.lower()).mkdir(parents=True, exist_ok=True)
 
-    temp_json_dir = pathogen_path / "temp_json"
-    temp_json_dir.mkdir(parents=True, exist_ok=True)
+    # Only create temp_json_dir if needed
+    if selected_tools in ["MHCI", "MHCII", "BCell"]:
+        temp_json_dir = pathogen_path / "temp_json"
+        temp_json_dir.mkdir(parents=True, exist_ok=True)
 
     return temp_json_dir, output_dir
 
