@@ -31,6 +31,8 @@ Author: Nadia
 """
 import subprocess
 from pathlib import Path
+import shutil
+import logging
 
 def run(tool_path: Path, input_file: Path, output_dir: Path,
         population="World", mhc_class="combined", plot=True):
@@ -74,6 +76,30 @@ def run(tool_path: Path, input_file: Path, output_dir: Path,
         print(f"✅ PopCoverage results saved: {output_txt.name}")
         if plot and plot_path.exists():
             print(f"📈 Plot saved: {plot_path.name}")
+
+        # Flatten PNGs from subdirectories into main output_dir if any exist
+        popcov_dir = output_dir
+        if not popcov_dir.exists():
+            logging.warning(f"⚠️ Output directory does not exist: {popcov_dir}")
+            return
+        for subdir in popcov_dir.glob("*"):
+            if subdir.is_dir():
+                name = subdir.name
+                for png_file in subdir.glob("*.png"):
+                    newname = f"{name}_{png_file.name}"
+                    dest = popcov_dir / newname
+                    try:
+                        shutil.move(str(png_file), str(dest))
+                    except Exception as e:
+                        logging.warning(f"⚠️ Failed to move {png_file} to {dest}: {e}")
+                # Delete the directory if it is empty after moving files
+                try:
+                    if not any(subdir.iterdir()):
+                        subdir.rmdir()
+                except Exception as e:
+                    logging.warning(f"⚠️ Failed to remove empty directory {subdir}: {e}")
+
     except subprocess.CalledProcessError as e:
         print(f"❌ PopCoverage failed for {input_file.name}")
+        print(e.stderr)
         print(e.stderr)
