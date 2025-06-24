@@ -136,7 +136,9 @@ def group_cluster_inputs(files):
         if "mhci" or "mhcii" in path:
             directory = "mhci" if "mhci" in path else "mhcii"
             # group by antigen name e.g antigen_2_A7X1Y9_Large_BX571857.1_tpos:421113-421161_random_mmseqs_MHCI.json
-            antigen_number, antigen_id = name.split("_")[1] if name.has("_") else "unknown", name.split("_")[2] if len(name.split("_")) > 2 else "unknown"
+            parts = name.split("_")
+            antigen_number = parts[1] if len(parts) > 1 else "unknown"
+            antigen_id = parts[2] if len(parts) > 2 else "unknown"
             grouped[f"{directory}_antigen{antigen_number}_{antigen_id}"].append(f)
 
         elif "bcell" in path.lower():
