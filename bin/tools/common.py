@@ -191,10 +191,9 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str)
 
     filename = json_file.name
     match = re.match(
-    r"antigen_(\d+)_([A-Z0-9]+)_(.+?)_([A-Z0-9]+\.\d+)_.*_(MHCI|MHCII)\.json",
+    r"antigen_(\d+)_([A-Z0-9]+)_(.+?)_([A-Z0-9]+\.\d+).*_(MHCI|MHCII)\.json$",
     filename
     )
-
 
     if match:
         antigen_num, acc_num, _, strain_acc, mhc_class = match.groups()
