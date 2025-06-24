@@ -151,9 +151,9 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
     for f in files:
         name = f.name.lower()
         lower_path = str(f).lower()
-        if "mhcii_" in lower_path:
+        if "mhcii" in lower_path:
             directory = "mhcii"
-        elif "mhci_" in lower_path:
+        elif "mhci" in lower_path:
             directory = "mhci"
         else:
             continue
@@ -168,7 +168,7 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
         elif "bcell" in lower_path:
             matched = False
             for method in BCELL_METHODS:
-                if method.lower() in name:
+                if method in name:
                     grouped[f"bcell_{method}"].append(f)
                     matched = True
                     break
