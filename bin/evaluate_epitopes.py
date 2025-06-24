@@ -135,97 +135,6 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
 
     return jobs, unprocessed
 
-
-
-def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
-    output_dir.mkdir(parents=True, exist_ok=True)
-    with open(json_file) as f:
-        data = json.load(f)
-
-    results = data.get("results", [])
-    peptides = set()
-
-    for entry in results:
-        if entry.get("type") != "peptide_table":
-            continue
-
-        columns = entry.get("table_columns", [])
-        data_rows = entry.get("table_data", [])
-
-        try:
-            peptide_idx = columns.index("peptide")
-        except ValueError:
-            continue
-
-        for row in data_rows:
-            peptides.add(row[peptide_idx])
-
-    if not peptides:
-        print(f"⚠️ No peptides found in {json_file}")
-        return None
-
-    filename = json_file.name
-    match = re.match(
-        r"antigen_(\d+)_([A-Z0-9]+)_.*?_(BA[0-9.]+)_.*_(MHCI|MHCII)\.json", filename
-    )
-    if match:
-        antigen_num, acc_num, strain_acc, mhc_class = match.groups()
-        header_base = f"{antigen_num}|{acc_num}|{strain_acc}|{mhc_class.lower()}"
-    else:
-        print(f"⚠️ Filename pattern not recognized for T-cell: {filename}")
-        return None
-
-    fasta_lines = [f">{header_base}\n{pep}" for pep in sorted(peptides)]
-    fasta_path = output_dir / f"{basename_prefix}.fasta"
-    with open(fasta_path, "w") as f_out:
-        f_out.write("\n".join(fasta_lines))
-
-    print(f"💾 FASTA written: {fasta_path}")
-    return fasta_path
-
-
-def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -> Path:
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    fasta_lines = []
-    current_header = None
-    peptides = set()
-
-    with open(csv_file) as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if not row:
-                continue
-            if row[0].startswith("input:"):
-                peptides.clear()
-                header_str = row[1] if len(row) > 1 else ""
-                match = re.match(r"antigen_(\d+)\|([A-Z0-9]+)\|.*?\|([A-Z0-9.]+)", header_str)
-                if match:
-                    antigen_num, acc_num, strain_acc = match.groups()
-                    current_header = f">{antigen_num}|{acc_num}|{strain_acc}|bcell"
-                else:
-                    print(f"⚠️ Could not parse B-cell header: {row}")
-                    current_header = None
-            elif row[0] == "Position":
-                continue
-            elif current_header and len(row) >= 5:
-                peptide = row[4].strip()
-                if peptide not in peptides:
-                    peptides.add(peptide)
-                    fasta_lines.append(f"{current_header}\n{peptide}")
-
-    if not fasta_lines:
-        print(f"⚠️ No peptides found in {csv_file}")
-        return None
-
-    fasta_path = output_dir / f"{basename_prefix}.fasta"
-    with open(fasta_path, "w") as f_out:
-        f_out.write("\n".join(fasta_lines))
-
-    print(f"💾 B-cell FASTA written: {fasta_path}")
-    return fasta_path
-
-
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
     Run the prepared jobs in parallel using a thread pool.
@@ -261,9 +170,9 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
             try:
                 if tool == "Cluster" or tool == "Allergenicity":
                     if "bcell" in str(file).lower():
-                        fasta_file = parse_csv_to_fasta(file, fasta_inputs_dir, file.stem)
+                        fasta_file = common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem)
                     else:
-                        fasta_file = parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
+                        fasta_file = common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
 
                     if fasta_file:
                         futures.append(executor.submit(tool_runners[tool], tool_path, fasta_file, out_subdir))

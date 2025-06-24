@@ -163,7 +163,6 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str)
         Path: Path to the generated FASTA file.
     """
     output_dir.mkdir(parents=True, exist_ok=True)
-
     with open(json_file) as f:
         data = json.load(f)
 
