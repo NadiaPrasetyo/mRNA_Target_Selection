@@ -327,13 +327,12 @@ def main():
     _, output_dir = common.prepare_output_dirs(pathogen_path, args.output_dir, tools_to_run.keys())
     jobs, unprocessed = prepare_jobs(epitope_files, tools_to_run, output_dir)
 
-    # Log unprocessed files clearly for debugging
-    for tool, files in unprocessed.items():
-        if files:
-            logging.info(f"🔍 Unprocessed files for {tool}:")
-            for f in files:
-                logging.info(f"  - {f}")
-
+    # # Log unprocessed files clearly for debugging
+    # for tool, files in unprocessed.items():
+    #     if files:
+    #         logging.info(f"🔍 Unprocessed files for {tool}:")
+    #         for f in files:
+    #             logging.info(f"  - {f}")
 
     if not jobs:
         logging.info("No jobs to run. All tasks are up-to-date.")
