@@ -152,13 +152,16 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     fasta_inputs_dir = output_dir / "fasta_inputs"
     temp_dirs = [popcov_inputs_dir, fasta_inputs_dir]
 
-    # Extract epitopes once for PopCoverage
-    try:
-        epitope_map = extract_epitopes.extract_all_epitopes_by_file(epitope_dir)
-        extract_epitopes.write_allele_epitopes(epitope_map, popcov_inputs_dir)
-    except Exception as e:
-        logging.error(f"❌ Failed to extract/write PopCoverage epitopes: {e}")
-        epitope_map = {}
+    # Extract epitopes once for PopCoverage only if popcov is in the jobs
+    if any(tool == "PopCoverage" for tool, _, _ in jobs):
+        try:  
+            epitope_map = extract_epitopes.extract_all_epitopes_by_file(epitope_dir)
+            extract_epitopes.write_allele_epitopes(epitope_map, popcov_inputs_dir)
+        except Exception as e:
+            logging.error(f"❌ Failed to extract/write PopCoverage epitopes: {e}")
+            epitope_map = {}
+    else:
+        logging.info("No PopCoverage jobs found, skipping epitope extraction.")
 
     futures = []
 
