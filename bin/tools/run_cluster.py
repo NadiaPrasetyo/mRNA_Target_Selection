@@ -20,13 +20,10 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
     output_dir.mkdir(parents=True, exist_ok=True)
 
     prefix = output_prefix or input_fasta.stem
-    tmp_dir = output_dir / "tmp"
-    tmp_dir.mkdir(exist_ok=True)
-
-    # Paths for intermediate files
-    db_path = tmp_dir / f"{prefix}_db"
-    clu_path = tmp_dir / f"{prefix}_clu"
-    clu_seq_path = tmp_dir / f"{prefix}_clu_seq"
+    db_path = output_dir / f"{prefix}_db"
+    clu_path = output_dir / f"{prefix}_clu"
+    tmp_path = output_dir / f"{prefix}_tmp"
+    clu_seq_path = output_dir / f"{prefix}_clu_seq"
 
     # Final outputs
     output_tsv = output_dir / f"{prefix}.tsv"
@@ -36,7 +33,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
 
     cmds = [
         [mmseqs, "createdb", str(input_fasta), str(db_path)],
-        [mmseqs, "cluster", str(db_path), str(clu_path), str(tmp_dir)],
+        [mmseqs, "cluster", str(db_path), str(clu_path), str(tmp_path)],
         [mmseqs, "createtsv", str(db_path), str(db_path), str(clu_path), str(output_tsv)],
         [mmseqs, "createseqfiledb", str(db_path), str(clu_path), str(clu_seq_path)],
         [mmseqs, "result2flat", str(db_path), str(db_path), str(clu_seq_path), str(output_fasta)],
@@ -56,9 +53,11 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
     except subprocess.CalledProcessError as e:
         print(f"❌ MMseqs2 command failed: {e}")
 
-    # Cleanup tmp
-    try:
-        shutil.rmtree(tmp_dir)
-        print(f"🧹 Temporary files cleaned: {tmp_dir}")
-    except Exception as e:
-        print(f"⚠️ Failed to clean temporary directory: {e}")
+    # Cleanup intermediate files
+    for path in [db_path, clu_path, tmp_path, clu_seq_path]:
+        try:
+            if path.exists():
+                shutil.rmtree(path)
+                print(f"🧹 Removed: {path}")
+        except Exception as e:
+            print(f"⚠️ Failed to clean {path}: {e}")

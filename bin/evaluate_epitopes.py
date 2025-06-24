@@ -133,10 +133,11 @@ def group_cluster_inputs(files):
         name = f.name.lower()
         path = str(f)
 
-        if "mhci" in path:
-            # group by antigen name
-            antigen_id = "_".join(name.split("_")[2:4])  # e.g. A7X1Y9
-            grouped[f"mhci_{antigen_id}"].append(f)
+        if "mhci" or "mhcii" in path:
+            directory = "mhci" if "mhci" in path else "mhcii"
+            # group by antigen name e.g antigen_2_A7X1Y9_Large_BX571857.1_tpos:421113-421161_random_mmseqs_MHCI.json
+            antigen_number, antigen_id = name.split("_")[1] if name.has("_") else "unknown", name.split("_")[2] if len(name.split("_")) > 2 else "unknown"
+            grouped[f"{directory}_antigen{antigen_number}_{antigen_id}"].append(f)
 
         elif "bcell" in path.lower():
             matched = False
@@ -174,6 +175,7 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
             unprocessed[tool].append(file)
 
     return jobs, unprocessed
+
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
     Run the prepared jobs in parallel using a thread pool.
@@ -204,36 +206,37 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
 
     futures = []
 
-    # ✅ Group and run Cluster jobs first
-    cluster_jobs = [file for tool, _, file in jobs if tool == "Cluster"]
-    grouped_clusters = group_cluster_inputs(cluster_jobs)
+    # ✅ Only group and run Cluster jobs if present
+    if any(tool == "Cluster" for tool, _, _ in jobs):
+        cluster_jobs = [file for tool, _, file in jobs if tool == "Cluster"]
+        grouped_clusters = group_cluster_inputs(cluster_jobs)
 
-    with ThreadPoolExecutor(max_workers=max_threads) as executor:
+        with ThreadPoolExecutor(max_workers=max_threads) as executor:
 
-        for group_name, files in grouped_clusters.items():
-            fasta_files = []
-            for f in files:
-                if "bcell" in str(f).lower():
-                    fasta = common.parse_csv_to_fasta(f, fasta_inputs_dir, f.stem)
-                else:
-                    fasta = common.parse_json_to_fasta(f, fasta_inputs_dir, f.stem)
-                if fasta and fasta.exists():
-                    fasta_files.append(fasta)
+            for group_name, files in grouped_clusters.items():
+                fasta_files = []
+                for f in files:
+                    if "bcell" in str(f).lower():
+                        fasta = common.parse_csv_to_fasta(f, fasta_inputs_dir, f.stem)
+                    else:
+                        fasta = common.parse_json_to_fasta(f, fasta_inputs_dir, f.stem)
+                    if fasta and fasta.exists():
+                        fasta_files.append(fasta)
 
-            if not fasta_files:
-                logging.warning(f"⚠️ No valid FASTA files in group {group_name}")
-                continue
+                if not fasta_files:
+                    logging.warning(f"⚠️ No valid FASTA files in group {group_name}")
+                    continue
 
-            combined_fasta = fasta_inputs_dir / f"{group_name}_combined.fasta"
-            with open(combined_fasta, "w") as out_f:
-                for fasta in fasta_files:
-                    try:
-                        out_f.write(fasta.read_text())
-                    except Exception as e:
-                        logging.warning(f"⚠️ Failed to read FASTA {fasta}: {e}")
+                combined_fasta = fasta_inputs_dir / f"{group_name}_combined.fasta"
+                with open(combined_fasta, "w") as out_f:
+                    for fasta in fasta_files:
+                        try:
+                            out_f.write(fasta.read_text())
+                        except Exception as e:
+                            logging.warning(f"⚠️ Failed to read FASTA {fasta}: {e}")
 
-            out_subdir = output_dir / group_name
-            futures.append(executor.submit(tool_runners["Cluster"], None, combined_fasta, out_subdir))
+                out_subdir = output_dir / "cluster"
+                futures.append(executor.submit(tool_runners["Cluster"], None, combined_fasta, out_subdir))
 
         # 🔁 Submit other jobs (excluding Cluster)
         for tool, tool_path, file in jobs:
