@@ -1,11 +1,9 @@
 import argparse
 import logging
 import sys
-import json
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-import re
-import csv
+from collections import defaultdict
 import shutil
 
 from tools import run_algpred, run_popcoverage, run_cluster, common, extract_epitopes
@@ -108,7 +106,49 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
 
     except Exception as e:
         print(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
-        return False
+        return 
+    
+def group_cluster_inputs(files):
+    """ Group cluster input files based on their names.
+    This function groups MHC-I and B-cell epitope files based on their antigen names or methods.
+    It assumes that MHC-I files contain antigen names in their filenames and B-cell files are grouped by method.
+    Args:
+        files (list): List of Path objects representing input files.
+    Returns:
+        dict: Dictionary with grouped files.
+    """
+    grouped = defaultdict(list)
+
+    
+    BCELL_METHODS = [
+        "Chou-Fasman",
+        "Emini",
+        "Karplus-Schulz",
+        "Kolaskar-Tongaonkar",
+        "Parker",
+        "Bepipred"
+    ]
+
+    for f in files:
+        name = f.name.lower()
+        path = str(f)
+
+        if "mhci" in path:
+            # group by antigen name
+            antigen_id = "_".join(name.split("_")[2:4])  # e.g. A7X1Y9
+            grouped[f"mhci_{antigen_id}"].append(f)
+
+        elif "bcell" in path.lower():
+            matched = False
+            for method in BCELL_METHODS:
+                if method in name:
+                    grouped[f"bcell_{method}"].append(f)
+                    matched = True
+                    break
+            if not matched:
+                grouped["bcell_unknown"].append(f)
+
+    return grouped
 
 def prepare_jobs(epitope_files, tools_to_run, output_dir):
     """
@@ -134,7 +174,6 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
             unprocessed[tool].append(file)
 
     return jobs, unprocessed
-
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
     Run the prepared jobs in parallel using a thread pool.
@@ -152,9 +191,9 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     fasta_inputs_dir = output_dir / "fasta_inputs"
     temp_dirs = [popcov_inputs_dir, fasta_inputs_dir]
 
-    # Extract epitopes once for PopCoverage only if popcov is in the jobs
+    # Extract epitopes once for PopCoverage only
     if any(tool == "PopCoverage" for tool, _, _ in jobs):
-        try:  
+        try:
             epitope_map = extract_epitopes.extract_all_epitopes_by_file(epitope_dir)
             extract_epitopes.write_allele_epitopes(epitope_map, popcov_inputs_dir)
         except Exception as e:
@@ -165,19 +204,53 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
 
     futures = []
 
+    # ✅ Group and run Cluster jobs first
+    cluster_jobs = [file for tool, _, file in jobs if tool == "Cluster"]
+    grouped_clusters = group_cluster_inputs(cluster_jobs)
+
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
+
+        for group_name, files in grouped_clusters.items():
+            fasta_files = []
+            for f in files:
+                if "bcell" in str(f).lower():
+                    fasta = common.parse_csv_to_fasta(f, fasta_inputs_dir, f.stem)
+                else:
+                    fasta = common.parse_json_to_fasta(f, fasta_inputs_dir, f.stem)
+                if fasta and fasta.exists():
+                    fasta_files.append(fasta)
+
+            if not fasta_files:
+                logging.warning(f"⚠️ No valid FASTA files in group {group_name}")
+                continue
+
+            combined_fasta = fasta_inputs_dir / f"{group_name}_combined.fasta"
+            with open(combined_fasta, "w") as out_f:
+                for fasta in fasta_files:
+                    try:
+                        out_f.write(fasta.read_text())
+                    except Exception as e:
+                        logging.warning(f"⚠️ Failed to read FASTA {fasta}: {e}")
+
+            out_subdir = output_dir / group_name
+            futures.append(executor.submit(tool_runners["Cluster"], None, combined_fasta, out_subdir))
+
+        # 🔁 Submit other jobs (excluding Cluster)
         for tool, tool_path, file in jobs:
+            if tool == "Cluster":
+                continue  # Already handled
+
             file = Path(file)
             out_subdir = output_dir / tool.lower()
 
             try:
-                if tool == "Cluster" or tool == "Allergenicity":
+                if tool == "Allergenicity":
                     if "bcell" in str(file).lower():
                         fasta_file = common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem)
                     else:
                         fasta_file = common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
 
-                    if fasta_file:
+                    if fasta_file and fasta_file.exists():
                         futures.append(executor.submit(tool_runners[tool], tool_path, fasta_file, out_subdir))
 
                 elif tool == "PopCoverage":
