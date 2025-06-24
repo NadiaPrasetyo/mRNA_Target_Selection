@@ -160,26 +160,38 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
 
         for i, file_path in enumerate(file_list):
             basename_prefix = f"{group_name}_{i}"
-            if file_path.suffix == ".json":
-                fasta_path = common.parse_json_to_fasta(file_path, group_fasta_dir, basename_prefix)
-            elif file_path.suffix == ".csv":
-                fasta_path = common.parse_csv_to_fasta(file_path, group_fasta_dir, basename_prefix)
-            else:
-                print(f"⚠️ Skipping unsupported file type: {file_path}")
-                continue
+            try:
+                if file_path.suffix == ".json":
+                    fasta_path = common.parse_json_to_fasta(file_path, group_fasta_dir, basename_prefix)
+                elif file_path.suffix == ".csv":
+                    fasta_path = common.parse_csv_to_fasta(file_path, group_fasta_dir, basename_prefix)
+                else:
+                    logging.warning(f"⚠️ Skipping unsupported file type: {file_path}")
+                    continue
 
-            if fasta_path and fasta_path.exists():
-                with open(fasta_path) as f:
-                    all_fasta_lines.extend(f.read().splitlines()) # read lines from FASTA file
+                if not fasta_path or not fasta_path.exists():
+                    logging.error(f"❌ FASTA not created for: {file_path.name}")
+                    continue
+
+                lines = fasta_path.read_text().splitlines()
+                if not lines or all(not line.strip() for line in lines):
+                    logging.warning(f"⚠️ Empty FASTA file: {fasta_path.name}")
+                    continue
+
+                all_fasta_lines.extend(lines)
+                logging.info(f"✅ FASTA added: {fasta_path.name}")
+
+            except Exception as e:
+                logging.error(f"❌ Failed to parse and convert {file_path.name}: {e}")
 
         if all_fasta_lines:
             combined_path = fasta_inputs_dir / f"{group_name}.fasta"
             with open(combined_path, "w") as out_f:
                 out_f.write("\n".join(all_fasta_lines))
-            print(f"🔗 Combined FASTA written: {combined_path}")
+            logging.info(f"🔗 Combined FASTA written: {combined_path}")
             combined_fastas[group_name] = combined_path
         else:
-            print(f"⚠️ No valid FASTA entries for group {group_name}")
+            logging.warning(f"⚠️ No valid FASTA entries for group {group_name}")
 
     return combined_fastas
 
@@ -242,14 +254,16 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
 
         # 🧬 Handle Cluster jobs
-        cluster_jobs = [file for tool, _, file in jobs if tool == "Cluster"]
-        if cluster_jobs:
+        cluster_jobs = [file for tool, _, file in jobs if tool == "Cluster"] # filter for Cluster jobs
+        if cluster_jobs: # if there are Cluster jobs
             grouped_fastas = group_cluster_inputs(cluster_jobs, fasta_inputs_dir)
             cluster_out_dir = output_dir / "cluster"
             cluster_out_dir.mkdir(parents=True, exist_ok=True)
 
             for group_name, combined_fasta in grouped_fastas.items():
                 if combined_fasta.exists():
+                    logging.info(f"🚀 Submitting Cluster job: {group_name} ({combined_fasta})")
+
                     futures.append(
                         executor.submit(
                             tool_runners["Cluster"], None, combined_fasta, cluster_out_dir, group_name
@@ -301,14 +315,14 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
             except Exception as e:
                 logging.error(f"❌ Job failed: {e}")
 
-    # 🧹 Clean up temporary directories
-    for temp_dir in temp_dirs:
-        try:
-            if temp_dir.exists():
-                shutil.rmtree(temp_dir)
-                logging.info(f"🧹 Cleaned temporary directory: {temp_dir}")
-        except Exception as e:
-            logging.warning(f"⚠️ Cleanup failed for {temp_dir}: {e}")
+    # # 🧹 Clean up temporary directories
+    # for temp_dir in temp_dirs:
+    #     try:
+    #         if temp_dir.exists():
+    #             shutil.rmtree(temp_dir)
+    #             logging.info(f"🧹 Cleaned temporary directory: {temp_dir}")
+    #     except Exception as e:
+    #         logging.warning(f"⚠️ Cleanup failed for {temp_dir}: {e}")
             
 def main():
     """Main function to run the evaluation pipeline.

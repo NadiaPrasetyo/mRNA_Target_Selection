@@ -25,6 +25,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import csv
+import logging
 import re
 
 def reformat_epitope_json_for_cluster(json_file, output_dir, basename_prefix):
@@ -141,8 +142,9 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
         # After finishing, write any remaining peptides from the last block
         write_block(current_header, peptides)
     if not fasta_lines:
-        print(f"⚠️ No peptides found in {csv_file}")
+        logging.warning(f"⚠️ No peptides found in B-cell file: {csv_file.name}")
         return None
+
     fasta_path = output_dir / f"{basename_prefix}.fasta"
     with open(fasta_path, "w") as f_out:
         f_out.write("\n".join(fasta_lines))
