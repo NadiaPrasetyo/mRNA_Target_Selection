@@ -2,6 +2,26 @@ import subprocess
 from pathlib import Path
 import shutil
 
+def validate_fasta(path: Path) -> bool:
+    if not path.exists() or path.stat().st_size == 0:
+        return False
+
+    seen_ids = set()
+    valid_amino_acids = set("ACDEFGHIKLMNPQRSTVWY")
+
+    with path.open() as f:
+        for line in f:
+            if line.startswith(">"):
+                seq_id = line[1:].strip()
+                if seq_id in seen_ids:
+                    return False
+                seen_ids.add(seq_id)
+            else:
+                if not set(line.strip()).intersection(valid_amino_acids):
+                    return False
+    return True
+
+
 def run(tool_path: Path, input_fasta: Path, output_dir: Path,
         output_prefix: str = None):
     """
@@ -15,6 +35,9 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
     """
     if not input_fasta.exists():
         raise FileNotFoundError(f"Input FASTA not found: {input_fasta}")
+    
+    if not validate_fasta(input_fasta):
+        raise ValueError(f"Invalid FASTA format or empty sequences in: {input_fasta}")
 
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -56,8 +79,9 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
     # Cleanup intermediate files
     for path in [db_path, clu_path, tmp_path, clu_seq_path]:
         try:
-            if path.exists():
+            if path.is_dir():
                 shutil.rmtree(path)
-                print(f"🧹 Removed: {path}")
+            elif path.is_file():
+                path.unlink()
         except Exception as e:
             print(f"⚠️ Failed to clean {path}: {e}")

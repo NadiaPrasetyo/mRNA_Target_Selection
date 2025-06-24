@@ -108,50 +108,80 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
         print(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
         return 
     
-def group_cluster_inputs(files):
-    """ Group cluster input files based on their names.
-    This function groups MHC-I and B-cell epitope files based on their antigen names or methods.
-    It assumes that MHC-I files contain antigen names in their filenames and B-cell files are grouped by method.
+
+def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
+    """
+    Groups input files (JSON or CSV), converts them to FASTA using helper functions,
+    and merges all FASTAs in each group into a single group FASTA file.
+
     Args:
-        files (list): List of Path objects representing input files.
+        files (list[Path]): List of input JSON/CSV files.
+        fasta_inputs_dir (Path): Directory where output FASTAs will be stored.
+
     Returns:
-        dict: Dictionary with grouped files.
+        dict: Mapping from group name -> Path to combined FASTA file.
     """
     grouped = defaultdict(list)
+    combined_fastas = {}
 
-    
     BCELL_METHODS = [
-        "Chou-Fasman",
-        "Emini",
-        "Karplus-Schulz",
-        "Kolaskar-Tongaonkar",
-        "Parker",
-        "Bepipred"
+        "Chou-Fasman", "Emini", "Karplus-Schulz",
+        "Kolaskar-Tongaonkar", "Parker", "Bepipred"
     ]
 
+    # Step 1: Group input files
     for f in files:
         name = f.name.lower()
         path = str(f)
 
-        if "mhci" or "mhcii" in path:
+        if "mhci" in path or "mhcii" in path:
             directory = "mhci" if "mhci" in path else "mhcii"
-            # group by antigen name e.g antigen_2_A7X1Y9_Large_BX571857.1_tpos:421113-421161_random_mmseqs_MHCI.json
             parts = name.split("_")
             antigen_number = parts[1] if len(parts) > 1 else "unknown"
             antigen_id = parts[2] if len(parts) > 2 else "unknown"
-            grouped[f"{directory}_antigen{antigen_number}_{antigen_id}"].append(f)
+            key = f"{directory}_antigen{antigen_number}_{antigen_id}"
+            grouped[key].append(f)
 
-        elif "bcell" in path.lower():
+        elif "bcell" in path:
             matched = False
             for method in BCELL_METHODS:
-                if method in name:
+                if method.lower() in name:
                     grouped[f"bcell_{method}"].append(f)
                     matched = True
                     break
             if not matched:
                 grouped["bcell_unknown"].append(f)
 
-    return grouped
+    # Step 2: Convert files to FASTA and merge per group
+    for group_name, file_list in grouped.items():
+        group_fasta_dir = fasta_inputs_dir / group_name
+        group_fasta_dir.mkdir(parents=True, exist_ok=True)
+        all_fasta_lines = []
+
+        for i, file_path in enumerate(file_list):
+            basename_prefix = f"{group_name}_{i}"
+            if file_path.suffix == ".json":
+                fasta_path = common.parse_json_to_fasta(file_path, group_fasta_dir, basename_prefix)
+            elif file_path.suffix == ".csv":
+                fasta_path = common.parse_csv_to_fasta(file_path, group_fasta_dir, basename_prefix)
+            else:
+                print(f"⚠️ Skipping unsupported file type: {file_path}")
+                continue
+
+            if fasta_path and fasta_path.exists():
+                with open(fasta_path) as f:
+                    all_fasta_lines.extend(f.read().splitlines()) # read lines from FASTA file
+
+        if all_fasta_lines:
+            combined_path = fasta_inputs_dir / f"{group_name}.fasta"
+            with open(combined_path, "w") as out_f:
+                out_f.write("\n".join(all_fasta_lines))
+            print(f"🔗 Combined FASTA written: {combined_path}")
+            combined_fastas[group_name] = combined_path
+        else:
+            print(f"⚠️ No valid FASTA entries for group {group_name}")
+
+    return combined_fastas
 
 def prepare_jobs(epitope_files, tools_to_run, output_dir):
     """
@@ -178,6 +208,7 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
 
     return jobs, unprocessed
 
+
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
     Run the prepared jobs in parallel using a thread pool.
@@ -195,58 +226,45 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     fasta_inputs_dir = output_dir / "fasta_inputs"
     temp_dirs = [popcov_inputs_dir, fasta_inputs_dir]
 
-    # Extract epitopes once for PopCoverage only
+    futures = []
+
+    # Extract epitopes for PopCoverage
+    epitope_map = {}
     if any(tool == "PopCoverage" for tool, _, _ in jobs):
         try:
             epitope_map = extract_epitopes.extract_all_epitopes_by_file(epitope_dir)
             extract_epitopes.write_allele_epitopes(epitope_map, popcov_inputs_dir)
         except Exception as e:
             logging.error(f"❌ Failed to extract/write PopCoverage epitopes: {e}")
-            epitope_map = {}
     else:
-        logging.info("No PopCoverage jobs found, skipping epitope extraction.")
+        logging.info("ℹ️ No PopCoverage jobs found, skipping epitope extraction.")
 
-    futures = []
+    with ThreadPoolExecutor(max_workers=max_threads) as executor:
 
-    # ✅ Only group and run Cluster jobs if present
-    if any(tool == "Cluster" for tool, _, _ in jobs):
+        # 🧬 Handle Cluster jobs
         cluster_jobs = [file for tool, _, file in jobs if tool == "Cluster"]
-        grouped_clusters = group_cluster_inputs(cluster_jobs)
+        if cluster_jobs:
+            grouped_fastas = group_cluster_inputs(cluster_jobs, fasta_inputs_dir)
+            cluster_out_dir = output_dir / "cluster"
+            cluster_out_dir.mkdir(parents=True, exist_ok=True)
 
-        with ThreadPoolExecutor(max_workers=max_threads) as executor:
+            for group_name, combined_fasta in grouped_fastas.items():
+                if combined_fasta.exists():
+                    futures.append(
+                        executor.submit(
+                            tool_runners["Cluster"], None, combined_fasta, cluster_out_dir, group_name
+                        )
+                    )
+                else:
+                    logging.warning(f"⚠️ Missing combined FASTA for group: {group_name}")
 
-            for group_name, files in grouped_clusters.items():
-                fasta_files = []
-                for f in files:
-                    if "bcell" in str(f).lower():
-                        fasta = common.parse_csv_to_fasta(f, fasta_inputs_dir, f.stem)
-                    else:
-                        fasta = common.parse_json_to_fasta(f, fasta_inputs_dir, f.stem)
-                    if fasta and fasta.exists():
-                        fasta_files.append(fasta)
-
-                if not fasta_files:
-                    logging.warning(f"⚠️ No valid FASTA files in group {group_name}")
-                    continue
-
-                combined_fasta = fasta_inputs_dir / f"{group_name}_combined.fasta"
-                with open(combined_fasta, "w") as out_f:
-                    for fasta in fasta_files:
-                        try:
-                            out_f.write(fasta.read_text())
-                        except Exception as e:
-                            logging.warning(f"⚠️ Failed to read FASTA {fasta}: {e}")
-
-                out_subdir = output_dir / "cluster"
-                futures.append(executor.submit(tool_runners["Cluster"], None, combined_fasta, out_subdir))
-
-        # 🔁 Submit other jobs (excluding Cluster)
+        # 🧪 Handle all other jobs
         for tool, tool_path, file in jobs:
             if tool == "Cluster":
                 continue  # Already handled
 
             file = Path(file)
-            out_subdir = output_dir / tool.lower()
+            out_dir = output_dir / tool.lower()
 
             try:
                 if tool == "Allergenicity":
@@ -256,39 +274,42 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
                         fasta_file = common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
 
                     if fasta_file and fasta_file.exists():
-                        futures.append(executor.submit(tool_runners[tool], tool_path, fasta_file, out_subdir))
+                        futures.append(executor.submit(tool_runners[tool], tool_path, fasta_file, out_dir))
+                    else:
+                        logging.warning(f"⚠️ FASTA not created for: {file.name}")
 
                 elif tool == "PopCoverage":
                     if "bcell" in str(file).lower():
-                        continue  # Skip B-cell entries
+                        continue  # Skip B-cell for PopCoverage
+
                     for txt_file in popcov_inputs_dir.glob("*.txt"):
                         if txt_file.exists() and txt_file.stat().st_size > 0:
-                            futures.append(executor.submit(tool_runners[tool], tool_path, txt_file, out_subdir))
+                            futures.append(executor.submit(tool_runners[tool], tool_path, txt_file, out_dir))
                         else:
-                            logging.warning(f"⚠️ Skipping missing/empty PopCoverage input: {txt_file}")
+                            logging.warning(f"⚠️ Skipping empty PopCoverage input: {txt_file.name}")
 
                 else:
-                    futures.append(executor.submit(tool_runners[tool], tool_path, file, out_subdir))
+                    futures.append(executor.submit(tool_runners[tool], tool_path, file, out_dir))
 
             except Exception as e:
-                logging.warning(f"⚠️ FASTA generation or tool failed for {file.name}: {e}")
+                logging.error(f"❌ Error preparing job for {file.name}: {e}")
 
-        # Wait for all futures to complete
+        # ✅ Wait for all submitted jobs
         for future in futures:
             try:
                 future.result()
             except Exception as e:
                 logging.error(f"❌ Job failed: {e}")
 
-    # Clean up temporary directories
+    # 🧹 Clean up temporary directories
     for temp_dir in temp_dirs:
         try:
             if temp_dir.exists():
                 shutil.rmtree(temp_dir)
-                logging.info(f"🧹 Cleaned up temporary directory: {temp_dir}")
+                logging.info(f"🧹 Cleaned temporary directory: {temp_dir}")
         except Exception as e:
-            logging.warning(f"⚠️ Failed to clean up {temp_dir}: {e}")
-
+            logging.warning(f"⚠️ Cleanup failed for {temp_dir}: {e}")
+            
 def main():
     """Main function to run the evaluation pipeline.
     Parses arguments, checks directories, discovers epitope files, prepares jobs, and runs them in parallel.
