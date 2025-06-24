@@ -118,16 +118,22 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
         tools_to_run (dict): Dictionary of tools to run with their paths.
         output_dir (Path): Directory where outputs will be saved.
     Returns:
-        list: List of jobs to run, each as a tuple (tool, tool_path, file).
+        tuple: (jobs_to_run, skipped_info)
     """
     jobs = []
+    skipped = {tool: [] for tool in tools_to_run.keys()}
+    unprocessed = {tool: [] for tool in tools_to_run.keys()}
+
     for tool, tool_path in tools_to_run.items():
         for file in epitope_files:
             if is_output_valid(tool, file, output_dir):
                 logging.info(f"Skipping {file.name} for {tool}, already processed.")
+                skipped[tool].append(file)
                 continue
             jobs.append((tool, tool_path, file))
-    return jobs
+            unprocessed[tool].append(file)
+
+    return jobs, unprocessed
 
 
 
@@ -319,7 +325,15 @@ def main():
         sys.exit(1)
 
     _, output_dir = common.prepare_output_dirs(pathogen_path, args.output_dir, tools_to_run.keys())
-    jobs = prepare_jobs(epitope_files, tools_to_run, output_dir)
+    jobs, unprocessed = prepare_jobs(epitope_files, tools_to_run, output_dir)
+
+    # Log unprocessed files clearly for debugging
+    for tool, files in unprocessed.items():
+        if files:
+            logging.info(f"🔍 Unprocessed files for {tool}:")
+            for f in files:
+                logging.info(f"  - {f}")
+
 
     if not jobs:
         logging.info("No jobs to run. All tasks are up-to-date.")
