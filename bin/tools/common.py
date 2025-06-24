@@ -149,7 +149,6 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
     print(f"💾 B-cell FASTA written: {fasta_path}")
     return fasta_path
 
-
 def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
     Parses a JSON file with peptide predictions and writes a FASTA file of unique peptides
@@ -192,7 +191,8 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str)
 
     filename = json_file.name
     match = re.match(
-        r"antigen_(\d+)_([A-Z0-9]+)_.*?_(BA[0-9.]+)_.*_(MHCI|MHCII)\.json", filename
+        r"antigen_(\d+)_([A-Z0-9]+)_(?:.*?_)?([A-Z]+\d+(?:\.\d+)?)_.*_(MHCI|MHCII)\.json",
+        filename
     )
     if match:
         antigen_num, acc_num, strain_acc, mhc_class = match.groups()
@@ -212,7 +212,6 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str)
 
     print(f"💾 FASTA written: {fasta_path}")
     return fasta_path
-
 
 def ensure_writable_dir(path: Path) -> bool:
     """
