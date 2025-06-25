@@ -28,62 +28,59 @@ import csv
 import logging
 import re
 
-VALID_AMINO_ACIDS = set("ACDEFGHIKLMNPQRSTVWY")  # IUPAC one-letter codes
-
-def is_valid_peptide(seq):
-        """ Check if a sequence is a valid peptide:
-        - Must be a non-empty string.
-        - Must contain only valid amino acid residues (20 standard AAs).
-        """
-
-        return (
-            isinstance(seq, str) and
-            len(seq) > 0 and
-            all(residue in VALID_AMINO_ACIDS for residue in seq.strip().upper())
-        )
+def is_valid_peptide(seq: str) -> bool:
+    """
+    Checks if a given sequence is a valid peptide sequence.
+    A valid peptide consists only of standard amino acid characters (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
+    Args:
+        seq (str): The peptide sequence to validate.
+    Returns:
+        bool: True if the sequence is valid, False otherwise.
+    """
+    return bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", seq))
 
 def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
     Parses a B-cell CSV file with peptide predictions and writes a FASTA file with contextual headers.
-    Ensures that duplicate (header, peptide) pairs are not included.
-
+    Infers header info from the first valid 'input:' line and applies it to earlier peptides too.
+    
     Args:
         csv_file (Path): Path to input CSV file.
         output_dir (Path): Directory where output FASTA will be saved.
         basename_prefix (str): Base prefix for output file name.
+
     Returns:
-        Path: Path to the generated FASTA file.
+        Path: Path to the generated FASTA file, or None if no peptides found.
     """
     output_dir.mkdir(parents=True, exist_ok=True)
+
     fasta_lines = []
-    current_header = None
-    peptides = []
     seen = set()
+    peptides = []
+    current_header = None
+    strain_acc = "unknown"
+
+    early_peptides = []
+    early_header_written = False
 
     method = csv_file.name.lower()
     is_bepipred = "bepipred" in method
     is_emini_or_kolaskar = any(x in method for x in ["emini", "kolaskar"])
     is_other = not (is_bepipred or is_emini_or_kolaskar)
-
     in_bepipred_peptide_block = False
-    strain_acc = "unknown"
-    has_seen_input_header = False
 
-    def write_block(header, peptides):
-        if header and peptides:
-            # Strip any accidental leading '>' from header
-            header = header.lstrip(">")
-            for i, pep in enumerate(peptides):
-                if not is_valid_peptide(pep):
-                    continue  # Skip invalid sequences
-                key = (header, pep)
-                if key not in seen:
-                    fasta_lines.append(f">{header}|seq{i+1}\n{pep}")
-                    seen.add(key)
-
-
-    def looks_like_peptide(s):
-        return bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", s))  # 20 AAs
+    def write_block(header: str, block_peptides: list):
+        if not header or not block_peptides:
+            return
+        header = header.lstrip(">")
+        for i, pep in enumerate(block_peptides):
+            if not is_valid_peptide(pep):
+                logging.warning(f"⚠️ Invalid peptide skipped: {pep} in header: {header}")
+                continue
+            key = (header, pep)
+            if key not in seen:
+                fasta_lines.append(f">{header}|seq{i+1}\n{pep}")
+                seen.add(key)
 
     with open(csv_file) as f:
         reader = csv.reader(f)
@@ -92,25 +89,36 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                 continue
 
             if row[0].startswith("input:"):
-                write_block(current_header, peptides)
-                peptides = []
-                in_bepipred_peptide_block = False
-                has_seen_input_header = True
+                # Finalize previous peptide block
+                if peptides:
+                    write_block(current_header, peptides)
+                    peptides = []
 
+                # Extract header info
                 header_str = row[1] if len(row) > 1 else row[0][len("input:"):].strip()
                 match = re.match(r"antigen_(\d+)\|([A-Z0-9]+)\|.*?\|([A-Z0-9.]+)", header_str)
                 if match:
                     antigen_num, acc_num, strain_acc = match.groups()
                     current_header = f">antigen{antigen_num}|{acc_num}|{strain_acc}|bcell"
+
+                    # If we had early peptides, write them now using inferred strain
+                    if early_peptides and not early_header_written:
+                        inferred_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
+                        write_block(inferred_header, early_peptides)
+                        early_header_written = True
                 else:
                     logging.warning(f"⚠️ Could not parse B-cell header: {row}")
-                    current_header = None
+                    current_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
+                in_bepipred_peptide_block = False
                 continue
 
+            # Ensure we have a default header if no 'input:' encountered yet
             if current_header is None:
                 current_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
 
-            # Bepipred logic
+            peptide = None
+
+            # --- Peptide Parsing Logic ---
             if is_bepipred:
                 if row[0].startswith("No") and any("Peptipe" in col for col in row):
                     in_bepipred_peptide_block = True
@@ -120,38 +128,35 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                     continue
                 elif in_bepipred_peptide_block and len(row) >= 4:
                     peptide = row[3].strip()
-                    if looks_like_peptide(peptide) and peptide not in peptides:
-                        peptides.append(peptide)
 
-            # Emini / Kolaskar logic
             elif is_emini_or_kolaskar:
-                if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
-                    continue
-                elif row[0] == "No" and "Peptipe" in row:
+                if (row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide") or \
+                   (row[0] == "No" and "Peptipe" in row):
                     continue
                 elif len(row) >= 5:
-                    try:
-                        peptide = row[4].strip()
-                        if peptide and peptide not in peptides:
-                            peptides.append(peptide)
-                    except IndexError:
-                        continue
+                    peptide = row[4].strip()
                 elif len(row) >= 3:
-                    # Handles early peptide blocks with format: No, Start, Peptide, Score
                     peptide = row[2].strip()
-                    if peptide and peptide not in peptides:
-                        peptides.append(peptide)
 
-            # Generic logic
             elif is_other:
                 if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
                     continue
-                if len(row) >= 5:
+                elif len(row) >= 5:
                     peptide = row[4].strip()
-                    if looks_like_peptide(peptide) and peptide not in peptides:
-                        peptides.append(peptide)
 
+            if peptide and is_valid_peptide(peptide):
+                if current_header.startswith(">antigenUnknown"):
+                    early_peptides.append(peptide)
+                else:
+                    peptides.append(peptide)
+
+    # Final block
+    if peptides:
         write_block(current_header, peptides)
+    elif early_peptides and not early_header_written:
+        # No 'input:' line at all? Still write early peptides
+        fallback_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
+        write_block(fallback_header, early_peptides)
 
     if not fasta_lines:
         logging.warning(f"⚠️ No peptides found in B-cell file: {csv_file.name}")
@@ -160,9 +165,9 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
     fasta_path = output_dir / f"{basename_prefix}.fasta"
     with open(fasta_path, "w") as f_out:
         f_out.write("\n".join(fasta_lines))
+
     print(f"💾 B-cell FASTA written: {fasta_path}")
     return fasta_path
-
 
 def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
@@ -727,16 +732,22 @@ Position,Residue,Score,Assignment
             shutil.rmtree(output_dir)
 
         def test_emini_csv_to_fasta(self):
-            csv_data = """input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
+            csv_data = """Position,Residue,Start,End,Peptide,Score
+3,I,1,6,MAISQE,0.396
+4,S,2,7,AISQER,0.783
+5,Q,3,8,ISQERK,1.551
+6,E,4,9,SQERKN,3.557
+input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
 Predicted,peptides
 No,Start,End,Peptipe,Length
 10,17,TFNKKKQK,4.009875
 69,81,ITNYSEKGMREIK,1.9206153846153846
+111,121,KKSKTEIKQRV,2.6391818181818176
+131,138,SDKKDQFP,2.94825
 Position,Residue,Start,End,Peptide,Score
-6,Q,4,9,FRQVSK,1.283
-7,V,5,10,RQVSKT,2.139
-8,S,6,11,QVSKTF,0.945
-9,T,7,12,error,0.123
+3,E,1,6,MIEFRQ,0.775
+4,F,2,7,IEFRQV,0.581
+5,R,3,8,error,0.514
         """
 
             csv_file = Path("/tmp/emini.csv")
@@ -751,12 +762,17 @@ Position,Residue,Start,End,Peptide,Score
             headers = [l for l in fasta_lines if l.startswith(">")]
             sequences = [l for l in fasta_lines if not l.startswith(">")]
 
-            self.assertEqual(len(headers), 5)
+            self.assertEqual(len(headers), 10)
+            self.assertIn("MAISQE", sequences)
+            self.assertIn("AISQER", sequences)
+            self.assertIn("ISQERK", sequences)
+            self.assertIn("SQERKN", sequences)
             self.assertIn("TFNKKKQK", sequences)
             self.assertIn("ITNYSEKGMREIK", sequences)
-            self.assertIn("FRQVSK", sequences)
-            self.assertIn("RQVSKT", sequences)
-            self.assertIn("QVSKTF", sequences)
+            self.assertIn("KKSKTEIKQRV", sequences)
+            self.assertIn("SDKKDQFP", sequences)
+            self.assertIn("MIEFRQ", sequences)
+            self.assertIn("IEFRQV", sequences)
             self.assertNotIn("error", sequences)
 
             # Cleanup
