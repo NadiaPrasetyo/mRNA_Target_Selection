@@ -130,6 +130,10 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
         "Kolaskar-Tongaonkar", "Parker", "Bepipred"
     ]
 
+    def normalize_method_string(s):
+        """Normalize method or filename string for comparison."""
+        return s.replace("-", "").replace("_", "").lower()
+
     # Step 1: Group input files
     for f in files:
         name = f.name.lower()
@@ -137,8 +141,9 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
 
         if "bcell" in lower_path:
             matched = False
+            normalized_name = normalize_method_string(name)
             for method in BCELL_METHODS:
-                if method in name:
+                if normalize_method_string(method) in normalized_name:
                     grouped[f"bcell_{method}"].append(f)
                     matched = True
                     break

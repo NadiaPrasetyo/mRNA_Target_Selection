@@ -63,10 +63,13 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                     fasta_lines.append(f"{header}|seq{i+1}\n{pep}")
                     seen.add(key)
 
+    def looks_like_peptide(s):
+        return bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", s))  # 20 AAs
+
     with open(csv_file) as f:
         reader = csv.reader(f)
         for row in reader:
-            if not row:
+            if not row or all(cell.strip() == "" for cell in row):
                 continue
 
             if row[0].startswith("input:"):
@@ -81,16 +84,16 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                     antigen_num, acc_num, strain_acc = match.groups()
                     current_header = f">antigen{antigen_num}|{acc_num}|{strain_acc}|bcell"
                 else:
-                    print(f"⚠️ Could not parse B-cell header: {row}")
+                    logging.warning(f"⚠️ Could not parse B-cell header: {row}")
                     current_header = None
                 continue
 
             if current_header is None:
-                # No input header seen yet — assign a placeholder using strain_acc
                 current_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
 
+            # Bepipred logic
             if is_bepipred:
-                if row[0].startswith("No") and "Peptipe" in row:
+                if row[0].startswith("No") and any("Peptipe" in col for col in row):
                     in_bepipred_peptide_block = True
                     continue
                 elif row[0].startswith("Position") and "Residue" in row:
@@ -98,9 +101,10 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                     continue
                 elif in_bepipred_peptide_block and len(row) >= 4:
                     peptide = row[3].strip()
-                    if peptide and peptide not in peptides:
+                    if looks_like_peptide(peptide) and peptide not in peptides:
                         peptides.append(peptide)
 
+            # Emini / Kolaskar logic
             elif is_emini_or_kolaskar:
                 if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
                     continue
@@ -113,20 +117,21 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                             peptides.append(peptide)
                     except IndexError:
                         continue
-                elif len(row) >= 4:
-                    peptide = row[3].strip()
+                elif len(row) >= 3:
+                    # Handles early peptide blocks with format: No, Start, Peptide, Score
+                    peptide = row[2].strip()
                     if peptide and peptide not in peptides:
                         peptides.append(peptide)
 
+            # Generic logic
             elif is_other:
                 if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
                     continue
-                elif len(row) >= 5:
+                if len(row) >= 5:
                     peptide = row[4].strip()
-                    if peptide and peptide not in peptides:
+                    if looks_like_peptide(peptide) and peptide not in peptides:
                         peptides.append(peptide)
 
-        # Write final block
         write_block(current_header, peptides)
 
     if not fasta_lines:
@@ -138,6 +143,7 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
         f_out.write("\n".join(fasta_lines))
     print(f"💾 B-cell FASTA written: {fasta_path}")
     return fasta_path
+
 
 def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
@@ -650,12 +656,129 @@ Position,Residue,Score,Length,Peptide Sequence
             # Make sure duplicate peptide is not included twice
             self.assertEqual(sequences.count("RLNKYTLHR"), 1)
 
-            # Clean up files and directory
+            # # Clean up files and directory
             if fasta_path.exists():
                 fasta_path.unlink()
             if csv_file.exists():
                 csv_file.unlink()
             if output_dir.exists():
                 shutil.rmtree(output_dir)
+
+        def test_bepipred_csv_to_fasta(self):
+            csv_data = """Position,Residue,Score,Assignment
+1,M,-0.481,.
+2,A,-0.099,.
+3,I,0.070,.
+4,S,0.241,.
+input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
+Predicted,peptides
+No,Start,End,Peptipe,Length
+1,10,13,TFNK,4
+2,39,44,YSGAGK,6
+3,56,59,AASS,4
+Position,Residue,Score,Assignment
+        """
+
+            csv_file = Path("/tmp/bepipred.csv")
+            csv_file.write_text(csv_data)
+            output_dir = Path("/tmp/test_bepipred_output")
+            output_dir.mkdir(parents=True, exist_ok=True)
+
+            fasta_path = parse_csv_to_fasta(csv_file, output_dir, "bepipred_test")
+            self.assertIsNotNone(fasta_path)
+            fasta_lines = fasta_path.read_text().strip().splitlines()
+
+            headers = [l for l in fasta_lines if l.startswith(">")]
+            sequences = [l for l in fasta_lines if not l.startswith(">")]
+
+            self.assertEqual(len(headers), 3)
+            self.assertIn("TFNK", sequences)
+            self.assertIn("YSGAGK", sequences)
+            self.assertIn("AASS", sequences)
+
+            # Cleanup
+            fasta_path.unlink()
+            csv_file.unlink()
+            shutil.rmtree(output_dir)
+
+        def test_emini_csv_to_fasta(self):
+            csv_data = """input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
+Predicted,peptides
+No,Start,End,Peptipe,Length
+10,17,TFNKKKQK,4.009875
+69,81,ITNYSEKGMREIK,1.9206153846153846
+Position,Residue,Start,End,Peptide,Score
+6,Q,4,9,FRQVSK,1.283
+7,V,5,10,RQVSKT,2.139
+8,S,6,11,QVSKTF,0.945
+        """
+
+            csv_file = Path("/tmp/emini.csv")
+            csv_file.write_text(csv_data)
+            output_dir = Path("/tmp/test_emini_output")
+            output_dir.mkdir(parents=True, exist_ok=True)
+
+            fasta_path = parse_csv_to_fasta(csv_file, output_dir, "emini_test")
+            self.assertIsNotNone(fasta_path)
+            fasta_lines = fasta_path.read_text().strip().splitlines()
+
+            headers = [l for l in fasta_lines if l.startswith(">")]
+            sequences = [l for l in fasta_lines if not l.startswith(">")]
+
+            self.assertEqual(len(headers), 5)
+            self.assertIn("TFNKKKQK", sequences)
+            self.assertIn("ITNYSEKGMREIK", sequences)
+            self.assertIn("FRQVSK", sequences)
+            self.assertIn("RQVSKT", sequences)
+            self.assertIn("QVSKTF", sequences)
+
+            # Cleanup
+            fasta_path.unlink()
+            csv_file.unlink()
+            shutil.rmtree(output_dir)
+
+        def test_missing_initial_input_header(self):
+            csv_data = """Position,Residue,Start,End,Peptide,Score
+4,S,1,7,MAISQER,2.057
+5,Q,2,8,AISQERK,3.471
+6,E,3,9,ISQERKN,4.171
+input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
+Position,Residue,Start,End,Peptide,Score
+4,F,1,7,MIEFRQV,-1.014
+5,R,2,8,IEFRQVS,0.514
+        """
+
+            csv_file = Path("/tmp/missing_header.csv")
+            csv_file.write_text(csv_data)
+            output_dir = Path("/tmp/test_missing_header_output")
+            output_dir.mkdir(parents=True, exist_ok=True)
+
+            fasta_path = parse_csv_to_fasta(csv_file, output_dir, "missing_header_test")
+            self.assertIsNotNone(fasta_path)
+            fasta_lines = fasta_path.read_text().strip().splitlines()
+
+            headers = [l for l in fasta_lines if l.startswith(">")]
+            sequences = [l for l in fasta_lines if not l.startswith(">")]
+
+            # Should contain 5 entries in total
+            self.assertEqual(len(headers), 5)
+            self.assertIn("MAISQER", sequences)
+            self.assertIn("AISQERK", sequences)
+            self.assertIn("ISQERKN", sequences)
+            self.assertIn("MIEFRQV", sequences)
+            self.assertIn("IEFRQVS", sequences)
+            
+            # First header should use "antigenUnknown"
+            self.assertTrue(headers[0].startswith(">antigenUnknown|unknown|unknown|bcell"))
+
+            # Second block should use parsed antigen_149 header
+            self.assertTrue(headers[3].startswith(">antigen149|Q99QV7|HE681097.1|bcell"))
+
+            # Cleanup
+            fasta_path.unlink()
+            csv_file.unlink()
+            shutil.rmtree(output_dir)
+
+
 
     unittest.main()
