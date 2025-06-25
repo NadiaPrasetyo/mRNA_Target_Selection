@@ -336,8 +336,25 @@ def main():
     Parses arguments, checks directories, discovers epitope files, prepares jobs, and runs them in parallel.
     """
     args = parse_arguments()
-    logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO,
-                        format="%(asctime)s %(levelname)s: %(message)s")
+
+    if args.verbose:
+        # Prepare output directories first to get the correct output_dir
+        _, output_dir = common.prepare_output_dirs(Path("data") / args.pathogen_dir, args.output_dir, [])
+        log_file = output_dir / "pipeline.log"
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        handlers = [logging.StreamHandler(sys.stdout)]
+        handlers.append(logging.FileHandler(log_file, mode='a'))
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            handlers=handlers
+        )
+    else:
+        # Default logging to console only
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s %(levelname)s: %(message)s"
+        )
 
     pathogen_path = Path("data") / args.pathogen_dir
     epitope_path = pathogen_path / args.epitope_dir
