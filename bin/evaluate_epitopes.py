@@ -134,29 +134,24 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
     for f in files:
         name = f.name.lower()
         lower_path = str(f).lower()
-        if "mhcii" in lower_path:
-            directory = "mhcii"
-        elif "mhci" in lower_path:
-            directory = "mhci"
-        else:
-            continue
 
-        if "mhci" in lower_path or "mhcii" in lower_path:
-            parts = name.split("_")
-            antigen_number = parts[1] if len(parts) > 1 else "unknown"
-            antigen_id = parts[2] if len(parts) > 2 else "unknown"
-            key = f"{directory}_antigen{antigen_number}_{antigen_id}"
-            grouped[key].append(f)
-
-        elif "bcell" in lower_path:
+        if "bcell" in lower_path:
             matched = False
             for method in BCELL_METHODS:
-                if method in name:
+                if method.lower().replace(" ", "") in name.replace("_", "").replace("-", "").lower():
                     grouped[f"bcell_{method}"].append(f)
                     matched = True
                     break
             if not matched:
                 grouped["bcell_unknown"].append(f)
+
+        elif "mhci" in lower_path or "mhcii" in lower_path:
+            directory = "mhcii" if "mhcii" in lower_path else "mhci"
+            parts = name.split("_")
+            antigen_number = parts[1] if len(parts) > 1 else "unknown"
+            antigen_id = parts[2] if len(parts) > 2 else "unknown"
+            key = f"{directory}_antigen{antigen_number}_{antigen_id}"
+            grouped[key].append(f)            
 
     # Step 2: Convert files to FASTA and merge per group
     for group_name, file_list in grouped.items():
