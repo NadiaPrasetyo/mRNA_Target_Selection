@@ -323,13 +323,13 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
                 logging.error(f"❌ Job failed: {e}")
 
     # # 🧹 Clean up temporary directories
-    # for temp_dir in temp_dirs:
-    #     try:
-    #         if temp_dir.exists():
-    #             shutil.rmtree(temp_dir)
-    #             logging.info(f"🧹 Cleaned temporary directory: {temp_dir}")
-    #     except Exception as e:
-    #         logging.warning(f"⚠️ Cleanup failed for {temp_dir}: {e}")
+    for temp_dir in temp_dirs:
+        try:
+            if temp_dir.exists():
+                shutil.rmtree(temp_dir)
+                logging.info(f"🧹 Cleaned temporary directory: {temp_dir}")
+        except Exception as e:
+            logging.warning(f"⚠️ Cleanup failed for {temp_dir}: {e}")
             
 def main():
     """Main function to run the evaluation pipeline.
