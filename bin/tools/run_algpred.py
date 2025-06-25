@@ -4,6 +4,8 @@ Utility to patch and run the AlgPred2.0 allergenicity prediction tool on protein
 
 Overview:
     - Automatically patches AlgPred2.0's output CSV separator if set incorrectly (e.g., sep='\n').
+    - Fixes outdated sklearn.externals.joblib import by replacing it with direct joblib import.
+    - Only applies patches when needed (avoids unnecessary modifications).
     - Executes AlgPred2.0 on a given input FASTA file using a specified model and output configuration.
     - Organizes results into a dedicated output directory and provides backup of patched scripts.
 
@@ -40,35 +42,54 @@ from pathlib import Path
 import ast
 import astor
 
-class CSVSeparatorFixer(ast.NodeTransformer):
+class JoblibFixDetector(ast.NodeVisitor):
     """
-    AST transformer to patch pandas DataFrame.to_csv() calls with sep='\n' to use sep=','.
-    This is necessary to ensure proper CSV formatting.
+    Detects if 'from sklearn.externals import joblib' is present.
     """
-    def visit_Call(self, node):
-        if isinstance(node.func, ast.Attribute) and node.func.attr == 'to_csv':
-            for kw in node.keywords:
-                if kw.arg == 'sep' and isinstance(kw.value, ast.Constant) and kw.value.value == '\n':
-                    print(f"⚠️ Patching sep='\\n' on line {node.lineno}")
-                    kw.value = ast.Constant(value=',')
-        return self.generic_visit(node)
+    needs_patch = False
 
-def patch_to_csv_sep(file_path: Path):
+    def visit_ImportFrom(self, node):
+        if node.module == "sklearn.externals":
+            for alias in node.names:
+                if alias.name == "joblib":
+                    self.needs_patch = True
+        self.generic_visit(node)
+
+class JoblibFixer(ast.NodeTransformer):
     """
-    Patches the specified Python script to ensure pandas DataFrame.to_csv() uses a comma separator.
+    Replaces 'from sklearn.externals import joblib' with 'import joblib'.
+    """
+    def visit_ImportFrom(self, node):
+        if node.module == "sklearn.externals":
+            for alias in node.names:
+                if alias.name == "joblib":
+                    print(f"⚠️ Replacing 'from sklearn.externals import joblib' with 'import joblib' (line {node.lineno})")
+                    return ast.Import(names=[ast.alias(name="joblib", asname=None)])
+        return node
+
+def patch_joblib_import(file_path: Path):
+    """
+    Patches algpred2.py if sklearn.externals.joblib is used.
     Args:
         file_path (Path): Path to the algpred2.py script to be patched.
     """
     source = file_path.read_text()
     tree = ast.parse(source)
-    tree = CSVSeparatorFixer().visit(tree)
-    patched_code = astor.to_source(tree)
 
-    backup_path = file_path.with_suffix(file_path.suffix + ".bak")
-    backup_path.write_text(source)
-    file_path.write_text(patched_code)
+    detector = JoblibFixDetector()
+    detector.visit(tree)
 
-    print(f"🛠️ Patched .to_csv() in {file_path.name}, backup saved at {backup_path.name}")
+    if detector.needs_patch:
+        print("🔧 Detected deprecated sklearn.externals.joblib — patching...")
+        patched_tree = JoblibFixer().visit(tree)
+        patched_code = astor.to_source(patched_tree)
+
+        backup_path = file_path.with_suffix(file_path.suffix + ".bak")
+        backup_path.write_text(source)
+        file_path.write_text(patched_code)
+        print(f"🛠️ Patched joblib import in {file_path.name}, backup saved as {backup_path.name}")
+    else:
+        print("✅ joblib import is fine — no patch needed.")
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     """
@@ -83,11 +104,10 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     if not script_path.exists():
         raise FileNotFoundError(f"AlgPred2 script not found: {script_path}")
 
-    # Pre-patch script if necessary
     try:
-        patch_to_csv_sep(script_path)
+        patch_joblib_import(script_path)
     except Exception as e:
-        print(f"⚠️ Could not patch CSV sep: {e}")
+        print(f"⚠️ Patch failed: {e}")
 
     output_subdir = output_dir / "algpred"
     output_subdir.mkdir(parents=True, exist_ok=True)
