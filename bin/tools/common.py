@@ -28,6 +28,20 @@ import csv
 import logging
 import re
 
+VALID_AMINO_ACIDS = set("ACDEFGHIKLMNPQRSTVWY")  # IUPAC one-letter codes
+
+def is_valid_peptide(seq):
+        """ Check if a sequence is a valid peptide:
+        - Must be a non-empty string.
+        - Must contain only valid amino acid residues (20 standard AAs).
+        """
+
+        return (
+            isinstance(seq, str) and
+            len(seq) > 0 and
+            all(residue in VALID_AMINO_ACIDS for residue in seq.strip().upper())
+        )
+
 def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
     Parses a B-cell CSV file with peptide predictions and writes a FASTA file with contextual headers.
@@ -57,11 +71,16 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
 
     def write_block(header, peptides):
         if header and peptides:
+            # Strip any accidental leading '>' from header
+            header = header.lstrip(">")
             for i, pep in enumerate(peptides):
+                if not is_valid_peptide(pep):
+                    continue  # Skip invalid sequences
                 key = (header, pep)
                 if key not in seen:
-                    fasta_lines.append(f"{header}|seq{i+1}\n{pep}")
+                    fasta_lines.append(f">{header}|seq{i+1}\n{pep}")
                     seen.add(key)
+
 
     def looks_like_peptide(s):
         return bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", s))  # 20 AAs
@@ -623,6 +642,7 @@ input: antigen_87|A0A2S1FUJ2|Superantigen-like|HE681098.1|tpos:5678
 Position,Residue,Score,Length,Peptide Sequence
 1,1,0.92,8,RLNKYTLH
 2,2,0.88,9,KYCPRLNKYT
+3,3,0.95,7,plot
 """
 
             # Create a temporary CSV file
@@ -649,9 +669,12 @@ Position,Residue,Score,Length,Peptide Sequence
             self.assertIn("KYCPRLNKYTL", sequences)
             self.assertIn("RLNKYTLH", sequences)
             self.assertIn("KYCPRLNKYT", sequences)
+            self.assertNotIn("plot", sequences)
+            self.assertNotIn("seq4", sequences)
 
-            # check that there is no seq3
-            self.assertNotIn("seq3", fasta_content)
+            # Ensure all sequences are valid
+            for seq in sequences:
+                self.assertTrue(is_valid_peptide(seq), f"Invalid peptide in FASTA: {seq}")
 
             # Make sure duplicate peptide is not included twice
             self.assertEqual(sequences.count("RLNKYTLHR"), 1)
@@ -676,6 +699,7 @@ No,Start,End,Peptipe,Length
 1,10,13,TFNK,4
 2,39,44,YSGAGK,6
 3,56,59,AASS,4
+4,78,81,been,4
 Position,Residue,Score,Assignment
         """
 
@@ -695,6 +719,7 @@ Position,Residue,Score,Assignment
             self.assertIn("TFNK", sequences)
             self.assertIn("YSGAGK", sequences)
             self.assertIn("AASS", sequences)
+            self.assertNotIn("been", sequences)
 
             # Cleanup
             fasta_path.unlink()
@@ -711,6 +736,7 @@ Position,Residue,Start,End,Peptide,Score
 6,Q,4,9,FRQVSK,1.283
 7,V,5,10,RQVSKT,2.139
 8,S,6,11,QVSKTF,0.945
+9,T,7,12,error,0.123
         """
 
             csv_file = Path("/tmp/emini.csv")
@@ -731,6 +757,7 @@ Position,Residue,Start,End,Peptide,Score
             self.assertIn("FRQVSK", sequences)
             self.assertIn("RQVSKT", sequences)
             self.assertIn("QVSKTF", sequences)
+            self.assertNotIn("error", sequences)
 
             # Cleanup
             fasta_path.unlink()
@@ -746,6 +773,7 @@ input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
 Position,Residue,Start,End,Peptide,Score
 4,F,1,7,MIEFRQV,-1.014
 5,R,2,8,IEFRQVS,0.514
+6,V,3,9,test,1.214
         """
 
             csv_file = Path("/tmp/missing_header.csv")
@@ -767,6 +795,7 @@ Position,Residue,Start,End,Peptide,Score
             self.assertIn("ISQERKN", sequences)
             self.assertIn("MIEFRQV", sequences)
             self.assertIn("IEFRQVS", sequences)
+            self.assertNotIn("test", sequences)
             
             # First header should use "antigenUnknown"
             self.assertTrue(headers[0].startswith(">antigenUnknown|unknown|unknown|bcell"))
