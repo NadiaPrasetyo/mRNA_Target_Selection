@@ -138,7 +138,7 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
         if "bcell" in lower_path:
             matched = False
             for method in BCELL_METHODS:
-                if method.lower().replace(" ", "") in name.replace("_", "").replace("-", "").lower():
+                if method in name:
                     grouped[f"bcell_{method}"].append(f)
                     matched = True
                     break
