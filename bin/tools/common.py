@@ -28,62 +28,6 @@ import csv
 import logging
 import re
 
-def reformat_epitope_json_for_cluster(json_file, output_dir, basename_prefix):
-    """
-    Reformats input epitope JSON into the Cluster tool input format.
-
-    Args:
-        json_file (Path): Path to the epitope prediction JSON.
-        output_dir (Path): Directory to save reformatted JSON file(s).
-        basename_prefix (str): Prefix for output filename.
-
-    Returns:
-        List[Path]: Paths to generated JSON input files.
-    """
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_files = []
-
-    with open(json_file) as f:
-        data = json.load(f)
-
-    results = data.get("results", [])
-    peptide_set = set()
-    for entry in results:
-        if entry.get("type") != "peptide_table":
-            continue
-
-        columns = entry.get("table_columns", [])
-        data_rows = entry.get("table_data", [])
-
-        try:
-            peptide_idx = columns.index("peptide")
-        except ValueError:
-            continue  # Required column missing
-
-        for row in data_rows:
-            peptide = row[peptide_idx]
-            peptide_set.add(peptide)
-
-    if not peptide_set:
-        print(f"⚠️ No peptides found for: {json_file}")
-        return []
-
-    # Build FASTA-style sequence text
-    fasta_lines = [f">Pep{i+1}\n{pep}" for i, pep in enumerate(sorted(peptide_set))]
-    cluster_input = {
-        "input_sequence_text": "\n".join(fasta_lines),
-        "method": "cluster-break",
-        "cluster_pct_identity": 0.7,
-        "peptide_length_range": [0, 0]
-    }
-
-    output_path = output_dir / f"{basename_prefix}_cluster_input.json"
-    with open(output_path, "w") as out_f:
-        json.dump(cluster_input, out_f, indent=2)
-    output_files.append(output_path)
-
-    return output_files
-
 def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
     Parses a B-cell CSV file with peptide predictions and writes a FASTA file with contextual headers.
@@ -100,7 +44,16 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
     fasta_lines = []
     current_header = None
     peptides = []
-    seen = set()  # Set of (header, peptide) pairs
+    seen = set()
+
+    method = csv_file.name.lower()
+    is_bepipred = "bepipred" in method
+    is_emini_or_kolaskar = any(x in method for x in ["emini", "kolaskar"])
+    is_other = not (is_bepipred or is_emini_or_kolaskar)
+
+    in_bepipred_peptide_block = False
+    strain_acc = "unknown"
+    has_seen_input_header = False
 
     def write_block(header, peptides):
         if header and peptides:
@@ -115,15 +68,14 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
         for row in reader:
             if not row:
                 continue
+
             if row[0].startswith("input:"):
-                # Before starting a new block, write the previous block's peptides
                 write_block(current_header, peptides)
                 peptides = []
-                # Try to extract header from first column if second is missing
-                if len(row) > 1:
-                    header_str = row[1]
-                else:
-                    header_str = row[0][len("input: "):] if row[0].startswith("input: ") else row[0]
+                in_bepipred_peptide_block = False
+                has_seen_input_header = True
+
+                header_str = row[1] if len(row) > 1 else row[0][len("input:"):].strip()
                 match = re.match(r"antigen_(\d+)\|([A-Z0-9]+)\|.*?\|([A-Z0-9.]+)", header_str)
                 if match:
                     antigen_num, acc_num, strain_acc = match.groups()
@@ -131,16 +83,52 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                 else:
                     print(f"⚠️ Could not parse B-cell header: {row}")
                     current_header = None
-            elif row[0] == "Position":
-                continue  # skip CSV header row
-            elif current_header and len(row) >= 5:
-                peptide = row[4].strip()
-                if peptide and peptide not in peptides:
-                    peptides.append(peptide)
-            else:
-                continue  # malformed line or no header context
-        # After finishing, write any remaining peptides from the last block
+                continue
+
+            if current_header is None:
+                # No input header seen yet — assign a placeholder using strain_acc
+                current_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
+
+            if is_bepipred:
+                if row[0].startswith("No") and "Peptipe" in row:
+                    in_bepipred_peptide_block = True
+                    continue
+                elif row[0].startswith("Position") and "Residue" in row:
+                    in_bepipred_peptide_block = False
+                    continue
+                elif in_bepipred_peptide_block and len(row) >= 4:
+                    peptide = row[3].strip()
+                    if peptide and peptide not in peptides:
+                        peptides.append(peptide)
+
+            elif is_emini_or_kolaskar:
+                if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
+                    continue
+                elif row[0] == "No" and "Peptipe" in row:
+                    continue
+                elif len(row) >= 5:
+                    try:
+                        peptide = row[4].strip()
+                        if peptide and peptide not in peptides:
+                            peptides.append(peptide)
+                    except IndexError:
+                        continue
+                elif len(row) >= 4:
+                    peptide = row[3].strip()
+                    if peptide and peptide not in peptides:
+                        peptides.append(peptide)
+
+            elif is_other:
+                if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
+                    continue
+                elif len(row) >= 5:
+                    peptide = row[4].strip()
+                    if peptide and peptide not in peptides:
+                        peptides.append(peptide)
+
+        # Write final block
         write_block(current_header, peptides)
+
     if not fasta_lines:
         logging.warning(f"⚠️ No peptides found in B-cell file: {csv_file.name}")
         return None
@@ -616,9 +604,10 @@ if __name__ == "__main__":
             if output_dir.exists():
                 shutil.rmtree(output_dir)
 
+    
     class CSVToFastaTests(unittest.TestCase):
         def test_parse_csv_to_fasta(self):
-            # Mock CSV data
+            # Mock CSV data with two antigen blocks and some duplicate peptides
             csv_data = """input: antigen_86|A0A2S1FUJ1|Superantigen-like|HE681097.1|tpos:1234
 Position,Residue,Score,Length,Peptide Sequence
 1,1,0.95,9,RLNKYTLHR
@@ -629,34 +618,43 @@ Position,Residue,Score,Length,Peptide Sequence
 1,1,0.92,8,RLNKYTLH
 2,2,0.88,9,KYCPRLNKYT
 """
+
             # Create a temporary CSV file
             csv_file = Path("/tmp/test_bcell.csv")
             csv_file.write_text(csv_data)
 
-            # Use a permanent output directory and filename for inspection
+            # Output directory and expected fasta output
             output_dir = Path("/tmp/test_csv_to_fasta")
             output_dir.mkdir(parents=True, exist_ok=True)
             fasta_path = parse_csv_to_fasta(csv_file, output_dir, "test_output")
 
+            # Assertions
             self.assertIsNotNone(fasta_path)
             self.assertTrue(fasta_path.exists())
             self.assertEqual(fasta_path.suffix, ".fasta")
-            fasta_content = fasta_path.read_text().strip()
-            # The header should match the new contextual header format
-            self.assertTrue(fasta_content.startswith(">"))
-            self.assertIn("antigen86|A0A2S1FUJ1|HE681097.1|bcell|seq1", fasta_content)
-            self.assertIn("RLNKYTLHR", fasta_content)
-            self.assertIn("KYCPRLNKYTL", fasta_content)
-            # Only two unique peptides, so only seq1 and seq2 should be present
-            self.assertIn("seq1", fasta_content)
-            self.assertIn("seq2", fasta_content)
+
+            fasta_content = fasta_path.read_text().strip().splitlines()
+            headers = [line for line in fasta_content if line.startswith(">")]
+            sequences = [line for line in fasta_content if not line.startswith(">")]
+
+            # Check expected structure
+            self.assertTrue(headers[0].startswith(">antigen86|A0A2S1FUJ1|HE681097.1|bcell|seq1"))
+            self.assertIn("RLNKYTLHR", sequences)
+            self.assertIn("KYCPRLNKYTL", sequences)
+            self.assertIn("RLNKYTLH", sequences)
+            self.assertIn("KYCPRLNKYT", sequences)
+
+            # check that there is no seq3
             self.assertNotIn("seq3", fasta_content)
 
-             #clean up files AND directories
+            # Make sure duplicate peptide is not included twice
+            self.assertEqual(sequences.count("RLNKYTLHR"), 1)
+
+            # Clean up files and directory
             if fasta_path.exists():
-                fasta_path.unlink() # remove the created FASTA file
+                fasta_path.unlink()
             if csv_file.exists():
-                csv_file.unlink() # remove the created CSV file
+                csv_file.unlink()
             if output_dir.exists():
                 shutil.rmtree(output_dir)
 
