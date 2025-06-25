@@ -108,36 +108,7 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
     except Exception as e:
         print(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
         return 
- 
-VALID_AA = re.compile(r'^[ACDEFGHIKLMNPQRSTVWY]+$', re.I)  # only standard 20 amino acids, case-insensitive
-
-def sanitize_fasta(input_path: Path, output_path: Path):
-    kept, skipped = 0, 0
-    with open(input_path, 'r') as fin, open(output_path, 'w') as fout:
-        header = None
-        sequence = ''
-        for line in fin:
-            line = line.strip()
-            if line.startswith('>'):
-                if header and sequence:
-                    if VALID_AA.match(sequence):
-                        fout.write(f"{header}\n{sequence}\n")
-                        kept += 1
-                    else:
-                        skipped += 1
-                header = line
-                sequence = ''
-            else:
-                sequence += line.upper()
-        # Write last record
-        if header and sequence:
-            if VALID_AA.match(sequence):
-                fout.write(f"{header}\n{sequence}\n")
-                kept += 1
-            else:
-                skipped += 1
-    logging.info(f"✅ {kept} sequences kept, ⚠️ {skipped} skipped in {output_path.name}")
-
+    
 
 def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
     """
@@ -208,13 +179,10 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
                     logging.error(f"❌ FASTA not created for: {file_path.name}")
                     continue
 
-                # 🧼 Sanitize the FASTA file
-                sanitize_fasta(fasta_path, fasta_path)
-
                 with open(fasta_path, "r") as f:
                     lines = f.read().strip().splitlines()
                 if not lines:
-                    logging.warning(f"⚠️ FASTA after sanitizing file is empty: {fasta_path.name}")
+                    logging.warning(f"⚠️ FASTA file is empty: {fasta_path.name}")
                     continue
 
                 all_fasta_lines.extend(lines)
