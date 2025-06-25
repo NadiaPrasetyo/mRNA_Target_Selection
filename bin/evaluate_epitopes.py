@@ -109,36 +109,36 @@ def is_output_valid(tool: str, input_file: Path, output_dir: Path) -> bool:
         print(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
         return 
     
-def sanitize_fasta(input_path: Path, output_path: Path):
-    """
-    Sanitize a FASTA file by ensuring all sequences are uppercase and contain only valid amino acids.
-    Args:
-        input_path (Path): Path to the input FASTA file.
-        output_path (Path): Path to the output sanitized FASTA file.
-    """
-    with open(input_path, "r", encoding="utf-8") as fin, open(output_path, "w", encoding="utf-8") as fout:
-        current_header = None
-        seq_count = 0
-        skipped = 0
+# def sanitize_fasta(input_path: Path, output_path: Path):
+#     """
+#     Sanitize a FASTA file by ensuring all sequences are uppercase and contain only valid amino acids.
+#     Args:
+#         input_path (Path): Path to the input FASTA file.
+#         output_path (Path): Path to the output sanitized FASTA file.
+#     """
+#     with open(input_path, "r", encoding="utf-8") as fin, open(output_path, "w", encoding="utf-8") as fout:
+#         current_header = None
+#         seq_count = 0
+#         skipped = 0
 
-        for line in fin:
-            line = line.strip()
-            if not line:
-                continue
-            if line.startswith(">"):
-                current_header = line
-                fout.write(line + "\n")
-            else:
-                seq = line.upper()
-                clean_seq = re.sub(r"[^ACDEFGHIKLMNPQRSTVWY]", "", seq)
-                if clean_seq:
-                    fout.write(clean_seq + "\n")
-                    seq_count += 1
-                else:
-                    logging.warning(f"⚠️ Invalid or empty sequence under header {current_header}: '{line}'")
-                    skipped += 1
+#         for line in fin:
+#             line = line.strip()
+#             if not line:
+#                 continue
+#             if line.startswith(">"):
+#                 current_header = line
+#                 fout.write(line + "\n")
+#             else:
+#                 seq = line.upper()
+#                 clean_seq = re.sub(r"[^ACDEFGHIKLMNPQRSTVWY]", "", seq)
+#                 if clean_seq:
+#                     fout.write(clean_seq + "\n")
+#                     seq_count += 1
+#                 else:
+#                     logging.warning(f"⚠️ Invalid or empty sequence under header {current_header}: '{line}'")
+#                     skipped += 1
 
-        logging.info(f"✅ {seq_count} sequences kept, ⚠️ {skipped} skipped in {input_path.name}")
+#         logging.info(f"✅ {seq_count} sequences kept, ⚠️ {skipped} skipped in {input_path.name}")
 
 
 def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
@@ -211,11 +211,12 @@ def group_cluster_inputs(files, fasta_inputs_dir: Path) -> dict:
                     continue
 
                 # 🧼 Sanitize the FASTA file
-                sanitize_fasta(fasta_path, fasta_path)
+                # sanitize_fasta(fasta_path, fasta_path)
 
-                lines = fasta_path.read_text().splitlines()
-                if not lines or all(not line.strip() for line in lines):
-                    logging.warning(f"⚠️ Empty FASTA file after sanitization: {fasta_path.name}")
+                with open(fasta_path, "r") as f:
+                    lines = f.read().strip().splitlines()
+                if not lines:
+                    logging.warning(f"⚠️ FASTA file is empty: {fasta_path.name}")
                     continue
 
                 all_fasta_lines.extend(lines)
