@@ -28,7 +28,7 @@ def create_conda_env():
     else:
         logging.info("✅ Conda environment already exists.")
 
-def run_algpred(input_fasta: Path, output_dir: Path):
+def run(input_fasta: Path, output_dir: Path):
     """Run the algpred2 tool using the Conda environment."""
     input_fasta = Path(input_fasta).resolve()
     output_dir = Path(output_dir).resolve() / "Allergenicity"
