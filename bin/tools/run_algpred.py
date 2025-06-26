@@ -19,9 +19,6 @@ import logging
 
 ### Patch 1: Fix to_csv(sep='\n') ###
 class CSVSeparatorFixer(ast.NodeTransformer):
-    """
-    AST transformer to patch pandas DataFrame.to_csv() calls with sep='\\n' to use sep=','.
-    """
     def __init__(self):
         self.patched = False
 
@@ -67,6 +64,35 @@ def patch_str_replace_gt(file_path: Path, text: str) -> str:
     logging.info("ℹ️  .str.replace('>', '') not found — skipping.")
     return text
 
+
+### Patch 4: Fix old RandomForestClassifier pickle path ###
+def patch_random_forest_import(file_path: Path, text: str) -> str:
+    inject_code = (
+        "import sys\n"
+        "import types\n"
+        "import sklearn.ensemble._forest\n"
+        "# Compatibility for old pickled RandomForestClassifier\n"
+        "sys.modules['sklearn.ensemble.forest'] = types.ModuleType('sklearn.ensemble.forest')\n"
+        "sys.modules['sklearn.ensemble.forest'].RandomForestClassifier = sklearn.ensemble._forest.RandomForestClassifier\n"
+    )
+
+    if "RandomForestClassifier" in text and "sklearn.ensemble.forest" not in text:
+        # Insert before first joblib.load call
+        lines = text.splitlines()
+        for i, line in enumerate(lines):
+            if "joblib.load" in line:
+                lines.insert(i, inject_code)
+                logging.info(f"✅ Injected backward compatibility for RandomForestClassifier path.")
+                return "\n".join(lines)
+        # fallback
+        lines.insert(0, inject_code)
+        return "\n".join(lines)
+
+    logging.info("ℹ️  No RandomForestClassifier compatibility patch needed.")
+    return text
+
+
+### Ensure Git LFS model is real ###
 def ensure_real_model(model_path: Path):
     """
     Ensures that the rf_model file is not a Git LFS pointer. If it is, runs 'git lfs pull'.
@@ -74,19 +100,16 @@ def ensure_real_model(model_path: Path):
     if not model_path.exists():
         raise FileNotFoundError(f"Model file {model_path} not found!")
 
-    text = model_path.read_text(errors='ignore')
-    if "git-lfs.github.com" in text and text.strip().startswith("version https://git-lfs.github.com/spec/v1"):
+    content = model_path.read_text(errors='ignore')
+    if "git-lfs.github.com" in content and content.strip().startswith("version https://git-lfs.github.com/spec/v1"):
         logging.warning(f"Model file {model_path} appears to be a Git LFS pointer.")
         logging.info("Attempting to fetch actual model via 'git lfs pull'...")
 
-        # Run git lfs pull in the model's directory
         result = subprocess.run(["git", "lfs", "pull"], cwd=model_path.parent, capture_output=True, text=True)
-
         if result.returncode != 0:
             logging.error("❌ Failed to fetch model using 'git lfs pull'.")
             logging.error(result.stderr)
-            raise RuntimeError("Git LFS pull failed. Please ensure Git LFS is installed and configured.")
-        
+            raise RuntimeError("Git LFS pull failed.")
         logging.info("✅ Git LFS pull successful.")
     else:
         logging.info(f"✅ Model file {model_path.name} looks valid — not a Git LFS pointer.")
@@ -100,6 +123,7 @@ def patch_algpred_script(script_path: Path):
     patched_text = patch_to_csv_sep(script_path, patched_text)
     patched_text = patch_joblib_import(script_path, patched_text)
     patched_text = patch_str_replace_gt(script_path, patched_text)
+    patched_text = patch_random_forest_import(script_path, patched_text)
 
     if patched_text != original_text:
         backup_path = script_path.with_suffix(script_path.suffix + ".bak")
