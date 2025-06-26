@@ -27,48 +27,81 @@ Author: Nadia
 
 import argparse
 import sys
+import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, common
+from collections import defaultdict
+from tools import run_signalp, run_targetp, run_cluster, common
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
     "SIGNALP": run_signalp.run,
-    "TARGETP": run_targetp.run
+    "TARGETP": run_targetp.run,
+    "CLUSTER": run_cluster.run
 }
 
 # List of valid tools that can be run
 VALID_TOOLS = list(TOOL_RUNNERS.keys())
 
 
-def run_tool(tool_name: str, runner_func, input_file: Path, output_dir: Path, batch_size: int, tool_path: Path) -> None:
+def group_cluster_inputs(fasta_files: list[Path], fasta_inputs_dir: Path) -> dict:
     """
-    Run a specific tool on the input file and save the output to the specified directory.
+    Groups FASTA input files and merges them for clustering.
     Args:
-        tool_name (str): Name of the tool to run (e.g., SIGNALP, TARGETP).
-        runner_func (function): Function to run the tool.
-        input_file (Path): Path to the input FASTA file.
-        output_dir (Path): Directory to save the output files.
-        batch_size (int): Batch size for tools that support batching (e.g., SignalP, TargetP).
-        tool_path (Path): Path to the tool executable.
+        fasta_files (list[Path]): List of input FASTA files.
+        fasta_inputs_dir (Path): Output directory for combined group FASTAs.
+    Returns:
+        dict: Mapping of group name to combined FASTA Path.
+    """
+    grouped = defaultdict(list)
+    for f in fasta_files:
+        key = f.stem.split("_")[0]  # Group by prefix (e.g., mhci, mhcii, bcell)
+        grouped[key].append(f)
+
+    combined_fastas = {}
+    for group_name, files in grouped.items():
+        combined_path = fasta_inputs_dir / f"{group_name}.fasta"
+        combined_lines = []
+
+        for f in files:
+            with open(f, "r") as handle:
+                combined_lines.extend(handle.readlines())
+
+        if combined_lines:
+            combined_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(combined_path, "w") as out_f:
+                out_f.writelines(combined_lines)
+            combined_fastas[group_name] = combined_path
+
+    return combined_fastas
+
+
+def run_tool(tool_name, runner_func, input_file, output_dir, batch_size, tool_path):
+    """
+    Run a specific tool on the input file and save the output.
+    Args:
+        tool_name (str): Name of the tool to run (e.g., SIGNALP, TARGETP, CLUSTER).
+        runner_func (callable): Function to run the tool.
+        input_file (Path): Input FASTA file to process.
+        output_dir (Path): Directory to save the output.
+        batch_size (int): Batch size for processing.
+        tool_path (Path): Path to the tool executable or script.
     """
     output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.out"
     if output_file.exists():
-        print(f"⏭️ Skipping {tool_name} for {input_file.name} (output already exists)")
+        logging.info(f"⏭️ Skipping {tool_name} for {input_file.name} (output exists)")
         return
-
     try:
         runner_func(tool_path, input_file, output_dir, batch_size)
-        print(f"✅ {tool_name} completed for {input_file.name}")
+        logging.info(f"✅ {tool_name} completed for {input_file.name}")
     except Exception as e:
-        print(f"❌ {tool_name} failed for {input_file.name}: {e}")
+        logging.error(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
 
-def run_parallel_jobs(jobs, threads: int) -> None:
-    """
-    Run a list of jobs in parallel using a thread pool.
+def run_parallel_jobs(jobs, threads):
+    """ Run a list of jobs in parallel using ThreadPoolExecutor.
     Args:
-        jobs (list): List of tuples containing job parameters (tool_name, runner_func, input_file, output_dir, batch_size, tool_path).
+        jobs (list): List of tuples containing (tool_name, runner_func, input_file, output_dir, batch_size, tool_path).
         threads (int): Number of threads to use for parallel execution.
     """
     with ThreadPoolExecutor(max_workers=threads) as executor:
@@ -76,83 +109,93 @@ def run_parallel_jobs(jobs, threads: int) -> None:
         for f in futures:
             try:
                 f.result()
-            except TypeError as e:
-                print(f"❌ Job failed due to argument mismatch: {e}")
             except Exception as e:
-                print(f"❌ Job failed with unexpected error: {e}")
+                logging.error(f"❌ Job failed: {e}")
+
+    # Clean up temporary directories if needed
+    for job in jobs:
+        tool_name, _, input_file, output_dir, _, _ = job
+        if tool_name == "CLUSTER":
+            cluster_input_dir = output_dir / "cluster_inputs"
+            if cluster_input_dir.exists():
+                logging.info(f"🗑️ Cleaning up temporary directory: {cluster_input_dir}")
+                for f in cluster_input_dir.glob("*.fasta"):
+                    f.unlink()
+                cluster_input_dir.rmdir()
 
 
 def main():
-    """
-    Main function to parse arguments and run the antigen analysis pipeline.
-    """
-    parser = argparse.ArgumentParser(
-        description="Run SignalP and TargetP on input FASTA files",
-        usage="run_predictors.py <pathogen_dir> <sequence_dir> --tool-root <tool_root> [options]"
-    )
+    """Main function to parse arguments and run the antigen analysis pipeline."""
+    parser = argparse.ArgumentParser(description="Run SignalP, TargetP, and Cluster on input FASTA files")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
-    parser.add_argument("--tool-root", required=True, help="Root directory containing tool wrappers and executables")
-    parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS,
-                        help="Specify which tools to run (default: both)")
-    parser.add_argument("--batch-size", type=int, default=10000, help="Batch size for SignalP/TargetP (default: 10000)")
-    parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"),
-                        help="Base output directory for results (default: epitope_outputs)")
-
+    parser.add_argument("--tool-root", required=True, help="Root directory for tools")
+    parser.add_argument("--threads", type=int, default=4)
+    parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS)
+    parser.add_argument("--batch-size", type=int, default=10000)
+    parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"))
+    parser.add_argument("--verbose", action="store_true", help="Enable verbose output for debugging")
     args = parser.parse_args()
 
     data_path = Path("data") / args.pathogen_dir
     sequence_path = data_path / args.sequence_dir
     if not sequence_path.exists():
-        print(f"❌ Invalid input directory: {sequence_path}")
+        logging.error(f"❌ Invalid input directory: {sequence_path}")
         sys.exit(1)
 
     fasta_files = common.get_fasta_files(data_path, args.sequence_dir)
     if not fasta_files:
-        print("❌ No FASTA files found.")
+        logging.error("❌ No FASTA files found.")
         sys.exit(1)
 
     tool_root = Path(args.tool_root)
     if not tool_root.exists():
-        print(f"❌ Tool root directory does not exist: {tool_root}")
+        logging.error(f"❌ Tool root does not exist: {tool_root}")
         sys.exit(1)
 
     try:
-        tool_paths = common.check_signalp_targetp(tool_root)
+        tool_paths = common.check_antigen_tools(tool_root)
     except FileNotFoundError as e:
-        print(f"❌ {e}")
+        logging.error(f"❌ {e}")
         sys.exit(1)
 
-    epitope_root = data_path / args.output_dir
-    epitope_root.mkdir(parents=True, exist_ok=True)
+    output_root = data_path / args.output_dir
+    output_root.mkdir(parents=True, exist_ok=True)
+
+    if args.verbose:
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            filename=str(output_root / 'antigen_analysis.log')
+        )
+    else:
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s'
+        )
 
     jobs = []
+
+    # Handle jobs
     for tool_name in args.tools:
-        tool_out_dir = epitope_root / tool_name.lower()
+        # Handle Cluster jobs
+        if tool_name == "CLUSTER":
+            cluster_output = output_root / "cluster"
+            cluster_input_dir = output_root / "cluster_inputs"
+            grouped_fastas = group_cluster_inputs(fasta_files, cluster_input_dir)
 
-        if not common.ensure_writable_dir(tool_out_dir):
-            print(f"❌ Skipping {tool_name} due to output directory issue.")
-            continue
+            for group_name, fasta_path in grouped_fastas.items():
+                jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], fasta_path, cluster_output, args.batch_size, tool_paths["CLUSTER"]))
+        
+        # Handle SignalP and TargetP jobs
+        elif tool_name in ["SIGNALP", "TARGETP"]:
+            output_dir = output_root / tool_name.lower()
+            output_dir.mkdir(parents=True, exist_ok=True)
+            for fasta_file in fasta_files:
+                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.batch_size, tool_paths[tool_name]))
 
-        runner_func = TOOL_RUNNERS[tool_name]
 
-        for fasta in fasta_files:
-            output_file = tool_out_dir / f"{fasta.stem}_{tool_name.lower()}.out"
-            if output_file.exists():
-                print(f"⏭️ Skipping {tool_name} for {fasta.name} (output already exists)")
-                continue
-
-            tool_path = tool_paths.get(tool_name)
-            jobs.append((tool_name, runner_func, fasta, tool_out_dir, args.batch_size, tool_path))
-
-    if not jobs:
-        print("❌ No jobs to run after validation. Exiting.")
-        sys.exit(1)
-
-    print(f"\n🚀 Running {len(jobs)} jobs using {args.threads} threads...")
     run_parallel_jobs(jobs, args.threads)
-    print("\n✅ All predictions complete.")
 
 
 if __name__ == "__main__":

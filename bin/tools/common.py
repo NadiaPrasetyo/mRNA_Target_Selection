@@ -369,43 +369,28 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
         print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
         return ALLELE_PRESETS[tool_type]["default"]
     
-def check_signalp_targetp_tmhmm(tool_root: Path) -> dict:
+def check_antigen_tools(tool_root: Path) -> dict:
     """
-    Validates and returns paths to SignalP, TargetP, and TMHMM executables.
+    Detects available antigen tools (SignalP, TargetP, Cluster).
     Args:
         tool_root (Path): Root directory where tools are expected to be located.
     Returns:
         dict: Dictionary mapping tool names to their executable paths.
-    Raises:
-        FileNotFoundError: If any of the required tools are not found in the expected locations.
     """
-    tools = {}
+    tool_map = {
+        "SignalP": tool_root / "signalp-5.0b" / "bin" / "signalp",
+        "TargetP": tool_root / "targetp-2.0" / "bin" / "targetp",
+        "Cluster": tool_root / "miniconda3" / "bin" / "mmseqs"
+    }
 
-    # Check SignalP
-    signalp_candidates = [
-        tool_root / "signalp-5.0b" / "bin" / "signalp",
-        tool_root / "signalp-5.0b" / "bin" / "bin" / "signalp"
-    ]
-    tools["SIGNALP"] = next((p for p in signalp_candidates if p.exists()), None)
+    found = {}
+    for name, path in tool_map.items():
+        if path.exists():
+            found[name] = str(path)
+        else:
+            print(f"❌ {name} tool not found at: {path}")
 
-    # Check TargetP
-    targetp_path = tool_root / "targetp-2.0" / "bin" / "targetp"
-    tools["TARGETP"] = targetp_path if targetp_path.exists() else None
-
-    # Check TMHMM
-    tmhmm_path = tool_root / "tmhmm-2.0c" / "bin" / "tmhmm"
-    tools["TMHMM"] = tmhmm_path if tmhmm_path.exists() else None
-
-    # Log missing tools
-    for tool, path in tools.items():
-        if not path:
-            print(f"❌ {tool} not found in expected location.")
-
-    # Raise error if any are missing
-    if not all(tools.values()):
-        raise FileNotFoundError("One or more required tools were not found under the given tool root.")
-
-    return tools
+    return found
 
 
 def check_iedb_tool(base_path):
@@ -528,7 +513,6 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     tool_map = {
         "Allergenicity": tool_root, # doesn't need it
         "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
-        "Cluster": tool_root / "miniconda3" / "bin" / "mmseqs"
     }
 
     found = {}
