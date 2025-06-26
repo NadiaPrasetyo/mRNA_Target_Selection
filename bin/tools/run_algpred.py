@@ -51,7 +51,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
 
     cmd = [
         "conda", "run", "-n", CONDA_ENV_NAME,
-        "python", "-m", "algpred2",
+        "algpred2",
         "-i", str(input_fasta),
         "-o", str(output_file),
         "-m", "1",  # motif-based model
