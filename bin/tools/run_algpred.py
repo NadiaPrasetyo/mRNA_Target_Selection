@@ -58,9 +58,6 @@ def patch_str_replace(script: str) -> tuple[str, bool]:
 
 ### Patch 4: RandomForestClassifier compatibility ###
 def patch_rf_pickle(script: str) -> tuple[str, bool]:
-    if "RandomForestClassifier" not in script or "sklearn.ensemble.forest" in script:
-        return script, False
-
     injection = (
         "import sys\n"
         "import types\n"
@@ -69,13 +66,21 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
         "sys.modules['sklearn.ensemble.forest'].RandomForestClassifier = sklearn.ensemble._forest.RandomForestClassifier\n"
     )
 
+    if injection.strip() in script:
+        return script, False  # Already patched
+
     lines = script.splitlines()
     for i, line in enumerate(lines):
-        if "joblib.load" in line:
-            lines.insert(i, injection)
-            return "\n".join(lines), True
+        if line.strip().startswith("import") or line.strip().startswith("from"):
+            continue
+        # Insert right after imports
+        lines.insert(i, injection)
+        return "\n".join(lines), True
+
+    # If no imports found, just insert at top
     lines.insert(0, injection)
     return "\n".join(lines), True
+
 
 ### Patch 5: Ensure rf_model is loaded via full path ###
 class RFModelPathFixer(ast.NodeTransformer):
