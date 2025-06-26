@@ -61,12 +61,14 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
         "# Patch for backward compatibility with old sklearn model paths\n"
         "import sys\n"
         "import types\n"
+        "import joblib\n"
         "import sklearn.ensemble._forest\n"
         "import sklearn.tree._tree\n"
         "import sklearn.tree._classes\n"
         "import sklearn.ensemble._gb\n"
         "import sklearn.ensemble._base\n"
         "\n"
+        "sys.modules['sklearn.externals.joblib'] = joblib  # Patch old joblib path\n"
         "sys.modules['sklearn.ensemble.forest'] = sklearn.ensemble._forest\n"
         "sys.modules['sklearn.tree.tree'] = sklearn.tree._tree\n"
         "sys.modules['sklearn.tree._tree'] = sklearn.tree._tree\n"
@@ -78,7 +80,7 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
         "sklearn.tree._tree.DecisionTreeClassifier = sklearn.tree._classes.DecisionTreeClassifier\n"
     )
 
-    if "sklearn.tree._tree.DecisionTreeClassifier" in script:
+    if "sys.modules['sklearn.externals.joblib']" in script:
         return script, False  # Already patched
 
     lines = script.splitlines()
@@ -91,8 +93,6 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
 
     lines.insert(insert_idx, injection)
     return "\n".join(lines), True
-
-
 
 ### Patch 5: Ensure rf_model is loaded via full path ###
 class RFModelPathFixer(ast.NodeTransformer):
