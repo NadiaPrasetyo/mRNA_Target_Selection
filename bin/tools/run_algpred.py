@@ -41,63 +41,77 @@ import subprocess
 from pathlib import Path
 import ast
 import astor
+import logging
 
-class JoblibFixDetector(ast.NodeVisitor):
+class PatchDetector(ast.NodeVisitor):
     """
-    Detects if 'from sklearn.externals import joblib' is present.
+    Detects if a patch is needed:
+        - Deprecated sklearn.externals.joblib
+        - Invalid .to_csv(sep='\\n')
     """
-    needs_patch = False
+    needs_joblib_patch = False
+    needs_sep_patch = False
 
     def visit_ImportFrom(self, node):
         if node.module == "sklearn.externals":
             for alias in node.names:
                 if alias.name == "joblib":
-                    self.needs_patch = True
-        self.generic_visit(node)
+                    self.needs_joblib_patch = True
 
-class JoblibFixer(ast.NodeTransformer):
+    def visit_Call(self, node):
+        if isinstance(node.func, ast.Attribute) and node.func.attr == 'to_csv':
+            for kw in node.keywords:
+                if kw.arg == 'sep' and isinstance(kw.value, ast.Constant) and kw.value.value == '\n':
+                    self.needs_sep_patch = True
+
+class PatchFixer(ast.NodeTransformer):
     """
-    Replaces 'from sklearn.externals import joblib' with 'import joblib'.
+    Applies both:
+        - sklearn.externals.joblib -> import joblib
+        - .to_csv(sep='\\n') -> .to_csv(sep=',')
     """
     def visit_ImportFrom(self, node):
         if node.module == "sklearn.externals":
             for alias in node.names:
                 if alias.name == "joblib":
-                    print(f"⚠️ Replacing 'from sklearn.externals import joblib' with 'import joblib' (line {node.lineno})")
+                    logging(f"⚠️ Replacing 'from sklearn.externals import joblib' with 'import joblib' (line {node.lineno})")
                     return ast.Import(names=[ast.alias(name="joblib", asname=None)])
         return node
 
-def patch_joblib_import(file_path: Path):
+    def visit_Call(self, node):
+        if isinstance(node.func, ast.Attribute) and node.func.attr == 'to_csv':
+            for kw in node.keywords:
+                if kw.arg == 'sep' and isinstance(kw.value, ast.Constant) and kw.value.value == '\n':
+                    logging(f"⚠️ Replacing sep='\\n' with sep=',' in .to_csv() (line {node.lineno})")
+                    kw.value = ast.Constant(value=',')
+        return self.generic_visit(node)
+
+def patch_algpred2(file_path: Path):
     """
-    Patches algpred2.py if sklearn.externals.joblib is used.
-    Args:
-        file_path (Path): Path to the algpred2.py script to be patched.
+    Checks for known issues and applies patches if needed.
     """
     source = file_path.read_text()
     tree = ast.parse(source)
 
-    detector = JoblibFixDetector()
+    detector = PatchDetector()
     detector.visit(tree)
 
-    if detector.needs_patch:
-        print("🔧 Detected deprecated sklearn.externals.joblib — patching...")
-        patched_tree = JoblibFixer().visit(tree)
+    if detector.needs_joblib_patch or detector.needs_sep_patch:
+        logging("🔧 Patching algpred2.py...")
+        patched_tree = PatchFixer().visit(tree)
         patched_code = astor.to_source(patched_tree)
 
         backup_path = file_path.with_suffix(file_path.suffix + ".bak")
         backup_path.write_text(source)
         file_path.write_text(patched_code)
-        print(f"🛠️ Patched joblib import in {file_path.name}, backup saved as {backup_path.name}")
+
+        logging(f"🛠️ Patched algpred2.py, backup saved as {backup_path.name}")
     else:
-        print("✅ joblib import is fine — no patch needed.")
+        logging("✅ algpred2.py is already patched — no changes made.")
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     """
     Runs AlgPred2.0 on the provided FASTA file.
-    Args:
-        tool_path (Path): Path to the AlgPred2.0 directory containing algpred2.py.
-        input_fasta (Path): Path to the input protein FASTA file.
-        output_dir (Path): Directory where results will be stored.
     """
     tool_path = Path(tool_path)
     script_path = tool_path / "algpred2.py"
@@ -105,9 +119,9 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
         raise FileNotFoundError(f"AlgPred2 script not found: {script_path}")
 
     try:
-        patch_joblib_import(script_path)
+        patch_algpred2(script_path)
     except Exception as e:
-        print(f"⚠️ Patch failed: {e}")
+        logging(f"⚠️ Patch failed: {e}")
 
     output_subdir = output_dir / "algpred"
     output_subdir.mkdir(parents=True, exist_ok=True)
@@ -122,17 +136,17 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
         "-d", "1"
     ]
 
-    print(f"🚀 Running AlgPred2 on {input_fasta.name}")
+    logging(f"🚀 Running AlgPred2 on {input_fasta.name}")
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
-        print(f"❌ AlgPred2 failed: {e}")
+        logging(f"❌ AlgPred2 failed: {e}")
     else:
         if output_csv.exists():
-            print(f"✅ AlgPred2 output saved: {output_csv.name}")
+            logging(f"✅ AlgPred2 output saved: {output_csv.name}")
         else:
             fallback = output_subdir / "outfile.csv"
             if fallback.exists():
-                print(f"⚠️ Output fallback to: {fallback.name}")
+                logging(f"⚠️ Output fallback to: {fallback.name}")
             else:
-                print(f"⚠️ No output CSV found.")
+                logging(f"⚠️ No output CSV found.")
