@@ -7,9 +7,11 @@ Patches:
     - Fixes `.to_csv(sep='\n')` to `.to_csv(sep=',')`
     - Replaces deprecated sklearn.externals.joblib import with direct joblib import
     - Injects compatibility for old pickled RandomForestClassifier paths
+    - Ensures `rf_model` is loaded via absolute path from the script directory
 
 Author: Nadia (refined for structural clarity)
 """
+
 
 import subprocess
 import logging
@@ -33,14 +35,14 @@ class CSVSeparatorFixer(ast.NodeTransformer):
                     self.patched = True
         return self.generic_visit(node)
 
-def patch_to_csv_sep(script: str) -> (str, bool):
+def patch_to_csv_sep(script: str) -> tuple[str, bool]:
     tree = ast.parse(script)
     fixer = CSVSeparatorFixer()
     fixer.visit(tree)
     return (astor.to_source(tree), fixer.patched) if fixer.patched else (script, False)
 
 ### Patch 2: Fix joblib import ###
-def patch_joblib_import(script: str) -> (str, bool):
+def patch_joblib_import(script: str) -> tuple[str, bool]:
     if "sklearn.externals" in script:
         patched = (
             script.replace("from sklearn.externals import joblib", "import joblib")
@@ -50,12 +52,12 @@ def patch_joblib_import(script: str) -> (str, bool):
     return script, False
 
 ### Patch 3: Fix .str.replace('>', '') ###
-def patch_str_replace(script: str) -> (str, bool):
+def patch_str_replace(script: str) -> tuple[str, bool]:
     return (script.replace(".str.replace('>', '')", ".str.replace('>', '', regex=False)"), True) \
         if ".str.replace('>', '')" in script else (script, False)
 
 ### Patch 4: RandomForestClassifier compatibility ###
-def patch_rf_pickle(script: str) -> (str, bool):
+def patch_rf_pickle(script: str) -> tuple[str, bool]:
     if "RandomForestClassifier" not in script or "sklearn.ensemble.forest" in script:
         return script, False
 
@@ -75,6 +77,45 @@ def patch_rf_pickle(script: str) -> (str, bool):
     lines.insert(0, injection)
     return "\n".join(lines), True
 
+### Patch 5: Ensure rf_model is loaded via full path ###
+class RFModelPathFixer(ast.NodeTransformer):
+    def __init__(self):
+        self.patched = False
+
+    def visit_Call(self, node):
+        if isinstance(node.func, ast.Attribute) and node.func.attr == 'load':
+            if any(isinstance(arg, ast.Name) and arg.id == 'file_name2' for arg in node.args):
+                node.args[0] = ast.Call(
+                    func=ast.Name(id='str', ctx=ast.Load()),
+                    args=[ast.BinOp(
+                        left=ast.Attribute(
+                            value=ast.Call(
+                                func=ast.Name(id='Path', ctx=ast.Load()),
+                                args=[ast.Name(id='__file__', ctx=ast.Load())],
+                                keywords=[]
+                            ),
+                            attr='parent',
+                            ctx=ast.Load()
+                        ),
+                        op=ast.Div(),
+                        right=ast.Constant(value='rf_model')
+                    )],
+                    keywords=[]
+                )
+                self.patched = True
+        return self.generic_visit(node)
+
+def patch_rf_model_path(script: str) -> tuple[str, bool]:
+    if "'rf_model'" not in script and 'file_name2' not in script:
+        return script, False
+
+    tree = ast.parse(script)
+    fixer = RFModelPathFixer()
+    tree.body.insert(0, ast.ImportFrom(module='pathlib', names=[ast.alias(name='Path')], level=0))
+    fixer.visit(tree)
+    return (astor.to_source(tree), fixer.patched) if fixer.patched else (script, False)
+
+
 ### Backup, patch, and write the script ###
 def patch_script(script_path: Path):
     original = script_path.read_text()
@@ -84,6 +125,7 @@ def patch_script(script_path: Path):
     modified, p2 = patch_joblib_import(modified)
     modified, p3 = patch_str_replace(modified)
     modified, p4 = patch_rf_pickle(modified)
+    modified, p5 = patch_rf_model_path(modified)  # 👈 new patch
 
     if modified != original:
         backup_path = script_path.with_suffix(".bak")
@@ -96,6 +138,7 @@ def patch_script(script_path: Path):
         logging.info("🛠️  Script patched successfully.")
     else:
         logging.info("✅ Script is already up-to-date. No patching needed.")
+
 
 ### Check if rf_model is a Git LFS pointer ###
 def ensure_real_model(model_path: Path):
@@ -121,7 +164,7 @@ def ensure_real_model(model_path: Path):
 def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     tool_path = Path(tool_path)
     script_path = tool_path / "algpred2.py"
-    model_path = tool_path / "rf_model"
+    model_path = tool_path /  "rf_model"
 
     # Step 1: Check and backup original script
     if not script_path.with_suffix(".bak").exists():
