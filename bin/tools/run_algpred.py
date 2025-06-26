@@ -4,20 +4,22 @@ Utility to patch and run the AlgPred2.0 allergenicity prediction tool on protein
 
 Patches:
     - Fixes deprecated pandas `.str.replace('>', '')` to `.str.replace('>', '', regex=False)`
-    - Ensures `.to_csv(sep=',')` (fixes accidental newline separators)
+    - Fixes `.to_csv(sep='\n')` to `.to_csv(sep=',')`
     - Replaces deprecated sklearn.externals.joblib import with direct joblib import
+    - Injects compatibility for old pickled RandomForestClassifier paths
 
-Author: Nadia
+Author: Nadia (refined for structural clarity)
 """
 
 import subprocess
+import logging
 from pathlib import Path
 import ast
 import astor
-import logging
 
+logging.basicConfig(level=logging.INFO)
 
-### Patch 1: Fix to_csv(sep='\n') ###
+### Patch 1: Fix .to_csv(sep='\n') ###
 class CSVSeparatorFixer(ast.NodeTransformer):
     def __init__(self):
         self.patched = False
@@ -31,138 +33,114 @@ class CSVSeparatorFixer(ast.NodeTransformer):
                     self.patched = True
         return self.generic_visit(node)
 
-def patch_to_csv_sep(file_path: Path, original_text: str) -> str:
-    tree = ast.parse(original_text)
+def patch_to_csv_sep(script: str) -> (str, bool):
+    tree = ast.parse(script)
     fixer = CSVSeparatorFixer()
     fixer.visit(tree)
-
-    if fixer.patched:
-        logging.info(f"✅ Will patch .to_csv(sep='\\n') to sep=',' in {file_path.name}")
-        return astor.to_source(tree)
-    else:
-        logging.info("ℹ️  No .to_csv(sep='\\n') found — skipping.")
-        return original_text
-
+    return (astor.to_source(tree), fixer.patched) if fixer.patched else (script, False)
 
 ### Patch 2: Fix joblib import ###
-def patch_joblib_import(file_path: Path, text: str) -> str:
-    if ("from sklearn.externals import joblib" in text) or ("import sklearn.externals.joblib" in text):
-        logging.info(f"✅ Will patch joblib import in {file_path.name}")
-        return (
-            text.replace("from sklearn.externals import joblib", "import joblib")
-                .replace("import sklearn.externals.joblib", "import joblib")
+def patch_joblib_import(script: str) -> (str, bool):
+    if "sklearn.externals" in script:
+        patched = (
+            script.replace("from sklearn.externals import joblib", "import joblib")
+                  .replace("import sklearn.externals.joblib", "import joblib")
         )
-    logging.info("ℹ️  No deprecated joblib import found — skipping.")
-    return text
-
+        return patched, True
+    return script, False
 
 ### Patch 3: Fix .str.replace('>', '') ###
-def patch_str_replace_gt(file_path: Path, text: str) -> str:
-    if ".str.replace('>', '')" in text:
-        logging.info(f"✅ Will patch .str.replace('>', '') in {file_path.name}")
-        return text.replace(".str.replace('>', '')", ".str.replace('>', '', regex=False)")
-    logging.info("ℹ️  .str.replace('>', '') not found — skipping.")
-    return text
+def patch_str_replace(script: str) -> (str, bool):
+    return (script.replace(".str.replace('>', '')", ".str.replace('>', '', regex=False)"), True) \
+        if ".str.replace('>', '')" in script else (script, False)
 
+### Patch 4: RandomForestClassifier compatibility ###
+def patch_rf_pickle(script: str) -> (str, bool):
+    if "RandomForestClassifier" not in script or "sklearn.ensemble.forest" in script:
+        return script, False
 
-### Patch 4: Fix old RandomForestClassifier pickle path ###
-def patch_random_forest_import(file_path: Path, text: str) -> str:
-    inject_code = (
+    injection = (
         "import sys\n"
         "import types\n"
         "import sklearn.ensemble._forest\n"
-        "# Compatibility for old pickled RandomForestClassifier\n"
         "sys.modules['sklearn.ensemble.forest'] = types.ModuleType('sklearn.ensemble.forest')\n"
         "sys.modules['sklearn.ensemble.forest'].RandomForestClassifier = sklearn.ensemble._forest.RandomForestClassifier\n"
     )
 
-    if "RandomForestClassifier" in text and "sklearn.ensemble.forest" not in text:
-        # Insert before first joblib.load call
-        lines = text.splitlines()
-        for i, line in enumerate(lines):
-            if "joblib.load" in line:
-                lines.insert(i, inject_code)
-                logging.info(f"✅ Injected backward compatibility for RandomForestClassifier path.")
-                return "\n".join(lines)
-        # fallback
-        lines.insert(0, inject_code)
-        return "\n".join(lines)
+    lines = script.splitlines()
+    for i, line in enumerate(lines):
+        if "joblib.load" in line:
+            lines.insert(i, injection)
+            return "\n".join(lines), True
+    lines.insert(0, injection)
+    return "\n".join(lines), True
 
-    logging.info("ℹ️  No RandomForestClassifier compatibility patch needed.")
-    return text
+### Backup, patch, and write the script ###
+def patch_script(script_path: Path):
+    original = script_path.read_text()
+    modified = original
 
+    modified, p1 = patch_to_csv_sep(modified)
+    modified, p2 = patch_joblib_import(modified)
+    modified, p3 = patch_str_replace(modified)
+    modified, p4 = patch_rf_pickle(modified)
 
-### Ensure Git LFS model is real ###
-def ensure_real_model(model_path: Path):
-    """
-    Ensures that the rf_model file is not a Git LFS pointer. If it is, runs 'git lfs pull'.
-    """
-    if not model_path.exists():
-        raise FileNotFoundError(f"Model file {model_path} not found!")
-
-    content = model_path.read_text(errors='ignore')
-    if "git-lfs.github.com" in content and content.strip().startswith("version https://git-lfs.github.com/spec/v1"):
-        logging.warning(f"Model file {model_path} appears to be a Git LFS pointer.")
-        logging.info("Attempting to fetch actual model via 'git lfs pull'...")
-
-        result = subprocess.run(["git", "lfs", "pull"], cwd=model_path.parent, capture_output=True, text=True)
-        if result.returncode != 0:
-            logging.error("❌ Failed to fetch model using 'git lfs pull'.")
-            logging.error(result.stderr)
-            raise RuntimeError("Git LFS pull failed.")
-        logging.info("✅ Git LFS pull successful.")
-    else:
-        logging.info(f"✅ Model file {model_path.name} looks valid — not a Git LFS pointer.")
-
-
-### Wrapper to coordinate all patches safely ###
-def patch_algpred_script(script_path: Path):
-    original_text = script_path.read_text()
-    patched_text = original_text
-
-    patched_text = patch_to_csv_sep(script_path, patched_text)
-    patched_text = patch_joblib_import(script_path, patched_text)
-    patched_text = patch_str_replace_gt(script_path, patched_text)
-    patched_text = patch_random_forest_import(script_path, patched_text)
-
-    if patched_text != original_text:
-        backup_path = script_path.with_suffix(script_path.suffix + ".bak")
+    if modified != original:
+        backup_path = script_path.with_suffix(".bak")
         if not backup_path.exists():
-            backup_path.write_text(original_text)
-            logging.info(f"🛡️  Original script backed up to {backup_path.name}")
+            backup_path.write_text(original)
+            logging.info(f"🛡️  Backup created: {backup_path}")
         else:
-            logging.info("🛡️  Backup already exists — not overwriting.")
-
-        script_path.write_text(patched_text)
-        logging.info(f"🛠️  Patched script saved to {script_path.name}")
+            logging.info("ℹ️  Backup already exists.")
+        script_path.write_text(modified)
+        logging.info("🛠️  Script patched successfully.")
     else:
-        logging.info("✅ Script already patched — nothing changed.")
+        logging.info("✅ Script is already up-to-date. No patching needed.")
 
+### Check if rf_model is a Git LFS pointer ###
+def ensure_real_model(model_path: Path):
+    if not model_path.exists():
+        raise FileNotFoundError(f"Model file {model_path} not found.")
 
-### Runner ###
+    # Pointer files are typically <1MB and contain LFS metadata
+    if model_path.stat().st_size < 1_000_000:
+        content = model_path.read_text(errors='ignore')
+        if "git-lfs.github.com" in content:
+            logging.warning("⚠️  Model appears to be a Git LFS pointer. Attempting `git lfs pull`...")
+            result = subprocess.run(["git", "lfs", "pull"], cwd=model_path.parent, capture_output=True, text=True)
+            if result.returncode != 0:
+                logging.error(result.stderr)
+                raise RuntimeError("❌ Git LFS pull failed.")
+            logging.info("✅ Model successfully pulled from Git LFS.")
+        else:
+            logging.info("✅ Model file is small but valid.")
+    else:
+        logging.info("✅ Model file is present and looks complete.")
+
+### Main runner ###
 def run(tool_path: Path, input_fasta: Path, output_dir: Path):
-    """
-    Runs AlgPred2.0 on the provided FASTA file.
-    """
     tool_path = Path(tool_path)
     script_path = tool_path / "algpred2.py"
     model_path = tool_path / "rf_model"
 
-    if not script_path.exists():
-        raise FileNotFoundError(f"{script_path} not found!")
-    if not model_path.exists():
-        raise FileNotFoundError(f"Model file {model_path} not found!")
+    # Step 1: Check and backup original script
+    if not script_path.with_suffix(".bak").exists():
+        logging.info("🔍 Detected original script — creating backup and preparing to patch.")
+    else:
+        logging.info("🔍 Script has already been patched previously.")
 
-    # patch the script to ensure compatibility
-    patch_algpred_script(script_path)
-    # Ensure real model is present (not LFS pointer)
+    # Step 2: If original, ensure model is valid
     ensure_real_model(model_path)
 
+    # Step 3: Patch script
+    patch_script(script_path)
+
+    # Step 4: Run AlgPred
     output_dir = output_dir / "algpred"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / "result.csv"
 
-    command = [
+    cmd = [
         "python3", str(script_path),
         "-i", str(input_fasta),
         "-o", str(output_file),
@@ -172,8 +150,8 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
 
     logging.info("🚀 Running AlgPred2.0...")
     try:
-        subprocess.run(command, check=True)
-        logging.info(f"✅ AlgPred2.0 completed successfully. Output saved to: {output_file}")
+        subprocess.run(cmd, check=True)
+        logging.info(f"✅ Finished. Output saved to: {output_file}")
     except subprocess.CalledProcessError as e:
         logging.error(f"❌ AlgPred2.0 failed with return code {e.returncode}")
         raise
