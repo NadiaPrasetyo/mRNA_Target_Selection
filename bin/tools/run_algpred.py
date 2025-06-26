@@ -66,15 +66,19 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
         "import sklearn.tree._classes\n"
         "import sklearn.ensemble._gb\n"
         "import sklearn.ensemble._base\n"
+        "\n"
         "sys.modules['sklearn.ensemble.forest'] = sklearn.ensemble._forest\n"
         "sys.modules['sklearn.tree.tree'] = sklearn.tree._tree\n"
         "sys.modules['sklearn.tree._tree'] = sklearn.tree._tree\n"
         "sys.modules['sklearn.tree._classes'] = sklearn.tree._classes\n"
         "sys.modules['sklearn.ensemble._gradient_boosting'] = sklearn.ensemble._gb\n"
         "sys.modules['sklearn.ensemble.base'] = sklearn.ensemble._base\n"
+        "\n"
+        "# Patch missing class into _tree module\n"
+        "sklearn.tree._tree.DecisionTreeClassifier = sklearn.tree._classes.DecisionTreeClassifier\n"
     )
 
-    if "sys.modules['sklearn.tree.tree']" in script:
+    if "sklearn.tree._tree.DecisionTreeClassifier" in script:
         return script, False  # Already patched
 
     lines = script.splitlines()
@@ -87,6 +91,7 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
 
     lines.insert(insert_idx, injection)
     return "\n".join(lines), True
+
 
 
 ### Patch 5: Ensure rf_model is loaded via full path ###
