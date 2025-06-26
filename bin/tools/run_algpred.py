@@ -43,71 +43,90 @@ import ast
 import astor
 import logging
 
-class PatchDetector(ast.NodeVisitor):
-    """
-    Detects if a patch is needed:
-        - Deprecated sklearn.externals.joblib
-        - Invalid .to_csv(sep='\\n')
-    """
-    needs_joblib_patch = False
-    needs_sep_patch = False
+# Configure logging (if not configured externally)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-    def visit_ImportFrom(self, node):
-        if node.module == "sklearn.externals":
-            for alias in node.names:
-                if alias.name == "joblib":
-                    self.needs_joblib_patch = True
+class CSVSeparatorFixer(ast.NodeTransformer):
+    """
+    AST transformer to patch pandas DataFrame.to_csv() calls with sep='\\n' to use sep=','.
+    """
+    def __init__(self):
+        self.patched = False
 
     def visit_Call(self, node):
         if isinstance(node.func, ast.Attribute) and node.func.attr == 'to_csv':
             for kw in node.keywords:
                 if kw.arg == 'sep' and isinstance(kw.value, ast.Constant) and kw.value.value == '\n':
-                    self.needs_sep_patch = True
+                    logging.warning(f"Patching sep='\\n' on line {node.lineno}")
+                    kw.value = ast.Constant(value=',')
+                    self.patched = True
+        return self.generic_visit(node)
 
-class PatchFixer(ast.NodeTransformer):
+def patch_to_csv_sep(file_path: Path):
     """
-    Applies both:
-        - sklearn.externals.joblib -> import joblib
-        - .to_csv(sep='\\n') -> .to_csv(sep=',')
+    Patches the specified Python script to ensure pandas DataFrame.to_csv() uses a comma separator.
+    """
+    source = file_path.read_text()
+    tree = ast.parse(source)
+    fixer = CSVSeparatorFixer()
+    fixer.visit(tree)
+
+    if fixer.patched:
+        patched_code = astor.to_source(tree)
+        backup_path = file_path.with_suffix(file_path.suffix + ".bak")
+        backup_path.write_text(source)
+        file_path.write_text(patched_code)
+        logging.info(f"Patched .to_csv() in {file_path.name}, backup saved at {backup_path.name}")
+    else:
+        logging.info(".to_csv() sep is fine — no patch needed.")
+
+class JoblibFixDetector(ast.NodeVisitor):
+    """
+    Detects if 'from sklearn.externals import joblib' is present.
+    """
+    def __init__(self):
+        self.needs_patch = False
+
+    def visit_ImportFrom(self, node):
+        if node.module == "sklearn.externals":
+            for alias in node.names:
+                if alias.name == "joblib":
+                    self.needs_patch = True
+        self.generic_visit(node)
+
+class JoblibFixer(ast.NodeTransformer):
+    """
+    Replaces 'from sklearn.externals import joblib' with 'import joblib'.
     """
     def visit_ImportFrom(self, node):
         if node.module == "sklearn.externals":
             for alias in node.names:
                 if alias.name == "joblib":
-                    logging(f"⚠️ Replacing 'from sklearn.externals import joblib' with 'import joblib' (line {node.lineno})")
+                    logging.warning(f"Replacing 'from sklearn.externals import joblib' with 'import joblib' (line {node.lineno})")
                     return ast.Import(names=[ast.alias(name="joblib", asname=None)])
         return node
 
-    def visit_Call(self, node):
-        if isinstance(node.func, ast.Attribute) and node.func.attr == 'to_csv':
-            for kw in node.keywords:
-                if kw.arg == 'sep' and isinstance(kw.value, ast.Constant) and kw.value.value == '\n':
-                    logging(f"⚠️ Replacing sep='\\n' with sep=',' in .to_csv() (line {node.lineno})")
-                    kw.value = ast.Constant(value=',')
-        return self.generic_visit(node)
-
-def patch_algpred2(file_path: Path):
+def patch_joblib_import(file_path: Path):
     """
-    Checks for known issues and applies patches if needed.
+    Patches algpred2.py if sklearn.externals.joblib is used.
     """
     source = file_path.read_text()
     tree = ast.parse(source)
 
-    detector = PatchDetector()
+    detector = JoblibFixDetector()
     detector.visit(tree)
 
-    if detector.needs_joblib_patch or detector.needs_sep_patch:
-        logging("🔧 Patching algpred2.py...")
-        patched_tree = PatchFixer().visit(tree)
+    if detector.needs_patch:
+        logging.info("Detected deprecated sklearn.externals.joblib — patching...")
+        patched_tree = JoblibFixer().visit(tree)
         patched_code = astor.to_source(patched_tree)
 
         backup_path = file_path.with_suffix(file_path.suffix + ".bak")
         backup_path.write_text(source)
         file_path.write_text(patched_code)
-
-        logging(f"🛠️ Patched algpred2.py, backup saved as {backup_path.name}")
+        logging.info(f"Patched joblib import in {file_path.name}, backup saved as {backup_path.name}")
     else:
-        logging("✅ algpred2.py is already patched — no changes made.")
+        logging.info("joblib import is fine — no patch needed.")
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     """
@@ -119,9 +138,14 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
         raise FileNotFoundError(f"AlgPred2 script not found: {script_path}")
 
     try:
-        patch_algpred2(script_path)
+        patch_joblib_import(script_path)
     except Exception as e:
-        logging(f"⚠️ Patch failed: {e}")
+        logging.error(f"joblib patch failed: {e}")
+
+    try:
+        patch_to_csv_sep(script_path)
+    except Exception as e:
+        logging.error(f"CSV sep patch failed: {e}")
 
     output_subdir = output_dir / "algpred"
     output_subdir.mkdir(parents=True, exist_ok=True)
@@ -136,17 +160,17 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
         "-d", "1"
     ]
 
-    logging(f"🚀 Running AlgPred2 on {input_fasta.name}")
+    logging.info(f"Running AlgPred2 on {input_fasta.name}")
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
-        logging(f"❌ AlgPred2 failed: {e}")
+        logging.error(f"AlgPred2 failed: {e}")
     else:
         if output_csv.exists():
-            logging(f"✅ AlgPred2 output saved: {output_csv.name}")
+            logging.info(f"AlgPred2 output saved: {output_csv.name}")
         else:
             fallback = output_subdir / "outfile.csv"
             if fallback.exists():
-                logging(f"⚠️ Output fallback to: {fallback.name}")
+                logging.warning(f"Output fallback to: {fallback.name}")
             else:
-                logging(f"⚠️ No output CSV found.")
+                logging.warning(f"No output CSV found.")
