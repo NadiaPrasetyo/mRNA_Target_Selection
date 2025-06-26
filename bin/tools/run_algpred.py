@@ -56,30 +56,39 @@ def patch_str_replace(script: str) -> tuple[str, bool]:
     return (script.replace(".str.replace('>', '')", ".str.replace('>', '', regex=False)"), True) \
         if ".str.replace('>', '')" in script else (script, False)
 
-### Patch 4: RandomForestClassifier compatibility ###
 def patch_rf_pickle(script: str) -> tuple[str, bool]:
     injection = (
+        "# Patch for backward compatibility with old sklearn model paths\n"
+        "import sklearn.ensemble._forest\n"
+        "import sklearn.tree._tree\n"
+        "import sklearn.tree._classes\n"
+        "import sklearn.ensemble._gb\n"
+        "import sklearn.ensemble._base\n"
         "import sys\n"
         "import types\n"
-        "import sklearn.ensemble._forest\n"
-        "sys.modules['sklearn.ensemble.forest'] = types.ModuleType('sklearn.ensemble.forest')\n"
-        "sys.modules['sklearn.ensemble.forest'].RandomForestClassifier = sklearn.ensemble._forest.RandomForestClassifier\n"
+        "sys.modules['sklearn.ensemble.forest'] = sklearn.ensemble._forest\n"
+        "sys.modules['sklearn.tree.tree'] = sklearn.tree._tree\n"
+        "sys.modules['sklearn.tree._tree'] = sklearn.tree._tree\n"
+        "sys.modules['sklearn.tree._classes'] = sklearn.tree._classes\n"
+        "sys.modules['sklearn.ensemble._gradient_boosting'] = sklearn.ensemble._gb\n"
+        "sys.modules['sklearn.ensemble.base'] = sklearn.ensemble._base\n"
     )
 
-    if injection.strip() in script:
+    if "sklearn.ensemble._forest" in script and "sys.modules['sklearn.ensemble.forest']" in script:
         return script, False  # Already patched
 
     lines = script.splitlines()
     for i, line in enumerate(lines):
         if line.strip().startswith("import") or line.strip().startswith("from"):
             continue
-        # Insert right after imports
+        # Insert after the import block
         lines.insert(i, injection)
         return "\n".join(lines), True
 
-    # If no imports found, just insert at top
+    # If no imports found, prepend at top
     lines.insert(0, injection)
     return "\n".join(lines), True
+
 
 
 ### Patch 5: Ensure rf_model is loaded via full path ###
