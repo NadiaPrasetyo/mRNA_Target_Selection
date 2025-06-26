@@ -56,6 +56,7 @@ def patch_str_replace(script: str) -> tuple[str, bool]:
     return (script.replace(".str.replace('>', '')", ".str.replace('>', '', regex=False)"), True) \
         if ".str.replace('>', '')" in script else (script, False)
 
+### Patch 4: Inject compatibility for old sklearn model paths ###
 def patch_rf_pickle(script: str) -> tuple[str, bool]:
     injection = (
         "# Patch for backward compatibility with old sklearn model paths\n"
@@ -68,7 +69,12 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
         "import sklearn.ensemble._gb\n"
         "import sklearn.ensemble._base\n"
         "\n"
-        "sys.modules['sklearn.externals.joblib'] = joblib  # Patch old joblib path\n"
+        "# Patch old joblib path to point to current joblib module with necessary attributes\n"
+        "sys.modules['sklearn.externals.joblib'] = types.ModuleType('sklearn.externals.joblib')\n"
+        "sys.modules['sklearn.externals.joblib'].load = joblib.load\n"
+        "sys.modules['sklearn.externals.joblib'].dump = joblib.dump\n"
+        "sys.modules['sklearn.externals.joblib'].Parallel = joblib.Parallel\n"
+        "\n"
         "sys.modules['sklearn.ensemble.forest'] = sklearn.ensemble._forest\n"
         "sys.modules['sklearn.tree.tree'] = sklearn.tree._tree\n"
         "sys.modules['sklearn.tree._tree'] = sklearn.tree._tree\n"
@@ -93,6 +99,7 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
 
     lines.insert(insert_idx, injection)
     return "\n".join(lines), True
+
 
 ### Patch 5: Ensure rf_model is loaded via full path ###
 class RFModelPathFixer(ast.NodeTransformer):
