@@ -67,6 +67,30 @@ def patch_str_replace_gt(file_path: Path, text: str) -> str:
     logging.info("ℹ️  .str.replace('>', '') not found — skipping.")
     return text
 
+def ensure_real_model(model_path: Path):
+    """
+    Ensures that the rf_model file is not a Git LFS pointer. If it is, runs 'git lfs pull'.
+    """
+    if not model_path.exists():
+        raise FileNotFoundError(f"Model file {model_path} not found!")
+
+    text = model_path.read_text(errors='ignore')
+    if "git-lfs.github.com" in text and text.strip().startswith("version https://git-lfs.github.com/spec/v1"):
+        logging.warning(f"Model file {model_path} appears to be a Git LFS pointer.")
+        logging.info("Attempting to fetch actual model via 'git lfs pull'...")
+
+        # Run git lfs pull in the model's directory
+        result = subprocess.run(["git", "lfs", "pull"], cwd=model_path.parent, capture_output=True, text=True)
+
+        if result.returncode != 0:
+            logging.error("❌ Failed to fetch model using 'git lfs pull'.")
+            logging.error(result.stderr)
+            raise RuntimeError("Git LFS pull failed. Please ensure Git LFS is installed and configured.")
+        
+        logging.info("✅ Git LFS pull successful.")
+    else:
+        logging.info(f"✅ Model file {model_path.name} looks valid — not a Git LFS pointer.")
+
 
 ### Wrapper to coordinate all patches safely ###
 def patch_algpred_script(script_path: Path):
@@ -98,10 +122,17 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     """
     tool_path = Path(tool_path)
     script_path = tool_path / "algpred2.py"
+    model_path = tool_path / "rf_model"
+
     if not script_path.exists():
         raise FileNotFoundError(f"{script_path} not found!")
+    if not model_path.exists():
+        raise FileNotFoundError(f"Model file {model_path} not found!")
 
+    # patch the script to ensure compatibility
     patch_algpred_script(script_path)
+    # Ensure real model is present (not LFS pointer)
+    ensure_real_model(model_path)
 
     output_dir = output_dir / "algpred"
     output_dir.mkdir(parents=True, exist_ok=True)
