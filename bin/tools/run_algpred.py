@@ -59,13 +59,13 @@ def patch_str_replace(script: str) -> tuple[str, bool]:
 def patch_rf_pickle(script: str) -> tuple[str, bool]:
     injection = (
         "# Patch for backward compatibility with old sklearn model paths\n"
+        "import sys\n"
+        "import types\n"
         "import sklearn.ensemble._forest\n"
         "import sklearn.tree._tree\n"
         "import sklearn.tree._classes\n"
         "import sklearn.ensemble._gb\n"
         "import sklearn.ensemble._base\n"
-        "import sys\n"
-        "import types\n"
         "sys.modules['sklearn.ensemble.forest'] = sklearn.ensemble._forest\n"
         "sys.modules['sklearn.tree.tree'] = sklearn.tree._tree\n"
         "sys.modules['sklearn.tree._tree'] = sklearn.tree._tree\n"
@@ -74,21 +74,19 @@ def patch_rf_pickle(script: str) -> tuple[str, bool]:
         "sys.modules['sklearn.ensemble.base'] = sklearn.ensemble._base\n"
     )
 
-    if "sklearn.ensemble._forest" in script and "sys.modules['sklearn.ensemble.forest']" in script:
+    if "sys.modules['sklearn.tree.tree']" in script:
         return script, False  # Already patched
 
     lines = script.splitlines()
+    insert_idx = 0
+
     for i, line in enumerate(lines):
-        if line.strip().startswith("import") or line.strip().startswith("from"):
-            continue
-        # Insert after the import block
-        lines.insert(i, injection)
-        return "\n".join(lines), True
+        if not line.strip().startswith(("import", "from")):
+            insert_idx = i
+            break
 
-    # If no imports found, prepend at top
-    lines.insert(0, injection)
+    lines.insert(insert_idx, injection)
     return "\n".join(lines), True
-
 
 
 ### Patch 5: Ensure rf_model is loaded via full path ###
