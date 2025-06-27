@@ -437,7 +437,7 @@ def check_antigen_tools(tool_root: Path) -> dict:
     found = {}
     for name, path in tool_map.items():
         if path.exists():
-            found[name] = str(path)
+            found[name] = path
         else:
             print(f"❌ {name} tool not found at: {path}")
 
