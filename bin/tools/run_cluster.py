@@ -1,3 +1,9 @@
+"""
+run_cluster.py
+Run MMseqs2 clustering tool on a FASTA file.
+Compatible with tool_runners[tool] pattern and concurrent.futures.
+Author: Nadia
+"""
 import subprocess
 from pathlib import Path
 import shutil
@@ -44,10 +50,15 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
     output_dir.mkdir(parents=True, exist_ok=True)
 
     prefix = output_prefix or input_fasta.stem
-    db_path = output_dir / f"{prefix}_db"
-    clu_path = output_dir / f"{prefix}_clu"
-    tmp_path = output_dir / f"{prefix}_tmp"
-    clu_seq_path = output_dir / f"{prefix}_clu_seq"
+    
+    # Create mmseqdb base folder inside output_dir
+    mmseqdb_base = output_dir / "mmseqdb"
+    mmseqdb_base.mkdir(parents=True, exist_ok=True)
+
+    db_path = mmseqdb_base / f"{prefix}_db"
+    clu_path = mmseqdb_base / f"{prefix}_clu"
+    tmp_path = mmseqdb_base / f"{prefix}_tmp"
+    clu_seq_path = mmseqdb_base / f"{prefix}_clu_seq"
 
     output_tsv = output_dir / f"{prefix}.tsv"
     output_fasta = output_dir / f"{prefix}_clusters.fasta"

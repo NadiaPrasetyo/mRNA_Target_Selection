@@ -31,6 +31,7 @@ import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from tools import run_signalp, run_targetp, run_cluster, common
+import shutil
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
@@ -90,6 +91,13 @@ def run_parallel_jobs(jobs, threads):
                     f.unlink()
                 cluster_input_dir.rmdir()
 
+            # Optional: cleanup mmseqdb directory
+            mmseqdb_dir = output_dir / "mmseqdb"
+            if mmseqdb_dir.exists():
+                logging.info(f"🗑️ Cleaning up mmseqdb directory: {mmseqdb_dir}")
+                shutil.rmtree(mmseqdb_dir)
+
+
 
 def main():
     """Main function to parse arguments and run the antigen analysis pipeline."""
@@ -129,17 +137,16 @@ def main():
     output_root = data_path / args.output_dir
     output_root.mkdir(parents=True, exist_ok=True)
 
+    
     if args.verbose:
-        logging.basicConfig(
-            level=logging.DEBUG,
-            format='%(asctime)s - %(levelname)s - %(message)s',
-            filename=str(output_root / 'antigen_analysis.log')
-        )
+        # Prepare output directories first to get the correct output_dir
+        log_file = output_root / "antigen_analysis.log"
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        handlers = [logging.StreamHandler(sys.stdout), logging.FileHandler(log_file, mode='a')]
+        logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s: %(message)s", handlers=handlers)
     else:
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s'
-        )
+        logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
+
 
     jobs = []
 
