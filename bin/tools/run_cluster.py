@@ -37,7 +37,7 @@ def validate_fasta(path: Path) -> bool:
     return True
 
 
-def run(tool_path: Path, input_fasta: Path, output_dir: Path, *, output_prefix: str = None):
+def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     """
     Run MMseqs2 clustering on the given FASTA file.
 
@@ -57,7 +57,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, *, output_prefix: 
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    prefix = output_prefix or input_fasta.stem
+    prefix = input_fasta.stem
 
     mmseqdb_base = output_dir / "mmseqdb" / prefix
     mmseqdb_base.mkdir(parents=True, exist_ok=True)

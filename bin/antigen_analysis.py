@@ -158,8 +158,8 @@ def main():
             cluster_input_dir = output_root / "cluster_inputs"
             grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)
 
-            for accession, fasta_path in grouped_fastas.items():
-                jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], tool_paths["CLUSTER"], fasta_path, cluster_output, fasta_path.stem))
+            for _, fasta_path in grouped_fastas.items():
+                jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], tool_paths["CLUSTER"], fasta_path, cluster_output, 0))
 
         # Handle SignalP and TargetP jobs
         elif tool_name in ["SIGNALP", "TARGETP"]:
