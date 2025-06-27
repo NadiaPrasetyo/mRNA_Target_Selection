@@ -36,41 +36,32 @@ def validate_fasta(path: Path) -> bool:
                     return False
     return True
 
-
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     """
     Run MMseqs2 clustering on the given FASTA file.
-
-    Args:
-        tool_path (Path): Path to mmseqs executable.
-        input_fasta (Path): Path to input FASTA file.
-        output_dir (Path): Directory to write clustering output.
-        output_prefix (str, optional): Optional prefix for output files.
+    Only outputs final TSV and cluster FASTA. Cleans intermediate files.
     """
     if not input_fasta.exists():
         raise FileNotFoundError(f"Input FASTA not found: {input_fasta}")
-    
+
     if not validate_fasta(input_fasta):
         print(f"🚫 Validation failed for: {input_fasta}")
-        print(f"🔎 First few lines of file:\n" + '\n'.join(input_fasta.read_text().splitlines()[:10]))
         raise ValueError(f"Invalid FASTA format or empty sequences in: {input_fasta}")
 
     output_dir.mkdir(parents=True, exist_ok=True)
-
     prefix = input_fasta.stem
 
-    mmseqdb_base = output_dir / "mmseqdb" / prefix
-    mmseqdb_base.mkdir(parents=True, exist_ok=True)
+    mmseqs = str(tool_path) if tool_path else "mmseqs"
 
-    db_path = mmseqdb_base / "db"
-    clu_path = mmseqdb_base / "clu"
-    tmp_path = mmseqdb_base / "tmp"
-    clu_seq_path = mmseqdb_base / "clu_seq"
+    # Intermediate file names
+    db_path = output_dir / f"{prefix}_db"
+    clu_path = output_dir / f"{prefix}_clu"
+    tmp_path = output_dir / f"{prefix}_tmp"
+    clu_seq_path = output_dir / f"{prefix}_clu_seq"
 
+    # Final outputs
     output_tsv = output_dir / f"{prefix}.tsv"
     output_fasta = output_dir / f"{prefix}_clusters.fasta"
-
-    mmseqs = str(tool_path) if tool_path else "mmseqs"
 
     cmds = [
         [mmseqs, "createdb", str(input_fasta), str(db_path)],
@@ -86,24 +77,22 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
 
     try:
         for cmd in cmds:
-            print(f"⚙️  Running command: {' '.join(cmd)}")
-            result = subprocess.run(cmd, capture_output=True, text=True)
-            if result.returncode != 0:
-                print(f"❌ Command failed: {' '.join(cmd)}")
-                print(f"🔻 STDERR:\n{result.stderr.strip()}")
-                print(f"🔻 STDOUT:\n{result.stdout.strip()}")
-                raise subprocess.CalledProcessError(result.returncode, cmd, output=result.stdout, stderr=result.stderr)
+            print(f"⚙️  {' '.join(cmd)}")
+            subprocess.run(cmd, check=True)
 
         if output_tsv.exists() and output_fasta.exists():
             print(f"✅ Clustering completed: {output_tsv.name}, {output_fasta.name}")
         else:
-            print(f"⚠️ Output missing: TSV = {output_tsv.exists()}, FASTA = {output_fasta.exists()}")
+            print(f"⚠️  Expected output missing: {output_tsv.exists()=}, {output_fasta.exists()=}")
 
     except subprocess.CalledProcessError as e:
-        print(f"❌ MMseqs2 pipeline failed for {input_fasta.name}.")
+        print(f"❌ MMseqs2 pipeline failed: {e}")
         raise e
 
-    try:
-        shutil.rmtree(mmseqdb_base)
-    except Exception as e:
-        print(f"⚠️ Failed to clean up intermediate directory {mmseqdb_base}: {e}")
+    # Clean up intermediate files
+    for path in [db_path, clu_path, tmp_path, clu_seq_path]:
+        try:
+            if path.exists():
+                shutil.rmtree(path)
+        except Exception as e:
+            print(f"⚠️ Failed to delete {path}: {e}")
