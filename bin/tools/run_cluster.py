@@ -57,6 +57,8 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     tmp_path = output_dir / f"{prefix}_tmp"
     clu_seq_path = output_dir / f"{prefix}_clu_seq"
 
+    tmp_path.mkdir(parents=True, exist_ok=True)  # ensure tmp dir exists
+    
     # Final outputs
     output_tsv = output_dir / f"{prefix}.tsv"
     output_fasta = output_dir / f"{prefix}_clusters.fasta"
@@ -73,18 +75,16 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     print(f"   Input:  {input_fasta}")
     print(f"   Output: {output_fasta}")
     
-    try:
-        for cmd in cmds:
-            print(f"⚙️  {' '.join(cmd)}")
-            result = subprocess.run(cmd, capture_output=True, check=True)
-            stdout = result.stdout.decode('utf-8', errors='replace')
-            stderr = result.stderr.decode('utf-8', errors='replace')
-            print(stdout)
-            if stderr:
-                print(f"🔻 STDERR:\n{stderr}")
-    except subprocess.CalledProcessError as e:
-        print(f"❌ MMseqs2 pipeline failed: {e}")
-        raise e
+    
+    with open(output_dir / "mmseqs_stdout.log", "ab") as stdout_file, \
+        open(output_dir / "mmseqs_stderr.log", "ab") as stderr_file:
+        try:
+            for cmd in cmds:
+                print(f"⚙️  {' '.join(cmd)}")
+                result = subprocess.run(cmd, stdout=stdout_file, stderr=stderr_file, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"❌ MMseqs2 pipeline failed: {e}")
+            raise e
 
     # Clean up intermediate files
     for path in [db_path, clu_path, tmp_path, clu_seq_path]:
