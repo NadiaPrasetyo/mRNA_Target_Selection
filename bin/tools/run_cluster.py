@@ -4,6 +4,7 @@ Run MMseqs2 clustering tool on a FASTA file.
 Compatible with tool_runners[tool] pattern and concurrent.futures.
 Author: Nadia
 """
+
 import subprocess
 from pathlib import Path
 import shutil
@@ -28,7 +29,7 @@ def validate_fasta(path: Path) -> bool:
                     return False
                 seen_ids.add(seq_id)
             else:
-                invalid_chars = set(line) - valid_amino_acids
+                invalid_chars = set(line.upper()) - valid_amino_acids
                 if invalid_chars:
                     print(f"❌ Invalid characters in sequence at line {i}: {line}")
                     print(f"   → Invalid: {''.join(sorted(invalid_chars))}")
@@ -36,29 +37,35 @@ def validate_fasta(path: Path) -> bool:
     return True
 
 
-def run(tool_path: Path, input_fasta: Path, output_dir: Path,
-        output_prefix: str = None):
+def run(tool_path: Path, input_fasta: Path, output_dir: Path, *, output_prefix: str = None):
+    """
+    Run MMseqs2 clustering on the given FASTA file.
+
+    Args:
+        tool_path (Path): Path to mmseqs executable.
+        input_fasta (Path): Path to input FASTA file.
+        output_dir (Path): Directory to write clustering output.
+        output_prefix (str, optional): Optional prefix for output files.
+    """
     if not input_fasta.exists():
         raise FileNotFoundError(f"Input FASTA not found: {input_fasta}")
     
     if not validate_fasta(input_fasta):
         print(f"🚫 Validation failed for: {input_fasta}")
-        print(f"🔎 First few lines of file:\n" + input_fasta.read_text().splitlines()[0:10].__str__())
+        print(f"🔎 First few lines of file:\n" + '\n'.join(input_fasta.read_text().splitlines()[:10]))
         raise ValueError(f"Invalid FASTA format or empty sequences in: {input_fasta}")
 
-    output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     prefix = output_prefix or input_fasta.stem
-    
-    # Create mmseqdb base folder inside output_dir
-    mmseqdb_base = output_dir / "mmseqdb"
+
+    mmseqdb_base = output_dir / "mmseqdb" / prefix
     mmseqdb_base.mkdir(parents=True, exist_ok=True)
 
-    db_path = mmseqdb_base / f"{prefix}_db"
-    clu_path = mmseqdb_base / f"{prefix}_clu"
-    tmp_path = mmseqdb_base / f"{prefix}_tmp"
-    clu_seq_path = mmseqdb_base / f"{prefix}_clu_seq"
+    db_path = mmseqdb_base / "db"
+    clu_path = mmseqdb_base / "clu"
+    tmp_path = mmseqdb_base / "tmp"
+    clu_seq_path = mmseqdb_base / "clu_seq"
 
     output_tsv = output_dir / f"{prefix}.tsv"
     output_fasta = output_dir / f"{prefix}_clusters.fasta"
@@ -83,9 +90,9 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
             result = subprocess.run(cmd, capture_output=True, text=True)
             if result.returncode != 0:
                 print(f"❌ Command failed: {' '.join(cmd)}")
-                print(f"🔻 STDERR:\n{result.stderr}")
-                print(f"🔻 STDOUT:\n{result.stdout}")
-                raise subprocess.CalledProcessError(result.returncode, cmd)
+                print(f"🔻 STDERR:\n{result.stderr.strip()}")
+                print(f"🔻 STDOUT:\n{result.stdout.strip()}")
+                raise subprocess.CalledProcessError(result.returncode, cmd, output=result.stdout, stderr=result.stderr)
 
         if output_tsv.exists() and output_fasta.exists():
             print(f"✅ Clustering completed: {output_tsv.name}, {output_fasta.name}")
@@ -93,15 +100,10 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
             print(f"⚠️ Output missing: TSV = {output_tsv.exists()}, FASTA = {output_fasta.exists()}")
 
     except subprocess.CalledProcessError as e:
-        print(f"❌ MMseqs2 pipeline failed.")
-        raise e  # Optionally keep intermediate files for debugging
+        print(f"❌ MMseqs2 pipeline failed for {input_fasta.name}.")
+        raise e
 
-    # Cleanup intermediate files
-    for path in [db_path, clu_path, tmp_path, clu_seq_path]:
-        try:
-            if path.is_dir():
-                shutil.rmtree(path)
-            elif path.is_file():
-                path.unlink()
-        except Exception as e:
-            print(f"⚠️ Failed to clean {path}: {e}")
+    try:
+        shutil.rmtree(mmseqdb_base)
+    except Exception as e:
+        print(f"⚠️ Failed to clean up intermediate directory {mmseqdb_base}: {e}")
