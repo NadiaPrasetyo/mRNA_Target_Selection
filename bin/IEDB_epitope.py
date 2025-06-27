@@ -38,6 +38,7 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from tools import run_mhci, run_mhcii, run_bcell, common
 import sys
+import logging
 
 # Mapping of tool types to their respective runner functions
 tool_runners = {
@@ -61,7 +62,7 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     """
     subdir = base_output_dir / tool_type.lower()
     if not subdir.exists():
-        print(f"❌ Output directory for {tool_type} does not exist: {subdir}")
+        logging.warning(f"❌ Output directory for {tool_type} does not exist: {subdir}")
         return False
 
     base_name = input_path.stem
@@ -85,7 +86,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
         output_dir (Path): Base output directory for results.
         max_threads (int): Maximum number of threads to use for parallel execution.
     """
-    print(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
+    logging.info(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
 
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
         futures = [
@@ -127,6 +128,8 @@ def main():
                         help="Custom alleles list for MHCII if panel is 'custom'")
     parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"),
                         help="Directory to save output files (default: 'epitope_outputs')")
+    parser.add_argument("--verbose", action="store_true",
+                        help="Enable verbose logging to a .log file in the output directory")
 
     args = parser.parse_args()
 
@@ -134,40 +137,60 @@ def main():
     
     pathogen_path = data_dir / args.pathogen_dir
     if not pathogen_path.exists() or not pathogen_path.is_dir():
-        print(f"❌ Pathogen directory does not exist or is not a directory: {pathogen_path}")
+        logging.warning(f"❌ Pathogen directory does not exist or is not a directory: {pathogen_path}")
         sys.exit(1)
 
     # check that output directory exists or create it
-    output_dir = Path(args.output_dir)    
+    output_dir = Path(args.output_dir)
+    if not output_dir.exists():
+        logging.info(f"Creating output directory: {output_dir}")
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+
+    if args.verbose:
+        # Prepare output directories first to get the correct output_dir
+        log_file = output_dir / "pipeline.log"
+        logging.basicConfig(
+            filename=log_file,
+            level=logging.DEBUG,
+            format='%(asctime)s - %(levelname)s - %(message)s'
+        )
+
+    else:
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s'
+        )
+
 
     sequence_path = pathogen_path / args.sequence_dir
     if not sequence_path.exists() or not sequence_path.is_dir():
-        print(f"❌ Sequence directory does not exist or is not a directory: {sequence_path}")
+        logging.warning(f"❌ Sequence directory does not exist or is not a directory: {sequence_path}")
         sys.exit(1)
 
     tool_root = Path(args.tool_root)
     if not tool_root.exists() or not tool_root.is_dir():
-        print(f"❌ Tool root directory does not exist or is not a directory: {tool_root}")
+        logging.warning(f"❌ Tool root directory does not exist or is not a directory: {tool_root}")
         sys.exit(1)
 
     tool_map = common.check_iedb_tool(tool_root)
     if not tool_map:
-        print(f"❌ No valid IEDB tools found in: {tool_root}")
+        logging.warning(f"❌ No valid IEDB tools found in: {tool_root}")
         sys.exit(1)
 
     selected_tools = set(args.tools) if args.tools else set(tool_map.keys())
     missing_tools = selected_tools - set(tool_map.keys())
     if missing_tools:
-        print(f"⚠️ Warning: Tools requested but not found: {', '.join(missing_tools)}")
+        logging.warning(f"⚠️ Warning: Tools requested but not found: {', '.join(missing_tools)}")
 
     final_tools = {t: tool_map[t] for t in selected_tools if t in tool_map}
     if not final_tools:
-        print("❌ No tools available to run after filtering.")
+        logging.warning("❌ No tools available to run after filtering.")
         sys.exit(1)
 
     fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
     if not fasta_files:
-        print(f"❌ No FASTA files found in {sequence_path}")
+        logging.warning(f"❌ No FASTA files found in {sequence_path}")
         sys.exit(1)
 
     # Convert fasta to txt if BCell is selected
@@ -181,7 +204,7 @@ def main():
 
     all_jobs = []
     for tool_type, tool_path in final_tools.items():
-        print(f"\n🧪 Preparing {tool_type} predictions")
+        logging.info(f"\n🧪 Preparing {tool_type} predictions")
 
         if tool_type == "MHCI":
             alleles = common.get_alleles(tool_type, args.mhci_allele_panel, args.mhci_custom_alleles)
@@ -195,11 +218,11 @@ def main():
 
         input_files = txt_files if tool_type == "BCell" else fasta_files
         for input_file in input_files:
-            print(f"🧬 Processing {input_file.name}")
+            logging.info(f"🧬 Processing {input_file.name}")
 
             if tool_type == "BCell":
                 if is_job_completed(tool_type, input_file, output_dir):
-                    print(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
+                    logging.info(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
                     continue
                 all_jobs.append((tool_type, tool_path, input_file))
             else:
@@ -213,30 +236,30 @@ def main():
                 )
                 for jp in json_paths:
                     if is_job_completed(tool_type, jp, output_dir):
-                        print(f"⏩ Skipping {jp.name} — already processed.")
+                        logging.info(f"⏩ Skipping {jp.name} — already processed.")
                         continue
                     all_jobs.append((tool_type, tool_path, jp))
 
     if not all_jobs:
-        print("❌ No jobs to run. Exiting.")
+        logging.warning("❌ No jobs to run. Exiting.")
         common.cleanup_temp(temp_json_dir)
         if "BCell" in final_tools:
             common.cleanup_temp(temp_txt_dir)
         sys.exit(1)
 
-    print(f"\n🚀 Running predictions with {args.threads} threads...")
+    logging.info(f"\n🚀 Running predictions with {args.threads} threads...")
 
     job_counter = Counter([job[0] for job in all_jobs])
-    print("\n📋 Job Summary:")
+    logging.info("\n📋 Job Summary:")
     for tool, count in job_counter.items():
-        print(f"  - {tool}: {count} job(s)")
+        logging.info(f"  - {tool}: {count} job(s)")
 
     run_predictions_parallel(all_jobs, output_dir, args.threads)
 
     common.cleanup_temp(temp_json_dir)
     if "BCell" in final_tools:
             common.cleanup_temp(temp_txt_dir)
-    print("\n✅ Prediction complete.")
+    logging.info("\n✅ Prediction complete.")
 
 if __name__ == "__main__":
     main()

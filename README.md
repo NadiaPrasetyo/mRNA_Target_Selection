@@ -1,46 +1,19 @@
-# General Protein Sequence Pipeline
+# mRNA Target Selection Pipeline
 
-This repository provides a flexible and scalable pipeline designed to extract, process, and retrieve protein sequences from IEDB and literature sources for various pathogens.
+This repository provides a flexible, modular pipeline for extracting, processing, and evaluating protein antigens and epitopes for vaccine target selection, with a focus on pathogens such as *Staphylococcus aureus* and influenza. The pipeline integrates data from IEDB, UniProt, and literature, and supports downstream immunoinformatics analyses.
 
-## Dependencies:
-1. Python
-   - Python 3.7 or higher
-   - pandas==2.2.3
-   - Requests==2.32.3
+---
 
-2. NCBI Entrez Direct
-To install Entrez Direct (EDirect), open a terminal and run one of the following commands:
-
-```sh
-sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
-```
-or
-```sh
-sh -c "$(wget -q https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh -O -)"
-```
-
-This will create an `edirect` folder in your home directory and may suggest adding EDirect to your `PATH`. You can do this by running:
-
-```sh
-echo "export PATH=\$HOME/edirect:\$PATH" >> $HOME/.bash_profile
-```
-
-After installation, set the `PATH` for your current session:
-
-```sh
-export PATH=${HOME}/edirect:${PATH}
-```
-
-3. Seqkit  
-Install using Conda or Mamba
-```
-# conda or mamba
-conda install -c bioconda seqkit
-```
-Usage: https://bioinf.shenwei.me/seqkit/usage/#translate
-
-4. MMseqs2 (github: https://github.com/soedinglab/MMseqs2)  
-See their GitHub for installation options.
+## Features
+- **Automated data retrieval** from IEDB and UniProt
+- **Antigen compilation** from IEDB, literature, and patents
+- **Protein sequence fetching** and random negative control generation
+- **Epitope prediction** (MHC-I, MHC-II, B-cell)
+- **Antigen/epitope clustering and conservation analysis** (MMseqs2)
+- **Antigen feature prediction** (SignalP, TargetP)
+- **Epitope evaluation** (Allergenicity, Population Coverage)
+- **Statistical analysis** (KS test, feature comparison)
+- **Highly modular and parallelizable**
 
 ---
 
@@ -48,124 +21,127 @@ See their GitHub for installation options.
 ```
 mRNA_Target_Selection/
 ├── bin/
-│   ├── IEDB_fetch.py
-│   ├── compile_antigens.py
-│   ├── fetch_sequences_Uniprot.py
-│   └── generate_random_sequences.py
+│   ├── IEDB_fetch.py                # Fetch antigens/epitopes from IEDB
+│   ├── compile_antigens.py          # Compile antigens from IEDB/literature
+│   ├── fetch_sequences_Uniprot.py   # Fetch protein sequences from UniProt
+│   ├── generate_random_sequences.py # Fetch random non-antigen proteins
+│   ├── align_antigens_mmseqs.py     # Align antigens to genomes (MMseqs2)
+│   ├── antigen_analysis.py          # Run SignalP/TargetP on antigens
+│   ├── calculate_features_kstest.py # Feature extraction and KS test
+│   ├── evaluate_epitopes.py         # Evaluate epitopes (allergenicity, pop coverage)
+│   ├── sanity_check_antigen_seq.py  # Validate epitope mapping to antigens
+│   └── tools/
+│       ├── common.py                # Shared utilities/constants
+│       ├── extract_epitopes.py      # Epitope extraction from predictions
+│       ├── run_algpred.py           # Allergenicity prediction (AlgPred2)
+│       ├── run_bcell.py             # B-cell epitope prediction
+│       ├── run_cluster.py           # MMseqs2 clustering
+│       ├── run_mhci.py              # MHC-I epitope prediction
+│       ├── run_mhcii.py             # MHC-II epitope prediction
+│       ├── run_popcoverage.py       # Population coverage analysis
+│       ├── run_signalp.py           # SignalP wrapper
+│       └── run_targetp.py           # TargetP wrapper
 ├── data/
 │   └── <pathogen_subfolders>/
 │       ├── <organism_tag>_IEDB_antigens.csv
 │       ├── <organism_tag>_IEDB_epitope.csv
 │       ├── <organism_tag>_compiled_antigens.csv
 │       ├── <organism_tag>_compiled_proteins.csv
-│       └── <organism_tag>_random_proteins.csv
-├── literature/
-│   └── <literature_excel_files>.xlsx
-├── README.md
-└── requirements.txt
+│       ├── random_compiled_proteins.csv
+│       └── ... (outputs, features, results)
+├── notes/                           # Meeting notes, literature, questions
+├── requirements.txt                 # Python dependencies
+├── algpred2_dependencies.yml        # Conda env for AlgPred2
+└── README.md                        # This file
 ```
 
 ---
 
-## 📁 Key Pipeline Scripts (`bin/`)
+## Pipeline Overview
 
-### 1. `IEDB_fetch.py`
-**Description:**  
-Fetches antigen and epitope data for a given organism from the IEDB API.  
-- Queries the IEDB (Immune Epitope Database) API for antigen and epitope records associated with a specified source organism.
-- Saves results as CSV files in the appropriate data subfolder.
+1. **Data Collection**
+    - `IEDB_fetch.py`: Download antigen and epitope data from IEDB.
+    - `compile_antigens.py`: Merge IEDB and literature antigens.
+    - `fetch_sequences_Uniprot.py`: Fetch protein sequences for antigens.
+    - `generate_random_sequences.py`: Fetch random non-antigen proteins for controls.
 
-**Usage:**  
-```bash
-python bin/IEDB_fetch.py <output_folder> <source_organism>
-```
-**Example:**  
-```bash
-python bin/IEDB_fetch.py S.aureus "Staphylococcus aureus"
-```
-**Output:**  
-- `data/<output_folder>/<organism_tag>_IEDB_antigens.csv`
-- `data/<output_folder>/<organism_tag>_IEDB_epitope.csv`
+2. **Sequence Analysis**
+    - `align_antigens_mmseqs.py`: Align antigens to strain genomes (MMseqs2).
+    - `antigen_analysis.py`: Run SignalP/TargetP on antigens.
+    - `sanity_check_antigen_seq.py`: Validate epitope mapping to antigens.
 
----
+3. **Epitope Prediction**
+    - `tools/run_mhci.py`, `tools/run_mhcii.py`: Predict MHC-I/II epitopes.
+    - `tools/run_bcell.py`: Predict B-cell epitopes.
+    - `tools/run_cluster.py`: Cluster proteins/epitopes (MMseqs2).
 
-### 2. `compile_antigens.py`
-**Description:**  
-Compiles antigen data from IEDB CSV files and literature Excel files for a given organism.  
-- Aggregates antigen information from IEDB CSV files and literature/patent Excel files.
-- Standardizes and merges the data from all sources.
-- Outputs a compiled CSV file containing all antigen information.
+4. **Epitope Evaluation**
+    - `evaluate_epitopes.py`: Run allergenicity (AlgPred2) and population coverage.
+    - `tools/extract_epitopes.py`: Extract and filter predicted epitopes.
+    - `calculate_features_kstest.py`: Extract features and compare positive/negative sets (KS test).
 
-**Usage:**  
-```bash
-python bin/compile_antigens.py <short_name> <long_name>
-```
-**Example:**  
-```bash
-python bin/compile_antigens.py S.aureus "Staphylococcus aureus"
-```
-**Output:**  
-- `data/<short_name>/<organism_tag>_compiled_antigens.csv`
+5. **Utilities**
+    - `tools/common.py`: Directory, file, and allele panel utilities.
 
 ---
 
-### 3. `fetch_sequences_Uniprot.py`
-**Description:**  
-Fetches protein sequence and metadata from UniProt for each antigen in the compiled antigen list.  
-- Reads a compiled antigen CSV file containing antigen names, gene names, and UniProt IDs.
-- Queries the UniProt API to fetch full protein information including sequence, function, domains, and features.
-- Compiles and saves the protein data into a new CSV file.
+## Dependencies
 
-**Usage:**  
-```bash
-python bin/fetch_sequences_Uniprot.py <pathogen> <organism>
+- Python 3.7+
+- pandas, requests, scipy, numpy, scikit-learn, joblib
+- [NCBI Entrez Direct (EDirect)](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
+- [Seqkit](https://bioinf.shenwei.me/seqkit/usage/#translate)
+- [MMseqs2](https://github.com/soedinglab/MMseqs2)
+- [AlgPred2](https://github.com/masashitsuboi/AlgPred2) (via conda/pip, see `algpred2_dependencies.yml`)
+
+Install Python dependencies:
+```sh
+pip install -r requirements.txt
 ```
-**Example:**  
-```bash
-python bin/fetch_sequences_Uniprot.py S.aureus "Staphylococcus aureus"
+
+Install EDirect:
+```sh
+sh -c "$(curl -fsSL https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh)"
+# or
+sh -c "$(wget -q https://ftp.ncbi.nlm.nih.gov/entrez/entrezdirect/install-edirect.sh -O -)"
+export PATH=${HOME}/edirect:${PATH}
 ```
-**Output:**  
-- `data/<pathogen>/<organism_tag>_compiled_proteins.csv`
+
+Install Seqkit:
+```sh
+conda install -c bioconda seqkit
+```
+
+Install MMseqs2: See [MMseqs2 GitHub](https://github.com/soedinglab/MMseqs2)
 
 ---
 
-### 4. `generate_random_sequences.py`
-**Description:**  
-Samples random reviewed UniProt protein entries for the organism, excluding known antigens and matching sequence length bounds.  
-- Loads known antigen protein names and their sequence length bounds from a compiled CSV file.
-- Queries the UniProt API to randomly sample reviewed protein entries matching the organism and sequence criteria, excluding known antigens.
-- Saves the parsed protein information to a new CSV file for further analysis or use.
+## Usage
 
-**Usage:**  
-```bash
-python bin/generate_random_sequences.py <pathogen_subfolder> <organism_name>
-```
-**Example:**  
-```bash
-python bin/generate_random_sequences.py S.aureus "Staphylococcus aureus"
-```
-**Output:**  
-- `data/<pathogen_subfolder>/<organism_tag>_random_proteins.csv`
+Each script is self-documented and can be run as a standalone tool. See the docstring at the top of each script for arguments and usage examples. Typical workflow:
 
----
-
-## 🧭 Pipeline Overview
-
-1. **Fetch IEDB antigen/epitope data:**  
-   `IEDB_fetch.py`
-2. **Compile antigens from IEDB and literature:**  
-   `compile_antigens.py`
-3. **Fetch UniProt protein sequences for antigens:**  
-   `fetch_sequences_Uniprot.py`
-4. **Generate random non-antigen protein set:**  
-   `generate_random_sequences.py`
+1. Fetch and compile antigens/epitopes:
+    ```sh
+    python bin/IEDB_fetch.py s_aureus "Staphylococcus aureus"
+    python bin/compile_antigens.py s_aureus "Staphylococcus aureus"
+    python bin/fetch_sequences_Uniprot.py s_aureus "Staphylococcus aureus"
+    python bin/generate_random_sequences.py s_aureus "Staphylococcus aureus"
+    ```
+2. Predict and analyze features/epitopes:
+    ```sh
+    python bin/antigen_analysis.py s_aureus proteins --tool-root bin/tools
+    python bin/evaluate_epitopes.py s_aureus epitope_outputs --tool-root bin/tools
+    python bin/calculate_features_kstest.py s_aureus
+    ```
 
 ---
 
-## Future Updates
-- **Expand Pathogens**: Add support for new pathogen directories like `Influenza`, `Hepatitis-B`, etc.
-- **Automation Tools**: Develop scripts to identify available Excel files and automate the pipeline execution.
+## Notes
+- See `notes/` for meeting minutes, literature, and project questions.
+- All scripts are modular and can be adapted for other pathogens or datasets.
+- For details on each tool, see the docstring in the corresponding script.
 
-## References
-- Kans J. Entrez Direct: E-utilities on the Unix Command Line. 2013 Apr 23 [Updated 2025 Mar 25]. In: Entrez Programming Utilities Help [Internet]. Bethesda (MD): National Center for Biotechnology Information (US); 2010-. Available from: https://www.ncbi.nlm.nih.gov/books/NBK179288/
-- Vita R, Blazeska N, Marrama D; IEDB Curation Team Members; Duesing S, Bennett J, Greenbaum J, De Almeida Mendes M, Mahita J, Wheeler DK, Cantrell JR, Overton JA, Natale DA, Sette A, Peters B. The Immune Epitope Database (IEDB): 2024 update. Nucleic Acids Res. 2025 Jan 6;53(D1):D436-D443. doi: 10.1093/nar/gkae1092. PMID: 39558162; PMCID: PMC11701597. Available from: [www.iedb.org](https://www.iedb.org/)
+---
+
+## Citation
+If you use this pipeline, please cite the IEDB and relevant tool authors as appropriate.
