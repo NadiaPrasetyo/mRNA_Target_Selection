@@ -51,8 +51,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     output_dir.mkdir(parents=True, exist_ok=True)
     prefix = input_fasta.stem
 
-    mmseqs = str(tool_path) if tool_path else "mmseqs"
-
     # Intermediate file names
     db_path = output_dir / f"{prefix}_db"
     clu_path = output_dir / f"{prefix}_clu"
@@ -64,11 +62,11 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     output_fasta = output_dir / f"{prefix}_clusters.fasta"
 
     cmds = [
-        [mmseqs, "createdb", str(input_fasta), str(db_path)],
-        [mmseqs, "cluster", str(db_path), str(clu_path), str(tmp_path)],
-        [mmseqs, "createtsv", str(db_path), str(db_path), str(clu_path), str(output_tsv)],
-        [mmseqs, "createseqfiledb", str(db_path), str(clu_path), str(clu_seq_path)],
-        [mmseqs, "result2flat", str(db_path), str(db_path), str(clu_seq_path), str(output_fasta)],
+        ["mmseqs", "createdb", str(input_fasta), str(db_path)],
+        ["mmseqs", "cluster", str(db_path), str(clu_path), str(tmp_path)],
+        ["mmseqs", "createtsv", str(db_path), str(db_path), str(clu_path), str(output_tsv)],
+        ["mmseqs", "createseqfiledb", str(db_path), str(clu_path), str(clu_seq_path)],
+        ["mmseqs", "result2flat", str(db_path), str(db_path), str(clu_seq_path), str(output_fasta)],
     ]
 
     print(f"\n🧬 Running MMseqs2 clustering:")
