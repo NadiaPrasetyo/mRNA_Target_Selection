@@ -429,9 +429,9 @@ def check_antigen_tools(tool_root: Path) -> dict:
         dict: Dictionary mapping tool names to their executable paths.
     """
     tool_map = {
-        "SignalP": tool_root / "signalp-5.0b" / "bin" / "signalp",
-        "TargetP": tool_root / "targetp-2.0" / "bin" / "targetp",
-        "Cluster": tool_root / "miniconda3" / "bin" / "mmseqs"
+        "SIGNALP": tool_root / "signalp-5.0b" / "bin" / "signalp",
+        "TARGETP": tool_root / "targetp-2.0" / "bin" / "targetp",
+        "CLUSTER": tool_root / "miniconda3" / "bin" / "mmseqs"
     }
 
     found = {}
