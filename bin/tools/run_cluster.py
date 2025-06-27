@@ -75,19 +75,27 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
 
     try:
         for cmd in cmds:
-            print(f"⚙️  {' '.join(cmd)}")
-            result = subprocess.run(cmd, capture_output=True)
-            # decode with 'replace' to avoid decode errors
-            stdout = result.stdout.decode('utf-8', errors='replace')
-            stderr = result.stderr.decode('utf-8', errors='replace')
-            print(stdout)
+            print(f"⚙️  Running command: {' '.join(cmd)}")
+            result = subprocess.run(cmd, capture_output=True)  # no text=True
+
+            # Decode with 'replace' to handle invalid UTF-8 bytes gracefully
+            stdout = result.stdout.decode('utf-8', errors='replace') if result.stdout else ''
+            stderr = result.stderr.decode('utf-8', errors='replace') if result.stderr else ''
+
             if result.returncode != 0:
                 print(f"❌ Command failed: {' '.join(cmd)}")
                 print(f"🔻 STDERR:\n{stderr}")
+                print(f"🔻 STDOUT:\n{stdout}")
                 raise subprocess.CalledProcessError(result.returncode, cmd)
+
+        if output_tsv.exists() and output_fasta.exists():
+            print(f"✅ Clustering completed: {output_tsv.name}, {output_fasta.name}")
+        else:
+            print(f"⚠️ Output missing: TSV = {output_tsv.exists()}, FASTA = {output_fasta.exists()}")
+
     except subprocess.CalledProcessError as e:
-        print(f"❌ MMseqs2 pipeline failed: {e}")
-        raise e
+        print(f"❌ MMseqs2 pipeline failed.")
+        raise e  # Optionally keep intermediate files for debugging
 
     # Clean up intermediate files
     for path in [db_path, clu_path, tmp_path, clu_seq_path]:
