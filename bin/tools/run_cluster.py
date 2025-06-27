@@ -51,15 +51,12 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     output_dir.mkdir(parents=True, exist_ok=True)
     prefix = input_fasta.stem
 
-    # Intermediate file names
+    tmp_path = output_dir / f"{prefix}_tmp_{uuid.uuid4().hex[:8]}"
+    tmp_path.mkdir(parents=True, exist_ok=True)
     db_path = output_dir / f"{prefix}_db"
     clu_path = output_dir / f"{prefix}_clu"
-    tmp_path = output_dir / f"{prefix}_tmp"
     clu_seq_path = output_dir / f"{prefix}_clu_seq"
 
-    tmp_path.mkdir(parents=True, exist_ok=True)  # ensure tmp dir exists
-    
-    # Final outputs
     output_tsv = output_dir / f"{prefix}.tsv"
     output_fasta = output_dir / f"{prefix}_clusters.fasta"
 
@@ -74,17 +71,29 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     print(f"\n🧬 Running MMseqs2 clustering:")
     print(f"   Input:  {input_fasta}")
     print(f"   Output: {output_fasta}")
-    
-    
-    with open(output_dir / "mmseqs_stdout.log", "ab") as stdout_file, \
-        open(output_dir / "mmseqs_stderr.log", "ab") as stderr_file:
+
+    with open(output_dir / f"{prefix}_mmseqs_stdout.log", "ab") as stdout_file, \
+         open(output_dir / f"{prefix}_mmseqs_stderr.log", "ab") as stderr_file:
+
+        for cmd in cmds:
+            print(f"⚙️  {' '.join(cmd)}")
+            try:
+                subprocess.run(cmd, stdout=stdout_file, stderr=stderr_file, check=True)
+            except subprocess.CalledProcessError as e:
+                print(f"❌ MMseqs2 pipeline failed at command: {' '.join(cmd)}")
+                raise e
+
+    # Add a short delay to ensure files are fully written
+    import time
+    time.sleep(1)
+
+    # Clean up intermediate files/directories
+    for path in [db_path, clu_path, tmp_path, clu_seq_path]:
         try:
-            for cmd in cmds:
-                print(f"⚙️  {' '.join(cmd)}")
-                result = subprocess.run(cmd, stdout=stdout_file, stderr=stderr_file, check=True)
-        except subprocess.CalledProcessError as e:
-            print(f"❌ MMseqs2 pipeline failed: {e}")
-            raise e
+            if path.exists():
+                shutil.rmtree(path)
+        except Exception as e:
+            print(f"⚠️ Failed to delete {path}: {e}")
 
     # Clean up intermediate files
     for path in [db_path, clu_path, tmp_path, clu_seq_path]:
