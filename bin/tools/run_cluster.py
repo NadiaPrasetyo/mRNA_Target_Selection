@@ -72,14 +72,16 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     print(f"\n🧬 Running MMseqs2 clustering:")
     print(f"   Input:  {input_fasta}")
     print(f"   Output: {output_fasta}")
-
+    
     try:
         for cmd in cmds:
             print(f"⚙️  {' '.join(cmd)}")
-            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
-            print(result.stdout)
-            if result.stderr:
-                print(f"🔻 STDERR:\n{result.stderr}")
+            result = subprocess.run(cmd, capture_output=True, check=True)
+            stdout = result.stdout.decode('utf-8', errors='replace')
+            stderr = result.stderr.decode('utf-8', errors='replace')
+            print(stdout)
+            if stderr:
+                print(f"🔻 STDERR:\n{stderr}")
     except subprocess.CalledProcessError as e:
         print(f"❌ MMseqs2 pipeline failed: {e}")
         raise e
