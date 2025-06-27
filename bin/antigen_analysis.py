@@ -30,7 +30,6 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from collections import defaultdict
 from tools import run_signalp, run_targetp, run_cluster, common
 
 # Define the mapping of tool names to their runner functions
@@ -42,38 +41,6 @@ TOOL_RUNNERS = {
 
 # List of valid tools that can be run
 VALID_TOOLS = list(TOOL_RUNNERS.keys())
-
-
-def group_cluster_inputs(fasta_files: list[Path], fasta_inputs_dir: Path) -> dict:
-    """
-    Groups FASTA input files and merges them for clustering.
-    Args:
-        fasta_files (list[Path]): List of input FASTA files.
-        fasta_inputs_dir (Path): Output directory for combined group FASTAs.
-    Returns:
-        dict: Mapping of group name to combined FASTA Path.
-    """
-    grouped = defaultdict(list)
-    for f in fasta_files:
-        key = f.stem.split("_")[0]  # Group by prefix (e.g., mhci, mhcii, bcell)
-        grouped[key].append(f)
-
-    combined_fastas = {}
-    for group_name, files in grouped.items():
-        combined_path = fasta_inputs_dir / f"{group_name}.fasta"
-        combined_lines = []
-
-        for f in files:
-            with open(f, "r") as handle:
-                combined_lines.extend(handle.readlines())
-
-        if combined_lines:
-            combined_path.parent.mkdir(parents=True, exist_ok=True)
-            with open(combined_path, "w") as out_f:
-                out_f.writelines(combined_lines)
-            combined_fastas[group_name] = combined_path
-
-    return combined_fastas
 
 
 def run_tool(tool_name, runner_func, input_file, output_dir, batch_size, tool_path):
@@ -182,11 +149,12 @@ def main():
         if tool_name == "CLUSTER":
             cluster_output = output_root / "cluster"
             cluster_input_dir = output_root / "cluster_inputs"
-            grouped_fastas = group_cluster_inputs(fasta_files, cluster_input_dir)
+            grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)
 
-            for group_name, fasta_path in grouped_fastas.items():
-                jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], fasta_path, cluster_output, args.batch_size, tool_paths["CLUSTER"]))
-        
+            for accession, fasta_path in grouped_fastas.items():
+                jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], fasta_path, cluster_output, args.batch_size, tool_paths["CLUSTER"]
+                ))
+
         # Handle SignalP and TargetP jobs
         elif tool_name in ["SIGNALP", "TARGETP"]:
             output_dir = output_root / tool_name.lower()

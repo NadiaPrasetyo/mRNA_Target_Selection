@@ -27,6 +27,8 @@ import tempfile
 import csv
 import logging
 import re
+from collections import defaultdict
+from typing import List
 
 def is_valid_peptide(seq: str) -> bool:
     """
@@ -168,6 +170,55 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
 
     print(f"💾 B-cell FASTA written: {fasta_path}")
     return fasta_path
+
+def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dict:
+    """
+    Groups sequences from multiple FASTA files by accession code and merges them.
+
+    Args:
+        fasta_files (List[Path]): List of input FASTA files.
+        fasta_inputs_dir (Path): Output directory for grouped antigen FASTAs.
+
+    Returns:
+        dict: Mapping of accession code to combined FASTA Path.
+    """
+    grouped_by_accession = defaultdict(list)
+    header_pattern = re.compile(r'^>[^|]*\|(?P<accession>[^|]+)\|')
+
+    for fasta_file in fasta_files:
+        with open(fasta_file, "r") as fh:
+            lines = fh.readlines()
+
+        i = 0
+        while i < len(lines):
+            if lines[i].startswith(">"):
+                header = lines[i].strip()
+                sequence = []
+                i += 1
+                while i < len(lines) and not lines[i].startswith(">"):
+                    sequence.append(lines[i].strip())
+                    i += 1
+
+                match = header_pattern.match(header)
+                if match:
+                    accession = match.group("accession")
+                    grouped_by_accession[accession].append((header, ''.join(sequence)))
+                else:
+                    raise ValueError(f"Could not parse accession from header: {header}")
+            else:
+                i += 1
+
+    output_paths = {}
+    for accession, records in grouped_by_accession.items():
+        output_path = fasta_inputs_dir / f"{accession}_combined.fasta"
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, "w") as out_f:
+            for header, seq in records:
+                out_f.write(f"{header}\n")
+                out_f.write(f"{seq}\n")
+        output_paths[accession] = output_path
+
+    return output_paths
 
 def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
@@ -798,7 +849,7 @@ Position,Residue,Start,End,Peptide,Score
             self.assertNotIn("test", sequences)
             
             # First header should use "antigenUnknown"
-            self.assertTrue(headers[0].startswith(">antigenUnknown|unknown|unknown|bcell"))
+            self.assertTrue(headers[0].startswith(">antigenUnknown|unknown|HE681097.1|bcell"))
 
             # Second block should use parsed antigen_149 header
             self.assertTrue(headers[3].startswith(">antigen149|Q99QV7|HE681097.1|bcell"))
@@ -807,7 +858,57 @@ Position,Residue,Start,End,Peptide,Score
             fasta_path.unlink()
             csv_file.unlink()
             shutil.rmtree(output_dir)
+    
+    class GroupClusterInputsTests(unittest.TestCase):
+        def setUp(self):
+            self.test_dir = tempfile.TemporaryDirectory()
+            self.input_dir = Path(self.test_dir.name) / "input"
+            self.output_dir = Path(self.test_dir.name) / "output"
+            self.input_dir.mkdir(parents=True)
+            self.output_dir.mkdir(parents=True)
 
+            self.fasta1 = self.input_dir / "strain1.fasta"
+            self.fasta2 = self.input_dir / "strain2.fasta"
+
+            self.fasta1.write_text(
+                ">antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050\n"
+                "MAISQERKNEIIKEYRVHETDTGSPEVQIAVLTAEINAVNEHLRTHKKDHHSRRGLLKMVGRRRHLLNYLRSKDIQRYRELIKSLGIRR\n"
+            )
+
+            self.fasta2.write_text(
+                ">antigen_153|Q6GHG2|Small|HE681098.1|tpos:380962-381050\n"
+                "MAISQERKNEIIKEYRVHETDTGSPEVQIAVLTAEINAVNEHLRTTESTHSRRGLLKMVGRRRHLLNYLRSKDIQRYRELIKSLGIRR\n"
+                ">antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462\n"
+                "MIEFRQVSKTFNKKKQKIHALKDVSFKVNRNDIFGVIGYSGAGKSTLVRLVNHLEAASSGQVLVDGHDITNY\n"
+            )
+
+        def tearDown(self):
+            self.test_dir.cleanup()
+
+        def test_group_by_accession_combined_output(self):
+            result = group_cluster_inputs(
+                fasta_files=[self.fasta1, self.fasta2],
+                fasta_inputs_dir=self.output_dir
+            )
+
+            expected_files = {
+                "Q6GHG2": self.output_dir / "Q6GHG2_combined.fasta",
+                "Q99QV7": self.output_dir / "Q99QV7_combined.fasta"
+            }
+
+            for accession, path in expected_files.items():
+                self.assertIn(accession, result)
+                self.assertTrue(path.exists())
+
+            with open(expected_files["Q6GHG2"], "r") as f:
+                content = f.read()
+                self.assertEqual(content.count(">"), 2)
+                self.assertIn("Q6GHG2", content)
+
+            with open(expected_files["Q99QV7"], "r") as f:
+                content = f.read()
+                self.assertEqual(content.count(">"), 1)
+                self.assertIn("Q99QV7", content)
 
 
     unittest.main()
