@@ -78,13 +78,15 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
     try:
         for cmd in cmds:
             print(f"⚙️  {' '.join(cmd)}")
-            subprocess.run(cmd, check=True)
-
-        if output_tsv.exists() and output_fasta.exists():
-            print(f"✅ Clustering completed: {output_tsv.name}, {output_fasta.name}")
-        else:
-            print(f"⚠️  Expected output missing: {output_tsv.exists()=}, {output_fasta.exists()=}")
-
+            result = subprocess.run(cmd, capture_output=True)
+            # decode with 'replace' to avoid decode errors
+            stdout = result.stdout.decode('utf-8', errors='replace')
+            stderr = result.stderr.decode('utf-8', errors='replace')
+            print(stdout)
+            if result.returncode != 0:
+                print(f"❌ Command failed: {' '.join(cmd)}")
+                print(f"🔻 STDERR:\n{stderr}")
+                raise subprocess.CalledProcessError(result.returncode, cmd)
     except subprocess.CalledProcessError as e:
         print(f"❌ MMseqs2 pipeline failed: {e}")
         raise e
