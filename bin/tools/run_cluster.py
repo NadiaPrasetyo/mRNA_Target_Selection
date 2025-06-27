@@ -52,10 +52,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path,
     output_tsv = output_dir / f"{prefix}.tsv"
     output_fasta = output_dir / f"{prefix}_clusters.fasta"
 
-    tool_path = Path(tool_path)
-
-
-    mmseqs = tool_path if tool_path else "mmseqs"
+    mmseqs = str(tool_path) if tool_path else "mmseqs"
 
     cmds = [
         [mmseqs, "createdb", str(input_fasta), str(db_path)],
