@@ -91,8 +91,14 @@ mRNA_Target_Selection/
 - pandas, requests, scipy, numpy, scikit-learn, joblib
 - [NCBI Entrez Direct (EDirect)](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 - [Seqkit](https://bioinf.shenwei.me/seqkit/usage/#translate)
-- [MMseqs2](https://github.com/soedinglab/MMseqs2)
+- [MMseqs2](https://github.com/soedinglab/MMseqs2) (via conda)
 - [AlgPred2](https://github.com/masashitsuboi/AlgPred2) (via conda/pip, see `algpred2_dependencies.yml`)
+- [SignalP](https://services.healthtech.dtu.dk/services/SignalP-5.0/)
+- [TargetP](https://services.healthtech.dtu.dk/services/TargetP-2.0/)
+- [IEDB MHCI Epitope Prediction](https://nextgen-tools.iedb.org/pipeline?tool=tc1)
+- [IEDB MHCII Epitope Prediction](https://nextgen-tools.iedb.org/pipeline?tool=tc2)
+- [IEDB Bcell Epitope Prediction](http://tools.iedb.org/bcell/)
+- [IEDB Population Coverage](http://tools.iedb.org/population/)
 
 Install Python dependencies:
 ```sh
@@ -113,6 +119,10 @@ conda install -c bioconda seqkit
 ```
 
 Install MMseqs2: See [MMseqs2 GitHub](https://github.com/soedinglab/MMseqs2)
+```sh
+# install via conda
+conda install -c conda-forge -c bioconda mmseqs2
+```
 
 ---
 

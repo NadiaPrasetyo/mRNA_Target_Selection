@@ -435,10 +435,10 @@ def check_antigen_tools(tool_root: Path):
     }
     # Check if SIGNALP is available
     if not tool_paths["SIGNALP"].exists():
-        raise FileNotFoundError(f"SignalP not found at {tool_paths['SIGNALP']}. Install via: conda install -c bioconda signalp")
+        raise FileNotFoundError(f"SignalP not found at {tool_paths['SIGNALP']}. Install via https://services.healthtech.dtu.dk/services/SignalP-5.0/")
     # Check if TARGETP is available
     if not tool_paths["TARGETP"].exists():
-        raise FileNotFoundError(f"TargetP not found at {tool_paths['TARGETP']}. Install via: conda install -c bioconda targetp")
+        raise FileNotFoundError(f"TargetP not found at {tool_paths['TARGETP']}. Install via https://services.healthtech.dtu.dk/services/TargetP-2.0/")
 
     # CLUSTER (mmseqs) should be available on PATH
     try:
