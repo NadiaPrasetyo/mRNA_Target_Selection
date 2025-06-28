@@ -422,7 +422,19 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
         return ALLELE_PRESETS[tool_type]["default"]
     
 def check_antigen_tools(tool_root: Path):
-    tool_paths = {}
+    """
+    Detects available antigen tools (SignalP, TargetP, Cluster).
+    Args:
+        tool_root (Path): Root directory where tools are expected to be located.
+    Returns:
+        dict: Dictionary mapping tool names to their executable paths.
+    """
+    tool_paths = {
+        "SIGNALP": tool_root / "signalp-5.0b" / "bin" / "signalp",
+        "TARGETP": tool_root / "targetp-2.0" / "bin" / "targetp",
+        "CLUSTER": tool_root / "miniconda3" / "bin" / "mmseqs"
+    }
+
     # SIGNALP/TARGETP can still be under tool_root
     for tool in ["SIGNALP", "TARGETP"]:
         path = tool_root / tool.lower()
