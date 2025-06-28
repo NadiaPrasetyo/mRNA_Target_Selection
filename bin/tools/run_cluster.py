@@ -29,7 +29,7 @@ from pathlib import Path
 import logging
 import shutil
 
-def run(_, input_fasta, output_dir, _batch_size= 0):
+def run(_, input_fasta: Path, output_dir: Path, _batch_size: int):
     """
     Run MMseqs2 clustering on the input FASTA file and clean up intermediate files.
 
