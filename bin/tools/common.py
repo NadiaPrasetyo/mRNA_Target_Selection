@@ -432,15 +432,13 @@ def check_antigen_tools(tool_root: Path):
     tool_paths = {
         "SIGNALP": tool_root / "signalp-5.0b" / "bin" / "signalp",
         "TARGETP": tool_root / "targetp-2.0" / "bin" / "targetp",
-        "CLUSTER": tool_root / "miniconda3" / "bin" / "mmseqs"
     }
-
-    # SIGNALP/TARGETP can still be under tool_root
-    for tool in ["SIGNALP", "TARGETP"]:
-        path = tool_root / tool.lower()
-        if not path.exists():
-            raise FileNotFoundError(f"Tool path for {tool} not found: {path}")
-        tool_paths[tool] = path
+    # Check if SIGNALP is available
+    if not tool_paths["SIGNALP"].exists():
+        raise FileNotFoundError(f"SignalP not found at {tool_paths['SIGNALP']}. Install via: conda install -c bioconda signalp")
+    # Check if TARGETP is available
+    if not tool_paths["TARGETP"].exists():
+        raise FileNotFoundError(f"TargetP not found at {tool_paths['TARGETP']}. Install via: conda install -c bioconda targetp")
 
     # CLUSTER (mmseqs) should be available on PATH
     try:
