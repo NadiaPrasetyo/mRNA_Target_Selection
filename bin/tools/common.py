@@ -29,6 +29,7 @@ import logging
 import re
 from collections import defaultdict
 from typing import List
+import subprocess
 
 def is_valid_peptide(seq: str) -> bool:
     """
@@ -420,28 +421,24 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
         print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
         return ALLELE_PRESETS[tool_type]["default"]
     
-def check_antigen_tools(tool_root: Path) -> dict:
-    """
-    Detects available antigen tools (SignalP, TargetP, Cluster).
-    Args:
-        tool_root (Path): Root directory where tools are expected to be located.
-    Returns:
-        dict: Dictionary mapping tool names to their executable paths.
-    """
-    tool_map = {
-        "SIGNALP": tool_root / "signalp-5.0b" / "bin" / "signalp",
-        "TARGETP": tool_root / "targetp-2.0" / "bin" / "targetp",
-        "CLUSTER": tool_root / "miniconda3" / "bin" / "mmseqs"
-    }
+def check_antigen_tools(tool_root: Path):
+    tool_paths = {}
+    # SIGNALP/TARGETP can still be under tool_root
+    for tool in ["SIGNALP", "TARGETP"]:
+        path = tool_root / tool.lower()
+        if not path.exists():
+            raise FileNotFoundError(f"Tool path for {tool} not found: {path}")
+        tool_paths[tool] = path
 
-    found = {}
-    for name, path in tool_map.items():
-        if path.exists():
-            found[name] = path
-        else:
-            print(f"❌ {name} tool not found at: {path}")
+    # CLUSTER (mmseqs) should be available on PATH
+    try:
+        subprocess.run(["mmseqs", "version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+        tool_paths["CLUSTER"] = "mmseqs"  # placeholder, not used directly
+    except Exception:
+        raise FileNotFoundError("MMseqs2 not found in PATH. Install via: conda install -c bioconda mmseqs2")
 
-    return found
+    return tool_paths
+
 
 
 def check_iedb_tool(base_path):

@@ -1,106 +1,101 @@
 """
 run_cluster.py
-Run MMseqs2 clustering tool on a FASTA file.
-Compatible with tool_runners[tool] pattern and concurrent.futures.
+
+Command-line tool to cluster input FASTA sequences using MMseqs2 and clean up intermediate files.
+
+Overview:
+    - Runs MMseqs2 clustering on a given FASTA file.
+    - Generates cluster assignments as TSV and representative sequences as FASTA.
+    - Cleans up all intermediate MMseqs2 files after processing.
+
+Arguments:
+    _ (unused): Placeholder for compatibility with run_tool interface.
+    input_fasta (Path): Path to the input FASTA file.
+    output_dir (Path): Output directory for results.
+    _batch_size (unused): Ignored for MMseqs clustering.
+
+Requirements:
+    - MMseqs2 installed and available in PATH.
+    - Input FASTA file with sequences to cluster.
+
+Outputs:
+    <output_dir>/<input_basename>_clu.tsv      # Cluster assignments (TSV)
+    <output_dir>/<input_basename>_clu.fasta    # Representative sequences (FASTA)
+
 Author: Nadia
 """
-
 import subprocess
 from pathlib import Path
+import logging
 import shutil
 
-def validate_fasta(path: Path) -> bool:
-    if not path.exists() or path.stat().st_size == 0:
-        print(f"❌ FASTA file missing or empty: {path}")
-        return False
-
-    seen_ids = set()
-    valid_amino_acids = set("ACDEFGHIKLMNPQRSTVWY")
-
-    with path.open() as f:
-        for i, line in enumerate(f, 1):
-            line = line.strip()
-            if not line:
-                continue
-            if line.startswith(">"):
-                seq_id = line[1:].strip()
-                if seq_id in seen_ids:
-                    print(f"❌ Duplicate sequence ID at line {i}: {seq_id}")
-                    return False
-                seen_ids.add(seq_id)
-            else:
-                invalid_chars = set(line.upper()) - valid_amino_acids
-                if invalid_chars:
-                    print(f"❌ Invalid characters in sequence at line {i}: {line}")
-                    print(f"   → Invalid: {''.join(sorted(invalid_chars))}")
-                    return False
-    return True
-
-def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size=None):
+def run(_, input_fasta, output_dir, _batch_size= 0):
     """
-    Run MMseqs2 clustering on the given FASTA file.
-    Only outputs final TSV and cluster FASTA. Cleans intermediate files.
+    Run MMseqs2 clustering on the input FASTA file and clean up intermediate files.
+
+    Args:
+        _ (unused): Placeholder for compatibility with run_tool interface.
+        input_fasta (Path): Path to the input FASTA file.
+        output_dir (Path): Output directory for results.
+        _batch_size (unused): Ignored for MMseqs clustering.
     """
-    if not input_fasta.exists():
-        raise FileNotFoundError(f"Input FASTA not found: {input_fasta}")
 
-    if not validate_fasta(input_fasta):
-        print(f"🚫 Validation failed for: {input_fasta}")
-        raise ValueError(f"Invalid FASTA format or empty sequences in: {input_fasta}")
+    db_name = input_fasta.stem
+    work_dir = output_dir / "mmseqdb"
+    tmp_dir = output_dir / "tmp"
+    work_dir.mkdir(parents=True, exist_ok=True)
+    tmp_dir.mkdir(parents=True, exist_ok=True)
 
-    output_dir.mkdir(parents=True, exist_ok=True)
-    prefix = input_fasta.stem
+    db_path = work_dir / db_name
+    clu_path = work_dir / f"{db_name}_clu"
+    tsv_path = output_dir / f"{db_name}_clu.tsv"
+    fasta_output = output_dir / f"{db_name}_clu.fasta"
+    seqfiledb_path = clu_path.with_name(f"{db_name}_clu_seq")
 
-    tmp_path = output_dir / f"{prefix}_tmp"
-    tmp_path.mkdir(parents=True, exist_ok=True)
-    db_path = output_dir / f"{prefix}_db"
-    clu_path = output_dir / f"{prefix}_clu"
-    clu_seq_path = output_dir / f"{prefix}_clu_seq"
+    try:
+        logging.info(f"📦 Creating MMseqs DB for {input_fasta.name}")
+        subprocess.run(["mmseqs", "createdb", str(input_fasta), str(db_path)], check=True)
 
-    output_tsv = output_dir / f"{prefix}.tsv"
-    output_fasta = output_dir / f"{prefix}_clusters.fasta"
+        logging.info(f"🔗 Running clustering on {input_fasta.name}")
+        subprocess.run(["mmseqs", "cluster", str(db_path), str(clu_path), str(tmp_dir)], check=True)
 
-    mmseqs_exe = tool_path
+        logging.info(f"📄 Generating TSV output")
+        subprocess.run(["mmseqs", "createtsv", str(db_path), str(db_path), str(clu_path), str(tsv_path)], check=True)
 
-    cmds = [
-        [mmseqs_exe, "createdb", str(input_fasta), str(db_path)],
-        [mmseqs_exe, "cluster", str(db_path), str(clu_path), str(tmp_path)],
-        [mmseqs_exe, "createtsv", str(db_path), str(db_path), str(clu_path), str(output_tsv)],
-        [mmseqs_exe, "createseqfiledb", str(db_path), str(clu_path), str(clu_seq_path)],
-        [mmseqs_exe, "result2flat", str(db_path), str(db_path), str(clu_seq_path), str(output_fasta)],
-    ]
+        logging.info(f"📁 Creating representative FASTA output")
+        subprocess.run(["mmseqs", "createseqfiledb", str(db_path), str(clu_path), str(seqfiledb_path)], check=True)
+        subprocess.run(["mmseqs", "result2flat", str(db_path), str(db_path), str(seqfiledb_path), str(fasta_output)], check=True)
 
-    print(f"\n🧬 Running MMseqs2 clustering:")
-    print(f"   Input:  {input_fasta}")
-    print(f"   Output: {output_fasta}")
+        logging.info(f"✅ Clustering completed for {input_fasta.name}")
 
-    with open(output_dir / f"{prefix}_mmseqs_stdout.log", "ab") as stdout_file, \
-         open(output_dir / f"{prefix}_mmseqs_stderr.log", "ab") as stderr_file:
+    finally:
+        # Cleanup all intermediate MMseqs files and directories
+        logging.info(f"🧹 Cleaning up intermediate files")
 
-        for cmd in cmds:
-            print(f"⚙️  {' '.join(cmd)}")
+        # Delete MMseqs DB and cluster files
+        for file in work_dir.glob(f"{db_name}*"):
             try:
-                subprocess.run(cmd, stdout=stdout_file, stderr=stderr_file, check=True)
-            except subprocess.CalledProcessError as e:
-                print(f"❌ MMseqs2 pipeline failed at command: {' '.join(cmd)}")
-                raise e
+                file.unlink()
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to delete file {file}: {e}")
 
-    # Add a short delay to ensure files are fully written
-    import time
-    time.sleep(1)
+        # Delete intermediate seqfile DB files
+        for file in work_dir.glob(f"{db_name}_clu_seq*"):
+            try:
+                file.unlink()
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to delete file {file}: {e}")
 
-    # Clean up intermediate files/directories
-    for path in [db_path, clu_path, tmp_path, clu_seq_path]:
+        # Remove tmp dir
+        if tmp_dir.exists():
+            try:
+                shutil.rmtree(tmp_dir)
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to remove tmp directory: {e}")
+
+        # Optionally remove mmseqdb folder if empty
         try:
-            if path.exists():
-                shutil.rmtree(path)
+            if not any(work_dir.iterdir()):
+                work_dir.rmdir()
         except Exception as e:
-            print(f"⚠️ Failed to delete {path}: {e}")
-
-    # Clean up intermediate files
-    for path in [db_path, clu_path, tmp_path, clu_seq_path]:
-        try:
-            if path.exists():
-                shutil.rmtree(path)
-        except Exception as e:
-            print(f"⚠️ Failed to delete {path}: {e}")
+            logging.warning(f"⚠️ Failed to remove mmseqdb directory: {e}")
