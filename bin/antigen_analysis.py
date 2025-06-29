@@ -160,8 +160,16 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
         identifier = stem.split("_")[0]  # e.g., 'ABC123' from 'ABC123_combined'
     else:
         raise ValueError(f"Unknown mode '{mode}' passed to is_job_done()")
+    
+    if extensions is None:
+        extensions = [".tsv", ".fasta", ".txt", ".gff3"]
 
-    return any(identifier in f.name for f in output_dir.glob("*.out"))   
+    for ext in extensions:
+        for f in output_dir.glob(f"*{ext}"):
+            if identifier in f.name:
+                return True
+    return False
+
 
 def main():
     """Main function to parse arguments and run the antigen analysis pipeline."""
