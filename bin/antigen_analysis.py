@@ -31,7 +31,7 @@ import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from tools import run_signalp, run_targetp, run_cluster, common
-import shutil
+import glob
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
@@ -91,13 +91,32 @@ def run_parallel_jobs(jobs, threads):
                     f.unlink()
                 cluster_input_dir.rmdir()
 
-            # Optional: cleanup mmseqdb directory
-            mmseqdb_dir = output_dir / "mmseqdb"
-            if mmseqdb_dir.exists():
-                logging.info(f"🗑️ Cleaning up mmseqdb directory: {mmseqdb_dir}")
-                shutil.rmtree(mmseqdb_dir)
+def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> bool:
+    """
+    Check if a job has already been processed for a given FASTA file.
+    
+    Modes:
+        - "strain": checks if file.stem (e.g. 'HO_5096_0412_matched_antigens') appears in any output.
+        - "accession": checks if accession (e.g. 'ABC123') from 'ABC123_combined.fasta' appears in output names.
+    
+    Args:
+        fasta_path (Path): Input FASTA file path.
+        output_dir (Path): Output directory to search for existing results.
+        mode (str): Type of identifier to match ('strain' or 'accession').
+    
+    Returns:
+        bool: True if matching output exists, False otherwise.
+    """
+    stem = fasta_path.stem
 
+    if mode == "strain":
+        identifier = stem  # e.g., 'HO_5096_0412_matched_antigens'
+    elif mode == "accession":
+        identifier = stem.split("_")[0]  # e.g., 'ABC123' from 'ABC123_combined'
+    else:
+        raise ValueError(f"Unknown mode '{mode}' passed to is_job_done()")
 
+    return any(identifier in f.name for f in output_dir.glob("*.out"))   
 
 def main():
     """Main function to parse arguments and run the antigen analysis pipeline."""
@@ -159,6 +178,10 @@ def main():
             grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)
 
             for _, fasta_path in grouped_fastas.items():
+                if is_job_done(fasta_path, cluster_output, mode="accession"):
+                    logging.info(f"⏭️ Skipping CLUSTER for {fasta_path.name} (already processed)")
+                    continue
+
                 jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], fasta_path, cluster_output, 0, tool_paths["CLUSTER"]))
 
         # Handle SignalP and TargetP jobs
@@ -166,8 +189,11 @@ def main():
             output_dir = output_root / tool_name.lower()
             output_dir.mkdir(parents=True, exist_ok=True)
             for fasta_file in fasta_files:
-                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.batch_size, tool_paths[tool_name]))
+                if is_job_done(fasta_file, output_dir, mode="strain"):
+                    logging.info(f"⏭️ Skipping {tool_name} for {fasta_file.name} (already processed)")
+                    continue
 
+                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.batch_size, tool_paths[tool_name]))
 
     run_parallel_jobs(jobs, args.threads)
 
