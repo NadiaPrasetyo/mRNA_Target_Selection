@@ -84,7 +84,6 @@ def run_parallel_jobs(jobs, threads):
 
         db_name = input_file.stem
         work_dir = output_dir / "mmseqdb"
-        tmp_dir = output_dir / "tmp"
         cluster_input_dir = output_dir.parent / "cluster_inputs"
 
         logging.info(f"🧹 Cleaning up intermediate files for {db_name}")
@@ -104,15 +103,6 @@ def run_parallel_jobs(jobs, threads):
                     file.unlink()
                 except Exception as e:
                     logging.warning(f"⚠️ Failed to delete file {file}: {e}")
-
-        # Remove tmp dir if it exists
-        if tmp_dir.exists() and tmp_dir.is_dir():
-            try:
-                shutil.rmtree(tmp_dir)
-            except Exception as e:
-                logging.warning(f"⚠️ Failed to remove tmp directory: {e}")
-        else:
-            logging.debug(f"🟡 tmp directory cleanup; not found: {tmp_dir}")
 
         # Remove mmseqdb dir if empty
         if work_dir.exists() and work_dir.is_dir():
