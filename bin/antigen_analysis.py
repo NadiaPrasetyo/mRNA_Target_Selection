@@ -85,7 +85,7 @@ def run_parallel_jobs(jobs, threads):
         db_name = input_file.stem
         work_dir = output_dir / "mmseqdb"
         tmp_dir = output_dir / "tmp"
-        cluster_input_dir = output_dir / "cluster_inputs"
+        cluster_input_dir = output_dir.parent / "cluster_inputs"
 
         logging.info(f"🧹 Cleaning up intermediate files for {db_name}")
 
