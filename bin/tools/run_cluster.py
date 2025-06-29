@@ -67,54 +67,6 @@ def run(_, input_fasta: Path, output_dir: Path, _batch_size: int):
         subprocess.run(["mmseqs", "result2flat", str(db_path), str(db_path), str(seqfiledb_path), str(fasta_output)], check=True)
 
         logging.info(f"✅ Clustering completed for {input_fasta.name}")
-
-    finally:
-        # Cleanup all intermediate MMseqs files and directories
-        logging.info(f"🧹 Cleaning up intermediate files")
-
-        # Delete MMseqs DB and cluster files
-        for file in work_dir.glob(f"{db_name}*"):
-            try:
-                file.unlink()
-            except Exception as e:
-                logging.warning(f"⚠️ Failed to delete file {file}: {e}")
-
-            finally:
-                logging.info(f"🧹 Cleaning up intermediate files")
-
-                # Delete MMseqs DB and cluster files
-                for file in work_dir.glob(f"{db_name}*"):
-                    if file.exists() and file.is_file():
-                        try:
-                            file.unlink()
-                        except Exception as e:
-                            logging.warning(f"⚠️ Failed to delete file {file}: {e}")
-
-                # Delete intermediate seqfile DB files
-                for file in work_dir.glob(f"{db_name}_clu_seq*"):
-                    if file.exists() and file.is_file():
-                        try:
-                            file.unlink()
-                        except Exception as e:
-                            logging.warning(f"⚠️ Failed to delete file {file}: {e}")
-
-                # Remove tmp dir if it exists
-                if tmp_dir.exists() and tmp_dir.is_dir():
-                    try:
-                        shutil.rmtree(tmp_dir)
-                    except Exception as e:
-                        logging.warning(f"⚠️ Failed to remove tmp directory: {e}")
-                else:
-                    logging.debug(f"🟡 Skipping tmp directory cleanup; not found: {tmp_dir}")
-
-                # Remove mmseqdb dir if empty
-                if work_dir.exists() and work_dir.is_dir():
-                    try:
-                        if not any(work_dir.iterdir()):
-                            work_dir.rmdir()
-                    except Exception as e:
-                        logging.warning(f"⚠️ Failed to remove mmseqdb directory: {e}")
-                else:
-                    logging.debug(f"🟡 Skipping mmseqdb directory cleanup; not found: {work_dir}")
-                
-                logging.info(f"🧹 Cleanup completed")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"❌ Error during MMseqs2 clustering: {e}")
+        raise

@@ -31,7 +31,7 @@ import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from tools import run_signalp, run_targetp, run_cluster, common
-import glob
+import shutil
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
@@ -55,10 +55,6 @@ def run_tool(tool_name, runner_func, input_file, output_dir, batch_size, tool_pa
         batch_size (int): Batch size for processing.
         tool_path (Path): Path to the tool executable or script.
     """
-    output_file = output_dir / f"{input_file.stem}_{tool_name.lower()}.out"
-    if output_file.exists():
-        logging.info(f"⏭️ Skipping {tool_name} for {input_file.name} (output exists)")
-        return
     try:
         runner_func(tool_path, input_file, output_dir, batch_size)
         logging.info(f"✅ {tool_name} completed for {input_file.name}")
@@ -80,16 +76,65 @@ def run_parallel_jobs(jobs, threads):
             except Exception as e:
                 logging.error(f"❌ Job failed: {e}")
 
-    # Clean up temporary directories if needed
+    # Clean up temporary and intermediate files after CLUSTER jobs
     for job in jobs:
         tool_name, _, input_file, output_dir, _, _ = job
-        if tool_name == "CLUSTER":
-            cluster_input_dir = output_dir / "cluster_inputs"
-            if cluster_input_dir.exists():
-                logging.info(f"🗑️ Cleaning up temporary directory: {cluster_input_dir}")
+        if tool_name != "CLUSTER":
+            continue
+
+        db_name = input_file.stem
+        work_dir = output_dir / "mmseqdb"
+        tmp_dir = output_dir / "tmp"
+        cluster_input_dir = output_dir / "cluster_inputs"
+
+        logging.info(f"🧹 Cleaning up intermediate files for {db_name}")
+
+        # Delete MMseqs DB and cluster files
+        for file in work_dir.glob(f"{db_name}*"):
+            if file.exists() and file.is_file():
+                try:
+                    file.unlink()
+                except Exception as e:
+                    logging.warning(f"⚠️ Failed to delete file {file}: {e}")
+
+        # Delete intermediate seqfile DB files
+        for file in work_dir.glob(f"{db_name}_clu_seq*"):
+            if file.exists() and file.is_file():
+                try:
+                    file.unlink()
+                except Exception as e:
+                    logging.warning(f"⚠️ Failed to delete file {file}: {e}")
+
+        # Remove tmp dir if it exists
+        if tmp_dir.exists() and tmp_dir.is_dir():
+            try:
+                shutil.rmtree(tmp_dir)
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to remove tmp directory: {e}")
+        else:
+            logging.debug(f"🟡 tmp directory cleanup; not found: {tmp_dir}")
+
+        # Remove mmseqdb dir if empty
+        if work_dir.exists() and work_dir.is_dir():
+            try:
+                if not any(work_dir.iterdir()):
+                    work_dir.rmdir()
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to remove mmseqdb directory: {e}")
+        else:
+            logging.debug(f"🟡 mmseqdb directory cleanup; not found: {work_dir}")
+
+        # Remove cluster_inputs dir
+        if cluster_input_dir.exists() and cluster_input_dir.is_dir():
+            try:
                 for f in cluster_input_dir.glob("*.fasta"):
                     f.unlink()
                 cluster_input_dir.rmdir()
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to clean cluster_inputs directory: {e}")
+
+        logging.info(f"✅ Cleanup completed for {db_name}")
+
 
 def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> bool:
     """
