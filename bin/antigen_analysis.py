@@ -31,6 +31,7 @@ import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from tools import run_signalp, run_targetp, run_cluster, common
+import shutil
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
@@ -124,23 +125,17 @@ def run_parallel_jobs(jobs, threads):
         # Remove cluster_inputs dir
         if cluster_input_dir.exists() and cluster_input_dir.is_dir():
             try:
-                for f in cluster_input_dir.glob("*.fasta"):
-                    f.unlink()
-                cluster_input_dir.rmdir()
+                shutil.rmtree(cluster_input_dir)
             except Exception as e:
-                logging.warning(f"⚠️ Failed to clean cluster_inputs directory: {e}")
-        else:
-            logging.debug(f"🟡 cluster_inputs directory cleanup; not found: {cluster_input_dir}")
+                logging.warning(f"⚠️ Failed to clean cluster_inputs directory {cluster_input_dir}: {e}")
 
         #remove tmp in cluster output dir
         tmp_dir = output_dir / "tmp"
         if tmp_dir.exists() and tmp_dir.is_dir():
             try:
-                for f in tmp_dir.glob("*"):
-                    f.unlink()
-                tmp_dir.rmdir()
+                shutil.rmtree(tmp_dir)
             except Exception as e:
-                logging.warning(f"⚠️ Failed to clean tmp directory: {e}")
+                logging.warning(f"⚠️ Failed to clean tmp directory {tmp_dir}: {e}")
 
         logging.info(f"✅ Cleanup completed for {db_name}")
 
