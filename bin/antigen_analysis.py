@@ -31,7 +31,6 @@ import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from tools import run_signalp, run_targetp, run_cluster, common
-import shutil
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
@@ -103,6 +102,14 @@ def run_parallel_jobs(jobs, threads):
                     file.unlink()
                 except Exception as e:
                     logging.warning(f"⚠️ Failed to delete file {file}: {e}")
+        
+        # Delete alignment results
+        aln_result_path = work_dir / f"{db_name}_aln"
+        if aln_result_path.exists() and aln_result_path.is_file():
+            try:
+                aln_result_path.unlink()
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to delete alignment result {aln_result_path}: {e}")
 
         # Remove mmseqdb dir if empty
         if work_dir.exists() and work_dir.is_dir():

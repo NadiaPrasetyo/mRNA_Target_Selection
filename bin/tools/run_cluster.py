@@ -27,7 +27,6 @@ Author: Nadia
 import subprocess
 from pathlib import Path
 import logging
-import shutil
 
 def run(_, input_fasta: Path, output_dir: Path, _batch_size: int):
     """
@@ -52,11 +51,14 @@ def run(_, input_fasta: Path, output_dir: Path, _batch_size: int):
     fasta_output = output_dir / f"{db_name}_clu.fasta"
     seqfiledb_path = clu_path.with_name(f"{db_name}_clu_seq")
 
+    aln_result_path = work_dir / f"{db_name}_aln"
+    m8_output_path = output_dir / f"{db_name}_scores.m8"
+
     try:
         logging.info(f"📦 Creating MMseqs DB for {input_fasta.name}")
         subprocess.run(["mmseqs", "createdb", str(input_fasta), str(db_path)], check=True)
 
-        logging.info(f"🔗 Running clustering on {input_fasta.name}")
+        logging.info(f"🔗 Running clustering")
         subprocess.run(["mmseqs", "cluster", str(db_path), str(clu_path), str(tmp_dir)], check=True)
 
         logging.info(f"📄 Generating TSV output")
@@ -66,7 +68,18 @@ def run(_, input_fasta: Path, output_dir: Path, _batch_size: int):
         subprocess.run(["mmseqs", "createseqfiledb", str(db_path), str(clu_path), str(seqfiledb_path)], check=True)
         subprocess.run(["mmseqs", "result2flat", str(db_path), str(db_path), str(seqfiledb_path), str(fasta_output)], check=True)
 
-        logging.info(f"✅ Clustering completed for {input_fasta.name}")
+        logging.info(f"🧬 Computing alignment + k-mer similarity scores")
+        # Compute alignments from clustering result
+        subprocess.run([
+            "mmseqs", "align", str(db_path), str(db_path), str(clu_path), str(aln_result_path), "-a"
+        ], check=True)
+
+        # Convert alignment results to BLAST tab format
+        subprocess.run([
+            "mmseqs", "convertalis", str(db_path), str(db_path), str(aln_result_path), str(m8_output_path)
+        ], check=True)
+
+        logging.info(f"✅ Clustering and scoring completed for {input_fasta.name}")
     except subprocess.CalledProcessError as e:
-        logging.error(f"❌ Error during MMseqs2 clustering: {e}")
+        logging.error(f"❌ Error during MMseqs2 run: {e}")
         raise
