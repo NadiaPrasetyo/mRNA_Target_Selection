@@ -1,2 +1,8 @@
 pandas==2.2.3
 Requests==2.32.3
+matplotlib
+networkx
+numpy
+scipy
+scikit-learn
+tqdm
