@@ -244,6 +244,26 @@ def main():
 
                 jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.batch_size, tool_paths[tool_name]))
 
+    if not jobs:
+        logging.info("No jobs to run. All files already processed.")
+        # clean up any empty directories created
+        for tool_name in args.tools:
+            output_dir = output_root / tool_name.lower()
+            if output_dir.exists() and not any(output_dir.iterdir()):
+                try:
+                    output_dir.rmdir()
+                except OSError as e:
+                    logging.warning(f"⚠️ Failed to remove empty directory {output_dir}: {e}")
+                    
+        #clean up cluster inputs if they exist
+        cluster_input_dir = output_root / "cluster_inputs"
+        if cluster_input_dir.exists() and not any(cluster_input_dir.iterdir()):
+            try:
+                cluster_input_dir.rmdir()
+            except OSError as e:
+                logging.warning(f"⚠️ Failed to remove empty directory {cluster_input_dir}: {e}")
+        return
+    
     run_parallel_jobs(jobs, args.threads)
 
 
