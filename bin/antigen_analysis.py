@@ -129,6 +129,18 @@ def run_parallel_jobs(jobs, threads):
                 cluster_input_dir.rmdir()
             except Exception as e:
                 logging.warning(f"⚠️ Failed to clean cluster_inputs directory: {e}")
+        else:
+            logging.debug(f"🟡 cluster_inputs directory cleanup; not found: {cluster_input_dir}")
+
+        #remove tmp in cluster output dir
+        tmp_dir = output_dir / "tmp"
+        if tmp_dir.exists() and tmp_dir.is_dir():
+            try:
+                for f in tmp_dir.glob("*"):
+                    f.unlink()
+                tmp_dir.rmdir()
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to clean tmp directory: {e}")
 
         logging.info(f"✅ Cleanup completed for {db_name}")
 
