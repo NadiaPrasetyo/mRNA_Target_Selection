@@ -133,13 +133,18 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
                     peptide = row[3].strip()
 
             elif is_emini_or_kolaskar:
-                if (row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide") or \
-                   (row[0] == "No" and "Peptipe" in row):
+                # Logic similar to bepipred: activate block after detecting data headers
+                if row[0].startswith("No") and any("Peptipe" in col or "Peptide" in col for col in row):
+                    in_bepipred_peptide_block = True  # Reuse the same flag
                     continue
-                elif len(row) >= 5:
-                    peptide = row[4].strip()
-                elif len(row) >= 3:
-                    peptide = row[2].strip()
+                elif row[0].startswith("Position") and "Residue" in row:
+                    in_bepipred_peptide_block = False
+                    continue
+                elif in_bepipred_peptide_block:
+                    if len(row) >= 5:
+                        peptide = row[4].strip()
+                    elif len(row) >= 3:
+                        peptide = row[2].strip()
 
             elif is_other:
                 if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
@@ -786,6 +791,7 @@ No,Start,End,Peptipe,Length
 69,81,ITNYSEKGMREIK,1.9206153846153846
 111,121,KKSKTEIKQRV,2.6391818181818176
 131,138,SDKKDQFP,2.94825
+141,149,error,3.471
 Position,Residue,Start,End,Peptide,Score
 3,E,1,6,MIEFRQ,0.775
 4,F,2,7,IEFRQV,0.581
@@ -804,17 +810,11 @@ Position,Residue,Start,End,Peptide,Score
             headers = [l for l in fasta_lines if l.startswith(">")]
             sequences = [l for l in fasta_lines if not l.startswith(">")]
 
-            self.assertEqual(len(headers), 10)
-            self.assertIn("MAISQE", sequences)
-            self.assertIn("AISQER", sequences)
-            self.assertIn("ISQERK", sequences)
-            self.assertIn("SQERKN", sequences)
+            self.assertEqual(len(headers), 4)
             self.assertIn("TFNKKKQK", sequences)
             self.assertIn("ITNYSEKGMREIK", sequences)
             self.assertIn("KKSKTEIKQRV", sequences)
             self.assertIn("SDKKDQFP", sequences)
-            self.assertIn("MIEFRQ", sequences)
-            self.assertIn("IEFRQV", sequences)
             self.assertNotIn("error", sequences)
 
             # Cleanup

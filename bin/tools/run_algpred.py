@@ -54,7 +54,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
         "algpred2",
         "-i", str(input_fasta),
         "-o", str(output_file),
-        "-m", "1",  # motif-based model
+        "-m", "2",  # hybrid-based model
         "-d", "1"   # database features enabled
     ]
 
