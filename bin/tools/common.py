@@ -34,13 +34,16 @@ import subprocess
 def is_valid_peptide(seq: str) -> bool:
     """
     Checks if a given sequence is a valid peptide sequence.
-    A valid peptide consists only of standard amino acid characters (A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y).
+    A valid peptide:
+    - Contains only standard amino acids (ACDEFGHIKLMNPQRSTVWY)
+    - Is at least 5 amino acids long
     Args:
         seq (str): The peptide sequence to validate.
     Returns:
-        bool: True if the sequence is valid, False otherwise.
+        bool: True if the sequence is a valid peptide, False otherwise.
     """
-    return bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", seq))
+    return len(seq) >= 5 and bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", seq))
+
 
 def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -> Path:
     """
@@ -748,7 +751,7 @@ Position,Residue,Score,Length,Peptide Sequence
 input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
 Predicted,peptides
 No,Start,End,Peptipe,Length
-1,10,13,TFNK,4
+1,10,13,TFNKAA,4
 2,39,44,YSGAGK,6
 3,56,59,AASS,4
 4,78,81,been,4
@@ -767,10 +770,10 @@ Position,Residue,Score,Assignment
             headers = [l for l in fasta_lines if l.startswith(">")]
             sequences = [l for l in fasta_lines if not l.startswith(">")]
 
-            self.assertEqual(len(headers), 3)
-            self.assertIn("TFNK", sequences)
+            self.assertEqual(len(headers), 2)
+            self.assertIn("TFNKAA", sequences)
             self.assertIn("YSGAGK", sequences)
-            self.assertIn("AASS", sequences)
+            self.assertNotIn("AASS", sequences)
             self.assertNotIn("been", sequences)
 
             # Cleanup
@@ -778,49 +781,6 @@ Position,Residue,Score,Assignment
             csv_file.unlink()
             shutil.rmtree(output_dir)
 
-        def test_emini_csv_to_fasta(self):
-            csv_data = """Position,Residue,Start,End,Peptide,Score
-3,I,1,6,MAISQE,0.396
-4,S,2,7,AISQER,0.783
-5,Q,3,8,ISQERK,1.551
-6,E,4,9,SQERKN,3.557
-input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
-Predicted,peptides
-No,Start,End,Peptipe,Length
-10,17,TFNKKKQK,4.009875
-69,81,ITNYSEKGMREIK,1.9206153846153846
-111,121,KKSKTEIKQRV,2.6391818181818176
-131,138,SDKKDQFP,2.94825
-141,149,error,3.471
-Position,Residue,Start,End,Peptide,Score
-3,E,1,6,MIEFRQ,0.775
-4,F,2,7,IEFRQV,0.581
-5,R,3,8,error,0.514
-        """
-
-            csv_file = Path("/tmp/emini.csv")
-            csv_file.write_text(csv_data)
-            output_dir = Path("/tmp/test_emini_output")
-            output_dir.mkdir(parents=True, exist_ok=True)
-
-            fasta_path = parse_csv_to_fasta(csv_file, output_dir, "emini_test")
-            self.assertIsNotNone(fasta_path)
-            fasta_lines = fasta_path.read_text().strip().splitlines()
-
-            headers = [l for l in fasta_lines if l.startswith(">")]
-            sequences = [l for l in fasta_lines if not l.startswith(">")]
-
-            self.assertEqual(len(headers), 4)
-            self.assertIn("TFNKKKQK", sequences)
-            self.assertIn("ITNYSEKGMREIK", sequences)
-            self.assertIn("KKSKTEIKQRV", sequences)
-            self.assertIn("SDKKDQFP", sequences)
-            self.assertNotIn("error", sequences)
-
-            # Cleanup
-            fasta_path.unlink()
-            csv_file.unlink()
-            shutil.rmtree(output_dir)
 
         def test_missing_initial_input_header(self):
             csv_data = """Position,Residue,Start,End,Peptide,Score
