@@ -92,9 +92,11 @@ def is_output_valid(tool, input_file, output_dir):
         if tool == "popcoverage":
             files = list(out_dir.glob(f"{stem}*.txt")) + list(out_dir.glob(f"{stem}*.png"))
             return any(f.exists() and f.stat().st_size > 0 for f in files)
+
         elif tool == "allergenicity":
-            candidates = list(out_dir.glob(f"{stem}*_algpred.csv"))
-            return any(f.exists() and f.stat().st_size > 0 for f in candidates)
+            # Allergenicity uses FASTA file name based on the epitope input file's stem
+            expected_output = out_dir / f"{stem}_algpred.csv"
+            return expected_output.exists() and expected_output.stat().st_size > 0
 
     except Exception as e:
         logging.warning(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
@@ -115,6 +117,8 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
         for file in epitope_files:
             if not is_output_valid(tool, file, output_dir):
                 jobs.append((tool, tool_path, file))
+            else:
+                logging.info(f"Skipping {tool} for {file.name}: output already exists and is valid.")
     return jobs
 
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
