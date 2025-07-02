@@ -15,6 +15,8 @@ import subprocess
 import logging
 from pathlib import Path
 import shutil
+import py_compile
+
 
 CONDA_ENV_NAME = "algpred2_env"
 CONDA_ENV_YML = Path("algpred2_dependencies.yml")
@@ -63,6 +65,22 @@ def patch_algpred_concat_bug():
             logging.info("✅ No patch needed; concat bug not present.")
     except Exception as e:
         logging.warning(f"⚠️ Failed to check or patch AlgPred2.0: {e}")
+
+    # Force recompilation of bytecode to avoid .pyc mismatch
+    pycache_dir = algpred_path.parent / "__pycache__"
+    for pyc_file in pycache_dir.glob("algpred2*.pyc"):
+        try:
+            pyc_file.unlink()
+            logging.info(f"🧹 Removed stale bytecode: {pyc_file.name}")
+        except Exception as e:
+            logging.warning(f"⚠️ Could not remove bytecode {pyc_file}: {e}")
+
+    try:
+        py_compile.compile(str(algpred_path), cfile=None, doraise=True)
+        logging.info("🔁 Recompiled algpred2.py successfully.")
+    except Exception as e:
+        logging.warning(f"⚠️ Bytecode recompilation failed: {e}")
+
 
 
 def create_conda_env_if_needed():
