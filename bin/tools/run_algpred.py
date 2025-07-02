@@ -48,10 +48,10 @@ def patch_algpred_concat_bug():
         new_lines = []
         patched = False
         for line in lines:
-            if "df3.concat(" in line or "pd.concat([df3, df2.loc[df2.Subject==i][0:5], axis=1]" in line:
+            if "df3.concat(" in line:
                 # Get leading whitespace from original line to preserve indentation
                 leading_ws = line[:len(line) - len(line.lstrip())]
-                new_line = f"{leading_ws}df3 = pd.concat([df3, df2.loc[df2.Subject==i][0:5]], axis=1).reset_index(drop=True)\n"
+                new_line = f"{leading_ws}df3 = pd.concat([df3, df2.loc[df2.Subject==i][0:5]], axis=0).reset_index(drop=True)\n"
                 new_lines.append(new_line)
                 patched = True
             else:
