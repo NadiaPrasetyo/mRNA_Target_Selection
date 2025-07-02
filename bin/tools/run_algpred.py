@@ -22,10 +22,9 @@ CONDA_ENV_YML = Path("algpred2_dependencies.yml")
 def patch_algpred_concat_bug():
     """
     Monkey-patch AlgPred2.0 source to fix .concat misuse.
-    Only runs once if needed.
+    Replaces the line containing df3.concat(...) with proper pd.concat syntax.
     """
     import sys
-    import re
 
     logging.info("🩹 Checking AlgPred2.0 for known concat bug...")
 
@@ -42,28 +41,29 @@ def patch_algpred_concat_bug():
             return
 
         with open(algpred_path, "r") as f:
-            contents = f.read()
+            lines = f.readlines()
 
-        if "df3.concat" not in contents:
-            logging.info("✅ No patch needed; bug not present.")
-            return
+        new_lines = []
+        patched = False
+        for line in lines:
+            if "df3.concat(" in line:
+                new_lines.append(
+                    "        df3 = pd.concat([df3, df2.loc[df2.Subject==i][0:5]], axis=1).reset_index(drop=True)\n"
+                )
+                patched = True
+            else:
+                new_lines.append(line)
 
-        patched_contents = re.sub(
-            r"df3\.concat\((.*?)\)", 
-            r"pd.concat([df3, \1])", 
-            contents
-        )
-
-        if patched_contents != contents:
+        if patched:
             logging.info("🔧 Patching algpred2.py to fix concat bug...")
             with open(algpred_path, "w") as f:
-                f.write(patched_contents)
+                f.writelines(new_lines)
             logging.info("✅ Patch applied.")
         else:
-            logging.info("✅ Patch not needed.")
-
+            logging.info("✅ No patch needed; concat bug not present.")
     except Exception as e:
         logging.warning(f"⚠️ Failed to check or patch AlgPred2.0: {e}")
+
 
 def create_conda_env_if_needed():
     """Create Conda environment if it doesn't exist."""
