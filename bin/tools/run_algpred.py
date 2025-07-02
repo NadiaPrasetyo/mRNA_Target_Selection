@@ -16,8 +16,6 @@ import logging
 from pathlib import Path
 import shutil
 
-logging.basicConfig(level=logging.INFO)
-
 CONDA_ENV_NAME = "algpred2_env"
 CONDA_ENV_YML = Path("algpred2_dependencies.yml")
 
@@ -45,9 +43,9 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
     create_conda_env_if_needed()
 
     input_fasta = Path(input_fasta).resolve()
-    output_dir = Path(output_dir).resolve() / "algpred"
+    output_dir = Path(output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
-    output_file = output_dir / "result.csv"
+    output_file = output_dir / f"{input_fasta.stem}_algpred.csv"
 
     cmd = [
         "conda", "run", "-n", CONDA_ENV_NAME,

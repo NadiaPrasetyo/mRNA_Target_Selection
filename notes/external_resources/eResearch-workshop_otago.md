@@ -157,7 +157,8 @@ trained on 2004-2017 data, valiidated on 2018-2020 data
 
 **results:** ozone predicted on different longiture and latitudes
 
-**Q:** Is the chemicals a discrete list that you are looking for to see the impact of
+**Q:** Is the chemicals a discrete list that you are looking for to see their impacts on the ozone? will there be a potential missed confounding chemical that is not detected?
+**A:** Yes it is a discrete list at this point and it is a limiation, especially with missing factors that may be critical.
 
 ---
 

@@ -93,8 +93,9 @@ def is_output_valid(tool, input_file, output_dir):
             files = list(out_dir.glob(f"{stem}*.txt")) + list(out_dir.glob(f"{stem}*.png"))
             return any(f.exists() and f.stat().st_size > 0 for f in files)
         elif tool == "allergenicity":
-            candidates = list(out_dir.glob(f"{stem}*.csv")) or [out_dir / "outfile.csv"]
+            candidates = list(out_dir.glob(f"{stem}*_algpred.csv"))
             return any(f.exists() and f.stat().st_size > 0 for f in candidates)
+
     except Exception as e:
         logging.warning(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
     return False
