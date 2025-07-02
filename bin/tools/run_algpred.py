@@ -48,14 +48,15 @@ def patch_algpred_concat_bug():
         new_lines = []
         patched = False
         for line in lines:
-            if "df3.concat(" in line:
-                new_lines.append(
-                    "        df3 = pd.concat([df3, df2.loc[df2.Subject==i][0:5]], axis=1).reset_index(drop=True)\n"
-                )
-                patched = True
-            else:
-                new_lines.append(line)
-
+            for line in lines:
+                # Detect old buggy form (df3.concat) or the known buggy pd.concat misuse
+                if "df3.concat(" in line or "pd.concat([df3, df2.loc[df2.Subject==i][0:5], axis=1]" in line:
+                    new_lines.append(
+                        "        df3 = pd.concat([df3, df2.loc[df2.Subject==i][0:5]], axis=1).reset_index(drop=True)\n"
+                    )
+                    patched = True
+                else:
+                    new_lines.append(line)
         if patched:
             logging.info("🔧 Patching algpred2.py to fix concat bug...")
             with open(algpred_path, "w") as f:
