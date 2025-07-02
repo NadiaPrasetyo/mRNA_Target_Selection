@@ -19,6 +19,52 @@ import shutil
 CONDA_ENV_NAME = "algpred2_env"
 CONDA_ENV_YML = Path("algpred2_dependencies.yml")
 
+def patch_algpred_concat_bug():
+    """
+    Monkey-patch AlgPred2.0 source to fix .concat misuse.
+    Only runs once if needed.
+    """
+    import sys
+    import re
+
+    logging.info("🩹 Checking AlgPred2.0 for known concat bug...")
+
+    try:
+        env_prefix = subprocess.run(
+            ["conda", "run", "-n", CONDA_ENV_NAME, "python", "-c", "import sys; print(sys.prefix)"],
+            capture_output=True, check=True, text=True
+        ).stdout.strip()
+
+        algpred_path = Path(env_prefix) / "lib/python3.10/site-packages/algpred2/python_scripts/algpred2.py"
+
+        if not algpred_path.exists():
+            logging.warning(f"⚠️ Cannot patch: {algpred_path} not found.")
+            return
+
+        with open(algpred_path, "r") as f:
+            contents = f.read()
+
+        if "df3.concat" not in contents:
+            logging.info("✅ No patch needed; bug not present.")
+            return
+
+        patched_contents = re.sub(
+            r"df3\.concat\((.*?)\)", 
+            r"pd.concat([df3, \1])", 
+            contents
+        )
+
+        if patched_contents != contents:
+            logging.info("🔧 Patching algpred2.py to fix concat bug...")
+            with open(algpred_path, "w") as f:
+                f.write(patched_contents)
+            logging.info("✅ Patch applied.")
+        else:
+            logging.info("✅ Patch not needed.")
+
+    except Exception as e:
+        logging.warning(f"⚠️ Failed to check or patch AlgPred2.0: {e}")
+
 def create_conda_env_if_needed():
     """Create Conda environment if it doesn't exist."""
     logging.info(f"🔍 Checking for Conda environment '{CONDA_ENV_NAME}'...")
@@ -41,6 +87,8 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path):
         raise RuntimeError("Conda is required but not found.")
 
     create_conda_env_if_needed()
+    patch_algpred_concat_bug()
+
 
     input_fasta = Path(input_fasta).resolve()
     output_dir = Path(output_dir).resolve()
