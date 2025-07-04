@@ -4,6 +4,9 @@ import csv
 import re
 import pandas as pd
 from scipy.stats import ks_2samp
+from statistics import mean, median
+from collections import defaultdict
+from Bio import SeqIO
 
 def parse_bcell_dir(directory):
     scores = {name: [] for name in [
@@ -102,37 +105,6 @@ def parse_targetp_dir(directory):
                         continue
     return features
 
-def parse_tmhmm_dir(directory):
-    features = {
-        "predicted_thms": [],
-        "expected_aa_num": [],
-        "expected_aa_num_60": [],
-        "prob_n_in": [],
-        "has_nterm_signal_seq": []
-    }
-    for file in os.listdir(directory):
-        if not file.endswith(".txt"):
-            continue
-        path = os.path.join(directory, file)
-        with open(path) as f:
-            content = f.read()
-            matches = {
-                "predicted_thms": re.search(r"Number of predicted TMHs:\s+(\d+)", content),
-                "expected_aa_num": re.search(r"Exp number of AAs in TMHs:\s+([\d.]+)", content),
-                "expected_aa_num_60": re.search(r"first 60 AAs:\s+([\d.]+)", content),
-                "prob_n_in": re.search(r"Total prob of N-in:\s+([\d.]+)", content),
-                "has_nterm_signal_seq": "POSSIBLE N-term signal sequence" in content
-            }
-            try:
-                features["predicted_thms"].append(int(matches["predicted_thms"].group(1)))
-                features["expected_aa_num"].append(float(matches["expected_aa_num"].group(1)))
-                features["expected_aa_num_60"].append(float(matches["expected_aa_num_60"].group(1)))
-                features["prob_n_in"].append(float(matches["prob_n_in"].group(1)))
-                features["has_nterm_signal_seq"].append(int(matches["has_nterm_signal_seq"]))
-            except:
-                continue
-    return features
-
 def extract_all_features(base_dir):
     return {
         "bcell": parse_bcell_dir(os.path.join(base_dir, "bcell")),
@@ -140,7 +112,6 @@ def extract_all_features(base_dir):
         "mhcii": parse_mhc_dir(os.path.join(base_dir, "mhcii")),
         "signalp": parse_signalp_dir(os.path.join(base_dir, "signalp")),
         "targetp": parse_targetp_dir(os.path.join(base_dir, "targetp")),
-        "tmhmm": parse_tmhmm_dir(os.path.join(base_dir, "tmhmm")),
     }
 
 def compare_ks(pos_features, rand_features):
@@ -218,13 +189,170 @@ def sizeof_fmt(num, suffix="B"):
         num /= 1024.0
     return f"{num:.1f}P{suffix}"
 
+def extract_evaluation_features(base_dir):
+    return {
+        "allergenicity": parse_allergenicity_dir(os.path.join(base_dir, "allergenicity")),
+        "cluster": parse_cluster_dir(os.path.join(base_dir, "cluster")),
+        "popcoverage": parse_popcov_dir(os.path.join(base_dir, "popcoverage")),
+    }
+
+def parse_allergenicity_dir(directory):
+# input files:{file_stem}_algpred.csv AND associated {file_stem}.fasta in fasta_inputs directory that is in the same directory as the directory i.e. parent/directory, parent/fasta_inputs
+# fields of csv: Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+# to do: parse the fasta file to get the sequence of predicted epitopes AND not predicted epitopes
+# if not predicted (i.e. the sequence subject is found in the fasta but is not found in the csv), the sequence is Non-Allergen (prediction), leave the hybrid score as 0
+# to be extracted: Subject,Hybrid Score, prediction, sequence
+    fasta_dir = os.path.join(os.path.dirname(directory), "fasta_inputs")
+    results = {
+        "hybrid_score": [],
+        "is_allergen": [],
+        "percent_allergenicity": []
+    }
+
+    all_sequences = {}
+    for file in os.listdir(fasta_dir):
+        if not file.endswith(".fasta") and not file.endswith(".fa"):
+            continue
+        for record in SeqIO.parse(os.path.join(fasta_dir, file), "fasta"):
+            all_sequences[record.id] = str(record.seq)
+
+    for file in os.listdir(directory):
+        if not file.endswith("_algpred.csv"):
+            continue
+        csv_path = os.path.join(directory, file)
+        detected = set()
+        with open(csv_path, newline='') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                subj = row["Subject"]
+                results["hybrid_score"].append(float(row.get("Hybrid Score", 0)))
+                results["is_allergen"].append(1)
+                detected.add(subj)
+        
+        # Get corresponding fasta file
+        stem = file.replace("_algpred.csv", "")
+        fasta_path = os.path.join(fasta_dir, stem + ".fasta")
+        if os.path.exists(fasta_path):
+            for record in SeqIO.parse(fasta_path, "fasta"):
+                if record.id not in detected:
+                    results["hybrid_score"].append(0.0)
+                    results["is_allergen"].append(0)
+
+    # Allergenicity percentile
+    if len(results["is_allergen"]) > 0:
+        percent_allergenicity = sum(results["is_allergen"]) / len(results["is_allergen"])
+        results["percent_allergenicity"] = [percent_allergenicity] * len(results["is_allergen"])
+    
+    return {"hybrid_score": results["hybrid_score"], "percent_allergenicity": results["percent_allergenicity"]}
+
+
+def parse_cluster_dir(directory):
+# input files: {antigen accession}_combined_scores.m8
+# format:
+# Column	Content
+# 0	Query sequence ID
+# 1	Subject (database) sequence ID
+# 2	Percent Identity
+# 3	Alignment Length
+# 4	Number of gaps
+# 5	Number of mismatches
+# 6	Start on the query sequence
+# 7	End on the query sequence
+# 8	Start on the database sequence
+# 9	End on the database sequence
+# 10	E value - the expectation that this alignment is random given the length of the sequence and length of the database
+# 11	bit score - the score of the alignment itself
+# to be extracted: query sequence ID, Subject sequence ID, Percent Identity, Alignment Length, E value, bit score
+    """
+    Parse .m8 files to compute per-cluster conservation scores (mean and median percent identity).
+    Each unique query sequence is considered a separate cluster.
+    Returns:
+        {
+            "cluster_conservation_mean": [mean1, mean2, ...],
+            "cluster_conservation_median": [median1, median2, ...]
+        }
+    """
+    clusters = defaultdict(list)
+
+    for file in os.listdir(directory):
+        if not file.endswith(".m8"):
+            continue
+        path = os.path.join(directory, file)
+        with open(path) as f:
+            for line in f:
+                parts = line.strip().split('\t')
+                if len(parts) < 12:
+                    continue
+                query_id = parts[0]
+                try:
+                    percent_identity = float(parts[2])
+                    clusters[query_id].append(percent_identity)
+                except ValueError:
+                    continue
+
+    # Aggregate percent identity scores per cluster
+    conservation_means = []
+    conservation_medians = []
+    for cluster_id, identities in clusters.items():
+        if identities:
+            conservation_means.append(mean(identities))
+            conservation_medians.append(median(identities))
+
+    return {
+        "cluster_conservation_mean": conservation_means,
+        "cluster_conservation_median": conservation_medians
+    }
+
+def parse_popcov_dir(directory):
+# files: {file_stem}.csv and associated {file_stem}.fasta in popcov_inputs directory that is in the same directory as the directory i.e. parent/directory, parent/popcov_inputs
+# format: population/area	epitope_hits	percent_individuals	cumulative_coverage
+# skip the first few lines until the header: population/area	epitope_hits	percent_individuals	cumulative_coverage
+# skip empty lines and lines with more than 4 columns
+# to do: parse the fasta file to get the sequence of predicted epitopes 0 for the first, 1, 2, 3, etc. for the rest
+# to be extracted: sequence, percent_individuals, cumulative_coverage
+    fasta_dir = os.path.join(os.path.dirname(directory), "popcov_inputs")
+    cumulative_coverage = []
+    percent_individuals = []
+
+    for file in os.listdir(directory):
+        if not file.endswith(".csv"):
+            continue
+        path = os.path.join(directory, file)
+
+        with open(path) as f:
+            for line in f:
+                if line.strip().startswith("population/area"):
+                    break  # Skip lines until header
+            for line in f:
+                parts = line.strip().split('\t')
+                if len(parts) != 4 or not parts[0] or not parts[1]:
+                    continue
+                try:
+                    percent_individuals.append(float(parts[2]))
+                    cumulative_coverage.append(float(parts[3]))
+                except:
+                    continue
+
+    return {
+        "popcov_cumulative_mean": [mean(cumulative_coverage)] * len(cumulative_coverage),
+        "popcov_cumulative_median": [median(cumulative_coverage)] * len(cumulative_coverage)
+    }
+
 def main(pathogen_dir):
     pos_dir = os.path.join("data", pathogen_dir, "epitope_outputs")
+    pos_eval_dir = os.path.join("data", pathogen_dir, "evaluation_outputs")
     rand_dir = os.path.join("data", pathogen_dir, "random_analysis")
+    rand_eval_dir = os.path.join("data", pathogen_dir, "random_evaluation")
 
     print(f"Extracting features for: {pathogen_dir}")
     pos_features = extract_all_features(pos_dir)
     rand_features = extract_all_features(rand_dir)
+    pos_eval_features = extract_evaluation_features(pos_eval_dir)
+    rand_eval_features = extract_evaluation_features(rand_eval_dir)
+
+    # Merge evaluation features
+    pos_features.update(pos_eval_features)
+    rand_features.update(rand_eval_features)
 
     print("Estimating memory usage...")
     pos_size = sys.getsizeof(pos_features)

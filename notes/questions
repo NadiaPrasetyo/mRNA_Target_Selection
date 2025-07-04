@@ -1,6 +1,6 @@
-1. Are the pipelines going to analyse genome sequences (or assemblies), proteomics, or trasncriptomics data?
--> amino acid sequences aligned to whole genome amino acid sequences
-
-2. Can we host our own SQL server - for users to access?: HPC doesn't give me permission to host an SQL server to enable local queries to fetch IEDB data
-
-3. 
+To do:
+- interpret cluster results
+- interpret algpred results
+- interpret popcov results
+- add all of the above features to the ks test
+- add antigenicity and IFN-gamma prediction to the pipeline
