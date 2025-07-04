@@ -1,8 +1,9 @@
-# Project-specific .gitignore file for Python projects
+# Project-specific .gitignore
 outputs/
 data/S.aureus/combined_features.csv
 data/S.aureus/raw_positive_features.csv
 data/S.aureus/raw_random_features.csv
+notes/questions
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
