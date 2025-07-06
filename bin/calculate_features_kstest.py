@@ -6,7 +6,6 @@ import pandas as pd
 from scipy.stats import ks_2samp
 from statistics import mean, median
 from collections import defaultdict
-from Bio import SeqIO
 import logging
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -34,7 +33,7 @@ def init_logging(verbose=False, pathogen="unknown"):
 
     if verbose:
         os.makedirs(f"data/{pathogen}", exist_ok=True)
-        fh = logging.FileHandler(f"data/{pathogen}/log.txt", mode='w')
+        fh = logging.FileHandler(f"data/{pathogen}/ks_test.log", mode='w')
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
@@ -188,55 +187,31 @@ def parse_targetp_dir(directory):
     logging.info(f"Completed TargetP parsing with {len(results)} results")
     return results
 
-def parse_allergenicity_dir(directory, fasta_dir):
-    logging.info(f"Parsing Allergenicity dir {directory} with fasta_dir {fasta_dir}")
-    results = []
-    try:
-        files = [f for f in os.listdir(directory) if f.endswith("_algpred.csv")]
-        logging.debug(f"Found {len(files)} allergenicity CSV files")
-    except Exception as e:
-        logging.error(f"Failed listing allergenicity directory {directory}: {e}")
-        return results
+def parse_allergenicity_dir(directory):
+    result = {}
 
-    for file in files:
-        csv_path = os.path.join(directory, file)
-        stem = file.replace("_algpred.csv", "")
-        fasta_path = os.path.join(fasta_dir, stem + ".fasta")
-        logging.debug(f"Parsing allergenicity file {file}, matching fasta {stem}.fasta")
+    if not os.path.isdir(directory):
+        logging.warning(f"Allergenicity directory not found: {directory}")
+        return result
 
-        if not os.path.exists(fasta_path):
-            logging.warning(f"Missing FASTA for allergenicity file {file}")
+    for filename in os.listdir(directory):
+        if not filename.endswith(".json"):
             continue
 
+        filepath = os.path.join(directory, filename)
+
         try:
-            seq_dict = {record.id: str(record.seq) for record in SeqIO.parse(fasta_path, "fasta")}
-            detected_subjects = set()
+            with open(filepath, "r") as f:
+                data = json.load(f)
         except Exception as e:
-            logging.error(f"Failed parsing fasta {fasta_path}: {e}")
+            logging.warning(f"Failed to read or parse Allergenicity JSON: {filepath} - {e}")
             continue
 
-        try:
-            with open(csv_path, newline='') as f:
-                reader = csv.DictReader(f)
-                for i, row in enumerate(reader):
-                    subject = row.get("Subject", "")
-                    detected_subjects.add(subject)
-                    for score_name in ["ML Score", "MERCI Score", "BLAST Score", "Hybrid Score"]:
-                        try:
-                            val = float(row.get(score_name, 0))
-                            results.append({"feature": "allergenicity", "sub_feature": score_name.replace(" ", "_").lower(), "value": val})
-                        except Exception as e:
-                            logging.debug(f"Skipping score {score_name} row {i} in {file} due to error: {e}")
-        except Exception as e:
-            logging.error(f"Failed parsing allergenicity CSV {csv_path}: {e}")
+        allergen_score = data.get("AllergenicityScore")
+        if allergen_score is not None:
+            result.setdefault("allergenicity", {}).setdefault("score", []).append(allergen_score)
 
-        # Add sequences not detected with zero hybrid score
-        for subject in seq_dict.keys():
-            if subject not in detected_subjects:
-                results.append({"feature": "allergenicity", "sub_feature": "hybrid_score", "value": 0.0})
-
-    logging.info(f"Completed allergenicity parsing with {len(results)} results")
-    return results
+    return result
 
 def parse_cluster_dir(directory):
     logging.info(f"Parsing cluster conservation dir {directory}")
@@ -281,67 +256,31 @@ def parse_cluster_dir(directory):
     logging.info(f"Completed cluster parsing with {len(results)} results")
     return results
 
-def parse_popcov_dir(directory, popcov_inputs):
-    logging.info(f"Parsing popcoverage dir {directory} with inputs from {popcov_inputs}")
-    results = []
-    try:
-        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
-        logging.debug(f"Found {len(files)} popcoverage files")
-    except Exception as e:
-        logging.error(f"Failed listing popcoverage directory {directory}: {e}")
-        return results
+def parse_popcov_dir(directory):
+    result = {}
 
-    for file in files:
-        popcov_path = os.path.join(directory, file)
-        stem = os.path.splitext(file)[0]
-        input_path = os.path.join(popcov_inputs, stem + ".txt")
+    if not os.path.isdir(directory):
+        logging.warning(f"PopCov directory not found: {directory}")
+        return result
 
-        sequences = []
-        if os.path.exists(input_path):
-            try:
-                with open(input_path) as f:
-                    for i, line in enumerate(f):
-                        line = line.strip()
-                        if not line or '\t' not in line:
-                            continue
-                        seq, _ = line.split('\t', 1)
-                        sequences.append(seq)
-            except Exception as e:
-                logging.warning(f"Could not parse sequence file {input_path}: {e}")
-                continue
-        else:
-            logging.warning(f"Missing input sequence file: {input_path}")
+    for filename in os.listdir(directory):
+        if not filename.endswith(".json"):
             continue
 
-        try:
-            with open(popcov_path) as f:
-                in_table = False
-                index = 0
-                for i, line in enumerate(f):
-                    line = line.strip()
-                    if not line:
-                        continue
-                    if line.startswith("population/area") and "cumulative_coverage" in line:
-                        in_table = True
-                        continue
-                    if in_table:
-                        parts = line.split('\t')
-                        if len(parts) != 4:
-                            continue
-                        try:
-                            percent_individuals = float(parts[2])
-                            cumulative_coverage = float(parts[3])
-                            sequence = sequences[index] if index < len(sequences) else ""
-                            results.append({"feature": "popcov", "sub_feature": "percent_individuals", "value": percent_individuals})
-                            results.append({"feature": "popcov", "sub_feature": "cumulative_coverage", "value": cumulative_coverage})
-                            index += 1
-                        except ValueError as e:
-                            logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
-        except Exception as e:
-            logging.warning(f"Could not parse popcov file {popcov_path}: {e}")
+        filepath = os.path.join(directory, filename)
 
-    logging.info(f"Completed popcoverage parsing with {len(results)} results")
-    return results
+        try:
+            with open(filepath, "r") as f:
+                data = json.load(f)
+        except Exception as e:
+            logging.warning(f"Failed to read or parse PopCov JSON: {filepath} - {e}")
+            continue
+
+        popcov_scores = data.get("population_coverage", {})
+        for region, score in popcov_scores.items():
+            result.setdefault("popcov", {}).setdefault(region, []).append(score)
+
+    return result
 
 # ----------------------------- Orchestration Functions -----------------------------
 
@@ -353,9 +292,9 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mhcii": lambda: parse_mhc_dir(os.path.join(base_dir, "mhcii")),
         "signalp": lambda: parse_signalp_dir(os.path.join(base_dir, "signalp")),
         "targetp": lambda: parse_targetp_dir(os.path.join(base_dir, "targetp")),
-        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(eval_dir, "allergenicity"), os.path.join(base_dir, "fasta")),
+        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(eval_dir, "allergenicity")),
         "cluster": lambda: parse_cluster_dir(os.path.join(eval_dir, "cluster")),
-        "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcov"), os.path.join(base_dir, "mhci_input"))
+        "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcoverage"))
     }
 
     results = []
