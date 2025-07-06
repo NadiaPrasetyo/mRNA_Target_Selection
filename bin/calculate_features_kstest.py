@@ -14,25 +14,16 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ----------------------------- Utility Functions -----------------------------
 
 def safe_mean(lst):
-    """Compute mean safely (returns 0.0 if list is empty)."""
     return mean(lst) if lst else 0.0
 
 def safe_median(lst):
-    """Compute median safely (returns 0.0 if list is empty)."""
     return median(lst) if lst else 0.0
 
 def init_logging(verbose=False, pathogen="unknown"):
-    """
-    Initializes logging to stdout and optionally to a file.
-
-    Args:
-        verbose (bool): If True, logs to both console and 'log.txt'.
-    """
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 
-    # Clear existing handlers to avoid duplicate logs if re-run in notebook or similar
     if logger.hasHandlers():
         logger.handlers.clear()
 
@@ -49,7 +40,6 @@ def init_logging(verbose=False, pathogen="unknown"):
         logger.addHandler(fh)
 
 def sizeof_fmt(num, suffix="B"):
-    """Return human-readable file size string."""
     for unit in ['','K','M','G','T']:
         if abs(num) < 1024.0:
             return f"{num:.1f}{unit}{suffix}"
@@ -59,189 +49,275 @@ def sizeof_fmt(num, suffix="B"):
 # ----------------------------- Feature Parsers -----------------------------
 
 def parse_bcell_dir(directory):
-    logging.debug(f"Starting parse_bcell_dir on directory: {directory}")
-    scores = defaultdict(list)
+    logging.info(f"Parsing B-cell features in {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".csv")]
+        logging.debug(f"Found {len(files)} CSV files in B-cell dir")
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
 
-    for file in os.listdir(directory):
-        if not file.endswith(".csv"):
-            logging.debug(f"Skipping non-csv file in bcell dir: {file}")
-            continue
-        method = os.path.basename(file).split("_")[-1].replace(".csv", "")
+    for file in files:
+        method = os.path.basename(file).split("_")[-1].replace(".csv", "").lower()
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing B-cell file: {file} with method: {method}")
-        with open(path) as f:
-            reader = csv.reader(f)
-            headers = next(reader)
-            idx = headers.index("Score")
-            for i, row in enumerate(reader, start=1):
-                try:
-                    score = float(row[idx])
-                    method_key = f"bcell_{method.lower()}"
-                    scores[method_key].append(score)
-                except Exception as e:
-                    logging.debug(f"Skipping bad score at line {i} in {file}: {e}")
-                    continue
-    logging.debug("Finished parse_bcell_dir")
-    return {key: {"mean": safe_mean(vals), "median": safe_median(vals)} for key, vals in scores.items()}
+        logging.debug(f"Parsing B-cell file: {file} with method {method}")
+        try:
+            with open(path) as f:
+                reader = csv.reader(f)
+                headers = next(reader)
+                if method == "bepipred":
+                    idx = headers.index("Score")
+                    for i, row in enumerate(reader):
+                        try:
+                            val = float(row[idx])
+                            results.append({"feature": "bcell", "sub_feature": method, "value": val})
+                        except Exception as e:
+                            logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+                else:
+                    if method in ["chou-fasman", "emini", "karplus-schulz", "kolaskar-tongaonkar", "parker"]:
+                        idx = headers.index("Score")
+                        for i, row in enumerate(reader):
+                            try:
+                                val = float(row[idx])
+                                results.append({"feature": "bcell", "sub_feature": method, "value": val})
+                            except Exception as e:
+                                logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing B-cell file {file}: {e}")
+    logging.info(f"Completed B-cell parsing with {len(results)} results")
+    return results
 
 def parse_mhc_dir(directory):
-    logging.debug(f"Starting parse_mhc_dir on directory: {directory}")
-    scores = defaultdict(list)
-    for file in os.listdir(directory):
-        if not file.endswith(".json"):
-            logging.debug(f"Skipping non-json file in mhc dir: {file}")
-            continue
+    prefix = "mhcii" if "mhcii" in directory else "mhci"
+    logging.info(f"Parsing MHC dir {directory} with prefix {prefix}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".json")]
+        logging.debug(f"Found {len(files)} JSON files in MHC dir")
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+
+    for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing MHC file: {file}")
         try:
             with open(path) as f:
                 data = json.load(f)
                 for result in data.get("results", []):
-                    if result.get("type") != "peptide_table":
-                        continue
-                    cols = result["table_columns"]
-                    idx_score = cols.index("score")
-                    idx_percentile = cols.index("percentile")
-                    idx_peptide = cols.index("peptide")
-                    for i, row in enumerate(result["table_data"], start=1):
+                    if result.get("type") == "peptide_table":
+                        cols = result.get("table_columns", [])
+                        table = result.get("table_data", [])
                         try:
-                            scores["score"].append(float(row[idx_score]))
-                            scores["percentile"].append(float(row[idx_percentile]))
-                            scores["peptide_length"].append(len(row[idx_peptide]))
-                        except Exception as e:
-                            logging.debug(f"Skipping bad row {i} in {file}: {e}")
+                            idx_score = cols.index("score")
+                            idx_percentile = cols.index("percentile")
+                            idx_peptide = cols.index("peptide")
+                        except ValueError as e:
+                            logging.warning(f"Missing expected columns in {file}: {e}")
                             continue
+
+                        for i, row in enumerate(table):
+                            try:
+                                results.append({"feature": prefix, "sub_feature": "score", "value": float(row[idx_score])})
+                                results.append({"feature": prefix, "sub_feature": "percentile", "value": float(row[idx_percentile])})
+                                results.append({"feature": prefix, "sub_feature": "peptide_length", "value": len(row[idx_peptide])})
+                            except Exception as e:
+                                logging.debug(f"Skipping row {i} in {file} due to error: {e}")
         except Exception as e:
-            logging.warning(f"Failed to parse MHC file {file}: {e}")
-            continue
-    logging.debug("Finished parse_mhc_dir")
-    return {f"mhc_{k}": {"mean": safe_mean(v), "median": safe_median(v)} for k, v in scores.items()}
+            logging.error(f"Failed parsing MHC file {file}: {e}")
+    logging.info(f"Completed MHC parsing with {len(results)} results")
+    return results
 
 def parse_signalp_dir(directory):
-    logging.debug(f"Starting parse_signalp_dir on directory: {directory}")
-    scores = defaultdict(list)
-    for file in os.listdir(directory):
-        if not file.endswith(".txt"):
-            logging.debug(f"Skipping non-txt file in signalp dir: {file}")
-            continue
+    logging.info(f"Parsing SignalP dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+
+    for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing SignalP file: {file}")
-        with open(path) as f:
-            for i, line in enumerate(f, start=1):
-                if line.startswith("#") or not line.strip():
-                    continue
-                parts = line.strip().split('\t')
-                if len(parts) >= 4:
-                    try:
-                        scores["signalp_prob_signalp"].append(float(parts[2]))
-                        scores["signalp_prob_other"].append(float(parts[3]))
-                    except Exception as e:
-                        logging.debug(f"Skipping bad line {i} in {file}: {e}")
-                        continue
-    logging.debug("Finished parse_signalp_dir")
-    return {k: {"mean": safe_mean(v), "median": safe_median(v)} for k, v in scores.items()}
-
-def parse_targetp_dir(directory):
-    logging.debug(f"Starting parse_targetp_dir on directory: {directory}")
-    scores = defaultdict(list)
-    for file in os.listdir(directory):
-        if not file.endswith(".txt"):
-            logging.debug(f"Skipping non-txt file in targetp dir: {file}")
-            continue
-        path = os.path.join(directory, file)
-        logging.debug(f"Parsing TargetP file: {file}")
-        with open(path) as f:
-            for i, line in enumerate(f, start=1):
-                if line.startswith("#") or not line.strip():
-                    continue
-                parts = line.strip().split('\t')
-                if len(parts) >= 5:
-                    try:
-                        scores["targetp_prob_noTP"].append(float(parts[2]))
-                        scores["targetp_prob_SP"].append(float(parts[3]))
-                        scores["targetp_prob_mTP"].append(float(parts[4]))
-                    except Exception as e:
-                        logging.debug(f"Skipping bad line {i} in {file}: {e}")
-                        continue
-    logging.debug("Finished parse_targetp_dir")
-    return {k: {"mean": safe_mean(v), "median": safe_median(v)} for k, v in scores.items()}
-
-def parse_allergenicity_dir(directory):
-    logging.debug(f"Starting parse_allergenicity_dir on directory: {directory}")
-    hybrid, ml, merci, blast = [], [], [], []
-
-    for file in os.listdir(directory):
-        if not file.endswith("_algpred.csv"):
-            logging.debug(f"Skipping non-algpred csv file in allergenicity dir: {file}")
-            continue
-        path = os.path.join(directory, file)
-        logging.debug(f"Parsing allergenicity file: {file}")
-        with open(path) as f:
-            reader = csv.DictReader(f)
-            for i, row in enumerate(reader, start=1):
-                try:
-                    hybrid.append(float(row.get("Hybrid Score", 0)))
-                    ml.append(float(row.get("ML Score", 0)))
-                    merci.append(float(row.get("MERCI Score", 0)))
-                    blast.append(float(row.get("BLAST Score", 0)))
-                except Exception as e:
-                    logging.debug(f"Skipping bad row {i} in {file}: {e}")
-                    continue
-
-    logging.debug("Finished parse_allergenicity_dir")
-    return {
-        "allergenicity_hybrid": {"mean": safe_mean(hybrid), "median": safe_median(hybrid)},
-        "allergenicity_ml": {"mean": safe_mean(ml), "median": safe_median(ml)},
-        "allergenicity_merci": {"mean": safe_mean(merci), "median": safe_median(merci)},
-        "allergenicity_blast": {"mean": safe_mean(blast), "median": safe_median(blast)}
-    }
-
-def parse_cluster_dir(directory):
-    logging.debug(f"Starting parse_cluster_dir on directory: {directory}")
-    clusters = defaultdict(list)
-    for file in os.listdir(directory):
-        if not file.endswith(".m8"):
-            logging.debug(f"Skipping non-.m8 file in cluster dir: {file}")
-            continue
-        path = os.path.join(directory, file)
-        logging.debug(f"Parsing cluster file: {file}")
-        with open(path) as f:
-            for i, line in enumerate(f, start=1):
-                parts = line.strip().split('\t')
-                if len(parts) < 12:
-                    logging.debug(f"Skipping incomplete line {i} in {file}")
-                    continue
-                try:
-                    percent_identity = float(parts[2])
-                    clusters[parts[0]].append(percent_identity)
-                except Exception as e:
-                    logging.debug(f"Skipping bad percent identity at line {i} in {file}: {e}")
-                    continue
-
-    conservation_scores = [safe_mean(vals) for vals in clusters.values() if vals]
-
-    logging.debug("Finished parse_cluster_dir")
-    return {
-        "cluster_conservation_score": {
-            "mean": safe_mean(conservation_scores),
-            "median": safe_median(conservation_scores)
-        }
-    }
-
-def parse_popcov_dir(directory):
-    logging.debug(f"Starting parse_popcov_dir on directory: {directory}")
-    individuals, coverage = [], []
-
-    for file in os.listdir(directory):
-        if not file.endswith(".txt"):
-            logging.debug(f"Skipping non-txt file in popcoverage dir: {file}")
-            continue
-        path = os.path.join(directory, file)
-        logging.debug(f"Parsing population coverage file: {file}")
         try:
             with open(path) as f:
+                for i, line in enumerate(f):
+                    if line.startswith("#") or not line.strip():
+                        continue
+                    parts = line.strip().split('\t')
+                    if len(parts) >= 4:
+                        try:
+                            results.append({"feature": "signalp", "sub_feature": "prob_signalp", "value": float(parts[2])})
+                            results.append({"feature": "signalp", "sub_feature": "prob_other", "value": float(parts[3])})
+                        except Exception as e:
+                            logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing SignalP file {file}: {e}")
+    logging.info(f"Completed SignalP parsing with {len(results)} results")
+    return results
+
+def parse_targetp_dir(directory):
+    logging.info(f"Parsing TargetP dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing TargetP file: {file}")
+        try:
+            with open(path) as f:
+                for i, line in enumerate(f):
+                    if line.startswith("#") or not line.strip():
+                        continue
+                    parts = line.strip().split('\t')
+                    if len(parts) >= 5:
+                        try:
+                            results.append({"feature": "targetp", "sub_feature": "prob_noTP", "value": float(parts[2])})
+                            results.append({"feature": "targetp", "sub_feature": "prob_SP", "value": float(parts[3])})
+                            results.append({"feature": "targetp", "sub_feature": "prob_mTP", "value": float(parts[4])})
+                        except Exception as e:
+                            logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing TargetP file {file}: {e}")
+    logging.info(f"Completed TargetP parsing with {len(results)} results")
+    return results
+
+def parse_allergenicity_dir(directory, fasta_dir):
+    logging.info(f"Parsing Allergenicity dir {directory} with fasta_dir {fasta_dir}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith("_algpred.csv")]
+        logging.debug(f"Found {len(files)} allergenicity CSV files")
+    except Exception as e:
+        logging.error(f"Failed listing allergenicity directory {directory}: {e}")
+        return results
+
+    for file in files:
+        csv_path = os.path.join(directory, file)
+        stem = file.replace("_algpred.csv", "")
+        fasta_path = os.path.join(fasta_dir, stem + ".fasta")
+        logging.debug(f"Parsing allergenicity file {file}, matching fasta {stem}.fasta")
+
+        if not os.path.exists(fasta_path):
+            logging.warning(f"Missing FASTA for allergenicity file {file}")
+            continue
+
+        try:
+            seq_dict = {record.id: str(record.seq) for record in SeqIO.parse(fasta_path, "fasta")}
+            detected_subjects = set()
+        except Exception as e:
+            logging.error(f"Failed parsing fasta {fasta_path}: {e}")
+            continue
+
+        try:
+            with open(csv_path, newline='') as f:
+                reader = csv.DictReader(f)
+                for i, row in enumerate(reader):
+                    subject = row.get("Subject", "")
+                    detected_subjects.add(subject)
+                    for score_name in ["ML Score", "MERCI Score", "BLAST Score", "Hybrid Score"]:
+                        try:
+                            val = float(row.get(score_name, 0))
+                            results.append({"feature": "allergenicity", "sub_feature": score_name.replace(" ", "_").lower(), "value": val})
+                        except Exception as e:
+                            logging.debug(f"Skipping score {score_name} row {i} in {file} due to error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing allergenicity CSV {csv_path}: {e}")
+
+        # Add sequences not detected with zero hybrid score
+        for subject in seq_dict.keys():
+            if subject not in detected_subjects:
+                results.append({"feature": "allergenicity", "sub_feature": "hybrid_score", "value": 0.0})
+
+    logging.info(f"Completed allergenicity parsing with {len(results)} results")
+    return results
+
+def parse_cluster_dir(directory):
+    logging.info(f"Parsing cluster conservation dir {directory}")
+    clusters = defaultdict(list)
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".m8")]
+        logging.debug(f"Found {len(files)} cluster files")
+    except Exception as e:
+        logging.error(f"Failed listing cluster directory {directory}: {e}")
+        return []
+
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing cluster file {file}")
+        try:
+            with open(path) as f:
+                for i, line in enumerate(f):
+                    parts = line.strip().split('\t')
+                    if len(parts) < 12:
+                        continue
+                    query_id = parts[0]
+                    try:
+                        percent_identity = float(parts[2])
+                        clusters[query_id].append(percent_identity)
+                    except ValueError as e:
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing cluster file {file}: {e}")
+
+    results = []
+    cluster_scores = []
+    for cluster_id, identities in clusters.items():
+        if identities:
+            conservation_score = sum(identities) / len(identities)
+            cluster_scores.append(conservation_score)
+            results.append({"feature": "cluster_conservation", "sub_feature": cluster_id, "value": conservation_score})
+
+    if cluster_scores:
+        results.append({"feature": "cluster_conservation", "sub_feature": "mean", "value": mean(cluster_scores)})
+        results.append({"feature": "cluster_conservation", "sub_feature": "median", "value": median(cluster_scores)})
+
+    logging.info(f"Completed cluster parsing with {len(results)} results")
+    return results
+
+def parse_popcov_dir(directory, popcov_inputs):
+    logging.info(f"Parsing popcoverage dir {directory} with inputs from {popcov_inputs}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+        logging.debug(f"Found {len(files)} popcoverage files")
+    except Exception as e:
+        logging.error(f"Failed listing popcoverage directory {directory}: {e}")
+        return results
+
+    for file in files:
+        popcov_path = os.path.join(directory, file)
+        stem = os.path.splitext(file)[0]
+        input_path = os.path.join(popcov_inputs, stem + ".txt")
+
+        sequences = []
+        if os.path.exists(input_path):
+            try:
+                with open(input_path) as f:
+                    for i, line in enumerate(f):
+                        line = line.strip()
+                        if not line or '\t' not in line:
+                            continue
+                        seq, _ = line.split('\t', 1)
+                        sequences.append(seq)
+            except Exception as e:
+                logging.warning(f"Could not parse sequence file {input_path}: {e}")
+                continue
+        else:
+            logging.warning(f"Missing input sequence file: {input_path}")
+            continue
+
+        try:
+            with open(popcov_path) as f:
                 in_table = False
-                for i, line in enumerate(f, start=1):
+                index = 0
+                for i, line in enumerate(f):
                     line = line.strip()
                     if not line:
                         continue
@@ -250,22 +326,22 @@ def parse_popcov_dir(directory):
                         continue
                     if in_table:
                         parts = line.split('\t')
-                        if len(parts) == 4:
-                            try:
-                                individuals.append(float(parts[2]))
-                                coverage.append(float(parts[3]))
-                            except Exception as e:
-                                logging.debug(f"Skipping bad data at line {i} in {file}: {e}")
-                                continue
+                        if len(parts) != 4:
+                            continue
+                        try:
+                            percent_individuals = float(parts[2])
+                            cumulative_coverage = float(parts[3])
+                            sequence = sequences[index] if index < len(sequences) else ""
+                            results.append({"feature": "popcov", "sub_feature": "percent_individuals", "value": percent_individuals})
+                            results.append({"feature": "popcov", "sub_feature": "cumulative_coverage", "value": cumulative_coverage})
+                            index += 1
+                        except ValueError as e:
+                            logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
-            logging.warning(f"Failed to parse population coverage file {file}: {e}")
-            continue
+            logging.warning(f"Could not parse popcov file {popcov_path}: {e}")
 
-    logging.debug("Finished parse_popcov_dir")
-    return {
-        "popcov_percent_individuals": {"mean": safe_mean(individuals), "median": safe_median(individuals)},
-        "popcov_cumulative_coverage": {"mean": safe_mean(coverage), "median": safe_median(coverage)}
-    }
+    logging.info(f"Completed popcoverage parsing with {len(results)} results")
+    return results
 
 # ----------------------------- Orchestration Functions -----------------------------
 
@@ -277,37 +353,36 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mhcii": lambda: parse_mhc_dir(os.path.join(base_dir, "mhcii")),
         "signalp": lambda: parse_signalp_dir(os.path.join(base_dir, "signalp")),
         "targetp": lambda: parse_targetp_dir(os.path.join(base_dir, "targetp")),
-        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(eval_dir, "allergenicity")),
+        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(eval_dir, "allergenicity"), os.path.join(base_dir, "fasta")),
         "cluster": lambda: parse_cluster_dir(os.path.join(eval_dir, "cluster")),
-        "popcoverage": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcoverage")),
+        "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcov"), os.path.join(base_dir, "mhci_input"))
     }
 
-    results = {}
+    results = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
-        futures = {executor.submit(fn): name for name, fn in parsers.items()}
-        for future in as_completed(futures):
-            name = futures[future]
+        future_to_name = {executor.submit(parser): name for name, parser in parsers.items()}
+        for future in as_completed(future_to_name):
+            name = future_to_name[future]
             try:
-                logging.info(f"Starting parser for: {name}")
-                results[name] = future.result()
-                logging.info(f"Completed parser for: {name}")
+                results.extend(future.result())
+                logging.info(f"{name} feature extraction complete")
             except Exception as e:
-                logging.error(f"Error parsing {name}: {e}")
-
-    logging.info("Completed extracting all features")
+                logging.error(f"{name} feature extraction failed: {e}")
     return results
 
 def compare_ks(pos_features, rand_features):
     logging.info("Starting KS test comparison")
     results = []
 
-    for feature, pos_data in pos_features.items():
-        rand_data = rand_features.get(feature, {})
+    for feature, pos_subfeatures in pos_features.items():
+        rand_subfeatures = rand_features.get(feature, {})
 
-        if isinstance(pos_data, dict):
-            for subfeature, val in pos_data.items():
-                pos_vals = [val["mean"]]
-                rand_vals = [rand_data.get(subfeature, {}).get("mean", 0)]
+        if isinstance(pos_subfeatures, dict):
+            for subfeature, pos_vals in pos_subfeatures.items():
+                rand_vals = rand_subfeatures.get(subfeature, [])
+
+                if not pos_vals or not rand_vals:
+                    continue  # Skip if either side has no data
 
                 try:
                     stat, pval = ks_2samp(pos_vals, rand_vals)
@@ -327,6 +402,7 @@ def compare_ks(pos_features, rand_features):
     logging.info("KS test comparison complete")
     return pd.DataFrame(results)
 
+
 def write_features_by_feature(features, label, output_dir):
     logging.info(f"Writing features to disk for label {label} in {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
@@ -339,13 +415,13 @@ def write_features_by_feature(features, label, output_dir):
             writer.writeheader()
 
             if isinstance(subdata, dict):
-                for subfeature, stats in subdata.items():
-                    for k in ("mean", "median"):
+                for subfeature, values in subdata.items():
+                    for val in values:
                         writer.writerow({
                             "label": label,
                             "feature": feature,
-                            "subfeature": f"{subfeature}_{k}",
-                            "value": stats[k]
+                            "subfeature": subfeature,
+                            "value": val
                         })
         logging.debug(f"Wrote feature file: {filepath}")
 
