@@ -4,7 +4,6 @@ import csv
 import sys
 import pandas as pd
 from scipy.stats import ks_2samp
-from statistics import mean, median
 import collections
 from collections import defaultdict
 import logging
@@ -12,12 +11,6 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ----------------------------- Utility Functions -----------------------------
-
-def safe_mean(lst):
-    return mean(lst) if lst else 0.0
-
-def safe_median(lst):
-    return median(lst) if lst else 0.0
 
 def init_logging(verbose=False, pathogen="unknown"):
     logger = logging.getLogger()
@@ -217,6 +210,8 @@ def parse_allergenicity_dir(directory):
 def parse_cluster_dir(directory):
     logging.info(f"Parsing cluster conservation dir {directory}")
     clusters = defaultdict(list)
+
+    # Step 1: List all cluster files
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".m8")]
         logging.debug(f"Found {len(files)} cluster files")
@@ -224,6 +219,7 @@ def parse_cluster_dir(directory):
         logging.error(f"Failed listing cluster directory {directory}: {e}")
         return []
 
+    # Step 2: Parse each cluster file
     for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing cluster file {file}")
@@ -244,15 +240,17 @@ def parse_cluster_dir(directory):
 
     results = []
     cluster_scores = []
-    for cluster_id, identities in clusters.items():
+
+    # Step 3: Compute conservation scores and store them as subfeatures
+    for identities in clusters.values():
         if identities:
             conservation_score = sum(identities) / len(identities)
             cluster_scores.append(conservation_score)
-            results.append({"feature": "cluster_conservation", "subfeature": cluster_id, "value": conservation_score})
-
-    if cluster_scores:
-        results.append({"feature": "cluster_conservation", "subfeature": "mean", "value": mean(cluster_scores)})
-        results.append({"feature": "cluster_conservation", "subfeature": "median", "value": median(cluster_scores)})
+            results.append({
+                "feature": "cluster_conservation",
+                "subfeature": "conservation_score",  
+                "value": conservation_score
+            })
 
     logging.info(f"Completed cluster parsing with {len(results)} results")
     return results
