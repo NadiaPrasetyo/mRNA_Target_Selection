@@ -71,7 +71,7 @@ def parse_bcell_dir(directory):
                     for i, row in enumerate(reader):
                         try:
                             val = float(row[idx])
-                            results.append({"feature": "bcell", "sub_feature": method, "value": val})
+                            results.append({"feature": "bcell", "subfeature": method, "value": val})
                         except Exception as e:
                             logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
                 else:
@@ -80,7 +80,7 @@ def parse_bcell_dir(directory):
                         for i, row in enumerate(reader):
                             try:
                                 val = float(row[idx])
-                                results.append({"feature": "bcell", "sub_feature": method, "value": val})
+                                results.append({"feature": "bcell", "subfeature": method, "value": val})
                             except Exception as e:
                                 logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
         except Exception as e:
@@ -119,9 +119,9 @@ def parse_mhc_dir(directory):
 
                         for i, row in enumerate(table):
                             try:
-                                results.append({"feature": prefix, "sub_feature": "score", "value": float(row[idx_score])})
-                                results.append({"feature": prefix, "sub_feature": "percentile", "value": float(row[idx_percentile])})
-                                results.append({"feature": prefix, "sub_feature": "peptide_length", "value": len(row[idx_peptide])})
+                                results.append({"feature": prefix, "subfeature": "score", "value": float(row[idx_score])})
+                                results.append({"feature": prefix, "subfeature": "percentile", "value": float(row[idx_percentile])})
+                                results.append({"feature": prefix, "subfeature": "peptide_length", "value": len(row[idx_peptide])})
                             except Exception as e:
                                 logging.debug(f"Skipping row {i} in {file} due to error: {e}")
         except Exception as e:
@@ -149,8 +149,8 @@ def parse_signalp_dir(directory):
                     parts = line.strip().split('\t')
                     if len(parts) >= 4:
                         try:
-                            results.append({"feature": "signalp", "sub_feature": "prob_signalp", "value": float(parts[2])})
-                            results.append({"feature": "signalp", "sub_feature": "prob_other", "value": float(parts[3])})
+                            results.append({"feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
+                            results.append({"feature": "signalp", "subfeature": "prob_other", "value": float(parts[3])})
                         except Exception as e:
                             logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
@@ -178,9 +178,9 @@ def parse_targetp_dir(directory):
                     parts = line.strip().split('\t')
                     if len(parts) >= 5:
                         try:
-                            results.append({"feature": "targetp", "sub_feature": "prob_noTP", "value": float(parts[2])})
-                            results.append({"feature": "targetp", "sub_feature": "prob_SP", "value": float(parts[3])})
-                            results.append({"feature": "targetp", "sub_feature": "prob_mTP", "value": float(parts[4])})
+                            results.append({"feature": "targetp", "subfeature": "prob_noTP", "value": float(parts[2])})
+                            results.append({"feature": "targetp", "subfeature": "prob_SP", "value": float(parts[3])})
+                            results.append({"feature": "targetp", "subfeature": "prob_mTP", "value": float(parts[4])})
                         except Exception as e:
                             logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
@@ -248,11 +248,11 @@ def parse_cluster_dir(directory):
         if identities:
             conservation_score = sum(identities) / len(identities)
             cluster_scores.append(conservation_score)
-            results.append({"feature": "cluster_conservation", "sub_feature": cluster_id, "value": conservation_score})
+            results.append({"feature": "cluster_conservation", "subfeature": cluster_id, "value": conservation_score})
 
     if cluster_scores:
-        results.append({"feature": "cluster_conservation", "sub_feature": "mean", "value": mean(cluster_scores)})
-        results.append({"feature": "cluster_conservation", "sub_feature": "median", "value": median(cluster_scores)})
+        results.append({"feature": "cluster_conservation", "subfeature": "mean", "value": mean(cluster_scores)})
+        results.append({"feature": "cluster_conservation", "subfeature": "median", "value": median(cluster_scores)})
 
     logging.info(f"Completed cluster parsing with {len(results)} results")
     return results
