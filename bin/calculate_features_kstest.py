@@ -310,34 +310,46 @@ def extract_all_features(base_dir, eval_dir, threads=1):
                 logging.error(f"{name} feature extraction failed: {e}")
     return results
 
+
 def compare_ks(pos_features, rand_features):
     logging.info("Starting KS test comparison")
     results = []
 
-    for feature, pos_subfeatures in pos_features.items():
-        rand_subfeatures = rand_features.get(feature, {})
+    # Group values by feature + subfeature for positive and random sets
+    def group_values(data):
+        grouped = defaultdict(list)
+        for row in data:
+            key = (row["feature"], row["subfeature"])
+            grouped[key].append(row["value"])
+        return grouped
 
-        if isinstance(pos_subfeatures, dict):
-            for subfeature, pos_vals in pos_subfeatures.items():
-                rand_vals = rand_subfeatures.get(subfeature, [])
+    pos_grouped = group_values(pos_features)
+    rand_grouped = group_values(rand_features)
 
-                if not pos_vals or not rand_vals:
-                    continue  # Skip if either side has no data
+    # Perform KS test for each common (feature, subfeature) pair
+    all_keys = set(pos_grouped.keys()).union(rand_grouped.keys())
 
-                try:
-                    stat, pval = ks_2samp(pos_vals, rand_vals)
-                except Exception as e:
-                    logging.debug(f"KS test failed for feature {feature} subfeature {subfeature}: {e}")
-                    stat, pval = None, None
+    for (feature, subfeature) in all_keys:
+        pos_vals = pos_grouped.get((feature, subfeature), [])
+        rand_vals = rand_grouped.get((feature, subfeature), [])
 
-                results.append({
-                    "feature": feature,
-                    "subfeature": subfeature,
-                    "ks_statistic": stat,
-                    "p_value": pval,
-                    "positive_n": len(pos_vals),
-                    "random_n": len(rand_vals)
-                })
+        if not pos_vals or not rand_vals:
+            stat, pval = None, None
+        else:
+            try:
+                stat, pval = ks_2samp(pos_vals, rand_vals)
+            except Exception as e:
+                logging.debug(f"KS test failed for {feature}/{subfeature}: {e}")
+                stat, pval = None, None
+
+        results.append({
+            "feature": feature,
+            "subfeature": subfeature,
+            "ks_statistic": stat,
+            "p_value": pval,
+            "positive_n": len(pos_vals),
+            "random_n": len(rand_vals)
+        })
 
     logging.info("KS test comparison complete")
     return pd.DataFrame(results)
