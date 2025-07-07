@@ -3,6 +3,9 @@ outputs/
 data/S.aureus/combined_features.csv
 data/S.aureus/raw_positive_features.csv
 data/S.aureus/raw_random_features.csv
+data/S.aureus/raw_positive_features/
+data/S.aureus/raw_random_features/
+results/S.aureus/raw_data/
 notes/questions
 
 # Byte-compiled / optimized / DLL files
@@ -145,3 +148,4 @@ cython_debug/
 
 # VS Code settings
 .vscode/
+.Rproj.user

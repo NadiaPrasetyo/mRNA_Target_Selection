@@ -654,15 +654,14 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
     logger.info(f"Positive features: {sizeof_fmt(sys.getsizeof(pos_features))}")
     logger.info(f"Random features: {sizeof_fmt(sys.getsizeof(rand_features))}")
 
-    raw_out_dir_pos = os.path.join("data", pathogen_dir, "raw_positive_features")
-    raw_out_dir_rand = os.path.join("data", pathogen_dir, "raw_random_features")
+    raw_out_dir = os.path.join("results", pathogen_dir, "raw_data")
 
     if write_raw:
-        logger.info(f"Writing positive features to {raw_out_dir_pos}")
-        write_features_by_feature(pos_features, "positive", raw_out_dir_pos)
+        logger.info(f"Writing positive features to {raw_out_dir}")
+        write_features_by_feature(pos_features, "positive", raw_out_dir)
 
-        logger.info(f"Writing random features to {raw_out_dir_rand}")
-        write_features_by_feature(rand_features, "random", raw_out_dir_rand)
+        logger.info(f"Writing random features to {raw_out_dir}")
+        write_features_by_feature(rand_features, "random", raw_out_dir)
 
 
     logger.info("Running KS test on features")
