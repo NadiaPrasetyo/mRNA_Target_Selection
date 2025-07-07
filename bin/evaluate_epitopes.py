@@ -135,6 +135,7 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     epitope_dir = Path(epitope_dir)
     fasta_inputs_dir = output_dir / "fasta_inputs"
     popcov_inputs_dir = output_dir / "popcov_inputs"
+    temp_dirs = [fasta_inputs_dir, popcov_inputs_dir]
 
     allergenicity_jobs = [job for job in jobs if job[0] == "Allergenicity"]
     other_jobs = [job for job in jobs if job[0] == "PopCoverage"]
@@ -183,6 +184,15 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
         except Exception as e:
             logging.error(f"❌ Allergenicity job failed for {file.name}: {e}")
 
+    # Cleanup
+    for temp_dir in temp_dirs:
+        try:
+            if temp_dir.exists():
+                shutil.rmtree(temp_dir)
+                logging.info(f"🧹 Cleaned temporary directory: {temp_dir}")
+        except Exception as e:
+            logging.warning(f"⚠️ Cleanup failed for {temp_dir}: {e}")
+
 
 def main():
     """Main function to run the evaluation pipeline.
@@ -222,6 +232,18 @@ def main():
 
     if not jobs:
         logging.info("No jobs to run. All tasks are up-to-date.")
+        # clean up output directories if no jobs
+        for tool in tools_to_run.keys():
+            tool_output_dir = output_dir / tool.lower()
+            if tool_output_dir.exists():
+                shutil.rmtree(tool_output_dir)
+                logging.info(f"🧹 Cleaned up output directory: {tool_output_dir}")
+
+        # clean up temporary directories
+        for temp_dir in [output_dir / "fasta_inputs", output_dir / "popcov_inputs"]:
+            if temp_dir.exists():
+                shutil.rmtree(temp_dir)
+                logging.info(f"🧹 Cleaned up temporary directory: {temp_dir}")
         return
 
     run_jobs_parallel(jobs, output_dir, epitope_path, args.threads)
