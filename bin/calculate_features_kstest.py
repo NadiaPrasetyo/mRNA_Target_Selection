@@ -1,3 +1,42 @@
+"""
+calculate_features_kstest.py
+
+Command-line tool to extract immunological and sequence features from epitope and random protein sets,
+and compare their distributions using the Kolmogorov-Smirnov (KS) test.
+
+Overview:
+    - Parses feature outputs (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, population coverage)
+      from specified directories for both epitope (positive) and random sets.
+    - Aggregates and structures feature data for statistical comparison.
+    - Performs KS tests for each feature/subfeature between positive and random sets.
+    - Optionally writes raw feature data to disk for further analysis.
+    - Outputs a CSV summary of KS test statistics and p-values.
+
+Arguments:
+    pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
+    --threads (int, optional): Number of parallel workers for feature extraction (default: 1).
+    --verbose (flag, optional): If set, enables verbose logging to file.
+    --write-raw (flag, optional): If set, writes raw feature data to disk (can be large).
+
+Requirements:
+    - Feature output files in expected formats under:
+        data/<pathogen_dir>/epitope_outputs/
+        data/<pathogen_dir>/random_analysis/
+        data/<pathogen_dir>/evaluation_outputs/
+        data/<pathogen_dir>/random_evaluation/
+    - Python packages: pandas, scipy
+
+Usage Example:
+    python calculate_features_kstest.py sars_cov_2 --threads 4 --verbose --write-raw
+
+Outputs:
+    data/<pathogen_dir>/ks_test_results.csv         # KS statistics and p-values for each feature
+    data/<pathogen_dir>/raw_positive_features/      # (optional) Raw feature CSVs for positive set
+    data/<pathogen_dir>/raw_random_features/        # (optional) Raw feature CSVs for random set
+    data/<pathogen_dir>/ks_test.log                 # (optional) Verbose log file
+
+Author: Nadia
+"""
 import os
 import json
 import csv
@@ -13,6 +52,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ----------------------------- Utility Functions -----------------------------
 
 def init_logging(verbose=False, pathogen="unknown"):
+    """
+    Initialize logging configuration.
+    If verbose is True, logs will be written to a file in the specified pathogen directory.
+    """
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
@@ -33,6 +76,13 @@ def init_logging(verbose=False, pathogen="unknown"):
         logger.addHandler(fh)
 
 def sizeof_fmt(num, suffix="B"):
+    """
+    Convert a number of bytes into a human-readable format with appropriate suffix.
+    Examples:
+        1024 -> "1.0KB"
+        1048576 -> "1.0MB"
+        1073741824 -> "1.0GB"
+    """
     for unit in ['','K','M','G','T']:
         if abs(num) < 1024.0:
             return f"{num:.1f}{unit}{suffix}"
@@ -42,6 +92,19 @@ def sizeof_fmt(num, suffix="B"):
 # ----------------------------- Feature Parsers -----------------------------
 
 def parse_bcell_dir(directory):
+    """
+    Parse B-cell epitope prediction files in the specified directory.
+    Expected files are CSVs with various B-cell prediction methods.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing B-cell prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents a B-cell feature.
+    Each dictionary contains:
+        - "feature": "bcell"
+        - "subfeature": method name (e.g., "bepipred", "chou-fasman", etc.)
+        - "value": numerical score for the epitope
+    """
     logging.info(f"Parsing B-cell features in {directory}")
     results = []
     try:
@@ -82,6 +145,19 @@ def parse_bcell_dir(directory):
     return results
 
 def parse_mhc_dir(directory):
+    """
+    Parse MHC epitope prediction files in the specified directory.
+    Expected files are JSONs with MHC I/II prediction results.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing MHC prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents an MHC feature.
+    Each dictionary contains:
+        - "feature": "mhci" or "mhcii" based on the directory name
+        - "subfeature": "score", "percentile", or "peptide_length"
+        - "value": numerical score or length value
+    """
     prefix = "mhcii" if "mhcii" in directory else "mhci"
     logging.info(f"Parsing MHC dir {directory} with prefix {prefix}")
     results = []
@@ -123,6 +199,19 @@ def parse_mhc_dir(directory):
     return results
 
 def parse_signalp_dir(directory):
+    """
+    Parse SignalP prediction files in the specified directory.
+    Expected files are text files with SignalP results.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing SignalP prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents a SignalP feature.
+    Each dictionary contains:
+        - "feature": "signalp"
+        - "subfeature": "prob_signalp" or "prob_other"
+        - "value": numerical probability value
+    """
     logging.info(f"Parsing SignalP dir {directory}")
     results = []
     try:
@@ -152,6 +241,19 @@ def parse_signalp_dir(directory):
     return results
 
 def parse_targetp_dir(directory):
+    """
+    Parse TargetP prediction files in the specified directory.
+    Expected files are text files with TargetP results.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing TargetP prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents a TargetP feature.
+    Each dictionary contains:
+        - "feature": "targetp"
+        - "subfeature": "prob_noTP", "prob_SP", or "prob_mTP"
+        - "value": numerical probability value
+    """
     logging.info(f"Parsing TargetP dir {directory}")
     results = []
     try:
@@ -182,6 +284,19 @@ def parse_targetp_dir(directory):
     return results
 
 def parse_allergenicity_dir(directory):
+    """
+    Parse allergenicity prediction files in the specified directory.
+    Expected files are CSVs with MERCI, BLAST, and Hybrid scores.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing allergenicity prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents an allergenicity feature.
+    Each dictionary contains:
+        - "feature": "allergenicity"
+        - "subfeature": "merci_score", "blast_score", or "hybrid_score"
+        - "value": numerical score value
+    """
     logging.info(f"Parsing allergenicity dir {directory}")
     results = []
 
@@ -232,6 +347,19 @@ def parse_allergenicity_dir(directory):
     return results
 
 def parse_cluster_dir(directory):
+    """
+    Parse cluster conservation files in the specified directory.
+    Expected files are m8 format files with cluster conservation scores.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing cluster conservation files.
+    Returns:
+        List of dictionaries, where each dictionary represents a cluster conservation feature.
+    Each dictionary contains:
+        - "feature": "cluster_conservation"
+        - "subfeature": "conservation_score"
+        - "value": numerical conservation score
+    """
     logging.info(f"Parsing cluster conservation dir {directory}")
     clusters = defaultdict(list)
 
@@ -280,6 +408,19 @@ def parse_cluster_dir(directory):
     return results
 
 def parse_popcov_dir(directory):
+    """
+    Parse population coverage files in the specified directory.
+    Expected files are text files with population coverage data.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing population coverage files.
+    Returns:
+        List of dictionaries, where each dictionary represents a population coverage feature.
+    Each dictionary contains:
+        - "feature": "popcov"
+        - "subfeature": "coverage_average"
+        - "value": numerical average coverage value
+    """
     logging.info(f"Parsing population coverage dir {directory}")
     results = []
 
@@ -343,6 +484,19 @@ def parse_popcov_dir(directory):
 # ----------------------------- Orchestration Functions -----------------------------
 
 def extract_all_features(base_dir, eval_dir, threads=1):
+    """
+    Extract all features from the specified base and evaluation directories using multiple threads.
+    Args:
+        base_dir (str): Path to the base directory containing epitope outputs.
+        eval_dir (str): Path to the evaluation directory containing random analysis outputs.
+        threads (int): Number of threads to use for parallel parsing.
+    Returns:
+        List of dictionaries, where each dictionary represents a feature.
+    Each dictionary contains:
+        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov")
+        - "subfeature": specific subfeature name (e.g., "bepipred", "score", "prob_signalp", etc.)
+        - "value": numerical value for the feature
+    """
     logging.info(f"Extracting features from base_dir: {base_dir} and eval_dir: {eval_dir} using {threads} threads")
     parsers = {
         "bcell": lambda: parse_bcell_dir(os.path.join(base_dir, "bcell")),
@@ -375,6 +529,20 @@ def extract_all_features(base_dir, eval_dir, threads=1):
 
 
 def compare_ks(pos_features, rand_features):
+    """
+    Compare distributions of features between positive and random sets using the KS test.
+    Args:
+        pos_features (list): List of dictionaries representing positive features.
+        rand_features (list): List of dictionaries representing random features.
+    Returns:
+        DataFrame with KS test results, including:
+            - "feature": feature name
+            - "subfeature": subfeature name
+            - "ks_statistic": KS statistic value
+            - "p_value": p-value from the KS test
+            - "positive_n": number of positive samples for this feature
+            - "random_n": number of random samples for this feature
+    """
     logging.info("Starting KS test comparison")
     results = []
 
@@ -422,6 +590,14 @@ def compare_ks(pos_features, rand_features):
     return pd.DataFrame(results)
 
 def write_features_by_feature(features, label, output_dir):
+    """
+    Write features to disk, grouped by "feature" field.
+    Each feature will be written to a separate CSV file named <feature>_<label>_raw_data.csv
+    Args:
+        features (list): List of dictionaries representing features.
+        label (str): Label for the features (e.g., "positive", "random").
+        output_dir (str): Directory to write the feature files to.
+    """
     logging.info(f"Writing features to disk for label {label} in {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
 
@@ -449,6 +625,15 @@ def write_features_by_feature(features, label, output_dir):
 # ----------------------------- Entry Point -----------------------------
 
 def main(pathogen_dir, threads, verbose=False, write_raw=False):
+    """
+    Main entry point for the script.
+    Initializes logging, extracts features, performs KS tests, and writes results.
+    Args:
+        pathogen_dir (str): Pathogen directory name under data/
+        threads (int): Optional -number of threads to use for feature extraction.
+        verbose (bool): Optional -if True, enables verbose logging to file.
+        write_raw (bool): Optional -if True, writes raw feature data to disk (can be large).
+    """
     init_logging(verbose, pathogen_dir)
     logger = logging.getLogger()
 
@@ -482,15 +667,34 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
 
     logger.info("Running KS test on features")
     result_df = compare_ks(pos_features, rand_features)
+    # Sort the DataFrame alphabetically by the first column
+    result_df = result_df.sort_values(by=result_df.columns[0])
     logger.info("\n" + result_df.to_string(index=False))
 
-    ks_out_path = os.path.join("data", pathogen_dir, "ks_test_results.csv")
+    ks_out_path = os.path.join("results", pathogen_dir, "ks_test_results.csv")
     logger.info(f"Writing KS test results to {ks_out_path}")
     result_df.to_csv(ks_out_path, index=False)
 
     logger.info("Processing complete.")
 
 if __name__ == "__main__":
+    """ Entry point for command-line execution.
+    Parses command-line arguments and calls the main function.
+    Usage:
+        python calculate_features_kstest.py <pathogen_dir> [--threads <num_threads>]
+    Example:
+        python calculate_features_kstest.py sars_cov_2 --threads 4 --verbose --write-raw
+    Arguments:
+        pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
+        --threads (int, optional): Number of threads to use for feature extraction (default: 1).
+        --verbose (flag, optional): If set, enables verbose logging to file.
+        --write-raw (flag, optional): If set, writes raw feature data to disk (can be large).
+    Outputs:
+        - data/<pathogen_dir>/ks_test_results.csv         # KS statistics and p-values for each feature
+        - data/<pathogen_dir>/raw_positive_features/      # (optional) Raw feature CSVs for positive set
+        - data/<pathogen_dir>/raw_random_features/        # (optional) Raw feature CSVs for random set
+        - data/<pathogen_dir>/ks_test.log                 # (optional) Verbose log file
+    """
     parser = argparse.ArgumentParser(description="KS-test comparison of epitope vs. random features.")
     parser.add_argument("pathogen_dir", help="Pathogen directory name under data/")
     parser.add_argument("--threads", type=int, default=1, help="Number of threads to use for parsing")
