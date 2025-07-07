@@ -182,30 +182,54 @@ def parse_targetp_dir(directory):
     return results
 
 def parse_allergenicity_dir(directory):
-    result = {}
+    logging.info(f"Parsing allergenicity dir {directory}")
+    results = []
 
-    if not os.path.isdir(directory):
-        logging.warning(f"Allergenicity directory not found: {directory}")
-        return result
+    # Step 1: List all allergenicity CSV files
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".csv")]
+        logging.debug(f"Found {len(files)} allergenicity files")
+    except Exception as e:
+        logging.error(f"Failed listing allergenicity directory {directory}: {e}")
+        return []
 
-    for filename in os.listdir(directory):
-        if not filename.endswith(".json"):
-            continue
-
-        filepath = os.path.join(directory, filename)
-
+    # Step 2: Parse each CSV file
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing allergenicity file {file}")
         try:
-            with open(filepath, "r") as f:
-                data = json.load(f)
+            with open(path, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for i, row in enumerate(reader):
+                    try:
+                        merci_score = float(row["MERCI Score"])
+                        blast_score = float(row["BLAST Score"])
+                        hybrid_score = float(row["Hybrid Score"])
+
+                        results.extend([
+                            {
+                                "feature": "allergenicity",
+                                "subfeature": "merci_score",
+                                "value": merci_score
+                            },
+                            {
+                                "feature": "allergenicity",
+                                "subfeature": "blast_score",
+                                "value": blast_score
+                            },
+                            {
+                                "feature": "allergenicity",
+                                "subfeature": "hybrid_score",
+                                "value": hybrid_score
+                            }
+                        ])
+                    except (ValueError, KeyError) as e:
+                        logging.debug(f"Skipping malformed row {i} in {file}: {e}")
         except Exception as e:
-            logging.warning(f"Failed to read or parse Allergenicity JSON: {filepath} - {e}")
-            continue
+            logging.error(f"Failed parsing allergenicity file {file}: {e}")
 
-        allergen_score = data.get("AllergenicityScore")
-        if allergen_score is not None:
-            result.setdefault("allergenicity", {}).setdefault("score", []).append(allergen_score)
-
-    return result
+    logging.info(f"Completed allergenicity parsing with {len(results)} results")
+    return results
 
 def parse_cluster_dir(directory):
     logging.info(f"Parsing cluster conservation dir {directory}")
@@ -256,30 +280,65 @@ def parse_cluster_dir(directory):
     return results
 
 def parse_popcov_dir(directory):
-    result = {}
+    logging.info(f"Parsing population coverage dir {directory}")
+    results = []
 
-    if not os.path.isdir(directory):
-        logging.warning(f"PopCov directory not found: {directory}")
-        return result
+    # Step 1: List all popcov files
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+        logging.debug(f"Found {len(files)} popcov files")
+    except Exception as e:
+        logging.error(f"Failed listing popcov directory {directory}: {e}")
+        return []
 
-    for filename in os.listdir(directory):
-        if not filename.endswith(".json"):
-            continue
-
-        filepath = os.path.join(directory, filename)
-
+    # Step 2: Parse each popcov file
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing popcov file {file}")
         try:
-            with open(filepath, "r") as f:
-                data = json.load(f)
+            with open(path) as f:
+                lines = f.readlines()
         except Exception as e:
-            logging.warning(f"Failed to read or parse PopCov JSON: {filepath} - {e}")
+            logging.error(f"Failed reading popcov file {file}: {e}")
             continue
 
-        popcov_scores = data.get("population_coverage", {})
-        for region, score in popcov_scores.items():
-            result.setdefault("popcov", {}).setdefault(region, []).append(score)
+        # Step 3: Extract "average" coverage from the first table
+        data_started = False
+        for i, line in enumerate(lines):
+            stripped = line.strip()
 
-    return result
+            # Skip empty or header lines
+            if not stripped or stripped.lower().startswith("class combined"):
+                continue
+
+            if not data_started:
+                if stripped.startswith("population/area") and "coverage" in stripped:
+                    data_started = True
+                continue
+
+            # We're now in the first table
+            if data_started:
+                parts = stripped.split('\t')
+                if len(parts) < 4:
+                    continue
+
+                region = parts[0].strip()
+                coverage_str = parts[1].strip()
+
+                if region.lower() == "average":
+                    try:
+                        coverage_val = float(coverage_str.strip('%'))
+                        results.append({
+                            "feature": "popcov",
+                            "subfeature": "coverage_average",
+                            "value": coverage_val
+                        })
+                    except ValueError as e:
+                        logging.debug(f"Failed to parse coverage value in {file}, line {i}: {e}")
+                    break  # only need the "average" row from the first table
+
+    logging.info(f"Completed popcov parsing with {len(results)} results")
+    return results
 
 # ----------------------------- Orchestration Functions -----------------------------
 
@@ -302,10 +361,16 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         for future in as_completed(future_to_name):
             name = future_to_name[future]
             try:
-                results.extend(future.result())
+                result = future.result()
+                if result is None:
+                    logging.warning(f"{name} parser returned None; skipping")
+                    continue
+                logging.debug(f"{name} returned {len(result)} items")
+                results.extend(result)
                 logging.info(f"{name} feature extraction complete")
             except Exception as e:
                 logging.error(f"{name} feature extraction failed: {e}")
+
     return results
 
 
