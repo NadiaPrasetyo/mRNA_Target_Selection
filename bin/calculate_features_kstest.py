@@ -5,6 +5,7 @@ import sys
 import pandas as pd
 from scipy.stats import ks_2samp
 from statistics import mean, median
+import collections
 from collections import defaultdict
 import logging
 import argparse
@@ -341,32 +342,34 @@ def compare_ks(pos_features, rand_features):
     logging.info("KS test comparison complete")
     return pd.DataFrame(results)
 
-
 def write_features_by_feature(features, label, output_dir):
     logging.info(f"Writing features to disk for label {label} in {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
 
-    for feature, subdata in features.items():
+    # Group features by "feature" field
+    grouped = collections.defaultdict(list)
+    for row in features:
+        grouped[row["feature"]].append(row)
+
+    for feature, rows in grouped.items():
         filepath = os.path.join(output_dir, f"{feature}_{label}_raw_data.csv")
 
         with open(filepath, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=["label", "feature", "subfeature", "value"])
             writer.writeheader()
 
-            if isinstance(subdata, dict):
-                for subfeature, values in subdata.items():
-                    for val in values:
-                        writer.writerow({
-                            "label": label,
-                            "feature": feature,
-                            "subfeature": subfeature,
-                            "value": val
-                        })
+            for row in rows:
+                writer.writerow({
+                    "label": label,
+                    "feature": row.get("feature", ""),
+                    "subfeature": row.get("subfeature", ""),
+                    "value": row.get("value", "")
+                })
         logging.debug(f"Wrote feature file: {filepath}")
 
 # ----------------------------- Entry Point -----------------------------
 
-def main(pathogen_dir, threads, verbose=False):
+def main(pathogen_dir, threads, verbose=False, write_raw=False):
     init_logging(verbose, pathogen_dir)
     logger = logging.getLogger()
 
@@ -390,11 +393,13 @@ def main(pathogen_dir, threads, verbose=False):
     raw_out_dir_pos = os.path.join("data", pathogen_dir, "raw_positive_features")
     raw_out_dir_rand = os.path.join("data", pathogen_dir, "raw_random_features")
 
-    logger.info(f"Writing positive features to {raw_out_dir_pos}")
-    write_features_by_feature(pos_features, "positive", raw_out_dir_pos)
+    if write_raw:
+        logger.info(f"Writing positive features to {raw_out_dir_pos}")
+        write_features_by_feature(pos_features, "positive", raw_out_dir_pos)
 
-    logger.info(f"Writing random features to {raw_out_dir_rand}")
-    write_features_by_feature(rand_features, "random", raw_out_dir_rand)
+        logger.info(f"Writing random features to {raw_out_dir_rand}")
+        write_features_by_feature(rand_features, "random", raw_out_dir_rand)
+
 
     logger.info("Running KS test on features")
     result_df = compare_ks(pos_features, rand_features)
@@ -411,6 +416,7 @@ if __name__ == "__main__":
     parser.add_argument("pathogen_dir", help="Pathogen directory name under data/")
     parser.add_argument("--threads", type=int, default=1, help="Number of threads to use for parsing")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging to file")
+    parser.add_argument("--write-raw", action="store_true", help="Write raw feature data to disk (optional, large output)")
     args = parser.parse_args()
 
-    main(args.pathogen_dir, args.threads, args.verbose)
+    main(args.pathogen_dir, args.threads, args.verbose, args.write_raw)
