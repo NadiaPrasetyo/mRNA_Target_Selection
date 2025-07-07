@@ -319,9 +319,13 @@ def compare_ks(pos_features, rand_features):
     def group_values(data):
         grouped = defaultdict(list)
         for row in data:
-            key = (row["feature"], row["subfeature"])
-            grouped[key].append(row["value"])
+            if "feature" in row and "subfeature" in row and "value" in row:
+                key = (row["feature"], row["subfeature"])
+                grouped[key].append(row["value"])
+            else:
+                logging.debug(f"Skipping malformed row: {row}")
         return grouped
+
 
     pos_grouped = group_values(pos_features)
     rand_grouped = group_values(rand_features)
