@@ -53,14 +53,19 @@ Universal Flu (influnenza),Staphylococcus aureus,Lupus (mCAR),Chronic HepB
 
 - Prebuilt tools:
     - NetMHCpan (artificial neural network) - HLA allele binding/interaction prediction
-    - AllerTOP v.2.1 (https://www.ddg-pharmfac.net/allertop_test/) - testing epitopes allergenicity *most accurate at 88.7%*
-    - AlgPred (http://crdd.osdd.net/raghava/algpred/) - testing epitopes allergenicity
-    - AllergenFP (https://ddg-pharmfac.net/AllergenFP/) - testing epitopes allergenicity
-    - VaxiJen (https://www.ddg-pharmfac.net/vaxijen/VaxiJen/VaxiJen.html, https://www.ddg-pharmfac.net/vaxijen3/home/) - testing epitope immunogenicity
-    - IFNepitope (http://crdd.osdd.net/raghava/ifnepitope/) - analyse epitope capacity to generate interferon-gamma (IFN-y) *max accuracy 82.10%*
-    - SignalP and TargetP (https://services.healthtech.dtu.dk/services/SignalP-5.0/, https://services.healthtech.dtu.dk/services/TargetP-2.0/) - predict and localize proteins and peptides
-    - PEP-FOLD 3.0 (https://bioserv.rpbs.univ-paris-diderot.fr/services/PEP-FOLD3/)
-    - TMHMM 2.0 (https://services.healthtech.dtu.dk/services/TMHMM-2.0/)
+    - [AllerTOP v.2.1](https://www.ddg-pharmfac.net/allertop_test/) - testing epitopes allergenicity *most accurate at 88.7%*
+    - [AlgPred](http://crdd.osdd.net/raghava/algpred/) - testing epitopes allergenicity
+    - [AllergenFP](https://ddg-pharmfac.net/AllergenFP/) - testing epitopes allergenicity
+    - [VaxiJen](https://www.ddg-pharmfac.net/vaxijen3/home/) - testing epitope immunogenicity
+    - [IFNepitope](http://crdd.osdd.net/raghava/ifnepitope/) - analyse epitope capacity to generate interferon-gamma (IFN-y) *max accuracy 82.10%*
+    - [SignalP](https://services.healthtech.dtu.dk/services/SignalP-5.0/)and [TargetP](https://services.healthtech.dtu.dk/services/TargetP-2.0/) - predict and localize proteins and peptides
+    - [PEP-FOLD 3.0](https://bioserv.rpbs.univ-paris-diderot.fr/services/PEP-FOLD3/)
+    - [TMHMM 2.0](https://services.healthtech.dtu.dk/services/TMHMM-2.0/)
+    - [CLBTope](https://webs.iiitd.edu.in/raghava/clbtope/) - prediction of Linear & Conformational B-cell Epitopes
+    - [Ellipro](http://tools.iedb.org/ellipro/) - predicts linear and discontinuous antibody epitopes based on a protein antigen's 3D structure (PDB file)
+    - [IL-10Pred](https://webs.iiitd.edu.in/raghava/il10pred/) - Prediction of Interleukin-10 inducing peptides
+    - [IL4pred](http://crdd.osdd.net/raghava/il4pred/) - Prediction of Interleukin-4 inducing peptides
+    - 
 
 - observe protein-protein interactions between HLA/MHC with epitopes (molecular docking):
     - Autodock Vina
