@@ -168,7 +168,7 @@ Ile Lys Tyr Ala Lys Gln Ala Gly Trp Asp Thr Val Ser Lys Ala
 Ile Val Gly Gly Ala Lys Phe Ile Gly Asn Ser Tyr Val Lys Ala
 Gly Gln Asn Thr Leu Tyr Lys Met Arg Trp Asn Pro Ala His Pro
 Gly Thr His Gln Tyr Ala Thr Asp Val Asp Trp Ala Asn Ile Asn
-Ala Lys Ile Ile Lys Gly Tyr Tyr Asp Lyo Ile Gly Glu val Gly
+Ala Lys Ile Ile Lys Gly Tyr Tyr Asp Lys Ile Gly Glu Val Gly
 Lys Tyr Phe Asp Ile Pro Gln Tyr Lys
 -------------------------------------------------------------------------------
 SEQ ID NO 18
@@ -189,12 +189,12 @@ Ser Ala Pro Phe Val Ile Leu Phe Phe Ile Leu Glu Gln Phe Ala Arg
 Ala Ile Gly Ala Pro Met Val Ser Met Ile Gly Met Leu Ala Ser Val
 Gly Leu Asn Ile Ile Leu Asp Pro Ile Leu Ile Phe Gly Phe Asp Leu
 Asn Val Val Gly Ala Ala Leu Gly Thr Ala Ile Ser Asn Val Ala Ala
-Ala Leu Phe Phe Ile Ils Tyr Phe Met Lys Asn Ser Asp Val Val Ser
+Ala Leu Phe Phe Ile Ile Tyr Phe Met Lys Asn Ser Asp Val Val Ser
 Val Asn Ile Lys Leu Ala Lys Pro Asn Lys Glu Met Leu Ser Glu Ile
 Phe Lys Ile Gly Ile Pro Ala Phe Leu Met Ser Ile Leu Met Gly Phe
-Thr Gly Leu Val Leu Asn Leu Phe Leu Ala Hin Tyr Gly Asn Phe Ala
+Thr Gly Leu Val Leu Asn Leu Phe Leu Ala His Tyr Gly Asn Phe Ala
 Ile Ala Ser Tyr Gly Ile Ser Phe Arg Leu Val Gln Phe Pro Glu Leu
-Ile Ile Met Gly Leu Cyo Glu Gly Val Val Pro Leu Ile Ala Tyr Asn
+Ile Ile Met Gly Leu Cys Glu Gly Val Val Pro Leu Ile Ala Tyr Asn
 Phe Met Ala Asn Lys Gly Arg Met Lys Asp Val Ile Lys Ala Val Ile
 Met Ser Ile Gly Val Ile Phe Val Val Cys Met Ser Ala Val Phe Thr
 Ile Gly His His Met Val Gly Leu Phe Thr Thr Asp Gln Ala Ile Val
@@ -203,7 +203,7 @@ Asn Gly Ile Gly Phe Leu Phe Thr Gly Met Leu Gln Ala Thr Gly Gln
 Gly Arg Gly Ala Thr Ile Met Ala Ile Leu Gln Gly Ala Ile Ile Ile
 Pro Val Leu Phe Ile Met Asn Ala Leu Phe Gly Leu Thr Gly Val Ile
 Trp Ser Leu Leu Ile Ala Glu Ser Leu Cys Ala Leu Ala Ala Met Leu
-Ile Val Tyr Low Leu Arg Asp Arg Leu Thr Val Asp Thr Ser Glu Leu
+Ile Val Tyr Leu Leu Arg Asp Arg Leu Thr Val Asp Thr Ser Glu Leu
 Ile Glu Gly
 -------------------------------------------------------------------------------
 SEQ ID NO 19
@@ -280,7 +280,7 @@ Asn Gln Arg Arg Asp Ile Thr Val Lys Glu Leu Ser Lys Thr Glu
 Lys Glu Gln Glu Arg Ile Leu Val Arg Met Gln Arg Asn Arg Asn
 Ala Tyr Ser Ile Asp Glu Ala Ser Lys Ala Ile Lys Glu Ala Glu
 Lys Ala Arg Lys Ala Arg Lys Lys Glu Val Asp Lys Gln Tyr Glu
-Asp Asp Val Ile Ala Ile Lya Asn Asn Val Asn Leu Ser Lys Ser
+Asp Asp Val Ile Ala Ile Lys Asn Asn Val Asn Leu Ser Lys Ser
 Glu Lys Asp Lys Leu Leu Ala Ile Ala Asp Gln Arg His Lys Asp
 Glu Val Arg Lys Ala Lys Ser Lys Lys Asp Ala Val Val Asp Val
 Val Lys Lys Gln Asn Lys Asp Ile Asp Lys Glu Met Asp Leu Ser
@@ -328,7 +328,7 @@ Gln Leu Ala Arg Gln Gly Gln Arg Ile Lys Ala Gly Gln Leu Ile
 Gly Lys Ser Gly Ala Thr Gly Asn Phe Val Arg Gly Ala His Leu
 His Phe Gln Leu Met Gln Gly Ser His Pro Gly Asn Asp Thr Ala
 Lys Asp Pro Glu Lys Trp Leu Lys Ser Leu Lys Gly Ser Gly Val
-Arg Ser Gly Ser Gly Val Asn Lyo Ala Ala Ser Ala Trp Ala Gly
+Arg Ser Gly Ser Gly Val Asn Lys Ala Ala Ser Ala Trp Ala Gly
 Asp Ile Arg Arg Ala Ala Lys Arg Met Gly Val Asn Val Thr Ser
 Gly Asp Val Gly Asn Ile Ile Ser Leu Ile Gln His Glu Ser Gly
 Gly Asn Ala Gly Ile Thr Gln Ser Ser Ser Leu Arg Asp Ile Asn
@@ -779,13 +779,13 @@ Thr Thr Asn Lys Asp Gly Tyr Lys Tyr Tyr Ser Phe Ile Asp Asn Val
 Gly Leu Phe Ser Gly Ser His Leu Tyr Val Lys Asn Arg Asp Leu Ala
 Pro Lys Ala Thr Asn Asn Lys Glu Tyr Thr Ile Asn Thr Glu Ile Gly
 Asn Asn Gly Asn Phe Gly Ala Ser Leu Lys Ala Asp Gln Phe Lys Tyr
-Glu Val Thr Leu Pro Gln Gly Val Ihr Tyr Val Asn Asp Ser Leu Thr
+Glu Val Thr Leu Pro Gln Gly Val Thr Tyr Val Asn Asp Ser Leu Thr
 Thr Thr Phe Pro Asn Gly Asn Glu Asp Ser Thr Val Leu Lys Asn Met
 Thr Val Asn Tyr Asp Gln Thr Ala Asn Lys Val Thr Phe Thr Ser Gln
 Gly Val Thr Thr Ala Arg Gly Thr His Thr Lys Glu Val Leu Phe Pro
 Asp Lys Ser Leu Lys Leu Ser Tyr Lys Val Asn Val Ala Asn Ile Asp
 Thr Pro Lys Asn Ile Asp Phe Asn Glu Lys Leu Thr Tyr Arg Thr Ala
-Ser Asp Val Val Ile Asn Apn Ala Gln Pre Glu Val Thr Leu Thr Ala
+Ser Asp Val Val Ile Asn Asn Ala Gln Pro Glu Val Thr Leu Thr Ala
 Asp Pro Phe Ser Val Ala Val Glu Met Asn Lys Asp Ala Leu Gln Gln
 Gln Val Asn Ser Gln Val Asp Asn Ser His Tyr Thr Thr Ala Ser Ile
 Ala Glu Tyr Asn Lys Leu Lys Gln Gln Ala Asp Thr Ile Leu Asn Glu
@@ -794,7 +794,7 @@ Asp Gly Leu Val Thr Lys Leu Gln Ala Ala Leu Ile Asp Asn Gln Ala
 Ala Ile Ala Glu Leu Asp Thr Lys Ala Gln Glu Lys Val Thr Ala Ala
 Gln Gln Ser Lys Lys Val Thr Gln Asp Glu Val Ala Ala Leu Val Thr
 Lys Ile Asn Asn Asp Lys Asn Asn Ala Ile Ala Glu Ile Asn Lys Gln
-Thr Thr Ser Gln Gly val Thr Thr Glu Lys Asp Asn Gly Ile Ala val
+Thr Thr Ser Gln Gly Val Thr Thr Glu Lys Asp Asn Gly Ile Ala Val
 Leu Glu Gln Asp Val Ile Thr Pro Thr Val Lys Pro Gln Ala Lys Gln
 Asp Ile Ile Gln Ala Val Thr Thr Arg Lys Gln Gln Ile Lys Lys Ser
 Asn Ala Ser Leu Gln Asp Glu Lys Asp Val Ala Asn Asp Lys Ile Gly
@@ -850,18 +850,18 @@ Leu Ala Thr Lys Ala Asn Glu Gln Lys Ala Leu Ile Ala Gln Thr
 Ala Asp Ala Thr Thr Glu Glu Lys Glu Gln Ala Asn Gln Gln Val
 Asp Ala Gln Leu Thr Gln Gly Asn Gln Asn Ile Glu Asn Ala Gln
 Ser Ile Asp Asp Val Asn Thr Ala Lys Asp Asn Ala Ile Gln Ala
-Ile Asp Pro Ile Gln Ala Ser Thr Asp Val Lye Thr Asn Ala Arg
+Ile Asp Pro Ile Gln Ala Ser Thr Asp Val Lys Thr Asn Ala Arg
 Ala Glu Leu Leu Thr Glu Met Gln Asn Lys Ile Thr Glu Ile Leu
 Asn Asn Asn Glu Thr Thr Asn Glu Glu Lys Gly Asn Asp Ile Gly
 Pro Val Arg Ala Ala Tyr Glu Glu Gly Leu Asn Asn Ile Asn Ala
-Ala Thr Thr Thr Gly Asp Val Thr Ihr Ala Lys Asp Thr Ala Val
+Ala Thr Thr Thr Gly Asp Val Thr Thr Ala Lys Asp Thr Ala Val
 Gln Lys Val Gln Gln Leu His Ala Asn Pro Val Lys Lys Pro Ala
 Gly Lys Lys Glu Leu Asp Gln Ala Ala Ala Asp Lys Lys Thr Gln
 Ile Glu Gln Thr Pro Asn Ala Ser Gln Gln Glu Ile Asn Asp Ala
 Lys Gln Glu Val Asp Thr Glu Leu Asn Gln Ala Lys Thr Asn Val
-App Gln Ser Ser Thr Asn Clu Tyr Val Asp Asn Ala Val Lys Clu
+Asp Gln Ser Ser Thr Asn Glu Tyr Val Asp Asn Ala Val Lys Glu
 Gly Lys Ala Lys Ile Asn Ala Val Lys Thr Phe Ser Glu Tyr Lys
-Lys App Ala Leu Ala Lys Ile Glu Asp Ala Tyr Asn Ala Lys Val
+Lys Asp Ala Leu Ala Lys Ile Glu Asp Ala Tyr Asn Ala Lys Val
 Asn Glu Ala Asp Asn Ser Asn Ala Ser Thr Ser Ser Glu Ile Ala
 Glu Ala Lys Gln Lys Leu Ala Glu Leu Lys Gln Thr Ala Asp Gln
 Asn Val Asn Gln Ala Thr Ser Lys Asp Asp Ile Glu Val Gln Ile
@@ -875,7 +875,7 @@ Ala Thr Val Lys Pro Lys Ala Asn Gln Ala Ile Glu Ala Lys Ala
 Glu Asp Thr Lys Glu Ser Ile Asp His Ser Asp Gln Leu Thr Ala
 Glu Glu Lys Thr Glu Ala Leu Ala Met Ile Lys Gln Ile Thr Asp
 Gln Ala Lys Gln Gly Ile Thr Asp Ala Thr Thr Thr Ala Glu Val
-Glu Lye Ala Lys Ala Gln Gly Leu Glu Ala Phe Asp Asn Ile Gln
+Glu Lys Ala Lys Ala Gln Gly Leu Glu Ala Phe Asp Asn Ile Gln
 Ile Asp Ser Thr Glu Lys Gln Lys Ala Ile Glu Glu Leu Glu Thr
 Ala Leu Asp Gln Ile Glu Ala Gly Val Asn Val Asp Ala Asp Ala
 Thr Thr Glu Glu Lys Glu Ala Phe Thr Asn Ala Leu Glu Asp Ile
@@ -884,16 +884,16 @@ Glu Ile Ala Thr Val Lys Asn Ser Ala Leu Glu Gln Leu Lys Ala
 Gln Arg Ile Asn Pro Val Val Lys Lys Asn Ala Leu Glu Ala Ile
 Arg Glu Val Val Asn Lys Gln Ile Glu Ile Ile Lys Asn Ala Asp
 Ala Asp Ala Ser Ala Lys Glu Ile Ala Arg Thr Asp Leu Gly Arg
-Tyr Phe Asp Arg Phe Ala Asp Lye Leu Asp Lys Thr Gln Thr Asn
+Tyr Phe Asp Arg Phe Ala Asp Lys Leu Asp Lys Thr Gln Thr Asn
 Thr Glu Val Ala Glu Leu Gln Asn Val Thr Ile Pro Ala Ile Glu
 Ala Ile Val Pro Gln Asn Asp Pro Asp Ala Asn Asp Thr Asn Asn
 Gly Thr Asp Asn Asn Asp Ala Thr Ala Asn Ser Asn Ala Asn Ala
 Thr Pro Glu Asn Thr Gly Gln Pro Asn Val Ser Glu Thr Thr Asp
-Asn Gly Lys Ala App Ala Ser Pro Thr Thr Pro Asn Asn Ser App
+Asn Gly Lys Ala Asp Ala Ser Pro Thr Thr Pro Asn Asn Ser Asp
 Ala Ala Thr Gly Glu Thr Thr Val Thr Ser Ala Thr Asp Asp Ala
 Lys Asp Lys Pro Gln Ala Asn Asn Asn Ser Ser Ala Asp Ala Ser
 Thr Asn Ser Pro Thr Met Asp Asn Asp Val Thr Ser Lys Pro Glu
-Val Glu Ser Thr Asn Apn Gly Thr Thr Asp Lys Pro Val Thr Glu
+Val Glu Ser Thr Asn Asn Gly Thr Thr Asp Lys Pro Val Thr Glu
 Thr Asp Asn Ala Thr Pro Ala Glu Ser Thr Thr Asn Asn Asn Ser
 Thr Thr Thr Ala Thr Asn Glu Asn Ala Pro Thr Gly Ser Thr Ala
 Thr Ala Pro Thr Thr Ala Ser Thr Glu Ala Ala Ser Ser Ala Asp
@@ -906,8 +906,8 @@ Lys Asp Lys Glu Glu Ser Thr Thr Asn Gln Thr Asp Ala Gly Gln
 Leu Lys Ser Glu Thr Asn Val Ala Ser Asn Glu Ala Asp Lys Ser
 Pro Ser Lys Ala Asp Thr Glu Val Ser Asn Lys Pro Ser Thr Ser
 Ala Ser Ser Glu Ala Lys Asp Lys Met Thr Ser Thr Asn Val Ser
-Gln Lys Asp App Thr Ala Thr Ala Asp Thr Asn Asp Thr Gin Lys
-Ser Val Gly Pro Val Ala Asn Asn Lys Ala Lys Acp Met Gin Thr
+Gln Lys Asp Asp Thr Ala Thr Ala Asp Thr Asn Asp Thr Gln Lys
+Ser Val Gly Pro Val Ala Asn Asn Lys Ala Lys Asp Met Gln Thr
 Asn Asp Thr Gln Lys Ser Val Gly Ser Ala Ala Asn Asn Lys Ala
 Thr Gln Asn Asp Gly Ala Asn Ala Ser Pro Ala Thr Val Ser Asn
 Gly Ser His Ser Met His Gln Asp Met Leu Asn Val Thr Lys Pro
