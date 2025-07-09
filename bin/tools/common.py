@@ -657,10 +657,8 @@ if __name__ == "__main__":
             json_file = Path("/tmp") / json_filename
             json_file.write_text(json.dumps(json_data))
 
-            # Use a permanent output directory and filename for inspection
-            output_dir = Path("/tmp/test_json_to_fasta")
-            output_dir.mkdir(parents=True, exist_ok=True)
-            fasta_path = parse_json_to_fasta(json_file, output_dir, "test_output")
+            fasta_path = Path("/tmp")
+            fasta_file = parse_json_to_fasta(json_file, fasta_path, "test_output")
 
             self.assertIsNotNone(fasta_path)
             self.assertTrue(fasta_path.exists())
@@ -681,8 +679,8 @@ if __name__ == "__main__":
                 fasta_path.unlink() # remove the created FASTA file
             if json_file.exists():
                 json_file.unlink() # remove the created JSON file
-            if output_dir.exists():
-                shutil.rmtree(output_dir)
+            if fasta_file.exists():
+                fasta_file.unlink()
 
     
     class CSVToFastaTests(unittest.TestCase):

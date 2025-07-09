@@ -11,6 +11,10 @@ Overview:
 Arguments:
     pathogen (str): Subdirectory under `data/` containing pathogen data and antigen CSV.
     organism (str): Full name of the organism (used in UniProt queries).
+    output (str): Optional output directory for compiled protein data. If not specified, defaults to
+                  `data/<pathogen>/<organism>_compiled_proteins.csv`.
+    input (str): Optional input CSV file with antigen data. If not specified, defaults to
+                 `data/<pathogen>/<organism>_compiled_antigens.csv`.
 
 Requirements:
     - Input CSV file with antigen data present in the specified pathogen directory.
@@ -71,7 +75,10 @@ def fetch_uniprot_by_accession(accession, organism):
         organism (str): Organism name for the query.
     Returns:
         dict or None: JSON response from UniProt or None if failed."""
-    url = f"{UNIPROT_API_BASE}?offset=0&size=-1&accession={accession}&organism={organism.replace(' ', '%20')}"
+    if organism is None or organism.lower() == "null":
+        url = f"{UNIPROT_API_BASE}/{accession}"
+    else:
+        url = f"{UNIPROT_API_BASE}?offset=0&size=-1&accession={accession}&organism={organism.replace(' ', '%20')}"
     headers = {"Accept": "application/json"}
     try:
         response = requests.get(url, headers=headers)
@@ -97,6 +104,10 @@ def fetch_uniprot_by_gene(gene_name, organism):
         dict or None: JSON response from UniProt or None if failed.
     """
     headers = {"Accept": "application/json"}
+    if organism is None or organism.lower() == "null":
+        query = f"{UNIPROT_API_BASE}?offset=0&size=-1&gene={gene_name}"
+    else:
+        organism = organism.replace(" ", "%20")
     query = f"{UNIPROT_API_BASE}?offset=0&size=-1&gene={gene_name}&organism={organism}"
     try:
         response = requests.get(query, headers=headers)
@@ -186,7 +197,7 @@ def load_antigen_records(file_path):
             records.append(antigen)
     return records
 
-def main(pathogen, organism):
+def main(pathogen, organism="null", output=None, input=None):
     """
     Main function to fetch and compile UniProt protein data based on antigen records.
     Reads antigen data from a CSV file, queries UniProt for each antigen,
@@ -196,9 +207,19 @@ def main(pathogen, organism):
         organism (str): Full name of the organism to search against.
     """
     pathogen_dir = os.path.join("data", pathogen)
-    organism_tag = organism.replace(" ", "_").lower()
-    antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_antigens.csv")
-    output_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv")
+    if organism is not None and organism.lower() != "null":
+        organism_tag = organism.replace("_", " ").lower()
+    else:
+        organism_tag = "null"
+
+    if not input:
+        antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_antigens.csv")
+    else:
+        antigens_file = os.path.join(pathogen_dir, input)
+    if not output:
+        output_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv") # Default output path
+    else:
+        output_file = os.path.join(pathogen_dir, output)
 
     if not os.path.exists(antigens_file):
         print(f"[FATAL] Antigen file not found: {antigens_file}")
@@ -209,11 +230,11 @@ def main(pathogen, organism):
     seen_accessions = set()
 
     for record in antigen_records:
-        antigen_name = record["antigen_name"]
-        gene_name = record["gene_name"]
-        uniprot_id = record["uniprot_id"]
+        antigen_name = record.get("antigen_name")
+        gene_name = record.get("gene_name")
+        uniprot_id = record.get("uniprot_id")
 
-        print(f"[INFO] Processing antigen: {antigen_name}")
+        print(f"[INFO] Processing antigen: {antigen_name}, Gene: {gene_name}, UniProt ID: {uniprot_id}")
 
         entry = None
         used_method = None
@@ -257,7 +278,12 @@ if __name__ == "__main__":
         usage="python fetch_sequences_Uniprot.py <pathogen_directory> <pathogen_name>"
     )
     parser.add_argument("pathogen_directory", help="Directory name under data/")
-    parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    parser.add_argument("--pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    parser.add_argument("--output", help="Output directory for compiled protein data (default: <pathogen_directory>/<pathogen_name>_compiled_proteins.csv)")
+    parser.add_argument("--input", help="Input CSV file with antigen data (default: <pathogen_directory>/<pathogen_name>_compiled_antigens.csv)")
     args = parser.parse_args()
 
-    main(args.pathogen_directory, args.pathogen_name)
+    if not args.pathogen_name and not args.input:
+        parser.error("You must specify either a pathogen name or an input file.")
+
+    main(args.pathogen_directory, args.pathogen_name, output=args.output, input=args.input)
