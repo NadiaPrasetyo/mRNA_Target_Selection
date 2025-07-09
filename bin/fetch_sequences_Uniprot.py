@@ -197,7 +197,20 @@ def load_antigen_records(file_path):
             records.append(antigen)
     return records
 
-def main(pathogen, organism="null", output=None, input=None):
+def write_fasta_file(protein_data, output_file):
+    """
+    Writes protein sequences to a FASTA file.
+    Args:
+        protein_data (list): List of dictionaries containing protein metadata.
+        output_file (str): Path to the output FASTA file.
+    """
+    with open(output_file, 'w') as fasta_out:
+        for protein in protein_data:
+            fasta_out.write(f">{protein['uniprot_accession']} {protein['protein_name']} ({protein['organism_name']})\n")
+            fasta_out.write(protein['sequence'] + '\n')
+    print(f"[DONE] Wrote {len(protein_data)} proteins to FASTA: {output_file}")
+
+def main(pathogen, organism="null", output=None, input=None, fasta=False):
     """
     Main function to fetch and compile UniProt protein data based on antigen records.
     Reads antigen data from a CSV file, queries UniProt for each antigen,
@@ -269,6 +282,10 @@ def main(pathogen, organism="null", output=None, input=None):
         writer.writeheader()
         writer.writerows(protein_data)
 
+    if fasta:
+        fasta_file = output_file.replace(".csv", ".fasta")
+        write_fasta_file(protein_data, fasta_file)
+
     print(f"[DONE] Wrote {len(protein_data)} proteins to: {output_file}")
 
 if __name__ == "__main__":
@@ -281,9 +298,10 @@ if __name__ == "__main__":
     parser.add_argument("--pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
     parser.add_argument("--output", help="Output directory for compiled protein data (default: <pathogen_directory>/<pathogen_name>_compiled_proteins.csv)")
     parser.add_argument("--input", help="Input CSV file with antigen data (default: <pathogen_directory>/<pathogen_name>_compiled_antigens.csv)")
+    parser.add_argument("--fasta", action="store_true", help="Output in FASTA format AND CSV")
     args = parser.parse_args()
 
     if not args.pathogen_name and not args.input:
         parser.error("You must specify either a pathogen name or an input file.")
 
-    main(args.pathogen_directory, args.pathogen_name, output=args.output, input=args.input)
+    main(args.pathogen_directory, args.pathogen_name, output=args.output, input=args.input, fasta=args.fasta)
