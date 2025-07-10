@@ -5,7 +5,7 @@ library(tidyverse)
 # Define paths
 ks_file <- "../../results/S.aureus/ks_test_results.csv"
 base_path <- "../../results/S.aureus/raw_data"
-output_dir <- "feature_distributions"
+output_dir <- "../../results/S.aureus/feature_distributions"
 
 # Read KS test results and filter for significant features with p-value < 0.05
 feature_subfeature <- read_csv(ks_file, show_col_types = FALSE) %>%
@@ -55,7 +55,6 @@ plot_distributions <- function(data, output_dir) {
     
     p <- ggplot(df_plot, aes(x = set, y = value, fill = set)) +
       geom_violin(trim = FALSE, alpha = 0.5) +
-      geom_boxplot(width = 0.2, outlier.shape = NA) +
       labs(title = paste(feat, "-", subf), x = "", y = "Value") +
       theme_minimal(base_size = 14) +
       scale_fill_brewer(palette = "Set2") +
