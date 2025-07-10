@@ -200,7 +200,7 @@ def main():
         txt_files = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
 
     # Prepare temporary JSON directory for MHCI and MHCII and output directories for all tools
-    temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
+    temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys(), temp=True)
 
     all_jobs = []
     for tool_type, tool_path in final_tools.items():

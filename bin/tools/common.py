@@ -334,31 +334,33 @@ def get_fasta_files(base_path: Path, sequence_subdir: str):
     fasta_files = list(seq_dir.glob("*.fasta"))
     return fasta_files
 
-def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
+def prepare_output_dirs(pathogen_path, output_subdir, selected_tools, temp=False):
     """
     Prepare output directories for the specified pathogen and tools.
+    
     Args:
         pathogen_path (Path): Path to the pathogen directory.
         output_subdir (str): Subdirectory name for output files.
         selected_tools (list): List of selected tools to create subdirectories for.
+        temp (bool): Whether to create a temporary JSON directory (default: False).
+    
     Returns:
-        tuple: Paths to the temporary JSON directory and the output directory.
+        tuple: (temp_json_dir or None, output_dir)
     """
     output_dir = pathogen_path / output_subdir
 
-    # Create only the needed tool subdirectories
+    # Create tool-specific subdirectories under output_dir
     for tool in selected_tools:
         (output_dir / tool.lower()).mkdir(parents=True, exist_ok=True)
 
-    # Only create temp_json_dir if needed
-    if selected_tools in ["MHCI", "MHCII", "BCell"]:
+    # Create temp_json_dir only if requested via temp=True
+    if temp:
         temp_json_dir = pathogen_path / "temp_json"
         temp_json_dir.mkdir(parents=True, exist_ok=True)
         return temp_json_dir, output_dir
-    
-    else:
-        # If no temp_json_dir is needed, return None
-        return None, output_dir
+
+    return None, output_dir
+
 
 def cleanup_temp(temp_dir: Path):
     """
