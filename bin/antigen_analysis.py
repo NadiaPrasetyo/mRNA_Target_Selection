@@ -73,7 +73,6 @@ def run_parallel_jobs(jobs, threads):
     allergenicity_jobs = [job for job in jobs if job[0] == "ALGPRED"]
     other_jobs = [job for job in jobs if job[0] != "ALGPRED"]
 
-
     with ThreadPoolExecutor(max_workers=threads) as executor:
         # Run non-Allergenicity jobs in parallel
         logging.info(f"Running {len(jobs) - len(allergenicity_jobs)} jobs in parallel with {threads} threads")
@@ -86,11 +85,13 @@ def run_parallel_jobs(jobs, threads):
 
     # Run Allergenicity jobs serially
     for job in allergenicity_jobs:
+        tool_name, _, input_file, _, _, _ = job
         try:
-            logging.info(f"Running Allergenicity for {file.name}")
-            executor.submit(run_tool, *job).result()  # Wait for each job to complete
+            logging.info(f"Running Allergenicity for {input_file.name}")
+            run_tool(*job)
         except Exception as e:
-            logging.error(f"❌ Allergenicity failed for {file.name}: {e}")
+            logging.error(f"❌ Allergenicity failed for {input_file.name}: {e}")
+
 
     # Clean up temporary and intermediate files after CLUSTER jobs
     for job in jobs:
