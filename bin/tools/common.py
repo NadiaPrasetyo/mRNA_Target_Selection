@@ -499,7 +499,7 @@ def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
         txt_files.append(txt_file)
     return txt_files
 
-def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name, method="netmhcpan_el"):
+def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
     """
     Write a JSON file for a given sequence ID and its associated sequence lines.
     Args:
@@ -517,6 +517,7 @@ def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_
     header = seq_id_line.strip()
     antigen_id = header[1:].split()[0]
     sequence = "".join(seq_lines).replace("*", "").strip()
+    method = "netmhcpan_el" if tool_type.lower() == "mhci" else "netmhciipan_el"
     
     if not sequence:
         print(f"⚠️ Empty sequence for {antigen_id}")

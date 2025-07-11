@@ -57,9 +57,9 @@ def run(_, input_fasta: Path, output_dir: Path, _batch_size: int):
     try:
         logging.info(f"📦 Creating MMseqs DB for {input_fasta.name}")
         subprocess.run(["mmseqs", "createdb", str(input_fasta), str(db_path)], check=True)
-
+        
         logging.info(f"🔗 Running clustering")
-        subprocess.run(["mmseqs", "cluster", str(db_path), str(clu_path), str(tmp_dir), "-s 7.5"], check=True) # Using -s 7.5 for high sensitivity clustering
+        subprocess.run(["mmseqs", "cluster", str(db_path), str(clu_path), str(tmp_dir),"-s", "7.5"], check=True)# high sensitivity clustering
 
         logging.info(f"📄 Generating TSV output")
         subprocess.run(["mmseqs", "createtsv", str(db_path), str(db_path), str(clu_path), str(tsv_path)], check=True)

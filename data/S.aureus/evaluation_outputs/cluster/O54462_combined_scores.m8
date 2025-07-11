@@ -1,6 +1,6 @@
-antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239	antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239	1.000	112	0	0	1	112	1	112	6.948E-72	221
-antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239	antigen_92|O54462|Superantigen-like|BX571857.1|tpos:134723-134837	0.465	116	57	3	1	112	1	115	7.372E-23	81
-antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239	antigen_92|O54462|Superantigen-like|CP000253.1|tpos:120025-120117	0.421	95	49	4	1	92	2	93	3.124E-17	64
-antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239	antigen_92|O54462|Superantigen-like|BX571856.1|tpos:140004-140096	0.440	93	50	2	1	92	2	93	4.285E-17	64
-antigen_92|O54462|Superantigen-like|BA000018.3|tpos:637363-637596	antigen_92|O54462|Superantigen-like|BA000018.3|tpos:637363-637596	1.000	234	0	0	1	234	1	234	2.499E-163	471
+antigen_92|O54462|Superantigen-like|CP000253.1|tpos:120025-120117	antigen_92|O54462|Superantigen-like|CP000253.1|tpos:120025-120117	1.000	93	0	0	1	93	1	93	8.439E-61	188
+antigen_92|O54462|Superantigen-like|CP000253.1|tpos:120025-120117	antigen_92|O54462|Superantigen-like|BX571856.1|tpos:140004-140096	0.774	93	21	0	1	93	1	93	8.302E-45	143
+antigen_92|O54462|Superantigen-like|CP000253.1|tpos:120025-120117	antigen_92|O54462|Superantigen-like|BX571857.1|tpos:134723-134837	0.414	94	52	2	2	92	1	94	7.237E-21	74
+antigen_92|O54462|Superantigen-like|CP000253.1|tpos:120025-120117	antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239	0.421	95	49	4	2	93	1	92	6.135E-19	68
 antigen_92|O54462|Superantigen-like|HE681097.1|tpos:130593-130788	antigen_92|O54462|Superantigen-like|HE681097.1|tpos:130593-130788	1.000	196	0	0	1	196	1	196	1.231E-133	392
+antigen_92|O54462|Superantigen-like|HE681097.1|tpos:130593-130788	antigen_92|O54462|Superantigen-like|BA000018.3|tpos:637363-637596	0.327	116	74	3	82	196	121	233	1.130E-14	60
