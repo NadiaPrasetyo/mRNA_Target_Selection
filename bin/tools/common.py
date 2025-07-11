@@ -458,9 +458,9 @@ def check_antigen_tools(tool_root: Path):
         raise FileNotFoundError("MMseqs2 not found in PATH. Install via: conda install -c bioconda mmseqs2")
     
     # Algpred2 dependencies file check
-    algpred_path = "algpred2_dependencies.yml"
+    algpred_path = Path("algpred2_dependencies.yml")
     if algpred_path.exists():
-        tool_paths["ALGPRED"] = str(algpred_path)
+        tool_paths["ALGPRED"] = "algpred2" # placeholder, not used directly
     else:
         print(f"⚠️ Algpred2 dependencies file not found at {algpred_path}. Please get the dependency file from GitHub.")
 
