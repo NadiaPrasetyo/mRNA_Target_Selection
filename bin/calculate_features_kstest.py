@@ -362,6 +362,7 @@ def parse_cluster_dir(directory):
     """
     logging.info(f"Parsing cluster conservation dir {directory}")
     clusters = defaultdict(list)
+    unique_strains = set()
 
     # Step 1: List all cluster files
     try:
@@ -382,6 +383,8 @@ def parse_cluster_dir(directory):
                     if len(parts) < 12:
                         continue
                     query_id = parts[0]
+                    member_id = parts[1]
+                    unique_strains.add(member_id) #collect unique strains from ALL the clusters
                     try:
                         percent_identity = float(parts[2])
                         clusters[query_id].append(percent_identity)
@@ -396,7 +399,7 @@ def parse_cluster_dir(directory):
     # Step 3: Compute conservation scores and store them as subfeatures
     for identities in clusters.values():
         if identities:
-            conservation_score = sum(identities) / len(identities)
+            conservation_score = sum(identities) / len(unique_strains)  # Average over unique strains
             cluster_scores.append(conservation_score)
             results.append({
                 "feature": "cluster_conservation",
@@ -504,7 +507,7 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mhcii": lambda: parse_mhc_dir(os.path.join(base_dir, "mhcii")),
         "signalp": lambda: parse_signalp_dir(os.path.join(base_dir, "signalp")),
         "targetp": lambda: parse_targetp_dir(os.path.join(base_dir, "targetp")),
-        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(eval_dir, "allergenicity")),
+        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(eval_dir, "algpred")),
         "cluster": lambda: parse_cluster_dir(os.path.join(eval_dir, "cluster")),
         "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcoverage"))
     }
