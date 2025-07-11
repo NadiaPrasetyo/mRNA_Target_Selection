@@ -1,0 +1,5 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_72|A0AAX2YX78|Extracellular|CP002114.3|tpos:289195-289338,0.243,0.5,0.0,0.743,Allergen
+antigen_13|Q2FWC4|Peptidase|CP002114.3|tpos:431027-431311,0.316,0.5,-0.5,0.316,Allergen
+antigen_9|Q2FVL8|Assimilatory|CP002114.3|tpos:327887-328062,0.6,0.5,-0.5,0.6,Allergen
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835,0.018,0.5,0.0,0.518,Allergen

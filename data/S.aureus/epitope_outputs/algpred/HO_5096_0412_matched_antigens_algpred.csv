@@ -1,0 +1,17 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_77|Q5HDD7|Immunoglobulin-binding|HE681097.1|tpos:773380-773815,0.316,0.0,0.0,0.316,Allergen
+antigen_61|Q2G2G6|DUF4064|HE681097.1|tpos:324269-324607,0.056,0.5,0.0,0.556,Allergen
+antigen_86|A0A2S1FUJ1|Superantigen-like|HE681097.1|tpos:128542-128766,0.27,0.0,0.5,0.77,Allergen
+antigen_87|A0A0H3K7M3|Superantigen-like|HE681097.1|tpos:130586-130788,0.228,0.0,0.5,0.728,Allergen
+antigen_92|O54462|Superantigen-like|HE681097.1|tpos:130593-130788,0.219,0.0,0.5,0.719,Allergen
+antigen_66|A0A1S6DAJ0|5'-nucleotidase|HE681097.1|tpos:9727-10498,0.285,0.5,0.5,1.285,Allergen
+antigen_65|Q2G2Y0|Staphylococcal|HE681097.1|tpos:130218-130448,0.142,0.0,0.5,0.642,Allergen
+antigen_33|Q2FZB1|Staphylococcal/Streptococcal|HE681097.1|tpos:128618-128746,0.281,0.0,0.5,0.781,Allergen
+antigen_83|Q2G1S6|Staphylococcal|HE681097.1|tpos:128542-128762,0.27,0.0,0.5,0.77,Allergen
+antigen_84|A0A0H3KAV8|Staphylococcal|HE681097.1|tpos:128542-128768,0.267,0.0,0.5,0.767,Allergen
+antigen_85|A0A2S1FUJ3|Superantigen-like|HE681097.1|tpos:130218-130449,0.151,0.0,0.5,0.651,Allergen
+antigen_19|Q2FWW3|Aminotransferase|HE681097.1|tpos:231053-231292,0.368,0.5,-0.5,0.368,Allergen
+antigen_81|A0A0H3KAV3|Staphylococcal|HE681097.1|tpos:128542-128767,0.267,0.0,0.5,0.767,Allergen
+antigen_82|A0A0H3KEE1|Staphylococcal|HE681097.1|tpos:128582-128759,0.257,0.0,0.5,0.757,Allergen
+antigen_5|Q2FVH8|Membrane|HE681097.1|tpos:187747-188037,0.015,0.5,0.0,0.515,Allergen
+antigen_72|A0AAX2YX78|Extracellular|HE681097.1|tpos:283967-284110,0.209,0.5,0.0,0.709,Allergen

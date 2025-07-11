@@ -1,0 +1,11 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_33|Q2FZB1|Staphylococcal/Streptococcal|BX571856.1|tpos:141388-141581,0.34,0.0,0.0,0.34,Allergen
+antigen_61|Q2G2G6|DUF4064|BX571856.1|tpos:346464-346802,0.058,0.5,0.0,0.558,Allergen
+antigen_66|A0A1S6DAJ0|5'-nucleotidase|BX571856.1|tpos:284953-285286,0.131,0.5,0.0,0.631,Allergen
+antigen_74|A0A0H2XIH9|Fibrinogen-binding|BX571856.1|tpos:362950-363005,0.346,0.0,0.0,0.346,Allergen
+antigen_14|Q2FWD6|Putative|BX571856.1|tpos:57928-58406,0.566,0.0,0.5,1.066,Allergen
+antigen_85|A0A2S1FUJ3|Superantigen-like|BX571856.1|tpos:142044-142275,0.117,0.0,0.5,0.617,Allergen
+antigen_87|A0A0H3K7M3|Superantigen-like|BX571856.1|tpos:141396-141577,0.325,0.0,0.0,0.325,Allergen
+antigen_46|Q2G155|Lipase|BX571856.1|tpos:111887-112577,0.174,0.5,0.0,0.674,Allergen
+antigen_65|Q2G2Y0|Staphylococcal|BX571856.1|tpos:142044-142274,0.106,0.0,0.5,0.606,Allergen
+antigen_9|Q2FVL8|Assimilatory|BX571856.1|tpos:289201-289500,0.414,0.5,-0.5,0.414,Allergen

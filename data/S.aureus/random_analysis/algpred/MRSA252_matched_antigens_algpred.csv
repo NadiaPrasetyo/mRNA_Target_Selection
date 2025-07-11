@@ -1,0 +1,11 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_121|Q99U50|L-threonine|BX571856.1|tpos:170693-170933,0.582,0.0,0.0,0.582,Allergen
+antigen_30|P65288|Lipase|BX571856.1|tpos:111893-112570,0.195,0.5,0.0,0.695,Allergen
+antigen_164|Q6GIM9|Putative|BX571856.1|tpos:453161-453238,0.411,0.0,0.0,0.411,Allergen
+antigen_53|Q2FIK4|Extracellular|BX571856.1|tpos:275462-275802,0.244,0.5,0.0,0.744,Allergen
+antigen_98|A5IVY0|1-pyrroline-5-carboxylate|BX571856.1|tpos:57932-58392,0.577,0.0,0.5,1.077,Allergen
+antigen_194|Q2FEK3|Urease|BX571856.1|tpos:756427-756997,0.418,0.0,0.0,0.418,Allergen
+antigen_156|A8YZL5|Pyridoxal|BX571856.1|tpos:175447-175741,0.066,0.5,0.0,0.566,Allergen
+antigen_132|Q2YV11|Putative|BX571856.1|tpos:57924-58418,0.498,0.0,0.5,0.998,Allergen
+antigen_182|Q2FFV9|Fluoride-specific|BX571856.1|tpos:604862-604978,0.058,0.5,0.0,0.558,Allergen
+antigen_168|A0A0H3K6Z9|Staphylococcal|BX571856.1|tpos:142044-142274,0.106,0.0,0.5,0.606,Allergen

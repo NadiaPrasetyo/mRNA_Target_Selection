@@ -1,0 +1,15 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_85|A0A2S1FUJ3|Superantigen-like|BA000018.3|tpos:637407-637596,0.266,0.0,0.5,0.766,Allergen
+antigen_9|Q2FVL8|Assimilatory|BA000018.3|tpos:332120-332295,0.6,0.5,-0.5,0.6,Allergen
+antigen_92|O54462|Superantigen-like|BA000018.3|tpos:637363-637596,0.663,0.5,0.5,1.663,Allergen
+antigen_10|Q2FVV4|CPBP|BA000018.3|tpos:641647-641747,0.087,0.5,0.0,0.587,Allergen
+antigen_81|A0A0H3KAV3|Staphylococcal|BA000018.3|tpos:637485-637575,0.272,0.0,0.5,0.772,Allergen
+antigen_86|A0A2S1FUJ1|Superantigen-like|BA000018.3|tpos:637520-637595,0.149,0.0,0.5,0.649,Allergen
+antigen_33|Q2FZB1|Staphylococcal/Streptococcal|BA000018.3|tpos:637365-637575,0.339,0.5,0.5,1.339,Allergen
+antigen_70|A0AAE2ZXQ7|Collagen|BA000018.3|tpos:190137-190786,0.421,0.0,0.0,0.421,Allergen
+antigen_38|Q2G034|DUF4887|BA000018.3|tpos:256836-257044,0.146,0.5,0.0,0.646,Allergen
+antigen_14|Q2FWD6|Putative|BA000018.3|tpos:57940-58418,0.563,0.0,0.5,1.063,Allergen
+antigen_66|A0A1S6DAJ0|5'-nucleotidase|BA000018.3|tpos:9748-10519,0.308,0.5,0.5,1.308,Allergen
+antigen_46|Q2G155|Lipase|BA000018.3|tpos:113567-114257,0.179,0.5,0.0,0.679,Allergen
+antigen_83|Q2G1S6|Staphylococcal|BA000018.3|tpos:637523-637595,0.141,0.0,0.5,0.641,Allergen
+antigen_87|A0A0H3K7M3|Superantigen-like|BA000018.3|tpos:637377-637574,0.38,0.5,0.5,1.38,Allergen

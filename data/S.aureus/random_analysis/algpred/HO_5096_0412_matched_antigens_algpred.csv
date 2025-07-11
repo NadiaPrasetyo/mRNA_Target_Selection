@@ -1,0 +1,9 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_43|P06886|Toxic|HE681097.1|tpos:130593-130788,0.219,0.0,0.5,0.719,Allergen
+antigen_8|P64400|33|HE681097.1|tpos:158184-158476,0.615,0.0,0.0,0.615,Allergen
+antigen_121|Q99U50|L-threonine|HE681097.1|tpos:32346-32556,0.316,0.0,0.0,0.316,Allergen
+antigen_129|P63980|DNA|HE681097.1|tpos:377975-378452,0.364,0.0,0.0,0.364,Allergen
+antigen_168|A0A0H3K6Z9|Staphylococcal|HE681097.1|tpos:130563-130789,0.232,0.0,0.5,0.732,Allergen
+antigen_183|Q8NYF5|Type|HE681097.1|tpos:92969-93977,0.079,0.5,0.0,0.579,Allergen
+antigen_45|Q6GJE0|Serine|HE681097.1|tpos:244867-244945,0.433,0.0,0.0,0.433,Allergen
+antigen_21|Q6GCF3|Putative|HE681097.1|tpos:104131-104352,0.16,0.5,0.0,0.66,Allergen

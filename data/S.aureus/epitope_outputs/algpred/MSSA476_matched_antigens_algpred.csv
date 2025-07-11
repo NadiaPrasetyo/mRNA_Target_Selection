@@ -1,0 +1,9 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_72|A0AAX2YX78|Extracellular|BX571857.1|tpos:704357-704508,0.273,0.5,0.0,0.773,Allergen
+antigen_92|O54462|Superantigen-like|BX571857.1|tpos:134723-134837,0.15,0.0,0.5,0.65,Allergen
+antigen_73|G0Z025|Enterotoxin-like|BX571857.1|tpos:134764-134846,0.107,0.0,0.5,0.607,Allergen
+antigen_66|A0A1S6DAJ0|5'-nucleotidase|BX571857.1|tpos:9706-10477,0.29,0.5,0.5,1.29,Allergen
+antigen_80|A0A6M8B1R6|Staphylococcal|BX571857.1|tpos:638941-639104,0.347,0.0,0.5,0.847,Allergen
+antigen_17|Q2FWS0|Phi|BX571857.1|tpos:306577-306658,0.332,0.0,0.0,0.332,Allergen
+antigen_9|Q2FVL8|Assimilatory|BX571857.1|tpos:341346-341521,0.6,0.5,-0.5,0.6,Allergen
+antigen_70|A0AAE2ZXQ7|Collagen|BX571857.1|tpos:186226-186875,0.412,0.0,0.0,0.412,Allergen
