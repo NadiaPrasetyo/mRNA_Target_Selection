@@ -1,10 +1,10 @@
 """
 evaluate_epitopes.py
-Command-line tool to evaluate predicted epitopes using immunoinformatics tools (e.g., AlgPred, PopCoverage).
+Command-line tool to evaluate predicted epitopes using immunoinformatics tools (e.g., PopCoverage).
 
 Overview:
     - Scans a specified pathogen epitope directory for predicted epitope files (mhci, mhcii, bcell).
-    - Runs selected evaluation tools (Allergenicity/AlgPred, PopCoverage) on each epitope file.
+    - Runs selected evaluation tools (PopCoverage) on each epitope file.
     - Validates outputs and skips jobs if results already exist and are valid.
     - Supports parallel execution for efficient processing.
     - Organizes results into structured output directories and cleans up temporary files.
@@ -14,17 +14,17 @@ Arguments:
     epitope_dir (Path): Directory under `pathogen_dir` containing epitope predictions (mhci/, mhcii/, bcell/).
     --tool-root (str, required): Root directory containing tool wrappers and executables.
     --threads (int, optional): Number of parallel threads to use (default: 4).
-    --tools (list, optional): List of tools to run (choices: Allergenicity, PopCoverage; default: all available).
+    --tools (list, optional): List of tools to run (choices: PopCoverage; default: all available).
     --output-dir (Path, optional): Output directory for results (default: evaluation_outputs).
     --verbose (flag, optional): Enable verbose logging.
 
 Requirements:
-    - Tool wrappers and executables for AlgPred and PopCoverage available under `tool-root`.
+    - Tool wrappers and executables for PopCoverage available under `tool-root`.
     - Input epitope files present in the specified epitope directory (JSON for mhci/mhcii, CSV for bcell).
     - Python packages: argparse, pathlib, concurrent.futures, logging.
 
 Usage Example:
-    python evaluate_epitopes.py sars_cov_2 epitopes --tool-root /opt/bio_tools --threads 8 --tools Allergenicity PopCoverage
+    python evaluate_epitopes.py sars_cov_2 epitopes --tool-root /opt/bio_tools --threads 8 --tools PopCoverage
 
 Outputs:
     data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<tool>.*   # Prediction results for each tool and input
@@ -37,10 +37,9 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import shutil
 
-from tools import run_algpred, run_popcoverage, common, extract_epitopes
+from tools import run_popcoverage, common, extract_epitopes
 
 tool_runners = {
-    "Allergenicity": run_algpred.run,
     "PopCoverage": run_popcoverage.run,
 }
 
@@ -93,11 +92,6 @@ def is_output_valid(tool, input_file, output_dir):
             files = list(out_dir.glob(f"{stem}*.txt")) + list(out_dir.glob(f"{stem}*.png"))
             return any(f.exists() and f.stat().st_size > 0 for f in files)
 
-        elif tool == "allergenicity":
-            # Allergenicity uses FASTA file name based on the epitope input file's stem
-            expected_output = out_dir / f"{stem}_algpred.csv"
-            return expected_output.exists() and expected_output.stat().st_size > 0
-
     except Exception as e:
         logging.warning(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
     return False
@@ -133,11 +127,9 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
     output_dir = Path(output_dir)
     epitope_dir = Path(epitope_dir)
-    fasta_inputs_dir = output_dir / "fasta_inputs"
     popcov_inputs_dir = output_dir / "popcov_inputs"
-    temp_dirs = [fasta_inputs_dir, popcov_inputs_dir]
+    temp_dirs = [popcov_inputs_dir]
 
-    allergenicity_jobs = [job for job in jobs if job[0] == "Allergenicity"]
     other_jobs = [job for job in jobs if job[0] == "PopCoverage"]
 
     epitope_map = {}
@@ -150,9 +142,6 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
 
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
         futures = []
-        for _, tool_path, _ in allergenicity_jobs:
-            fasta_inputs_dir.mkdir(parents=True, exist_ok=True)
-
         for tool, tool_path, file in other_jobs:
             if "bcell" in str(file).lower():
                 continue  # Skip B-cell for PopCoverage
@@ -167,22 +156,6 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
             except Exception as e:
                 logging.error(f"❌ Job failed: {e}")
 
-    # Run Allergenicity jobs serially
-    for _, tool_path, file in allergenicity_jobs:
-        out_dir = output_dir / "allergenicity"
-        try:
-            fasta_file = (
-                common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem)
-                if "bcell" in str(file).lower()
-                else common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
-            )
-            if fasta_file and fasta_file.exists():
-                logging.info(f"🚀 Running Allergenicity: {file.name}")
-                tool_runners["Allergenicity"](tool_path, fasta_file, out_dir)
-            else:
-                logging.warning(f"⚠️ FASTA not created for: {file.name}")
-        except Exception as e:
-            logging.error(f"❌ Allergenicity job failed for {file.name}: {e}")
 
     # Cleanup
     for temp_dir in temp_dirs:

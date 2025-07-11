@@ -93,7 +93,7 @@ def create_conda_env_if_needed():
     else:
         logging.info("✅ Conda environment already exists.")
 
-def run(tool_path: Path, input_fasta: Path, output_dir: Path):
+def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 0):
     """
     Main runner function compatible with pipeline:
     - tool_path: directory containing tools (unused here but kept for interface consistency)

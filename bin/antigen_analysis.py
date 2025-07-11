@@ -3,7 +3,7 @@ antigen_analysis.py
 Command-line tool to run SignalP and TargetP predictors on input FASTA files for antigen analysis.
 Overview:
     - Scans a specified pathogen sequence directory for FASTA files.
-    - Runs selected prediction tools (SignalP, TargetP) on each FASTA file.
+    - Runs selected prediction tools (SignalP, TargetP, Cluster, Allergenicity) on each FASTA file.
     - Supports parallel execution of jobs for efficient processing.
     - Organizes results into structured output directories.
 Arguments:
@@ -30,14 +30,15 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, common
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, common
 import shutil
 
 # Define the mapping of tool names to their runner functions
 TOOL_RUNNERS = {
     "SIGNALP": run_signalp.run,
     "TARGETP": run_targetp.run,
-    "CLUSTER": run_cluster.run
+    "CLUSTER": run_cluster.run, 
+    "ALGPRED": run_algpred.run,
 }
 
 # List of valid tools that can be run
@@ -68,13 +69,28 @@ def run_parallel_jobs(jobs, threads):
         jobs (list): List of tuples containing (tool_name, runner_func, input_file, output_dir, batch_size, tool_path).
         threads (int): Number of threads to use for parallel execution.
     """
+
+    allergenicity_jobs = [job for job in jobs if job[0] == "ALGPRED"]
+    other_jobs = [job for job in jobs if job[0] != "ALGPRED"]
+
+
     with ThreadPoolExecutor(max_workers=threads) as executor:
-        futures = [executor.submit(run_tool, *job) for job in jobs]
+        # Run non-Allergenicity jobs in parallel
+        logging.info(f"Running {len(jobs) - len(allergenicity_jobs)} jobs in parallel with {threads} threads")
+        futures = [executor.submit(run_tool, *job) for job in other_jobs]
         for f in futures:
             try:
                 f.result()
             except Exception as e:
                 logging.error(f"❌ Job failed: {e}")
+
+    # Run Allergenicity jobs serially
+    for job in allergenicity_jobs:
+        try:
+            logging.info(f"Running Allergenicity for {file.name}")
+            executor.submit(run_tool, *job).result()  # Wait for each job to complete
+        except Exception as e:
+            logging.error(f"❌ Allergenicity failed for {file.name}: {e}")
 
     # Clean up temporary and intermediate files after CLUSTER jobs
     for job in jobs:
@@ -162,10 +178,10 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
         identifier = stem  # e.g., 'HO_5096_0412_matched_antigens'
     elif mode == "accession":
         identifier = stem.split("_")[0]  # e.g., 'ABC123' from 'ABC123_combined'
-    else:
+    else: 
         raise ValueError(f"Unknown mode '{mode}' passed to is_job_done()")
     
-    extensions = [".tsv", ".fasta", ".txt", ".gff3"]
+    extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv"]
 
     for ext in extensions:
         for f in output_dir.glob(f"*{ext}"):
@@ -241,7 +257,7 @@ def main():
                 jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], fasta_path, cluster_output, 0, tool_paths["CLUSTER"]))
 
         # Handle SignalP and TargetP jobs
-        elif tool_name in ["SIGNALP", "TARGETP"]:
+        elif tool_name in ["SIGNALP", "TARGETP", "ALGPRED"]:
             output_dir = output_root / tool_name.lower()
             output_dir.mkdir(parents=True, exist_ok=True)
             for fasta_file in fasta_files:
