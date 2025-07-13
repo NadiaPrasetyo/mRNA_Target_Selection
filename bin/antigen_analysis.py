@@ -206,6 +206,27 @@ def main():
     parser.add_argument("--group", type=str, default="any", help="Group name for DeepLocPro: [any, archaea, positive, negative]; default is 'any'")
     args = parser.parse_args()
 
+    if args.verbose:
+        log_file = output_root / "antigen_analysis.log"
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        handlers = [
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler(log_file, mode='a')
+        ]
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            handlers=handlers,
+            force=True
+        )
+    else:
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            force=True
+        )
+
+
     data_path = Path("data") / args.pathogen_dir
     sequence_path = data_path / args.sequence_dir
     if not sequence_path.exists():
@@ -240,17 +261,6 @@ def main():
 
     output_root = data_path / args.output_dir
     output_root.mkdir(parents=True, exist_ok=True)
-    
-    if args.verbose:
-        # Prepare output directories first to get the correct output_dir
-        log_file = output_root / "antigen_analysis.log"
-        log_file.parent.mkdir(parents=True, exist_ok=True)
-        handlers = [logging.StreamHandler(sys.stdout), logging.FileHandler(log_file, mode='a')]
-        logging.basicConfig(level=logging.DEBUG, format="%(asctime)s %(levelname)s: %(message)s", handlers=handlers)
-    else:
-        logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s: %(message)s")
-
-
     jobs = []
 
     # Handle jobs
