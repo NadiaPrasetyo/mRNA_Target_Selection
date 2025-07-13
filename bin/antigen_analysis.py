@@ -206,6 +206,8 @@ def main():
     parser.add_argument("--group", type=str, default="any", help="Group name for DeepLocPro: [any, archaea, positive, negative]; default is 'any'")
     args = parser.parse_args()
     
+    data_path = Path("data") / args.pathogen_dir
+    
     output_root = data_path / args.output_dir
     output_root.mkdir(parents=True, exist_ok=True)
 
@@ -229,13 +231,11 @@ def main():
             force=True
         )
 
-
-    data_path = Path("data") / args.pathogen_dir
     sequence_path = data_path / args.sequence_dir
     if not sequence_path.exists():
         logging.error(f"❌ Invalid input directory: {sequence_path}")
         sys.exit(1)
-
+            
     fasta_files = common.get_fasta_files(data_path, args.sequence_dir)
     if not fasta_files:
         logging.error("❌ No FASTA files found.")
