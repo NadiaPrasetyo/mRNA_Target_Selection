@@ -464,6 +464,15 @@ def check_antigen_tools(tool_root: Path):
     else:
         print(f"⚠️ Algpred2 dependencies file not found at {algpred_path}. Please get the dependency file from GitHub.")
 
+    # Check for DeepLocPro tool
+    try:
+        biolib = __import__('biolib')
+        deeplocpro = biolib.load('KU/DeepLocPro')
+        tool_paths["DEEPLOC"] = deeplocpro.cli  # placeholder, not used directly
+    except ImportError:
+        print("⚠️ BioLib not installed. Please install via: pip install pybiolib")
+        tool_paths["DEEPLOC"] = None
+
     return tool_paths
 
 

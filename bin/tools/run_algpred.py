@@ -119,7 +119,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
         "-i", str(input_fasta),
         "-o", str(output_file),
         "-m", "2",  # hybrid-based model
-        "-d", "1"   # database features enabled
+        "-d", "2"   # display mode 2: all peptides (not just allergens)
     ]
 
     logging.info(f"🚀 Running AlgPred2.0 on {input_fasta.name}")

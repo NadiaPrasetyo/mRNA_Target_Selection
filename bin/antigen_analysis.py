@@ -30,7 +30,7 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, run_algpred, common
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, common
 import shutil
 
 # Define the mapping of tool names to their runner functions
@@ -39,6 +39,7 @@ TOOL_RUNNERS = {
     "TARGETP": run_targetp.run,
     "CLUSTER": run_cluster.run, 
     "ALGPRED": run_algpred.run,
+    "DEEPLOC": run_deeplocpro.run_deeplocpro
 }
 
 # List of valid tools that can be run
@@ -202,6 +203,7 @@ def main():
     parser.add_argument("--batch-size", type=int, default=10000)
     parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"))
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output for debugging")
+    parser.add_argument("--group", type=str, default="any", help="Group name for DeepLocPro: [any, archaea, positive, negative]; default is 'any'")
     args = parser.parse_args()
 
     data_path = Path("data") / args.pathogen_dir
@@ -267,6 +269,17 @@ def main():
                     continue
 
                 jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.batch_size, tool_paths[tool_name]))
+
+        # Handle DeepLocPro jobs
+        elif tool_name == "DEEPLOC":
+            output_dir = output_root / "deeplocpro"
+            output_dir.mkdir(parents=True, exist_ok=True)
+            for fasta_file in fasta_files:
+                if is_job_done(fasta_file, output_dir, mode="strain"):
+                    logging.info(f"⏭️ Skipping DEEPLOC for {fasta_file.name} (already processed)")
+                    continue
+
+                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.group, tool_paths["DEEPLOC"]))
 
     if not jobs:
         logging.info("No jobs to run. All files already processed.")
