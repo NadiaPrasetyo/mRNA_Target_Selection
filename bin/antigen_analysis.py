@@ -197,7 +197,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run SignalP, TargetP, and Cluster on input FASTA files")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
-    parser.add_argument("--tool-root", required=True, help="Root directory for tools")
+    parser.add_argument("--tool-root", help="Root directory for tools, required for SignalP and TargetP", default="none")
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS)
     parser.add_argument("--batch-size", type=int, default=10000)
@@ -217,20 +217,24 @@ def main():
         logging.error("❌ No FASTA files found.")
         sys.exit(1)
 
-    tool_root = Path(args.tool_root)
-    if not tool_root.exists():
-        logging.error(f"❌ Tool root does not exist: {tool_root}")
-        sys.exit(1)
+    tool_paths = {}
 
+    # Only resolve tool_root if required
+    if any(tool in args.tools for tool in ["SIGNALP", "TARGETP"]):
+        if args.tool_root == "none":
+            logging.error("❌ --tool-root is required for running SignalP and TargetP.")
+            sys.exit(1)
+    
+    tool_root = Path(args.tool_root).resolve()
+    
     try:
-        tool_paths = common.check_antigen_tools(tool_root)
-    except FileNotFoundError as e:
+        tool_paths = common.check_antigen_tools(args.tools, tool_root)
+    except (FileNotFoundError, ImportError) as e:
         logging.error(f"❌ {e}")
         sys.exit(1)
 
     output_root = data_path / args.output_dir
     output_root.mkdir(parents=True, exist_ok=True)
-
     
     if args.verbose:
         # Prepare output directories first to get the correct output_dir

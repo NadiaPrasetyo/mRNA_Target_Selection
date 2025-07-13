@@ -430,48 +430,67 @@ def get_alleles(tool_type, panel="default", custom_alleles=None):
     else:
         print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
         return ALLELE_PRESETS[tool_type]["default"]
-    
-def check_antigen_tools(tool_root: Path):
+
+def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
     """
-    Detects available antigen tools (SignalP, TargetP, Cluster).
+    Detects and validates selected antigen tools.
+    
     Args:
-        tool_root (Path): Root directory where tools are expected to be located.
+        tools (list): List of requested tools (e.g., ["SIGNALP", "TARGETP", "CLUSTER", "DEEPLOC", "ALGPRED"])
+        tool_root (Path): Root directory where SignalP/TargetP are expected
+
     Returns:
-        dict: Dictionary mapping tool names to their executable paths.
+        dict: Mapping of tool names to either their executable path or placeholder string
     """
-    tool_paths = {
-        "SIGNALP": tool_root / "signalp-5.0b" / "bin" / "signalp",
-        "TARGETP": tool_root / "targetp-2.0" / "bin" / "targetp",
-    }
-    # Check if SIGNALP is available
-    if not tool_paths["SIGNALP"].exists():
-        raise FileNotFoundError(f"SignalP not found at {tool_paths['SIGNALP']}. Install via https://services.healthtech.dtu.dk/services/SignalP-5.0/")
-    # Check if TARGETP is available
-    if not tool_paths["TARGETP"].exists():
-        raise FileNotFoundError(f"TargetP not found at {tool_paths['TARGETP']}. Install via https://services.healthtech.dtu.dk/services/TargetP-2.0/")
+    tool_paths = {}
 
-    # CLUSTER (mmseqs) should be available on PATH
-    try:
-        subprocess.run(["mmseqs", "version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
-        tool_paths["CLUSTER"] = "mmseqs"  # placeholder, not used directly
-    except Exception:
-        raise FileNotFoundError("MMseqs2 not found in PATH. Install via: conda install -c bioconda mmseqs2")
-    
-    # Algpred2 dependencies file check
-    algpred_path = Path("algpred2_dependencies.yml")
-    if algpred_path.exists():
-        tool_paths["ALGPRED"] = "algpred2" # placeholder, not used directly
-    else:
-        print(f"⚠️ Algpred2 dependencies file not found at {algpred_path}. Please get the dependency file from GitHub.")
+    if "SIGNALP" in tools:
+        if not tool_root.exists():
+            raise FileNotFoundError(f"Tool root directory {tool_root} does not exist.")
+        if not tool_root.is_dir():
+            raise NotADirectoryError(f"Tool root {tool_root} is not a directory.")  
+        signalp_path = tool_root / "signalp-5.0b" / "bin" / "signalp"
+        if not signalp_path.exists():
+            raise FileNotFoundError(
+                f"SignalP not found at {signalp_path}. "
+                "Install via https://services.healthtech.dtu.dk/services/SignalP-5.0/"
+            )
+        tool_paths["SIGNALP"] = signalp_path
 
-    # Check for DeepLocPro tool
-    try:
-        biolib = __import__('biolib')
-        deeplocpro = biolib.load('KU/DeepLocPro')
-        tool_paths["DEEPLOC"] = deeplocpro.cli  # placeholder, not used directly
-    except ImportError:
-        print("⚠️ BioLib not installed. Please install via: pip install pybiolib")
-        tool_paths["DEEPLOC"] = None
+    if "TARGETP" in tools:
+        if not tool_root.exists():
+            raise FileNotFoundError(f"Tool root directory {tool_root} does not exist.")
+        if not tool_root.is_dir():
+            raise NotADirectoryError(f"Tool root {tool_root} is not a directory.")
+        targetp_path = tool_root / "targetp-2.0" / "bin" / "targetp"
+        if not targetp_path.exists():
+            raise FileNotFoundError(
+                f"TargetP not found at {targetp_path}. "
+                "Install via https://services.healthtech.dtu.dk/services/TargetP-2.0/"
+            )
+        tool_paths["TARGETP"] = targetp_path
+
+    if "CLUSTER" in tools:
+        try:
+            subprocess.run(["mmseqs", "version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+            tool_paths["CLUSTER"] = "mmseqs"  # placeholder
+        except Exception:
+            raise FileNotFoundError("MMseqs2 not found in PATH. Install via: conda install -c bioconda mmseqs2")
+
+    if "ALGPRED" in tools:
+        algpred_path = Path("algpred2_dependencies.yml")
+        if not algpred_path.exists():
+            logging.warning(
+                f"⚠️ Algpred2 dependencies file not found at {algpred_path}. "
+                "Please get the dependency file from GitHub."
+            )
+        tool_paths["ALGPRED"] = "algpred2"  # placeholder
+
+    if "DEEPLOC" in tools:
+        import importlib.util
+        if importlib.util.find_spec("biolib") is None:
+            raise ImportError("❌ pybiolib is not installed. Install with: pip install pybiolib")
+        tool_paths["DEEPLOC"] = "deeplocpro"  # placeholder
 
     return tool_paths
 
