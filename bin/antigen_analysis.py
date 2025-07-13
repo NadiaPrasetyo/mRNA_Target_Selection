@@ -205,6 +205,9 @@ def main():
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output for debugging")
     parser.add_argument("--group", type=str, default="any", help="Group name for DeepLocPro: [any, archaea, positive, negative]; default is 'any'")
     args = parser.parse_args()
+    
+    output_root = data_path / args.output_dir
+    output_root.mkdir(parents=True, exist_ok=True)
 
     if args.verbose:
         log_file = output_root / "antigen_analysis.log"
@@ -259,8 +262,6 @@ def main():
 
     print("DEBUG: tool_paths =", tool_paths)
 
-    output_root = data_path / args.output_dir
-    output_root.mkdir(parents=True, exist_ok=True)
     jobs = []
 
     # Handle jobs
