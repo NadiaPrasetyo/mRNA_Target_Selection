@@ -21,14 +21,15 @@ import py_compile
 CONDA_ENV_NAME = "algpred2_env"
 CONDA_ENV_YML = Path("algpred2_dependencies.yml")
 
-def patch_algpred_concat_bug():
+def patch_algpred_bugs():
     """
-    Monkey-patch AlgPred2.0 source to fix .concat misuse.
-    Replaces the line containing df3.concat(...) with proper pd.concat syntax.
+    Patch known bugs in algpred2.py:
+    - Fix df3.concat misuse
+    - Fix str.split error when unpacking 'Name' column
     """
     import sys
 
-    logging.info("🩹 Checking AlgPred2.0 for known concat bug...")
+    logging.info("🩹 Checking AlgPred2.0 for known bugs...")
 
     try:
         env_prefix = subprocess.run(
@@ -46,42 +47,48 @@ def patch_algpred_concat_bug():
             lines = f.readlines()
 
         new_lines = []
-        patched = False
-        for line in lines:
+        patched_concat = False
+        patched_split = False
+        for i, line in enumerate(lines):
             if "df3.concat(" in line:
-                # Get leading whitespace from original line to preserve indentation
                 leading_ws = line[:len(line) - len(line.lstrip())]
                 new_line = f"{leading_ws}df3 = pd.concat([df3, df2.loc[df2.Subject==i][0:5]], axis=0).reset_index(drop=True)\n"
                 new_lines.append(new_line)
-                patched = True
+                patched_concat = True
+            elif "df1[['Seq','Hits']] = df1.Name.str.split(" in line:
+                leading_ws = line[:len(line) - len(line.lstrip())]
+                new_lines.append(f"{leading_ws}split_cols = df1.Name.str.split(\"(\", n=1, expand=True)\n")
+                new_lines.append(f"{leading_ws}split_cols.columns = ['Seq', 'Hits']\n")
+                new_lines.append(f"{leading_ws}df1 = pd.concat([df1, split_cols], axis=1)\n")
+                patched_split = True
             else:
                 new_lines.append(line)
-        if patched:
-            logging.info("🔧 Patching algpred2.py to fix concat bug...")
+
+        if patched_concat or patched_split:
+            logging.info("🔧 Applying patches to algpred2.py...")
             with open(algpred_path, "w") as f:
                 f.writelines(new_lines)
             logging.info("✅ Patch applied.")
         else:
-            logging.info("✅ No patch needed; concat bug not present.")
-    except Exception as e:
-        logging.warning(f"⚠️ Failed to check or patch AlgPred2.0: {e}")
+            logging.info("✅ No patches needed; bugs not present.")
 
-    # Force recompilation of bytecode to avoid .pyc mismatch
-    pycache_dir = algpred_path.parent / "__pycache__"
-    for pyc_file in pycache_dir.glob("algpred2*.pyc"):
+        # Recompile
+        pycache_dir = algpred_path.parent / "__pycache__"
+        for pyc_file in pycache_dir.glob("algpred2*.pyc"):
+            try:
+                pyc_file.unlink()
+                logging.info(f"🧹 Removed stale bytecode: {pyc_file.name}")
+            except Exception as e:
+                logging.warning(f"⚠️ Could not remove bytecode {pyc_file}: {e}")
+
         try:
-            pyc_file.unlink()
-            logging.info(f"🧹 Removed stale bytecode: {pyc_file.name}")
+            py_compile.compile(str(algpred_path), cfile=None, doraise=True)
+            logging.info("🔁 Recompiled algpred2.py successfully.")
         except Exception as e:
-            logging.warning(f"⚠️ Could not remove bytecode {pyc_file}: {e}")
+            logging.warning(f"⚠️ Bytecode recompilation failed: {e}")
 
-    try:
-        py_compile.compile(str(algpred_path), cfile=None, doraise=True)
-        logging.info("🔁 Recompiled algpred2.py successfully.")
     except Exception as e:
-        logging.warning(f"⚠️ Bytecode recompilation failed: {e}")
-
-
+        logging.warning(f"⚠️ Failed to patch AlgPred2.0: {e}")
 
 def create_conda_env_if_needed():
     """Create Conda environment if it doesn't exist."""
@@ -105,8 +112,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
         raise RuntimeError("Conda is required but not found.")
 
     create_conda_env_if_needed()
-    patch_algpred_concat_bug()
-
+    patch_algpred_bugs()
 
     input_fasta = Path(input_fasta).resolve()
     output_dir = Path(output_dir).resolve()
