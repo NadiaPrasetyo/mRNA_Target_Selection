@@ -242,9 +242,6 @@ def main():
         sys.exit(1)
 
     tool_paths = {}
-
-    print("DEBUG: fasta_files =", fasta_files)
-    print("DEBUG: checking tool paths=", args.tools)
     # Only resolve tool_root if required
     if any(tool in args.tools for tool in ["SIGNALP", "TARGETP"]):
         if args.tool_root == "none":
@@ -252,15 +249,12 @@ def main():
             sys.exit(1)
     
     tool_root = Path(args.tool_root).resolve()
-    print("DEBUG: tool_root =", tool_root)
     
     try:
         tool_paths = common.check_antigen_tools(args.tools, tool_root)
     except (FileNotFoundError, ImportError) as e:
         logging.error(f"❌ {e}")
         sys.exit(1)
-
-    print("DEBUG: tool_paths =", tool_paths)
 
     jobs = []
 
