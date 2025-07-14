@@ -24,8 +24,7 @@ def run_deeplocpro(tool_path, input_file, output_dir, group):
         deeplocpro = biolib.load("KU/DeepLocPro")
 
         result = deeplocpro.cli(
-            args=f"-f {input_file.name} -o output -p -d cpu -g {group}",
-            input_files=[str(input_file)]
+            args=f"-f {input_file} -o {output_dir} -p -d cpu -g {group}"
         )
 
         result.save_files(output_dir)
