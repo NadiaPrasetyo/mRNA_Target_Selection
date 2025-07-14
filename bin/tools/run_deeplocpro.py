@@ -47,6 +47,7 @@ def run_deeplocpro(tool_path: str, input_file: str, output_dir: str, group: str)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     plots_dir.mkdir(parents=True, exist_ok=True)
+    logging.info(f"Running DeepLocPro in {working_dir} for {input_file.name} with group: {group}")
 
     try:
         cmd = [
