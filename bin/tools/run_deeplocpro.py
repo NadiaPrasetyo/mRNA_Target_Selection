@@ -1,10 +1,17 @@
 import biolib
 import logging
 import shutil
-import tempfile
 from pathlib import Path
 
 def run_deeplocpro(tool_path, input_file, output_dir, group):
+    """Run DeepLocPro on a given input file and save the results to the specified output directory.
+    Args:
+        tool_path (str): unused, path to the DeepLocPro tool (not required for biolib).
+        input_file (str): Path to the input FASTA file.
+        output_dir (str): Directory where the results will be saved.
+        group (str): Group name for DeepLocPro, e.g., 'any', 'archaea', 'positive', 'negative'.
+    """
+
     input_file = Path(input_file).resolve()
     output_dir = Path(output_dir).resolve()
     plots_dir = output_dir / "plots"
@@ -14,30 +21,25 @@ def run_deeplocpro(tool_path, input_file, output_dir, group):
 
     try:
         logging.info(f"🔬 Running DeepLocPro on {input_file.name} with group: {group}")
+        deeplocpro = biolib.load("KU/DeepLocPro")
 
-        with tempfile.TemporaryDirectory() as tmpdir:
-            tmpdir = Path(tmpdir)
-            tmp_input = tmpdir / input_file.name
-            shutil.copy(input_file, tmp_input)
+        result = deeplocpro.cli(
+            args=f"-f {input_file.name} -o output -p -d cpu -g {group}",
+            input_files=[str(input_file)]
+        )
 
-            deeplocpro = biolib.load("KU/DeepLocPro")
-            result = deeplocpro.cli(args=f"-f {input_file.name} -o output -p -d cpu -g {group}", working_dir=str(tmpdir))
+        result.save_files(output_dir)
 
-            # Save all sandbox output into a temporary directory
-            sandbox_output = tmpdir / "output_files"
-            sandbox_output.mkdir()
-            result.save_files(sandbox_output)
+        # Move plot images into the plots/ folder
+        for f in output_dir.iterdir():
+            if f.suffix.lower() in {".png", ".jpg", ".svg"}:
+                shutil.move(str(f), plots_dir / f.name)
+            else:
+                shutil.move(str(f), output_dir / f.name)
 
-            # Move files: plots to /plots, others to /output_dir
-            for file in sandbox_output.iterdir():
-                if file.suffix.lower() in [".png", ".jpg", ".svg"]:
-                    shutil.move(str(file), plots_dir / file.name)
-                else:
-                    shutil.move(str(file), output_dir / file.name)
-
-            logging.debug(f"STDOUT:\n{result.get_stdout().decode()}")
-            logging.debug(f"STDERR:\n{result.get_stderr().decode()}")
-            logging.info(f"✅ DeepLocPro completed: {input_file.name}")
+        logging.debug(f"STDOUT:\n{result.get_stdout().decode()}")
+        logging.debug(f"STDERR:\n{result.get_stderr().decode()}")
+        logging.info(f"✅ DeepLocPro completed: {input_file.name}")
 
     except Exception as e:
         logging.error(f"❌ DeepLocPro failed on {input_file.name}: {e}")
