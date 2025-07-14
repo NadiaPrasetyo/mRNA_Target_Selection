@@ -1,0 +1,25 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+SEQ_ID_1LENGTH:,0.157,0.0,0.0,0.157,Non-Allergen
+SEQ_ID_14,0.142,0.0,-0.5,-0.358,Non-Allergen
+SEQ_ID_15,0.188,0.0,0.0,0.188,Non-Allergen
+SEQ_ID_16,0.448,0.0,-0.5,-0.052,Non-Allergen
+SEQ_ID_17,0.386,0.5,0.0,0.886,Allergen
+SEQ_ID_18,0.013,0.0,-0.5,-0.487,Non-Allergen
+SEQ_ID_19,0.182,0.5,-0.5,0.182,Non-Allergen
+SEQ_ID_20,0.065,0.0,-0.5,-0.435,Non-Allergen
+SEQ_ID_21,0.059,0.0,0.0,0.059,Non-Allergen
+SEQ_ID_:,0.139,0.0,0.0,0.139,Non-Allergen
+SEQ_ID_LENGTH:,0.045,0.0,-0.5,-0.455,Non-Allergen
+SEQ_ID_LENGTH:,0.154,0.0,-0.5,-0.346,Non-Allergen
+SEQ_ID_25,0.072,0.0,0.0,0.072,Non-Allergen
+SEQ_ID_26,0.184,0.0,0.0,0.184,Non-Allergen
+SEQ_ID_27,0.056,0.5,0.0,0.556,Allergen
+SEQ_ID_28,0.543,0.0,0.0,0.543,Allergen
+SEQ_ID_29,0.258,0.0,0.0,0.258,Non-Allergen
+SEQ_ID_30,0.157,0.0,-0.5,-0.343,Non-Allergen
+SEQ_ID_31,0.167,0.0,0.0,0.167,Non-Allergen
+SEQ_ID_32,0.109,0.0,0.0,0.109,Non-Allergen
+SEQ_ID_33,0.144,0.0,0.0,0.144,Non-Allergen
+SEQ_ID_34,0.025,0.0,-0.5,-0.475,Non-Allergen
+SEQ_ID_35,0.029,0.0,-0.5,-0.471,Non-Allergen
+SEQ_ID_36,0.318,0.5,0.0,0.818,Allergen

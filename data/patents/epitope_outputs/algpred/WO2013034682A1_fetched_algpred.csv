@@ -1,0 +1,15 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+Q2G0X7,0.132,0.0,0.0,0.132,Non-Allergen
+Q2G1S8,0.212,0.0,0.0,0.212,Non-Allergen
+Q2G0X9,0.079,0.0,0.0,0.079,Non-Allergen
+Q2G0X8,0.126,0.0,0.0,0.126,Non-Allergen
+Q2G1S6,0.198,0.5,0.0,0.698,Allergen
+Q2G1S5,0.187,0.0,0.0,0.187,Non-Allergen
+Q2G2Y0,0.246,0.0,0.5,0.746,Allergen
+Q2G2X9,0.099,0.0,0.0,0.099,Non-Allergen
+Q2G2X8,0.11,0.0,0.5,0.61,Allergen
+Q2G2X7,0.143,0.0,0.5,0.643,Allergen
+Q2G0X4,0.164,0.0,0.0,0.164,Non-Allergen
+Q2FZB3,0.235,0.0,0.0,0.235,Non-Allergen
+Q2FZB2,0.255,0.0,0.0,0.255,Non-Allergen
+Q2FZB1,0.163,0.0,0.0,0.163,Non-Allergen
