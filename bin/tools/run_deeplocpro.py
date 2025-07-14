@@ -4,13 +4,10 @@ import shutil
 from pathlib import Path
 import os
 
-def force_model_to_cpu(monkeypatch_result):
-    import torch
-
-    # Locate and patch the embed_batch method at runtime
+def force_embed_batch_cpu(deeplocpro):
     try:
-        model_mod = __import__("DeepLocPro.model", fromlist=["Model"])
-        original_embed_batch = model_mod.Model.embed_batch
+        model = deeplocpro.model  # assuming deeplocpro has a 'model' attribute
+        original_embed_batch = model.embed_batch
 
         def patched_embed_batch(self, sequences):
             sequences = [s.to("cpu") for s in sequences]
@@ -18,10 +15,13 @@ def force_model_to_cpu(monkeypatch_result):
             out = self.esm_model(toks, repr_layers=[33], return_contacts=False)
             return out["representations"][33].to("cpu"), toks.to("cpu")
 
-        model_mod.Model.embed_batch = patched_embed_batch
-        logging.info("✅ Patched embed_batch to force CPU usage.")
+        # Replace method on the model instance
+        import types
+        model.embed_batch = types.MethodType(patched_embed_batch, model)
+        print("✅ Patched embed_batch to force CPU usage.")
     except Exception as e:
-        logging.warning(f"⚠️ Failed to patch embed_batch: {e}")
+        print(f"⚠️ Failed to patch embed_batch: {e}")
+
 
 
 def run_deeplocpro(tool_path, input_file, output_dir, group):
@@ -37,9 +37,12 @@ def run_deeplocpro(tool_path, input_file, output_dir, group):
 
     try:
         os.environ["CUDA_VISIBLE_DEVICES"] = ""  # Hide GPUs
-        force_model_to_cpu()      # Patch only if needed
 
         deeplocpro = biolib.load("KU/DeepLocPro")
+        print(dir(deeplocpro))
+
+        force_embed_batch_cpu(deeplocpro)
+
 
         result = deeplocpro.cli(
             args=f"-f {input_file} -o output -p -d cpu -g {group}"
