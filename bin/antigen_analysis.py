@@ -72,7 +72,8 @@ def run_parallel_jobs(jobs, threads):
     """
 
     allergenicity_jobs = [job for job in jobs if job[0] == "ALGPRED"]
-    other_jobs = [job for job in jobs if job[0] != "ALGPRED"]
+    deeploc_jobs = [job for job in jobs if job[0] == "DEEPLOC"]
+    other_jobs = [job for job in jobs if job[0] != "ALGPRED" and job[0] != "DEEPLOC"]
 
     with ThreadPoolExecutor(max_workers=threads) as executor:
         # Run non-Allergenicity jobs in parallel
@@ -92,6 +93,15 @@ def run_parallel_jobs(jobs, threads):
             run_tool(*job)
         except Exception as e:
             logging.error(f"❌ Allergenicity failed for {input_file.name}: {e}")
+
+    # Run DeepLocPro jobs serially
+    for job in deeploc_jobs:
+        tool_name, _, input_file, output_dir, group, tool_path = job
+        try:
+            logging.info(f"Running DeepLocPro for {input_file.name} with group: {group}")
+            run_tool(*job)
+        except Exception as e:
+            logging.error(f"❌ DeepLocPro failed for {input_file.name}: {e}")
 
 
     # Clean up temporary and intermediate files after CLUSTER jobs

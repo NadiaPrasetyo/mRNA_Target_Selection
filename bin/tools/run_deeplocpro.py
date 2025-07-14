@@ -20,7 +20,6 @@ def run_deeplocpro(tool_path, input_file, output_dir, group):
     plots_dir.mkdir(parents=True, exist_ok=True)
 
     try:
-        logging.info(f"🔬 Running DeepLocPro on {input_file.name} with group: {group}")
         deeplocpro = biolib.load("KU/DeepLocPro")
 
         result = deeplocpro.cli(
@@ -38,7 +37,6 @@ def run_deeplocpro(tool_path, input_file, output_dir, group):
 
         logging.debug(f"STDOUT:\n{result.get_stdout().decode()}")
         logging.debug(f"STDERR:\n{result.get_stderr().decode()}")
-        logging.info(f"✅ DeepLocPro completed: {input_file.name}")
 
     except Exception as e:
         logging.error(f"❌ DeepLocPro failed on {input_file.name}: {e}")
