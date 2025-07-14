@@ -72,8 +72,7 @@ def run_parallel_jobs(jobs, threads):
     """
 
     allergenicity_jobs = [job for job in jobs if job[0] == "ALGPRED"]
-    deeploc_jobs = [job for job in jobs if job[0] == "DEEPLOC"]
-    other_jobs = [job for job in jobs if job[0] != "ALGPRED" and job[0] != "DEEPLOC"]
+    other_jobs = [job for job in jobs if job[0] != "ALGPRED"]
 
     with ThreadPoolExecutor(max_workers=threads) as executor:
         # Run non-Allergenicity jobs in parallel
@@ -93,15 +92,6 @@ def run_parallel_jobs(jobs, threads):
             run_tool(*job)
         except Exception as e:
             logging.error(f"❌ Allergenicity failed for {input_file.name}: {e}")
-
-    # Run DeepLocPro jobs serially
-    for job in deeploc_jobs:
-        tool_name, _, input_file, output_dir, group, tool_path = job
-        try:
-            logging.info(f"Running DeepLocPro for {input_file.name} with group: {group}")
-            run_tool(*job)
-        except Exception as e:
-            logging.error(f"❌ DeepLocPro failed for {input_file.name}: {e}")
 
 
     # Clean up temporary and intermediate files after CLUSTER jobs
@@ -253,7 +243,7 @@ def main():
 
     tool_paths = {}
     # Only resolve tool_root if required
-    if any(tool in args.tools for tool in ["SIGNALP", "TARGETP"]):
+    if any(tool in args.tools for tool in ["SIGNALP", "TARGETP", "DEEPLOC"]):
         if args.tool_root == "none":
             logging.error("❌ --tool-root is required for running SignalP and TargetP.")
             sys.exit(1)

@@ -487,10 +487,17 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
         tool_paths["ALGPRED"] = "algpred2"  # placeholder
 
     if "DEEPLOC" in tools:
-        import importlib.util
-        if importlib.util.find_spec("biolib") is None:
-            raise ImportError("❌ pybiolib is not installed. Install with: pip install pybiolib")
-        tool_paths["DEEPLOC"] = "deeplocpro"  # placeholder
+        if not tool_root.exists():
+            raise FileNotFoundError(f"Tool root directory {tool_root} does not exist.")
+        if not tool_root.is_dir():
+            raise NotADirectoryError(f"Tool root {tool_root} is not a directory.")  
+        deeploc_path = tool_root / "deeplocpro"
+        if not deeploc_path.exists():
+            raise FileNotFoundError(
+                f"Deeplocpro not found at {deeploc_path}. "
+                "Install via https://github.com/Jaimomar99/deeplocpro"
+            )
+        tool_paths["DEEPLOC"] = deeploc_path
 
     return tool_paths
 

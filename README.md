@@ -99,6 +99,7 @@ mRNA_Target_Selection/
 - [IEDB MHCII Epitope Prediction](https://nextgen-tools.iedb.org/pipeline?tool=tc2)
 - [IEDB Bcell Epitope Prediction](http://tools.iedb.org/bcell/)
 - [IEDB Population Coverage](http://tools.iedb.org/population/)
+- [DeepLocPro1.0](https://services.healthtech.dtu.dk/services/DeepLocPro-1.0/)
 
 Install Python dependencies:
 ```sh
@@ -124,6 +125,13 @@ Install MMseqs2: See [MMseqs2 GitHub](https://github.com/soedinglab/MMseqs2)
 conda install -c conda-forge -c bioconda mmseqs2
 ```
 
+Install DeeplocPro: See [Deeplocpro GitHub](https://github.com/Jaimomar99/deeplocpro)
+```sh
+git clone https://github.com/Jaimomar99/deeplocpro.git
+cd DeepLocPro
+pip install .
+
+```
 ---
 
 ## Usage
