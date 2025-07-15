@@ -96,9 +96,10 @@ def search_by_uniprot(accession: str) -> List[str]:
     }
 
     response = requests.post(SEARCH_API_URL, json=payload)
-    if response.status_code != 200:
+
+    if response.status_code != 200 or not response.json():
         logging.error(f"Failed UniProt search: {response.status_code}")
-        return []
+        return []  # 🔧 always return list
 
     data = response.json()
     return [item["identifier"] for item in data.get("result_set", [])]
@@ -171,7 +172,6 @@ def search_by_sequence(sequence: str) -> List[str]:
     data = response.json()
     return [item["identifier"] for item in data.get("result_set", [])]
 
-
 def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
     suffix = accession if accession else "NOACCN"
     filename = f"{pdb_id}_{suffix}.pdb"
@@ -181,13 +181,27 @@ def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
         logging.debug(f"{filename} already exists, skipping.")
         return
 
-    url = f"https://files.rcsb.org/view/{pdb_id}.pdb"
-    logging.info(f"⬇️  Downloading {filename}...")
+    url_standard = f"https://files.rcsb.org/view/{pdb_id}.pdb"
+    logging.info(f"⬇️  Attempting canonical download for {pdb_id}...")
 
     try:
-        subprocess.run(["wget", "-q", "-O", str(dest), url], check=True)
+        subprocess.run(["wget", "-q", "-O", str(dest), url_standard], check=True)
+        logging.info(f"✅ Downloaded {filename} successfully.")
+        return
     except subprocess.CalledProcessError:
-        logging.error(f"❌ Failed to download {pdb_id}.pdb")
+        logging.warning(f"⚠️ Canonical PDB download failed for {pdb_id}. Trying biological assembly...")
+
+    # Fall back to assembly ID 1 (most common case)
+    assembly_url = f"https://files.rcsb.org/download/{pdb_id}.pdb1.gz"
+    gz_filename = f"{pdb_id}_assembly1_{suffix}.pdb.gz"
+    gz_dest = output_dir / gz_filename
+
+    try:
+        subprocess.run(["wget", "-q", "-O", str(gz_dest), assembly_url], check=True)
+        logging.info(f"✅ Downloaded biological assembly (pdb1.gz) for {pdb_id} as {gz_filename}")
+    except subprocess.CalledProcessError:
+        logging.error(f"❌ Failed to download biological assembly for {pdb_id}")
+
 
 
 def process_fasta_dir(sequence_dir: Path, output_dir: Path, threads: int):
