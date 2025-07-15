@@ -103,8 +103,7 @@ def search_by_uniprot(accession: str) -> List[str]:
     data = response.json()
     return [item["identifier"] for item in data.get("result_set", [])]
 
-
-def fetch_alphafold_structure(accession: str, output_dir: Path):
+def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
     url = f"https://alphafold.ebi.ac.uk/api/prediction/{accession}"
     logging.info(f"🧠 Attempting AlphaFold fetch for: {accession}")
 
@@ -112,19 +111,18 @@ def fetch_alphafold_structure(accession: str, output_dir: Path):
         response = requests.get(url, timeout=10)
         if response.status_code != 200:
             logging.warning(f"AlphaFold fetch failed for {accession} (status {response.status_code})")
-            return
+            return False
 
         predictions = response.json()
         if not predictions:
             logging.warning(f"No AlphaFold prediction found for {accession}")
-            return
+            return False
 
-        # Take latest version if multiple
         best_model = predictions[0]
         pdb_url = best_model.get("pdbUrl")
         if not pdb_url:
             logging.warning(f"No PDB URL in AlphaFold result for {accession}")
-            return
+            return False
 
         filename = f"{accession}_AF.pdb"
         dest = output_dir / filename
@@ -135,11 +133,14 @@ def fetch_alphafold_structure(accession: str, output_dir: Path):
         if r.status_code == 200:
             with open(dest, "wb") as f:
                 f.write(r.content)
+            return True
         else:
             logging.error(f"❌ Failed to download AlphaFold PDB: HTTP {r.status_code}")
+            return False
 
     except Exception as e:
         logging.error(f"AlphaFold error for {accession}: {e}")
+        return False
 
 
 def search_by_sequence(sequence: str) -> List[str]:
@@ -218,26 +219,25 @@ def process_record(record, output_dir: Path):
 
     accession = extract_uniprot_accession(header)
     pdb_ids = []
+    alphafold_downloaded = False
 
     if accession:
         logging.info(f"🔍 Searching by UniProt accession: {accession}")
         pdb_ids = search_by_uniprot(accession)
 
-    # 🧠 If UniProt → RCSB fails, try AlphaFold before fallback to sequence
-    if accession and not pdb_ids:
-        fetch_alphafold_structure(accession, output_dir)
+        if not pdb_ids:
+            alphafold_downloaded = fetch_alphafold_structure(accession, output_dir)
 
-    if not pdb_ids:
+    if not pdb_ids and not alphafold_downloaded:
         logging.info(f"🔁 Falling back to sequence-based search...")
         pdb_ids = search_by_sequence(sequence)
 
-    if not pdb_ids:
+    # ❌ Only warn if no structure at all (PDB nor AlphaFold)
+    if not pdb_ids and not alphafold_downloaded:
         logging.warning(f"❌ No PDB entries found for: {header}")
-        return
 
     for pdb_id in pdb_ids:
         download_pdb(pdb_id, output_dir, accession)
-
 
 
 def main():
