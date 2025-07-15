@@ -47,6 +47,7 @@ def setup_logger(verbose: bool, log_file: Path):
 
     handlers = [logging.StreamHandler()]
     if verbose:
+        log_file.parent.mkdir(parents=True, exist_ok=True)  # Ensure log directory exists
         handlers.append(logging.FileHandler(log_file))
 
     logging.basicConfig(level=level, format=log_format, handlers=handlers)
@@ -208,7 +209,7 @@ def main():
     pathogen_path = Path("data") / args.pathogen_dir
     output_path = pathogen_path / args.output_dir
     full_sequence_path = pathogen_path / args.sequence_dir
-    log_file = args.output_dir / "fetch_pdb_sequences.log"
+    log_file = output_path / "fetch_pdb_sequences.log"
 
 
     setup_logger(args.verbose, log_file)
