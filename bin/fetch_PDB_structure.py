@@ -33,7 +33,7 @@ import argparse
 import subprocess
 from pathlib import Path
 from typing import List, Optional
-
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from Bio import SeqIO
 
@@ -150,38 +150,50 @@ def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
         logging.error(f"❌ Failed to download {pdb_id}.pdb")
 
 
-
-def process_fasta_dir(sequence_dir: Path, output_dir: Path):
+def process_fasta_dir(sequence_dir: Path, output_dir: Path, threads: int):
     fasta_files = list(sequence_dir.glob("*.fasta"))
     if not fasta_files:
         logging.warning(f"No FASTA files found in: {sequence_dir}")
         return
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    all_records = []
 
     for fasta_file in fasta_files:
-        for record in SeqIO.parse(fasta_file, "fasta"):
-            header = record.description
-            sequence = str(record.seq)
-            logging.info(f"🧬 Processing: {header}")
+        all_records.extend(list(SeqIO.parse(fasta_file, "fasta")))
 
-            pdb_ids = []
+    with ThreadPoolExecutor(max_workers=threads) as executor:
+        futures = [executor.submit(process_record, record, output_dir) for record in all_records]
 
-            accession = extract_uniprot_accession(header)
-            if accession:
-                logging.info(f"🔍 Searching by UniProt accession: {accession}")
-                pdb_ids = search_by_uniprot(accession)
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except Exception as e:
+                logging.error(f"❌ Error during record processing: {e}")
 
-            if not pdb_ids:
-                logging.info(f"🔁 Falling back to sequence-based search...")
-                pdb_ids = search_by_sequence(sequence)
 
-            if not pdb_ids:
-                logging.warning(f"❌ No PDB entries found for: {header}")
-                continue
+def process_record(record, output_dir: Path):
+    header = record.description
+    sequence = str(record.seq)
+    logging.info(f"🧬 Processing: {header}")
 
-            for pdb_id in pdb_ids:
-                download_pdb(pdb_id, output_dir, accession)
+    accession = extract_uniprot_accession(header)
+    pdb_ids = []
+
+    if accession:
+        logging.info(f"🔍 Searching by UniProt accession: {accession}")
+        pdb_ids = search_by_uniprot(accession)
+
+    if not pdb_ids:
+        logging.info(f"🔁 Falling back to sequence-based search...")
+        pdb_ids = search_by_sequence(sequence)
+
+    if not pdb_ids:
+        logging.warning(f"❌ No PDB entries found for: {header}")
+        return
+
+    for pdb_id in pdb_ids:
+        download_pdb(pdb_id, output_dir, accession)
 
 
 def main():
@@ -200,7 +212,7 @@ def main():
     setup_logger(args.verbose, log_file)
 
     logging.info(f"🚀 Starting PDB fetch from {full_sequence_path}")
-    process_fasta_dir(full_sequence_path, args.output_dir)
+    process_fasta_dir(full_sequence_path, args.output_dir, args.threads)
     logging.info("✅ Finished.")
 
 
