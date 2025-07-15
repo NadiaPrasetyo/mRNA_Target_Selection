@@ -104,6 +104,44 @@ def search_by_uniprot(accession: str) -> List[str]:
     return [item["identifier"] for item in data.get("result_set", [])]
 
 
+def fetch_alphafold_structure(accession: str, output_dir: Path):
+    url = f"https://alphafold.ebi.ac.uk/api/prediction/{accession}"
+    logging.info(f"🧠 Attempting AlphaFold fetch for: {accession}")
+
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code != 200:
+            logging.warning(f"AlphaFold fetch failed for {accession} (status {response.status_code})")
+            return
+
+        predictions = response.json()
+        if not predictions:
+            logging.warning(f"No AlphaFold prediction found for {accession}")
+            return
+
+        # Take latest version if multiple
+        best_model = predictions[0]
+        pdb_url = best_model.get("pdbUrl")
+        if not pdb_url:
+            logging.warning(f"No PDB URL in AlphaFold result for {accession}")
+            return
+
+        filename = f"{accession}_AF.pdb"
+        dest = output_dir / filename
+        logging.info(f"🔗 AlphaFold model found: {pdb_url}")
+        logging.info(f"⬇️  Downloading AlphaFold PDB to: {dest.name}")
+
+        r = requests.get(pdb_url)
+        if r.status_code == 200:
+            with open(dest, "wb") as f:
+                f.write(r.content)
+        else:
+            logging.error(f"❌ Failed to download AlphaFold PDB: HTTP {r.status_code}")
+
+    except Exception as e:
+        logging.error(f"AlphaFold error for {accession}: {e}")
+
+
 def search_by_sequence(sequence: str) -> List[str]:
     payload = {
         "query": {
@@ -185,6 +223,10 @@ def process_record(record, output_dir: Path):
         logging.info(f"🔍 Searching by UniProt accession: {accession}")
         pdb_ids = search_by_uniprot(accession)
 
+    # 🧠 If UniProt → RCSB fails, try AlphaFold before fallback to sequence
+    if accession and not pdb_ids:
+        fetch_alphafold_structure(accession, output_dir)
+
     if not pdb_ids:
         logging.info(f"🔁 Falling back to sequence-based search...")
         pdb_ids = search_by_sequence(sequence)
@@ -195,6 +237,7 @@ def process_record(record, output_dir: Path):
 
     for pdb_id in pdb_ids:
         download_pdb(pdb_id, output_dir, accession)
+
 
 
 def main():
