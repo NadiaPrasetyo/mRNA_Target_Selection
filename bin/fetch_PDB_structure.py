@@ -177,30 +177,51 @@ def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
     filename = f"{pdb_id}_{suffix}.pdb"
     dest = output_dir / filename
 
+    # Skip if good file already exists
     if dest.exists():
-        logging.debug(f"{filename} already exists, skipping.")
-        return
+        if dest.stat().st_size > 0:
+            logging.debug(f"{filename} already exists, skipping.")
+            return
+        else:
+            logging.warning(f"⚠️ Removing empty file: {dest}")
+            dest.unlink()
 
+    # Primary download attempt: canonical PDB
     url_standard = f"https://files.rcsb.org/view/{pdb_id}.pdb"
-    logging.info(f"⬇️  Attempting canonical download for {pdb_id}...")
+    logging.info(f"⬇️  Attempting canonical PDB download for {pdb_id}...")
 
     try:
         subprocess.run(["wget", "-q", "-O", str(dest), url_standard], check=True)
-        logging.info(f"✅ Downloaded {filename} successfully.")
-        return
+        if dest.stat().st_size > 0:
+            logging.info(f"✅ Downloaded {filename} successfully.")
+            return
+        else:
+            logging.warning(f"⚠️ Canonical PDB file is empty: {dest}. Removing.")
+            dest.unlink()
     except subprocess.CalledProcessError:
-        logging.warning(f"⚠️ Canonical PDB download failed for {pdb_id}. Trying biological assembly...")
+        if dest.exists():
+            logging.warning(f"⚠️ Removing partial file from failed canonical download: {dest}")
+            dest.unlink()
 
-    # Fall back to assembly ID 1 (most common case)
-    assembly_url = f"https://files.rcsb.org/download/{pdb_id}.pdb1.gz"
-    gz_filename = f"{pdb_id}_assembly1_{suffix}.pdb.gz"
-    gz_dest = output_dir / gz_filename
+        logging.warning(f"⚠️ Canonical PDB download failed for {pdb_id}. Trying biological assembly (.cif.gz)...")
+
+    # Fallback: biological assembly in .cif.gz format
+    cif_url = f"https://files.rcsb.org/download/{pdb_id}.cif.gz"
+    cif_filename = f"{pdb_id}_assembly1_{suffix}.cif.gz"
+    cif_dest = output_dir / cif_filename
 
     try:
-        subprocess.run(["wget", "-q", "-O", str(gz_dest), assembly_url], check=True)
-        logging.info(f"✅ Downloaded biological assembly (pdb1.gz) for {pdb_id} as {gz_filename}")
+        subprocess.run(["wget", "-q", "-O", str(cif_dest), cif_url], check=True)
+        if cif_dest.exists() and cif_dest.stat().st_size > 0:
+            logging.info(f"✅ Downloaded biological assembly (.cif.gz) for {pdb_id} as {cif_filename}")
+        else:
+            logging.error(f"❌ Biological assembly .cif.gz is empty for {pdb_id}. Removing.")
+            if cif_dest.exists():
+                cif_dest.unlink()
     except subprocess.CalledProcessError:
-        logging.error(f"❌ Failed to download biological assembly for {pdb_id}")
+        logging.error(f"❌ Failed to download biological assembly (.cif.gz) for {pdb_id}")
+        if cif_dest.exists():
+            cif_dest.unlink()
 
 
 
