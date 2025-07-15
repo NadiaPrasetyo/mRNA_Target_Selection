@@ -200,19 +200,21 @@ def main():
     parser = argparse.ArgumentParser(description="Fetch all related PDB entries from FASTA files using RCSB Web API.")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
-    parser.add_argument("--threads", type=int, default=4, help="(Unused placeholder)")
-    parser.add_argument("--output-dir", type=Path, default=Path("pdb_sequences"))
+    parser.add_argument("--threads", type=int, default=4, help="Number of threads to use (default: 4)")
+    parser.add_argument("--output-dir", type=Path, default=Path("pdb_sequences"), help="Directory to save fetched PDB sequences (default: pdb_sequences)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output and log to file")
     args = parser.parse_args()
 
-    pathogen_path = Path(args.pathogen_dir)
+    pathogen_path = Path("data") / args.pathogen_dir
+    output_path = pathogen_path / args.output_dir
     full_sequence_path = pathogen_path / args.sequence_dir
     log_file = args.output_dir / "fetch_pdb_sequences.log"
+
 
     setup_logger(args.verbose, log_file)
 
     logging.info(f"🚀 Starting PDB fetch from {full_sequence_path}")
-    process_fasta_dir(full_sequence_path, args.output_dir, args.threads)
+    process_fasta_dir(full_sequence_path, output_path, args.threads)
     logging.info("✅ Finished.")
 
 
