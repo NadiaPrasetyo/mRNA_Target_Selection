@@ -1,3 +1,29 @@
+"""parse_patent_to_fasta.py
+Command-line tool to parse amino acid sequences from patent text files and convert them to FASTA format.
+
+Overview:
+    - Reads patent sequence files containing amino acid sequences in 3-letter codes.
+    - Converts 3-letter amino acid codes to 1-letter codes using a standard mapping.
+    - Handles invalid or ambiguous codes by prompting the user for correction or skipping.
+    - Outputs a FASTA file with the parsed and converted sequences.
+
+Arguments:
+    pathogen_directory (str): Subdirectory under `data/` containing patent sequence files.
+    --input (str): Name of the input file containing patent sequences (in 3-letter code format).
+    --output (str): Name of the output FASTA file to be generated.
+
+Requirements:
+    - Input file must be present in the specified pathogen directory under `data/`.
+    - Python packages: re, argparse.
+
+Usage Example:
+    python parse_patent_to_fasta.py sars_cov_2 --input patent_sequences.txt --output patent_sequences.fasta
+
+Outputs:
+    data/<pathogen_directory>/<output_fasta>   # FASTA file containing converted amino acid sequences
+
+Author: Nadia
+"""
 import re
 import argparse
 

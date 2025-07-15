@@ -192,7 +192,7 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
         dict: Mapping of accession code to combined FASTA Path.
     """
     grouped_by_accession = defaultdict(list)
-    header_pattern = re.compile(r'^>[^|]*\|(?P<accession>[^|]+)\|')
+    header_pattern = re.compile(r'^>(?:[^|]*\|)?(?P<accession>[A-Z0-9]+)(?:\||\s)')
 
     for fasta_file in fasta_files:
         with open(fasta_file, "r") as fh:

@@ -1,4 +1,5 @@
-SEQ ID NO 1LENGTH: 168 
+SEQ ID NO 13
+LENGTH: 168 
 TYPE: PRT 
 ORGANISM: Staphylococcus aureus 
 SEQUENCE: 13
@@ -374,20 +375,23 @@ Phe Phe Pro Gly Ala Ile Met Ile Leu Leu Leu Ser Leu Val Ile Val
 Phe Cys Tyr Ile Lys Thr Lys Asn Gln Leu His Leu Leu Leu Ile Val
 Leu Asn Ile Ile Ile Leu Leu Phe Phe Ser Leu Pro Leu Leu Leu Ser
 -------------------------------------------------------------------------------
-SEQ ID NO : 86
+SEQ ID NO 22
 TYPE: PRT
 ORGANISM: Staphylococcus aureus
-SEQUENCE:  Glu Tyr Asn Lys Lys Met Ile Asn Arg Ile His Arg Ile Gln Gly
+SEQUENCE: 22
+Glu Tyr Asn Lys Lys Met Ile Asn Arg Ile His Arg Ile Gln Gly
 Gln Leu Asn Gly Val Ile Lys Met Met Glu Glu Glu Lys Asn Cys Lys
 Asp Val Ile Ser Gln Leu Ser Ala Ser Lys Ser Ser Ile Gln Arg Leu
 Met Gly Ile Ile Ile Ser Glu Asn Leu Val Glu Cys Val Lys Met Ser
 Glu Glu Asn Ser Glu Asp Ser Gln Ala Leu Ile Asn Glu Ala Val Glu
 Leu Leu Ile Lys Ser Lys
 -------------------------------------------------------------------------------
-SEQ ID NOLENGTH: 466
+SEQ ID NO 23
+LENGTH: 466
 TYPE: PRT
 ORGANISM: Staphylococcus aureus
-SEQUENCE:Met Met Lys Arg Lys Pro Thr Phe Leu Glu Ser Ile Ser Thr Met Ile
+SEQUENCE: 23
+Met Met Lys Arg Lys Pro Thr Phe Leu Glu Ser Ile Ser Thr Met Ile
 Val Met Val Ile Val Val Val Thr Gly Phe Val Phe Phe Asp Ile Pro
 Ile Gln Val Leu Leu Ile Ile Ala Ser Ala Tyr Ala Thr Trp Ile Ala
 Lys Arg Val Gly Leu Thr Trp Gln Asp Leu Glu Lys Gly Ile Ala Glu
@@ -418,10 +422,12 @@ Phe Phe Ile Trp Thr Val Pro Cys Tyr Leu Cys Ala Ile Ile Ala Ile
 Ile Tyr Gly Phe Thr Gly Ile Gly Ile Lys Lys Ser Ser Asn Ser Arg
 Leu Thr
 --------------------------------------------------------------------------------
-SEQ ID NOLENGTH: 749
+SEQ ID NO 24
+LENGTH: 749
 TYPE: PRT
 ORGANISM: Staphylococcus aureus
-SEQUENCE:Met Leu Glu Thr Asn Lys Asn His Ala Thr Ala Trp Gln Gly Phe Lys
+SEQUENCE: 24
+Met Leu Glu Thr Asn Lys Asn His Ala Thr Ala Trp Gln Gly Phe Lys
 Asn Gly Arg Trp Asn Arg His Val Asp Val Arg Glu Phe Ile Gln Leu
 Asn Tyr Thr Leu Tyr Glu Gly Asn Asp Ser Phe Leu Ala Gly Pro Thr
 Glu Ala Thr Ser Lys Leu Trp Glu Gln Val Met Gln Leu Ser Lys Glu
