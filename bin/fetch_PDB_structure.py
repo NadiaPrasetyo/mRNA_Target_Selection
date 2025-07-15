@@ -246,6 +246,9 @@ def process_fasta_dir(sequence_dir: Path, output_dir: Path, threads: int):
             except Exception as e:
                 logging.error(f"❌ Error during record processing: {e}")
 
+def was_new_file_created(before: set, after: set) -> bool:
+    return any(f.stat().st_size > 0 for f in after - before)
+
 
 def process_record(record, output_dir: Path):
     header = record.description
@@ -254,25 +257,41 @@ def process_record(record, output_dir: Path):
 
     accession = extract_uniprot_accession(header)
     pdb_ids = []
+    any_pdb_downloaded = False
     alphafold_downloaded = False
 
     if accession:
         logging.info(f"🔍 Searching by UniProt accession: {accession}")
         pdb_ids = search_by_uniprot(accession)
 
-        if not pdb_ids:
-            alphafold_downloaded = fetch_alphafold_structure(accession, output_dir)
+    # Attempt to download PDBs (if any)
+    for pdb_id in pdb_ids:
+        before = set(output_dir.glob("*"))
+        download_pdb(pdb_id, output_dir, accession)
+        after = set(output_dir.glob("*"))
+        if was_new_file_created(before, after):
+            any_pdb_downloaded = True
 
-    if not pdb_ids and not alphafold_downloaded:
+    # If UniProt search failed or none of the downloaded files are valid, try AlphaFold
+    if not any_pdb_downloaded and accession:
+        alphafold_downloaded = fetch_alphafold_structure(accession, output_dir)
+
+    # If AlphaFold also failed, fall back to sequence-based search
+    if not any_pdb_downloaded and not alphafold_downloaded:
         logging.info(f"🔁 Falling back to sequence-based search...")
         pdb_ids = search_by_sequence(sequence)
 
-    # ❌ Only warn if no structure at all (PDB nor AlphaFold)
-    if not pdb_ids and not alphafold_downloaded:
-        logging.warning(f"❌ No PDB entries found for: {header}")
+        for pdb_id in pdb_ids:
+            pre_existing_files = set(output_dir.glob(f"{pdb_id}_*.pdb")) | set(output_dir.glob(f"{pdb_id}_*.cif.gz"))
+            download_pdb(pdb_id, output_dir, accession)
+            post_existing_files = set(output_dir.glob(f"{pdb_id}_*.pdb")) | set(output_dir.glob(f"{pdb_id}_*.cif.gz"))
+            if post_existing_files - pre_existing_files:
+                any_pdb_downloaded = True
 
-    for pdb_id in pdb_ids:
-        download_pdb(pdb_id, output_dir, accession)
+    # Final warning if all fails
+    if not any_pdb_downloaded and not alphafold_downloaded:
+        logging.warning(f"❌ No structure found for: {header}")
+
 
 
 def main():
