@@ -102,7 +102,11 @@ def search_by_uniprot(accession: str) -> List[str]:
         return []  # 🔧 always return list
 
     data = response.json()
-    return [item["identifier"] for item in data.get("result_set", [])]
+    ids = [item["identifier"] for item in data.get("result_set", [])]
+    logging.info(f"📦 PDB IDs for {accession}: {ids}")
+    return ids
+
+    # return [item["identifier"] for item in data.get("result_set", [])]
 
 def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
     url = f"https://alphafold.ebi.ac.uk/api/prediction/{accession}"
@@ -110,11 +114,13 @@ def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
 
     try:
         response = requests.get(url, timeout=10)
+        logging.debug(f"🔗 AlphaFold API response for {accession}: {response.status_code}")
         if response.status_code != 200:
             logging.warning(f"AlphaFold fetch failed for {accession} (status {response.status_code})")
             return False
 
         predictions = response.json()
+        logging.debug(f"🧠 AlphaFold response JSON: {json.dumps(predictions, indent=2) if predictions else 'EMPTY'}")
         if not predictions:
             logging.warning(f"No AlphaFold prediction found for {accession}")
             return False
@@ -289,8 +295,13 @@ def process_record(record, output_dir: Path):
                 any_pdb_downloaded = True
 
     # Final warning if all fails
-    if not any_pdb_downloaded and not alphafold_downloaded:
-        logging.warning(f"❌ No structure found for: {header}")
+    if any_pdb_downloaded:
+        logging.info(f"✅ Structure(s) successfully retrieved for: {header}")
+    elif alphafold_downloaded:
+        logging.info(f"✅ AlphaFold model retrieved for: {header}")
+    else:
+        logging.warning(f"❌ All structure retrieval attempts failed for: {header}")
+
 
 
 
