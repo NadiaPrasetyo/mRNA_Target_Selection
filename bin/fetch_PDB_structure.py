@@ -64,9 +64,8 @@ def extract_uniprot_accession(header: str) -> Optional[str]:
         return first_word
 
     return None
-
-
 def search_by_uniprot(accession: str) -> List[str]:
+    logging.info(f"🔍 Searching PDB by UniProt accession: {accession}")
     payload = {
         "query": {
             "type": "group",
@@ -95,18 +94,27 @@ def search_by_uniprot(accession: str) -> List[str]:
         "return_type": "entry"
     }
 
-    response = requests.post(SEARCH_API_URL, json=payload)
+    try:
+        response = requests.post(SEARCH_API_URL, json=payload)
+        if response.status_code != 200:
+            logging.error(f"❌ UniProt search failed for {accession} - Status code: {response.status_code}")
+            return []
 
-    if response.status_code != 200 or not response.json():
-        logging.error(f"Failed UniProt search: {response.status_code}")
-        return []  # 🔧 always return list
+        data = response.json()
+        result_set = data.get("result_set", [])
 
-    data = response.json()
-    ids = [item["identifier"] for item in data.get("result_set", [])]
-    logging.info(f"📦 PDB IDs for {accession}: {ids}")
-    return ids
+        if not result_set:
+            logging.warning(f"⚠️ No PDB entries found for UniProt accession: {accession}")
+            return []
 
-    # return [item["identifier"] for item in data.get("result_set", [])]
+        ids = [item["identifier"] for item in result_set]
+        logging.info(f"📦 PDB IDs for {accession}: {ids}")
+        return ids
+
+    except Exception as e:
+        logging.exception(f"💥 Exception during UniProt search for {accession}: {e}")
+        return []
+
 
 def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
     url = f"https://alphafold.ebi.ac.uk/api/prediction/{accession}"
@@ -114,7 +122,6 @@ def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
 
     try:
         response = requests.get(url, timeout=10)
-        logging.debug(f"🔗 AlphaFold API response for {accession}: {response.status_code}")
         if response.status_code != 200:
             logging.warning(f"AlphaFold fetch failed for {accession} (status {response.status_code})")
             return False
@@ -263,46 +270,49 @@ def process_record(record, output_dir: Path):
 
     accession = extract_uniprot_accession(header)
     pdb_ids = []
-    any_pdb_downloaded = False
+    pdb_downloaded = False
     alphafold_downloaded = False
 
     if accession:
         logging.info(f"🔍 Searching by UniProt accession: {accession}")
         pdb_ids = search_by_uniprot(accession)
 
-    # Attempt to download PDBs (if any)
-    for pdb_id in pdb_ids:
-        before = set(output_dir.glob("*"))
-        download_pdb(pdb_id, output_dir, accession)
-        after = set(output_dir.glob("*"))
-        if was_new_file_created(before, after):
-            any_pdb_downloaded = True
+        for pdb_id in pdb_ids:
+            before = set(output_dir.glob("*"))
+            download_pdb(pdb_id, output_dir, accession)
+            after = set(output_dir.glob("*"))
+            if was_new_file_created(before, after):
+                pdb_downloaded = True
 
-    # If UniProt search failed or none of the downloaded files are valid, try AlphaFold
-    if not any_pdb_downloaded and accession:
+        # 💥 Always try AlphaFold if accession exists (brute-force mode)
         alphafold_downloaded = fetch_alphafold_structure(accession, output_dir)
 
-    # If AlphaFold also failed, fall back to sequence-based search
-    if not any_pdb_downloaded and not alphafold_downloaded:
-        logging.info(f"🔁 Falling back to sequence-based search...")
+    # 🪂 Fallback to sequence-based search only if neither method yielded results
+    if not pdb_downloaded and not alphafold_downloaded:
+        logging.info("🔁 Falling back to sequence-based search...")
         pdb_ids = search_by_sequence(sequence)
 
         for pdb_id in pdb_ids:
-            pre_existing_files = set(output_dir.glob(f"{pdb_id}_*.pdb")) | set(output_dir.glob(f"{pdb_id}_*.cif.gz"))
+            before = set(output_dir.glob("*"))
             download_pdb(pdb_id, output_dir, accession)
-            post_existing_files = set(output_dir.glob(f"{pdb_id}_*.pdb")) | set(output_dir.glob(f"{pdb_id}_*.cif.gz"))
-            if post_existing_files - pre_existing_files:
-                any_pdb_downloaded = True
+            after = set(output_dir.glob("*"))
+            if was_new_file_created(before, after):
+                pdb_downloaded = True
 
-    # Final warning if all fails
-    if any_pdb_downloaded:
-        logging.info(f"✅ Structure(s) successfully retrieved for: {header}")
+    # 🧾 Final logging
+    if pdb_downloaded and alphafold_downloaded:
+        logging.info(f"✅ PDB and AlphaFold models retrieved for: {header}")
+    #     # delete the AlphaFold file if PDB was downloaded
+    #     af_file = output_dir / f"{accession}_AF.pdb"
+    #     if af_file.exists():
+    #         logging.info(f"🗑️ Deleting AlphaFold file: {af_file.name} (PDB found)")
+    #         af_file.unlink()
+    # elif pdb_downloaded:
+        logging.info(f"✅ PDB structure(s) retrieved for: {header} (AlphaFold not found)")
     elif alphafold_downloaded:
-        logging.info(f"✅ AlphaFold model retrieved for: {header}")
+        logging.info(f"✅ AlphaFold model retrieved for: {header} (PDB not found)")
     else:
         logging.warning(f"❌ All structure retrieval attempts failed for: {header}")
-
-
 
 
 def main():
