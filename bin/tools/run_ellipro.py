@@ -27,26 +27,39 @@ import gzip
 import shutil
 import logging
 from pathlib import Path
+import re
 
 def fix_pdb_format(pdb_path):
-    from pathlib import Path
-
     fixed_lines = []
     for line in open(pdb_path):
         if line.startswith(("ATOM", "HETATM")):
             try:
-                serial = int(line[6:11])
-                atom_name = line[12:16]
-                res_name = line[17:20]
-                chain_id = line[21]
-                res_seq = int(line[22:26])
-                x = float(line[30:38])
-                y = float(line[38:46])
-                z = float(line[46:54])
-                occupancy = float(line[54:60])
-                temp_factor = float(line[60:66])
+                parts = line.strip().split()
+                if len(parts) < 11:
+                    raise ValueError("Too few columns")
 
-                # Reconstruct the line using strict column alignment
+                serial = int(parts[1])
+                atom_name = parts[2]
+                res_name = parts[3]
+                chain_res = parts[4]
+
+                # Handle chain and residue together (e.g., "V1544")
+                match = re.match(r"([A-Za-z])(\d+)", chain_res)
+                if match:
+                    chain_id = match.group(1)
+                    res_seq = int(match.group(2))
+                else:
+                    # If they were separated, like ["Z", "205"]
+                    chain_id = parts[4]
+                    res_seq = int(parts[5])
+                    parts = parts[:4] + parts[5:]  # shift parts
+
+                x = float(parts[5])
+                y = float(parts[6])
+                z = float(parts[7])
+                occupancy = float(parts[8])
+                temp_factor = float(parts[9])
+
                 fixed_line = (
                     f"{line[:6]}{serial:5d} "
                     f"{atom_name:<4}{res_name:>3} {chain_id}"
@@ -55,6 +68,7 @@ def fix_pdb_format(pdb_path):
                     f"{occupancy:6.2f}{temp_factor:6.2f}           \n"
                 )
                 fixed_lines.append(fixed_line)
+
             except Exception as e:
                 logging.warning(f"⚠️ Skipping malformed line: {line.strip()} — {e}")
         else:
