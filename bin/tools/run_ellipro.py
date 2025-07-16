@@ -29,6 +29,30 @@ import logging
 from pathlib import Path
 import re
 import time
+import gemmi
+
+def convert_cif_to_pdb_with_gemmi(input_cif, output_pdb):
+    try:
+        doc = gemmi.cif.read_file(str(input_cif))
+        block = doc.sole_block()
+        structure = gemmi.make_structure_from_block(block)
+
+        # Optional cleanup
+        structure.remove_alternate_conformations()
+
+        # Truncate 2-letter chain IDs to 1-letter
+        for model in structure:
+            for chain in model:
+                if len(chain.name) > 1:
+                    chain.name = chain.name[0]
+
+        structure.write_pdb(str(output_pdb))
+        logging.info(f"✅ Gemmi converted: {input_cif.name} → {output_pdb.name}")
+        return output_pdb
+    except Exception as e:
+        logging.error(f"❌ Gemmi CIF→PDB failed: {e}")
+        return None
+
 
 def fix_pdb_format(pdb_path):
     fixed_lines = []
@@ -113,35 +137,20 @@ def run(input_file, tool_root, output_dir):
         except Exception as e:
             logging.error(f"❌ Failed to unzip {input_file.name}: {e}")
             return
-
-    # Step 2: Convert CIF to PDB
+    
+    # Step 2: Convert CIF to PDB (using Gemmi)
     if working_file.suffix == ".cif":
-        logging.info(f"🔍 Detected CIF file: {working_file.name}, converting to PDB")
-        try:
-            cmd = [
-                "python3", str(cif_converter),
-                "-f", str(working_file.parent),
-                "-o", str(output_dir)
-            ]
-            result = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            logging.info(result.stdout)
-            logging.info(f"✅ Converted CIF to PDB: {stem}.pdb")
-        except subprocess.CalledProcessError as e:
-            logging.error(f"❌ CIF to PDB conversion failed: {working_file.name}")
-            logging.error(e.stderr)
-            return
-        working_file = output_dir / f"{stem}.pdb"
-        wait_time = 0
-        while not working_file.exists() and wait_time < 10:
-            logging.info(f"⏳ Waiting for PDB output: {working_file.name}")
-            time.sleep(1)
-            wait_time += 1
+        logging.info(f"🔍 Detected CIF file: {working_file.name}, converting to PDB with Gemmi")
+        pdb_output = output_dir / f"{stem}.pdb"
+        working_file = convert_cif_to_pdb_with_gemmi(working_file, pdb_output)
 
-        if not working_file.exists():
-            logging.error(f"❌ PDB file not found after conversion: {working_file}")
+        if not working_file or not working_file.exists():
+            logging.error(f"❌ Failed to generate PDB from CIF: {pdb_output}")
             return
-        logging.info(f"🔍 Fixing PDB format: {working_file.name}")
-        working_file = fix_pdb_format(working_file)
+
+        # logging.info(f"🔍 Fixing PDB format: {working_file.name}")
+        # working_file = fix_pdb_format(working_file)
+
 
     # Step 3: Run ElliPro (no --chains)
     logging.info(f"🔍 Running ElliPro on {working_file.name}")

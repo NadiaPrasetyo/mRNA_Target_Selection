@@ -9,3 +9,4 @@ tqdm
 pybiolib
 torch --index-url https://download.pytorch.org/whl/cpu
 biopython
+gemmi
