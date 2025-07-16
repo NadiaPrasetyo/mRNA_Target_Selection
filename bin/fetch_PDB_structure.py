@@ -103,7 +103,6 @@ def search_by_uniprot(accession: str) -> List[str]:
             return []
 
         ids = [item["identifier"] for item in result_set]
-        logging.info(f"📦 PDB IDs for {accession}: {ids}")
         return ids
 
     except Exception as e:
