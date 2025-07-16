@@ -28,6 +28,7 @@ import shutil
 import logging
 from pathlib import Path
 import re
+import time
 
 def fix_pdb_format(pdb_path):
     fixed_lines = []
@@ -122,13 +123,23 @@ def run(input_file, tool_root, output_dir):
                 "-f", str(working_file.parent),
                 "-o", str(output_dir)
             ]
-            subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            logging.info(result.stdout)
             logging.info(f"✅ Converted CIF to PDB: {stem}.pdb")
         except subprocess.CalledProcessError as e:
             logging.error(f"❌ CIF to PDB conversion failed: {working_file.name}")
             logging.error(e.stderr)
             return
         working_file = output_dir / f"{stem}.pdb"
+        wait_time = 0
+        while not working_file.exists() and wait_time < 10:
+            logging.info(f"⏳ Waiting for PDB output: {working_file.name}")
+            time.sleep(1)
+            wait_time += 1
+
+        if not working_file.exists():
+            logging.error(f"❌ PDB file not found after conversion: {working_file}")
+            return
         logging.info(f"🔍 Fixing PDB format: {working_file.name}")
         working_file = fix_pdb_format(working_file)
 
