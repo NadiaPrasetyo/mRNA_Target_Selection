@@ -28,6 +28,49 @@ import shutil
 import logging
 from pathlib import Path
 
+def fix_pdb_format(pdb_path):
+    fixed_lines = []
+    for line in open(pdb_path):
+        if line.startswith(("ATOM", "HETATM")):
+            try:
+                serial = int(line[6:11].strip())
+                atom_name = line[12:16].strip()
+                res_name = line[17:20].strip()
+
+                # Extract potential "V1543" from column 21-26
+                chain_and_res = line[21:27].strip()
+                if len(chain_and_res) > 4 and chain_and_res[1:].isdigit():
+                    chain_id = chain_and_res[0]
+                    res_seq = int(chain_and_res[1:])
+                else:
+                    chain_id = line[21].strip()
+                    res_seq = int(''.join(filter(str.isdigit, line[22:26])) or '1')
+
+                x = float(line[30:38].strip())
+                y = float(line[38:46].strip())
+                z = float(line[46:54].strip())
+                occupancy = float(line[54:60].strip())
+                temp_factor = float(line[60:66].strip())
+
+                fixed_line = (
+                    f"{line[:6]}{serial:5d} "
+                    f"{atom_name:<4}{res_name:>3} {chain_id:1}"
+                    f"{res_seq:4d}    "
+                    f"{x:8.3f}{y:8.3f}{z:8.3f}"
+                    f"{occupancy:6.2f}{temp_factor:6.2f}           \n"
+                )
+                fixed_lines.append(fixed_line)
+            except Exception as e:
+                logging.warning(f"⚠️ Skipping malformed line: {line.strip()} — {e}")
+        else:
+            fixed_lines.append(line)
+
+    fixed_path = Path(pdb_path).with_suffix(".fixed.pdb")
+    with open(fixed_path, "w") as out:
+        out.writelines(fixed_lines)
+    logging.info(f"✅ Fixed PDB formatting: {fixed_path.name}")
+    return fixed_path
+
 
 def run(input_file, tool_root, output_dir):
     input_file = Path(input_file)
@@ -77,6 +120,8 @@ def run(input_file, tool_root, output_dir):
             logging.error(e.stderr)
             return
         working_file = output_dir / f"{stem}.pdb"
+        logging.info(f"🔍 Fixing PDB format: {working_file.name}")
+        working_file = fix_pdb_format(working_file)
 
     # Step 3: Run ElliPro (no --chains)
     logging.info(f"🔍 Running ElliPro on {working_file.name}")
@@ -92,3 +137,4 @@ def run(input_file, tool_root, output_dir):
     except subprocess.CalledProcessError as e:
         logging.error(f"❌ ElliPro failed: {working_file.name}")
         logging.error(e.stderr)
+        
