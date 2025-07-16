@@ -27,8 +27,6 @@ import gzip
 import shutil
 import logging
 from pathlib import Path
-import re
-import time
 import gemmi
 
 def convert_cif_to_pdb_with_gemmi(input_cif, output_pdb):
@@ -49,59 +47,6 @@ def convert_cif_to_pdb_with_gemmi(input_cif, output_pdb):
     except Exception as e:
         logging.error(f"❌ Gemmi CIF→PDB failed: {e}")
         return None
-
-
-def fix_pdb_format(pdb_path):
-    fixed_lines = []
-    for line in open(pdb_path):
-        if line.startswith(("ATOM", "HETATM")):
-            try:
-                parts = line.strip().split()
-                if len(parts) < 11:
-                    raise ValueError("Too few columns")
-
-                serial = int(parts[1])
-                atom_name = parts[2]
-                res_name = parts[3]
-                chain_res = parts[4]
-
-                # Handle chain and residue together (e.g., "V1544")
-                match = re.match(r"([A-Za-z])(\d+)", chain_res)
-                if match:
-                    chain_id = match.group(1)
-                    res_seq = int(match.group(2))
-                else:
-                    # If they were separated, like ["Z", "205"]
-                    chain_id = parts[4]
-                    res_seq = int(parts[5])
-                    parts = parts[:4] + parts[5:]  # shift parts
-
-                x = float(parts[5])
-                y = float(parts[6])
-                z = float(parts[7])
-                occupancy = float(parts[8])
-                temp_factor = float(parts[9])
-
-                fixed_line = (
-                    f"{line[:6]}{serial:5d} "
-                    f"{atom_name:<4}{res_name:>3} {chain_id}"
-                    f"{res_seq:4d}    "
-                    f"{x:8.3f}{y:8.3f}{z:8.3f}"
-                    f"{occupancy:6.2f}{temp_factor:6.2f}           \n"
-                )
-                fixed_lines.append(fixed_line)
-
-            except Exception as e:
-                logging.warning(f"⚠️ Skipping malformed line: {line.strip()} — {e}")
-        else:
-            fixed_lines.append(line)
-
-    fixed_path = Path(pdb_path).with_suffix(".fixed.pdb")
-    with open(fixed_path, "w") as out:
-        out.writelines(fixed_lines)
-    logging.info(f"✅ Fixed PDB formatting: {fixed_path.name}")
-    return fixed_path
-
 
 def run(input_file, tool_root, output_dir):
     input_file = Path(input_file)
@@ -139,9 +84,6 @@ def run(input_file, tool_root, output_dir):
         if not working_file or not working_file.exists():
             logging.error(f"❌ Failed to generate PDB from CIF: {pdb_output}")
             return
-
-        # logging.info(f"🔍 Fixing PDB format: {working_file.name}")
-        # working_file = fix_pdb_format(working_file)
 
 
     # Step 3: Run ElliPro (no --chains)
