@@ -37,9 +37,6 @@ def convert_cif_to_pdb_with_gemmi(input_cif, output_pdb):
         block = doc.sole_block()
         structure = gemmi.make_structure_from_block(block)
 
-        # Optional cleanup
-        structure.remove_alternate_conformations()
-
         # Truncate 2-letter chain IDs to 1-letter
         for model in structure:
             for chain in model:
@@ -113,15 +110,10 @@ def run(input_file, tool_root, output_dir):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     ellipro_jar = tool_root
-    cif_converter = tool_root.parent / "Convert_CIF_to_PDB" / "cif_2_PDB.py"
 
     if not ellipro_jar.exists():
         logging.error(f"❌ ElliPro.jar not found at {ellipro_jar}")
         return
-    if not cif_converter.exists():
-        logging.error(f"❌ CIF to PDB converter not found at {cif_converter}")
-        return
-
     stem = input_file.stem.replace(".cif", "").replace(".pdb", "")
     working_file = input_file
 
