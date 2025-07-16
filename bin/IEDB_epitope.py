@@ -106,7 +106,7 @@ def main():
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, default=[8, 11])
     parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, default=[11, 25])
-    parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell", "Ellipro"], default=None)  # === ELLIPRO INTEGRATION ===
+    parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell", "Ellipro"], default=None)
     parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default")
     parser.add_argument("--mhci-custom-alleles", nargs="+", default=None)
     parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default")
@@ -117,14 +117,12 @@ def main():
     args = parser.parse_args()
 
     data_dir = Path("data")
-    
     pathogen_path = data_dir / args.pathogen_dir
     sequence_path = pathogen_path / args.sequence_dir
     output_dir = args.output_dir
     tool_root = Path(args.tool_root).resolve()
 
     if args.verbose:
-        # Prepare output directories first to get the correct output_dir
         log_file = output_dir / "pipeline.log"
         logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
     else:
@@ -139,7 +137,18 @@ def main():
         logging.warning(f"❌ No valid IEDB tools found in: {tool_root}")
         sys.exit(1)
 
-    selected_tools = set(args.tools) if args.tools else set(tool_map.keys())
+    # Default tools: all except Ellipro
+    default_tools = ["MHCI", "MHCII", "BCell"]
+    if args.tools is None:
+        selected_tools = set([t for t in default_tools if t in tool_map])
+    else:
+        selected_tools = set(args.tools)
+
+    # Ellipro can only be run by itself
+    if "Ellipro" in selected_tools and len(selected_tools) > 1:
+        logging.error("❌ Ellipro can only be run by itself due to input type differences. Please select only Ellipro or other tools.")
+        sys.exit(1)
+
     missing_tools = selected_tools - set(tool_map.keys())
     if missing_tools:
         logging.warning(f"⚠️ Warning: Tools requested but not found: {', '.join(missing_tools)}")
@@ -149,11 +158,14 @@ def main():
         logging.warning("❌ No tools available to run after filtering.")
         sys.exit(1)
 
-    fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
-    # Get PDB files if Ellipro is selected
+    # ONLY Get PDB files if Ellipro is selected
     pdb_files = []
     if "Ellipro" in final_tools:
         pdb_files = common.get_pdb_files(pathogen_path, args.sequence_dir)
+        input_files = pdb_files
+    else:
+        fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
+        input_files = fasta_files
 
     # Convert fasta to txt if BCell is selected
     txt_files = []
@@ -179,13 +191,13 @@ def main():
             peptide_lengths = None
 
         if tool_type == "BCell":
-            input_files = txt_files
+            input_files_tool = txt_files
         elif tool_type == "Ellipro":
-            input_files = pdb_files  # === ELLIPRO INTEGRATION ===
+            input_files_tool = pdb_files
         else:
-            input_files = fasta_files
+            input_files_tool = fasta_files
 
-        for input_file in input_files:
+        for input_file in input_files_tool:
             logging.info(f"🧬 Processing {input_file.name}")
 
             if is_job_completed(tool_type, input_file, output_dir):
@@ -199,13 +211,6 @@ def main():
                         logging.info(f"⏩ Skipping {jp.name} — already processed.")
                         continue
                     all_jobs.append((tool_type, tool_path, jp))
-            elif tool_type == "Ellipro":
-                for input_file in input_files:
-                    logging.info(f"🧬 Processing {input_file.name}")
-                    if is_job_completed(tool_type, input_file, output_dir):
-                        logging.info(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
-                        continue
-                    all_jobs.append((tool_type, tool_path, input_file))
             else:
                 all_jobs.append((tool_type, tool_path, input_file))
 

@@ -32,7 +32,7 @@ from pathlib import Path
 def run(input_file, tool_root, output_dir):
     input_file = Path(input_file)
     tool_root = Path(tool_root)
-    output_dir = Path(output_dir)
+    output_dir = Path(output_dir)/"ellipro"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     ellipro_jar = tool_root / "ElliPro.jar"
