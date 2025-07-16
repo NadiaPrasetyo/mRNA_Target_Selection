@@ -92,7 +92,7 @@ def search_by_uniprot(accession: str) -> List[str]:
     try:
         response = requests.post(SEARCH_API_URL, json=payload)
         if response.status_code != 200:
-            logging.error(f"❌ UniProt search failed for {accession} - Status code: {response.status_code}")
+            logging.error(f"⚠️ UniProt search failed for {accession} - Status code: {response.status_code}")
             return []
 
         data = response.json()
@@ -122,7 +122,6 @@ def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
             return False
 
         predictions = response.json()
-        logging.debug(f"🧠 AlphaFold response JSON: {json.dumps(predictions, indent=2) if predictions else 'EMPTY'}")
         if not predictions:
             logging.warning(f"No AlphaFold prediction found for {accession}")
             return False
@@ -144,7 +143,7 @@ def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
                 f.write(r.content)
             return True
         else:
-            logging.error(f"❌ Failed to download AlphaFold PDB: HTTP {r.status_code}")
+            logging.error(f"⚠️ Failed to download AlphaFold PDB: HTTP {r.status_code}")
             return False
 
     except Exception as e:
@@ -223,11 +222,11 @@ def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
         if cif_dest.exists() and cif_dest.stat().st_size > 0:
             logging.info(f"✅ Downloaded biological assembly (.cif.gz) for {pdb_id} as {cif_filename}")
         else:
-            logging.error(f"❌ Biological assembly .cif.gz is empty for {pdb_id}. Removing.")
+            logging.error(f"⚠️ Biological assembly .cif.gz is empty for {pdb_id}. Removing.")
             if cif_dest.exists():
                 cif_dest.unlink()
     except subprocess.CalledProcessError:
-        logging.error(f"❌ Failed to download biological assembly (.cif.gz) for {pdb_id}")
+        logging.error(f"⚠️ Failed to download biological assembly (.cif.gz) for {pdb_id}")
         if cif_dest.exists():
             cif_dest.unlink()
 
@@ -270,7 +269,6 @@ def process_record(record, output_dir: Path):
     alphafold_downloaded = False
 
     if accession:
-        logging.info(f"🔍 Searching by UniProt accession: {accession}")
         pdb_ids = search_by_uniprot(accession)
 
         for pdb_id in pdb_ids:
