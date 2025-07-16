@@ -123,7 +123,7 @@ def main():
     tool_root = Path(args.tool_root).resolve()
 
     if args.verbose:
-        log_file = output_dir / "antigen_analysis.log"
+        log_file = pathogen_path / output_dir / "antigen_analysis.log"
         log_file.parent.mkdir(parents=True, exist_ok=True)
         handlers = [
             logging.StreamHandler(sys.stdout),
