@@ -52,18 +52,27 @@ def setup_logger(verbose: bool, log_file: Path):
 
     logging.basicConfig(level=level, format=log_format, handlers=handlers)
 
-
 def extract_uniprot_accession(header: str) -> Optional[str]:
+    """
+    Extracts UniProt accession from FASTA headers of either:
+    1. `>antigen_34|Q6GC27|...` format
+    2. `>Q2G0X7 ...` format
+    """
+    header = header.strip().lstrip(">")
+    parts = header.split()
+
+    # Case 2: First word is accession
+    if re.fullmatch(r"[A-NR-Z][0-9][A-Z0-9]{3}[0-9]", parts[0]):
+        return parts[0]
+
+    # Case 1: Pipe-separated and accession is in second position
     pipe_parts = header.split("|")
     for part in pipe_parts:
         if re.fullmatch(r"[A-NR-Z][0-9][A-Z0-9]{3}[0-9]", part):
             return part
 
-    first_word = header.split()[0].replace(">", "")
-    if re.fullmatch(r"[A-NR-Z][0-9][A-Z0-9]{3}[0-9]", first_word):
-        return first_word
-
     return None
+
 def search_by_uniprot(accession: str) -> List[str]:
     logging.info(f"🔍 Searching PDB by UniProt accession: {accession}")
     payload = {
@@ -303,12 +312,12 @@ def process_record(record, output_dir: Path):
     # 🧾 Final logging
     if pdb_downloaded and alphafold_downloaded:
         logging.info(f"✅ PDB and AlphaFold models retrieved for: {header}")
-    #     # delete the AlphaFold file if PDB was downloaded
-    #     af_file = output_dir / f"{accession}_AF.pdb"
-    #     if af_file.exists():
-    #         logging.info(f"🗑️ Deleting AlphaFold file: {af_file.name} (PDB found)")
-    #         af_file.unlink()
-    # elif pdb_downloaded:
+        # delete the AlphaFold file if PDB was downloaded
+        af_file = output_dir / f"{accession}_AF.pdb"
+        if af_file.exists():
+            logging.info(f"🗑️ Deleting AlphaFold file: {af_file.name} (PDB found)")
+            af_file.unlink()
+    elif pdb_downloaded:
         logging.info(f"✅ PDB structure(s) retrieved for: {header} (AlphaFold not found)")
     elif alphafold_downloaded:
         logging.info(f"✅ AlphaFold model retrieved for: {header} (PDB not found)")
