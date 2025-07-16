@@ -52,24 +52,11 @@ def setup_logger(verbose: bool, log_file: Path):
 
     logging.basicConfig(level=level, format=log_format, handlers=handlers)
 
-def extract_uniprot_accession(header: str) -> Optional[str]:
-    """
-    Extracts UniProt accession from FASTA headers of either:
-    1. `antigen_34|Q6GC27|...` format
-    2. `Q2G0X7 ...` format
-    """
-    parts = header.split()
-
-    # Case 2: First word is accession
-    if re.fullmatch(r"[A-NR-Z][0-9][A-Z0-9]{3}[0-9]", parts[0]):
-        return parts[0]
-
-    # Case 1: Pipe-separated and accession is in second position
-    pipe_parts = header.split("|")
-    for part in pipe_parts:
-        if re.fullmatch(r"[A-NR-Z][0-9][A-Z0-9]{3}[0-9]", part):
-            return part
-
+def extract_accession(header: str) -> Optional[str]:
+    header_pattern = re.compile(r'(?:[^|]*\|)?(?P<accession>[A-Z0-9]+)(?:\||\s)')
+    match = header_pattern.match(header)
+    if match:
+        return match.group("accession")
     return None
 
 def search_by_uniprot(accession: str) -> List[str]:
@@ -276,7 +263,7 @@ def process_record(record, output_dir: Path):
     sequence = str(record.seq)
     logging.info(f"🧬 Processing: {header}")
 
-    accession = extract_uniprot_accession(header)
+    accession = extract_accession(header)
     logging.info(f"🔍 Extracted UniProt accession: {accession if accession else 'None'}")
     pdb_ids = []
     pdb_downloaded = False
