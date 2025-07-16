@@ -67,8 +67,8 @@ def run(input_file, tool_root, output_dir):
         try:
             cmd = [
                 "python3", str(cif_converter),
-                "--folder", str(working_file.parent),
-                "--output", str(output_dir)
+                "-f", str(working_file.parent),
+                "-o", str(output_dir)
             ]
             subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             logging.info(f"✅ Converted CIF to PDB: {stem}.pdb")
