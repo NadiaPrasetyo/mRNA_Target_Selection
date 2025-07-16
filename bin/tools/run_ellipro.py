@@ -29,32 +29,27 @@ import logging
 from pathlib import Path
 
 def fix_pdb_format(pdb_path):
+    from pathlib import Path
+
     fixed_lines = []
     for line in open(pdb_path):
         if line.startswith(("ATOM", "HETATM")):
             try:
-                serial = int(line[6:11].strip())
-                atom_name = line[12:16].strip()
-                res_name = line[17:20].strip()
+                serial = int(line[6:11])
+                atom_name = line[12:16]
+                res_name = line[17:20]
+                chain_id = line[21]
+                res_seq = int(line[22:26])
+                x = float(line[30:38])
+                y = float(line[38:46])
+                z = float(line[46:54])
+                occupancy = float(line[54:60])
+                temp_factor = float(line[60:66])
 
-                # Extract potential "V1543" from column 21-26
-                chain_and_res = line[21:27].strip()
-                if len(chain_and_res) > 4 and chain_and_res[1:].isdigit():
-                    chain_id = chain_and_res[0]
-                    res_seq = int(chain_and_res[1:])
-                else:
-                    chain_id = line[21].strip()
-                    res_seq = int(''.join(filter(str.isdigit, line[22:26])) or '1')
-
-                x = float(line[30:38].strip())
-                y = float(line[38:46].strip())
-                z = float(line[46:54].strip())
-                occupancy = float(line[54:60].strip())
-                temp_factor = float(line[60:66].strip())
-
+                # Reconstruct the line using strict column alignment
                 fixed_line = (
                     f"{line[:6]}{serial:5d} "
-                    f"{atom_name:<4}{res_name:>3} {chain_id:1}"
+                    f"{atom_name:<4}{res_name:>3} {chain_id}"
                     f"{res_seq:4d}    "
                     f"{x:8.3f}{y:8.3f}{z:8.3f}"
                     f"{occupancy:6.2f}{temp_factor:6.2f}           \n"
