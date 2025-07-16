@@ -269,6 +269,7 @@ def process_record(record, output_dir: Path):
     logging.info(f"🧬 Processing: {header}")
 
     accession = extract_uniprot_accession(header)
+    logging.info(f"🔍 Extracted UniProt accession: {accession if accession else 'None'}")
     pdb_ids = []
     pdb_downloaded = False
     alphafold_downloaded = False
