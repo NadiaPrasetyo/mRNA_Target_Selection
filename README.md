@@ -100,6 +100,7 @@ mRNA_Target_Selection/
 - [IEDB Bcell Epitope Prediction](http://tools.iedb.org/bcell/)
 - [IEDB Population Coverage](http://tools.iedb.org/population/)
 - [DeepLocPro1.0](https://services.healthtech.dtu.dk/services/DeepLocPro-1.0/)
+- [Convert_CIF_to_PDB](https://github.com/SDMscript/Convert_CIF_to_PDB)
 
 Install Python dependencies:
 ```sh
@@ -131,6 +132,11 @@ git clone https://github.com/Jaimomar99/deeplocpro.git
 cd DeepLocPro
 pip install .
 
+```
+
+Install CIF to PDB converter: See [Github](https://github.com/SDMscript/Convert_CIF_to_PDB)
+```sh
+git clone https://github.com/SDMscript/Convert_CIF_to_PDB.git
 ```
 ---
 

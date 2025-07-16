@@ -36,7 +36,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_mhci, run_mhcii, run_bcell, common
+from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, common
 import sys
 import logging
 
@@ -44,7 +44,8 @@ import logging
 tool_runners = {
     "MHCI": run_mhci.run,
     "MHCII": run_mhcii.run,
-    "BCell": run_bcell.run
+    "BCell": run_bcell.run,
+    "Ellipro": run_ellipro.run,  
 }
 
 def is_job_completed(tool_type, input_path, base_output_dir):
@@ -66,11 +67,11 @@ def is_job_completed(tool_type, input_path, base_output_dir):
         return False
 
     base_name = input_path.stem
-    expected_suffix = f"{tool_type.upper()}.json" # e.g., "MHCI.json", "MHCII.json", "BCELL.txt"
+    expected_suffix = f"{tool_type.upper()}.json" # e.g., "MHCI.json", "MHCII.json", "BCELL.txt", "Ellipro.txt"
     # Check for any file that matches the base name and expected suffix
     
     # Check for any file that matches the base name and expected suffix
-    if tool_type == "BCell":
+    if tool_type in ["BCell", "Ellipro"]:
         expected_suffix = ".txt"
 
     for file in subdir.glob(f"*{expected_suffix}"):
@@ -96,81 +97,41 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
         for f in futures:
             f.result()
 
+
 def main():
-    """
-    Main function to parse arguments and run the IEDB epitope prediction tools.
-    It prepares the input files, checks for existing results, and runs the selected tools in parallel.
-    """
-    parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell)",
-                                     usage="iedb_epitope.py <pathogen_dir> <sequence_dir> --tool-root <tool_root> [options]")
-    parser.epilog = (
-        f"Example usage:\n"
-        f"  iedb_epitope.py influenza sequences --tool-root /path/to/iedb/tools --threads 8 --peptide-lengths 8 11 --tools MHCI MHCII\n\n"
-        "This script will run epitope predictions for the specified pathogen and sequence directories using the IEDB tools MHCI and MHCII with peptide length between 8-11 and with 8 parallel threads."
-    )
+    parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell, Ellipro)")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing IEDB tools")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
-                        default=[8, 11], help="Min and max peptide lengths for MHCI (default 8-11)")
-    parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, metavar=('MIN', 'MAX'),
-                        default=[11, 25], help="Min and max peptide lengths for MHCII (default 11-25)")
-    parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell"], default=None,
-                        help="Specify which tools to run (default: all detected tools)")
-    parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default",
-                        help="Allele panel for MHCI. Choose 'default', 'extended', or 'custom'")
-    parser.add_argument("--mhci-custom-alleles", nargs="+", default=None,
-                        help="Custom alleles list for MHCI if panel is 'custom'")
-    parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default",
-                        help="Allele panel for MHCII. Choose 'default', 'extended', or 'custom'")
-    parser.add_argument("--mhcii-custom-alleles", nargs="+", default=None,
-                        help="Custom alleles list for MHCII if panel is 'custom'")
-    parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"),
-                        help="Directory to save output files (default: 'epitope_outputs')")
-    parser.add_argument("--verbose", action="store_true",
-                        help="Enable verbose logging to a .log file in the output directory")
+    parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, default=[8, 11])
+    parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, default=[11, 25])
+    parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell", "Ellipro"], default=None)  # === ELLIPRO INTEGRATION ===
+    parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default")
+    parser.add_argument("--mhci-custom-alleles", nargs="+", default=None)
+    parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default")
+    parser.add_argument("--mhcii-custom-alleles", nargs="+", default=None)
+    parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"))
+    parser.add_argument("--verbose", action="store_true")
 
     args = parser.parse_args()
 
     data_dir = Path("data")
     
     pathogen_path = data_dir / args.pathogen_dir
-    if not pathogen_path.exists() or not pathogen_path.is_dir():
-        logging.warning(f"❌ Pathogen directory does not exist or is not a directory: {pathogen_path}")
-        sys.exit(1)
-
-    # check that output directory exists or create it
-    output_dir = Path(args.output_dir)
-    if not output_dir.exists():
-        logging.info(f"Creating output directory: {output_dir}")
-        output_dir.mkdir(parents=True, exist_ok=True)
-
+    sequence_path = pathogen_path / args.sequence_dir
+    output_dir = args.output_dir
+    tool_root = Path(args.tool_root).resolve()
 
     if args.verbose:
         # Prepare output directories first to get the correct output_dir
         log_file = output_dir / "pipeline.log"
-        logging.basicConfig(
-            filename=log_file,
-            level=logging.DEBUG,
-            format='%(asctime)s - %(levelname)s - %(message)s'
-        )
-
+        logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
     else:
-        logging.basicConfig(
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s'
-        )
+        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
-    sequence_path = pathogen_path / args.sequence_dir
-    if not sequence_path.exists() or not sequence_path.is_dir():
-        logging.warning(f"❌ Sequence directory does not exist or is not a directory: {sequence_path}")
-        sys.exit(1)
-
-    tool_root = Path(args.tool_root)
-    if not tool_root.exists() or not tool_root.is_dir():
-        logging.warning(f"❌ Tool root directory does not exist or is not a directory: {tool_root}")
+    if not pathogen_path.exists() or not sequence_path.exists() or not tool_root.exists():
+        logging.error("❌ One or more required directories do not exist.")
         sys.exit(1)
 
     tool_map = common.check_iedb_tool(tool_root)
@@ -189,9 +150,10 @@ def main():
         sys.exit(1)
 
     fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
-    if not fasta_files:
-        logging.warning(f"❌ No FASTA files found in {sequence_path}")
-        sys.exit(1)
+    # Get PDB files if Ellipro is selected
+    pdb_files = []
+    if "Ellipro" in final_tools:
+        pdb_files = common.get_pdb_files(pathogen_path, args.sequence_dir)
 
     # Convert fasta to txt if BCell is selected
     txt_files = []
@@ -216,32 +178,39 @@ def main():
             alleles = []
             peptide_lengths = None
 
-        input_files = txt_files if tool_type == "BCell" else fasta_files
+        if tool_type == "BCell":
+            input_files = txt_files
+        elif tool_type == "Ellipro":
+            input_files = pdb_files  # === ELLIPRO INTEGRATION ===
+        else:
+            input_files = fasta_files
+
         for input_file in input_files:
             logging.info(f"🧬 Processing {input_file.name}")
 
-            if tool_type == "BCell":
-                if is_job_completed(tool_type, input_file, output_dir):
-                    logging.info(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
-                    continue
-                all_jobs.append((tool_type, tool_path, input_file))
-            else:
-                json_paths = common.parse_fasta_to_jsons(
-                    input_file,
-                    temp_json_dir,
-                    alleles,
-                    peptide_lengths,
-                    tool_type,
-                    args.sequence_dir
-                )
+            if is_job_completed(tool_type, input_file, output_dir):
+                logging.info(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
+                continue
+
+            if tool_type in ["MHCI", "MHCII"]:
+                json_paths = common.parse_fasta_to_jsons(input_file, temp_json_dir, alleles, peptide_lengths, tool_type, args.sequence_dir)
                 for jp in json_paths:
                     if is_job_completed(tool_type, jp, output_dir):
                         logging.info(f"⏩ Skipping {jp.name} — already processed.")
                         continue
                     all_jobs.append((tool_type, tool_path, jp))
+            elif tool_type == "Ellipro":
+                for input_file in input_files:
+                    logging.info(f"🧬 Processing {input_file.name}")
+                    if is_job_completed(tool_type, input_file, output_dir):
+                        logging.info(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
+                        continue
+                    all_jobs.append((tool_type, tool_path, input_file))
+            else:
+                all_jobs.append((tool_type, tool_path, input_file))
 
     if not all_jobs:
-        logging.warning("❌ No jobs to run. Exiting.")
+        logging.warning("❌ No jobs to run.")
         common.cleanup_temp(temp_json_dir)
         if "BCell" in final_tools:
             common.cleanup_temp(temp_txt_dir)
@@ -258,7 +227,8 @@ def main():
 
     common.cleanup_temp(temp_json_dir)
     if "BCell" in final_tools:
-            common.cleanup_temp(temp_txt_dir)
+        common.cleanup_temp(temp_txt_dir)
+
     logging.info("\n✅ Prediction complete.")
 
 if __name__ == "__main__":

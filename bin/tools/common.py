@@ -318,6 +318,25 @@ def ensure_writable_dir(path: Path) -> bool:
 
     return True
 
+def get_pdb_files(pathogen_path, sequence_dir):
+    """
+    Get a list of structure files (.pdb, .cif, .cif.gz) from the given sequence directory inside the pathogen path.
+    Args:
+        pathogen_path (Path): Base path to the pathogen.
+        sequence_dir (str): Subdirectory under pathogen_path where structure files are located.
+    Returns:
+        list[Path]: List of structure file paths.
+    """
+    search_path = pathogen_path / sequence_dir
+    extensions = ["*.pdb", "*.cif", "*.cif.gz"]
+
+    structure_files = []
+    for ext in extensions:
+        structure_files.extend(search_path.glob(ext))
+
+    return structure_files
+
+
 def get_fasta_files(base_path: Path, sequence_subdir: str):
     """
     Get all FASTA files in the specified sequence subdirectory.
@@ -501,8 +520,6 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
 
     return tool_paths
 
-
-
 def check_iedb_tool(base_path):
     """
     Check for the presence of IEDB epitope prediction tools and return their paths.
@@ -515,7 +532,8 @@ def check_iedb_tool(base_path):
     paths = {
         "BCell": base / "bcell_standalone" / "predict_antibody_epitope.py",
         "MHCI": base / "ng_tc1-0.1.2-beta" / "src" / "tcell_mhci.py",
-        "MHCII": base / "ng_tc2-0.1.1-beta" / "src" / "tcell_mhcii.py"
+        "MHCII": base / "ng_tc2-0.1.1-beta" / "src" / "tcell_mhcII.py",
+        "Ellipro": base / "ElliPro.jar"
     }
 
     tools = {}
@@ -523,6 +541,7 @@ def check_iedb_tool(base_path):
         if path.exists():
             tools[key] = str(path)
     return tools
+
 
 def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
     """
