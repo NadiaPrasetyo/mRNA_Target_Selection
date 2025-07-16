@@ -35,7 +35,7 @@ def run(input_file, tool_root, output_dir):
     output_dir = Path(output_dir)/"ellipro"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    ellipro_jar = tool_root / "ElliPro.jar"
+    ellipro_jar = tool_root
     cif_converter = tool_root / "Convert_CIF_to_PDB" / "cif_2_pdb.py"
 
     if not ellipro_jar.exists():
@@ -50,6 +50,7 @@ def run(input_file, tool_root, output_dir):
 
     # Step 1: Unzip if input is .gz
     if input_file.suffix == ".gz":
+        logging.info(f"🔍 Detected gzipped file: {input_file.name}, unzipping")
         unzipped = input_file.with_suffix("")
         try:
             with gzip.open(input_file, 'rb') as f_in, open(unzipped, 'wb') as f_out:
@@ -62,6 +63,7 @@ def run(input_file, tool_root, output_dir):
 
     # Step 2: Convert CIF to PDB
     if working_file.suffix == ".cif":
+        logging.info(f"🔍 Detected CIF file: {working_file.name}, converting to PDB")
         try:
             cmd = [
                 "python3", str(cif_converter),
@@ -77,6 +79,7 @@ def run(input_file, tool_root, output_dir):
         working_file = output_dir / f"{stem}.pdb"
 
     # Step 3: Run ElliPro (no --chains)
+    logging.info(f"🔍 Running ElliPro on {working_file.name}")
     output_file = output_dir / f"{stem}.txt"
     try:
         cmd = [

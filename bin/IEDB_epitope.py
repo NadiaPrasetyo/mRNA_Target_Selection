@@ -119,16 +119,28 @@ def main():
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
     sequence_path = pathogen_path / args.sequence_dir
-    output_dir = args.output_dir
+    output_dir = pathogen_path / args.output_dir
     tool_root = Path(args.tool_root).resolve()
 
     if args.verbose:
-        log_file = output_dir / "pipeline.log"
-        if not log_file.parent.exists():
-            log_file.parent.mkdir(parents=True, exist_ok=True)
-        logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+        log_file = output_dir / "antigen_analysis.log"
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        handlers = [
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler(log_file, mode='a')
+        ]
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            handlers=handlers,
+            force=True
+        )
     else:
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            force=True
+        )
 
     if not pathogen_path.exists() or not sequence_path.exists() or not tool_root.exists():
         logging.error("❌ One or more required directories do not exist.")
@@ -164,10 +176,9 @@ def main():
     pdb_files = []
     if "Ellipro" in final_tools:
         pdb_files = common.get_pdb_files(pathogen_path, args.sequence_dir)
-        input_files = pdb_files
+        logging.info(f"📂 Found {len(pdb_files)} structure file(s): {[p.name for p in pdb_files]}")
     else:
         fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
-        input_files = fasta_files
 
     # Convert fasta to txt if BCell is selected
     txt_files = []
