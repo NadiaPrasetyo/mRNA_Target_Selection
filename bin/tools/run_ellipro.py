@@ -36,7 +36,7 @@ def run(input_file, tool_root, output_dir):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     ellipro_jar = tool_root
-    cif_converter = tool_root / "Convert_CIF_to_PDB" / "cif_2_pdb.py"
+    cif_converter = tool_root.parent / "Convert_CIF_to_PDB" / "cif_2_pdb.py"
 
     if not ellipro_jar.exists():
         logging.error(f"❌ ElliPro.jar not found at {ellipro_jar}")
