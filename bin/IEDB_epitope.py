@@ -119,7 +119,7 @@ def main():
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
     sequence_path = pathogen_path / args.sequence_dir
-    output_dir = pathogen_path / args.output_dir
+    output_dir = args.output_dir
     tool_root = Path(args.tool_root).resolve()
 
     if args.verbose:
