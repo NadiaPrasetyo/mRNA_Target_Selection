@@ -55,10 +55,9 @@ def setup_logger(verbose: bool, log_file: Path):
 def extract_uniprot_accession(header: str) -> Optional[str]:
     """
     Extracts UniProt accession from FASTA headers of either:
-    1. `>antigen_34|Q6GC27|...` format
-    2. `>Q2G0X7 ...` format
+    1. `antigen_34|Q6GC27|...` format
+    2. `Q2G0X7 ...` format
     """
-    header = header.strip().lstrip(">")
     parts = header.split()
 
     # Case 2: First word is accession
