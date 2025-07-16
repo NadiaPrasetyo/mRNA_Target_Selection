@@ -124,6 +124,8 @@ def main():
 
     if args.verbose:
         log_file = output_dir / "pipeline.log"
+        if not log_file.parent.exists():
+            log_file.parent.mkdir(parents=True, exist_ok=True)
         logging.basicConfig(filename=log_file, level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
     else:
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
