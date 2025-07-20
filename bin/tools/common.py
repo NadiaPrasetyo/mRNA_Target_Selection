@@ -30,6 +30,7 @@ import re
 from collections import defaultdict
 from typing import List
 import subprocess
+from Bio import SeqIO
 
 def is_valid_peptide(seq: str) -> bool:
     """
@@ -533,7 +534,8 @@ def check_iedb_tool(base_path):
         "BCell": base / "bcell_standalone" / "predict_antibody_epitope.py",
         "MHCI": base / "ng_tc1-0.1.2-beta" / "src" / "tcell_mhci.py",
         "MHCII": base / "ng_tc2-0.1.1-beta" / "src" / "tcell_mhcII.py",
-        "Ellipro": base / "ElliPro.jar"
+        "Ellipro": base / "ElliPro.jar",
+        "MixMHC2pred": base / "MixMHC2pred-2.0" / "MixMHC2pred_unix"
     }
 
     tools = {}
@@ -653,6 +655,31 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
             print(f"❌ {name} tool not found at: {path.parent}")
 
     return found
+
+def split_protein_fasta_to_peptides(input_fasta, output_fasta, peptide_length=15):
+    """
+    Creates peptide FASTA from protein FASTA using sliding window.
+
+    Args:
+        input_fasta (str or Path): Path to protein FASTA.
+        output_fasta (str or Path): Path to output peptide FASTA.
+        peptide_length (int): Length of peptides (default=15).
+    """
+    input_fasta = Path(input_fasta)
+    output_fasta = Path(output_fasta)
+
+    with open(output_fasta, "w") as out_f:
+        for record in SeqIO.parse(input_fasta, "fasta"):
+            protein_seq = str(record.seq)
+            header = record.id
+
+            for i in range(len(protein_seq) - peptide_length + 1):
+                peptide = protein_seq[i:i + peptide_length]
+                peptide_id = f"{header}_seq{i+1}"
+                out_f.write(f">{peptide_id}\n{peptide}\n")
+
+    print(f"Peptide FASTA written to: {output_fasta}")
+
 
 # Add __main__ with unittest
 if __name__ == "__main__":

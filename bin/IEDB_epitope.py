@@ -36,7 +36,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, common
+from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, run_mixmhc2pred, common
 import sys
 import logging
 
@@ -46,6 +46,7 @@ tool_runners = {
     "MHCII": run_mhcii.run,
     "BCell": run_bcell.run,
     "Ellipro": run_ellipro.run,  
+    "MixMHC2pred": run_mixmhc2pred.run
 }
 
 def is_job_completed(tool_type, input_path, base_output_dir):
@@ -90,12 +91,21 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
     logging.info(f"\n⚙️ Starting parallel execution of {len(job_list)} job(s) using {max_threads} thread(s)...")
 
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
-        futures = [
-            executor.submit(tool_runners[tool_type], json_file, tool_path, output_dir)
-            for tool_type, tool_path, json_file in job_list
-        ]
+        futures = []
+        for job in job_list:
+            tool_type = job[0]
+
+            if tool_type == "MixMHC2pred":
+                _, tool_path, input_file, alleles = job
+                futures.append(executor.submit(tool_runners[tool_type], input_file, tool_path, output_dir, alleles))
+            else:
+                # (tool_type, tool_path, input_file)
+                _, tool_path, input_file = job
+                futures.append(executor.submit(tool_runners[tool_type], input_file, tool_path, output_dir))
+
         for f in futures:
             f.result()
+
 
 
 def main():
@@ -199,6 +209,28 @@ def main():
         elif tool_type == "MHCII":
             alleles = common.get_alleles(tool_type, args.mhcii_allele_panel, args.mhcii_custom_alleles)
             peptide_lengths = args.mhcii_peptide_lengths
+        elif tool_type == "MixMHC2pred":
+            # Use the same MHCII allele panel arguments
+            if args.mhcii_allele_panel == "default":
+                alleles = run_mixmhc2pred.MHCII_DEFAULT
+            elif args.mhcii_allele_panel == "extended":
+                alleles = run_mixmhc2pred.MHCII_EXTENDED
+            elif args.mhcii_custom_alleles:
+                alleles = args.mhcii_custom_alleles
+            else:
+                logging.error("❌ No valid MixMHC2pred alleles provided (check --mhcii-allele-panel or --mhcii-custom-alleles).")
+                sys.exit(1)
+
+            input_files_tool = fasta_files  # MixMHC2pred takes full protein FASTA
+            for input_file in input_files_tool:
+                logging.info(f"🧬 Processing {input_file.name} for MixMHC2pred")
+
+                if is_job_completed(tool_type, input_file, output_dir):
+                    logging.info(f"⏩ Skipping {input_file.name} — MixMHC2pred result already exists.")
+                    continue
+
+                all_jobs.append((tool_type, args.mixmhc2pred_path, input_file, alleles))
+
         else:
             alleles = []
             peptide_lengths = None
