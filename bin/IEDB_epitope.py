@@ -116,7 +116,7 @@ def main():
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, default=[8, 11])
     parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, default=[11, 25])
-    parser.add_argument("--tools", nargs="+", choices=["MHCI", "MHCII", "BCell", "Ellipro"], default=None)
+    parser.add_argument("--tools", nargs="+", choices=tool_runners.keys(), default=None)
     parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default")
     parser.add_argument("--mhci-custom-alleles", nargs="+", default=None)
     parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default")
