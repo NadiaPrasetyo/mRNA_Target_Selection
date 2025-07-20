@@ -100,7 +100,8 @@ mRNA_Target_Selection/
 - [IEDB Bcell Epitope Prediction](http://tools.iedb.org/bcell/)
 - [IEDB Population Coverage](http://tools.iedb.org/population/)
 - [DeepLocPro1.0](https://services.healthtech.dtu.dk/services/DeepLocPro-1.0/)
-- [Convert_CIF_to_PDB](https://github.com/SDMscript/Convert_CIF_to_PDB)
+- [IEDB Ellipro](http://tools.iedb.org/ellipro/)
+- [MixMHC2pred-2.0](https://github.com/GfellerLab/MixMHC2pred)
 
 Install Python dependencies:
 ```sh
@@ -131,14 +132,9 @@ Install DeeplocPro: See [Deeplocpro GitHub](https://github.com/Jaimomar99/deeplo
 git clone https://github.com/Jaimomar99/deeplocpro.git
 cd DeepLocPro
 pip install .
-
 ```
 
-Install CIF to PDB converter: See [Github](https://github.com/SDMscript/Convert_CIF_to_PDB)
-```sh
-git clone https://github.com/SDMscript/Convert_CIF_to_PDB.git
-```
----
+Install MixMHC2pred-2.0 in [MixMHC2pred GitHub](https://github.com/GfellerLab/MixMHC2pred/releases)
 
 ## Usage
 
