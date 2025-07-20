@@ -222,15 +222,7 @@ def main():
                 sys.exit(1)
 
             input_files_tool = fasta_files  # MixMHC2pred takes full protein FASTA
-            for input_file in input_files_tool:
-                logging.info(f"🧬 Processing {input_file.name} for MixMHC2pred")
-
-                if is_job_completed(tool_type, input_file, output_dir):
-                    logging.info(f"⏩ Skipping {input_file.name} — MixMHC2pred result already exists.")
-                    continue
-
-                all_jobs.append((tool_type, args.mixmhc2pred_path, input_file, alleles))
-
+                
         else:
             alleles = []
             peptide_lengths = None
@@ -256,6 +248,14 @@ def main():
                         logging.info(f"⏩ Skipping {jp.name} — already processed.")
                         continue
                     all_jobs.append((tool_type, tool_path, jp))
+            elif tool_type == "MixMHC2pred":
+                logging.info(f"🧬 Processing {input_file.name} for MixMHC2pred")
+
+                if is_job_completed(tool_type, input_file, output_dir):
+                    logging.info(f"⏩ Skipping {input_file.name} — MixMHC2pred result already exists.")
+                    continue
+
+                all_jobs.append((tool_type, tool_path, input_file, alleles))
             else:
                 all_jobs.append((tool_type, tool_path, input_file))
 
