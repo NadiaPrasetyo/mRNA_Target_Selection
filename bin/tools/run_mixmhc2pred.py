@@ -18,7 +18,7 @@ MHCII_EXTENDED = [
 
 def run(input_file, tool_path, output_dir, alleles=MHCII_DEFAULT, no_context=True):
     input_file = Path(input_file)
-    output_dir = Path(output_dir)
+    output_dir = Path(output_dir)/"mixmhc2pred"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_file = output_dir / f"{input_file.stem}_mixmhc2pred_output.txt"
