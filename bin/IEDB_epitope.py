@@ -194,19 +194,24 @@ def main():
 
     # Prepare temporary JSON directory for MHCI and MHCII and output directories for all tools
     output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
-
     all_jobs = []
+
     for tool_type, tool_path in final_tools.items():
         logging.info(f"\n🧪 Preparing {tool_type} predictions")
+        input_files_tool = None
+        alleles = []
+        peptide_lengths = None
 
+        # Get allele panel and peptide lengths
         if tool_type == "MHCI":
             alleles = common.get_alleles(tool_type, args.mhci_allele_panel, args.mhci_custom_alleles)
             peptide_lengths = args.mhci_peptide_lengths
+
         elif tool_type == "MHCII":
             alleles = common.get_alleles(tool_type, args.mhcii_allele_panel, args.mhcii_custom_alleles)
             peptide_lengths = args.mhcii_peptide_lengths
+
         elif tool_type == "MixMHC2pred":
-            # Use the same MHCII allele panel arguments
             if args.mhcii_allele_panel == "default":
                 alleles = run_mixmhc2pred.MHCII_DEFAULT
             elif args.mhcii_allele_panel == "extended":
@@ -214,30 +219,33 @@ def main():
             elif args.mhcii_custom_alleles:
                 alleles = args.mhcii_custom_alleles
             else:
-                logging.error("❌ No valid MixMHC2pred alleles provided (check --mhcii-allele-panel or --mhcii-custom-alleles).")
+                logging.error("❌ No valid MixMHC2pred alleles provided.")
                 sys.exit(1)
 
             temp_fasta_dir = output_dir / "temp_fasta"
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
-
-            # convert the fasta files to peptide fasta files
             input_files_tool = common.split_protein_fasta_to_peptides(fasta_files, temp_fasta_dir)
 
-        else:
-            alleles = []
-            peptide_lengths = None
-
+        # Input file handling
         if tool_type == "BCell":
             temp_txt_dir = output_dir / "temp_txt"
             temp_txt_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
+
         elif tool_type == "Ellipro":
             input_files_tool = pdb_files
-        else:
+
+        elif tool_type not in ["MixMHC2pred"]:  # All others use original FASTA
             temp_json_dir = output_dir / "temp_json"
             temp_json_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = fasta_files
 
+        # Sanity check
+        if input_files_tool is None:
+            logging.error(f"❌ No input files prepared for tool: {tool_type}")
+            continue
+
+        # Process each input file
         for input_file in input_files_tool:
             logging.info(f"🧬 Processing {input_file.name}")
 
@@ -245,6 +253,7 @@ def main():
                 logging.info(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
                 continue
 
+            # Tool-specific job handling
             if tool_type in ["MHCI", "MHCII"]:
                 json_paths = common.parse_fasta_to_jsons(input_file, temp_json_dir, alleles, peptide_lengths, tool_type, args.sequence_dir)
                 for jp in json_paths:
@@ -252,14 +261,11 @@ def main():
                         logging.info(f"⏩ Skipping {jp.name} — already processed.")
                         continue
                     all_jobs.append((tool_type, tool_path, jp))
+
             elif tool_type == "MixMHC2pred":
                 logging.info(f"🧬 Processing {input_file.name} for MixMHC2pred")
-
-                if is_job_completed(tool_type, input_file, output_dir):
-                    logging.info(f"⏩ Skipping {input_file.name} — MixMHC2pred result already exists.")
-                    continue
-
                 all_jobs.append((tool_type, tool_path, input_file, alleles))
+
             else:
                 all_jobs.append((tool_type, tool_path, input_file))
 
