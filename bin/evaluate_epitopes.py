@@ -175,7 +175,7 @@ def main():
 
     if args.verbose:
         # Prepare output directories first to get the correct output_dir
-        _, output_dir = common.prepare_output_dirs(Path("data") / args.pathogen_dir, args.output_dir, [])
+        output_dir = common.prepare_output_dirs(Path("data") / args.pathogen_dir, args.output_dir, [])
         log_file = output_dir / "pipeline.log"
         log_file.parent.mkdir(parents=True, exist_ok=True)
         handlers = [logging.StreamHandler(sys.stdout), logging.FileHandler(log_file, mode='a')]
@@ -200,7 +200,7 @@ def main():
         logging.error(f"No epitope files found in {epitope_path}")
         sys.exit(1)
 
-    _, output_dir = common.prepare_output_dirs(pathogen_path, args.output_dir, tools_to_run.keys())
+    output_dir = common.prepare_output_dirs(pathogen_path, args.output_dir, tools_to_run.keys())
     jobs = prepare_jobs(epitope_files, tools_to_run, output_dir)
 
     if not jobs:

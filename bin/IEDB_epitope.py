@@ -106,8 +106,6 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
         for f in futures:
             f.result()
 
-
-
 def main():
     parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell, Ellipro)")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
@@ -190,14 +188,8 @@ def main():
     else:
         fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
 
-    # Convert fasta to txt if BCell is selected
-    txt_files = []
-    if "BCell" in final_tools:
-        temp_txt_dir = pathogen_path / "temp_txt"
-        txt_files = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
-
     # Prepare temporary JSON directory for MHCI and MHCII and output directories for all tools
-    temp_json_dir, output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys(), temp=True)
+    output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
 
     all_jobs = []
     for tool_type, tool_path in final_tools.items():
@@ -221,17 +213,25 @@ def main():
                 logging.error("❌ No valid MixMHC2pred alleles provided (check --mhcii-allele-panel or --mhcii-custom-alleles).")
                 sys.exit(1)
 
-            input_files_tool = fasta_files  # MixMHC2pred takes full protein FASTA
-                
+            temp_fasta_dir = output_dir / "temp_fasta"
+            temp_fasta_dir.mkdir(parents=True, exist_ok=True)
+
+            # convert the fasta files to peptide fasta files
+            input_files_tool = common.split_protein_fasta_to_peptides(fasta_files, temp_fasta_dir)
+
         else:
             alleles = []
             peptide_lengths = None
 
         if tool_type == "BCell":
-            input_files_tool = txt_files
+            temp_txt_dir = output_dir / "temp_txt"
+            temp_txt_dir.mkdir(parents=True, exist_ok=True)
+            input_files_tool = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
         elif tool_type == "Ellipro":
             input_files_tool = pdb_files
         else:
+            temp_json_dir = output_dir / "temp_json"
+            temp_json_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = fasta_files
 
         for input_file in input_files_tool:
@@ -261,9 +261,7 @@ def main():
 
     if not all_jobs:
         logging.warning("❌ No jobs to run.")
-        common.cleanup_temp(temp_json_dir)
-        if "BCell" in final_tools:
-            common.cleanup_temp(temp_txt_dir)
+        common.cleanup_temp([temp_json_dir, temp_txt_dir, temp_fasta_dir])
         sys.exit(1)
 
     logging.info(f"\n🚀 Running predictions with {args.threads} threads...")
@@ -275,9 +273,7 @@ def main():
 
     run_predictions_parallel(all_jobs, output_dir, args.threads)
 
-    common.cleanup_temp(temp_json_dir)
-    if "BCell" in final_tools:
-        common.cleanup_temp(temp_txt_dir)
+    common.cleanup_temp([temp_json_dir, temp_txt_dir, temp_fasta_dir])
 
     logging.info("\n✅ Prediction complete.")
 

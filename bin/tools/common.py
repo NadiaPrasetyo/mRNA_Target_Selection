@@ -354,7 +354,7 @@ def get_fasta_files(base_path: Path, sequence_subdir: str):
     fasta_files = list(seq_dir.glob("*.fasta"))
     return fasta_files
 
-def prepare_output_dirs(pathogen_path, output_subdir, selected_tools, temp=False):
+def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
     """
     Prepare output directories for the specified pathogen and tools.
     
@@ -365,7 +365,7 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools, temp=False
         temp (bool): Whether to create a temporary JSON directory (default: False).
     
     Returns:
-        tuple: (temp_json_dir or None, output_dir)
+        tuple: (output_dir)
     """
     output_dir = pathogen_path / output_subdir
 
@@ -373,24 +373,26 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools, temp=False
     for tool in selected_tools:
         (output_dir / tool.lower()).mkdir(parents=True, exist_ok=True)
 
-    # Create temp_json_dir only if requested via temp=True
-    if temp:
-        temp_json_dir = pathogen_path / "temp_json"
-        temp_json_dir.mkdir(parents=True, exist_ok=True)
-        return temp_json_dir, output_dir
-
     return None, output_dir
 
 
-def cleanup_temp(temp_dir: Path):
+def cleanup_temp(temp):
     """
-    Clean up temporary directory if it exists.
+    Clean up temporary directories created during processing.
     Args:
-        temp_dir (Path): Path to the temporary directory to clean up.
+        temp (list): List of temporary directories to clean up.
     """
-    if temp_dir.exists():
-        shutil.rmtree(temp_dir)
-        print(f"Cleaned temporary: {temp_dir}")
+    for temp_dir in temp:
+        if temp_dir.exists():
+            logging.info(f"🗑️ Cleaning up temporary directory: {temp_dir}")
+            for file in temp_dir.glob("*"):
+                try:
+                    file.unlink()
+                except Exception as e:
+                    logging.error(f"❌ Failed to delete {file}: {e}")
+            temp_dir.rmdir()
+        else:
+            logging.warning(f"⚠️ Temporary directory does not exist: {temp_dir}")
 
 """ Constants for MHC Allele Panels """
 MHCI_DEFAULT = [
