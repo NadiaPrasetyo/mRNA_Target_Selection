@@ -375,24 +375,24 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
 
     return output_dir
 
+import shutil
 
-def cleanup_temp(temp):
+def cleanup_temp(temp_dirs):
     """
     Clean up temporary directories created during processing.
     Args:
-        temp (list): List of temporary directories to clean up.
+        temp_dirs (list): List of temporary Path objects to clean up.
     """
-    for temp_dir in temp:
+    for temp_dir in temp_dirs:
         if temp_dir.exists():
-            logging.info(f"🗑️ Cleaning up temporary directory: {temp_dir}")
-            for file in temp_dir.glob("*"):
-                try:
-                    file.unlink()
-                except Exception as e:
-                    logging.error(f"❌ Failed to delete {file}: {e}")
-            temp_dir.rmdir()
+            try:
+                logging.info(f"🗑️ Cleaning up temporary directory: {temp_dir}")
+                shutil.rmtree(temp_dir)
+            except Exception as e:
+                logging.error(f"❌ Failed to delete {temp_dir}: {e}")
         else:
-            logging.warning(f"⚠️ Temporary directory does not exist: {temp_dir}")
+            logging.debug(f"⚠️ Temporary directory does not exist: {temp_dir}")
+
 
 """ Constants for MHC Allele Panels """
 MHCI_DEFAULT = [

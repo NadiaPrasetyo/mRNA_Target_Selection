@@ -123,6 +123,10 @@ def main():
     parser.add_argument("--verbose", action="store_true")
 
     args = parser.parse_args()
+    temp_json_dir = None
+    temp_txt_dir = None
+    temp_fasta_dir = None
+
 
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
@@ -260,8 +264,10 @@ def main():
                 all_jobs.append((tool_type, tool_path, input_file))
 
     if not all_jobs:
-        logging.warning("❌ No jobs to run.")
-        common.cleanup_temp([temp_json_dir, temp_txt_dir, temp_fasta_dir])
+        logging.warning("❌ No jobs to run.")# Clean up only the temp directories that were created
+        temp_dirs = [d for d in [temp_json_dir, temp_txt_dir, temp_fasta_dir] if d and d.exists()]
+        common.cleanup_temp(temp_dirs)
+
         sys.exit(1)
 
     logging.info(f"\n🚀 Running predictions with {args.threads} threads...")
@@ -273,7 +279,10 @@ def main():
 
     run_predictions_parallel(all_jobs, output_dir, args.threads)
 
-    common.cleanup_temp([temp_json_dir, temp_txt_dir, temp_fasta_dir])
+    # Clean up only the temp directories that were created
+    temp_dirs = [d for d in [temp_json_dir, temp_txt_dir, temp_fasta_dir] if d and d.exists()]
+    common.cleanup_temp(temp_dirs)
+
 
     logging.info("\n✅ Prediction complete.")
 
