@@ -373,7 +373,7 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
     for tool in selected_tools:
         (output_dir / tool.lower()).mkdir(parents=True, exist_ok=True)
 
-    return output_dir
+    return 
 
 
 def cleanup_temp(temp):
@@ -658,29 +658,45 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
 
     return found
 
-def split_protein_fasta_to_peptides(input_fasta, output_fasta, peptide_length=15):
+def split_protein_fasta_to_peptides(input_fasta, output_dir, peptide_length=15):
     """
-    Creates peptide FASTA from protein FASTA using sliding window.
+    Splits one or more protein FASTA files into peptide FASTA files using a sliding window.
 
     Args:
-        input_fasta (str or Path): Path to protein FASTA.
-        output_fasta (str or Path): Path to output peptide FASTA.
+        input_fasta (str, Path, or list): Path(s) to protein FASTA file(s).
+        output_dir (str or Path): Directory to save peptide FASTA files.
         peptide_length (int): Length of peptides (default=15).
+
+    Returns:
+        list[Path]: List of generated peptide FASTA file paths.
     """
-    input_fasta = Path(input_fasta)
-    output_fasta = Path(output_fasta)
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    with open(output_fasta, "w") as out_f:
-        for record in SeqIO.parse(input_fasta, "fasta"):
-            protein_seq = str(record.seq)
-            header = record.id
+    # Allow input_fasta to be a single path or a list of paths
+    if isinstance(input_fasta, (str, Path)):
+        input_fasta = [Path(input_fasta)]
+    else:
+        input_fasta = [Path(f) for f in input_fasta]
 
-            for i in range(len(protein_seq) - peptide_length + 1):
-                peptide = protein_seq[i:i + peptide_length]
-                peptide_id = f"{header}_seq{i+1}"
-                out_f.write(f">{peptide_id}\n{peptide}\n")
+    output_files = []
 
-    print(f"Peptide FASTA written to: {output_fasta}")
+    for fasta_file in input_fasta:
+        output_fasta = output_dir / (fasta_file.stem + "_peptides.fasta")
+        with open(output_fasta, "w") as out_f:
+            for record in SeqIO.parse(fasta_file, "fasta"):
+                protein_seq = str(record.seq)
+                header = record.id
+
+                for i in range(len(protein_seq) - peptide_length + 1):
+                    peptide = protein_seq[i:i + peptide_length]
+                    peptide_id = f"{header}_seq{i+1}"
+                    out_f.write(f">{peptide_id}\n{peptide}\n")
+
+        print(f"✅ Peptide FASTA written to: {output_fasta}")
+        output_files.append(output_fasta)
+
+    return output_files
 
 
 # Add __main__ with unittest
