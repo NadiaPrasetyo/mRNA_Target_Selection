@@ -373,7 +373,7 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
     for tool in selected_tools:
         (output_dir / tool.lower()).mkdir(parents=True, exist_ok=True)
 
-    return 
+    return output_dir
 
 
 def cleanup_temp(temp):
