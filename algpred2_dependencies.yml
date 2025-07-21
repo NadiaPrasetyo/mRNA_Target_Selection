@@ -3,7 +3,7 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.10  # optional, choose what matches algpred2
+  - python=3.10
   - numpy=1.23.5
   - scipy=1.10.1
   - pandas=1.5.3
@@ -11,4 +11,5 @@ dependencies:
   - joblib=1.2.0
   - pip
   - pip:
-      - algpred2  # assumes `algpred2` is available via pip or local install
+      - algpred2
+      - ifnepitope2
