@@ -521,6 +521,15 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
             )
         tool_paths["DEEPLOC"] = deeploc_path
 
+    if "IFNEPITOPE2":
+        algpred_path = Path("algpred2_dependencies.yml")
+        if not algpred_path.exists():
+            logging.warning(
+                f"⚠️ Dependencies file not found at {algpred_path}. "
+                "Please get the dependency file from GitHub."
+            )
+        tool_paths["IFNEPITOPE2"] = "ifnepitope2"  # placeholder
+
     return tool_paths
 
 def check_iedb_tool(base_path):
