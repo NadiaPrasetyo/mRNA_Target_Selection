@@ -160,14 +160,26 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
         out_dir = output_dir / tool.lower()
         try:
             fasta_file = (
-                common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem) if "bcell" in str(file).lower()
-                else common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
+                common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem, 8) if "bcell" in str(file).lower()
+                else common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem, 8)
             )
             if fasta_file and fasta_file.exists():
+                if fasta_file.stat().st_size == 0:
+                    logging.error(f"❌ [SERIAL] Skipping empty FASTA: {fasta_file}")
+                    continue
+
+                with open(fasta_file) as f:
+                    content = f.read().strip()
+                    if not any(line.startswith(">") for line in content.splitlines()):
+                        logging.error(f"❌ [SERIAL] FASTA file missing headers: {fasta_file}")
+                        continue
+                    if not any(c.isalpha() for c in content.replace(">", "").replace("\n", "")):
+                        logging.error(f"❌ [SERIAL] FASTA has no valid amino acids: {fasta_file}")
+                        continue
+
                 logging.info(f"🚀 [SERIAL] Running {tool} on {file.name}")
                 tool_runners[tool](tool_path, file, out_dir, 1)
-            else:
-                logging.error(f"❌ [SERIAL] Failed to convert {file.name} to FASTA format.")
+
         except Exception as e:
             logging.error(f"❌ [SERIAL] Failed to run {tool} on {file.name}: {e}")
 

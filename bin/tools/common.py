@@ -46,7 +46,7 @@ def is_valid_peptide(seq: str) -> bool:
     return len(seq) >= 5 and bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", seq))
 
 
-def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -> Path:
+def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, min_length=8) -> Path:
     """
     Parses a B-cell CSV file with peptide predictions and writes a FASTA file with contextual headers.
     Infers header info from the first valid 'input:' line and applies it to earlier peptides too.
@@ -81,9 +81,10 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str) -
             return
         header = header.lstrip(">")
         for i, pep in enumerate(block_peptides):
-            if not is_valid_peptide(pep):
-                logging.warning(f"⚠️ Invalid peptide skipped: {pep} in header: {header}")
+            if not is_valid_peptide(pep) or len(pep) < min_length:
+                logging.warning(f"⚠️ Peptide skipped (invalid or too short): {pep} in header: {header}")
                 continue
+
             key = (header, pep)
             if key not in seen:
                 fasta_lines.append(f">{header}|seq{i+1}\n{pep}")
@@ -230,7 +231,7 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
 
     return output_paths
 
-def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str) -> Path:
+def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str, min_length = 8) -> Path:
     """
     Parses a JSON file with peptide predictions and writes a FASTA file of unique peptides
     with contextual headers based on the input file name, appending seq1, seq2, etc.
@@ -263,7 +264,11 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str)
             continue  # No peptide column
 
         for row in data_rows:
-            peptides.add(row[peptide_idx])
+            pep = row[peptide_idx]
+            if isinstance(pep, str) and len(pep) >= min_length:
+                peptides.add(pep)
+            else:
+                logging.warning(f"⚠️ Skipped peptide (too short or invalid): {pep} in {json_file.name}")
 
     if not peptides:
         print(f"⚠️ No peptides found in {json_file}")
