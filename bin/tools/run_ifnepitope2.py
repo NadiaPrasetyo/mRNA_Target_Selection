@@ -3,7 +3,6 @@ from pathlib import Path
 import subprocess
 import shutil
 import re
-import importlib.util
 
 CONDA_ENV_NAME = "algpred2_env"
 CONDA_ENV_YML = Path("algpred2_dependencies.yml")
@@ -19,20 +18,24 @@ def create_conda_env_if_needed():
     else:
         logging.info("✅ Conda environment already exists.")
 
+
 def patch_ifnepitope2_composition_bug():
+    """
+    Patches the ifnepitope2.py script inside the conda environment to fix the
+    UnboundLocalError related to 'composition'. Uses conda to locate the module.
+    """
     try:
-        # Import only the python_scripts package, get its __file__ (should be __init__.py)
-        spec = importlib.util.find_spec("ifnepitope2.python_scripts")
-        if spec is None or spec.origin is None:
-            logging.warning("⚠️ Could not find ifnepitope2.python_scripts package")
-            return
+        # Run a conda subprocess to get the full path to ifnepitope2.py
+        result = subprocess.run([
+            "conda", "run", "-n", CONDA_ENV_NAME,
+            "python", "-c",
+            "import os, ifnepitope2.python_scripts; "
+            "print(os.path.join(os.path.dirname(ifnepitope2.python_scripts.__file__), 'ifnepitope2.py'))"
+        ], capture_output=True, text=True, check=True)
 
-        # Folder path of python_scripts
-        pkg_path = Path(spec.origin).parent
-        target_py = pkg_path / "ifnepitope2.py"
-
+        target_py = Path(result.stdout.strip())
         if not target_py.exists():
-            logging.warning(f"⚠️ ifnepitope2.py not found at {target_py}")
+            logging.warning(f"⚠️ Resolved ifnepitope2.py does not exist: {target_py}")
             return
 
         with open(target_py) as f:
@@ -59,16 +62,18 @@ def patch_ifnepitope2_composition_bug():
         else:
             logging.info("🔁 Patch not applied: target line not found or already patched.")
 
+    except subprocess.CalledProcessError as e:
+        logging.warning(f"⚠️ Could not locate ifnepitope2.py in conda env: {e}")
     except Exception as e:
         logging.warning(f"⚠️ Could not patch ifnepitope2.py: {e}")
 
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1):
+    """Run ifnepitope2 prediction tool from within the conda environment."""
     if not shutil.which("conda"):
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    # Assume create_conda_env_if_needed() is defined elsewhere
     create_conda_env_if_needed()
 
     input_fasta = Path(input_fasta).resolve()
@@ -76,7 +81,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
 
-    # Only patch if job_type is 1
     if job_type == 1:
         patch_ifnepitope2_composition_bug()
 
