@@ -645,8 +645,8 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
         dict: Dictionary mapping tool names to their executable paths.
     """
     tool_map = {
-        "Allergenicity": tool_root, # doesn't need it
         "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
+        "IFNepitope2": tool_root #doesn't need it
     }
 
     found = {}
