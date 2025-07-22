@@ -66,17 +66,23 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
     # PATCH: Fix UnboundLocalError in ifnepitope2.py (only for job_type == 1)
     if job_type == 1:
         try:
-            target_py = Path(subprocess.check_output([
+            # Get the actual file path inside the conda environment
+            target_py_str = subprocess.check_output([
                 "conda", "run", "-n", CONDA_ENV_NAME,
                 "python", "-c",
-                "import ifnepitope2; print(ifnepitope2.__file__)"
-            ], text=True).strip()).parent / "python_scripts" / "ifnepitope2.py"
+                "import ifnepitope2.python_scripts.ifnepitope2 as m; print(m.__file__)"
+            ], text=True).strip()
+
+            target_py = Path(target_py_str)
+
+            if not target_py.exists():
+                raise FileNotFoundError(f"Resolved path {target_py} does not exist.")
 
             with open(target_py) as f:
                 lines = f.readlines()
 
-            # Check if already patched
             already_patched = any("if 'composition' in locals()" in line for line in lines)
+
             if not already_patched:
                 new_lines = []
                 for line in lines:
