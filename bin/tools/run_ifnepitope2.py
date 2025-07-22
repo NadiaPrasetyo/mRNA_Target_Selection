@@ -18,36 +18,53 @@ def create_conda_env_if_needed():
     else:
         logging.info("✅ Conda environment already exists.")
 
-def patch_ifnepitope2_if_needed(env_path: Path):
+
+def patch_ifnepitope2_composition_bug():
     """
-    Patch the installed ifnepitope2.py script to fix the 'composition' UnboundLocalError bug.
-    Only applies if not already patched.
+    Locate the ifnepitope2.py source file inside the conda env,
+    and patch the line with 'cc.append(composition)' to avoid UnboundLocalError
+    by adding an 'if' guard with proper indentation.
     """
-    script_path = env_path / "lib/python3.10/site-packages/ifnepitope2/python_scripts/ifnepitope2.py"
-    if not script_path.exists():
-        logging.warning("⚠️ Could not find ifnepitope2.py to patch.")
-        return
+    try:
+        # Get the path of the python source file inside the conda env
+        target_py_str = subprocess.check_output([
+            "conda", "run", "-n", CONDA_ENV_NAME,
+            "python", "-c",
+            "import ifnepitope2.python_scripts.ifnepitope2 as m; print(m.__file__)"
+        ], text=True).strip()
+        target_py = Path(target_py_str)
 
-    with open(script_path) as f:
-        content = f.read()
+        if not target_py.exists():
+            logging.warning(f"⚠️ ifnepitope2 source file not found at {target_py}")
+            return
 
-    patch_marker = "# === PATCHED FOR composition bug ==="
-    if patch_marker in content:
-        logging.info("🛠️ ifnepitope2 already patched.")
-        return
+        with open(target_py) as f:
+            lines = f.readlines()
 
-    patched_lines = []
-    for line in content.splitlines():
-        # Patch the part where 'composition' might be undefined
-        if "cc.append(composition)" in line:
-            patched_lines.append(f"{patch_marker}")
-            patched_lines.append("        if 'composition' not in locals(): continue")
-        patched_lines.append(line)
+        patched_lines = []
+        patched = False
 
-    with open(script_path, "w") as f:
-        f.write("\n".join(patched_lines))
+        for line in lines:
+            if re.match(r"^\s*cc\.append\(composition\)", line) and not patched:
+                indent = re.match(r"^(\s*)", line).group(1)
+                # Insert guarded append with proper indentation
+                patched_lines.append(f"{indent}if 'composition' in locals():\n")
+                patched_lines.append(f"{indent}    cc.append(composition)\n")
+                patched = True
+            else:
+                patched_lines.append(line)
 
-    logging.info("✅ Patched ifnepitope2.py for unbound 'composition' bug.")
+        if patched:
+            backup_path = target_py.with_suffix(".bak")
+            shutil.copy(target_py, backup_path)
+            with open(target_py, "w") as f:
+                f.writelines(patched_lines)
+            logging.info(f"✅ Patched {target_py.name} for 'composition' bug.")
+        else:
+            logging.info("🔁 Patch not applied: target line not found or already patched.")
+
+    except Exception as e:
+        logging.warning(f"⚠️ Could not patch ifnepitope2.py: {e}")
 
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1):
@@ -55,6 +72,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
+    # Assume create_conda_env_if_needed() is defined elsewhere
     create_conda_env_if_needed()
 
     input_fasta = Path(input_fasta).resolve()
@@ -62,58 +80,18 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
 
-    # Apply patch only for job_type=1
-    # PATCH: Fix UnboundLocalError in ifnepitope2.py (only for job_type == 1)
+    # Only patch if job_type is 1
     if job_type == 1:
-        try:
-            # Locate actual source file path via conda
-            target_py_str = subprocess.check_output([
-                "conda", "run", "-n", CONDA_ENV_NAME,
-                "python", "-c",
-                "import ifnepitope2.python_scripts.ifnepitope2 as m; print(m.__file__)"
-            ], text=True).strip()
-            target_py = Path(target_py_str)
-
-            if not target_py.exists():
-                raise FileNotFoundError(f"Resolved path {target_py} does not exist.")
-
-            with open(target_py) as f:
-                lines = f.readlines()
-
-            patched_lines = []
-            patched = False
-
-            for line in lines:
-                if re.match(r"^\s*cc\.append\(composition\)", line) and not patched:
-                    indent = re.match(r"^(\s*)", line).group(1)
-                    patched_lines.append(f"{indent}if 'composition' in locals():\n")
-                    patched_lines.append(f"{indent}    cc.append(composition)\n")
-                    patched = True
-                else:
-                    patched_lines.append(line)
-
-            if patched:
-                backup_path = target_py.with_suffix(".bak")
-                shutil.copy(target_py, backup_path)
-                with open(target_py, "w") as f:
-                    f.writelines(patched_lines)
-                logging.info(f"✅ Patched {target_py.name} for 'composition' bug.")
-            else:
-                logging.info("🔁 Patch already applied or no target line found.")
-
-        except Exception as e:
-            logging.warning(f"⚠️ Could not patch ifnepitope2.py: {e}")
-
+        patch_ifnepitope2_composition_bug()
 
     cmd = [
         "conda", "run", "-n", CONDA_ENV_NAME,
         "ifnepitope2",
         "-i", str(input_fasta),
         "-o", str(output_file),
-        "-s", "1",  # host human
-        "-j", str(job_type),  # job type: 1 for prediction
-        "-d", "2"   # display mode 2: all peptides (not just allergens)
-        # use default threshold of 0.49 and window lenght of 8
+        "-s", "1",              # host human
+        "-j", str(job_type),    # job type
+        "-d", "2"               # display mode: all peptides
     ]
 
     logging.info(f"🚀 Running IfNePitope2 on {input_fasta.name}")
