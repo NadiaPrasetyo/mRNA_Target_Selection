@@ -112,13 +112,7 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
 
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
-    Run the prepared jobs in parallel using a thread pool.
-
-    Args:
-        jobs (list): List of jobs to run, each as a tuple (tool, tool_path, file).
-        output_dir (Path): Directory where outputs will be saved.
-        epitope_dir (Path): Directory containing epitope data.
-        max_threads (int): Maximum number of threads to use for parallel execution.
+    Run the prepared jobs. IFNepitope2 runs in series; others in parallel.
     """
     output_dir = Path(output_dir)
     epitope_dir = Path(epitope_dir)
@@ -127,11 +121,11 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
 
     temp_dirs = [fasta_inputs_dir, popcov_inputs_dir]
 
-    # Special handling: PopCoverage input extraction
     popcov_jobs = [job for job in jobs if job[0] == "PopCoverage"]
     ifnepitope_jobs = [job for job in jobs if job[0] == "IFNepitope2"]
     other_jobs = [job for job in jobs if job[0] not in {"PopCoverage", "IFNepitope2"}]
 
+    # Prepare PopCoverage inputs
     if popcov_jobs:
         try:
             epitope_map = extract_epitopes.extract_all_epitopes_by_file(epitope_dir)
@@ -140,44 +134,44 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
         except Exception as e:
             logging.error(f"❌ Failed to prepare PopCoverage inputs: {e}")
 
+    # Parallel for PopCoverage and other tools
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
         futures = []
 
-        # Run PopCoverage (on text files)
         for tool, tool_path, _ in popcov_jobs:
             for txt_file in popcov_inputs_dir.glob("*.txt"):
                 if txt_file.exists() and txt_file.stat().st_size > 0:
                     out_dir = output_dir / tool.lower()
                     futures.append(executor.submit(tool_runners[tool], tool_path, txt_file, out_dir))
 
-        # Run other tools like IfNePitope2
-        for tool, tool_path, file in ifnepitope_jobs:
-            out_dir = output_dir / tool.lower()
-            try:
-                fasta_file = (
-                    common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem) if "bcell" in str(file).lower() else common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
-                )
-                if fasta_file and fasta_file.exists():
-                    logging.info(f"🚀 Running {tool}: {file.name}")
-                    futures.append(executor.submit(tool_runners[tool], tool_path, file, out_dir, 1))
-                else:
-                    logging.error(f"❌ Failed to convert {file.name} to FASTA format.")
-            except Exception as e:
-                logging.error(f"❌ Failed to run {tool} on {file.name}: {e}")
-                continue
-
-        # Run remaining tools
         for tool, tool_path, file in other_jobs:
             out_dir = output_dir / tool.lower()
             futures.append(executor.submit(tool_runners[tool], tool_path, file, out_dir))
 
+        # Wait for parallel jobs to complete
         for future in futures:
             try:
                 future.result()
             except Exception as e:
-                logging.error(f"❌ Job failed: {e}")
+                logging.error(f"❌ Parallel job failed: {e}")
 
-    # Cleanup
+    # SERIAL execution for IFNepitope2
+    for tool, tool_path, file in ifnepitope_jobs:
+        out_dir = output_dir / tool.lower()
+        try:
+            fasta_file = (
+                common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem) if "bcell" in str(file).lower()
+                else common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem)
+            )
+            if fasta_file and fasta_file.exists():
+                logging.info(f"🚀 [SERIAL] Running {tool} on {file.name}")
+                tool_runners[tool](tool_path, file, out_dir, 1)
+            else:
+                logging.error(f"❌ [SERIAL] Failed to convert {file.name} to FASTA format.")
+        except Exception as e:
+            logging.error(f"❌ [SERIAL] Failed to run {tool} on {file.name}: {e}")
+
+    # Cleanup temp dirs
     for temp_dir in temp_dirs:
         try:
             if temp_dir.exists():
