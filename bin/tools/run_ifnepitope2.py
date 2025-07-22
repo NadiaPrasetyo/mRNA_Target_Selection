@@ -3,6 +3,7 @@ from pathlib import Path
 import subprocess
 import shutil
 import re
+import importlib.util
 
 CONDA_ENV_NAME = "algpred2_env"
 CONDA_ENV_YML = Path("algpred2_dependencies.yml")
@@ -18,24 +19,20 @@ def create_conda_env_if_needed():
     else:
         logging.info("✅ Conda environment already exists.")
 
-
 def patch_ifnepitope2_composition_bug():
-    """
-    Locate the ifnepitope2.py source file inside the conda env,
-    and patch the line with 'cc.append(composition)' to avoid UnboundLocalError
-    by adding an 'if' guard with proper indentation.
-    """
     try:
-        # Get the path of the python source file inside the conda env
-        target_py_str = subprocess.check_output([
-            "conda", "run", "-n", CONDA_ENV_NAME,
-            "python", "-c",
-            "import ifnepitope2.python_scripts.ifnepitope2 as m; print(m.__file__)"
-        ], text=True).strip()
-        target_py = Path(target_py_str)
+        # Import only the python_scripts package, get its __file__ (should be __init__.py)
+        spec = importlib.util.find_spec("ifnepitope2.python_scripts")
+        if spec is None or spec.origin is None:
+            logging.warning("⚠️ Could not find ifnepitope2.python_scripts package")
+            return
+
+        # Folder path of python_scripts
+        pkg_path = Path(spec.origin).parent
+        target_py = pkg_path / "ifnepitope2.py"
 
         if not target_py.exists():
-            logging.warning(f"⚠️ ifnepitope2 source file not found at {target_py}")
+            logging.warning(f"⚠️ ifnepitope2.py not found at {target_py}")
             return
 
         with open(target_py) as f:
@@ -47,7 +44,6 @@ def patch_ifnepitope2_composition_bug():
         for line in lines:
             if re.match(r"^\s*cc\.append\(composition\)", line) and not patched:
                 indent = re.match(r"^(\s*)", line).group(1)
-                # Insert guarded append with proper indentation
                 patched_lines.append(f"{indent}if 'composition' in locals():\n")
                 patched_lines.append(f"{indent}    cc.append(composition)\n")
                 patched = True
