@@ -30,7 +30,7 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, common
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, common
 import shutil
 
 # Define the mapping of tool names to their runner functions
@@ -39,7 +39,8 @@ TOOL_RUNNERS = {
     "TARGETP": run_targetp.run,
     "CLUSTER": run_cluster.run, 
     "ALGPRED": run_algpred.run,
-    "DEEPLOC": run_deeplocpro.run_deeplocpro
+    "DEEPLOC": run_deeplocpro.run,
+    "IFNEPITOPE2": run_ifnepitope2.run
 }
 
 # List of valid tools that can be run
@@ -71,12 +72,12 @@ def run_parallel_jobs(jobs, threads):
         threads (int): Number of threads to use for parallel execution.
     """
 
-    allergenicity_jobs = [job for job in jobs if job[0] == "ALGPRED"]
-    other_jobs = [job for job in jobs if job[0] != "ALGPRED"]
+    serial_jobs = [job for job in jobs if job[0] == "ALGPRED" or job[0] == "IFNEPITOPE2"]
+    other_jobs = [job for job in jobs if job[0] != "ALGPRED" and job[0] != "IFNEPITOPE2"]
 
     with ThreadPoolExecutor(max_workers=threads) as executor:
         # Run non-Allergenicity jobs in parallel
-        logging.info(f"Running {len(jobs) - len(allergenicity_jobs)} jobs in parallel with {threads} threads")
+        logging.info(f"Running {len(jobs) - len(serial_jobs)} jobs in parallel with {threads} threads")
         futures = [executor.submit(run_tool, *job) for job in other_jobs]
         for f in futures:
             try:
@@ -85,13 +86,13 @@ def run_parallel_jobs(jobs, threads):
                 logging.error(f"❌ Job failed: {e}")
 
     # Run Allergenicity jobs serially
-    for job in allergenicity_jobs:
+    for job in serial_jobs:
         tool_name, _, input_file, _, _, _ = job
         try:
-            logging.info(f"Running Allergenicity for {input_file.name}")
+            logging.info(f"Running {tool_name} for {input_file.name}")
             run_tool(*job)
         except Exception as e:
-            logging.error(f"❌ Allergenicity failed for {input_file.name}: {e}")
+            logging.error(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
 
     # Clean up temporary and intermediate files after CLUSTER jobs
@@ -182,8 +183,8 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
         identifier = stem.split("_")[0]  # e.g., 'ABC123' from 'ABC123_combined'
     else: 
         raise ValueError(f"Unknown mode '{mode}' passed to is_job_done()")
-    
-    extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv"]
+
+    extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv", "_ifnepitope2.csv"]
 
     for ext in extensions:
         for f in output_dir.glob(f"*{ext}"):
@@ -194,10 +195,10 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
 
 def main():
     """Main function to parse arguments and run the antigen analysis pipeline."""
-    parser = argparse.ArgumentParser(description="Run SignalP, TargetP, and Cluster on input FASTA files")
+    parser = argparse.ArgumentParser(description="Run SignalP, TargetP,Cluster, Algpred2, and Ifnepitope2 on input FASTA files")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
-    parser.add_argument("--tool-root", help="Root directory for tools, required for SignalP and TargetP", default="none")
+    parser.add_argument("--tool-root", help="Root directory for tools, required for SignalP, TargetP, and DeeplocPro", default="none")
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS)
     parser.add_argument("--batch-size", type=int, default=10000)
@@ -294,6 +295,17 @@ def main():
                     continue
 
                 jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.group, tool_paths["DEEPLOC"]))
+
+        # Handle IfNePitope2 jobs
+        elif tool_name == "IFNEPITOPE2":
+            output_dir = output_root / "ifnepitope2"
+            output_dir.mkdir(parents=True, exist_ok=True)
+            for fasta_file in fasta_files:
+                if is_job_done(fasta_file, output_dir, mode="strain"):
+                    logging.info(f"⏭️ Skipping IFNEPITOPE2 for {fasta_file.name} (already processed)")
+                    continue
+
+                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, 3, tool_paths["IFNEPITOPE2"]))
 
     if not jobs:
         logging.info("No jobs to run. All files already processed.")

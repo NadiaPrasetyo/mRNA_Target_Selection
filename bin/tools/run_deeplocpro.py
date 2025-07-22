@@ -30,7 +30,7 @@ import logging
 from pathlib import Path
 import shutil
 
-def run_deeplocpro(tool_path: str, input_file: str, output_dir: str, group: str):
+def run(tool_path: str, input_file: str, output_dir: str, group: str):
     """
     Run DeepLocPro using the BioLib CLI and store results in a structured directory.
 
