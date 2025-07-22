@@ -18,13 +18,39 @@ def create_conda_env_if_needed():
     else:
         logging.info("✅ Conda environment already exists.")
 
+def patch_ifnepitope2_if_needed(env_path: Path):
+    """
+    Patch the installed ifnepitope2.py script to fix the 'composition' UnboundLocalError bug.
+    Only applies if not already patched.
+    """
+    script_path = env_path / "lib/python3.10/site-packages/ifnepitope2/python_scripts/ifnepitope2.py"
+    if not script_path.exists():
+        logging.warning("⚠️ Could not find ifnepitope2.py to patch.")
+        return
+
+    with open(script_path) as f:
+        content = f.read()
+
+    patch_marker = "# === PATCHED FOR composition bug ==="
+    if patch_marker in content:
+        logging.info("🛠️ ifnepitope2 already patched.")
+        return
+
+    patched_lines = []
+    for line in content.splitlines():
+        # Patch the part where 'composition' might be undefined
+        if "cc.append(composition)" in line:
+            patched_lines.append(f"{patch_marker}")
+            patched_lines.append("        if 'composition' not in locals(): continue")
+        patched_lines.append(line)
+
+    with open(script_path, "w") as f:
+        f.write("\n".join(patched_lines))
+
+    logging.info("✅ Patched ifnepitope2.py for unbound 'composition' bug.")
+
+
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1):
-    """
-    Main runner function compatible with pipeline:
-    - tool_path: directory containing tools (unused here but kept for interface consistency)
-    - input_fasta: input FASTA file path
-    - output_dir: base output directory (tool-specific subdir will be created)
-    """
     if not shutil.which("conda"):
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
@@ -35,6 +61,17 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
     output_dir = Path(output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
+
+    # Apply patch only for job_type=1
+    if job_type == 1:
+        # Find conda env path
+        result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
+        env_path_line = next((l for l in result.stdout.splitlines() if l.startswith(CONDA_ENV_NAME)), None)
+        if env_path_line:
+            env_path = Path(env_path_line.split()[-1])
+            patch_ifnepitope2_if_needed(env_path)
+        else:
+            logging.warning("⚠️ Could not determine conda env path to apply patch.")
 
     cmd = [
         "conda", "run", "-n", CONDA_ENV_NAME,
