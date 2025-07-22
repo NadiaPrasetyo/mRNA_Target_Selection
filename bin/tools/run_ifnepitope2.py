@@ -63,15 +63,39 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
 
     # Apply patch only for job_type=1
+    # PATCH: Fix UnboundLocalError in ifnepitope2.py (only for job_type == 1)
     if job_type == 1:
-        # Find conda env path
-        result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
-        env_path_line = next((l for l in result.stdout.splitlines() if l.startswith(CONDA_ENV_NAME)), None)
-        if env_path_line:
-            env_path = Path(env_path_line.split()[-1])
-            patch_ifnepitope2_if_needed(env_path)
-        else:
-            logging.warning("⚠️ Could not determine conda env path to apply patch.")
+        try:
+            target_py = Path(subprocess.check_output([
+                "conda", "run", "-n", CONDA_ENV_NAME,
+                "python", "-c",
+                "import ifnepitope2; print(ifnepitope2.__file__)"
+            ], text=True).strip()).parent / "python_scripts" / "ifnepitope2.py"
+
+            with open(target_py) as f:
+                lines = f.readlines()
+
+            # Check if already patched
+            already_patched = any("if 'composition' in locals()" in line for line in lines)
+            if not already_patched:
+                new_lines = []
+                for line in lines:
+                    if line.strip() == "cc.append(composition)":
+                        indent = " " * (len(line) - len(line.lstrip()))
+                        new_lines.append(f"{indent}if 'composition' in locals():\n")
+                        new_lines.append(f"{indent}    cc.append(composition)\n")
+                    else:
+                        new_lines.append(line)
+
+                with open(target_py, "w") as f:
+                    f.writelines(new_lines)
+
+                logging.info("✅ Patched ifnepitope2.py for unbound 'composition' bug.")
+            else:
+                logging.info("🔁 ifnepitope2.py already patched.")
+
+        except Exception as e:
+            logging.warning(f"⚠️ Could not patch ifnepitope2.py: {e}")
 
     cmd = [
         "conda", "run", "-n", CONDA_ENV_NAME,
