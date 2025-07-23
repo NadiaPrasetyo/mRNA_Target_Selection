@@ -32,18 +32,14 @@ from typing import List
 import subprocess
 from Bio import SeqIO
 
-def is_valid_peptide(seq: str) -> bool:
+def is_valid_peptide(seq: str, min_length: int = 8) -> bool:
     """
     Checks if a given sequence is a valid peptide sequence.
     A valid peptide:
     - Contains only standard amino acids (ACDEFGHIKLMNPQRSTVWY)
-    - Is at least 5 amino acids long
-    Args:
-        seq (str): The peptide sequence to validate.
-    Returns:
-        bool: True if the sequence is a valid peptide, False otherwise.
+    - Is at least `min_length` amino acids long
     """
-    return len(seq) >= 5 and bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", seq))
+    return isinstance(seq, str) and len(seq) >= min_length and bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", seq))
 
 
 def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, min_length=8) -> Path:
@@ -81,7 +77,7 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
             return
         header = header.lstrip(">")
         for i, pep in enumerate(block_peptides):
-            if not is_valid_peptide(pep) or len(pep) < min_length:
+            if not is_valid_peptide(pep, min_length):
                 logging.warning(f"⚠️ Peptide skipped (invalid or too short): {pep} in header: {header}")
                 continue
 
@@ -231,20 +227,22 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
 
     return output_paths
 
-def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str, min_length = 8) -> Path:
+def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str, min_length: int = 8) -> Path:
     """
-    Parses a JSON file with peptide predictions and writes a FASTA file of unique peptides
-    with contextual headers based on the input file name, appending seq1, seq2, etc.
+    Parses a JSON file with peptide predictions and writes a FASTA file of unique, valid peptides
+    with contextual headers based on the input file name.
 
     Args:
         json_file (Path): Path to input JSON file.
         output_dir (Path): Directory where output FASTA will be saved.
         basename_prefix (str): Base prefix for output file name.
+        min_length (int): Minimum valid peptide length.
 
     Returns:
-        Path: Path to the generated FASTA file.
+        Path: Path to the generated FASTA file, or None if no valid peptides found.
     """
     output_dir.mkdir(parents=True, exist_ok=True)
+
     with open(json_file) as f:
         data = json.load(f)
 
@@ -265,33 +263,35 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str,
 
         for row in data_rows:
             pep = row[peptide_idx]
-            if isinstance(pep, str) and len(pep) >= min_length:
+            if is_valid_peptide(pep, min_length):
                 peptides.add(pep)
             else:
-                logging.warning(f"⚠️ Skipped peptide (too short or invalid): {pep} in {json_file.name}")
+                logging.warning(f"⚠️ Skipped invalid peptide: '{pep}' in {json_file.name}")
 
     if not peptides:
-        print(f"⚠️ No peptides found in {json_file}")
+        logging.warning(f"⚠️ No valid peptides found in {json_file}")
         return None
 
+    # Extract metadata from filename
     filename = json_file.name
     match = re.match(
-    r"antigen_(\d+)_([A-Z0-9]+)_(.+?)_([A-Z0-9]+\.\d+).*_(MHCI|MHCII)\.json$",
-    filename
+        r"antigen_(\d+)_([A-Z0-9]+)_(.+?)_([A-Z0-9]+\.\d+).*_(MHCI|MHCII)\.json$",
+        filename
     )
 
-    if match:
-        antigen_num, acc_num, _, strain_acc, mhc_class = match.groups()
-        mhc_class = mhc_class.lower()
-        fasta_lines = [
-            f">antigen{antigen_num}|{acc_num}|{strain_acc}|{mhc_class}|seq{i+1}\n{pep}"
-            for i, pep in enumerate(sorted(peptides))
-        ]
-    else:
-        print(f"⚠️ Filename pattern not recognized for T-cell: {filename}")
+    if not match:
+        logging.error(f"❌ Filename pattern not recognized for T-cell JSON: {filename}")
         raise SystemExit(1)
 
-    # Write to FASTA
+    antigen_num, acc_num, _, strain_acc, mhc_class = match.groups()
+    mhc_class = mhc_class.lower()
+
+    # Write FASTA lines
+    fasta_lines = [
+        f">antigen{antigen_num}|{acc_num}|{strain_acc}|{mhc_class}|seq{i+1}\n{pep}"
+        for i, pep in enumerate(sorted(peptides))
+    ]
+
     fasta_path = output_dir / f"{basename_prefix}.fasta"
     with open(fasta_path, "w") as fasta_file:
         fasta_file.write("\n".join(fasta_lines))
