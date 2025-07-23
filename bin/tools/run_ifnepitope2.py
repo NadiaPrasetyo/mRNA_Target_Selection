@@ -19,13 +19,13 @@ def create_conda_env_if_needed():
         logging.info("✅ Conda environment already exists.")
 
 
-def patch_ifnepitope2_composition_bug():
+def patch_ifnepitope2_bugfixes():
     """
-    Patches the ifnepitope2.py script inside the conda environment to fix the
-    UnboundLocalError related to 'composition'. Uses conda to locate the module.
+    Patches the ifnepitope2.py script inside the conda environment:
+    - Fixes 'composition' UnboundLocalError.
+    - Adds filtering of NaN values before model prediction (for job_type == 1 only).
     """
     try:
-        # Run a conda subprocess to get the full path to ifnepitope2.py
         result = subprocess.run([
             "conda", "run", "-n", CONDA_ENV_NAME,
             "python", "-c",
@@ -42,25 +42,44 @@ def patch_ifnepitope2_composition_bug():
             lines = f.readlines()
 
         patched_lines = []
-        patched = False
+        composition_patched = False
+        nan_patched = False
 
-        for line in lines:
-            if re.match(r"^\s*cc\.append\(composition\)", line) and not patched:
+        for i, line in enumerate(lines):
+            # Patch 1: Prevent UnboundLocalError for 'composition'
+            if re.match(r"^\s*cc\.append\(composition\)", line) and not composition_patched:
                 indent = re.match(r"^(\s*)", line).group(1)
                 patched_lines.append(f"{indent}if 'composition' in locals():\n")
                 patched_lines.append(f"{indent}    cc.append(composition)\n")
-                patched = True
-            else:
-                patched_lines.append(line)
+                composition_patched = True
+                continue
 
-        if patched:
+            # Patch 2: Skip NaN rows before prediction
+            if "y_p_score1 = clf.predict_proba(data_test)" in line and not nan_patched:
+                indent = re.match(r"^(\s*)", line).group(1)
+                patched_lines.append(f"{indent}import numpy as np\n")
+                patched_lines.append(f"{indent}if np.isnan(data_test).any():\n")
+                patched_lines.append(f"{indent}    print('⚠️ Warning: Found NaNs in feature matrix, skipping those peptides.')\n")
+                patched_lines.append(f"{indent}    data_test = data_test[~np.isnan(data_test).any(axis=1)]\n")
+                patched_lines.append(f"{indent}    if len(data_test) == 0:\n")
+                patched_lines.append(f"{indent}        print('❌ All peptides led to invalid feature vectors. Exiting.')\n")
+                patched_lines.append(f"{indent}        return []\n")
+                nan_patched = True
+
+            patched_lines.append(line)
+
+        if composition_patched or nan_patched:
             backup_path = target_py.with_suffix(".bak")
             shutil.copy(target_py, backup_path)
             with open(target_py, "w") as f:
                 f.writelines(patched_lines)
-            logging.info(f"✅ Patched {target_py.name} for 'composition' bug.")
+            logging.info("✅ Applied patch(es) to ifnepitope2.py:")
+            if composition_patched:
+                logging.info("  - ✔️ Fixed 'composition' bug.")
+            if nan_patched:
+                logging.info("  - ✔️ Added NaN feature filtering.")
         else:
-            logging.info("🔁 Patch not applied: target line not found or already patched.")
+            logging.info("🔁 Patch not applied: target lines not found or already patched.")
 
     except subprocess.CalledProcessError as e:
         logging.warning(f"⚠️ Could not locate ifnepitope2.py in conda env: {e}")
@@ -82,7 +101,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
 
     if job_type == 1:
-        patch_ifnepitope2_composition_bug()
+        patch_ifnepitope2_bugfixes()
 
     cmd = [
         "conda", "run", "-n", CONDA_ENV_NAME,
