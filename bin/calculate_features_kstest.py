@@ -747,9 +747,13 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mhcii": lambda: parse_mhc_dir(os.path.join(base_dir, "mhcii")),
         "signalp": lambda: parse_signalp_dir(os.path.join(base_dir, "signalp")),
         "targetp": lambda: parse_targetp_dir(os.path.join(base_dir, "targetp")),
-        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(eval_dir, "algpred")),
+        "allergenicity": lambda: parse_allergenicity_dir(os.path.join(base_dir, "algpred")),
         "cluster": lambda: parse_cluster_dir(os.path.join(eval_dir, "cluster")),
-        "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcoverage"))
+        "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcoverage")),
+        "deeplocpro": lambda: parse_deeplocpro_dir(os.path.join(base_dir, "deeplocpro")),
+        "ellipro": lambda: parse_ellipro_dir(os.path.join(base_dir, "ellipro")),
+        "ifnepitope2": lambda: parse_ifnepitope2_dir(os.path.join(base_dir, "ifnepitope2")),
+        "mixmhc2pred": lambda: parse_mixmhc2pred_dir(os.path.join(base_dir, "mixmhc2pred")),
     }
 
     results = []
