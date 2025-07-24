@@ -699,17 +699,21 @@ def parse_mixmhc2pred_dir(directory):
         logging.debug(f"Parsing MixMHC2Pred file: {file}")
         try:
             with open(path) as f:
-                reader = csv.DictReader(f, delimiter='\t')
-                for i, row in enumerate(reader):
+                for i, line in enumerate(f):
+                    if line.startswith("#") or not line.strip() or line.startswith("Peptide"):
+                        continue
+                    parts = line.strip().split('\t')
+                    if len(parts) < 8:
+                        continue
                     try:
-                        rank_best = row["%Rank_best"]
+                        rank_best = parts[7]  # Assuming "%Rank_best" is the 8th column (index 7)
                         results.append({
                             "feature": "mixmhc2pred",
-                            "subfeature": f"rank_best",
+                            "subfeature": "rank_best",
                             "value": float(rank_best)
                         })
                     except ValueError as e:
-                        logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
             logging.error(f"Failed parsing MixMHC2Pred file {file}: {e}")
     logging.info(f"Completed MixMHC2Pred parsing with {len(results)} results")
@@ -787,7 +791,7 @@ def calculate_auroc(pos_vals, rand_vals):
         logging.debug(f"AUROC calculation failed: {e}")
         return None
     
-def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir="auroc_plots"):
+def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir="results/auroc_plots"):
     """
     Plot ROC curve and save as PNG.
     """
@@ -821,6 +825,47 @@ def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir="auroc_p
 
     except Exception as e:
         logging.debug(f"Failed to plot ROC curve for {feature}/{subfeature}: {e}")
+
+def plot_auroc_summary(results_df, output_path="results/auroc_summary.png"):
+    """
+    Create a bar plot of AUROC values for all features, corrected and sorted.
+    AUROCs < 0.5 are adjusted as 1 - AUROC.
+    """
+    try:
+        # Drop missing AUROCs
+        df = results_df.dropna(subset=["auroc"]).copy()
+
+        # Adjust AUROCs < 0.5
+        df["adjusted_auroc"] = df["auroc"].apply(lambda x: x if x >= 0.5 else 1 - x)
+
+        # Combine feature + subfeature for labeling
+        df["label"] = df["feature"] + " / " + df["subfeature"]
+
+        # Sort
+        df = df.sort_values("adjusted_auroc", ascending=False)
+
+        # Plot
+        plt.figure(figsize=(10, max(4, 0.3 * len(df))))
+        bars = plt.barh(df["label"], df["adjusted_auroc"], color="skyblue")
+        plt.xlabel("AUROC (adjusted, min = 0.5)")
+        plt.title("AUROC Summary (Sorted High to Low)")
+        plt.xlim(0.5, 1.0)
+        plt.gca().invert_yaxis()  # Highest on top
+
+        # Optional: Add value labels
+        for bar in bars:
+            width = bar.get_width()
+            plt.text(width + 0.01, bar.get_y() + bar.get_height()/2,
+                     f"{width:.3f}", va="center")
+
+        plt.tight_layout()
+        plt.savefig(output_path)
+        plt.close()
+
+        logging.info(f"AUROC summary plot saved to {output_path}")
+
+    except Exception as e:
+        logging.error(f"Failed to generate AUROC summary plot: {e}")
 
 
 def compare_ks(pos_features, rand_features):
@@ -953,6 +998,8 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
 
     logger.info("Running KS test on features")
     result_df = compare_ks(pos_features, rand_features)
+    plot_auroc_summary(result_df)
+
     # Sort the DataFrame alphabetically by the first column
     result_df = result_df.sort_values(by=result_df.columns[0])
     logger.info("\n" + result_df.to_string(index=False))
