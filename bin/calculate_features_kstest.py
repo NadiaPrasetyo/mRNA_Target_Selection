@@ -720,8 +720,6 @@ def parse_mixmhc2pred_dir(directory):
     return results
 
 
-
-
 # ----------------------------- Orchestration Functions -----------------------------
 
 def extract_all_features(base_dir, eval_dir, threads=1):
@@ -791,10 +789,12 @@ def calculate_auroc(pos_vals, rand_vals):
         logging.debug(f"AUROC calculation failed: {e}")
         return None
     
-def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir="results/auroc_plots"):
+def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir):
     """
     Plot ROC curve and save as PNG.
     """
+    output_dir = os.path.join(output_dir, "roc_plots")
+    logging.info(f"Plotting ROC curve for {feature}/{subfeature} in {output_dir}")
     try:
         y_true = [1] * len(pos_vals) + [0] * len(rand_vals)
         y_scores = pos_vals + rand_vals
@@ -826,11 +826,13 @@ def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir="results
     except Exception as e:
         logging.debug(f"Failed to plot ROC curve for {feature}/{subfeature}: {e}")
 
-def plot_auroc_summary(results_df, output_path="results/auroc_summary.png"):
+def plot_auroc_summary(results_df, output_dir):
     """
     Create a bar plot of AUROC values for all features, corrected and sorted.
     AUROCs < 0.5 are adjusted as 1 - AUROC.
     """
+    output_path = os.path.join(output_dir, "auroc_summary.png")
+    os.makedirs(output_dir, exist_ok=True)
     try:
         # Drop missing AUROCs
         df = results_df.dropna(subset=["auroc"]).copy()
@@ -868,7 +870,7 @@ def plot_auroc_summary(results_df, output_path="results/auroc_summary.png"):
         logging.error(f"Failed to generate AUROC summary plot: {e}")
 
 
-def compare_ks(pos_features, rand_features):
+def compare_ks(pos_features, rand_features, output_dir):
     """
     Compare distributions using KS test and AUROC.
     Returns a DataFrame with all results.
@@ -902,7 +904,7 @@ def compare_ks(pos_features, rand_features):
 
                 # Optional: Generate ROC curve plot if AUROC is computable
                 if auroc is not None:
-                    plot_roc_curve(pos_vals, rand_vals, feature, subfeature)
+                    plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir)
 
             except Exception as e:
                 logging.debug(f"KS/AUROC failed for {feature}/{subfeature}: {e}")
@@ -985,6 +987,7 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
     logger.info("Estimating memory usage of extracted features")
     logger.info(f"Positive features: {sizeof_fmt(sys.getsizeof(pos_features))}")
     logger.info(f"Random features: {sizeof_fmt(sys.getsizeof(rand_features))}")
+    output_dir = os.path.join("data", pathogen_dir)
 
     raw_out_dir = os.path.join("results", pathogen_dir, "raw_data")
 
@@ -997,8 +1000,8 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
 
 
     logger.info("Running KS test on features")
-    result_df = compare_ks(pos_features, rand_features)
-    plot_auroc_summary(result_df)
+    result_df = compare_ks(pos_features, rand_features, output_dir)
+    plot_auroc_summary(result_df, output_dir)
 
     # Sort the DataFrame alphabetically by the first column
     result_df = result_df.sort_values(by=result_df.columns[0])
