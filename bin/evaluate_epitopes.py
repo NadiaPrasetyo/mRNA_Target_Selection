@@ -1,19 +1,19 @@
 """
 evaluate_epitopes.py
-Command-line tool to evaluate predicted epitopes using immunoinformatics tools (e.g., PopCoverage, IfNePitope2).
+Command-line tool to evaluate predicted epitopes using immunoinformatics tools (e.g., PopCoverage).
 
 Overview:
     - Scans a specified pathogen epitope directory for predicted epitope files (mhci, mhcii, bcell).
-    - Runs selected evaluation tools (e.g., PopCoverage, IfNePitope2) on each epitope file.
+    - Runs selected evaluation tools (e.g., PopCoverage) on each epitope file.
     - Validates outputs and skips jobs if results already exist and are valid.
     - Supports parallel execution for efficient processing.
     - Organizes results into structured output directories and cleans up temporary files.
 
 Usage Example:
-    python evaluate_epitopes.py sars_cov_2 epitopes --tool-root /opt/bio_tools --threads 8 --tools PopCoverage IfNePitope2
+    python evaluate_epitopes.py sars_cov_2 epitopes --tool-root /opt/bio_tools --threads 8 --tools PopCoverage
 
 Requirements:
-    - Tool wrappers (run_popcoverage, run_ifnepitope2) available under `tool-root`.
+    - Tool wrappers (run_popcoverage) available under `tool-root`.
     - Input epitope files: JSON (mhci, mhcii), CSV (bcell).
     - Python packages: argparse, pathlib, concurrent.futures, logging.
 
@@ -27,11 +27,10 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import shutil
 
-from tools import run_popcoverage, run_ifnepitope2, common, extract_epitopes
+from tools import run_popcoverage, common, extract_epitopes
 
 tool_runners = {
     "PopCoverage": run_popcoverage.run,
-    "IFNepitope2": run_ifnepitope2.run,
 }
 
 def parse_arguments():
@@ -84,9 +83,6 @@ def is_output_valid(tool, input_file, output_dir):
                        for f in out_dir.glob(f"{stem}*.txt")) or \
                    any((f.exists() and f.stat().st_size > 0)
                        for f in out_dir.glob(f"{stem}*.png"))
-        if tool == "ifnepitope2":
-            return any(f.exists() and f.stat().st_size > 0
-                       for f in out_dir.glob(f"{stem}_ifnepitope2.csv"))
     except Exception as e:
         logging.warning(f"⚠️ Error validating output for {tool} / {input_file.name}: {e}")
     return False
@@ -99,7 +95,7 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
         tools_to_run (dict): Dictionary of tools to run with their paths.
         output_dir (Path): Directory where outputs will be saved.
     Returns:
-        tuple: (jobs_to_run, skipped_info)
+        list: jobs_to_run
     """
     jobs = []
     for tool, tool_path in tools_to_run.items():
@@ -112,18 +108,16 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
 
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
-    Run the prepared jobs. IFNepitope2 runs in series; others in parallel.
+    Run the prepared jobs. All jobs run in parallel.
     """
     output_dir = Path(output_dir)
     epitope_dir = Path(epitope_dir)
-    fasta_inputs_dir = output_dir / "fasta_inputs"
     popcov_inputs_dir = output_dir / "popcov_inputs"
 
-    temp_dirs = [fasta_inputs_dir, popcov_inputs_dir]
+    temp_dirs = [popcov_inputs_dir]
 
     popcov_jobs = [job for job in jobs if job[0] == "PopCoverage"]
-    ifnepitope_jobs = [job for job in jobs if job[0] == "IFNepitope2"]
-    other_jobs = [job for job in jobs if job[0] not in {"PopCoverage", "IFNepitope2"}]
+    other_jobs = [job for job in jobs if job[0] not in {"PopCoverage"}]
 
     # Prepare PopCoverage inputs
     if popcov_jobs:
@@ -154,34 +148,6 @@ def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
                 future.result()
             except Exception as e:
                 logging.error(f"❌ Parallel job failed: {e}")
-
-    # SERIAL execution for IFNepitope2
-    for tool, tool_path, file in ifnepitope_jobs:
-        out_dir = output_dir / tool.lower()
-        try:
-            fasta_file = (
-                common.parse_csv_to_fasta(file, fasta_inputs_dir, file.stem, 8) if "bcell" in str(file).lower()
-                else common.parse_json_to_fasta(file, fasta_inputs_dir, file.stem, 8)
-            )
-            if fasta_file and fasta_file.exists():
-                if fasta_file.stat().st_size == 0:
-                    logging.error(f"❌ [SERIAL] Skipping empty FASTA: {fasta_file}")
-                    continue
-
-                with open(fasta_file) as f:
-                    content = f.read().strip()
-                    if not any(line.startswith(">") for line in content.splitlines()):
-                        logging.error(f"❌ [SERIAL] FASTA file missing headers: {fasta_file}")
-                        continue
-                    if not any(c.isalpha() for c in content.replace(">", "").replace("\n", "")):
-                        logging.error(f"❌ [SERIAL] FASTA has no valid amino acids: {fasta_file}")
-                        continue
-
-                logging.info(f"🚀 [SERIAL] Running {tool} on {file.name}")
-                tool_runners[tool](tool_path, file, out_dir, 1)
-
-        except Exception as e:
-            logging.error(f"❌ [SERIAL] Failed to run {tool} on {file.name}: {e}")
 
     # Cleanup temp dirs
     for temp_dir in temp_dirs:

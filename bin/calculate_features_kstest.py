@@ -987,7 +987,7 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
     logger.info("Estimating memory usage of extracted features")
     logger.info(f"Positive features: {sizeof_fmt(sys.getsizeof(pos_features))}")
     logger.info(f"Random features: {sizeof_fmt(sys.getsizeof(rand_features))}")
-    output_dir = os.path.join("data", pathogen_dir)
+    output_dir = os.path.join("results", pathogen_dir)
 
     raw_out_dir = os.path.join("results", pathogen_dir, "raw_data")
 
