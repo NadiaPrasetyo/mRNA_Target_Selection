@@ -30,6 +30,13 @@ from pathlib import Path
 import gemmi
 
 def convert_cif_to_pdb_with_gemmi(input_cif, output_pdb):
+    """Convert CIF file to PDB format using Gemmi.
+    Args:
+        input_cif (Path): Path to the input CIF file.
+        output_pdb (Path): Path to save the output PDB file.
+    Returns:
+        output_pdb (Path): Path to the generated PDB file.
+    """
     try:
         doc = gemmi.cif.read_file(str(input_cif))
         block = doc.sole_block()
@@ -49,6 +56,13 @@ def convert_cif_to_pdb_with_gemmi(input_cif, output_pdb):
         return None
 
 def run(input_file, tool_root, output_dir):
+    """
+    Run ElliPro on the specified input file after necessary conversions.
+    Args:
+        input_file (str or Path): Path to the input structure file (PDB, CIF, or CIF.GZ).
+        tool_root (str or Path): Path to the ElliPro tool directory containing ElliPro.jar.
+        output_dir (str or Path): Directory to save the ElliPro output.
+    """
     input_file = Path(input_file)
     tool_root = Path(tool_root)
     output_dir = Path(output_dir)/"ellipro"

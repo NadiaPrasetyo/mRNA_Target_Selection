@@ -246,6 +246,10 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq):
     print("All alignments complete.")
 
 if __name__ == "__main__":
+    """
+    Command-line interface for aligning antigens to strain genomes using MMseqs2.
+    Parse command-line arguments and run the main alignment function.
+    """
     
     parser = argparse.ArgumentParser(
         description="Align antigens to strain genomes using MMseqs2"

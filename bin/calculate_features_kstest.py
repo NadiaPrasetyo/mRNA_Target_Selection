@@ -1,16 +1,13 @@
 """
 calculate_features_kstest.py
-
-Command-line tool to extract immunological and sequence features from epitope and random protein sets,
-and compare their distributions using the Kolmogorov-Smirnov (KS) test.
+Command-line tool to extract immunological and sequence features from epitope and random protein sets, and compare their distributions using KS-test and AUROC.
 
 Overview:
-    - Parses feature outputs (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, population coverage)
-      from specified directories for both epitope (positive) and random sets.
+    - Extracts features (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, population coverage, DeeplocPro, Ellipro, IFNepitope2, MixMHC2Pred) from epitope (positive) and random sets.
     - Aggregates and structures feature data for statistical comparison.
-    - Performs KS tests for each feature/subfeature between positive and random sets.
+    - Performs Kolmogorov-Smirnov (KS) tests and computes AUROC for each feature/subfeature between positive and random sets.
     - Optionally writes raw feature data to disk for further analysis.
-    - Outputs a CSV summary of KS test statistics and p-values.
+    - Generates ROC curve plots and an AUROC summary bar plot.
 
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
@@ -24,15 +21,16 @@ Requirements:
         data/<pathogen_dir>/random_analysis/
         data/<pathogen_dir>/evaluation_outputs/
         data/<pathogen_dir>/random_evaluation/
-    - Python packages: pandas, scipy
+    - Python packages: pandas, scipy, scikit-learn, matplotlib, os, csv, json, argparse.
 
 Usage Example:
     python calculate_features_kstest.py sars_cov_2 --threads 4 --verbose --write-raw
 
 Outputs:
-    data/<pathogen_dir>/ks_test_results.csv         # KS statistics and p-values for each feature
-    data/<pathogen_dir>/raw_positive_features/      # (optional) Raw feature CSVs for positive set
-    data/<pathogen_dir>/raw_random_features/        # (optional) Raw feature CSVs for random set
+    results/<pathogen_dir>/ks_test_results.csv      # KS statistics, p-values, and AUROC for each feature
+    results/<pathogen_dir>/raw_data/                # (optional) Raw feature CSVs for positive and random sets
+    results/<pathogen_dir>/roc_plots/               # ROC curve plots for each feature/subfeature
+    results/<pathogen_dir>/auroc_summary.png        # AUROC summary bar plot
     data/<pathogen_dir>/ks_test.log                 # (optional) Verbose log file
 
 Author: Nadia
@@ -57,6 +55,9 @@ def init_logging(verbose=False, pathogen="unknown"):
     """
     Initialize logging configuration.
     If verbose is True, logs will be written to a file in the specified pathogen directory.
+    Args:
+        verbose (bool): If True, enable verbose logging to file.
+        pathogen (str): Name of the pathogen for log file naming.
     """
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
@@ -80,6 +81,9 @@ def init_logging(verbose=False, pathogen="unknown"):
 def sizeof_fmt(num, suffix="B"):
     """
     Convert a number of bytes into a human-readable format with appropriate suffix.
+    Args:
+        num (int): Number of bytes.
+        suffix (str): Suffix to append (default: "B").
     Examples:
         1024 -> "1.0KB"
         1048576 -> "1.0MB"
@@ -732,7 +736,7 @@ def extract_all_features(base_dir, eval_dir, threads=1):
     Returns:
         List of dictionaries, where each dictionary represents a feature.
     Each dictionary contains:
-        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov")
+        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov", "deeplocpro", "ellipro", "ifnepitope2", "mixmhc2pred")
         - "subfeature": specific subfeature name (e.g., "bepipred", "score", "prob_signalp", etc.)
         - "value": numerical value for the feature
     """
@@ -774,7 +778,11 @@ def extract_all_features(base_dir, eval_dir, threads=1):
 def calculate_auroc(pos_vals, rand_vals):
     """
     Compute AUROC from positive and random value lists.
-    Returns AUROC or None if computation fails.
+    Args:
+        pos_vals (list): List of positive values (e.g., epitope scores).
+        rand_vals (list): List of random values (e.g., background scores).
+    Returns:
+        float: AUROC value or None if computation fails.
     """
     try:
         y_true = [1] * len(pos_vals) + [0] * len(rand_vals)
@@ -792,6 +800,16 @@ def calculate_auroc(pos_vals, rand_vals):
 def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir):
     """
     Plot ROC curve and save as PNG.
+    Args:
+        pos_vals (list): List of positive values (e.g., epitope scores).
+        rand_vals (list): List of random values (e.g., background scores).
+        feature (str): Feature name (e.g., "bcell", "mhci").
+        subfeature (str): Subfeature name (e.g., "bepipred", "score").
+        output_dir (str): Directory to save the ROC plot.
+    This function will create a directory "roc_plots" inside output_dir if it doesn't exist
+    and save the ROC plot as a PNG file named "{feature}_{subfeature}_roc.png".
+    If the values are not numeric, it will skip plotting.
+    If any error occurs during plotting, it will log the error but not raise an exception.
     """
     output_dir = os.path.join(output_dir, "roc_plots")
     logging.info(f"Plotting ROC curve for {feature}/{subfeature} in {output_dir}")
@@ -830,6 +848,15 @@ def plot_auroc_summary(results_df, output_dir):
     """
     Create a bar plot of AUROC values for all features, corrected and sorted.
     AUROCs < 0.5 are adjusted as 1 - AUROC.
+    Args:
+        results_df (pd.DataFrame): DataFrame containing feature results with columns:
+            - "feature": feature name (e.g., "bcell", "mhci")
+            - "subfeature": subfeature name (e.g., "bepipred", "score")
+            - "auroc": AUROC value (float)
+        output_dir (str): Directory to save the AUROC summary plot.
+    This function will create a directory "auroc_plots" inside output_dir if it doesn't exist
+    and save the AUROC summary plot as a PNG file named "auroc_summary.png".
+    If any error occurs during plotting, it will log the error but not raise an exception.
     """
     output_path = os.path.join(output_dir, "auroc_summary.png")
     os.makedirs(output_dir, exist_ok=True)
@@ -874,6 +901,20 @@ def compare_ks(pos_features, rand_features, output_dir):
     """
     Compare distributions using KS test and AUROC.
     Returns a DataFrame with all results.
+    Args:
+        pos_features (list): List of dictionaries representing positive features.
+        rand_features (list): List of dictionaries representing random features.
+        output_dir (str): Directory to save the results.
+    Returns:
+        pd.DataFrame: DataFrame containing KS statistics, p-values, AUROC values, and counts.
+    Each row contains:
+        - "feature": feature name (e.g., "bcell", "mhci")
+        - "subfeature": subfeature name (e.g., "bepipred", "score")
+        - "ks_statistic": KS statistic value (float)
+        - "p_value": p-value from KS test (float)
+        - "auroc": AUROC value (float)
+        - "positive_n": number of positive samples (int)
+        - "random_n": number of random samples (int)
     """
     logging.info("Starting KS and AUROC comparison")
     results = []

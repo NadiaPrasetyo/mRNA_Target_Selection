@@ -1,3 +1,32 @@
+# visualize_features.R
+#
+# Command-line R script to visualize distributions of significant features identified by KS test
+# in mRNA target selection pipelines.
+#
+# Overview:
+#   - Loads Kolmogorov-Smirnov (KS) test results to identify significant features/subfeatures (p < 0.05).
+#   - Aggregates raw feature data for both positive and random sets for each significant feature/subfeature.
+#   - Generates violin plots comparing the distributions of each feature/subfeature between positive and random sets.
+#   - Saves plots as PNG files for downstream interpretation.
+#
+# Arguments/Paths:
+#   ks_file (str): Path to CSV file containing KS test results.
+#   base_path (str): Directory containing raw feature data CSVs for positive and random sets.
+#   output_dir (str): Directory to save output distribution plots.
+#
+# Requirements:
+#   - Raw feature data files named as <feature>_positive_raw_data.csv and <feature>_random_raw_data.csv
+#     under the specified base_path.
+#   - KS test results CSV with columns: feature, subfeature, p_value.
+#   - R packages: tidyverse (ggplot2, dplyr, readr, etc.)
+#
+# Usage Example:
+#   Rscript visualize_features.R
+#
+# Outputs:
+#   <output_dir>/<feature>_<subfeature>.png   # Violin plots for each significant feature/subfeature
+#
+# Author: Nadia
 # This file visualizes the features collected by the pipeline
 # Load libraries
 library(tidyverse)

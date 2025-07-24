@@ -1,27 +1,35 @@
 """
-antigen_analysis.py
-Command-line tool to run SignalP and TargetP predictors on input FASTA files for antigen analysis.
+Runner for the antigen analysis pipeline.
+
 Overview:
     - Scans a specified pathogen sequence directory for FASTA files.
-    - Runs selected prediction tools (SignalP, TargetP, Cluster, Allergenicity) on each FASTA file.
-    - Supports parallel execution of jobs for efficient processing.
+    - Runs selected prediction tools (SignalP, TargetP, Cluster, AlgPred2, DeepLocPro, IfNePitope2) on each FASTA file.
+    - Supports parallel execution for efficient processing, with serial execution for tools requiring it.
     - Organizes results into structured output directories.
+    - Cleans up intermediate and temporary files after processing.
+
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
     sequence_dir (str): Subdirectory under `pathogen_dir` containing FASTA files.
-    --tool-root (str, required): Root directory containing tool wrappers and executables.
-    --threads (int, optional): Number of parallel threads to use (default: 4).
-    --tools (list, optional): List of tools to run (choices: SIGNALP, TARGETP; default: both).
-    --batch-size (int, optional): Batch size for SignalP/TargetP (default: 10000).
-    --output-dir (str, optional): Output directory for results (default: epitope_outputs).
+    --tool-root (str): Root directory containing tool wrappers and executables (required for SignalP, TargetP, DeepLocPro).
+    --threads (int): Number of parallel threads to use (default: 4).
+    --tools (list): List of tools to run (choices: SIGNALP, TARGETP, CLUSTER, ALGPRED, DEEPLOC, IFNEPITOPE2; default: all).
+    --batch-size (int): Batch size for SignalP/TargetP (default: 10000).
+    --output-dir (str): Output directory for results (default: epitope_outputs).
+    --verbose: Enable verbose output for debugging.
+    --group (str): Group name for DeepLocPro: [any, archaea, positive, negative] (default: any).
+
 Requirements:
-    - Tool wrappers and executables for SignalP and TargetP available under `tool-root`.
+    - Tool wrappers and executables for all selected tools available under `tool-root` as needed.
     - Input FASTA files present in the specified sequence directory.
-    - Python packages: argparse, pathlib, concurrent.futures.
-Usage Example:
-    python antigen_analysis.py sars_cov_2 proteins --tool-root /opt/bio_tools --threads 8 --tools SIGNALP
+    - Python packages: argparse, pathlib, concurrent.futures, logging.
+
 Outputs:
     data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<tool>.out   # Prediction results for each tool and input
+    data/<pathogen_dir>/<output_dir>/cluster/<accession>_clu.tsv      # Cluster results
+    data/<pathogen_dir>/<output_dir>/algpred/<input_file>_algpred.csv # AlgPred2 results
+    data/<pathogen_dir>/<output_dir>/ifnepitope2/<input_file>_ifnepitope2.csv # IfNePitope2 results
+
 Author: Nadia
 """
 
@@ -51,7 +59,7 @@ def run_tool(tool_name, runner_func, input_file, output_dir, batch_size, tool_pa
     """
     Run a specific tool on the input file and save the output.
     Args:
-        tool_name (str): Name of the tool to run (e.g., SIGNALP, TARGETP, CLUSTER).
+        tool_name (str): Name of the tool to run (e.g., SIGNALP, TARGETP, CLUSTER, ALGPRED, DEEPLOC, IFNEPITOPE2).
         runner_func (callable): Function to run the tool.
         input_file (Path): Input FASTA file to process.
         output_dir (Path): Directory to save the output.

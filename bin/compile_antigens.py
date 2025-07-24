@@ -144,14 +144,10 @@ def main(short_name, long_name):
     combined_df.to_csv(output_file, index=False)
     print(f"Compiled antigen data saved to: {output_file}")
 
-"""
-/**
-* @brief Entry point for the script. Parses arguments and runs the main pipeline.
-*
-* Expects two command-line arguments: short_name and long_name.
-*/
-"""
 if __name__ == "__main__":
+    """
+    Entry point for command-line execution.
+    Parses command-line arguments for pathogen directory and name, then calls main function."""
     parser = argparse.ArgumentParser(
         description="Compile antigen data from IEDB and literature sources for a given organism.",
         usage="python compile_antigens.py <pathogen_directory> <pathogen_name>"

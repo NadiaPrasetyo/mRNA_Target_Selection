@@ -1,7 +1,7 @@
 """
 run_cluster.py
 
-Command-line tool to cluster input FASTA sequences using MMseqs2 and clean up intermediate files.
+Runner for MMseqs2 clustering tool, which clusters protein sequences based on similarity.
 
 Overview:
     - Runs MMseqs2 clustering on a given FASTA file.

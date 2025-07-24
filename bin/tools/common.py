@@ -5,13 +5,16 @@ Common utility functions and constants for mRNA Target Selection pipeline.
 This module provides shared utilities for directory management, file handling, tool validation,
 allele panel selection, and FASTA/JSON conversion used throughout the mRNA Target Selection workflow.
 
-General Function:
+General Functionality:
     - Ensures output and temporary directories exist and are writable.
     - Locates and validates external tool executables (SignalP, TargetP, TMHMM, IEDB tools, etc.).
     - Provides allele panel presets and selection logic for MHC-I and MHC-II.
     - Converts FASTA files to text and JSON formats for downstream processing.
     - Cleans up temporary directories and files.
     - Includes helper functions for parsing and preparing input/output files.
+    - Groups sequences from multiple FASTA files by accession code and merges them.
+    - Splits protein FASTA files into peptide FASTA files using a sliding window.
+    - Contains unit tests for key parsing and conversion functions.
 
 Constants:
     - MHCI_DEFAULT, MHCI_EXTENDED: Default and extended allele panels for MHC-I.
@@ -73,6 +76,11 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
     in_bepipred_peptide_block = False
 
     def write_block(header: str, block_peptides: list):
+        """Write a block of peptides to the FASTA lines.
+        Args:
+            header (str): Header for the peptide block.
+            block_peptides (list): List of peptide sequences to write.
+        """
         if not header or not block_peptides:
             return
         header = header.lstrip(">")
@@ -379,8 +387,6 @@ def prepare_output_dirs(pathogen_path, output_subdir, selected_tools):
         (output_dir / tool.lower()).mkdir(parents=True, exist_ok=True)
 
     return output_dir
-
-import shutil
 
 def cleanup_temp(temp_dirs):
     """

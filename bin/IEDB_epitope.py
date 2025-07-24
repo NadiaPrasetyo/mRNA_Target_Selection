@@ -1,35 +1,44 @@
 """
 IEDB_epitope.py
-Command-line tool to run IEDB epitope prediction tools (MHCI, MHCII, BCell) on input FASTA files for immunoinformatics analysis.
+Command-line tool to run IEDB and related epitope prediction tools (MHCI, MHCII, BCell, Ellipro, MixMHC2pred) on input sequence or structure files for immunoinformatics analysis.
+
 Overview:
-    - Scans a specified pathogen sequence directory for FASTA files.
-    - Runs selected IEDB prediction tools (MHCI, MHCII, BCell) on each input file.
+    - Scans a specified pathogen sequence directory for FASTA or PDB files.
+    - Runs selected prediction tools (MHCI, MHCII, BCell, Ellipro, MixMHC2pred) on each input file.
     - Supports custom allele panels and peptide length ranges for MHCI and MHCII.
-    - Converts FASTA to TXT for BCell predictions as needed.
+    - Handles input conversion (e.g., FASTA to TXT for BCell, FASTA splitting for MixMHC2pred).
     - Supports parallel execution of jobs for efficient processing.
     - Organizes results into structured output directories and manages temporary files.
+    - Skips jobs if results already exist.
+
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
-    sequence_dir (str): Subdirectory under `pathogen_dir` containing FASTA files.
-    --tool-root (str, required): Root directory containing IEDB tool wrappers and executables.
+    sequence_dir (str): Subdirectory under `pathogen_dir` containing sequence or structure files.
+    --tool-root (str, required): Root directory containing IEDB and related tool wrappers/executables.
     --threads (int, optional): Number of parallel threads to use (default: 4).
-    --mhci-peptide-lengths (int, int, optional): Min and max peptide lengths for MHCI (default: 8 11).
-    --mhcii-peptide-lengths (int, int, optional): Min and max peptide lengths for MHCII (default: 11 25).
-    --tools (list, optional): List of tools to run (choices: MHCI, MHCII, BCell; default: all detected).
+    --mhci-peptide-lengths (int int, optional): Min and max peptide lengths for MHCI (default: 8 11).
+    --mhcii-peptide-lengths (int int, optional): Min and max peptide lengths for MHCII (default: 11 25).
+    --tools (list, optional): List of tools to run (choices: MHCI, MHCII, BCell, Ellipro, MixMHC2pred; default: all detected).
     --mhci-allele-panel (str, optional): Allele panel for MHCI (choices: default, extended, custom; default: default).
     --mhci-custom-alleles (list, optional): Custom alleles for MHCI if panel is 'custom'.
     --mhcii-allele-panel (str, optional): Allele panel for MHCII (choices: default, extended, custom; default: default).
     --mhcii-custom-alleles (list, optional): Custom alleles for MHCII if panel is 'custom'.
     --output-dir (str, optional): Output directory for results (default: epitope_outputs).
+    --verbose (flag, optional): Enable verbose logging.
+
 Requirements:
-    - IEDB tool wrappers and executables for MHCI, MHCII, and BCell available under `tool-root`.
-    - Input FASTA files present in the specified sequence directory.
-    - Python packages: argparse, pathlib, concurrent.futures, collections.
+    - IEDB and related tool wrappers/executables available under `tool-root`.
+    - Input FASTA or PDB files present in the specified sequence directory.
+    - Python packages: argparse, pathlib, concurrent.futures, collections, logging.
+
 Usage Example:
     python IEDB_epitope.py influenza sequences --tool-root /opt/iedb_tools --threads 8 --mhci-peptide-lengths 8 11 --tools MHCI MHCII
+
 Outputs:
-    data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<TOOL>.json   # Prediction results for MHCI and MHCII
+    data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<TOOL>.json   # Prediction results for MHCI, MHCII, MixMHC2pred
     data/<pathogen_dir>/<output_dir>/bcell/<input_file>.txt            # Prediction results for BCell
+    data/<pathogen_dir>/<output_dir>/ellipro/<input_file>.txt          # Prediction results for Ellipro
+
 Author: Nadia
 """
 import argparse
@@ -107,6 +116,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
             f.result()
 
 def main():
+    """Main function to parse arguments and run epitope predictions."""
     parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell, Ellipro)")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")

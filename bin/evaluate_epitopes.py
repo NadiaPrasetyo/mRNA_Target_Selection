@@ -1,6 +1,6 @@
 """
 evaluate_epitopes.py
-Command-line tool to evaluate predicted epitopes using immunoinformatics tools (e.g., PopCoverage).
+Command-line tool to evaluate predicted epitope files using immunoinformatics tools (e.g., PopCoverage).
 
 Overview:
     - Scans a specified pathogen epitope directory for predicted epitope files (mhci, mhcii, bcell).
@@ -9,17 +9,29 @@ Overview:
     - Supports parallel execution for efficient processing.
     - Organizes results into structured output directories and cleans up temporary files.
 
+Arguments:
+    pathogen_dir (str): Subdirectory under `data/` for the pathogen.
+    epitope_dir (Path): Directory under `pathogen_dir` containing mhci/, mhcii/, bcell/ subdirectories.
+    --tool-root (str): Root directory containing tool scripts.
+    --threads (int): Number of parallel threads to use (default: 4).
+    --tools (list): List of tools to run (e.g., PopCoverage).
+    --output-dir (Path): Directory for outputs (default: evaluation_outputs).
+    --verbose: Enable verbose logging.
+
+Requirements:
+    - Tool wrappers (e.g., run_popcoverage) available under `tool-root`.
+    - Input epitope files: JSON (mhci, mhcii), CSV (bcell).
+    - Python packages: argparse, pathlib, concurrent.futures, logging, shutil.
+
 Usage Example:
     python evaluate_epitopes.py sars_cov_2 epitopes --tool-root /opt/bio_tools --threads 8 --tools PopCoverage
 
-Requirements:
-    - Tool wrappers (run_popcoverage) available under `tool-root`.
-    - Input epitope files: JSON (mhci, mhcii), CSV (bcell).
-    - Python packages: argparse, pathlib, concurrent.futures, logging.
+Outputs:
+    <output-dir>/<tool>/         # Output files for each tool (e.g., PopCoverage)
+    <output-dir>/pipeline.log    # Log file (if --verbose is enabled)
 
 Author: Nadia
 """
-
 import argparse
 import logging
 import sys
@@ -34,6 +46,7 @@ tool_runners = {
 }
 
 def parse_arguments():
+    """Parse command-line arguments for the evaluation script."""
     parser = argparse.ArgumentParser(description="Evaluate predicted epitopes using immunoinformatics tools.")
     parser.add_argument("pathogen_dir", help="Subdirectory inside data/ for pathogen")
     parser.add_argument("epitope_dir", type=Path, help="Directory under pathogen_dir with mhci/, mhcii/, bcell/")
@@ -74,6 +87,17 @@ def discover_epitope_files(epitope_dir):
     return files
 
 def is_output_valid(tool, input_file, output_dir):
+    """Check if the output for a given tool and input file is valid.
+    Args:
+        tool (str): Name of the tool (e.g., "PopCoverage").
+        input_file (Path): Path to the input file.
+        output_dir (Path): Directory where outputs are saved.
+    Returns:
+        bool: True if output is valid (exists and non-empty), False otherwise.
+    This function checks if the output files for the specified tool and input file exist and are non-empty.
+    If the tool is "PopCoverage", it checks for both .txt and .png files.
+    If any output file exists and is non-empty, it returns True; otherwise, it returns False.
+    """
     tool = tool.lower()
     stem = input_file.stem
     out_dir = output_dir / tool
@@ -109,6 +133,13 @@ def prepare_jobs(epitope_files, tools_to_run, output_dir):
 def run_jobs_parallel(jobs, output_dir, epitope_dir, max_threads):
     """
     Run the prepared jobs. All jobs run in parallel.
+    Args:
+        jobs (list): List of jobs to run, each as a tuple (tool, tool_path, input_file).
+        output_dir (Path): Directory where outputs will be saved.
+        epitope_dir (Path): Directory containing epitope files.
+        max_threads (int): Maximum number of threads to use for parallel execution.
+    This function will create necessary directories, run each job in parallel,
+    and clean up temporary directories after completion.
     """
     output_dir = Path(output_dir)
     epitope_dir = Path(epitope_dir)

@@ -1,12 +1,26 @@
-"""
-run_algpred.py
-Run the AlgPred2.0 allergenicity prediction tool via Conda environment.
+"""run_algpred.py
 
-Compatible with tool_runners[tool] pattern and concurrent.futures.
+Runner for AlgPred2.0 allergenicity prediction tool.
+
+Overview:
+    - Ensures the required Conda environment and dependencies are present.
+    - Applies patches to fix known bugs in the algpred2 package.
+    - Runs AlgPred2.0 on the provided input FASTA file.
+    - Outputs allergenicity predictions as a CSV file.
+
+Arguments:
+    tool_path (Path): Directory containing tools (kept for interface consistency).
+    input_fasta (Path): Path to the input FASTA file.
+    output_dir (Path): Directory where output will be saved.
+    batch_size (int, optional): Unused, present for interface compatibility.
 
 Requirements:
-    - algpred2_dependencies.yml (defines Conda env)
-    - pip-installable `algpred2` package inside that environment
+    - algpred2_dependencies.yml (defines Conda environment).
+    - pip-installable `algpred2` package inside that environment.
+    - Conda available in PATH.
+
+Outputs:
+    <output_dir>/<input_fasta_stem>_algpred.csv   # Allergenicity prediction results
 
 Author: Nadia
 """

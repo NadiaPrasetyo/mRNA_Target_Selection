@@ -1,6 +1,7 @@
 """
+run_deeplocpro.py
 
-Command-line tool to run DeepLocPro for protein subcellular localization prediction using the BioLib CLI.
+Runner for DeepLocPro protein localization prediction tool, which predicts subcellular localization of proteins.
 
 Overview:
     - Executes DeepLocPro on a given FASTA input file.
@@ -22,7 +23,6 @@ Outputs:
     <output_dir>/plots/*          # Plot images and non-results files.
 
 Author: Nadia
-run_deeplocpro.py
 
 """
 import subprocess

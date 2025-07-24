@@ -1,9 +1,34 @@
+"""
+import logging
+Runner for IfNePitope2 immunogenicity prediction tool.
+
+Overview:
+    - Ensures the required Conda environment and dependencies are present.
+    - Applies patches to fix known bugs in the ifnepitope2 package.
+    - Runs IfNePitope2 on the provided input FASTA file.
+    - Outputs immunogenicity predictions as a CSV file.
+
+Arguments:
+    tool_path (Path): Directory containing tools (kept for interface consistency).
+    input_fasta (Path): Path to the input FASTA file.
+    output_dir (Path): Directory where output will be saved.
+    job_type (int, optional): IfNePitope2 job type (default: 1).
+
+Requirements:
+    - algpred2_dependencies.yml (defines Conda environment).
+    - pip-installable `ifnepitope2` package inside that environment.
+    - Conda available in PATH.
+
+Outputs:
+    <output_dir>/<input_fasta_stem>_ifnepitope2.csv   # Immunogenicity prediction results
+
+Author: Nadia
+"""
 import logging
 from pathlib import Path
 import subprocess
 import shutil
 import re
-
 CONDA_ENV_NAME = "algpred2_env"
 CONDA_ENV_YML = Path("algpred2_dependencies.yml")
 
@@ -18,76 +43,15 @@ def create_conda_env_if_needed():
     else:
         logging.info("✅ Conda environment already exists.")
 
-def patch_ifnepitope2_bugfixes():
+def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3):
     """
-    Patches the ifnepitope2.py script inside the conda environment:
-    - Fixes 'composition' UnboundLocalError.
-    - Adds filtering of NaN values before model prediction (for job_type == 1 only).
+    Run ifnepitope2 prediction tool from within the conda environment.
+    Args:
+        tool_path (Path): Directory containing tools (not used in this script).
+        input_fasta (Path): Path to the input FASTA file.
+        output_dir (Path): Directory where output will be saved.
+        job_type (int, optional): IfNePitope2 job type (default: 3).
     """
-    try:
-        result = subprocess.run([
-            "conda", "run", "-n", CONDA_ENV_NAME,
-            "python", "-c",
-            "import os, ifnepitope2.python_scripts; "
-            "print(os.path.join(os.path.dirname(ifnepitope2.python_scripts.__file__), 'ifnepitope2.py'))"
-        ], capture_output=True, text=True, check=True)
-
-        target_py = Path(result.stdout.strip())
-        if not target_py.exists():
-            logging.warning(f"⚠️ Resolved ifnepitope2.py does not exist: {target_py}")
-            return
-
-        with open(target_py) as f:
-            lines = f.readlines()
-
-        patched_lines = []
-        composition_patched = False
-        nan_patched = False
-
-        for i, line in enumerate(lines):
-            # Patch 1: Prevent UnboundLocalError for 'composition'
-            if re.match(r"^\s*cc\.append\(composition\)", line) and not composition_patched:
-                indent = re.match(r"^(\s*)", line).group(1)
-                patched_lines.append(f"{indent}if 'composition' in locals():\n")
-                patched_lines.append(f"{indent}    cc.append(composition)\n")
-                composition_patched = True
-                continue
-
-            # Patch 2: NaN filter before predict_proba
-            if re.search(r"clf\.predict_proba\(\s*data_test\s*\)", line) and not nan_patched:
-                indent = re.match(r"^(\s*)", line).group(1)
-                patched_lines.append(f"{indent}import numpy as np\n")
-                patched_lines.append(f"{indent}if np.isnan(data_test).any():\n")
-                patched_lines.append(f"{indent}    print('⚠️ Warning: Found NaNs in feature matrix, skipping those peptides.')\n")
-                patched_lines.append(f"{indent}    data_test = data_test[~np.isnan(data_test).any(axis=1)]\n")
-                patched_lines.append(f"{indent}    if len(data_test) == 0:\n")
-                patched_lines.append(f"{indent}        print('❌ All peptides led to invalid feature vectors. Exiting.')\n")
-                patched_lines.append(f"{indent}        return []\n")
-                nan_patched = True
-
-            patched_lines.append(line)
-
-        if composition_patched or nan_patched:
-            backup_path = target_py.with_suffix(".bak")
-            shutil.copy(target_py, backup_path)
-            with open(target_py, "w") as f:
-                f.writelines(patched_lines)
-            logging.info("✅ Applied patch(es) to ifnepitope2.py:")
-            if composition_patched:
-                logging.info("  - ✔️ Fixed 'composition' bug.")
-            if nan_patched:
-                logging.info("  - ✔️ Added NaN feature filtering.")
-        else:
-            logging.info("🔁 Patch not applied: target lines not found or already patched.")
-
-    except subprocess.CalledProcessError as e:
-        logging.warning(f"⚠️ Could not locate ifnepitope2.py in conda env: {e}")
-    except Exception as e:
-        logging.warning(f"⚠️ Could not patch ifnepitope2.py: {e}")
-
-
-def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1):
-    """Run ifnepitope2 prediction tool from within the conda environment."""
     if not shutil.which("conda"):
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
@@ -98,9 +62,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 1)
     output_dir = Path(output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
-
-    if job_type == 1:
-        patch_ifnepitope2_bugfixes()
 
     cmd = [
         "conda", "run", "-n", CONDA_ENV_NAME,

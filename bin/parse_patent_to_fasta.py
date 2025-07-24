@@ -1,4 +1,5 @@
-"""parse_patent_to_fasta.py
+"""
+parse_patent_to_fasta.py
 Command-line tool to parse amino acid sequences from patent text files and convert them to FASTA format.
 
 Overview:
@@ -8,19 +9,18 @@ Overview:
     - Outputs a FASTA file with the parsed and converted sequences.
 
 Arguments:
-    pathogen_directory (str): Subdirectory under `data/` containing patent sequence files.
-    --input (str): Name of the input file containing patent sequences (in 3-letter code format).
-    --output (str): Name of the output FASTA file to be generated.
+    --input (str): Path to the input file containing patent sequences (in 3-letter code format).
+    --output (str): Path to the output FASTA file to be generated.
 
 Requirements:
-    - Input file must be present in the specified pathogen directory under `data/`.
+    - Input file must be present at the specified path.
     - Python packages: re, argparse.
 
 Usage Example:
-    python parse_patent_to_fasta.py sars_cov_2 --input patent_sequences.txt --output patent_sequences.fasta
+    python parse_patent_to_fasta.py --input patent_sequences.txt --output patent_sequences.fasta
 
 Outputs:
-    data/<pathogen_directory>/<output_fasta>   # FASTA file containing converted amino acid sequences
+    <output_fasta>   # FASTA file containing converted amino acid sequences
 
 Author: Nadia
 """
@@ -38,6 +38,15 @@ AMINO_ACID_MAP = {
 }
 
 def prompt_for_correction(invalid_code):
+    """Prompt the user to correct an invalid amino acid code.
+    Args:
+        invalid_code (str): The invalid 3-letter amino acid code.
+    Returns:
+        str: The corrected 1-letter code or None if the user chooses to skip.
+    This function prompts the user to enter a valid 3-letter code or skip the invalid code.
+    It checks the input against the AMINO_ACID_MAP and returns the corresponding 1-letter code.
+    If the input is not valid, it continues to prompt until a valid code is entered
+    or the user chooses to skip."""
     while True:
         user_input = input(f"Invalid amino acid code '{invalid_code}'. Enter a valid 3-letter code or type 'skip': ").strip()
         if user_input.lower() == 'skip':
@@ -48,6 +57,11 @@ def prompt_for_correction(invalid_code):
             print("Invalid input. Try again.")
 
 def parse_sequences(input_file, output_fasta):
+    """Parse patent sequences from a text file and convert to FASTA format.
+    Args:
+        input_file (str): Path to the input file containing patent sequences.
+        output_fasta (str): Path to the output FASTA file.
+    """
     with open(input_file, 'r') as infile:
         lines = infile.readlines()
 

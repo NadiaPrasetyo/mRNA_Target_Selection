@@ -1,26 +1,28 @@
 """
 run_bcell.py
-Command-line utility to run multiple B-cell epitope prediction methods and process their outputs.
+Runner for B-cell epitope prediction tools.
+
 Overview:
-    - Applies a set of B-cell epitope prediction algorithms to a given FASTA file.
+    - Applies B-cell epitope prediction algorithms (currently Bepipred) to a given FASTA file.
     - Automatically patches deprecated imports and code in third-party tool dependencies for compatibility.
-    - Parses and saves prediction results to CSV files for downstream analysis.
+    - Parses and saves prediction results as CSV files for downstream analysis.
     - Optionally generates and saves plots for each prediction method.
+
 Arguments:
-    fasta_file (Path): Path to the input FASTA file containing the protein sequence(s).
+    fasta_file (Path): Path to the input FASTA file containing protein sequence(s).
     tool_path (str): Path to the main B-cell prediction tool script (e.g., bcell.py).
     output_dir (Path): Directory where results and plots will be saved.
     plot (bool, optional): Whether to generate and save plots for each method (default: True).
+
 Requirements:
     - Python packages: subprocess, pathlib, csv.
     - The B-cell prediction tool and its dependencies must be installed and accessible.
     - The script will attempt to patch deprecated code in 'configure.py' and 'src/util.py' if needed.
-Usage Example:
-    python run_bcell.py input.fasta /path/to/bcell.py results/ --plot
+
 Outputs:
-    - CSV files with prediction results for each method in the output directory.
-    - Plots (if enabled) saved in a 'plots' subdirectory.
-    - Console output indicating progress, patching actions, and any errors encountered.
+    <output_dir>/bcell/<fasta_file_stem>_<method>.csv   # Prediction results for each method
+    <output_dir>/bcell/plots/                           # Plots (if enabled)
+
 Author: Nadia
 """
 import subprocess
@@ -29,11 +31,6 @@ import csv
 
 # Constants for B-cell epitope prediction methods
 BCELL_METHODS = [
-    "Chou-Fasman",
-    "Emini",
-    "Karplus-Schulz",
-    "Kolaskar-Tongaonkar",
-    "Parker",
     "Bepipred"
     # exclude "BepiPred-2.0" as it requires additional dependencies that are not supported anymore
 ]

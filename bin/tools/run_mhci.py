@@ -29,6 +29,13 @@ import subprocess
 from pathlib import Path
 
 def run(json_file, tool_path, output_dir):
+    """
+    Run MHCI prediction on the specified JSON file using the provided tool script.
+    Args:
+        json_file (str or Path): Path to the input JSON file containing peptide data.
+        tool_path (str or Path): Path to the MHCI prediction tool script.
+        output_dir (str or Path): Directory where output files will be stored.
+    """
     output_dir = Path(output_dir) / "mhci"
     output_dir.mkdir(parents=True, exist_ok=True)
 
