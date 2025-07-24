@@ -484,6 +484,144 @@ def parse_popcov_dir(directory):
     logging.info(f"Completed popcov parsing with {len(results)} results")
     return results
 
+def parse_deeplocpro_dir(directory):
+    """
+    Parse DeeplocPro prediction files in the specified directory.
+    Expected files are text files with DeeplocPro results.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing DeeplocPro prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents a DeeplocPro feature.
+    Each dictionary contains:
+        - "feature": "deeplocpro"
+        - "subfeature": "prob_location1", "prob_location2", etc.
+        - "value": numerical probability value
+    """
+    logging.info(f"Parsing DeeplocPro dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".csv")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing DeeplocPro file: {file}")
+        try:
+            
+                df = pd.read_csv(path)
+                # Assume columns: ...,"Cell wall/surface","Extracellular","Cytoplasmic","Cytoplasmic membrane","Outer membrane","Periplasmic"
+                prob_cols = [
+                    ("cell_wall_surface", "Cell wall/surface"),
+                    ("extracellular", "Extracellular"),
+                    ("cytoplasmic", "Cytoplasmic"),
+                    ("cytoplasmic_membrane", "Cytoplasmic membrane"),
+                    ("outer_membrane", "Outer membrane"),
+                    ("periplasmic", "Periplasmic"),
+                ]
+                for i, row in df.iterrows():
+                    probs = []
+                    for loc, col in prob_cols:
+                        try:
+                            prob = float(row[col])
+                        except Exception:
+                            prob = None
+                        if prob is not None:
+                            results.append({
+                                "feature": "deeplocpro",
+                                "subfeature": f"prob_{loc}",
+                                "value": prob
+                            })
+                            probs.append(prob)
+                    # Add max probability as "max"
+                    if probs:
+                        results.append({
+                            "feature": "deeplocpro",
+                            "subfeature": "prob_max",
+                            "value": max(probs)
+                        })
+        except Exception as e:
+            logging.error(f"Failed parsing DeeplocPro file {file}: {e}")
+    logging.info(f"Completed DeeplocPro parsing with {len(results)} results")
+    return results
+
+
+def parse_ellipro_dir(directory):
+    """
+    Parse Ellipro prediction files in the specified directory.
+    Expected files are text files with Ellipro results.
+    Returns a list of dictionaries with feature values. 
+    """
+    logging.info(f"Parsing Ellipro dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing Ellipro file: {file}")
+        try:
+            with open(path) as f:
+                lines = f.readlines()
+                # Parse linear epitopes
+                for i, line in enumerate(lines):
+                    if line.startswith("No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type"):
+                        continue  # Skip header
+                    parts = line.strip().split(',')
+                    if len(parts) < 8:
+                        continue  # Skip malformed lines
+                    try:
+                        score = float(parts[7])
+                        results.append({
+                            "feature": "ellipro",
+                            "subfeature": "linear_epitope_score",
+                            "value": score
+                        })
+                    except ValueError as e:
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+
+                # Parse discontinuous epitopes
+                for i, line in enumerate(lines):
+                    if line.startswith("No.,Structure,Residues,Number of Residues,Score,Type"):
+                        continue  # Skip header
+                    parts = line.strip().split(',')
+                    if len(parts) < 6:
+                        continue  # Skip malformed lines
+                    try:
+                        score = float(parts[4])
+                        results.append({
+                            "feature": "ellipro",
+                            "subfeature": "discontinuous_epitope_score",
+                            "value": score
+                        })
+                    except ValueError as e:
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing Ellipro file {file}: {e}")
+    logging.info(f"Completed Ellipro parsing with {len(results)} results")
+    return results
+
+
+def parse_ifnepitope2_dir(directory):
+    """
+Seq_ID,Pattern_ID,Sequence,ML_Score,BLAST_Score,Total_Score,Prediction
+antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_1,MAISQERKN,0.62,0,0.62,IFN-γ inducer
+antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_2,AISQERKNE,0.56,0,0.56,IFN-γ inducer
+antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_3,ISQERKNEI,0.53,0,0.53,IFN-γ inducer
+antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_4,SQERKNEII,0.51,0,0.51,IFN-γ inducer
+antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_5,QERKNEIIK,0.45,0,0.45,Non-inducer
+"""
+
+
+def parse_mixmhc2pred_dir(directory):
+
+
+
+
 # ----------------------------- Orchestration Functions -----------------------------
 
 def extract_all_features(base_dir, eval_dir, threads=1):

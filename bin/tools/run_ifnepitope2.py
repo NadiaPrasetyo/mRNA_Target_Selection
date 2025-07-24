@@ -18,7 +18,6 @@ def create_conda_env_if_needed():
     else:
         logging.info("✅ Conda environment already exists.")
 
-
 def patch_ifnepitope2_bugfixes():
     """
     Patches the ifnepitope2.py script inside the conda environment:
@@ -54,8 +53,8 @@ def patch_ifnepitope2_bugfixes():
                 composition_patched = True
                 continue
 
-            # Patch 2: Skip NaN rows before prediction
-            if "y_p_score1 = clf.predict_proba(data_test)" in line and not nan_patched:
+            # Patch 2: NaN filter before predict_proba
+            if re.search(r"clf\.predict_proba\(\s*data_test\s*\)", line) and not nan_patched:
                 indent = re.match(r"^(\s*)", line).group(1)
                 patched_lines.append(f"{indent}import numpy as np\n")
                 patched_lines.append(f"{indent}if np.isnan(data_test).any():\n")
