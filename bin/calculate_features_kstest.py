@@ -702,17 +702,11 @@ def parse_mixmhc2pred_dir(directory):
                 reader = csv.DictReader(f, delimiter='\t')
                 for i, row in enumerate(reader):
                     try:
-                        best_allele = row["BestAllele"]
                         rank_best = row["%Rank_best"]
                         results.append({
                             "feature": "mixmhc2pred",
                             "subfeature": f"rank_best",
                             "value": float(rank_best)
-                        })
-                        results.append({
-                            "feature": "mixmhc2pred",
-                            "subfeature": f"best_allele",
-                            "value": best_allele
                         })
                     except ValueError as e:
                         logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
