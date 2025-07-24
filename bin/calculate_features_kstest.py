@@ -47,6 +47,8 @@ import collections
 from collections import defaultdict
 import logging
 import argparse
+import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve, roc_auc_score
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ----------------------------- Utility Functions -----------------------------
@@ -551,8 +553,16 @@ def parse_deeplocpro_dir(directory):
 def parse_ellipro_dir(directory):
     """
     Parse Ellipro prediction files in the specified directory.
-    Expected files are text files with Ellipro results.
-    Returns a list of dictionaries with feature values. 
+    Expected files are text files with linear and discontinuous epitope scores.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing Ellipro prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents an Ellipro feature.
+    Each dictionary contains:
+        - "feature": "ellipro"
+        - "subfeature": "linear_epitope_score" or "discontinuous_epitope_score"
+        - "value": numerical score value
     """
     logging.info(f"Parsing Ellipro dir {directory}")
     results = []
@@ -608,16 +618,108 @@ def parse_ellipro_dir(directory):
 
 def parse_ifnepitope2_dir(directory):
     """
-Seq_ID,Pattern_ID,Sequence,ML_Score,BLAST_Score,Total_Score,Prediction
-antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_1,MAISQERKN,0.62,0,0.62,IFN-γ inducer
-antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_2,AISQERKNE,0.56,0,0.56,IFN-γ inducer
-antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_3,ISQERKNEI,0.53,0,0.53,IFN-γ inducer
-antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_4,SQERKNEII,0.51,0,0.51,IFN-γ inducer
-antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050,Pattern_5,QERKNEIIK,0.45,0,0.45,Non-inducer
-"""
+    Parse IFNepitope2 prediction files in the specified directory.
+    Expected files are CSVs with ML, BLAST, and total scores.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing IFNepitope2 prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents an IFNepitope2 feature.
+    Each dictionary contains:
+        - "feature": "ifnepitope2"
+        - "subfeature": "ml_score", "blast_score", or "total_score"
+        - "value": numerical score value
+    """
+    logging.info(f"Parsing IFNepitope2 dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".csv")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing IFNepitope2 file: {file}")
+        try:
+            with open(path) as f:
+                reader = csv.DictReader(f)
+                for i, row in enumerate(reader):
+                    try:
+                        ml_score = float(row["ML_Score"])
+                        blast_score = float(row["BLAST_Score"])
+                        total_score = float(row["Total_Score"])
+                        results.append({
+                            "feature": "ifnepitope2",
+                            "subfeature": "ml_score",
+                            "value": ml_score
+                        })
+                        results.append({
+                            "feature": "ifnepitope2",
+                            "subfeature": "blast_score",
+                            "value": blast_score
+                        })
+                        results.append({
+                            "feature": "ifnepitope2",
+                            "subfeature": "total_score",
+                            "value": total_score
+                        })
+                    except ValueError as e:
+                        logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing IFNepitope2 file {file}: {e}")
+    logging.info(f"Completed IFNepitope2 parsing with {len(results)} results")
+    return results
 
 
 def parse_mixmhc2pred_dir(directory):
+    """
+    Parse MixMHC2Pred prediction files in the specified directory.
+    Expected files are text files with MixMHC2Pred results.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing MixMHC2Pred prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents a MixMHC2Pred feature.
+    Each dictionary contains:
+        - "feature": "mixmhc2pred"
+        - "subfeature": "rank_best" or "best_allele"
+        - "value": numerical rank value or allele name
+    """
+    logging.info(f"Parsing MixMHC2Pred dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing MixMHC2Pred file: {file}")
+        try:
+            with open(path) as f:
+                reader = csv.DictReader(f, delimiter='\t')
+                for i, row in enumerate(reader):
+                    try:
+                        best_allele = row["BestAllele"]
+                        rank_best = row["%Rank_best"]
+                        results.append({
+                            "feature": "mixmhc2pred",
+                            "subfeature": f"rank_best",
+                            "value": float(rank_best)
+                        })
+                        results.append({
+                            "feature": "mixmhc2pred",
+                            "subfeature": f"best_allele",
+                            "value": best_allele
+                        })
+                    except ValueError as e:
+                        logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing MixMHC2Pred file {file}: {e}")
+    logging.info(f"Completed MixMHC2Pred parsing with {len(results)} results")
+    return results
 
 
 
@@ -669,66 +771,112 @@ def extract_all_features(base_dir, eval_dir, threads=1):
     return results
 
 
+def calculate_auroc(pos_vals, rand_vals):
+    """
+    Compute AUROC from positive and random value lists.
+    Returns AUROC or None if computation fails.
+    """
+    try:
+        y_true = [1] * len(pos_vals) + [0] * len(rand_vals)
+        y_scores = pos_vals + rand_vals
+
+        # Check for numeric values
+        if all(isinstance(v, (int, float)) for v in y_scores):
+            return roc_auc_score(y_true, y_scores)
+        else:
+            return None
+    except Exception as e:
+        logging.debug(f"AUROC calculation failed: {e}")
+        return None
+    
+def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir="auroc_plots"):
+    """
+    Plot ROC curve and save as PNG.
+    """
+    try:
+        y_true = [1] * len(pos_vals) + [0] * len(rand_vals)
+        y_scores = pos_vals + rand_vals
+
+        # Only plot if numeric
+        if not all(isinstance(v, (int, float)) for v in y_scores):
+            return
+
+        fpr, tpr, _ = roc_curve(y_true, y_scores)
+        auc = roc_auc_score(y_true, y_scores)
+
+        # Make output directory if needed
+        os.makedirs(output_dir, exist_ok=True)
+        filename = f"{feature}_{subfeature}_roc.png".replace("/", "_")
+        filepath = os.path.join(output_dir, filename)
+
+        # Plot
+        plt.figure()
+        plt.plot(fpr, tpr, label=f"AUC = {auc:.3f}")
+        plt.plot([0, 1], [0, 1], "k--", label="Random Classifier")
+        plt.xlabel("False Positive Rate")
+        plt.ylabel("True Positive Rate")
+        plt.title(f"ROC Curve: {feature} / {subfeature}")
+        plt.legend(loc="lower right")
+        plt.tight_layout()
+        plt.savefig(filepath)
+        plt.close()
+
+    except Exception as e:
+        logging.debug(f"Failed to plot ROC curve for {feature}/{subfeature}: {e}")
+
+
 def compare_ks(pos_features, rand_features):
     """
-    Compare distributions of features between positive and random sets using the KS test.
-    Args:
-        pos_features (list): List of dictionaries representing positive features.
-        rand_features (list): List of dictionaries representing random features.
-    Returns:
-        DataFrame with KS test results, including:
-            - "feature": feature name
-            - "subfeature": subfeature name
-            - "ks_statistic": KS statistic value
-            - "p_value": p-value from the KS test
-            - "positive_n": number of positive samples for this feature
-            - "random_n": number of random samples for this feature
+    Compare distributions using KS test and AUROC.
+    Returns a DataFrame with all results.
     """
-    logging.info("Starting KS test comparison")
+    logging.info("Starting KS and AUROC comparison")
     results = []
 
-    # Group values by feature + subfeature for positive and random sets
     def group_values(data):
         grouped = defaultdict(list)
         for row in data:
             if "feature" in row and "subfeature" in row and "value" in row:
                 key = (row["feature"], row["subfeature"])
                 grouped[key].append(row["value"])
-            else:
-                logging.debug(f"Skipping malformed row: {row}")
         return grouped
-
 
     pos_grouped = group_values(pos_features)
     rand_grouped = group_values(rand_features)
 
-    # Perform KS test for each common (feature, subfeature) pair
     all_keys = set(pos_grouped.keys()).union(rand_grouped.keys())
 
     for (feature, subfeature) in all_keys:
         pos_vals = pos_grouped.get((feature, subfeature), [])
         rand_vals = rand_grouped.get((feature, subfeature), [])
 
-        if not pos_vals or not rand_vals:
-            stat, pval = None, None
-        else:
+        ks_stat, pval, auroc = None, None, None
+
+        if pos_vals and rand_vals:
             try:
-                stat, pval = ks_2samp(pos_vals, rand_vals)
+                ks_stat, pval = ks_2samp(pos_vals, rand_vals)
+                auroc = calculate_auroc(pos_vals, rand_vals)
+
+                # Optional: Generate ROC curve plot if AUROC is computable
+                if auroc is not None:
+                    plot_roc_curve(pos_vals, rand_vals, feature, subfeature)
+
             except Exception as e:
-                logging.debug(f"KS test failed for {feature}/{subfeature}: {e}")
-                stat, pval = None, None
+                logging.debug(f"KS/AUROC failed for {feature}/{subfeature}: {e}")
 
         results.append({
             "feature": feature,
             "subfeature": subfeature,
-            "ks_statistic": stat,
+            "ks_statistic": ks_stat,
             "p_value": pval,
+            "auroc": auroc,
             "positive_n": len(pos_vals),
             "random_n": len(rand_vals)
         })
 
-    logging.info("KS test comparison complete")
+    logging.info("KS and AUROC comparison complete")
     return pd.DataFrame(results)
+
 
 def write_features_by_feature(features, label, output_dir):
     """
