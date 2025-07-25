@@ -12,7 +12,7 @@ Overview:
 
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
-    sequence_dir (str): Subdirectory under `data/<pathogen_dir>/` with sequence/cluster files.
+    input_dir (str): Subdirectory under `data/<pathogen_dir>/` with sequence/cluster files.
     --threads (int, optional): Number of parallel workers (default: 4).
     --output-dir (Path, optional): Output directory for results (default: epitope_outputs).
     --verbose (flag, optional): If set, enables verbose logging to file.
@@ -20,8 +20,8 @@ Arguments:
 
 Requirements:
     - Input files in expected formats under:
-        data/<pathogen_dir>/<sequence_dir>/*_combined_clu.tsv
-        data/<pathogen_dir>/<sequence_dir>/*_combined_clu.fasta
+        data/<pathogen_dir>/<input_dir>/*_combined_clu.tsv
+        data/<pathogen_dir>/<input_dir>/*_combined_clu.fasta
     - Python packages: argparse, logging, pathlib, networkx, matplotlib, Bio (Biopython)
 
 Usage Example:
@@ -42,28 +42,29 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from Bio import SeqIO
 import random
+import sys
 
 def setup_logging(output_dir: Path, verbose: bool):
-    """Set up logging configuration.
-    Args:
-        output_dir (Path): Directory to store log file.
-        verbose (bool): If True, enable verbose logging."""
-    log_file = output_dir / "cluster_viz.log"
-    log_level = logging.DEBUG if verbose else logging.INFO
-
-    logging.basicConfig(
-        level=log_level,
-        format='[%(asctime)s] %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler()
+    
+    if verbose:
+        log_file = output_dir / "cluster_viz.log"
+        log_file.parent.mkdir(parents=True, exist_ok=True)
+        handlers = [
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler(log_file, mode='a')
         ]
-    )
-
-    # Silence noisy third-party loggers
-    for noisy_logger in ["matplotlib", "PIL"]:
-        logging.getLogger(noisy_logger).setLevel(logging.WARNING)
-
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            handlers=handlers,
+            force=True
+        )
+    else:
+        logging.basicConfig(
+            level=logging.INFO,
+            format="%(asctime)s %(levelname)s: %(message)s",
+            force=True
+        )
     logging.info("Logging initialized.")
 
 def parse_fasta(fasta_file):
@@ -192,21 +193,22 @@ def main():
     """Main function to parse arguments and run the visualization."""
     parser = argparse.ArgumentParser(description="Visualize protein clusters across strains from TSVs.")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
-    parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
+    parser.add_argument("input_dir", help="Directory containing cluster/ inside data/<pathogen_dir>/")
     parser.add_argument("--threads", type=int, default=4)
     parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"))
-    parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--verbose", action="store_true", help="Enable verbose logging to file.")
     parser.add_argument("--split-clusters", action="store_true", help="Split clusters into separate files for each connected component.")
     args = parser.parse_args()
 
-    input_dir = Path("data") / args.pathogen_dir / args.sequence_dir
-    output_dir = Path("data") / args.pathogen_dir / args.output_dir
+    input_dir = Path("data") / args.pathogen_dir / args.input_dir / "cluster"
+    output_dir = Path("data") / args.pathogen_dir / args.output_dir / "cluster_plots"
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"Processing clusters in {input_dir} with output to {output_dir}")
 
     setup_logging(output_dir, args.verbose)
 
     fasta_files = list(input_dir.glob("*_combined_clu.fasta"))
-    tsv_files = list(input_dir.glob("*_combined_clu.tsv"))
 
     # Build map: antigen_id -> (tsv, fasta)
     antigen_map = {}
