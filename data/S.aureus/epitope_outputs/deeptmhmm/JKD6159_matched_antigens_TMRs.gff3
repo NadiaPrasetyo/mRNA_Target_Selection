@@ -1,0 +1,326 @@
+##gff-version 3
+# antigen_74|A0A0H2XIH9|Fibrinogen-binding|CP002114.3|tpos:346693-346857 Length: 165
+# antigen_74|A0A0H2XIH9|Fibrinogen-binding|CP002114.3|tpos:346693-346857 Number of predicted TMRs: 0
+antigen_74|A0A0H2XIH9|Fibrinogen-binding|CP002114.3|tpos:346693-346857	signal	1	29				
+antigen_74|A0A0H2XIH9|Fibrinogen-binding|CP002114.3|tpos:346693-346857	outside	30	165				
+//
+# antigen_83|Q2G1S6|Staphylococcal|CP002114.3|tpos:133080-133307 Length: 228
+# antigen_83|Q2G1S6|Staphylococcal|CP002114.3|tpos:133080-133307 Number of predicted TMRs: 0
+antigen_83|Q2G1S6|Staphylococcal|CP002114.3|tpos:133080-133307	signal	1	30				
+antigen_83|Q2G1S6|Staphylococcal|CP002114.3|tpos:133080-133307	outside	31	228				
+//
+# antigen_84|A0A0H3KAV8|Staphylococcal|CP002114.3|tpos:133080-133310 Length: 231
+# antigen_84|A0A0H3KAV8|Staphylococcal|CP002114.3|tpos:133080-133310 Number of predicted TMRs: 0
+antigen_84|A0A0H3KAV8|Staphylococcal|CP002114.3|tpos:133080-133310	signal	1	30				
+antigen_84|A0A0H3KAV8|Staphylococcal|CP002114.3|tpos:133080-133310	outside	31	231				
+//
+# antigen_85|A0A2S1FUJ3|Superantigen-like|CP002114.3|tpos:133080-133307 Length: 228
+# antigen_85|A0A2S1FUJ3|Superantigen-like|CP002114.3|tpos:133080-133307 Number of predicted TMRs: 0
+antigen_85|A0A2S1FUJ3|Superantigen-like|CP002114.3|tpos:133080-133307	signal	1	30				
+antigen_85|A0A2S1FUJ3|Superantigen-like|CP002114.3|tpos:133080-133307	outside	31	228				
+//
+# antigen_81|A0A0H3KAV3|Staphylococcal|CP002114.3|tpos:133080-133307 Length: 228
+# antigen_81|A0A0H3KAV3|Staphylococcal|CP002114.3|tpos:133080-133307 Number of predicted TMRs: 0
+antigen_81|A0A0H3KAV3|Staphylococcal|CP002114.3|tpos:133080-133307	signal	1	30				
+antigen_81|A0A0H3KAV3|Staphylococcal|CP002114.3|tpos:133080-133307	outside	31	228				
+//
+# antigen_82|A0A0H3KEE1|Staphylococcal|CP002114.3|tpos:131960-132240 Length: 281
+# antigen_82|A0A0H3KEE1|Staphylococcal|CP002114.3|tpos:131960-132240 Number of predicted TMRs: 0
+antigen_82|A0A0H3KEE1|Staphylococcal|CP002114.3|tpos:131960-132240	signal	1	28				
+antigen_82|A0A0H3KEE1|Staphylococcal|CP002114.3|tpos:131960-132240	outside	29	281				
+//
+# antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239 Length: 112
+# antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239 Number of predicted TMRs: 0
+antigen_92|O54462|Superantigen-like|CP002114.3|tpos:132128-132239	inside	1	112				
+//
+# antigen_72|A0AAX2YX78|Extracellular|CP002114.3|tpos:289195-289338 Length: 144
+# antigen_72|A0AAX2YX78|Extracellular|CP002114.3|tpos:289195-289338 Number of predicted TMRs: 0
+antigen_72|A0AAX2YX78|Extracellular|CP002114.3|tpos:289195-289338	signal	1	30				
+antigen_72|A0AAX2YX78|Extracellular|CP002114.3|tpos:289195-289338	outside	31	144				
+//
+# antigen_73|G0Z025|Enterotoxin-like|CP002114.3|tpos:122446-122648 Length: 203
+# antigen_73|G0Z025|Enterotoxin-like|CP002114.3|tpos:122446-122648 Number of predicted TMRs: 0
+antigen_73|G0Z025|Enterotoxin-like|CP002114.3|tpos:122446-122648	signal	1	35				
+antigen_73|G0Z025|Enterotoxin-like|CP002114.3|tpos:122446-122648	outside	36	203				
+//
+# antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515 Length: 99
+# antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515 Number of predicted TMRs: 4
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	outside	1	4				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	TMhelix	5	17				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	inside	18	31				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	TMhelix	32	46				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	outside	47	51				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	TMhelix	52	69				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	inside	70	77				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	TMhelix	78	94				
+antigen_10|Q2FVV4|CPBP|CP002114.3|tpos:786417-786515	outside	95	99				
+//
+# antigen_13|Q2FWC4|Peptidase|CP002114.3|tpos:431027-431311 Length: 285
+# antigen_13|Q2FWC4|Peptidase|CP002114.3|tpos:431027-431311 Number of predicted TMRs: 0
+antigen_13|Q2FWC4|Peptidase|CP002114.3|tpos:431027-431311	inside	1	285				
+//
+# antigen_16|Q2FWP0|Uncharacterized|CP002114.3|tpos:773395-773701 Length: 307
+# antigen_16|Q2FWP0|Uncharacterized|CP002114.3|tpos:773395-773701 Number of predicted TMRs: 0
+antigen_16|Q2FWP0|Uncharacterized|CP002114.3|tpos:773395-773701	signal	1	17				
+antigen_16|Q2FWP0|Uncharacterized|CP002114.3|tpos:773395-773701	outside	18	307				
+//
+# antigen_55|Q2G1X0|Alpha-hemolysin|CP002114.3|tpos:773449-773694 Length: 246
+# antigen_55|Q2G1X0|Alpha-hemolysin|CP002114.3|tpos:773449-773694 Number of predicted TMRs: 0
+antigen_55|Q2G1X0|Alpha-hemolysin|CP002114.3|tpos:773449-773694	outside	1	246				
+//
+# antigen_30|Q2FYV4|Homoserine|CP002114.3|tpos:406865-407290 Length: 426
+# antigen_30|Q2FYV4|Homoserine|CP002114.3|tpos:406865-407290 Number of predicted TMRs: 0
+antigen_30|Q2FYV4|Homoserine|CP002114.3|tpos:406865-407290	inside	1	426				
+//
+# antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560 Length: 349
+# antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560 Number of predicted TMRs: 4
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	inside	1	15				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	TMhelix	16	33				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	outside	34	230				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	TMhelix	231	251				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	inside	252	276				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	TMhelix	277	304				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	outside	305	313				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	TMhelix	314	334				
+antigen_47|Q2G168|Putative|CP002114.3|tpos:103212-103560	inside	335	349				
+//
+# antigen_33|Q2FZB1|Staphylococcal/Streptococcal|CP002114.3|tpos:132131-132219 Length: 89
+# antigen_33|Q2FZB1|Staphylococcal/Streptococcal|CP002114.3|tpos:132131-132219 Number of predicted TMRs: 0
+antigen_33|Q2FZB1|Staphylococcal/Streptococcal|CP002114.3|tpos:132131-132219	outside	1	89				
+//
+# antigen_63|Q2G2Q0|DNA|CP002114.3|tpos:416333-417081 Length: 749
+# antigen_63|Q2G2Q0|DNA|CP002114.3|tpos:416333-417081 Number of predicted TMRs: 0
+antigen_63|Q2G2Q0|DNA|CP002114.3|tpos:416333-417081	inside	1	749				
+//
+# antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993 Length: 224
+# antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993 Number of predicted TMRs: 6
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	inside	1	12				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	TMhelix	13	28				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	outside	29	78				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	TMhelix	79	93				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	inside	94	97				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	TMhelix	98	117				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	outside	118	139				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	TMhelix	140	160				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	inside	161	166				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	TMhelix	167	186				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	outside	187	191				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	TMhelix	192	212				
+antigen_44|Q2G0V8|Phosphatidic|CP002114.3|tpos:141770-141993	inside	213	224				
+//
+# antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724 Length: 421
+# antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724 Number of predicted TMRs: 4
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	inside	1	15				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	TMhelix	16	36				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	outside	37	39				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	TMhelix	40	60				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	inside	61	124				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	TMhelix	125	145				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	outside	146	160				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	TMhelix	161	179				
+antigen_42|Q2G0B3|ABC|CP002114.3|tpos:223304-223724	inside	180	421				
+//
+# antigen_7|Q2FVK2|Gamma-hemolysin|CP002114.3|tpos:772603-772906 Length: 304
+# antigen_7|Q2FVK2|Gamma-hemolysin|CP002114.3|tpos:772603-772906 Number of predicted TMRs: 0
+antigen_7|Q2FVK2|Gamma-hemolysin|CP002114.3|tpos:772603-772906	signal	1	29				
+antigen_7|Q2FVK2|Gamma-hemolysin|CP002114.3|tpos:772603-772906	outside	30	304				
+//
+# antigen_9|Q2FVL8|Assimilatory|CP002114.3|tpos:327887-328062 Length: 176
+# antigen_9|Q2FVL8|Assimilatory|CP002114.3|tpos:327887-328062 Number of predicted TMRs: 0
+antigen_9|Q2FVL8|Assimilatory|CP002114.3|tpos:327887-328062	outside	1	176				
+//
+# antigen_24|Q2FXB0|Leucotoxin|CP002114.3|tpos:772608-772906 Length: 299
+# antigen_24|Q2FXB0|Leucotoxin|CP002114.3|tpos:772608-772906 Number of predicted TMRs: 0
+antigen_24|Q2FXB0|Leucotoxin|CP002114.3|tpos:772608-772906	signal	1	24				
+antigen_24|Q2FXB0|Leucotoxin|CP002114.3|tpos:772608-772906	outside	25	299				
+//
+# antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768 Length: 349
+# antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768 Number of predicted TMRs: 9
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	inside	1	11				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	12	28				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	outside	29	36				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	37	55				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	inside	56	87				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	88	109				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	outside	110	134				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	135	150				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	inside	151	158				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	159	179				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	outside	180	202				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	203	218				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	inside	219	236				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	237	255				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	outside	256	284				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	285	306				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	inside	307	336				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	TMhelix	337	348				
+antigen_26|Q2FXN2|Amino|CP002114.3|tpos:192420-192768	outside	349	349				
+//
+# antigen_43|Q2G0N9|Large|CP002114.3|tpos:174959-175124 Length: 166
+# antigen_43|Q2G0N9|Large|CP002114.3|tpos:174959-175124 Number of predicted TMRs: 0
+antigen_43|Q2G0N9|Large|CP002114.3|tpos:174959-175124	inside	1	166				
+//
+# antigen_65|Q2G2Y0|Staphylococcal|CP002114.3|tpos:133080-133308 Length: 229
+# antigen_65|Q2G2Y0|Staphylococcal|CP002114.3|tpos:133080-133308 Number of predicted TMRs: 0
+antigen_65|Q2G2Y0|Staphylococcal|CP002114.3|tpos:133080-133308	signal	1	30				
+antigen_65|Q2G2Y0|Staphylococcal|CP002114.3|tpos:133080-133308	outside	31	229				
+//
+# antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475 Length: 233
+# antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475 Number of predicted TMRs: 7
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	inside	1	1				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	TMhelix	2	20				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	outside	21	33				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	TMhelix	34	52				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	inside	53	62				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	TMhelix	63	81				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	outside	82	86				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	TMhelix	87	107				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	inside	108	124				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	TMhelix	125	145				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	outside	146	150				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	TMhelix	151	169				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	inside	170	198				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	TMhelix	199	216				
+antigen_52|Q2G1N0|Staphyloferrin|CP002114.3|tpos:226243-226475	outside	217	233				
+//
+# antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411 Length: 178
+# antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411 Number of predicted TMRs: 6
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	inside	1	8				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	TMhelix	9	29				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	outside	30	42				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	TMhelix	43	61				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	inside	62	71				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	TMhelix	72	90				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	outside	91	95				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	TMhelix	96	116				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	inside	117	133				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	TMhelix	134	154				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	outside	155	159				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	TMhelix	160	177				
+antigen_64|Q2G2W1|Quinolone|CP002114.3|tpos:226234-226411	inside	178	178				
+//
+# antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808 Length: 403
+# antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808 Number of predicted TMRs: 12
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	inside	1	13				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	14	30				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	outside	31	52				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	53	73				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	inside	74	79				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	80	98				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	outside	99	103				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	104	124				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	inside	125	138				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	139	162				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	outside	163	168				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	169	187				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	inside	188	217				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	218	241				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	outside	242	253				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	254	276				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	inside	277	282				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	283	303				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	outside	304	310				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	311	331				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	inside	332	342				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	343	364				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	outside	365	373				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	TMhelix	374	394				
+antigen_6|Q2FVI5|Bcr/CflA|CP002114.3|tpos:776406-776808	inside	395	403				
+//
+# antigen_14|Q2FWD6|Putative|CP002114.3|tpos:45983-46265 Length: 283
+# antigen_14|Q2FWD6|Putative|CP002114.3|tpos:45983-46265 Number of predicted TMRs: 0
+antigen_14|Q2FWD6|Putative|CP002114.3|tpos:45983-46265	inside	1	283				
+//
+# antigen_19|Q2FWW3|Aminotransferase|CP002114.3|tpos:631087-631514 Length: 428
+# antigen_19|Q2FWW3|Aminotransferase|CP002114.3|tpos:631087-631514 Number of predicted TMRs: 0
+antigen_19|Q2FWW3|Aminotransferase|CP002114.3|tpos:631087-631514	inside	1	428				
+//
+# antigen_8|Q2FVK3|Gamma-hemolysin|CP002114.3|tpos:772603-772911 Length: 309
+# antigen_8|Q2FVK3|Gamma-hemolysin|CP002114.3|tpos:772603-772911 Number of predicted TMRs: 0
+antigen_8|Q2FVK3|Gamma-hemolysin|CP002114.3|tpos:772603-772911	signal	1	29				
+antigen_8|Q2FVK3|Gamma-hemolysin|CP002114.3|tpos:772603-772911	outside	30	309				
+//
+# antigen_86|A0A2S1FUJ1|Superantigen-like|CP002114.3|tpos:131960-132239 Length: 280
+# antigen_86|A0A2S1FUJ1|Superantigen-like|CP002114.3|tpos:131960-132239 Number of predicted TMRs: 0
+antigen_86|A0A2S1FUJ1|Superantigen-like|CP002114.3|tpos:131960-132239	signal	1	28				
+antigen_86|A0A2S1FUJ1|Superantigen-like|CP002114.3|tpos:131960-132239	outside	29	280				
+//
+# antigen_87|A0A0H3K7M3|Superantigen-like|CP002114.3|tpos:132111-132218 Length: 108
+# antigen_87|A0A0H3K7M3|Superantigen-like|CP002114.3|tpos:132111-132218 Number of predicted TMRs: 0
+antigen_87|A0A0H3K7M3|Superantigen-like|CP002114.3|tpos:132111-132218	outside	1	108				
+//
+# antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624 Length: 388
+# antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624 Number of predicted TMRs: 12
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	inside	1	5				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	6	26				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	outside	27	40				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	41	58				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	inside	59	68				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	69	87				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	outside	88	92				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	93	117				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	inside	118	133				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	134	151				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	outside	152	156				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	157	177				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	inside	178	204				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	205	225				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	outside	226	238				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	239	259				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	inside	260	268				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	269	289				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	outside	290	294				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	295	306				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	inside	307	330				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	331	351				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	outside	352	356				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	TMhelix	357	375				
+antigen_41|Q2G0A2|Quinolone|CP002114.3|tpos:226237-226624	inside	376	388				
+//
+# antigen_40|Q2G091|ABC|CP002114.3|tpos:103562-103762 Length: 201
+# antigen_40|Q2G091|ABC|CP002114.3|tpos:103562-103762 Number of predicted TMRs: 0
+antigen_40|Q2G091|ABC|CP002114.3|tpos:103562-103762	inside	1	201				
+//
+# antigen_34|Q2FZF0|Iron-regulated|CP002114.3|tpos:338108-338210 Length: 103
+# antigen_34|Q2FZF0|Iron-regulated|CP002114.3|tpos:338108-338210 Number of predicted TMRs: 0
+antigen_34|Q2FZF0|Iron-regulated|CP002114.3|tpos:338108-338210	outside	1	103				
+//
+# antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835 Length: 381
+# antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835 Number of predicted TMRs: 10
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	outside	1	4				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	5	20				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	inside	21	52				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	53	78				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	outside	79	99				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	100	115				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	inside	116	123				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	124	144				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	outside	145	167				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	168	183				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	inside	184	201				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	202	220				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	outside	221	248				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	249	271				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	inside	272	301				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	302	317				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	outside	318	321				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	322	342				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	inside	343	362				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	TMhelix	363	380				
+antigen_5|Q2FVH8|Membrane|CP002114.3|tpos:192455-192835	outside	381	381				
+//
+# antigen_36|Q2G010|Thermonuclease|CP002114.3|tpos:261680-261907 Length: 228
+# antigen_36|Q2G010|Thermonuclease|CP002114.3|tpos:261680-261907 Number of predicted TMRs: 2
+antigen_36|Q2G010|Thermonuclease|CP002114.3|tpos:261680-261907	outside	1	3				
+antigen_36|Q2G010|Thermonuclease|CP002114.3|tpos:261680-261907	TMhelix	4	24				
+antigen_36|Q2G010|Thermonuclease|CP002114.3|tpos:261680-261907	inside	25	35				
+antigen_36|Q2G010|Thermonuclease|CP002114.3|tpos:261680-261907	TMhelix	36	51				
+antigen_36|Q2G010|Thermonuclease|CP002114.3|tpos:261680-261907	outside	52	228				
+//
+# antigen_20|Q2FWW7|ABC|CP002114.3|tpos:805102-805329 Length: 228
+# antigen_20|Q2FWW7|ABC|CP002114.3|tpos:805102-805329 Number of predicted TMRs: 0
+antigen_20|Q2FWW7|ABC|CP002114.3|tpos:805102-805329	inside	1	228				
+//
+# antigen_29|Q2FYP2|ABC|CP002114.3|tpos:223536-223739 Length: 204
+# antigen_29|Q2FYP2|ABC|CP002114.3|tpos:223536-223739 Number of predicted TMRs: 0
+antigen_29|Q2FYP2|ABC|CP002114.3|tpos:223536-223739	inside	1	204				
