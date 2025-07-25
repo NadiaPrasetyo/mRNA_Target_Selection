@@ -541,6 +541,16 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
             )
         tool_paths["IFNEPITOPE2"] = "ifnepitope2"  # placeholder
 
+    if "DEEPTMHMM":
+        # check that pybiolib is installed
+        try:
+            import biolib
+        except ImportError:
+            raise ImportError(
+                "PyBioLib is not installed. Please install it via: pip install pybiolib"
+            )
+        tool_paths["DEEPTMHMM"] = "deetmhmm"  # placeholder
+
     return tool_paths
 
 def check_iedb_tool(base_path):

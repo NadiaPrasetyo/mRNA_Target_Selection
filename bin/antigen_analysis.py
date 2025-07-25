@@ -38,7 +38,7 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, common
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, common
 import shutil
 
 # Define the mapping of tool names to their runner functions
@@ -48,7 +48,8 @@ TOOL_RUNNERS = {
     "CLUSTER": run_cluster.run, 
     "ALGPRED": run_algpred.run,
     "DEEPLOC": run_deeplocpro.run,
-    "IFNEPITOPE2": run_ifnepitope2.run
+    "IFNEPITOPE2": run_ifnepitope2.run,
+    "DEEPTMHMM": run_deeptmhmm.run
 }
 
 # List of valid tools that can be run
@@ -93,7 +94,7 @@ def run_parallel_jobs(jobs, threads):
             except Exception as e:
                 logging.error(f"❌ Job failed: {e}")
 
-    # Run Allergenicity jobs serially
+    # Run Allergenicity and IFNepitope2 jobs serially
     for job in serial_jobs:
         tool_name, _, input_file, _, _, _ = job
         try:
@@ -192,7 +193,7 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
     else: 
         raise ValueError(f"Unknown mode '{mode}' passed to is_job_done()")
 
-    extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv", "_ifnepitope2.csv"]
+    extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv", "_ifnepitope2.csv", "_TMRs.gff3", "_probs.csv", "_results.md", "_deeptmhmm_results.md", "_predicted_topologies.3line", "_plot.png"]
 
     for ext in extensions:
         for f in output_dir.glob(f"*{ext}"):
@@ -283,7 +284,7 @@ def main():
                 jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], fasta_path, cluster_output, 0, tool_paths["CLUSTER"]))
 
         # Handle SignalP and TargetP jobs
-        elif tool_name in ["SIGNALP", "TARGETP", "ALGPRED"]:
+        elif tool_name in ["SIGNALP", "TARGETP", "ALGPRED", "DEEPTMHMM"]:
             output_dir = output_root / tool_name.lower()
             output_dir.mkdir(parents=True, exist_ok=True)
             for fasta_file in fasta_files:
@@ -302,7 +303,7 @@ def main():
                     logging.info(f"⏭️ Skipping DEEPLOC for {fasta_file.name} (already processed)")
                     continue
 
-                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.group, tool_paths["DEEPLOC"]))
+                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, args.group, tool_paths[tool_name]))
 
         # Handle IfNePitope2 jobs
         elif tool_name == "IFNEPITOPE2":
@@ -313,7 +314,7 @@ def main():
                     logging.info(f"⏭️ Skipping IFNEPITOPE2 for {fasta_file.name} (already processed)")
                     continue
 
-                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, 3, tool_paths["IFNEPITOPE2"]))
+                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_file, output_dir, 3, tool_paths[tool_name]))
 
     if not jobs:
         logging.info("No jobs to run. All files already processed.")
