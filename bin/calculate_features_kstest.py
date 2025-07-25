@@ -44,6 +44,7 @@ from scipy.stats import ks_2samp
 import collections
 from collections import defaultdict
 import logging
+from math import log
 import argparse
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
@@ -365,6 +366,23 @@ def parse_cluster_dir(directory):
         - "feature": "cluster_conservation"
         - "subfeature": "conservation_score"
         - "value": numerical conservation score
+
+- add the percent identities and divide by number of strains (simple)
+- sum of bit scores (length confounding) / sum of the length
+- sum the log₁₀(e-value)
+
+0 	Query sequence ID
+1 	Subject (database) sequence ID
+2 	Percent Identity
+3 	Alignment Length
+4 	Number of gaps
+5 	Number of mismatches
+6 	Start on the query sequence
+7 	End on the query sequence
+8 	Start on the database sequence
+9 	End on the database sequence
+10 	E value - the expectation that this alignment is random given the length of the sequence and length of the database
+11 	bit score - the score of the alignment itself
     """
     logging.info(f"Parsing cluster conservation dir {directory}")
     clusters = defaultdict(list)
@@ -393,25 +411,44 @@ def parse_cluster_dir(directory):
                     unique_strains.add(member_id) #collect unique strains from ALL the clusters
                     try:
                         percent_identity = float(parts[2])
+                        length = int(parts[3])
+                        e_value = float(parts[10])
+                        bit_score = float(parts[11])
                         clusters[query_id].append(percent_identity)
+                        clusters[query_id].append(bit_score / length)  # Normalize bit score by length
+                        clusters[query_id].append(log(e_value)) # Normalize e-value by log base 10
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
             logging.error(f"Failed parsing cluster file {file}: {e}")
 
     results = []
-    cluster_scores = []
 
     # Step 3: Compute conservation scores and store them as subfeatures
-    for identities in clusters.values():
-        if identities:
-            conservation_score = sum(identities) / len(unique_strains)  # Average over unique strains
-            cluster_scores.append(conservation_score)
+    for cluster_id, scores in clusters.items():
+        if not scores:
+            continue
+        try:
+            percent_identity_num_strain = sum(scores[0::3]) / len(unique_strains)  #sum of percent identities divided by number of strains
+            avg_bit_score = sum(scores[1::3]) / len(scores[1::3]) # sum of bit scores divided by number of scores
+            avg_log_e_value = sum(scores[2::3]) / len(scores[2::3]) # sum of e-values divided by number of e-values
             results.append({
                 "feature": "cluster_conservation",
-                "subfeature": "conservation_score",  
-                "value": conservation_score
+                "subfeature": "percent_identity/num_strain",
+                "value": percent_identity_num_strain
             })
+            results.append({
+                "feature": "cluster_conservation",
+                "subfeature": "bit_score_normalized",
+                "value": avg_bit_score
+            })
+            results.append({
+                "feature": "cluster_conservation",
+                "subfeature": "e_value_average",
+                "value": avg_log_e_value
+            })
+        except ZeroDivisionError as e:
+            logging.debug(f"Skipping cluster {cluster_id} due to division by zero: {e}")
 
     logging.info(f"Completed cluster parsing with {len(results)} results")
     return results
@@ -723,6 +760,57 @@ def parse_mixmhc2pred_dir(directory):
     logging.info(f"Completed MixMHC2Pred parsing with {len(results)} results")
     return results
 
+def parse_deeptmhmm_dir(directory):
+    """
+    Parse Deeptmhmm prediction files in the specified directory.
+    Expected files are 3-line format files with sequence and topology.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing Deeptmhmm prediction files.
+    Returns:
+        List of dictionaries, where each dictionary represents a Deeptmhmm feature.
+    Each dictionary contains:
+        - "feature": "deeptmhmm"
+        - "subfeature": "proportion_outside"
+        - "value": numerical proportion of outside residues in the topology
+    """
+    logging.info(f"Parsing Deeptmhmm dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".3line")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing Deeptmhmm file: {file}")
+        try:
+            with open(path) as f:
+                lines = f.readlines()
+                if len(lines) < 3:
+                    logging.warning(f"File {file} does not have enough lines to parse")
+                    continue
+                sequence = lines[1].strip()
+                topology = lines[2].strip()
+                if len(sequence) != len(topology):
+                    logging.warning(f"Sequence and topology lengths do not match in {file}")
+                    
+                # Calculate proportion of outside residues
+                outside_count = sum(1 for char in topology if char == 'O')
+                total_count = len(topology)
+                if total_count > 0:
+                    proportion_outside = outside_count / total_count
+                else:
+                    proportion_outside = 0.0
+                results.append({
+                    "feature": "deeptmhmm",
+                    "subfeature": "proportion_outside",
+                    "value": proportion_outside
+                })
+        except Exception as e:
+            logging.error(f"Failed parsing Deeptmhmm file {file}: {e}")
+    logging.info(f"Completed Deeptmhmm parsing with {len(results)} results")
+    return results
 
 # ----------------------------- Orchestration Functions -----------------------------
 
@@ -736,7 +824,7 @@ def extract_all_features(base_dir, eval_dir, threads=1):
     Returns:
         List of dictionaries, where each dictionary represents a feature.
     Each dictionary contains:
-        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov", "deeplocpro", "ellipro", "ifnepitope2", "mixmhc2pred")
+        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov", "deeplocpro", "ellipro", "ifnepitope2", "mixmhc2pred",  "deeptmhmm")
         - "subfeature": specific subfeature name (e.g., "bepipred", "score", "prob_signalp", etc.)
         - "value": numerical value for the feature
     """
@@ -748,12 +836,13 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "signalp": lambda: parse_signalp_dir(os.path.join(base_dir, "signalp")),
         "targetp": lambda: parse_targetp_dir(os.path.join(base_dir, "targetp")),
         "allergenicity": lambda: parse_allergenicity_dir(os.path.join(base_dir, "algpred")),
-        "cluster": lambda: parse_cluster_dir(os.path.join(eval_dir, "cluster")),
+        "cluster": lambda: parse_cluster_dir(os.path.join(base_dir, "cluster")),
         "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcoverage")),
         "deeplocpro": lambda: parse_deeplocpro_dir(os.path.join(base_dir, "deeplocpro")),
         "ellipro": lambda: parse_ellipro_dir(os.path.join(base_dir, "ellipro")),
         "ifnepitope2": lambda: parse_ifnepitope2_dir(os.path.join(base_dir, "ifnepitope2")),
         "mixmhc2pred": lambda: parse_mixmhc2pred_dir(os.path.join(base_dir, "mixmhc2pred")),
+        "deeptmhmm": lambda: parse_deeptmhmm_dir(os.path.join(base_dir, "deeptmhmm"))
     }
 
     results = []
