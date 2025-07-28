@@ -112,7 +112,7 @@ plot_distributions <- function(data, output_dir) {
 }
 
 
-# Function to visualize KS statistics (using ks_statistic)
+# Function to visualize KS statistics (with value labels)
 plot_ks_statistics <- function(ks_df, output_dir) {
   if (!"ks_statistic" %in% colnames(ks_df)) {
     stop("Column 'ks_statistic' not found in KS results.")
@@ -121,28 +121,32 @@ plot_ks_statistics <- function(ks_df, output_dir) {
   ks_filtered <- ks_df %>%
     filter(p_value < 0.05) %>%
     mutate(
-      label = paste(feature, subfeature, sep = "_"),
-      label = str_replace_all(label, "/", "-")
+      label = paste(feature, subfeature, sep = " / "),
+      label_safe = str_replace_all(label, "/", "-")
     ) %>%
     arrange(desc(ks_statistic))
   
-  p <- ggplot(ks_filtered, aes(x = reorder(label, ks_statistic), y = ks_statistic)) +
+  p <- ggplot(ks_filtered, aes(x = reorder(label_safe, ks_statistic), y = ks_statistic)) +
     geom_col(fill = "darkorange") +
-    coord_flip() +
+    geom_text(aes(label = round(ks_statistic, 3)), 
+              hjust = -0.1, size = 3.5, color = "black") +
+    coord_flip(ylim = c(0, 1)) +
     labs(
-      title = "KS Statistics for Significant Features (p < 0.05)",
-      x = "Feature_Subfeature",
+      title = "KS Statistic Summary (p < 0.05)",
+      x = "Feature / Subfeature",
       y = "KS Statistic"
     ) +
-    theme_minimal(base_size = 14)
+    theme_minimal(base_size = 14) +
+    theme(plot.title = element_text(face = "bold"))
   
   ggsave(
     filename = file.path(output_dir, "ks_statistics_summary.png"),
     plot = p,
     width = 10,
-    height = 8
+    height = max(6, nrow(ks_filtered) * 0.25)  # Adjust height based on number of bars
   )
 }
+
 
 
 # Run pipeline
