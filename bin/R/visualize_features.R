@@ -37,7 +37,8 @@ base_path <- "../../results/S.aureus/raw_data"
 output_dir <- "../../results/S.aureus/feature_distributions"
 
 # Read KS test results and filter for significant features with p-value < 0.05
-feature_subfeature <- read_csv(ks_file, show_col_types = FALSE) %>%
+ks_results <- read_csv(ks_file, show_col_types = FALSE)
+feature_subfeature <- ks_results %>%
   filter(p_value < 0.05) %>%
   select(feature, subfeature) %>%
   distinct()
@@ -94,8 +95,28 @@ plot_distributions <- function(data, output_dir) {
   }
 }
 
+# Function to visualize KS statistics (using ks_statistic)
+plot_ks_statistics <- function(ks_df, output_dir) {
+  ks_filtered <- ks_df %>%
+    filter(p_value < 0.05) %>%
+    mutate(label = paste(feature, subfeature, sep = "_")) %>%
+    arrange(desc(ks_statistic))
+  
+  p <- ggplot(ks_filtered, aes(x = reorder(label, ks_statistic), y = ks_statistic)) +
+    geom_col(fill = "darkorange") +
+    coord_flip() +
+    labs(title = "KS Statistics for Significant Features (p < 0.05)",
+         x = "Feature_Subfeature",
+         y = "KS Statistic") +
+    theme_minimal(base_size = 14)
+  
+  ggsave(filename = file.path(output_dir, "ks_statistics_summary.png"),
+         plot = p, width = 10, height = 8)
+}
+
 # Run pipeline
 all_data <- load_all_data(feature_subfeature)
 plot_distributions(all_data, output_dir)
+plot_ks_statistics(ks_results, output_dir)
 
 message("✅ Plots saved to: ", output_dir)
