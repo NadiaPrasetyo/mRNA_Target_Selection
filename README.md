@@ -144,6 +144,7 @@ mRNA_Target_Selection/
 - [IEDB Population Coverage](http://tools.iedb.org/population/)
 - [IEDB Ellipro](http://tools.iedb.org/ellipro/)
 - [MixMHC2pred-2.0](https://github.com/GfellerLab/MixMHC2pred)
+- [DeepTMHMM](https://services.healthtech.dtu.dk/services/DeepTMHMM-1.0/)
 - R (for statistical visualization)
 
 Install Python dependencies:
