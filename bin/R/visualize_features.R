@@ -147,9 +147,6 @@ plot_ks_statistics <- function(ks_df, output_dir) {
   )
 }
 
-
-
-# Run pipeline
 # Run pipeline
 all_data <- load_all_data(feature_subfeature)
 plot_distributions(all_data, output_dir)
