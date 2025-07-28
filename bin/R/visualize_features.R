@@ -83,6 +83,14 @@ plot_distributions <- function(data, output_dir) {
     
     if (nrow(df_plot) == 0) next
     
+    # Sanitize filename: replace slashes with hyphens
+    safe_feat <- str_replace_all(feat, "/", "-")
+    safe_subf <- str_replace_all(subf, "/", "-")
+    
+    # Set y-axis limits if values should be bounded
+    y_max <- max(df_plot$value, na.rm = TRUE)
+    y_limits <- if (y_max <= 1.1) c(0, 1) else NULL
+    
     p <- ggplot(df_plot, aes(x = set, y = value, fill = set)) +
       geom_violin(trim = FALSE, alpha = 0.5) +
       labs(title = paste(feat, "-", subf), x = "", y = "Value") +
@@ -90,30 +98,54 @@ plot_distributions <- function(data, output_dir) {
       scale_fill_brewer(palette = "Set2") +
       theme(legend.position = "none")
     
-    ggsave(filename = file.path(output_dir, paste0(feat, "_", subf, ".png")),
-           plot = p, width = 8, height = 5)
+    if (!is.null(y_limits)) {
+      p <- p + coord_cartesian(ylim = y_limits)
+    }
+    
+    ggsave(
+      filename = file.path(output_dir, paste0(safe_feat, "_", safe_subf, ".png")),
+      plot = p,
+      width = 8,
+      height = 5
+    )
   }
 }
 
+
 # Function to visualize KS statistics (using ks_statistic)
 plot_ks_statistics <- function(ks_df, output_dir) {
+  if (!"ks_statistic" %in% colnames(ks_df)) {
+    stop("Column 'ks_statistic' not found in KS results.")
+  }
+  
   ks_filtered <- ks_df %>%
     filter(p_value < 0.05) %>%
-    mutate(label = paste(feature, subfeature, sep = "_")) %>%
+    mutate(
+      label = paste(feature, subfeature, sep = "_"),
+      label = str_replace_all(label, "/", "-")
+    ) %>%
     arrange(desc(ks_statistic))
   
   p <- ggplot(ks_filtered, aes(x = reorder(label, ks_statistic), y = ks_statistic)) +
     geom_col(fill = "darkorange") +
     coord_flip() +
-    labs(title = "KS Statistics for Significant Features (p < 0.05)",
-         x = "Feature_Subfeature",
-         y = "KS Statistic") +
+    labs(
+      title = "KS Statistics for Significant Features (p < 0.05)",
+      x = "Feature_Subfeature",
+      y = "KS Statistic"
+    ) +
     theme_minimal(base_size = 14)
   
-  ggsave(filename = file.path(output_dir, "ks_statistics_summary.png"),
-         plot = p, width = 10, height = 8)
+  ggsave(
+    filename = file.path(output_dir, "ks_statistics_summary.png"),
+    plot = p,
+    width = 10,
+    height = 8
+  )
 }
 
+
+# Run pipeline
 # Run pipeline
 all_data <- load_all_data(feature_subfeature)
 plot_distributions(all_data, output_dir)
