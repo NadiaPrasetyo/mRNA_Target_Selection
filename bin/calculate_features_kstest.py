@@ -773,6 +773,19 @@ def parse_deeptmhmm_dir(directory):
         - "feature": "deeptmhmm"
         - "subfeature": "proportion_outside"
         - "value": numerical proportion of outside residues in the topology
+
+    >antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050 | GLOB
+MAISQERKNEIIKEYRVHETDTGSPEVQIAVLTAEINAVNEHLRTHKKDHHSRRGLLKMVGRRRHLLNYLRSKDIQRYRELIKSLGIRR
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+>antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462 | GLOB
+MIEFRQVSKTFNKKKQKIHALKDVSFKVNRNDIFGVIGYSGAGKSTLVRLVNHLEAASSGQVLVDGHDITNYSEKGMREIKKDIGMIFQHFNLLNSATVFKNVAMPLILSKKSKTEIKQRVTEMLEFVGLSDKKDQFPDELSGGQKQRVAIARALVTNPKILLCDEATSALDPATTASILTLLKNVNQTFGITIMMITHEMRVIKDICNRVAVMEKGQVVETGT
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+>antigen_115|Q7A7G0|Uncharacterized|HE681097.1|tpos:132766-133024 | SP
+MGYLKRFTLYISIFILIVVIAGCGKSDETKEDSKEEQIKKSFAKTLDMYPIKNLKDLYDKEGYRDGEFKKGDKGTWTLLTSFSKSNKPGEIDDEGMVLYLNRNTKKATGYYFVNKIYDDISKNQNEKKYRVELKNNKIVLLDNVEDEKLKQKIENFKFFSQYADFKDLKNYQDGSITTNENVPSYEAEYKLNNSDENVKKLRDIYPITTKKAPILKLHIDGDIKGSSVGYKKIEYKFSKVKDQETTLRDYLNFGPSDED
+SSSSSSSSSSSSSSSSSSSSSSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+>antigen_91|Q6GIE0|Na(+)/H(+)|HE681097.1|tpos:200454-200610 | TM
+QIVLNIIIAFLWVLFQDEDHFKFSTFFSGYLIGLIVIYILHRFFSDDFYVRKIWVAIKFLGVYLYQLITSSISTINYILFKTKDMNPGLLSYETRLTSDWAITFLTILIIITPGSTVIRISQDSKKFFIHSIDVSEKEKDSLLRSIKHYEDLILEVS
+IMMMMMMMMMMMMMMOOOOOOOOOMMMMMMMMMMMMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
     """
     logging.info(f"Parsing Deeptmhmm dir {directory}")
     results = []
@@ -787,26 +800,32 @@ def parse_deeptmhmm_dir(directory):
         try:
             with open(path) as f:
                 lines = f.readlines()
-                if len(lines) < 3:
-                    logging.warning(f"File {file} does not have enough lines to parse")
-                    continue
-                sequence = lines[1].strip()
-                topology = lines[2].strip()
-                if len(sequence) != len(topology):
-                    logging.warning(f"Sequence and topology lengths do not match in {file}")
-                    
-                # Calculate proportion of outside residues
-                outside_count = sum(1 for char in topology if char == 'O')
-                total_count = len(topology)
-                if total_count > 0:
-                    proportion_outside = outside_count / total_count
-                else:
-                    proportion_outside = 0.0
-                results.append({
-                    "feature": "deeptmhmm",
-                    "subfeature": "proportion_outside",
-                    "value": proportion_outside
-                })
+                i = 0
+                while i < len(lines):
+                    # Look for header line
+                    if lines[i].startswith(">"):
+                        if i + 2 >= len(lines):
+                            logging.warning(f"File {file} does not have enough lines after header at line {i}")
+                            break
+                        sequence = lines[i + 1].strip()
+                        topology = lines[i + 2].strip()
+                        if len(sequence) != len(topology):
+                            logging.warning(f"Sequence and topology lengths do not match in {file} at header {lines[i].strip()}")
+                        # Calculate proportion of outside residues
+                        outside_count = sum(1 for char in topology if char == 'O')
+                        total_count = len(sequence)
+                        if total_count > 0:
+                            proportion_outside = outside_count / total_count
+                        else:
+                            proportion_outside = 0.0
+                        results.append({
+                            "feature": "deeptmhmm",
+                            "subfeature": "proportion_outside",
+                            "value": proportion_outside
+                        })
+                        i += 3  # Move to next header or end
+                    else:
+                        i += 1  # Skip lines until next header
         except Exception as e:
             logging.error(f"Failed parsing Deeptmhmm file {file}: {e}")
     logging.info(f"Completed Deeptmhmm parsing with {len(results)} results")
