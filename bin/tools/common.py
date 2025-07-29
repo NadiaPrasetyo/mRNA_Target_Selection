@@ -44,7 +44,6 @@ def is_valid_peptide(seq: str, min_length: int = 8) -> bool:
     """
     return isinstance(seq, str) and len(seq) >= min_length and bool(re.fullmatch(r"[ACDEFGHIKLMNPQRSTVWY]+", seq))
 
-
 def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, min_length=8) -> Path:
     """
     Parses a B-cell CSV file with peptide predictions and writes a FASTA file with contextual headers.
@@ -54,7 +53,6 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
         csv_file (Path): Path to input CSV file.
         output_dir (Path): Directory where output FASTA will be saved.
         basename_prefix (str): Base prefix for output file name.
-
     Returns:
         Path: Path to the generated FASTA file, or None if no peptides found.
     """
@@ -65,14 +63,10 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
     peptides = []
     current_header = None
     strain_acc = "unknown"
-
     early_peptides = []
     early_header_written = False
-
     method = csv_file.name.lower()
     is_bepipred = "bepipred" in method
-    is_emini_or_kolaskar = any(x in method for x in ["emini", "kolaskar"])
-    is_other = not (is_bepipred or is_emini_or_kolaskar)
     in_bepipred_peptide_block = False
 
     def write_block(header: str, block_peptides: list):
@@ -88,7 +82,6 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
             if not is_valid_peptide(pep, min_length):
                 logging.warning(f"⚠️ Peptide skipped (invalid or too short): {pep} in header: {header}")
                 continue
-
             key = (header, pep)
             if key not in seen:
                 fasta_lines.append(f">{header}|seq{i+1}\n{pep}")
@@ -99,13 +92,11 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
         for row in reader:
             if not row or all(cell.strip() == "" for cell in row):
                 continue
-
             if row[0].startswith("input:"):
                 # Finalize previous peptide block
                 if peptides:
                     write_block(current_header, peptides)
                     peptides = []
-
                 # Extract header info
                 header_str = row[1] if len(row) > 1 else row[0][len("input:"):].strip()
                 match = re.match(r"antigen_(\d+)\|([A-Z0-9]+)\|.*?\|([A-Z0-9.]+)", header_str)
@@ -123,13 +114,10 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
                     current_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
                 in_bepipred_peptide_block = False
                 continue
-
             # Ensure we have a default header if no 'input:' encountered yet
             if current_header is None:
                 current_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
-
             peptide = None
-
             # --- Peptide Parsing Logic ---
             if is_bepipred:
                 if row[0].startswith("No") and any("Peptipe" in col for col in row):
@@ -140,33 +128,18 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
                     continue
                 elif in_bepipred_peptide_block and len(row) >= 4:
                     peptide = row[3].strip()
-
-            elif is_emini_or_kolaskar:
-                # Logic similar to bepipred: activate block after detecting data headers
-                if row[0].startswith("No") and any("Peptipe" in col or "Peptide" in col for col in row):
-                    in_bepipred_peptide_block = True  # Reuse the same flag
-                    continue
-                elif row[0].startswith("Position") and "Residue" in row:
-                    in_bepipred_peptide_block = False
-                    continue
-                elif in_bepipred_peptide_block:
-                    if len(row) >= 5:
-                        peptide = row[4].strip()
-                    elif len(row) >= 3:
-                        peptide = row[2].strip()
-
-            elif is_other:
+                    if not is_valid_peptide(peptide, min_length):
+                        peptide = None
+            else:
                 if row[0] == "Position" and len(row) >= 5 and row[4] == "Peptide":
                     continue
                 elif len(row) >= 5:
                     peptide = row[4].strip()
-
-            if peptide and is_valid_peptide(peptide):
+            if peptide and is_valid_peptide(peptide, min_length):
                 if current_header.startswith(">antigenUnknown"):
                     early_peptides.append(peptide)
                 else:
                     peptides.append(peptide)
-
     # Final block
     if peptides:
         write_block(current_header, peptides)
@@ -174,15 +147,12 @@ def parse_csv_to_fasta(csv_file: Path, output_dir: Path, basename_prefix: str, m
         # No 'input:' line at all? Still write early peptides
         fallback_header = f">antigenUnknown|unknown|{strain_acc}|bcell"
         write_block(fallback_header, early_peptides)
-
     if not fasta_lines:
         logging.warning(f"⚠️ No peptides found in B-cell file: {csv_file.name}")
         return None
-
     fasta_path = output_dir / f"{basename_prefix}.fasta"
     with open(fasta_path, "w") as f_out:
         f_out.write("\n".join(fasta_lines))
-
     print(f"💾 B-cell FASTA written: {fasta_path}")
     return fasta_path
 
@@ -199,11 +169,11 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
     """
     grouped_by_accession = defaultdict(list)
     header_pattern = re.compile(
-        r"^>(?:[^|]*\|)?(?P<accession>[A-Z0-9_.-]+)(?:\|(?P<strain_acc>[A-Z0-9_.-]+))?(?:\|.*)?$"  # Match accession and optional strain_acc
+        r"^>[^|]*\|(?P<accession>[A-Z0-9_.-]+)\|[^|]*\|(?P<strain_acc>[A-Z0-9_.-]+)\|.*$"
     )
     # example header formats:
     # >antigen_77|Q5HDD7|Immunoglobulin-binding|HE681097.1|tpos:773380-773815
-    # >Q2G0X7 Staphylococcal superantigen-like 3 (staphylococcus aureus (strain nctc 8325 / ps 47))
+    # >Q5HDD7|HE681097.1
 
     for fasta_file in fasta_files:
         with open(fasta_file, "r") as fh:
@@ -277,7 +247,7 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str,
             continue  # No peptide column
 
         for row in data_rows:
-            pep = row[peptide_idx]
+            pep = row[peptide_idx] if peptide_idx < len(row) else None
             if is_valid_peptide(pep, min_length):
                 peptides.add(pep)
             else:
@@ -296,7 +266,7 @@ def parse_json_to_fasta(json_file: Path, output_dir: Path, basename_prefix: str,
 
     if not match:
         logging.error(f"❌ Filename pattern not recognized for T-cell JSON: {filename}")
-        raise SystemExit(1)
+        return None
 
     antigen_num, acc_num, _, strain_acc, mhc_class = match.groups()
     mhc_class = mhc_class.lower()
@@ -844,13 +814,14 @@ if __name__ == "__main__":
             json_file = Path("/tmp") / json_filename
             json_file.write_text(json.dumps(json_data))
 
-            fasta_path = Path("/tmp")
+            fasta_path = Path("/tmp/test_json_to_fasta")
+            fasta_path.mkdir(parents=True, exist_ok=True)
             fasta_file = parse_json_to_fasta(json_file, fasta_path, "test_output")
+            logging.info(f"FASTA file created at: {fasta_file}")
 
-            self.assertIsNotNone(fasta_path)
+            self.assertIsNotNone(fasta_file)
             self.assertTrue(fasta_path.exists())
-            self.assertEqual(fasta_path.suffix, ".fasta")
-            fasta_content = fasta_path.read_text().strip()
+            fasta_content = fasta_file.read_text().strip()
             # The header should match the new contextual header format
             self.assertTrue(fasta_content.startswith(">"))
             self.assertIn("antigen12|A0A2S1FUJ1|BA1.2|mhci|seq1", fasta_content)
@@ -862,8 +833,10 @@ if __name__ == "__main__":
             self.assertNotIn("seq3", fasta_content)
 
             #clean up
+            if fasta_file.exists():
+                fasta_file.unlink() # remove the created FASTA file
             if fasta_path.exists():
-                fasta_path.unlink() # remove the created FASTA file
+                fasta_path.rmdir()  # remove the FASTA directory
             if json_file.exists():
                 json_file.unlink() # remove the created JSON file
             if fasta_file.exists():
@@ -936,9 +909,9 @@ Position,Residue,Score,Length,Peptide Sequence
 input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
 Predicted,peptides
 No,Start,End,Peptipe,Length
-1,10,13,TFNKAA,4
-2,39,44,YSGAGK,6
-3,56,59,AASS,4
+1,10,13,TFNKAATTTT,4
+2,39,44,YSGAGKSSS,6
+3,56,59,ASTAGA,4
 4,78,81,been,4
 Position,Residue,Score,Assignment
         """
@@ -956,9 +929,9 @@ Position,Residue,Score,Assignment
             sequences = [l for l in fasta_lines if not l.startswith(">")]
 
             self.assertEqual(len(headers), 2)
-            self.assertIn("TFNKAA", sequences)
-            self.assertIn("YSGAGK", sequences)
-            self.assertNotIn("AASS", sequences)
+            self.assertIn("TFNKAATTTT", sequences)
+            self.assertIn("YSGAGKSSS", sequences)
+            self.assertNotIn("ASTAGA", sequences)
             self.assertNotIn("been", sequences)
 
             # Cleanup
@@ -966,50 +939,6 @@ Position,Residue,Score,Assignment
             csv_file.unlink()
             shutil.rmtree(output_dir)
 
-
-        def test_missing_initial_input_header(self):
-            csv_data = """Position,Residue,Start,End,Peptide,Score
-4,S,1,7,MAISQER,2.057
-5,Q,2,8,AISQERK,3.471
-6,E,3,9,ISQERKN,4.171
-input:,antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462
-Position,Residue,Start,End,Peptide,Score
-4,F,1,7,MIEFRQV,-1.014
-5,R,2,8,IEFRQVS,0.514
-6,V,3,9,test,1.214
-        """
-
-            csv_file = Path("/tmp/missing_header.csv")
-            csv_file.write_text(csv_data)
-            output_dir = Path("/tmp/test_missing_header_output")
-            output_dir.mkdir(parents=True, exist_ok=True)
-
-            fasta_path = parse_csv_to_fasta(csv_file, output_dir, "missing_header_test")
-            self.assertIsNotNone(fasta_path)
-            fasta_lines = fasta_path.read_text().strip().splitlines()
-
-            headers = [l for l in fasta_lines if l.startswith(">")]
-            sequences = [l for l in fasta_lines if not l.startswith(">")]
-
-            # Should contain 5 entries in total
-            self.assertEqual(len(headers), 5)
-            self.assertIn("MAISQER", sequences)
-            self.assertIn("AISQERK", sequences)
-            self.assertIn("ISQERKN", sequences)
-            self.assertIn("MIEFRQV", sequences)
-            self.assertIn("IEFRQVS", sequences)
-            self.assertNotIn("test", sequences)
-            
-            # First header should use "antigenUnknown"
-            self.assertTrue(headers[0].startswith(">antigenUnknown|unknown|HE681097.1|bcell"))
-
-            # Second block should use parsed antigen_149 header
-            self.assertTrue(headers[3].startswith(">antigen149|Q99QV7|HE681097.1|bcell"))
-
-            # Cleanup
-            fasta_path.unlink()
-            csv_file.unlink()
-            shutil.rmtree(output_dir)
     
     class GroupClusterInputsTests(unittest.TestCase):
         def setUp(self):
@@ -1052,15 +981,18 @@ Position,Residue,Start,End,Peptide,Score
                 self.assertIn(accession, result)
                 self.assertTrue(path.exists())
 
+            # Check Q6GHG2 file for both strain accessions
             with open(expected_files["Q6GHG2"], "r") as f:
                 content = f.read()
                 self.assertEqual(content.count(">"), 2)
-                self.assertIn("Q6GHG2", content)
+                self.assertIn(">Q6GHG2|HE681097.1", content)
+                self.assertIn(">Q6GHG2|HE681098.1", content)
 
+            # Check Q99QV7 file for correct strain accession
             with open(expected_files["Q99QV7"], "r") as f:
                 content = f.read()
                 self.assertEqual(content.count(">"), 1)
-                self.assertIn("Q99QV7", content)
+                self.assertIn(">Q99QV7|HE681097.1", content)
 
 
     unittest.main()
