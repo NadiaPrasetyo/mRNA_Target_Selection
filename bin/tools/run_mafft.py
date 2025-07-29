@@ -28,12 +28,16 @@ from tools import common
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     """
     Runs MAFFT using the external_tools_env conda environment.
-    
-    Parameters:
+    Args:
     - tool_path: Path to the MAFFT executable (ignored, required by interface).
     - input_fasta: Path to the input FASTA file.
     - output_dir: Path to the output directory.
     - batch_size: Batch size for processing (not used here, kept for compatibility).
+    Raises:
+    - RuntimeError: If Conda is not available or if the MAFFT command fails.
+    Outputs:
+    - <output_dir>/<input_fasta_stem>_aligned.fasta: Aligned sequences in Clustal format.
+    - <output_dir>/<input_fasta_stem>.tree: Guide tree in Newick format (if generated).
     """
     # Ensure output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -44,10 +48,8 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
 
     common.create_conda_env_if_needed()
 
-    # Output file path with clustal format
-    output_file = output_dir / f"{input_fasta.stem}"
+    output_file = output_dir / f"{input_fasta.stem}_aligned.fasta"
 
-    # Construct the MAFFT command with conda environment
     command = [
         "conda", "run", "-n", common.CONDA_ENV_NAME,
         "mafft", "--localpair", "--maxiterate", "1000", #L-INS-i (probably most accurate; recommended for <200 sequences; iterative refinement method incorporating local pairwise alignment information)
@@ -55,21 +57,33 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         "--reorder", # Output order: aligned.
         "--treeout", # Guide tree is output to the input.tree file
         "--amino", # Assume the sequences are amino acid
-        str(input_fasta), ">", str(output_file)
+        str(input_fasta)
     ]
 
     logging.info(f"🔍 Running MAFFT on {input_fasta}...")
-    try:
-        # Run the command
-        subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-        # move the tree file to the output directory
+    try:
+        result = subprocess.run(command, check=True, capture_output=True, text=True)
+
+        # Save the aligned output
+        with open(output_file, 'w') as f:
+            f.write(result.stdout)
+
+        # Log stderr if any
+        if result.stderr:
+            logging.debug(f"MAFFT stderr:\n{result.stderr}")
+
+        # Move the tree file
         tree_file = input_fasta.with_suffix(".tree")
         if tree_file.exists():
             shutil.move(tree_file, output_dir / tree_file.name)
+            tree_output = output_dir / tree_file.name
+        else:
+            tree_output = "not generated"
 
-        logging.info(f"✅ MAFFT alignment completed. Output saved to {output_file}, tree file saved to {output_dir / tree_file.name if tree_file.exists() else 'not generated'}")
+        logging.info(f"✅ MAFFT alignment completed. Output saved to {output_file}, tree file saved to {tree_output}")
+
     except subprocess.CalledProcessError as e:
         logging.error("❌ Error running MAFFT:")
-        logging.error(e.stderr.decode())
+        logging.error(e.stderr)
         raise
