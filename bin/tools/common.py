@@ -339,6 +339,19 @@ def ensure_writable_dir(path: Path) -> bool:
 
     return True
 
+CONDA_ENV_NAME = "external_tools_env"
+CONDA_ENV_YML = Path("ext_tools_dependencies.yml")
+
+def create_conda_env_if_needed():
+    """Create Conda environment if it doesn't exist."""
+    logging.info(f"🔍 Checking for Conda environment '{CONDA_ENV_NAME}'...")
+    result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
+    if CONDA_ENV_NAME not in result.stdout:
+        logging.info("📦 Conda environment not found. Creating from YAML...")
+        subprocess.run(["conda", "env", "create", "-f", str(CONDA_ENV_YML)], check=True)
+    else:
+        logging.info("✅ Conda environment already exists.")
+
 def get_pdb_files(pathogen_path, sequence_dir):
     """
     Get a list of structure files (.pdb, .cif, .cif.gz) from the given sequence directory inside the pathogen path.
@@ -518,7 +531,7 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
             raise FileNotFoundError("MMseqs2 not found in PATH. Install via: conda install -c bioconda mmseqs2")
 
     if "ALGPRED" in tools:
-        algpred_path = Path("algpred2_dependencies.yml")
+        algpred_path = Path("ext_tools_dependencies.yml")
         if not algpred_path.exists():
             logging.warning(
                 f"⚠️ Algpred2 dependencies file not found at {algpred_path}. "
@@ -540,7 +553,7 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
         tool_paths["DEEPLOC"] = deeploc_path
 
     if "IFNEPITOPE2":
-        algpred_path = Path("algpred2_dependencies.yml")
+        algpred_path = Path("ext_tools_dependencies.yml")
         if not algpred_path.exists():
             logging.warning(
                 f"⚠️ Dependencies file not found at {algpred_path}. "

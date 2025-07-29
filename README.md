@@ -76,7 +76,7 @@ mRNA_Target_Selection/
 ├── results/                         # Analysis results and visualizations
 │   └── <pathogen_subfolders>/       # Pathogen-specific results
 ├── requirements.txt                 # Python dependencies
-├── algpred2_dependencies.yml        # Conda env for AlgPred2 and IFNepitope2
+├── ext_tools_dependencies.yml        # Conda env for AlgPred2 and IFNepitope2
 └── README.md                        # This file
 ```
 
@@ -133,7 +133,7 @@ mRNA_Target_Selection/
 - [NCBI Entrez Direct (EDirect)](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 - [Seqkit](https://bioinf.shenwei.me/seqkit/usage/#translate)
 - [MMseqs2](https://github.com/soedinglab/MMseqs2) (via conda)
-- [AlgPred2](https://github.com/masashitsuboi/AlgPred2) (via conda/pip, see `algpred2_dependencies.yml`)
+- [AlgPred2](https://github.com/masashitsuboi/AlgPred2) (via conda/pip, see `ext_tools_dependencies.yml`)
 - [IFNepitope2](https://webs.iiitd.edu.in/raghava/ifnepitope2/) (via pip)
 - [SignalP](https://services.healthtech.dtu.dk/services/SignalP-5.0/)
 - [TargetP](https://services.healthtech.dtu.dk/services/TargetP-2.0/)
@@ -145,6 +145,7 @@ mRNA_Target_Selection/
 - [IEDB Ellipro](http://tools.iedb.org/ellipro/)
 - [MixMHC2pred-2.0](https://github.com/GfellerLab/MixMHC2pred)
 - [DeepTMHMM](https://services.healthtech.dtu.dk/services/DeepTMHMM-1.0/)
+- [ClustalO]()
 - R (for statistical visualization)
 
 Install Python dependencies:
@@ -154,8 +155,8 @@ pip install -r requirements.txt
 
 Install AlgPred2 and IFNepitope2 environment:
 ```sh
-conda env create -f algpred2_dependencies.yml
-conda activate algpred2_env
+conda env create -f ext_tools_dependencies.yml
+conda activate external_tools_env
 ```
 
 Install EDirect:
@@ -191,6 +192,8 @@ Install R and required packages:
 # In R console
 install.packages(c("ggplot2", "dplyr", "tidyr", "readr"))
 ```
+
+Install ClustalO executable in [ClustalO Webpage](http://www.clustal.org/omega/#Webservers)
 
 ## Usage
 

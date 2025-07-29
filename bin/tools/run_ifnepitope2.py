@@ -15,7 +15,7 @@ Arguments:
     job_type (int, optional): IfNePitope2 job type (default: 1).
 
 Requirements:
-    - algpred2_dependencies.yml (defines Conda environment).
+    - ext_tools_dependencies.yml (defines Conda environment).
     - pip-installable `ifnepitope2` package inside that environment.
     - Conda available in PATH.
 
@@ -28,20 +28,7 @@ import logging
 from pathlib import Path
 import subprocess
 import shutil
-import re
-CONDA_ENV_NAME = "algpred2_env"
-CONDA_ENV_YML = Path("algpred2_dependencies.yml")
-
-
-def create_conda_env_if_needed():
-    """Create Conda environment if it doesn't exist."""
-    logging.info(f"🔍 Checking for Conda environment '{CONDA_ENV_NAME}'...")
-    result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
-    if CONDA_ENV_NAME not in result.stdout:
-        logging.info("📦 Conda environment not found. Creating from YAML...")
-        subprocess.run(["conda", "env", "create", "-f", str(CONDA_ENV_YML)], check=True)
-    else:
-        logging.info("✅ Conda environment already exists.")
+import common
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3):
     """
@@ -56,7 +43,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3)
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    create_conda_env_if_needed()
+    common.create_conda_env_if_needed()
 
     input_fasta = Path(input_fasta).resolve()
     output_dir = Path(output_dir).resolve()
@@ -64,7 +51,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
 
     cmd = [
-        "conda", "run", "-n", CONDA_ENV_NAME,
+        "conda", "run", "-n", common.CONDA_ENV_NAME,
         "ifnepitope2",
         "-i", str(input_fasta),
         "-o", str(output_file),

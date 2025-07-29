@@ -15,7 +15,7 @@ Arguments:
     batch_size (int, optional): Unused, present for interface compatibility.
 
 Requirements:
-    - algpred2_dependencies.yml (defines Conda environment).
+    - ext_tools_dependencies.yml (defines Conda environment).
     - pip-installable `algpred2` package inside that environment.
     - Conda available in PATH.
 
@@ -29,11 +29,8 @@ import subprocess
 import logging
 from pathlib import Path
 import shutil
+import common
 import py_compile
-
-
-CONDA_ENV_NAME = "algpred2_env"
-CONDA_ENV_YML = Path("algpred2_dependencies.yml")
 
 def patch_algpred_bugs():
     """
@@ -47,7 +44,7 @@ def patch_algpred_bugs():
 
     try:
         env_prefix = subprocess.run(
-            ["conda", "run", "-n", CONDA_ENV_NAME, "python", "-c", "import sys; print(sys.prefix)"],
+            ["conda", "run", "-n", common.CONDA_ENV_NAME, "python", "-c", "import sys; print(sys.prefix)"],
             capture_output=True, check=True, text=True
         ).stdout.strip()
 
@@ -104,16 +101,6 @@ def patch_algpred_bugs():
     except Exception as e:
         logging.warning(f"⚠️ Failed to patch AlgPred2.0: {e}")
 
-def create_conda_env_if_needed():
-    """Create Conda environment if it doesn't exist."""
-    logging.info(f"🔍 Checking for Conda environment '{CONDA_ENV_NAME}'...")
-    result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
-    if CONDA_ENV_NAME not in result.stdout:
-        logging.info("📦 Conda environment not found. Creating from YAML...")
-        subprocess.run(["conda", "env", "create", "-f", str(CONDA_ENV_YML)], check=True)
-    else:
-        logging.info("✅ Conda environment already exists.")
-
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 0):
     """
     Main runner function compatible with pipeline:
@@ -125,7 +112,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    create_conda_env_if_needed()
+    common.create_conda_env_if_needed()
     patch_algpred_bugs()
 
     input_fasta = Path(input_fasta).resolve()
@@ -134,7 +121,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
     output_file = output_dir / f"{input_fasta.stem}_algpred.csv"
 
     cmd = [
-        "conda", "run", "-n", CONDA_ENV_NAME,
+        "conda", "run", "-n", common.CONDA_ENV_NAME,
         "algpred2",
         "-i", str(input_fasta),
         "-o", str(output_file),
