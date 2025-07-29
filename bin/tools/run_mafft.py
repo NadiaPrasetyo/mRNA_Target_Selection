@@ -44,8 +44,8 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
 
     common.create_conda_env_if_needed()
 
-    # Output file path
-    output_file = output_dir / f"{input_fasta.stem}_aligned.fasta"
+    # Output file path with clustal format
+    output_file = output_dir / f"{input_fasta.stem}"
 
     # Construct the MAFFT command with conda environment
     command = [
@@ -62,7 +62,13 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     try:
         # Run the command
         subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        logging.info(f"✅ MAFFT alignment completed. Output saved to {output_file}")
+
+        # move the tree file to the output directory
+        tree_file = input_fasta.with_suffix(".tree")
+        if tree_file.exists():
+            shutil.move(tree_file, output_dir / tree_file.name)
+
+        logging.info(f"✅ MAFFT alignment completed. Output saved to {output_file}, tree file saved to {output_dir / tree_file.name if tree_file.exists() else 'not generated'}")
     except subprocess.CalledProcessError as e:
         logging.error("❌ Error running MAFFT:")
         logging.error(e.stderr.decode())

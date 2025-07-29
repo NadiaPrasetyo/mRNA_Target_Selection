@@ -196,7 +196,8 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
     else: 
         raise ValueError(f"Unknown mode '{mode}' passed to is_job_done()")
 
-    extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv", "_ifnepitope2.csv", "_TMRs.gff3", "_probs.csv", "_results.md", "_deeptmhmm_results.md", "_predicted_topologies.3line", "_plot.png"]
+    extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv", "_ifnepitope2.csv", "_TMRs.gff3", "_probs.csv", 
+                  "_results.md", "_deeptmhmm_results.md", "_predicted_topologies.3line", "_plot.png", ".fasta.tree", ".aln"]
 
     for ext in extensions:
         for f in output_dir.glob(f"*{ext}"):
