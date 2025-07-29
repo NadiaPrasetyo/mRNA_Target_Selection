@@ -107,10 +107,10 @@ def run_parallel_jobs(jobs, threads):
             logging.error(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
 
-    # Clean up temporary and intermediate files after CLUSTER jobs
+    # Clean up temporary and intermediate files after CLUSTER, MAFFT, and CLUSTALO jobs
     for job in jobs:
         tool_name, _, input_file, output_dir, _, _ = job
-        if tool_name != "CLUSTER":
+        if tool_name not in ["CLUSTER", "MAFFT", "CLUSTALO"]:
             continue
 
         db_name = input_file.stem
