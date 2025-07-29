@@ -29,7 +29,7 @@ import subprocess
 import logging
 from pathlib import Path
 import shutil
-import common
+from tools import common
 import py_compile
 
 def patch_algpred_bugs():

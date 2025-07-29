@@ -28,7 +28,7 @@ import logging
 from pathlib import Path
 import subprocess
 import shutil
-import common
+from tools import common
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3):
     """

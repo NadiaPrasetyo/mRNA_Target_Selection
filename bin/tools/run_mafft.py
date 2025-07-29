@@ -23,7 +23,7 @@ import subprocess
 from pathlib import Path
 import logging
 import shutil
-import common
+from tools import common
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     """
