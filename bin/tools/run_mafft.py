@@ -58,9 +58,10 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         str(input_fasta), ">", str(output_file)
     ]
 
+    logging.info(f"🔍 Running MAFFT on {input_fasta}...")
     try:
         # Run the command
-        subprocess.run(" ".join(command), shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         logging.info(f"✅ MAFFT alignment completed. Output saved to {output_file}")
     except subprocess.CalledProcessError as e:
         logging.error("❌ Error running MAFFT:")
