@@ -38,7 +38,7 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, common
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, run_clustalo, run_mafft, common
 import shutil
 
 # Define the mapping of tool names to their runner functions
@@ -49,7 +49,9 @@ TOOL_RUNNERS = {
     "ALGPRED": run_algpred.run,
     "DEEPLOC": run_deeplocpro.run,
     "IFNEPITOPE2": run_ifnepitope2.run,
-    "DEEPTMHMM": run_deeptmhmm.run
+    "DEEPTMHMM": run_deeptmhmm.run,
+    "CLUSTALO": run_clustalo.run,
+    "MAFFT": run_mafft.run
 }
 
 # List of valid tools that can be run
@@ -253,9 +255,9 @@ def main():
 
     tool_paths = {}
     # Only resolve tool_root if required
-    if any(tool in args.tools for tool in ["SIGNALP", "TARGETP", "DEEPLOC"]):
+    if any(tool in args.tools for tool in ["SIGNALP", "TARGETP", "DEEPLOC", "CLUSTALO"]):
         if args.tool_root == "none":
-            logging.error("❌ --tool-root is required for running SignalP and TargetP.")
+            logging.error("❌ --tool-root is required for running SignalP, TargetP, DeepLocPro, and Clustal Omega.")
             sys.exit(1)
     
     tool_root = Path(args.tool_root).resolve()
@@ -271,17 +273,17 @@ def main():
     # Handle jobs
     for tool_name in args.tools:
         # Handle Cluster jobs
-        if tool_name == "CLUSTER":
-            cluster_output = output_root / "cluster"
+        if tool_name in ["CLUSTER", "MAFFT", "CLUSTALO"]:
+            output_dir = output_root / tool_name.lower()
             cluster_input_dir = output_root / "cluster_inputs"
             grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)
 
             for _, fasta_path in grouped_fastas.items():
-                if is_job_done(fasta_path, cluster_output, mode="accession"):
+                if is_job_done(fasta_path, output_dir, mode="accession"):
                     logging.info(f"⏭️ Skipping CLUSTER for {fasta_path.name} (already processed)")
                     continue
 
-                jobs.append(("CLUSTER", TOOL_RUNNERS["CLUSTER"], fasta_path, cluster_output, 0, tool_paths["CLUSTER"]))
+                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, 0, tool_paths[tool_name]))
 
         # Handle SignalP and TargetP jobs
         elif tool_name in ["SIGNALP", "TARGETP", "ALGPRED", "DEEPTMHMM"]:
