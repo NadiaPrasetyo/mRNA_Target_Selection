@@ -38,7 +38,8 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, run_clustalo, run_mafft, common
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, run_clustalo, run_mafft
+from tools import common
 import shutil
 
 # Define the mapping of tool names to their runner functions
