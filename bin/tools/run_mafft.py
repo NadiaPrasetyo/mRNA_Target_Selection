@@ -53,7 +53,8 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     # Check if the input FASTA file contains more than one sequence
     sequence_count = count_sequences(input_fasta)
     if sequence_count <= 1:
-        raise RuntimeError(f"Input FASTA file must contain more than one sequence for alignment. Skipping {input_fasta.name}.")
+        logging.info(f"ℹ️ Input FASTA file {input_fasta.name} contains only one sequence. Alignment is not required. Exiting gracefully.")
+        return
 
     # Ensure output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
