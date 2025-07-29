@@ -111,8 +111,37 @@ plot_distributions <- function(data, output_dir) {
   }
 }
 
+# Function to categorize features for coloring
+categorize_feature <- function(feature, subfeature) {
+  # Subcellular localisation
+  if (feature %in% c("signalp", "targetp", "deeplocpro", "deeptmhmm")) {
+    return("Subcellular localisation")
+  }
+  # Allergenicity
+  if (feature == "allergenicity") {
+    return("Allergenicity")
+  }
+  # Immunogenicity
+  if (feature == "ifnepitope2") {
+    return("Immunogenicity")
+  }
+  # Conservation Analysis
+  if (feature == "cluster_conservation" ||
+      subfeature %in% c("Percent identity / number of strains", "Average Log₁₀ e-value", "Average bit-score / length")) {
+    return("Conservation Analysis Across Strains")
+  }
+  # Epitope Prediction
+  if (feature %in% c("bcell", "ellipro", "mchi", "mhcii", "mixmhc2pred")) {
+    return("Epitope Prediction")
+  }
+  # Epitope evaluation
+  if (feature == "popcov") {
+    return("Epitope evaluation")
+  }
+  return("Other")
+}
 
-# Function to visualize KS statistics (with value labels)
+# Function to visualize KS statistics (with value labels and categorized colors)
 plot_ks_statistics <- function(ks_df, output_dir) {
   if (!"ks_statistic" %in% colnames(ks_df)) {
     stop("Column 'ks_statistic' not found in KS results.")
@@ -122,22 +151,36 @@ plot_ks_statistics <- function(ks_df, output_dir) {
     filter(p_value < 0.05) %>%
     mutate(
       label = paste(feature, subfeature, sep = " / "),
-      label_safe = str_replace_all(label, "/", "-")
+      label_safe = str_replace_all(label, "/", "-"),
+      category = mapply(categorize_feature, feature, subfeature)
     ) %>%
     arrange(desc(ks_statistic))
   
-  p <- ggplot(ks_filtered, aes(x = reorder(label_safe, ks_statistic), y = ks_statistic)) +
-    geom_col(fill = "darkorange") +
+  # Define color palette for categories
+  category_palette <- c(
+    "Subcellular localisation" = "#1b9e77",
+    "Allergenicity" = "#d95f02",
+    "Immunogenicity" = "#7570b3",
+    "Conservation Analysis Across Strains" = "#e7298a",
+    "Epitope Prediction" = "#66a61e",
+    "Epitope evaluation" = "#e6ab02",
+    "Other" = "#a6761d"
+  )
+  
+  p <- ggplot(ks_filtered, aes(x = reorder(label_safe, ks_statistic), y = ks_statistic, fill = category)) +
+    geom_col() +
     geom_text(aes(label = round(ks_statistic, 3)), 
               hjust = -0.1, size = 3.5, color = "black") +
     coord_flip(ylim = c(0, 1)) +
     labs(
       title = "KS Statistic Summary (p < 0.05)",
       x = "Feature / Subfeature",
-      y = "KS Statistic"
+      y = "KS Statistic",
+      fill = "Category"
     ) +
     theme_minimal(base_size = 14) +
-    theme(plot.title = element_text(face = "bold"))
+    theme(plot.title = element_text(face = "bold")) +
+    scale_fill_manual(values = category_palette)
   
   ggsave(
     filename = file.path(output_dir, "ks_statistics_summary.png"),

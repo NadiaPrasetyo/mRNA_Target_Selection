@@ -773,19 +773,6 @@ def parse_deeptmhmm_dir(directory):
         - "feature": "deeptmhmm"
         - "subfeature": "proportion_outside"
         - "value": numerical proportion of outside residues in the topology
-
-    >antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050 | GLOB
-MAISQERKNEIIKEYRVHETDTGSPEVQIAVLTAEINAVNEHLRTHKKDHHSRRGLLKMVGRRRHLLNYLRSKDIQRYRELIKSLGIRR
-IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
->antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462 | GLOB
-MIEFRQVSKTFNKKKQKIHALKDVSFKVNRNDIFGVIGYSGAGKSTLVRLVNHLEAASSGQVLVDGHDITNYSEKGMREIKKDIGMIFQHFNLLNSATVFKNVAMPLILSKKSKTEIKQRVTEMLEFVGLSDKKDQFPDELSGGQKQRVAIARALVTNPKILLCDEATSALDPATTASILTLLKNVNQTFGITIMMITHEMRVIKDICNRVAVMEKGQVVETGT
-IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
->antigen_115|Q7A7G0|Uncharacterized|HE681097.1|tpos:132766-133024 | SP
-MGYLKRFTLYISIFILIVVIAGCGKSDETKEDSKEEQIKKSFAKTLDMYPIKNLKDLYDKEGYRDGEFKKGDKGTWTLLTSFSKSNKPGEIDDEGMVLYLNRNTKKATGYYFVNKIYDDISKNQNEKKYRVELKNNKIVLLDNVEDEKLKQKIENFKFFSQYADFKDLKNYQDGSITTNENVPSYEAEYKLNNSDENVKKLRDIYPITTKKAPILKLHIDGDIKGSSVGYKKIEYKFSKVKDQETTLRDYLNFGPSDED
-SSSSSSSSSSSSSSSSSSSSSSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
->antigen_91|Q6GIE0|Na(+)/H(+)|HE681097.1|tpos:200454-200610 | TM
-QIVLNIIIAFLWVLFQDEDHFKFSTFFSGYLIGLIVIYILHRFFSDDFYVRKIWVAIKFLGVYLYQLITSSISTINYILFKTKDMNPGLLSYETRLTSDWAITFLTILIIITPGSTVIRISQDSKKFFIHSIDVSEKEKDSLLRSIKHYEDLILEVS
-IMMMMMMMMMMMMMMOOOOOOOOOMMMMMMMMMMMMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
     """
     logging.info(f"Parsing Deeptmhmm dir {directory}")
     results = []
@@ -952,9 +939,41 @@ def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir):
     except Exception as e:
         logging.debug(f"Failed to plot ROC curve for {feature}/{subfeature}: {e}")
 
+def categorize_feature(feature, subfeature):
+    """
+    Categorize features for coloring in AUROC summary plot.
+    Returns a string category.
+    """
+    # Subcellular localisation
+    if feature in ["signalp", "targetp", "deeplocpro", "deeptmhmm"]:
+        return "Subcellular localisation"
+    # Allergenicity
+    if feature == "allergenicity":
+        return "Allergenicity"
+    # Immunogenicity
+    if feature == "ifnepitope2":
+        return "Immunogenicity"
+    # Conservation Analysis
+    if feature == "cluster_conservation" or subfeature in [
+        "Percent identity / number of strains",
+        "Average Log₁₀ e-value",
+        "Average bit-score / length",
+        "percent_identity/num_strain",
+        "e_value_average",
+        "bit_score_normalized"
+    ]:
+        return "Conservation Analysis Across Strains"
+    # Epitope Prediction
+    if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred"]:
+        return "Epitope Prediction"
+    # Epitope evaluation
+    if feature == "popcov":
+        return "Epitope evaluation"
+    return "Other"
+
 def plot_auroc_summary(results_df, output_dir):
     """
-    Create a bar plot of AUROC values for all features, corrected and sorted.
+    Create a bar plot of AUROC values for all features, categorized and colored.
     AUROCs < 0.5 are adjusted as 1 - AUROC.
     Args:
         results_df (pd.DataFrame): DataFrame containing feature results with columns:
@@ -962,9 +981,6 @@ def plot_auroc_summary(results_df, output_dir):
             - "subfeature": subfeature name (e.g., "bepipred", "score")
             - "auroc": AUROC value (float)
         output_dir (str): Directory to save the AUROC summary plot.
-    This function will create a directory "auroc_plots" inside output_dir if it doesn't exist
-    and save the AUROC summary plot as a PNG file named "auroc_summary.png".
-    If any error occurs during plotting, it will log the error but not raise an exception.
     """
     output_path = os.path.join(output_dir, "auroc_summary.png")
     os.makedirs(output_dir, exist_ok=True)
@@ -978,22 +994,44 @@ def plot_auroc_summary(results_df, output_dir):
         # Combine feature + subfeature for labeling
         df["label"] = df["feature"] + " / " + df["subfeature"]
 
+        # Categorize features
+        df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
+
         # Sort
         df = df.sort_values("adjusted_auroc", ascending=False)
 
+        # Define color palette for categories
+        category_palette = {
+            "Subcellular localisation": "#1b9e77",
+            "Allergenicity": "#d95f02",
+            "Immunogenicity": "#7570b3",
+            "Conservation Analysis Across Strains": "#e7298a",
+            "Epitope Prediction": "#66a61e",
+            "Epitope evaluation": "#e6ab02",
+            "Other": "#a6761d"
+        }
+        # Map colors
+        colors = df["category"].map(category_palette).fillna("#a6761d")
+
         # Plot
         plt.figure(figsize=(10, max(4, 0.3 * len(df))))
-        bars = plt.barh(df["label"], df["adjusted_auroc"], color="skyblue")
+        bars = plt.barh(df["label"], df["adjusted_auroc"], color=colors)
         plt.xlabel("AUROC (adjusted, min = 0.5)")
         plt.title("AUROC Summary (Sorted High to Low)")
         plt.xlim(0.5, 1.0)
         plt.gca().invert_yaxis()  # Highest on top
 
-        # Optional: Add value labels
+        # Add value labels
         for bar in bars:
             width = bar.get_width()
             plt.text(width + 0.01, bar.get_y() + bar.get_height()/2,
                      f"{width:.3f}", va="center")
+
+        # Add legend for categories
+        handles = []
+        for cat, color in category_palette.items():
+            handles.append(plt.Rectangle((0,0),1,1, color=color, label=cat))
+        plt.legend(handles=handles, title="Category", loc="lower right", fontsize=10)
 
         plt.tight_layout()
         plt.savefig(output_path)

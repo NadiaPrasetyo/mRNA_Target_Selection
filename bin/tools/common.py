@@ -198,7 +198,12 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
         dict: Mapping of accession code to combined FASTA Path.
     """
     grouped_by_accession = defaultdict(list)
-    header_pattern = re.compile(r'^>(?:[^|]*\|)?(?P<accession>[A-Z0-9]+)(?:\||\s)')
+    header_pattern = re.compile(
+        r"^>(?:[^|]*\|)?(?P<accession>[A-Z0-9_.-]+)(?:\|(?P<strain_acc>[A-Z0-9_.-]+))?(?:\|.*)?$"  # Match accession and optional strain_acc
+    )
+    # example header formats:
+    # >antigen_77|Q5HDD7|Immunoglobulin-binding|HE681097.1|tpos:773380-773815
+    # >Q2G0X7 Staphylococcal superantigen-like 3 (staphylococcus aureus (strain nctc 8325 / ps 47))
 
     for fasta_file in fasta_files:
         with open(fasta_file, "r") as fh:
@@ -217,6 +222,8 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
                 match = header_pattern.match(header)
                 if match:
                     accession = match.group("accession")
+                    strain_acc = match.group("strain_acc") or ""  # Default to empty if not present
+                    header = f">{accession}|{strain_acc}"  # Reformat header to only have the accession and strain_acc
                     grouped_by_accession[accession].append((header, ''.join(sequence)))
                 else:
                     raise ValueError(f"Could not parse accession from header: {header}")
