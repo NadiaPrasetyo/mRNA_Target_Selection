@@ -2,6 +2,7 @@ name: external_tools_env
 channels:
   - defaults
   - conda-forge
+  - bioconda
 dependencies:
   - python=3.10
   - numpy=1.23.5
@@ -9,8 +10,15 @@ dependencies:
   - pandas=1.5.3
   - scikit-learn=1.2.2
   - joblib=1.2.0
-  - conda-forge::mafft
+  - mafft
   - pip
   - pip:
-      - algpred2
-      - ifnepitope2
+      - algpred2==1.4
+      - argparse==1.4.0
+      - ifnepitope2==1.2
+      - pandas==1.4.0
+      - scikit-learn==1.2.1
+      - scipy==1.15.3
+      - tqdm==4.67.1
+      - biopython
+      - pybiolib
