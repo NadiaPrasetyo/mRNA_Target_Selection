@@ -540,22 +540,6 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
                 "PyBioLib is not installed. Please install it via: pip install pybiolib"
             )
         tool_paths["DEEPTMHMM"] = "deetmhmm"  # placeholder
-
-    if "CLUSTALO" in tools:
-        try:
-            if not tool_root.exists():
-                raise FileNotFoundError(f"Tool root directory {tool_root} does not exist.")
-            if not tool_root.is_dir():
-                raise NotADirectoryError(f"Tool root {tool_root} is not a directory.")
-            clustalo_path = tool_root / "clustalo"
-            if not clustalo_path.exists():
-                raise FileNotFoundError(
-                    f"Clustal Omega not found at {clustalo_path}. "
-                    "Install via http://www.clustal.org/omega/#Download"
-                )
-            tool_paths["CLUSTALO"] = clustalo_path
-        except Exception as e:
-            raise FileNotFoundError(f"Clustal Omega not found: {e}")
         
     if "MAFFT" in tools:
         try:

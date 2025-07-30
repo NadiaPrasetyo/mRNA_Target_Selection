@@ -38,7 +38,7 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, run_clustalo, run_mafft
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, run_mafft
 from tools import common
 import shutil
 
@@ -51,7 +51,6 @@ TOOL_RUNNERS = {
     "DEEPLOC": run_deeplocpro.run,
     "IFNEPITOPE2": run_ifnepitope2.run,
     "DEEPTMHMM": run_deeptmhmm.run,
-    "CLUSTALO": run_clustalo.run,
     "MAFFT": run_mafft.run
 }
 
@@ -107,10 +106,10 @@ def run_parallel_jobs(jobs, threads):
             logging.error(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
 
-    # Clean up temporary and intermediate files after CLUSTER, MAFFT, and CLUSTALO jobs
+    # Clean up temporary and intermediate files after CLUSTER and MAFFT jobs
     for job in jobs:
         tool_name, _, input_file, output_dir, _, _ = job
-        if tool_name not in ["CLUSTER", "MAFFT", "CLUSTALO"]:
+        if tool_name not in ["CLUSTER", "MAFFT"]:
             continue
 
         db_name = input_file.stem
@@ -257,9 +256,9 @@ def main():
 
     tool_paths = {}
     # Only resolve tool_root if required
-    if any(tool in args.tools for tool in ["SIGNALP", "TARGETP", "DEEPLOC", "CLUSTALO"]):
+    if any(tool in args.tools for tool in ["SIGNALP", "TARGETP", "DEEPLOC"]):
         if args.tool_root == "none":
-            logging.error("❌ --tool-root is required for running SignalP, TargetP, DeepLocPro, and Clustal Omega.")
+            logging.error("❌ --tool-root is required for running SignalP, TargetP, and DeepLocPro.")
             sys.exit(1)
     
     tool_root = Path(args.tool_root).resolve()
@@ -275,7 +274,7 @@ def main():
     # Handle jobs
     for tool_name in args.tools:
         # Handle Cluster jobs
-        if tool_name in ["CLUSTER", "MAFFT", "CLUSTALO"]:
+        if tool_name in ["CLUSTER", "MAFFT"]:
             output_dir = output_root / tool_name.lower()
             cluster_input_dir = output_root / "cluster_inputs"
             grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)

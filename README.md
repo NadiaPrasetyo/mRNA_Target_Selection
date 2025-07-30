@@ -145,7 +145,6 @@ mRNA_Target_Selection/
 - [IEDB Ellipro](http://tools.iedb.org/ellipro/)
 - [MixMHC2pred-2.0](https://github.com/GfellerLab/MixMHC2pred)
 - [DeepTMHMM](https://services.healthtech.dtu.dk/services/DeepTMHMM-1.0/)
-- [ClustalO]()
 - R (for statistical visualization)
 
 Install Python dependencies:
@@ -193,7 +192,6 @@ Install R and required packages:
 install.packages(c("ggplot2", "dplyr", "tidyr", "readr"))
 ```
 
-Install ClustalO executable in [ClustalO Webpage](http://www.clustal.org/omega/#Webservers)
 
 ## Usage
 
