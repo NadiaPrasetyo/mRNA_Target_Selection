@@ -1,6 +1,7 @@
 from pathlib import Path
 import argparse
 import logging
+import subprocess
 
 def patch_error_msg(tool_path: Path):
     """
@@ -34,6 +35,14 @@ def patch_error_msg(tool_path: Path):
     logging.info("🔧 Patching errorMsg.cpp to fix bug in Rate4Site...")
     logging.info("✅ Patch applied successfully.")
 
+    # recompile the patched source code
+    try:
+        subprocess.run(["make", source_dir], check=True)
+        logging.info("🔁 Recompiled Rate4Site source code successfully.")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"❌ Failed to recompile Rate4Site source code: {e}")
+        raise
+
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     """
     Runs Rate4Site using the patched source code.
@@ -63,8 +72,7 @@ def main():
     """
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.StreamHandler()])
     parser = argparse.ArgumentParser(description="Run Rate4Site with patched source code.")
-    parser.add_help("-h", action="help", default=argparse.SUPPRESS, help="Show this help message and exit.")
-    parser.add_argument("--tool-path", required=True, type=Path, help="Path to the directory containing the rate4site source code. e.g. home/usr/rate4site.3.2.source/")
+    parser.add_argument("--tool-path", required=True, type=Path, help="Path to the directory containing the rate4site source code. e.g. /home/usr/rate4site.3.2.source/")
     parser.add_argument("--input-fasta", required=False, type=Path, help="Path to the input FASTA file.")
     parser.add_argument("--output-dir", required=False, type=Path, help="Path to the output directory.")
 
