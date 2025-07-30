@@ -68,38 +68,43 @@ def patch_some_util(tool_path: Path):
         logging.info("ℹ️ No changes made to someUtil.cpp (already patched?).")
 
 
-
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     """
     Runs Rate4Site using the patched source code.
-    
+
     Args:
     - tool_path: Path to the directory containing the rate4site source code.
     - input_fasta: Path to the input FASTA file.
     - output_dir: Path to the output directory.
     - batch_size: Unused, present for interface compatibility.
-    
+
     Raises:
     - RuntimeError: If the patching fails or if the command execution fails.
     """
     try:
         patch_error_msg(tool_path)
-        patch_some_util(tool_path)  # Assume this is your patch for someUtil.cpp
+        patch_some_util(tool_path)
 
         logging.info("🔨 Recompiling Rate4Site source code with patched files...")
         command = ["make", "-C", str(tool_path / "sourceMar09")]
         result = subprocess.run(command, capture_output=True, text=True)
 
         if result.returncode != 0:
-            logging.error("❌ Failed to recompile Rate4Site source code:")
-            logging.error(result.stderr)
+            log_file = tool_path / "compile_error.log"
+            with open(log_file, "w") as f:
+                f.write("=== STDOUT ===\n")
+                f.write(result.stdout)
+                f.write("\n=== STDERR ===\n")
+                f.write(result.stderr)
+            logging.error(f"❌ Compilation failed. Full output written to: {log_file}")
             raise RuntimeError("Compilation failed.")
 
         logging.info("✅ Compilation successful. Ready to run Rate4Site.")
-        # Proceed to run Rate4Site...
+        # Optionally: run Rate4Site command here
 
     except Exception as e:
         raise RuntimeError(f"Failed to run Rate4Site: {e}")
+
 
     
 def main():
