@@ -15,6 +15,7 @@ def patch_error_msg(tool_path: Path):
     """
     source_dir = tool_path / "sourceMar09"
     file_path = source_dir / "errorMsg.cpp"
+    print(f"🔍 Looking for errorMsg.cpp at: {file_path}")
 
     if not file_path.exists():
         raise FileNotFoundError(f"Could not find errorMsg.cpp at expected location: {file_path}")
@@ -60,7 +61,7 @@ def main():
     Main function to execute the script.
     Take input from command line arguments or predefined paths.
     """
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.StreamHandler()])
     parser = argparse.ArgumentParser(description="Run Rate4Site with patched source code.")
     parser.add_help("-h", action="help", default=argparse.SUPPRESS, help="Show this help message and exit.")
     parser.add_argument("--tool-path", required=True, type=Path, help="Path to the directory containing the rate4site source code. e.g. home/usr/rate4site.3.2.source/")
