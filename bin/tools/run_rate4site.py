@@ -70,3 +70,6 @@ def main():
 
     args = parser.parse_args()
     run(args.tool_path, args.input_fasta, args.output_dir, batch_size=0)
+
+if __name__ == "__main__":
+    main()
