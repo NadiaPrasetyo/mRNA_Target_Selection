@@ -36,7 +36,7 @@ def patch_error_msg(tool_path: Path):
     logging.info("✅ Patch applied successfully.")
 
 
-def patch_source_code(tool_path: Path):
+def patch_some_util(tool_path: Path):
     source_file = tool_path / "sourceMar09/someUtil.cpp"
     if not source_file.exists():
         raise FileNotFoundError(f"Could not find someUtil.cpp at {source_file}")
@@ -76,25 +76,23 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     """
     try:
         patch_error_msg(tool_path)
-        patch_source_code(tool_path)
-        
-        # Here you would typically run the command to execute Rate4Site
-        # For example:
-        # subprocess.run(["rate4site", str(input_fasta), "-o", str(output_dir)], check=True)
+        patch_some_util(tool_path)  # Assume this is your patch for someUtil.cpp
+
+        logging.info("🔨 Recompiling Rate4Site source code with patched files...")
+        command = ["make", "-C", str(tool_path / "sourceMar09")]
+        result = subprocess.run(command, capture_output=True, text=True)
+
+        if result.returncode != 0:
+            logging.error("❌ Failed to recompile Rate4Site source code:")
+            logging.error(result.stderr)
+            raise RuntimeError("Compilation failed.")
+
+        logging.info("✅ Compilation successful. Ready to run Rate4Site.")
+        # Proceed to run Rate4Site...
+
     except Exception as e:
         raise RuntimeError(f"Failed to run Rate4Site: {e}")
-    
-     # recompile the patched source code
-    try:
-        command = [
-            "make", "-C", str(tool_path / "sourceMar09")
-        ]
-        result = subprocess.run(command, check=True, capture_output=True, text=True)
-        # print all output from the make command
-        logging.info(result.stdout)
-    except subprocess.CalledProcessError as e:
-        logging.error(f"❌ Failed to recompile Rate4Site source code: {e}")
-        raise
+
     
 def main():
     """
