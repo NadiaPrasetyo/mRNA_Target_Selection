@@ -23,21 +23,26 @@ def patch_error_msg(tool_path: Path):
 
     # Read and patch the source file
     patched_lines = []
+    modified = False
     with open(file_path, "r") as f:
         for line in f:
             if "*_errorOut != cerr" in line:
                 line = line.replace("*_errorOut != cerr", "_errorOut != &std::cerr")
+                modified = True
             patched_lines.append(line)
 
-    # Write back the patched file
-    with open(file_path, "w") as f:
-        f.writelines(patched_lines)
-    logging.info("🔧 Patching errorMsg.cpp to fix bug in Rate4Site...")
-    logging.info("✅ Patch applied successfully.")
+    if modified:
+        # Write back the patched file
+        with open(file_path, "w") as f:
+            f.writelines(patched_lines)
+        logging.info("🔧 Patching errorMsg.cpp to fix bug in Rate4Site...")
+        logging.info("✅ Patch applied successfully.")
+    else:
+        logging.info("ℹ️ No changes made to errorMsg.cpp (already patched?).")
 
 def patch_some_util(tool_path: Path):
     """
-    Patch someUtil.cpp to correctly check if ifstream is open instead of comparing it to NULL.
+    Patch someUtil.cpp to replace invalid 'ifstream == NULL' checks with correct 'is_open()' usage.
     """
     logging.info("🔧 Patching someUtil.cpp to fix file open check...")
     file_path = tool_path / "sourceMar09" / "someUtil.cpp"
@@ -49,10 +54,9 @@ def patch_some_util(tool_path: Path):
     modified = False
     with file_path.open("r") as f:
         for line in f:
-            # Fix: ifstream var == NULL  --> !var.is_open()
-            if "ifstream" in line and "==" in line and "NULL" in line:
-                var_name = line.split()[1].split("=")[0].strip()  # crude way to get var name
-                new_line = f"        if (!{var_name}.is_open()) return false;\n"
+            # Explicitly fix common broken pattern:
+            if "file1 == NULL" in line or "file1==NULL" in line:
+                new_line = "        if (!file1.is_open()) return false;\n"
                 patched_lines.append(new_line)
                 modified = True
             else:
