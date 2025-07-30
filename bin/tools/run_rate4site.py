@@ -62,9 +62,10 @@ def main():
     """
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     parser = argparse.ArgumentParser(description="Run Rate4Site with patched source code.")
-    parser.add_argument("tool_path", type=Path, help="Path to the directory containing the rate4site source code. e.g. home/usr/rate4site.3.2.source/")
-    parser.add_argument("input_fasta", type=Path, help="Path to the input FASTA file.")
-    parser.add_argument("output_dir", type=Path, help="Path to the output directory.")
+    parser.add_help("-h", action="help", default=argparse.SUPPRESS, help="Show this help message and exit.")
+    parser.add_argument("--tool-path", required=True, type=Path, help="Path to the directory containing the rate4site source code. e.g. home/usr/rate4site.3.2.source/")
+    parser.add_argument("--input-fasta", required=False, type=Path, help="Path to the input FASTA file.")
+    parser.add_argument("--output-dir", required=False, type=Path, help="Path to the output directory.")
 
     args = parser.parse_args()
     run(args.tool_path, args.input_fasta, args.output_dir, batch_size=0)
