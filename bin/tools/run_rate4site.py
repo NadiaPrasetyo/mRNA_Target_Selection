@@ -70,6 +70,35 @@ def patch_some_util(tool_path: Path):
     else:
         logging.info("ℹ️ No changes made to someUtil.cpp (already patched?).")
 
+def patch_rate4site_options(tool_path: Path):
+    """
+    Patch rate4siteOptions.cpp to fix invalid ofstream == NULL check.
+    """
+    logging.info("🔧 Patching rate4siteOptions.cpp to fix output file open check...")
+    file_path = tool_path / "sourceMar09" / "rate4siteOptions.cpp"
+
+    if not file_path.exists():
+        raise FileNotFoundError(f"rate4siteOptions.cpp not found at: {file_path}")
+
+    patched_lines = []
+    modified = False
+    with file_path.open("r") as f:
+        for line in f:
+            if "out_f == NULL" in line or "out_f==NULL" in line:
+                patched_lines.append(
+                    '                                if (!out_f.is_open()) errorMsg::reportError(" unable to open output file for writing. ");\n'
+                )
+                modified = True
+            else:
+                patched_lines.append(line)
+
+    if modified:
+        with file_path.open("w") as f:
+            f.writelines(patched_lines)
+        logging.info("✅ Patch applied successfully.")
+    else:
+        logging.info("ℹ️ No changes made to rate4siteOptions.cpp (already patched?).")
+
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     """
@@ -87,6 +116,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     try:
         patch_error_msg(tool_path)
         patch_some_util(tool_path)
+        patch_rate4site_options(tool_path)
 
         logging.info("🔨 Recompiling Rate4Site source code with patched files...")
         command = ["make", "-C", str(tool_path / "sourceMar09")]
