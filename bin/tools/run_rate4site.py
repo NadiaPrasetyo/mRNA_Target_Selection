@@ -35,30 +35,38 @@ def patch_error_msg(tool_path: Path):
     logging.info("🔧 Patching errorMsg.cpp to fix bug in Rate4Site...")
     logging.info("✅ Patch applied successfully.")
 
-
 def patch_some_util(tool_path: Path):
-    source_file = tool_path / "sourceMar09/someUtil.cpp"
-    if not source_file.exists():
-        raise FileNotFoundError(f"Could not find someUtil.cpp at {source_file}")
-    
-    with source_file.open("r") as f:
-        lines = f.readlines()
-
-    # Patch the line containing 'if (f == NULL)'
-    new_lines = []
-    for line in lines:
-        if "if (f == NULL)" in line:
-            new_line = line.replace("if (f == NULL)", "if (!f.is_open())")
-            print(f"Patching line:\n  {line.strip()}\n→ {new_line.strip()}")
-            new_lines.append(new_line)
-        else:
-            new_lines.append(line)
-
-    with source_file.open("w") as f:
-        f.writelines(new_lines)
-    
+    """
+    Patch someUtil.cpp to replace invalid 'ifstream == NULL' checks.
+    """
     logging.info("🔧 Patching someUtil.cpp to fix file open check...")
-    logging.info("✅ Patch applied successfully.")
+    file_path = tool_path / "sourceMar09" / "someUtil.cpp"
+    
+    if not file_path.exists():
+        raise FileNotFoundError(f"someUtil.cpp not found at: {file_path}")
+
+    patched_lines = []
+    modified = False
+    with file_path.open("r") as f:
+        for line in f:
+            if "== NULL" in line and "ifstream" in line:
+                new_line = line.replace("== NULL", ".is_open() == false")
+                patched_lines.append(new_line)
+                modified = True
+            elif "f == NULL" in line:
+                new_line = line.replace("f == NULL", "!f")
+                patched_lines.append(new_line)
+                modified = True
+            else:
+                patched_lines.append(line)
+
+    if modified:
+        with file_path.open("w") as f:
+            f.writelines(patched_lines)
+        logging.info("✅ Patch applied successfully.")
+    else:
+        logging.info("ℹ️ No changes made to someUtil.cpp (already patched?).")
+
 
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
