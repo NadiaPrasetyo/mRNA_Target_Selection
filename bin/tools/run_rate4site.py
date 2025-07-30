@@ -37,11 +37,11 @@ def patch_error_msg(tool_path: Path):
 
 def patch_some_util(tool_path: Path):
     """
-    Patch someUtil.cpp to replace invalid 'ifstream == NULL' checks.
+    Patch someUtil.cpp to correctly check if ifstream is open instead of comparing it to NULL.
     """
     logging.info("🔧 Patching someUtil.cpp to fix file open check...")
     file_path = tool_path / "sourceMar09" / "someUtil.cpp"
-    
+
     if not file_path.exists():
         raise FileNotFoundError(f"someUtil.cpp not found at: {file_path}")
 
@@ -49,12 +49,10 @@ def patch_some_util(tool_path: Path):
     modified = False
     with file_path.open("r") as f:
         for line in f:
-            if "== NULL" in line and "ifstream" in line:
-                new_line = line.replace("== NULL", ".is_open() == false")
-                patched_lines.append(new_line)
-                modified = True
-            elif "f == NULL" in line:
-                new_line = line.replace("f == NULL", "!f")
+            # Fix: ifstream var == NULL  --> !var.is_open()
+            if "ifstream" in line and "==" in line and "NULL" in line:
+                var_name = line.split()[1].split("=")[0].strip()  # crude way to get var name
+                new_line = f"        if (!{var_name}.is_open()) return false;\n"
                 patched_lines.append(new_line)
                 modified = True
             else:
