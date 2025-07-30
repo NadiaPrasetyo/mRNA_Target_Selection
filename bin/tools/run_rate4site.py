@@ -42,7 +42,7 @@ def patch_error_msg(tool_path: Path):
 
 def patch_some_util(tool_path: Path):
     """
-    Patch someUtil.cpp to replace invalid 'ifstream == NULL' checks with correct 'is_open()' usage.
+    Patch someUtil.cpp to replace invalid 'ifstream == NULL' checks with correct checks.
     """
     logging.info("🔧 Patching someUtil.cpp to fix file open check...")
     file_path = tool_path / "sourceMar09" / "someUtil.cpp"
@@ -54,10 +54,11 @@ def patch_some_util(tool_path: Path):
     modified = False
     with file_path.open("r") as f:
         for line in f:
-            # Explicitly fix common broken pattern:
             if "file1 == NULL" in line or "file1==NULL" in line:
-                new_line = "        if (!file1.is_open()) return false;\n"
-                patched_lines.append(new_line)
+                patched_lines.append("        if (!file1.is_open()) return false;\n")
+                modified = True
+            elif "f == NULL" in line or "f==NULL" in line:
+                patched_lines.append("        if (!f.is_open()) {\n")
                 modified = True
             else:
                 patched_lines.append(line)
