@@ -86,7 +86,10 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     
      # recompile the patched source code
     try:
-        result = subprocess.run(["make", tool_path/"sourceMar09"], check=True, capture_output=True, text=True)
+        command = [
+            "make", "-C", str(tool_path / "sourceMar09")
+        ]
+        result = subprocess.run(command, check=True, capture_output=True, text=True)
         # print all output from the make command
         logging.info(result.stdout)
     except subprocess.CalledProcessError as e:
