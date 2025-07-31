@@ -178,7 +178,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         logging.error(e.stderr)
         raise
 
-    import run_rate4site
+    from tools import run_rate4site
     # call run_rate4site to run rate4site on the aligned sequences if a the ouput files were created
     if final_output_restored_fasta.exists():
         rate4site_output_dir = output_dir / "rate4site_results"
