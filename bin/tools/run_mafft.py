@@ -23,7 +23,60 @@ import subprocess
 from pathlib import Path
 import logging
 import shutil
-from tools import common, run_rate4site
+from tools import common
+
+############################ HELPER FUNCTIONS ############################
+def rename_fasta_headers(original_fasta: Path, renamed_fasta: Path) -> dict:
+    """
+    Replace FASTA headers with generic seq1, seq2, ... and save the mapping.
+    Returns a dictionary mapping new -> original headers.
+    """
+    from Bio import SeqIO
+
+    records = list(SeqIO.parse(original_fasta, "fasta"))
+    mapping = {}
+    renamed_records = []
+
+    for i, record in enumerate(records, 1):
+        new_id = f"seq{i}"
+        mapping[new_id] = record.id
+        record.id = new_id
+        record.name = ""
+        record.description = ""
+        renamed_records.append(record)
+
+    SeqIO.write(renamed_records, renamed_fasta, "fasta")
+    return mapping
+
+
+def restore_fasta_headers(renamed_fasta: Path, mapping: dict, restored_fasta: Path):
+    """
+    Replace generic headers (seq1, ...) back with original headers using the mapping.
+    """
+    from Bio import SeqIO
+
+    records = []
+    for record in SeqIO.parse(renamed_fasta, "clustal"):
+        original_id = mapping.get(record.id)
+        if not original_id:
+            raise ValueError(f"Missing mapping for {record.id}")
+        record.id = original_id
+        record.name = ""
+        record.description = ""
+        records.append(record)
+
+    SeqIO.write(records, restored_fasta, "fasta")
+
+def restore_tree_names(tree_file: Path, mapping: dict):
+    from Bio import Phylo
+
+    tree = Phylo.read(tree_file, "newick")
+
+    for terminal in tree.get_terminals():
+        if terminal.name in mapping:
+            terminal.name = mapping[terminal.name]
+
+    Phylo.write(tree, tree_file, "newick")
 
 def count_sequences(input_fasta: Path) -> int:
     """
@@ -36,87 +89,66 @@ def count_sequences(input_fasta: Path) -> int:
     with open(input_fasta, 'r') as f:
         return sum(1 for line in f if line.startswith('>'))
     
+############################ RUN MAFFT FUNCTION ############################
+
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
-    """
-    Runs MAFFT using the external_tools_env conda environment.
-    Args:
-    - tool_path: Path to the MAFFT executable (ignored, required by interface).
-    - input_fasta: Path to the input FASTA file.
-    - output_dir: Path to the output directory.
-    - batch_size: Batch size for processing (not used here, kept for compatibility).
-    Raises:
-    - RuntimeError: If Conda is not available or if the MAFFT command fails.
-    Outputs:
-    - <output_dir>/<input_fasta_stem>_aligned.fasta: Aligned sequences in Clustal format.
-    - <output_dir>/<input_fasta_stem>.tree: Guide tree in Newick format (if generated).
-    """
-    # Check if the input FASTA file contains more than one sequence
+    from tools import run_rate4site
+
     sequence_count = count_sequences(input_fasta)
     if sequence_count <= 1:
-        logging.info(f"ℹ️ Input FASTA file {input_fasta.name} contains only one sequence. Alignment is not required. Exiting gracefully.")
+        logging.info(f"ℹ️ Input FASTA {input_fasta.name} has one sequence. Skipping alignment.")
         return
 
-    # Ensure output directory exists
-    output_dir.mkdir(parents=True, exist_ok=True)
-
     if not shutil.which("conda"):
-        logging.error("❌ Conda is not available in PATH.")
-        raise RuntimeError("Conda is required but not found.")
+        logging.error("❌ Conda is not available.")
+        raise RuntimeError("Conda is required.")
 
     common.create_conda_env_if_needed()
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_file = output_dir / f"{input_fasta.stem}_aligned.fasta"
+    # Rename headers
+    renamed_fasta = output_dir / f"{input_fasta.stem}_renamed.fasta"
+    mapping = rename_fasta_headers(input_fasta, renamed_fasta)
 
+    mafft_output_file = output_dir / f"{input_fasta.stem}_aligned.fasta"
+    mafft_tree_file = renamed_fasta.with_suffix(".tree")
+
+    # Run MAFFT
     command = [
         "conda", "run", "-n", common.CONDA_ENV_NAME,
-        "mafft", "--localpair", "--maxiterate", "1000", #L-INS-i (probably most accurate; recommended for <200 sequences; iterative refinement method incorporating local pairwise alignment information)
-        "--clustalout", # Output format: clustal format
-        "--reorder", # Output order: aligned.
-        "--treeout", # Guide tree is output to the input.tree file
-        "--amino", # Assume the sequences are amino acid
-        str(input_fasta)
+        "mafft", "--localpair", "--maxiterate", "1000",
+        "--clustalout", "--reorder", "--treeout", "--amino",
+        str(renamed_fasta)
     ]
 
-    logging.info(f"🔍 Running MAFFT on {input_fasta}...")
-
+    logging.info("🔍 Running MAFFT...")
     try:
         result = subprocess.run(command, check=True, capture_output=True, text=True)
-
-        # Save the aligned output
-        with open(output_file, 'w') as f:
+        with open(mafft_output_file, 'w') as f:
             f.write(result.stdout)
-
-        # Log stderr if any
-        if result.stderr:
-            logging.debug(f"MAFFT stderr:\n{result.stderr}")
-
-        logging.info(f"✅ MAFFT alignment completed. Output saved to {output_file}")
-
-        # Move the generated tree file to the output directory
-        tree_file = input_fasta.with_suffix(input_fasta.suffix + ".tree")  # Input file with .tree suffix
-        if tree_file.exists():
-            tree_output_file = output_dir / f"{input_fasta.stem}.tree"
-            shutil.move(tree_file, tree_output_file)
-            logging.info(f"✅ Guide tree saved to {tree_output_file}")
-        else:
-            logging.warning("⚠️ No guide tree file generated by MAFFT.")
-
+        logging.info(f"✅ MAFFT output saved to {mafft_output_file}")
     except subprocess.CalledProcessError as e:
-        logging.error("❌ Error running MAFFT:")
+        logging.error("❌ MAFFT failed:")
         logging.error(e.stderr)
         raise
 
-    # call run_rate4site to run rate4site on the aligned sequences if a the ouput files were created
-    if output_file.exists():
-        rate4site_output_dir = output_dir / "rate4site_results"
-        tree_file = output_dir / f"{input_fasta.stem}.tree"
-        if tree_file.exists():
-            rate4site_output_dir.mkdir(parents=True, exist_ok=True)
-            # Run Rate4Site with the aligned output and the tree file
-            run_rate4site.run(input_fasta=output_file, input_tree=tree_file, output_dir=rate4site_output_dir)
-        else:
-            logging.error("❌ MAFFT did not produce a tree file. Rate4Site will not be run.")
-            raise RuntimeError("MAFFT alignment completed but no tree file was generated.")
-    else:
-        logging.error("❌ MAFFT did not produce the expected output file. Rate4Site will not be run.")
-        raise RuntimeError("MAFFT alignment failed, output file not created.")
+    if not mafft_tree_file.exists():
+        logging.error("❌ MAFFT did not generate a tree file.")
+        raise RuntimeError("MAFFT failed to produce guide tree.")
+
+    # Restore headers
+    restored_fasta = output_dir / f"{input_fasta.stem}_aligned_restored.fasta"
+    tree_output_file = output_dir / f"{input_fasta.stem}.tree"
+    restore_fasta_headers(mafft_output_file, mapping, restored_fasta)
+    shutil.move(mafft_tree_file, tree_output_file)
+    restore_tree_names(tree_output_file, mapping)
+    logging.info("🔁 Restored original headers in alignment and tree.")
+    logging.info("✅ MAFFT alignment and tree restoration completed. Output files: "
+                 f"{restored_fasta}, {tree_output_file}")
+
+    ##################### RUN RATE4SITE ############################
+    if restored_fasta.exists() and tree_output_file.exists():
+        logging.info("🔍 Running Rate4Site on the MAFFT output...")
+    rate4site_output_dir = output_dir / "rate4site_results"
+    rate4site_output_dir.mkdir(parents=True, exist_ok=True)
+    run_rate4site.run(input_fasta=restored_fasta, input_tree=tree_output_file, output_dir=rate4site_output_dir)
