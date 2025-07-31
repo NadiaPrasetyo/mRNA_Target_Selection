@@ -48,33 +48,82 @@ def rename_fasta_headers(original_fasta: Path, renamed_fasta: Path) -> dict:
     SeqIO.write(renamed_records, renamed_fasta, "fasta")
     return mapping
 
-
-def restore_clustal_headers(clustal_file: Path, mapping: dict, output_file: Path):
+def restore_clustal_headers_full(clustal_file: Path, mapping: dict, output_file: Path):
     """
-    Replace seq1, seq2, ... headers in a MAFFT CLUSTAL alignment file with original headers.
-    Preserves alignment format.
+    Fully restore sequence names in a CLUSTAL alignment, preserving alignment.
+    Allows variable-width headers and realigns sequence columns accordingly.
     """
     import re
+    from collections import defaultdict
 
-    # Compile regex to match alignment lines
-    header_regex = re.compile(r"^(seq\d+)(\s+)")
+    with open(clustal_file, "r") as f:
+        lines = f.readlines()
 
-    with open(clustal_file, "r") as infile, open(output_file, "w") as outfile:
-        for line in infile:
-            match = header_regex.match(line)
-            if match:
-                seq_id, spacing = match.groups()
-                original_id = mapping.get(seq_id)
-                if not original_id:
-                    raise ValueError(f"Missing mapping for {seq_id}")
+    # First line is header (e.g. "CLUSTAL format...")
+    header = lines[0]
+    alignment_lines = lines[1:]
 
-                # Truncate/pad the original ID to match the width of seq_id
-                new_id = original_id[:len(seq_id)].ljust(len(seq_id))
-                line = line.replace(seq_id, new_id, 1)
+    # Extract alignment blocks
+    blocks = []
+    current_block = []
+    for line in alignment_lines:
+        if line.strip() == "":
+            if current_block:
+                blocks.append(current_block)
+                current_block = []
+        else:
+            current_block.append(line.rstrip('\n'))
 
-            outfile.write(line)
+    if current_block:
+        blocks.append(current_block)
 
-    logging.info(f"🪄 Restored headers in CLUSTAL alignment saved to {output_file}")
+    # Parse all sequence lines to collect full names
+    seq_lines_by_name = defaultdict(list)
+    consensus_lines = []
+
+    for block in blocks:
+        for line in block:
+            if not line.strip():
+                continue
+            if re.match(r"^\s*[.:* ]+$", line):  # Consensus line
+                consensus_lines.append(line)
+                continue
+            parts = line.rstrip().split()
+            if len(parts) >= 2:
+                name, seq_part = parts[0], parts[1]
+                seq_lines_by_name[name].append(seq_part)
+            else:
+                raise ValueError(f"Unrecognized line format: {line}")
+
+    # Now replace names
+    restored_lines_by_name = {}
+    for short_name, seq_parts in seq_lines_by_name.items():
+        if short_name not in mapping:
+            raise ValueError(f"Missing mapping for {short_name}")
+        full_name = mapping[short_name]
+        restored_lines_by_name[full_name] = seq_parts
+
+    # Determine formatting
+    max_name_len = max(len(name) for name in restored_lines_by_name)
+    block_size = len(next(iter(restored_lines_by_name.values()))[0])
+
+    # Rebuild output
+    with open(output_file, "w") as f:
+        f.write(header)
+        f.write('\n')
+
+        for block_idx in range(len(blocks)):
+            for name, seq_parts in restored_lines_by_name.items():
+                seq_part = seq_parts[block_idx]
+                f.write(f"{name.ljust(max_name_len + 2)}{seq_part}\n")
+
+            # Consensus line, if any
+            if len(blocks[block_idx]) > len(restored_lines_by_name):
+                consensus_line = blocks[block_idx][-1]
+                f.write(' ' * (max_name_len + 2) + consensus_line.strip() + '\n')
+
+            f.write('\n')
+
 
 def restore_tree_names(tree_file: Path, mapping: dict):
     from Bio import Phylo
@@ -97,7 +146,6 @@ def restore_tree_names(tree_file: Path, mapping: dict):
             logging.warning(f"⚠️ No mapping found for terminal: {terminal.name}")
 
     Phylo.write(tree, tree_file, "newick")
-    logging.info(f"🌳 Tree tip names restored in {tree_file}")
 
 
 def count_sequences(input_fasta: Path) -> int:
@@ -169,24 +217,19 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
 
         logging.info(f"✅ MAFFT alignment completed. Output saved to {renamed_temp_output_file}")
 
-        # Move the generated tree file to the output directory
-        tree_file = renamed_temp_fasta.with_suffix(input_fasta.suffix + ".tree")  # Input file with .tree suffix
-        if tree_file.exists():
-            temp_simplified_tree_output_file = output_dir / f"{input_fasta.stem}_simplified.tree"
-            shutil.move(tree_file, temp_simplified_tree_output_file)
-            logging.info(f"✅ Guide tree saved to {temp_simplified_tree_output_file}")
-        else:
-            logging.error("❌ MAFFT did not generate a tree file.")
-            raise RuntimeError("MAFFT failed to produce guide tree.")
+        # Check if a tree file was generated
+        temp_simplified_tree_output_file = renamed_temp_fasta.with_suffix(input_fasta.suffix + ".tree")  # Input file with .tree suffix
+        if not temp_simplified_tree_output_file.exists():
+            logging.warning("⚠️ MAFFT did not generate a tree file.")
         
         # Restore headers
         final_output_restored_fasta = output_dir / f"{input_fasta.stem}_aligned.fasta"
         final_output_tree_file = output_dir / f"{input_fasta.stem}.tree"
-
-        restore_clustal_headers(renamed_temp_output_file, mapping, final_output_restored_fasta)
         shutil.move(temp_simplified_tree_output_file, final_output_tree_file)
+
+        restore_clustal_headers_full(renamed_temp_output_file, mapping, final_output_restored_fasta)
         restore_tree_names(final_output_tree_file, mapping)
-        
+
         logging.info("🔁 Restored original headers in alignment and tree.")
         logging.info("✅ MAFFT alignment and tree restoration completed. Output files: "
                     f"{final_output_restored_fasta}, {final_output_tree_file}")
