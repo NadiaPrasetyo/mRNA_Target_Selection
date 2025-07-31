@@ -31,7 +31,7 @@ def run(input_fasta: Path, input_tree: Path, output_dir: Path):
         "-o", str(output_file),
         "-x", str(tree_out_file),
         "-y", str(unnormalized_rates_file),
-        "-ib",                  # Rate inference method flag:
+        "-im",                  # Rate inference method flag:
                                 # -im = rates are inferred using the maximum likelihood method
                                 # -ib = rates are inferred using the empirical Bayes method 
         "-Mw"                   # The following amino-acids models are supported:
