@@ -111,7 +111,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     mapping = rename_fasta_headers(input_fasta, renamed_fasta)
 
     mafft_output_file = output_dir / f"{input_fasta.stem}_aligned.fasta"
-    mafft_tree_file = renamed_fasta.with_suffix(".tree")
 
     # Run MAFFT
     command = [
@@ -132,19 +131,27 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         logging.error(e.stderr)
         raise
 
+    mafft_tree_file = renamed_fasta.with_suffix(".fasta.tree")
+
     if not mafft_tree_file.exists():
         logging.error("❌ MAFFT did not generate a tree file.")
         raise RuntimeError("MAFFT failed to produce guide tree.")
-
+    
     # Restore headers
-    restored_fasta = output_dir / f"{input_fasta.stem}_aligned_restored.fasta"
+    restored_fasta = output_dir / f"{input_fasta.stem}_aligned.fasta"
     tree_output_file = output_dir / f"{input_fasta.stem}.tree"
     restore_fasta_headers(mafft_output_file, mapping, restored_fasta)
-    shutil.move(mafft_tree_file, tree_output_file)
+    shutil.move(mafft_tree_file, tree_output_file) # Rename tree file to match output .tree file
     restore_tree_names(tree_output_file, mapping)
     logging.info("🔁 Restored original headers in alignment and tree.")
     logging.info("✅ MAFFT alignment and tree restoration completed. Output files: "
                  f"{restored_fasta}, {tree_output_file}")
+    
+    cleanup_files = [renamed_fasta, mafft_output_file, mafft_tree_file]
+    for file in cleanup_files:
+        if file.exists():
+            file.unlink()
+            logging.info(f"🗑️ Cleaned up temporary file: {file}")
 
     ##################### RUN RATE4SITE ############################
     if restored_fasta.exists() and tree_output_file.exists():
