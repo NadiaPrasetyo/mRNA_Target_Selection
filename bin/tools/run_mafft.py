@@ -107,12 +107,16 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         raise
 
     # call run_rate4site to run rate4site on the aligned sequences if a the ouput files were created
-    if output_file.exists() and tree_file.exists():
-        rate4site_output_dir = output_dir.parent / "rate4site_results"
-        rate4site_output_dir.mkdir(parents=True, exist_ok=True)
-        # Run Rate4Site with the aligned output and the tree file
-        run_rate4site.run(input_fasta=output_file, input_tree=tree_output_file, output_dir=rate4site_output_dir)
-    elif output_file.exists():
-        logging.warning(f"⚠️ No tree file generated for {input_fasta.name}. Skipping Rate4Site execution.")
-    elif tree_file.exists():
-        logging.warning(f"⚠️ No aligned output file created for {input_fasta.name}. Skipping Rate4Site execution.")
+    if output_file.exists():
+        rate4site_output_dir = output_dir / "rate4site_results"
+        tree_file = output_dir / f"{input_fasta.stem}.tree"
+        if tree_file.exists():
+            rate4site_output_dir.mkdir(parents=True, exist_ok=True)
+            # Run Rate4Site with the aligned output and the tree file
+            run_rate4site.run(input_fasta=output_file, input_tree=tree_file, output_dir=rate4site_output_dir)
+        else:
+            logging.error("❌ MAFFT did not produce a tree file. Rate4Site will not be run.")
+            raise RuntimeError("MAFFT alignment completed but no tree file was generated.")
+    else:
+        logging.error("❌ MAFFT did not produce the expected output file. Rate4Site will not be run.")
+        raise RuntimeError("MAFFT alignment failed, output file not created.")
