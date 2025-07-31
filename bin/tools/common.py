@@ -541,7 +541,7 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
             )
         tool_paths["DEEPTMHMM"] = "deetmhmm"  # placeholder
         
-    if "MAFFT" in tools:
+    if "MAFFT_RATE4SITE" in tools:
         try:
             algpred_path = Path("ext_tools_dependencies.yml")
             if not algpred_path.exists():
@@ -549,9 +549,9 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
                     f"⚠️ Dependencies file not found at {algpred_path}. "
                     "Please get the dependency file from GitHub."
                 )
-            tool_paths["MAFFT"] = "mafft"  # placeholder
+            tool_paths["MAFFT_RATE4SITE"] = "mafft"  # placeholder
         except Exception as e:
-            raise FileNotFoundError(f"MAFFT not found: {e}")
+            raise FileNotFoundError(f"MAFFT_RATE4SITE not found: {e}")
         
     return tool_paths
 

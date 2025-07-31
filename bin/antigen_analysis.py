@@ -51,7 +51,7 @@ TOOL_RUNNERS = {
     "DEEPLOC": run_deeplocpro.run,
     "IFNEPITOPE2": run_ifnepitope2.run,
     "DEEPTMHMM": run_deeptmhmm.run,
-    "MAFFT": run_mafft.run
+    "MAFFT_RATE4SITE": run_mafft.run
 }
 
 # List of valid tools that can be run
@@ -106,10 +106,10 @@ def run_parallel_jobs(jobs, threads):
             logging.error(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
 
-    # Clean up temporary and intermediate files after CLUSTER and MAFFT jobs
+    # Clean up temporary and intermediate files after CLUSTER and MAFFT_RATE4SITE jobs
     for job in jobs:
         tool_name, _, input_file, output_dir, _, _ = job
-        if tool_name not in ["CLUSTER", "MAFFT"]:
+        if tool_name not in ["CLUSTER", "MAFFT_RATE4SITE"]:
             continue
 
         db_name = input_file.stem
@@ -274,7 +274,7 @@ def main():
     # Handle jobs
     for tool_name in args.tools:
         # Handle Cluster jobs
-        if tool_name in ["CLUSTER", "MAFFT"]:
+        if tool_name in ["CLUSTER", "MAFFT_RATE4SITE"]:
             output_dir = output_root / tool_name.lower()
             cluster_input_dir = output_root / "cluster_inputs"
             grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)

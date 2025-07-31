@@ -145,6 +145,8 @@ mRNA_Target_Selection/
 - [IEDB Ellipro](http://tools.iedb.org/ellipro/)
 - [MixMHC2pred-2.0](https://github.com/GfellerLab/MixMHC2pred)
 - [DeepTMHMM](https://services.healthtech.dtu.dk/services/DeepTMHMM-1.0/)
+- [MAFFT](https://mafft.cbrc.jp/alignment/software/)
+- [Rate4Site](https://www.tau.ac.il/~itaymay/cp/rate4site.html)
 - R (for statistical visualization)
 
 Install Python dependencies:
@@ -152,7 +154,7 @@ Install Python dependencies:
 pip install -r requirements.txt
 ```
 
-Install AlgPred2 and IFNepitope2 environment:
+Install external tools environment (required for: IFNepitope2, Algpred2, MAFFT, Rate4Site, DeepTMHMM):
 ```sh
 conda env create -f ext_tools_dependencies.yml
 conda activate external_tools_env
