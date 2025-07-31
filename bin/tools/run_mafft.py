@@ -168,10 +168,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
                     f"{final_output_restored_fasta}, {final_output_tree_file}")
 
         cleanup_files = [renamed_temp_fasta, renamed_temp_output_file, temp_simplified_tree_output_file]
-        for file in cleanup_files:
-            if file.exists():
-                file.unlink()
-                logging.info(f"🗑️ Cleaned up temporary file: {file}")
+        
 
     except subprocess.CalledProcessError as e:
         logging.error("❌ Error running MAFFT:")
