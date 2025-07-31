@@ -110,7 +110,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
     renamed_fasta = output_dir / f"{input_fasta.stem}_renamed.fasta"
     mapping = rename_fasta_headers(input_fasta, renamed_fasta)
 
-    mafft_output_file = output_dir / f"{input_fasta.stem}_aligned.fasta"
+    mafft_output_file = output_dir / f"{input_fasta.stem}_aligned_simplified.fasta"
 
     # Run MAFFT
     command = [
