@@ -49,34 +49,56 @@ def rename_fasta_headers(original_fasta: Path, renamed_fasta: Path) -> dict:
     return mapping
 
 
-def restore_fasta_headers(renamed_fasta: Path, mapping: dict, restored_fasta: Path):
+def restore_clustal_headers(clustal_file: Path, mapping: dict, output_file: Path):
     """
-    Replace generic headers (seq1, ...) back with original headers using the mapping.
+    Replace seq1, seq2, ... headers in a MAFFT CLUSTAL alignment file with original headers.
+    Preserves alignment format.
     """
-    from Bio import SeqIO
+    import re
 
-    records = []
-    for record in SeqIO.parse(renamed_fasta, "clustal"):
-        original_id = mapping.get(record.id)
-        if not original_id:
-            raise ValueError(f"Missing mapping for {record.id}")
-        record.id = original_id
-        record.name = ""
-        record.description = ""
-        records.append(record)
+    # Compile regex to match alignment lines
+    header_regex = re.compile(r"^(seq\d+)(\s+)")
 
-    SeqIO.write(records, restored_fasta, "fasta")
+    with open(clustal_file, "r") as infile, open(output_file, "w") as outfile:
+        for line in infile:
+            match = header_regex.match(line)
+            if match:
+                seq_id, spacing = match.groups()
+                original_id = mapping.get(seq_id)
+                if not original_id:
+                    raise ValueError(f"Missing mapping for {seq_id}")
+
+                # Truncate/pad the original ID to match the width of seq_id
+                new_id = original_id[:len(seq_id)].ljust(len(seq_id))
+                line = line.replace(seq_id, new_id, 1)
+
+            outfile.write(line)
+
+    logging.info(f"🪄 Restored headers in CLUSTAL alignment saved to {output_file}")
 
 def restore_tree_names(tree_file: Path, mapping: dict):
     from Bio import Phylo
+    import re
 
     tree = Phylo.read(tree_file, "newick")
 
     for terminal in tree.get_terminals():
-        if terminal.name in mapping:
-            terminal.name = mapping[terminal.name]
+        # Extract seqN from "1_seq1", "2_seq2", etc.
+        match = re.match(r"\d+_(seq\d+)", terminal.name)
+        if match:
+            simplified_name = match.group(1)
+        else:
+            simplified_name = terminal.name
+
+        original = mapping.get(simplified_name)
+        if original:
+            terminal.name = original
+        else:
+            logging.warning(f"⚠️ No mapping found for terminal: {terminal.name}")
 
     Phylo.write(tree, tree_file, "newick")
+    logging.info(f"🌳 Tree tip names restored in {tree_file}")
+
 
 def count_sequences(input_fasta: Path) -> int:
     """
@@ -160,15 +182,16 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         # Restore headers
         final_output_restored_fasta = output_dir / f"{input_fasta.stem}_aligned.fasta"
         final_output_tree_file = output_dir / f"{input_fasta.stem}.tree"
-        restore_fasta_headers(renamed_temp_output_file, mapping, final_output_restored_fasta)
-        shutil.move(temp_simplified_tree_output_file, final_output_tree_file) # Rename tree file to match output .tree file
+
+        restore_clustal_headers(renamed_temp_output_file, mapping, final_output_restored_fasta)
+        shutil.move(temp_simplified_tree_output_file, final_output_tree_file)
         restore_tree_names(final_output_tree_file, mapping)
+        
         logging.info("🔁 Restored original headers in alignment and tree.")
         logging.info("✅ MAFFT alignment and tree restoration completed. Output files: "
                     f"{final_output_restored_fasta}, {final_output_tree_file}")
-
-        cleanup_files = [renamed_temp_fasta, renamed_temp_output_file, temp_simplified_tree_output_file]
         
+        cleanup_files = [renamed_temp_fasta, renamed_temp_output_file, temp_simplified_tree_output_file]
 
     except subprocess.CalledProcessError as e:
         logging.error("❌ Error running MAFFT:")
