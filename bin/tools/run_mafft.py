@@ -148,7 +148,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         logging.info(f"✅ MAFFT alignment completed. Output saved to {renamed_temp_output_file}")
 
         # Move the generated tree file to the output directory
-        tree_file = renamed_temp_output_file.with_suffix(input_fasta.suffix + ".tree")  # Input file with .tree suffix
+        tree_file = renamed_temp_fasta.with_suffix(input_fasta.suffix + ".tree")  # Input file with .tree suffix
         if tree_file.exists():
             temp_simplified_tree_output_file = output_dir / f"{input_fasta.stem}_simplified.tree"
             shutil.move(tree_file, temp_simplified_tree_output_file)
