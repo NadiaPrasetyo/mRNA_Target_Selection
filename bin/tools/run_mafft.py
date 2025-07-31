@@ -234,9 +234,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         logging.info("✅ MAFFT alignment and tree restoration completed. Output files: "
                     f"{final_output_restored_fasta}, {final_output_tree_file}")
         
-        empty_res = output_dir.parent.parent.parent.parent / "r4s.res"
-        print(f"Empty res file: {empty_res}")
-        cleanup_files = [renamed_temp_fasta, renamed_temp_output_file, temp_simplified_tree_output_file, empty_res]
+        cleanup_files = [renamed_temp_fasta, renamed_temp_output_file, temp_simplified_tree_output_file]
         for f in cleanup_files:
             if f.exists():
                 f.unlink()

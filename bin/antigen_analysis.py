@@ -166,6 +166,13 @@ def run_parallel_jobs(jobs, threads):
                 shutil.rmtree(tmp_dir)
             except Exception as e:
                 logging.warning(f"⚠️ Failed to clean tmp directory {tmp_dir}: {e}")
+        
+        empty_res = output_dir.parent.parent.parent.parent / "r4s.res"
+        if empty_res.exists():
+            try:
+                empty_res.unlink()
+            except Exception as e:
+                logging.warning(f"⚠️ Failed to delete empty r4s.res file: {e}")
 
         logging.info(f"✅ Cleanup completed for {db_name}")
 
