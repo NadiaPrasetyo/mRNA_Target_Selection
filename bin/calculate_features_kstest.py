@@ -818,6 +818,61 @@ def parse_deeptmhmm_dir(directory):
     logging.info(f"Completed Deeptmhmm parsing with {len(results)} results")
     return results
 
+def parse_rate4site_dir(directory):
+    """
+    #Rates were calculated using Maximim Likelihood
+#The likelihood of the data given the tree is: 
+#LL=-819.784
+#SEQ: the amino acid in the reference sequence in one letter code.
+#SCORE: The conservation scores. lower value = higher conservation.
+#MSA DATA: The number of aligned sequences having an amino acid (non-gapped) from the overall number of sequences at each position.
+
+#POS SEQ  SCORE     MSA DATA
+1    M    -0.4774   4/6
+2    K    -0.4774   4/6
+3    N    -0.4774   4/6
+4    K    -0.4774   4/6
+5    L    -0.4774   4/6
+6    I    -0.4774   4/6
+    """
+    logging.info(f"Parsing Rate4Site dir {directory}")
+    results = []
+    try:
+        files = [f for f in os.listdir(directory) if f.endswith(".out")]
+    except Exception as e:
+        logging.error(f"Failed listing directory {directory}: {e}")
+        return results
+
+    for file in files:
+        path = os.path.join(directory, file)
+        logging.debug(f"Parsing Rate4Site file: {file}")
+        try:
+            with open(path) as f:
+                for i, line in enumerate(f):
+                    if line.startswith("#") or not line.strip():
+                        continue
+                    parts = line.strip().split()
+                    if len(parts) < 4:
+                        continue
+                    try:
+                        position = int(parts[0])
+                        seq = parts[1]
+                        score = float(parts[2])
+                        msa_data = parts[3]
+                        results.append({
+                            "feature": "rate4site",
+                            "subfeature": "conservation_score",
+                            "value": score
+                        })
+                    except ValueError as e:
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+        except Exception as e:
+            logging.error(f"Failed parsing Rate4Site file {file}: {e}")
+    logging.info(f"Completed Rate4Site parsing with {len(results)} results")
+    return results
+
+
+
 # ----------------------------- Orchestration Functions -----------------------------
 
 def extract_all_features(base_dir, eval_dir, threads=1):
@@ -848,7 +903,8 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "ellipro": lambda: parse_ellipro_dir(os.path.join(base_dir, "ellipro")),
         "ifnepitope2": lambda: parse_ifnepitope2_dir(os.path.join(base_dir, "ifnepitope2")),
         "mixmhc2pred": lambda: parse_mixmhc2pred_dir(os.path.join(base_dir, "mixmhc2pred")),
-        "deeptmhmm": lambda: parse_deeptmhmm_dir(os.path.join(base_dir, "deeptmhmm"))
+        "deeptmhmm": lambda: parse_deeptmhmm_dir(os.path.join(base_dir, "deeptmhmm")),
+        "rate4site": lambda: parse_rate4site_dir(os.path.join(base_dir, "mafft_rate4site/rate4site")),
     }
 
     results = []

@@ -1,3 +1,4 @@
+import argparse
 import subprocess
 import logging
 import shutil
@@ -17,7 +18,6 @@ def run(input_fasta: Path, input_tree: Path, output_dir: Path):
     # Prepare output paths
     output_file = output_dir / f"{input_stem}.out"
     tree_out_file = output_dir / f"{input_stem}.tree"
-    unnormalized_rates_file = output_dir / f"{input_stem}.unnormalized"
 
     # Make sure output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -30,7 +30,6 @@ def run(input_fasta: Path, input_tree: Path, output_dir: Path):
         "-t", str(input_tree),
         "-o", str(output_file),
         "-x", str(tree_out_file),
-        "-y", str(unnormalized_rates_file),
         "-im",                  # Rate inference method flag:
                                 # -im = rates are inferred using the maximum likelihood method
                                 # -ib = rates are inferred using the empirical Bayes method 
@@ -45,3 +44,26 @@ def run(input_fasta: Path, input_tree: Path, output_dir: Path):
     except subprocess.CalledProcessError as e:
         logging.error(f"❌ Rate4Site failed with error: {e}")
         raise
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Run Rate4Site with specified input files and output directory.",
+        epilog="Rate4Site is a tool for estimating evolutionary rates at each site of a protein or DNA sequence."
+    )
+    parser.add_argument("-f", "--input_fasta", type=Path, required=True, help="Path to the input FASTA file.")
+    parser.add_argument("-t", "--input_tree", type=Path, required=True, help="Path to the input tree file.")
+    parser.add_argument("-o", "--output_dir", type=Path, required=True, help="Path to the output directory.")
+
+    args = parser.parse_args()
+
+    # Configure logging
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+    try:
+        run(args.input_fasta, args.input_tree, args.output_dir)
+    except Exception as e:
+        logging.error(f"❌ An error occurred: {e}")
+        exit(1)
+
+if __name__ == "__main__":
+    main()
