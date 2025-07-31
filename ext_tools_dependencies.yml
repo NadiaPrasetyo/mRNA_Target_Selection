@@ -3,6 +3,7 @@ channels:
   - defaults
   - conda-forge
   - bioconda
+  - hcc
 dependencies:
   - python=3.10
   - numpy=1.23.5
@@ -11,6 +12,10 @@ dependencies:
   - scikit-learn=1.2.2
   - joblib=1.2.0
   - mafft
+  - ca-certificates
+  - libstdcxx
+  - openssl
+  - rate4site
   - pip
   - pip:
       - algpred2==1.4

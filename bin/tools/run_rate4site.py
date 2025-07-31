@@ -1,158 +1,42 @@
-from pathlib import Path
-import argparse
-import logging
 import subprocess
+import logging
+import shutil
+from pathlib import Path
+from tools import common
 
-def patch_error_msg(tool_path: Path):
-    """
-    Patch the errorMsg.cpp file in the rate4site source to fix a bug.
-    This patch modifies the condition to check if _errorOut is not equal to &std::cerr.
-    
-    Args:
-    - tool_path: Path to the directory containing the rate4site source code.
-    
-    Raises:
-    - FileNotFoundError: If the errorMsg.cpp file does not exist at the expected location.
-    """
-    source_dir = tool_path / "sourceMar09"
-    file_path = source_dir / "errorMsg.cpp"
-    print(f"🔍 Looking for errorMsg.cpp at: {file_path}")
+def run(tool_path: Path, input_fasta: Path, output_dir: Path, input_tree: Path):
+    if not shutil.which("conda"):
+        logging.error("❌ Conda is not available in PATH.")
+        raise RuntimeError("Conda is required but not found.")
 
-    if not file_path.exists():
-        raise FileNotFoundError(f"Could not find errorMsg.cpp at expected location: {file_path}")
+    # Ensure conda env is ready (assumes this function is defined elsewhere)
+    common.create_conda_env_if_needed()
 
-    # Read and patch the source file
-    patched_lines = []
-    modified = False
-    with open(file_path, "r") as f:
-        for line in f:
-            if "*_errorOut != cerr" in line:
-                line = line.replace("*_errorOut != cerr", "_errorOut != &std::cerr")
-                modified = True
-            patched_lines.append(line)
+    # Prepare output paths
+    output_file = output_dir / "rate4site.out"
+    tree_out_file = output_dir / "rate4site.tree"
+    unnormalized_rates_file = output_dir / "rate4site.unnormalized"
 
-    if modified:
-        # Write back the patched file
-        with open(file_path, "w") as f:
-            f.writelines(patched_lines)
-        logging.info("🔧 Patching errorMsg.cpp to fix bug in Rate4Site...")
-        logging.info("✅ Patch applied successfully.")
-    else:
-        logging.info("ℹ️ No changes made to errorMsg.cpp (already patched?).")
+    # Make sure output directory exists
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-def patch_some_util(tool_path: Path):
-    """
-    Patch someUtil.cpp to replace invalid 'ifstream == NULL' checks with correct checks.
-    """
-    logging.info("🔧 Patching someUtil.cpp to fix file open check...")
-    file_path = tool_path / "sourceMar09" / "someUtil.cpp"
+    # Command construction
+    cmd = [
+        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "rate4site",      # Assuming rate4site is in the conda environment
+        "-s", str(input_fasta),
+        "-t", str(input_tree),
+        "-o", str(output_file),
+        "-x", str(tree_out_file),
+        "-y", str(unnormalized_rates_file),
+        "-im",                # Use ML rate inference method
+        "-Mw"                 # Use WAG model (example; adjust as needed)
+    ]
 
-    if not file_path.exists():
-        raise FileNotFoundError(f"someUtil.cpp not found at: {file_path}")
-
-    patched_lines = []
-    modified = False
-    with file_path.open("r") as f:
-        for line in f:
-            if "file1 == NULL" in line or "file1==NULL" in line:
-                patched_lines.append("        if (!file1.is_open()) return false;\n")
-                modified = True
-            elif "f == NULL" in line or "f==NULL" in line:
-                patched_lines.append("        if (!f.is_open()) {\n")
-                modified = True
-            else:
-                patched_lines.append(line)
-
-    if modified:
-        with file_path.open("w") as f:
-            f.writelines(patched_lines)
-        logging.info("✅ Patch applied successfully.")
-    else:
-        logging.info("ℹ️ No changes made to someUtil.cpp (already patched?).")
-
-def patch_rate4site_options(tool_path: Path):
-    """
-    Patch rate4siteOptions.cpp to fix invalid ofstream == NULL check.
-    """
-    logging.info("🔧 Patching rate4siteOptions.cpp to fix output file open check...")
-    file_path = tool_path / "sourceMar09" / "rate4siteOptions.cpp"
-
-    if not file_path.exists():
-        raise FileNotFoundError(f"rate4siteOptions.cpp not found at: {file_path}")
-
-    patched_lines = []
-    modified = False
-    with file_path.open("r") as f:
-        for line in f:
-            if "out_f == NULL" in line or "out_f==NULL" in line:
-                patched_lines.append(
-                    '                                if (!out_f.is_open()) errorMsg::reportError(" unable to open output file for writing. ");\n'
-                )
-                modified = True
-            else:
-                patched_lines.append(line)
-
-    if modified:
-        with file_path.open("w") as f:
-            f.writelines(patched_lines)
-        logging.info("✅ Patch applied successfully.")
-    else:
-        logging.info("ℹ️ No changes made to rate4siteOptions.cpp (already patched?).")
-
-
-def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
-    """
-    Runs Rate4Site using the patched source code.
-
-    Args:
-    - tool_path: Path to the directory containing the rate4site source code.
-    - input_fasta: Path to the input FASTA file.
-    - output_dir: Path to the output directory.
-    - batch_size: Unused, present for interface compatibility.
-
-    Raises:
-    - RuntimeError: If the patching fails or if the command execution fails.
-    """
+    logging.info(f"🚀 Running Rate4Site for {input_fasta.name} with tree {input_tree.name}")
     try:
-        patch_error_msg(tool_path)
-        patch_some_util(tool_path)
-        patch_rate4site_options(tool_path)
-
-        logging.info("🔨 Recompiling Rate4Site source code with patched files...")
-        command = ["make", "-C", str(tool_path / "sourceMar09")]
-        result = subprocess.run(command, capture_output=True, text=True)
-
-        if result.returncode != 0:
-            log_file = tool_path / "compile_error.log"
-            with open(log_file, "w") as f:
-                f.write("=== STDOUT ===\n")
-                f.write(result.stdout)
-                f.write("\n=== STDERR ===\n")
-                f.write(result.stderr)
-            logging.error(f"❌ Compilation failed. Full output written to: {log_file}")
-            raise RuntimeError("Compilation failed.")
-
-        logging.info("✅ Compilation successful. Ready to run Rate4Site.")
-        # Optionally: run Rate4Site command here
-
-    except Exception as e:
-        raise RuntimeError(f"Failed to run Rate4Site: {e}")
-
-
-    
-def main():
-    """
-    Main function to execute the script.
-    Take input from command line arguments or predefined paths.
-    """
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers=[logging.StreamHandler()])
-    parser = argparse.ArgumentParser(description="Run Rate4Site with patched source code.")
-    parser.add_argument("--tool-path", required=True, type=Path, help="Path to the directory containing the rate4site source code. e.g. /home/usr/rate4site.3.2.source/")
-    parser.add_argument("--input-fasta", required=False, type=Path, help="Path to the input FASTA file.")
-    parser.add_argument("--output-dir", required=False, type=Path, help="Path to the output directory.")
-
-    args = parser.parse_args()
-    run(args.tool_path, args.input_fasta, args.output_dir, batch_size=0)
-
-if __name__ == "__main__":
-    main()
+        subprocess.run(cmd, check=True)
+        logging.info("✅ Rate4Site completed successfully.")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"❌ Rate4Site failed with error: {e}")
+        raise
