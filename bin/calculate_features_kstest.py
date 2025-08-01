@@ -948,7 +948,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
         msa = AlignIO.read(mafft_path, "clustal")
 
         # For each matching accession/strain combination
-        for (acc, strain_id), (topology_str, unaligned_seq) in deeptmhmm_data.items():
+        for (acc, strain_id), (topology_str, unaligned_seq, strain) in deeptmhmm_data.items():
             if acc != accession:
                 continue
 
