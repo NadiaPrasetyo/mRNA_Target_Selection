@@ -991,7 +991,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                         topology_positions.append((len(seq_no_gaps), aa, position_scores[i], topo_char))
 
             # Save individual residue-level features (for outside residues)
-            for aa, score, topo in topology_positions:
+            for _, aa, score, topo in topology_positions:
                 if topo == "O":
                     results.append({
                         "feature": "rate4site_deeptmhmm",
