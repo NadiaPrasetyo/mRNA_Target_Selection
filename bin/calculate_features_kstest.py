@@ -637,20 +637,26 @@ def parse_ellipro_dir(directory):
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
 
+
+                #No.,Structure,Residues,Number of Residues,Score,Type
+                # 1,1YN5_A0AAX2YX78,A:A42, A:K43, A:E44, A:M45, A:Q46, A:N47, A:V54, A:D55, A:G56, A:I57, A:M58, A:A59, A:F60, A:N61, A:Q62, A:S63, A:Y64, A:N66, A:P68, A:K69, A:D70, A:S71, A:Q72, A:L73, A:S74, A:L76, A:D77, A:Y87, A:D88, A:E89, A:R90, A:G91, A:V92, A:T93, A:P94, A:E95, A:K96, A:I97, A:R98, A:N99, A:A100, A:K101, A:S102, A:L119, A:K120, A:K121, A:D122, A:S123, A:Y124, A:T125, A:A126, A:N127, A:L128, A:S131, A:N132, A:V141, A:K142, A:T143, A:K144,59,0.724,Discontinous
+                # 2,1YN5_A0AAX2YX78,B:A53, B:V54, B:D55, B:G56, B:I57, B:M58, B:A59, B:F60, B:N61, B:S71, B:Q72, B:S74, B:L76, B:D77, B:N80, B:Y87, B:D88, B:E89, B:R90, B:G91, B:V92, B:T93, B:P94, B:E95, B:K96, B:I97, B:R98, B:N99, B:A100, B:K101, B:S102, B:D118, B:L119, B:K120, B:K121, B:D122, B:S123, B:Y124, B:T125, B:A126, B:N127, B:L128, B:V141, B:K142, B:T143, B:K144,46,0.706,Discontinous
                 # Parse discontinuous epitopes
                 for i, line in enumerate(lines):
                     if line.startswith("No.,Structure,Residues,Number of Residues,Score,Type"):
                         continue  # Skip header
-                    parts = line.strip().split(',')
-                    if len(parts) < 6:
+                    parts = line.strip().rsplit(',', 2)  # Split into three parts from the right
+                    if len(parts) < 3:
                         continue  # Skip malformed lines
                     try:
-                        score = float(parts[4])
+                        score = float(parts[-2])  # Take the second last field as the score
                         results.append({
                             "feature": "ellipro",
                             "subfeature": "discontinuous_epitope_score",
                             "value": score
                         })
+                    except ValueError as e:
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
@@ -942,7 +948,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 scores.append((aa, score))
 
         # Parse MSA
-        msa = AlignIO.read(mafft_path, "fasta")
+        msa = AlignIO.read(mafft_path, "clustal")
 
         # For each matching accession/strain combination
         for (acc, strain_id), (topology_str, unaligned_seq, strain_file) in deeptmhmm_data.items():
