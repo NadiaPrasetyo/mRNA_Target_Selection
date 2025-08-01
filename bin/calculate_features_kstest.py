@@ -1052,6 +1052,8 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         )
     }
 
+    import traceback
+
     results = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
         future_to_name = {executor.submit(parser): name for name, parser in parsers.items()}
@@ -1067,6 +1069,7 @@ def extract_all_features(base_dir, eval_dir, threads=1):
                 logging.info(f"{name} feature extraction complete")
             except Exception as e:
                 logging.error(f"{name} feature extraction failed: {e}")
+                logging.debug(traceback.format_exc())
 
     return results
 
