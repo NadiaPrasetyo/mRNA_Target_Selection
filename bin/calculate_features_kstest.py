@@ -49,6 +49,8 @@ import argparse
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import statistics
+from Bio import AlignIO
 
 # ----------------------------- Utility Functions -----------------------------
 
@@ -820,20 +822,17 @@ def parse_deeptmhmm_dir(directory):
 
 def parse_rate4site_dir(directory):
     """
-    #Rates were calculated using Maximim Likelihood
-#The likelihood of the data given the tree is: 
-#LL=-819.784
-#SEQ: the amino acid in the reference sequence in one letter code.
-#SCORE: The conservation scores. lower value = higher conservation.
-#MSA DATA: The number of aligned sequences having an amino acid (non-gapped) from the overall number of sequences at each position.
-
-#POS SEQ  SCORE     MSA DATA
-1    M    -0.4774   4/6
-2    K    -0.4774   4/6
-3    N    -0.4774   4/6
-4    K    -0.4774   4/6
-5    L    -0.4774   4/6
-6    I    -0.4774   4/6
+    Parse Rate4Site output files in the specified directory.
+    Extracts per-site conservation scores and computes rolling window statistics.
+    Returns a list of dictionaries with feature values.
+    Args:
+        directory (str): Path to the directory containing Rate4Site output files.
+    Returns:
+        List of dictionaries, where each dictionary represents a Rate4Site feature.
+    Each dictionary contains:
+        - "feature": "rate4site"
+        - "subfeature": specific subfeature name (e.g., "per_site_score", "rolling_mean", etc.)
+        - "value": numerical value for the feature
     """
     logging.info(f"Parsing Rate4Site dir {directory}")
     results = []
@@ -847,28 +846,166 @@ def parse_rate4site_dir(directory):
         path = os.path.join(directory, file)
         logging.debug(f"Parsing Rate4Site file: {file}")
         try:
+            scores = []
             with open(path) as f:
                 for i, line in enumerate(f):
                     if line.startswith("#") or not line.strip():
                         continue
-                    parts = line.strip().split()
+                    parts = line.strip().split()  # Split by whitespace
                     if len(parts) < 4:
                         continue
                     try:
-                        position = int(parts[0])
-                        seq = parts[1]
                         score = float(parts[2])
-                        msa_data = parts[3]
+                        scores.append(score)
                         results.append({
                             "feature": "rate4site",
-                            "subfeature": "conservation_score",
+                            "subfeature": "per_site_score",
                             "value": score
                         })
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+
+            # Compute rolling window statistics (15-peptide window)
+            window_size = 15
+            for j in range(len(scores)):
+                window = scores[max(0, j - window_size + 1):j + 1]
+                if len(window) > 0:
+                    results.append({
+                        "feature": "rate4site",
+                        "subfeature": "rolling_mean",
+                        "value": sum(window) / len(window)
+                    })
+                    results.append({
+                        "feature": "rate4site",
+                        "subfeature": "rolling_median",
+                        "value": statistics.median(window)
+                    })
+                    results.append({
+                        "feature": "rate4site",
+                        "subfeature": "rolling_max",
+                        "value": max(window)
+                    })
+                    results.append({
+                        "feature": "rate4site",
+                        "subfeature": "rolling_min",
+                        "value": min(window)
+                    })
         except Exception as e:
             logging.error(f"Failed parsing Rate4Site file {file}: {e}")
     logging.info(f"Completed Rate4Site parsing with {len(results)} results")
+    return results
+
+
+def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir):
+    results = []
+
+    # Step 1: Parse all DeepTMHMM .3line files
+    deeptmhmm_data = {}  # (accession, strain) -> (topology_str, seq_str)
+    for fname in os.listdir(deeptmhmm_dir):
+        if not fname.endswith(".3line"):
+            continue
+        strain = os.path.splitext(fname)[0]
+        with open(os.path.join(deeptmhmm_dir, fname)) as f:
+            lines = f.read().splitlines()
+        for i in range(0, len(lines), 3):
+            header = lines[i]
+            seq = lines[i + 1]
+            topology = lines[i + 2]
+            parts = header.split("|")
+            if len(parts) < 5:
+                continue
+            accession = parts[1]
+            strain_id = parts[3]
+            deeptmhmm_data[(accession, strain_id)] = (topology, seq, strain)
+
+    # Step 2: Process each Rate4Site file
+    for filename in os.listdir(rate4site_dir):
+        if not filename.endswith('_combined_aligned.out'):
+            continue
+        accession = filename.split('_')[0]
+        rate4site_path = os.path.join(rate4site_dir, filename)
+        mafft_path = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
+
+        if not os.path.isfile(mafft_path):
+            continue
+
+        # Parse Rate4Site scores
+        scores = []
+        with open(rate4site_path) as f:
+            for line in f:
+                if line.startswith("#") or not line.strip():
+                    continue
+                parts = line.split()
+                if len(parts) < 3:
+                    continue
+                aa, score = parts[1], float(parts[2])
+                scores.append((aa, score))
+
+        # Parse MSA
+        msa = AlignIO.read(mafft_path, "fasta")
+
+        # For each matching accession/strain combination
+        for (acc, strain_id), (topology_str, unaligned_seq, strain_file) in deeptmhmm_data.items():
+            if acc != accession:
+                continue
+
+            # Identify the matched sequence
+            matched_seq_id = None
+            for record in msa:
+                if unaligned_seq in record.seq.ungap('-'):
+                    matched_seq_id = record.id
+                    break
+            if not matched_seq_id:
+                continue
+
+            aligned_seq = None
+            for record in msa:
+                if record.id == matched_seq_id:
+                    aligned_seq = record.seq
+                    break
+
+            score_index = 0
+            position_scores = []
+            for aa in aligned_seq:
+                if aa == "-":
+                    position_scores.append(None)
+                else:
+                    if score_index < len(scores):
+                        _, score = scores[score_index]
+                        position_scores.append(score)
+                        score_index += 1
+                    else:
+                        position_scores.append(None)
+
+            # Map scores to topology positions
+            topology_positions = []
+            seq_no_gaps = ""
+            for i, aa in enumerate(aligned_seq):
+                if aa != "-":
+                    seq_no_gaps += aa
+                    topo_char = topology_str[len(seq_no_gaps) - 1]
+                    if position_scores[i] is not None:
+                        topology_positions.append((len(seq_no_gaps), aa, position_scores[i], topo_char))
+
+            # Save individual residue-level features (for outside residues)
+            for aa, score, topo in topology_positions:
+                if topo == "O":
+                    results.append({
+                        "feature": "rate4site_deeptmhmm",
+                        "subfeature": "outside_score_per_site",
+                        "value": score
+                    })
+
+            # Sliding window stats (only for outside residues)
+            outside_scores = [score for _, _, score, topo in topology_positions if topo == "O"]
+            window_size = 15
+            for i in range(len(outside_scores) - window_size + 1):
+                window = outside_scores[i:i + window_size]
+                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_avg", "value": sum(window)/window_size})
+                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_median", "value": statistics.median(window)})
+                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_min", "value": min(window)})
+                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_max", "value": max(window)})
+
     return results
 
 
@@ -905,6 +1042,11 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mixmhc2pred": lambda: parse_mixmhc2pred_dir(os.path.join(base_dir, "mixmhc2pred")),
         "deeptmhmm": lambda: parse_deeptmhmm_dir(os.path.join(base_dir, "deeptmhmm")),
         "rate4site": lambda: parse_rate4site_dir(os.path.join(base_dir, "mafft_rate4site/rate4site")),
+        "rate4site_mafft_deeptmhmm": lambda: parse_rate4site_mafft_deeptmhmm_dir(
+            os.path.join(base_dir, "mafft_rate4site/rate4site"),
+            os.path.join(base_dir, "mafft_rate4site/mafft"),
+            os.path.join(base_dir, "deeptmhmm/deeptmhmm_results.txt")
+        )
     }
 
     results = []
