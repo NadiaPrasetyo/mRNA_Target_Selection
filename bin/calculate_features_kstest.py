@@ -990,7 +990,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
 
         # Parse MSA
         try:
-            msa = parse_clustal_alignment_without_match_lines(mafft_path)
+            msa = AlignIO.read(mafft_path, "clustal")
         except (ValueError, AssertionError) as e:
             print(f"[SKIPPED] {mafft_path} due to alignment error: {e}")
             logging.error(traceback.format_exc())
