@@ -107,7 +107,7 @@ def parse_clustal_alignment_without_match_lines(filepath):
     with open(filepath) as f:
         for line in f:
             # Ignore match lines (only contain alignment symbols like * : . and whitespace)
-            if all(c in ".*:" for c in line.strip()):
+            if all(c in ".*:" for c in line):
                 continue
             cleaned_lines.append(line)
 
