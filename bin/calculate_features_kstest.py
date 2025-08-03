@@ -51,6 +51,8 @@ from sklearn.metrics import roc_curve, roc_auc_score
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import statistics
 from Bio import AlignIO
+from Bio.Align import MultipleSeqAlignment
+from io import StringIO
 
 # ----------------------------- Utility Functions -----------------------------
 
@@ -97,6 +99,18 @@ def sizeof_fmt(num, suffix="B"):
             return f"{num:.1f}{unit}{suffix}"
         num /= 1024.0
     return f"{num:.1f}P{suffix}"
+
+def parse_clustal_alignment_without_match_lines(filepath):
+    """Reads a Clustal file and filters out match lines that confuse AlignIO."""
+    cleaned_lines = []
+    with open(filepath) as f:
+        for line in f:
+            # Skip empty lines or match lines (those made of only whitespace and :*.)
+            if line.strip() == "" or all(c in ":*. " for c in line.strip()):
+                continue
+            cleaned_lines.append(line)
+    return AlignIO.read(StringIO("".join(cleaned_lines)), "clustal")
+
 
 # ----------------------------- Feature Parsers -----------------------------
 
@@ -945,7 +959,11 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 scores.append((aa, score))
 
         # Parse MSA
-        msa = AlignIO.read(mafft_path, "clustal")
+        try:
+            msa = parse_clustal_alignment_without_match_lines(mafft_path)
+        except (ValueError, AssertionError) as e:
+            print(f"[SKIPPED] {mafft_path} due to alignment error: {e}")
+            continue
 
         # For each matching accession/strain combination
         for (acc, strain_id), (topology_str, unaligned_seq, strain) in deeptmhmm_data.items():
