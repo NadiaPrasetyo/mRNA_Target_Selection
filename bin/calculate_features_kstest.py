@@ -51,8 +51,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import statistics
 from Bio import AlignIO
-from Bio.Align import MultipleSeqAlignment
-from io import StringIO
+import re
 import traceback
 import tempfile
 
@@ -102,28 +101,34 @@ def sizeof_fmt(num, suffix="B"):
         num /= 1024.0
     return f"{num:.1f}P{suffix}"
 
+
 def parse_clustal_alignment_without_match_lines(filepath):
     """
-    Parse a CLUSTAL alignment file, skipping lines that contain only match symbols (*, ., :).
+    Parse a CLUSTAL alignment file, skipping lines that contain only match symbols (*, ., :),
+    but retain lines that are completely empty or contain only whitespace.
+    
     Args:
         filepath (str): Path to the CLUSTAL alignment file.
+    
     Returns:
         MultipleSeqAlignment: Parsed alignment object.
+    
     Raises:
         ValueError: If the file does not have a valid CLUSTAL header or cannot be parsed.
     """
+    # Match lines that contain only match symbols and spaces, and at least one match symbol
+    match_line_pattern = re.compile(r'^\s*[\*\.\:]+\s*$')
+
     cleaned_lines = []
     with open(filepath) as f:
         for line in f:
-            # Skip lines that contain only match symbols (*, ., :)
-            if line.strip() and all(c in ".*:" for c in line.strip()):
-                continue
+            if match_line_pattern.match(line):
+                continue  # Skip match symbol lines
             cleaned_lines.append(line)
 
     if not cleaned_lines or not cleaned_lines[0].strip().upper().startswith("CLUSTAL"):
         raise ValueError(f"Invalid CLUSTAL header in {filepath}")
 
-    # Write cleaned content to a temporary file
     with tempfile.NamedTemporaryFile("w+", delete=False) as tmp:
         tmp.writelines(cleaned_lines)
         tmp.flush()
