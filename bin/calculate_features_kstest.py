@@ -103,10 +103,19 @@ def sizeof_fmt(num, suffix="B"):
     return f"{num:.1f}P{suffix}"
 
 def parse_clustal_alignment_without_match_lines(filepath):
+    """
+    Parse a CLUSTAL alignment file, skipping lines that contain only match symbols (*, ., :).
+    Args:
+        filepath (str): Path to the CLUSTAL alignment file.
+    Returns:
+        MultipleSeqAlignment: Parsed alignment object.
+    Raises:
+        ValueError: If the file does not have a valid CLUSTAL header or cannot be parsed.
+    """
     cleaned_lines = []
     with open(filepath) as f:
         for line in f:
-            # if line contains only *, ., or :, skip it
+            # Skip lines that contain only match symbols (*, ., :)
             if line.strip() and all(c in ".*:" for c in line.strip()):
                 continue
             cleaned_lines.append(line)
@@ -114,7 +123,7 @@ def parse_clustal_alignment_without_match_lines(filepath):
     if not cleaned_lines or not cleaned_lines[0].strip().upper().startswith("CLUSTAL"):
         raise ValueError(f"Invalid CLUSTAL header in {filepath}")
 
-    # Write cleaned content to temporary file
+    # Write cleaned content to a temporary file
     with tempfile.NamedTemporaryFile("w+", delete=False) as tmp:
         tmp.writelines(cleaned_lines)
         tmp.flush()
@@ -125,6 +134,8 @@ def parse_clustal_alignment_without_match_lines(filepath):
             with open(tmp.name) as fail_f:
                 logging.debug(fail_f.read())
             raise e
+        finally:
+            os.unlink(tmp.name)
 
 # ----------------------------- Feature Parsers -----------------------------
 
