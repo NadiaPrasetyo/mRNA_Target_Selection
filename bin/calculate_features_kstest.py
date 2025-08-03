@@ -53,6 +53,7 @@ import statistics
 from Bio import AlignIO
 from Bio.Align import MultipleSeqAlignment
 from io import StringIO
+import traceback
 
 # ----------------------------- Utility Functions -----------------------------
 
@@ -77,8 +78,8 @@ def init_logging(verbose=False, pathogen="unknown"):
     logger.addHandler(ch)
 
     if verbose:
-        os.makedirs(f"data/{pathogen}", exist_ok=True)
-        fh = logging.FileHandler(f"data/{pathogen}/ks_test.log", mode='w')
+        os.makedirs(f"results/{pathogen}", exist_ok=True)
+        fh = logging.FileHandler(f"results/{pathogen}/ks_test.log", mode='w')
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
@@ -109,7 +110,14 @@ def parse_clustal_alignment_without_match_lines(filepath):
             if line.strip() == "" or all(c in ":*. " for c in line.strip()):
                 continue
             cleaned_lines.append(line)
+    
+    # Clustal files must begin with 'CLUSTAL' or 'CLUSTALW'
+    if not cleaned_lines or not cleaned_lines[0].strip().upper().startswith("CLUSTAL"):
+        raise ValueError("Missing or invalid CLUSTAL header")
+    if len(cleaned_lines) < 3:
+        raise ValueError("Too few lines after cleaning to be a valid alignment")
     return AlignIO.read(StringIO("".join(cleaned_lines)), "clustal")
+
 
 
 # ----------------------------- Feature Parsers -----------------------------
@@ -963,6 +971,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
             msa = parse_clustal_alignment_without_match_lines(mafft_path)
         except (ValueError, AssertionError) as e:
             print(f"[SKIPPED] {mafft_path} due to alignment error: {e}")
+            logging.error(traceback.format_exc())
             continue
 
         # For each matching accession/strain combination
