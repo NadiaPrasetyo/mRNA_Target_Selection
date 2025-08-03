@@ -103,29 +103,31 @@ def sizeof_fmt(num, suffix="B"):
     return f"{num:.1f}P{suffix}"
 
 def parse_clustal_alignment_without_match_lines(filepath):
-    """Reads a Clustal file and filters out match lines that confuse AlignIO."""
     cleaned_lines = []
     with open(filepath) as f:
         for line in f:
-            # Skip empty lines or match lines (those made of only whitespace and :*.)
-            if line.strip() == "" or all(c in ":*. " for c in line.strip()):
+            stripped = line.strip()
+            if not stripped:
+                continue
+            # Ignore match lines (only contain alignment symbols like * : . and whitespace)
+            if all(c in ".*: " for c in stripped):
                 continue
             cleaned_lines.append(line)
 
-    # Basic checks
     if not cleaned_lines or not cleaned_lines[0].strip().upper().startswith("CLUSTAL"):
-        raise ValueError("Missing or invalid CLUSTAL header")
-    if len(cleaned_lines) < 3:
-        raise ValueError("Too few lines after cleaning to be a valid alignment")
+        raise ValueError(f"Invalid CLUSTAL header in {filepath}")
 
-    # Write to a temp file and parse
+    # Write cleaned content to temporary file
     with tempfile.NamedTemporaryFile("w+", delete=False) as tmp:
         tmp.writelines(cleaned_lines)
         tmp.flush()
-        tmp.seek(0)
-        return AlignIO.read(tmp.name, "clustal")
-
-
+        try:
+            return AlignIO.read(tmp.name, "clustal")
+        except Exception as e:
+            logging.debug(f"Failed parsing {filepath}")
+            with open(tmp.name) as fail_f:
+                logging.debug(fail_f.read())
+            raise e
 
 # ----------------------------- Feature Parsers -----------------------------
 
