@@ -54,6 +54,7 @@ from Bio import AlignIO
 from Bio.Align import MultipleSeqAlignment
 from io import StringIO
 import traceback
+import tempfile
 
 # ----------------------------- Utility Functions -----------------------------
 
@@ -110,13 +111,19 @@ def parse_clustal_alignment_without_match_lines(filepath):
             if line.strip() == "" or all(c in ":*. " for c in line.strip()):
                 continue
             cleaned_lines.append(line)
-    
-    # Clustal files must begin with 'CLUSTAL' or 'CLUSTALW'
+
+    # Basic checks
     if not cleaned_lines or not cleaned_lines[0].strip().upper().startswith("CLUSTAL"):
         raise ValueError("Missing or invalid CLUSTAL header")
     if len(cleaned_lines) < 3:
         raise ValueError("Too few lines after cleaning to be a valid alignment")
-    return AlignIO.read(StringIO("".join(cleaned_lines)), "clustal")
+
+    # Write to a temp file and parse
+    with tempfile.NamedTemporaryFile("w+", delete=False) as tmp:
+        tmp.writelines(cleaned_lines)
+        tmp.flush()
+        tmp.seek(0)
+        return AlignIO.read(tmp.name, "clustal")
 
 
 
