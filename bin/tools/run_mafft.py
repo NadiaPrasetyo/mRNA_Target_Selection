@@ -24,6 +24,7 @@ from pathlib import Path
 import logging
 import shutil
 from tools import common
+import re
 
 ############################ HELPER FUNCTIONS ############################
 
@@ -38,40 +39,44 @@ def count_sequences(input_fasta: Path) -> int:
     with open(input_fasta, 'r') as f:
         return sum(1 for line in f if line.startswith('>'))
     
-def correct_tree_file_headers(tree_file: Path):
-    """
-    Corrects the headers in a tree file to match the sequence names in a FASTA file
-    by removing the num_suffix and replacing the '_' with '.' and '|' in the tree file.
-    Args:
-    - tree_file: Path to the tree file.
-    """
-    with open(tree_file, 'r') as f:
-        tree_content = f.read()
 
-    for line in tree_content.splitlines():
-        if line.startswith('('):
-            # Split the line by commas to get individual sequence names
-            seq_names = line.strip('()').split(',')
-            corrected_names = []
-            # 4_A0A0H3K6Z9_BA000018_3 -> A0A0H3K6Z9|BA000018.3
-            for name in seq_names:
-                # Remove the numeric suffix and replace '_' with '.'
-                parts = name.split('_')
-                if len(parts) > 1:
-                    # Join all parts except the last one with '_'
-                    corrected_name = '.'.join(parts[:-1]) + '|' + parts[-1]
-                    corrected_names.append(corrected_name)
-                    print(f"Corrected name: {corrected_name}")
-                else:
-                    # If no underscore, just append the name as is
-                    corrected_names.append(name)
-            # Join the corrected names back into a single string
-            corrected_line = '(' + ','.join(corrected_names) + ')'
-            tree_content = tree_content.replace(line, corrected_line)
-    # Write the corrected content back to the tree file
-    with open(tree_file, 'w') as f:
-        f.write(tree_content)
-        
+def rename_tree_headers_from_files(tree_file, fasta_file):
+    # Read tree and FASTA file contents
+    with open(tree_file, 'r') as tf:
+        tree_str = tf.read()
+    with open(fasta_file, 'r') as ff:
+        fasta_str = ff.read()
+
+    # Step 1: Extract FASTA headers
+    fasta_headers = re.findall(r'^>(\S+)', fasta_str, re.MULTILINE)
+    header_map = {}
+
+    # Step 2: Build mapping: tree-style ID → FASTA header
+    for header in fasta_headers:
+        if '|' not in header:
+            continue
+        uniprot, accver = header.split('|', 1)
+        if '.' not in accver:
+            continue
+        accession, version = accver.split('.', 1)
+        tree_id = f"{uniprot}_{accession}_{version}"
+        header_map[tree_id] = f"{uniprot}|{accession}.{version}"
+
+    # Step 3: Replace all matching IDs in tree
+    def replacer(match):
+        original = match.group(0)
+        parts = original.split('_', 1)
+        if len(parts) != 2:
+            return original
+        id_body = parts[1]
+        return header_map.get(id_body, original)
+
+    # Match tree IDs like 1_A0A0H3K6Z9_CP002114_3
+    updated_tree = re.sub(r'\b\d+_[A-Z0-9]+\_[A-Z0-9]+\_\d+\b', replacer, tree_str)
+
+    # Step 4: Overwrite the original tree file
+    with open(tree_file, 'w') as tf:
+        tf.write(updated_tree)
     
 ############################ RUN MAFFT FUNCTION ############################
 
@@ -135,7 +140,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         #move the tree file to the output directory if it exists
         final_output_tree_file = output_dir / f"{input_fasta.stem}.tree"
         shutil.move(temp_file, final_output_tree_file)
-        correct_tree_file_headers(final_output_tree_file)
+        rename_tree_headers_from_files(final_output_tree_file, output_file)
 
         logging.info("🔁 Restored original headers in alignment and tree.")
         logging.info("✅ MAFFT alignment and tree restoration completed. Output files: "
