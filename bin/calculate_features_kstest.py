@@ -55,6 +55,8 @@ import glob
 import re
 import traceback
 import tempfile
+import subprocess
+
 
 # ----------------------------- Utility Functions -----------------------------
 
@@ -142,6 +144,58 @@ def parse_clustal_alignment_without_match_lines(filepath):
             raise e
         finally:
             os.unlink(tmp.name)
+
+
+def align_topology_with_rate4site_mmseqs(query_seq, target_seq):
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        query_fa = os.path.join(tmpdir, "query.fasta")
+        target_fa = os.path.join(tmpdir, "target.fasta")
+
+        with open(query_fa, "w") as f:
+            f.write(">query\n" + query_seq + "\n")
+        with open(target_fa, "w") as f:
+            f.write(">target\n" + target_seq + "\n")
+
+        db_query = os.path.join(tmpdir, "queryDB")
+        db_target = os.path.join(tmpdir, "targetDB")
+        db_result = os.path.join(tmpdir, "resultDB")
+        db_tmp = os.path.join(tmpdir, "tmp")
+
+        subprocess.run(["mmseqs", "createdb", query_fa, db_query], check=True)
+        subprocess.run(["mmseqs", "createdb", target_fa, db_target], check=True)
+        subprocess.run(["mmseqs", "search", db_query, db_target, db_result, db_tmp, "--max-seqs", "1"], check=True)
+
+        result_tsv = os.path.join(tmpdir, "alignment.tsv")
+        subprocess.run([
+            "mmseqs", "convertalis", db_query, db_target, db_result, result_tsv,
+            "--format-output", "query,target,qaln,taln"
+        ], check=True)
+
+        if not os.path.exists(result_tsv):
+            return None
+
+        with open(result_tsv) as f:
+            for line in f:
+                parts = line.strip().split("\t")
+                if len(parts) < 4:
+                    continue
+                qaln, taln = parts[2], parts[3]
+                position_map = {}
+                topo_idx = 0
+                ref_idx = 0
+
+                for q_char, t_char in zip(qaln, taln):
+                    if q_char != "-" and t_char != "-":
+                        position_map[topo_idx] = ref_idx
+                    if q_char != "-":
+                        topo_idx += 1
+                    if t_char != "-":
+                        ref_idx += 1
+                return position_map
+    return None
+
+
 
 # ----------------------------- Feature Parsers -----------------------------
 
@@ -1008,30 +1062,17 @@ def parse_rate4site_deeptmhmm_dir(rate4site_dir, deeptmhmm_dir):
                 if not topology:
                     continue
 
-                # Find where Rate4Site sequence appears in topology sequence
-                offset = topology.find(rate4site_seq)
-                if offset == -1:
-                    logging.warning(f"Rate4Site sequence not found in topology for {accession} in {strain}")
+                alignment = align_topology_with_rate4site_mmseqs(query_seq=topology, target_seq=rate4site_seq)
+                if not alignment:
+                    logging.warning(f"MMseqs could not align topology to Rate4Site sequence for {accession} in {strain}")
                     continue
 
-                # Build the Rate4Site reference sequence
-                ref_sequence = "".join([aa for _, aa, _ in scores])
-
-                # Try to find the antigen (topology) sequence within the Rate4Site reference
-                try:
-                    offset = ref_sequence.index(topology)
-                except ValueError:
-                    logging.warning(f"Topology sequence not found in Rate4Site sequence for {accession} in {strain}")
-                    continue
-
-                # Map topology characters to Rate4Site positions using offset
                 annotated = []
-                for i, topo_char in enumerate(topology):
-                    rate4site_index = offset + i
-                    if rate4site_index < len(scores):
-                        pos, aa, score = scores[rate4site_index]
-                        annotated.append((pos, aa, score, topo_char))
-
+                for topo_idx, rate4site_idx in alignment.items():
+                    if rate4site_idx < len(scores):
+                        pos, aa, score = scores[rate4site_idx]
+                        region = topology[topo_idx]
+                        annotated.append((pos, aa, score, region))
 
                 for _, _, score, region in annotated:
                     results.append({
