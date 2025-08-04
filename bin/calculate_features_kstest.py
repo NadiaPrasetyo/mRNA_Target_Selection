@@ -1014,21 +1014,24 @@ def parse_rate4site_deeptmhmm_dir(rate4site_dir, deeptmhmm_dir):
                     logging.warning(f"Rate4Site sequence not found in topology for {accession} in {strain}")
                     continue
 
-                max_pos = max(pos for pos, _, _ in scores)
-                if offset + max_pos > len(topology):
-                    logging.warning(f"Truncating scores for {accession} in {strain} due to short topology after offset")
-                    scores = [(p, a, s) for p, a, s in scores if (offset + p) <= len(topology)]
-                    if not scores:
-                        continue
+                # Build the Rate4Site reference sequence
+                ref_sequence = "".join([aa for _, aa, _ in scores])
 
-                # Map each Rate4Site position to topology position using offset
+                # Try to find the antigen (topology) sequence within the Rate4Site reference
+                try:
+                    offset = ref_sequence.index(topology)
+                except ValueError:
+                    logging.warning(f"Topology sequence not found in Rate4Site sequence for {accession} in {strain}")
+                    continue
+
+                # Map topology characters to Rate4Site positions using offset
                 annotated = []
-                for p, a, s in scores:
-                    topo_index = offset + (p - 1)
-                    if topo_index < len(topology):
-                        annotated.append((p, a, s, topology[topo_index]))
-                    else:
-                        logging.warning(f"Position {p} out of bounds in topology for {accession} in {strain}")
+                for i, topo_char in enumerate(topology):
+                    rate4site_index = offset + i
+                    if rate4site_index < len(scores):
+                        pos, aa, score = scores[rate4site_index]
+                        annotated.append((pos, aa, score, topo_char))
+
 
                 for _, _, score, region in annotated:
                     results.append({
