@@ -16,6 +16,7 @@ dependencies:
   - libstdcxx
   - openssl
   - rate4site
+  - mmseqs2
   - pip
   - pip:
       - algpred2==1.4

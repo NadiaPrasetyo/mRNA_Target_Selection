@@ -55,8 +55,6 @@ import glob
 import re
 import traceback
 import tempfile
-import subprocess
-
 
 # ----------------------------- Utility Functions -----------------------------
 
@@ -103,98 +101,6 @@ def sizeof_fmt(num, suffix="B"):
             return f"{num:.1f}{unit}{suffix}"
         num /= 1024.0
     return f"{num:.1f}P{suffix}"
-
-
-def parse_clustal_alignment_without_match_lines(filepath):
-    """
-    Parse a CLUSTAL alignment file, skipping lines that contain only match symbols (*, ., :),
-    but retain lines that are completely empty or contain only whitespace.
-    
-    Args:
-        filepath (str): Path to the CLUSTAL alignment file.
-    
-    Returns:
-        MultipleSeqAlignment: Parsed alignment object.
-    
-    Raises:
-        ValueError: If the file does not have a valid CLUSTAL header or cannot be parsed.
-    """
-    # Match lines that contain only match symbols and spaces, and at least one match symbol
-    match_line_pattern = re.compile(r'^\s*[\*\.\:]+\s*$')
-
-    cleaned_lines = []
-    with open(filepath) as f:
-        for line in f:
-            if match_line_pattern.match(line):
-                continue  # Skip match symbol lines
-            cleaned_lines.append(line)
-
-    if not cleaned_lines or not cleaned_lines[0].strip().upper().startswith("CLUSTAL"):
-        raise ValueError(f"Invalid CLUSTAL header in {filepath}")
-
-    with tempfile.NamedTemporaryFile("w+", delete=False) as tmp:
-        tmp.writelines(cleaned_lines)
-        tmp.flush()
-        try:
-            return AlignIO.read(tmp.name, "clustal")
-        except Exception as e:
-            logging.debug(f"Failed parsing {filepath}")
-            with open(tmp.name) as fail_f:
-                logging.debug(fail_f.read())
-            raise e
-        finally:
-            os.unlink(tmp.name)
-
-
-def align_topology_with_rate4site_mmseqs(query_seq, target_seq):
-
-    with tempfile.TemporaryDirectory() as tmpdir:
-        query_fa = os.path.join(tmpdir, "query.fasta")
-        target_fa = os.path.join(tmpdir, "target.fasta")
-
-        with open(query_fa, "w") as f:
-            f.write(">query\n" + query_seq + "\n")
-        with open(target_fa, "w") as f:
-            f.write(">target\n" + target_seq + "\n")
-
-        db_query = os.path.join(tmpdir, "queryDB")
-        db_target = os.path.join(tmpdir, "targetDB")
-        db_result = os.path.join(tmpdir, "resultDB")
-        db_tmp = os.path.join(tmpdir, "tmp")
-
-        subprocess.run(["mmseqs", "createdb", query_fa, db_query], check=True)
-        subprocess.run(["mmseqs", "createdb", target_fa, db_target], check=True)
-        subprocess.run(["mmseqs", "search", db_query, db_target, db_result, db_tmp, "--max-seqs", "1"], check=True)
-
-        result_tsv = os.path.join(tmpdir, "alignment.tsv")
-        subprocess.run([
-            "mmseqs", "convertalis", db_query, db_target, db_result, result_tsv,
-            "--format-output", "query,target,qaln,taln"
-        ], check=True)
-
-        if not os.path.exists(result_tsv):
-            return None
-
-        with open(result_tsv) as f:
-            for line in f:
-                parts = line.strip().split("\t")
-                if len(parts) < 4:
-                    continue
-                qaln, taln = parts[2], parts[3]
-                position_map = {}
-                topo_idx = 0
-                ref_idx = 0
-
-                for q_char, t_char in zip(qaln, taln):
-                    if q_char != "-" and t_char != "-":
-                        position_map[topo_idx] = ref_idx
-                    if q_char != "-":
-                        topo_idx += 1
-                    if t_char != "-":
-                        ref_idx += 1
-                return position_map
-    return None
-
 
 
 # ----------------------------- Feature Parsers -----------------------------
@@ -997,84 +903,124 @@ def parse_rate4site_dir(directory):
     logging.info(f"Completed Rate4Site parsing with {len(results)} results")
     return results
 
-def parse_rate4site_deeptmhmm_dir(rate4site_dir, deeptmhmm_dir):
-    def parse_rate4site_file(filepath):
+
+def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir):
+    def parse_rate4site_out(filepath):
         scores = []
-        sequence = []  # To reconstruct the Rate4Site reference sequence
         with open(filepath) as f:
             for line in f:
-                if line.startswith("#") or not line.strip():
+                if line.strip().startswith("#") or not line.strip():
                     continue
                 parts = line.strip().split()
                 if len(parts) >= 4:
-                    try:
-                        pos, aa, score = int(parts[0]), parts[1], float(parts[2])
-                        scores.append((pos, aa, score))
-                        sequence.append(aa)
-                    except ValueError:
-                        logging.warning(f"Malformed line in {filepath}: {line.strip()}")
+                    pos, aa, score, msa_data = parts
+                    scores.append((int(pos), aa, float(score)))
         logging.debug(f"Parsed {len(scores)} scores from {filepath}")
-        return scores, "".join(sequence)
+        return scores
 
-    def load_deeptmhmm_topologies(directory):
-        topologies = {}  # {strain: {antigen_accession: topology}}
-        for filepath in glob.glob(os.path.join(directory, "*.3line")):
+    def load_all_deeptmhmm_topologies(deeptmhmm_dir):
+        topologies = {}  # strain -> antigen -> topology
+        for path in glob.glob(os.path.join(deeptmhmm_dir, "*.3line")):
             try:
-                with open(filepath) as f:
+                with open(path) as f:
                     lines = f.read().splitlines()
-                for i in range(0, len(lines), 3):
-                    try:
-                        header, _, topology = lines[i:i + 3]
-                        parts = header.lstrip(">").split("|")
-                        if len(parts) < 4:
-                            logging.warning(f"Invalid header format: {header}")
-                            continue
-                        accession, strain = parts[1], parts[3]
-                        topologies.setdefault(strain, {})[accession] = topology
-                    except (IndexError, ValueError):
-                        logging.warning(f"Incomplete 3-line entry in {filepath} at lines {i}-{i+2}")
+                    for i in range(0, len(lines), 3):
+                        try:
+                            header = lines[i]
+                            seq = lines[i + 1]
+                            topology = lines[i + 2]
+                            fields = header.lstrip(">").split("|")
+                            if len(fields) < 4:
+                                logging.warning(f"Unexpected header format: {header}")
+                                continue
+                            antigen_accession = fields[1]
+                            strain = fields[3]
+                            topologies.setdefault(strain, {})[antigen_accession] = topology
+                        except IndexError:
+                            logging.warning(f"Malformed 3-line record in {path} at lines {i}-{i+2}")
             except Exception:
-                logging.exception(f"Failed to read {filepath}")
-        logging.info(f"Loaded topologies for {len(topologies)} strains")
+                logging.exception(f"Error reading {path}")
+        logging.info(f"Loaded topologies for {len(topologies)} strains from {deeptmhmm_dir}")
         return topologies
 
-    def compute_rolling_stats(scores, window=15):
-        return {
-            "rolling_avg": sum(scores) / window,
-            "rolling_median": statistics.median(scores),
-            "rolling_min": min(scores),
-            "rolling_max": max(scores)
-        }
+    def get_reference_sequence_index_map(alignment, accession):
+        ref_seq = None
+        for record in alignment:
+            if accession in record.id:
+                ref_seq = record.seq
+                break
+        if ref_seq is None:
+            raise ValueError(f"Reference sequence {accession} not found in alignment.")
+
+        mapping = {}
+        ref_pos = 0
+        for i, res in enumerate(ref_seq):
+            if res != '-':
+                ref_pos += 1
+                mapping[ref_pos] = i
+        logging.debug(f"Reference map created for {accession}: {len(mapping)} positions")
+        return mapping
+
+    def get_strain_sequence_from_alignment(alignment, strain):
+        for record in alignment:
+            if strain in record.id:
+                return str(record.seq)
+        return None
+
+    def map_topology_to_alignment(strain_seq, topology):
+        mapped = []
+        topo_index = 0
+        for res in strain_seq:
+            if res == "-":
+                mapped.append(None)
+            elif topo_index < len(topology):
+                mapped.append(topology[topo_index])
+                topo_index += 1
+            else:
+                mapped.append(None)
+        return mapped
 
     results = []
-    topologies = load_deeptmhmm_topologies(deeptmhmm_dir)
+    strain_antigen_topos = load_all_deeptmhmm_topologies(deeptmhmm_dir)
 
-    for filepath in glob.glob(os.path.join(rate4site_dir, "*.out")):
+    for rate4site_file in glob.glob(os.path.join(rate4site_dir, "*.out")):
         try:
-            accession = os.path.basename(filepath).split("_combined")[0]
-            scores, rate4site_seq = parse_rate4site_file(filepath)
-            if not scores:
-                logging.warning(f"No scores in {filepath}")
+            accession = os.path.basename(rate4site_file).split("_combined")[0]
+            mafft_file = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
+
+            if not os.path.exists(mafft_file):
+                logging.warning(f"Missing MAFFT file: {mafft_file}")
                 continue
 
-            for strain, antigen_map in topologies.items():
-                topology = antigen_map.get(accession)
-                if not topology:
+            logging.info(f"Processing accession: {accession}")
+            scores = parse_rate4site_out(rate4site_file)
+            if not scores:
+                logging.warning(f"No scores found in {rate4site_file}")
+                continue
+
+            alignment = AlignIO.read(mafft_file, "fasta")
+            ref_map = get_reference_sequence_index_map(alignment, accession)
+
+            for strain, antigen_map in strain_antigen_topos.items():
+                if accession not in antigen_map:
+                    continue
+                topology = antigen_map[accession]
+                strain_seq = get_strain_sequence_from_alignment(alignment, strain)
+                if strain_seq is None:
+                    logging.debug(f"Strain {strain} not in alignment for {accession}")
                     continue
 
-                alignment = align_topology_with_rate4site_mmseqs(query_seq=topology, target_seq=rate4site_seq)
-                if not alignment:
-                    logging.warning(f"MMseqs could not align topology to Rate4Site sequence for {accession} in {strain}")
-                    continue
+                topo_by_pos = map_topology_to_alignment(strain_seq, topology)
+                strain_topology_positions = []
 
-                annotated = []
-                for topo_idx, rate4site_idx in alignment.items():
-                    if rate4site_idx < len(scores):
-                        pos, aa, score = scores[rate4site_idx]
-                        region = topology[topo_idx]
-                        annotated.append((pos, aa, score, region))
+                for pos, aa, score in scores:
+                    aln_index = ref_map.get(pos)
+                    if aln_index is None or aln_index >= len(topo_by_pos):
+                        continue
+                    topo = topo_by_pos[aln_index]
+                    if topo is None:
+                        continue
 
-                for _, _, score, region in annotated:
                     results.append({
                         "feature": "rate4site_deeptmhmm",
                         "subfeature": "outside_score_per_site",
@@ -1083,24 +1029,48 @@ def parse_rate4site_deeptmhmm_dir(rate4site_dir, deeptmhmm_dir):
                         "value": score
                     })
 
-                # Rolling stats on 'O' (outside) region
-                outside_scores = [s for _, _, s, r in annotated if r == "O"]
-                for i in range(len(outside_scores) - 14):  # window size = 15
-                    window = outside_scores[i:i + 15]
-                    stats = compute_rolling_stats(window)
-                    for key, value in stats.items():
-                        results.append({
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": key,
+                    strain_topology_positions.append((pos, aa, score, topo))
+
+                # Rolling window stats for this strain-antigen pair
+                outside_scores = [s for _, _, s, t in strain_topology_positions if t == "O"]
+                window_size = 15
+                for i in range(len(outside_scores) - window_size + 1):
+                    window = outside_scores[i:i + window_size]
+                    results.extend([
+                        {
                             "strain": strain,
-                            "antigen": accession,
-                            "value": value
-                        })
+                            "accession": accession,
+                            "feature": "rate4site_deeptmhmm",
+                            "subfeature": "rolling_avg",
+                            "value": sum(window) / window_size
+                        },
+                        {
+                            "strain": strain,
+                            "accession": accession,
+                            "feature": "rate4site_deeptmhmm",
+                            "subfeature": "rolling_median",
+                            "value": statistics.median(window)
+                        },
+                        {
+                            "strain": strain,
+                            "accession": accession,
+                            "feature": "rate4site_deeptmhmm",
+                            "subfeature": "rolling_min",
+                            "value": min(window)
+                        },
+                        {
+                            "strain": strain,
+                            "accession": accession,
+                            "feature": "rate4site_deeptmhmm",
+                            "subfeature": "rolling_max",
+                            "value": max(window)
+                        }
+                    ])
 
-        except Exception:
-            logging.exception(f"Failed to process {filepath}")
+        except Exception as e:
+            logging.exception(f"Error processing {rate4site_file}: {str(e)}")
 
-    logging.info(f"Extracted {len(results)} features")
+    logging.info(f"Total features returned: {len(results)}")
     return results
 
 
@@ -1136,8 +1106,9 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mixmhc2pred": lambda: parse_mixmhc2pred_dir(os.path.join(base_dir, "mixmhc2pred")),
         "deeptmhmm": lambda: parse_deeptmhmm_dir(os.path.join(base_dir, "deeptmhmm")),
         "rate4site": lambda: parse_rate4site_dir(os.path.join(base_dir, "mafft_rate4site/rate4site_results")),
-        "rate4site_deeptmhmm": lambda: parse_rate4site_deeptmhmm_dir(
+        "rate4site_mafft_deeptmhmm": lambda: parse_rate4site_mafft_deeptmhmm_dir(
             os.path.join(base_dir, "mafft_rate4site/rate4site_results"),
+            os.path.join(base_dir, "mafft_rate4site"),
             os.path.join(base_dir, "deeptmhmm")
         )
     }
@@ -1248,18 +1219,13 @@ def categorize_feature(feature, subfeature):
     if feature == "ifnepitope2":
         return "Immunogenicity"
     # Conservation Analysis
-    if feature in ["cluster_conservation", "rate4site", "rate4sire_deeptmhmm"] or subfeature in [
+    if feature == "cluster_conservation" or subfeature in [
         "Percent identity / number of strains",
         "Average Log₁₀ e-value",
         "Average bit-score / length",
         "percent_identity/num_strain",
         "e_value_average",
-        "bit_score_normalized",
-        "rolling_mean",
-        "rolling_median",
-        "rolling_max",
-        "rolling_min",
-        "outside_score_per_site"
+        "bit_score_normalized"
     ]:
         return "Conservation Analysis Across Strains"
     # Epitope Prediction
