@@ -1088,7 +1088,7 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mixmhc2pred": lambda: parse_mixmhc2pred_dir(os.path.join(base_dir, "mixmhc2pred")),
         "deeptmhmm": lambda: parse_deeptmhmm_dir(os.path.join(base_dir, "deeptmhmm")),
         "rate4site": lambda: parse_rate4site_dir(os.path.join(base_dir, "mafft_rate4site/rate4site_results")),
-        "rate4site_mafft_deeptmhmm": lambda: parse_rate4site_deeptmhmm_dir(
+        "rate4site_deeptmhmm": lambda: parse_rate4site_deeptmhmm_dir(
             os.path.join(base_dir, "mafft_rate4site/rate4site_results"),
             os.path.join(base_dir, "deeptmhmm")
         )
