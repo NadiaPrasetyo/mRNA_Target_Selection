@@ -1219,13 +1219,19 @@ def categorize_feature(feature, subfeature):
     if feature == "ifnepitope2":
         return "Immunogenicity"
     # Conservation Analysis
-    if feature == "cluster_conservation" or subfeature in [
+    if feature in ["cluster_conservation", "rate4site", "rate4site_deeptmhmm"] or subfeature in [
         "Percent identity / number of strains",
         "Average Log₁₀ e-value",
         "Average bit-score / length",
         "percent_identity/num_strain",
         "e_value_average",
-        "bit_score_normalized"
+        "bit_score_normalized",
+        "rolling_mean",
+        "rolling_median",
+        "rolling_max",
+        "rolling_min",
+        "outside_score_per_site",
+        "per_site_score"
     ]:
         return "Conservation Analysis Across Strains"
     # Epitope Prediction
