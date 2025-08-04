@@ -943,116 +943,120 @@ def parse_rate4site_dir(directory):
     logging.info(f"Completed Rate4Site parsing with {len(results)} results")
     return results
 
-
 def parse_rate4site_deeptmhmm_dir(rate4site_dir, deeptmhmm_dir):
-    def parse_rate4site_out(filepath):
+    def parse_rate4site_file(filepath):
         scores = []
+        sequence = []  # To reconstruct the Rate4Site reference sequence
         with open(filepath) as f:
             for line in f:
-                if line.strip().startswith("#") or not line.strip():
+                if line.startswith("#") or not line.strip():
                     continue
                 parts = line.strip().split()
                 if len(parts) >= 4:
-                    pos, aa, score, _ = parts
-                    scores.append((int(pos), aa, float(score)))
+                    try:
+                        pos, aa, score = int(parts[0]), parts[1], float(parts[2])
+                        scores.append((pos, aa, score))
+                        sequence.append(aa)
+                    except ValueError:
+                        logging.warning(f"Malformed line in {filepath}: {line.strip()}")
         logging.debug(f"Parsed {len(scores)} scores from {filepath}")
-        return scores
+        return scores, "".join(sequence)
 
-    def load_all_deeptmhmm_topologies(deeptmhmm_dir):
-        topologies = {}  # strain -> antigen -> topology
-        for path in glob.glob(os.path.join(deeptmhmm_dir, "*.3line")):
+    def load_deeptmhmm_topologies(directory):
+        topologies = {}  # {strain: {antigen_accession: topology}}
+        for filepath in glob.glob(os.path.join(directory, "*.3line")):
             try:
-                with open(path) as f:
+                with open(filepath) as f:
                     lines = f.read().splitlines()
-                    for i in range(0, len(lines), 3):
-                        try:
-                            header = lines[i]
-                            seq = lines[i + 1]
-                            topology = lines[i + 2]
-                            fields = header.lstrip(">").split("|")
-                            if len(fields) < 4:
-                                logging.warning(f"Unexpected header format: {header}")
-                                continue
-                            antigen_accession = fields[1]
-                            strain = fields[3]
-                            topologies.setdefault(strain, {})[antigen_accession] = topology
-                        except IndexError:
-                            logging.warning(f"Malformed 3-line record in {path} at lines {i}-{i+2}")
+                for i in range(0, len(lines), 3):
+                    try:
+                        header, _, topology = lines[i:i + 3]
+                        parts = header.lstrip(">").split("|")
+                        if len(parts) < 4:
+                            logging.warning(f"Invalid header format: {header}")
+                            continue
+                        accession, strain = parts[1], parts[3]
+                        topologies.setdefault(strain, {})[accession] = topology
+                    except (IndexError, ValueError):
+                        logging.warning(f"Incomplete 3-line entry in {filepath} at lines {i}-{i+2}")
             except Exception:
-                logging.exception(f"Error reading {path}")
-        logging.info(f"Loaded topologies for {len(topologies)} strains from {deeptmhmm_dir}")
+                logging.exception(f"Failed to read {filepath}")
+        logging.info(f"Loaded topologies for {len(topologies)} strains")
         return topologies
 
-    results = []
-    strain_antigen_topos = load_all_deeptmhmm_topologies(deeptmhmm_dir)
+    def compute_rolling_stats(scores, window=15):
+        return {
+            "rolling_avg": sum(scores) / window,
+            "rolling_median": statistics.median(scores),
+            "rolling_min": min(scores),
+            "rolling_max": max(scores)
+        }
 
-    for rate4site_file in glob.glob(os.path.join(rate4site_dir, "*.out")):
+    results = []
+    topologies = load_deeptmhmm_topologies(deeptmhmm_dir)
+
+    for filepath in glob.glob(os.path.join(rate4site_dir, "*.out")):
         try:
-            accession = os.path.basename(rate4site_file).split("_combined")[0]
-            scores = parse_rate4site_out(rate4site_file)
+            accession = os.path.basename(filepath).split("_combined")[0]
+            scores, rate4site_seq = parse_rate4site_file(filepath)
             if not scores:
-                logging.warning(f"No scores found in {rate4site_file}")
+                logging.warning(f"No scores in {filepath}")
                 continue
 
-            logging.info(f"Processing antigen: {accession}")
-
-            for strain, antigen_map in strain_antigen_topos.items():
-                if accession not in antigen_map:
+            for strain, antigen_map in topologies.items():
+                topology = antigen_map.get(accession)
+                if not topology:
                     continue
 
-                topology = antigen_map[accession]
-                if len(topology) < max(pos for pos, _, _ in scores):
-                    logging.warning(f"Topology length mismatch for strain {strain}, antigen {accession}")
+                # Find where Rate4Site sequence appears in topology sequence
+                offset = topology.find(rate4site_seq)
+                if offset == -1:
+                    logging.warning(f"Rate4Site sequence not found in topology for {accession} in {strain}")
                     continue
 
-                strain_topology_positions = []
-                for pos, aa, score in scores:
-                    topo_index = pos - 1
-                    if topo_index >= len(topology):
-                        continue
-                    topo = topology[topo_index]
-                    if topo is None:
+                max_pos = max(pos for pos, _, _ in scores)
+                if offset + max_pos > len(topology):
+                    logging.warning(f"Truncating scores for {accession} in {strain} due to short topology after offset")
+                    scores = [(p, a, s) for p, a, s in scores if (offset + p) <= len(topology)]
+                    if not scores:
                         continue
 
+                # Map each Rate4Site position to topology position using offset
+                annotated = []
+                for p, a, s in scores:
+                    topo_index = offset + (p - 1)
+                    if topo_index < len(topology):
+                        annotated.append((p, a, s, topology[topo_index]))
+                    else:
+                        logging.warning(f"Position {p} out of bounds in topology for {accession} in {strain}")
+
+                for _, _, score, region in annotated:
                     results.append({
                         "feature": "rate4site_deeptmhmm",
                         "subfeature": "outside_score_per_site",
+                        "strain": strain,
+                        "antigen": accession,
                         "value": score
                     })
 
-                    strain_topology_positions.append((pos, aa, score, topo))
+                # Rolling stats on 'O' (outside) region
+                outside_scores = [s for _, _, s, r in annotated if r == "O"]
+                for i in range(len(outside_scores) - 14):  # window size = 15
+                    window = outside_scores[i:i + 15]
+                    stats = compute_rolling_stats(window)
+                    for key, value in stats.items():
+                        results.append({
+                            "feature": "rate4site_deeptmhmm",
+                            "subfeature": key,
+                            "strain": strain,
+                            "antigen": accession,
+                            "value": value
+                        })
 
-                outside_scores = [s for _, _, s, t in strain_topology_positions if t == "O"]
-                window_size = 15
-                for i in range(len(outside_scores) - window_size + 1):
-                    window = outside_scores[i:i + window_size]
-                    results.extend([
-                        {
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_avg",
-                            "value": sum(window) / window_size
-                        },
-                        {
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_median",
-                            "value": statistics.median(window)
-                        },
-                        {
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_min",
-                            "value": min(window)
-                        },
-                        {
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_max",
-                            "value": max(window)
-                        }
-                    ])
+        except Exception:
+            logging.exception(f"Failed to process {filepath}")
 
-        except Exception as e:
-            logging.exception(f"Error processing {rate4site_file}: {str(e)}")
-
-    logging.info(f"Total features returned: {len(results)}")
+    logging.info(f"Extracted {len(results)} features")
     return results
 
 
@@ -1200,13 +1204,18 @@ def categorize_feature(feature, subfeature):
     if feature == "ifnepitope2":
         return "Immunogenicity"
     # Conservation Analysis
-    if feature == "cluster_conservation" or subfeature in [
+    if feature in ["cluster_conservation", "rate4site", "rate4sire_deeptmhmm"] or subfeature in [
         "Percent identity / number of strains",
         "Average Log₁₀ e-value",
         "Average bit-score / length",
         "percent_identity/num_strain",
         "e_value_average",
-        "bit_score_normalized"
+        "bit_score_normalized",
+        "rolling_mean",
+        "rolling_median",
+        "rolling_max",
+        "rolling_min",
+        "outside_score_per_site"
     ]:
         return "Conservation Analysis Across Strains"
     # Epitope Prediction
