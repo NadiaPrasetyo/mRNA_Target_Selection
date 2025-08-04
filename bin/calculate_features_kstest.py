@@ -944,7 +944,7 @@ def parse_rate4site_dir(directory):
     return results
 
 
-def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir):
+def parse_rate4site_deeptmhmm_dir(rate4site_dir, deeptmhmm_dir):
     def parse_rate4site_out(filepath):
         scores = []
         with open(filepath) as f:
@@ -953,7 +953,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                     continue
                 parts = line.strip().split()
                 if len(parts) >= 4:
-                    pos, aa, score, msa_data = parts
+                    pos, aa, score, _ = parts
                     scores.append((int(pos), aa, float(score)))
         logging.debug(f"Parsed {len(scores)} scores from {filepath}")
         return scores
@@ -983,91 +983,38 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
         logging.info(f"Loaded topologies for {len(topologies)} strains from {deeptmhmm_dir}")
         return topologies
 
-    def get_reference_sequence_index_map(alignment, accession):
-        ref_seq = None
-        for record in alignment:
-            if accession in record.id:
-                ref_seq = record.seq
-                break
-        if ref_seq is None:
-            raise ValueError(f"Reference sequence {accession} not found in alignment.")
-
-        mapping = {}
-        ref_pos = 0
-        for i, res in enumerate(ref_seq):
-            if res != '-':
-                ref_pos += 1
-                mapping[ref_pos] = i
-        logging.debug(f"Reference map created for {accession}: {len(mapping)} positions")
-        return mapping
-
-    def get_strain_sequence_from_alignment(alignment, strain):
-        for record in alignment:
-            if strain in record.id:
-                return str(record.seq)
-        return None
-
-    def map_topology_to_alignment(strain_seq, topology):
-        mapped = []
-        topo_index = 0
-        for res in strain_seq:
-            if res == "-":
-                mapped.append(None)
-            elif topo_index < len(topology):
-                mapped.append(topology[topo_index])
-                topo_index += 1
-            else:
-                mapped.append(None)
-        return mapped
-
     results = []
     strain_antigen_topos = load_all_deeptmhmm_topologies(deeptmhmm_dir)
 
     for rate4site_file in glob.glob(os.path.join(rate4site_dir, "*.out")):
         try:
             accession = os.path.basename(rate4site_file).split("_combined")[0]
-            mafft_file = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
-
-            if not os.path.exists(mafft_file):
-                logging.warning(f"Missing MAFFT file: {mafft_file}")
-                continue
-
-            logging.info(f"Processing accession: {accession}")
             scores = parse_rate4site_out(rate4site_file)
             if not scores:
                 logging.warning(f"No scores found in {rate4site_file}")
                 continue
 
-            alignment = AlignIO.read(mafft_file, "clustal")
-            ref_map = get_reference_sequence_index_map(alignment, accession)
+            logging.info(f"Processing antigen: {accession}")
 
             for strain, antigen_map in strain_antigen_topos.items():
                 if accession not in antigen_map:
                     continue
+
                 topology = antigen_map[accession]
-                strain_seq = get_strain_sequence_from_alignment(alignment, strain)
-                if strain_seq is None:
-                    logging.debug(f"Strain {strain} not in alignment for {accession}")
+                if len(topology) < max(pos for pos, _, _ in scores):
+                    logging.warning(f"Topology length mismatch for strain {strain}, antigen {accession}")
                     continue
 
-                topo_by_pos = map_topology_to_alignment(strain_seq, topology)
                 strain_topology_positions = []
-
                 for pos, aa, score in scores:
-                    aln_index = ref_map.get(pos)
-                    if aln_index is None or aln_index >= len(topo_by_pos):
+                    topo_index = pos - 1
+                    if topo_index >= len(topology):
                         continue
-                    topo = topo_by_pos[aln_index]
+                    topo = topology[topo_index]
                     if topo is None:
                         continue
 
                     results.append({
-                        "strain": strain,
-                        "accession": accession,
-                        "position": pos,
-                        "aa": aa,
-                        "score": score,
-                        "topology": topo,
                         "feature": "rate4site_deeptmhmm",
                         "subfeature": "outside_score_per_site",
                         "value": score
@@ -1075,36 +1022,27 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
 
                     strain_topology_positions.append((pos, aa, score, topo))
 
-                # Rolling window stats for this strain-antigen pair
                 outside_scores = [s for _, _, s, t in strain_topology_positions if t == "O"]
                 window_size = 15
                 for i in range(len(outside_scores) - window_size + 1):
                     window = outside_scores[i:i + window_size]
                     results.extend([
                         {
-                            "strain": strain,
-                            "accession": accession,
                             "feature": "rate4site_deeptmhmm",
                             "subfeature": "rolling_avg",
                             "value": sum(window) / window_size
                         },
                         {
-                            "strain": strain,
-                            "accession": accession,
                             "feature": "rate4site_deeptmhmm",
                             "subfeature": "rolling_median",
                             "value": statistics.median(window)
                         },
                         {
-                            "strain": strain,
-                            "accession": accession,
                             "feature": "rate4site_deeptmhmm",
                             "subfeature": "rolling_min",
                             "value": min(window)
                         },
                         {
-                            "strain": strain,
-                            "accession": accession,
                             "feature": "rate4site_deeptmhmm",
                             "subfeature": "rolling_max",
                             "value": max(window)
@@ -1150,9 +1088,8 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "mixmhc2pred": lambda: parse_mixmhc2pred_dir(os.path.join(base_dir, "mixmhc2pred")),
         "deeptmhmm": lambda: parse_deeptmhmm_dir(os.path.join(base_dir, "deeptmhmm")),
         "rate4site": lambda: parse_rate4site_dir(os.path.join(base_dir, "mafft_rate4site/rate4site_results")),
-        "rate4site_mafft_deeptmhmm": lambda: parse_rate4site_mafft_deeptmhmm_dir(
+        "rate4site_mafft_deeptmhmm": lambda: parse_rate4site_deeptmhmm_dir(
             os.path.join(base_dir, "mafft_rate4site/rate4site_results"),
-            os.path.join(base_dir, "mafft_rate4site"),
             os.path.join(base_dir, "deeptmhmm")
         )
     }
