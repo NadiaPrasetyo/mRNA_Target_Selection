@@ -51,6 +51,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import statistics
 from Bio import AlignIO
+import glob
 import re
 import traceback
 import tempfile
@@ -944,122 +945,135 @@ def parse_rate4site_dir(directory):
 
 
 def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir):
-    results = []
-
-    # Step 1: Parse all DeepTMHMM .3line files
-    deeptmhmm_data = {}  # (accession, strain) -> (topology_str, seq_str)
-    for fname in os.listdir(deeptmhmm_dir):
-        if not fname.endswith(".3line"):
-            continue
-        strain = os.path.splitext(fname)[0]
-        with open(os.path.join(deeptmhmm_dir, fname)) as f:
-            lines = f.read().splitlines()
-        for i in range(0, len(lines), 3):
-            header = lines[i]
-            seq = lines[i + 1]
-            topology = lines[i + 2]
-            parts = header.split("|")
-            if len(parts) < 5:
-                continue
-            accession = parts[1]
-            strain_id = parts[3]
-            deeptmhmm_data[(accession, strain_id)] = (topology, seq, strain)
-
-    # Step 2: Process each Rate4Site file
-    for filename in os.listdir(rate4site_dir):
-        if not filename.endswith('_combined_aligned.out'):
-            continue
-        accession = filename.split('_')[0]
-        rate4site_path = os.path.join(rate4site_dir, filename)
-        mafft_path = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
-
-        if not os.path.isfile(mafft_path):
-            continue
-
-        # Parse Rate4Site scores
+    def parse_rate4site_out(filepath):
         scores = []
-        with open(rate4site_path) as f:
+        with open(filepath) as f:
             for line in f:
-                if line.startswith("#") or not line.strip():
+                if line.strip().startswith("#") or not line.strip():
                     continue
-                parts = line.split()
-                if len(parts) < 3:
-                    continue
-                aa, score = parts[1], float(parts[2])
-                scores.append((aa, score))
+                parts = line.strip().split()
+                if len(parts) >= 4:
+                    pos, aa, score, msa_data = parts
+                    scores.append((int(pos), aa, float(score)))
+        return scores
 
-        # Parse MSA
-        try:
-            msa = AlignIO.read(mafft_path, "clustal")
-        except (ValueError, AssertionError) as e:
-            print(f"[SKIPPED] {mafft_path} due to alignment error: {e}")
-            logging.error(traceback.format_exc())
+    def parse_deeptmhmm_3line(filepath):
+        topologies = {}
+        with open(filepath) as f:
+            lines = f.read().splitlines()
+            for i in range(0, len(lines), 3):
+                header = lines[i]
+                seq = lines[i + 1]
+                topology = lines[i + 2]
+                antigen_id = header.split('|')[3]  # strain ID
+                topologies[antigen_id] = topology
+        return topologies
+
+    def get_reference_sequence_index_map(alignment, accession):
+        """
+        Return a mapping from alignment position to reference sequence residue index.
+        """
+        ref_seq = None
+        for record in alignment:
+            if accession in record.id:
+                ref_seq = record.seq
+                break
+        if ref_seq is None:
+            raise ValueError(f"Reference sequence {accession} not found in alignment.")
+
+        mapping = {}
+        ref_pos = 0
+        for i, res in enumerate(ref_seq):
+            if res != '-':
+                ref_pos += 1
+                mapping[ref_pos] = i
+        return mapping
+
+    def get_topology_by_alignment_position(alignment, topology_map, accession):
+        """
+        Build a topology array indexed by reference sequence positions.
+        Only takes topologies from strains that have matching alignment.
+        """
+        topo_per_position = []
+        for record in alignment:
+            strain = record.id.split("|")[-1]
+            if strain not in topology_map:
+                continue
+            seq = str(record.seq)
+            topology = topology_map[strain]
+            topo_pos = 0
+            for res in seq:
+                if res == "-":
+                    topo_per_position.append(None)
+                    continue
+                if topo_pos >= len(topology):
+                    topo_per_position.append(None)
+                    continue
+                topo_per_position.append(topology[topo_pos])
+                topo_pos += 1
+            break  # only need one good mapping strain
+        return topo_per_position
+
+    results = []
+    for rate4site_file in glob.glob(os.path.join(rate4site_dir, "*.out")):
+        accession = os.path.basename(rate4site_file).split("_combined")[0]
+        mafft_file = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
+        deeptmhmm_file = os.path.join(deeptmhmm_dir, f"{accession}_topologies.3line")
+
+        if not os.path.exists(mafft_file) or not os.path.exists(deeptmhmm_file):
             continue
 
-        # For each matching accession/strain combination
-        for (acc, strain_id), (topology_str, unaligned_seq, strain) in deeptmhmm_data.items():
-            if acc != accession:
+        scores = parse_rate4site_out(rate4site_file)
+        alignment = AlignIO.read(mafft_file, "clustal")
+        topology_map = parse_deeptmhmm_3line(deeptmhmm_file)
+
+        ref_map = get_reference_sequence_index_map(alignment, accession)
+        topo_by_alignment_pos = get_topology_by_alignment_position(alignment, topology_map, accession)
+
+        topology_positions = []
+        for pos, aa, score in scores:
+            aln_index = ref_map.get(pos)
+            if aln_index is None or aln_index >= len(topo_by_alignment_pos):
+                continue
+            topo = topo_by_alignment_pos[aln_index]
+            if topo is None:
                 continue
 
-            # Identify the matched sequence
-            matched_seq_id = None
-            for record in msa:
-                if unaligned_seq in record.seq.replace('-', ''):
-                    matched_seq_id = record.id
-                    break
-            if not matched_seq_id:
-                continue
+            results.append({
+                "feature": "rate4site_deeptmhmm",
+                "subfeature": "outside_score_per_site",
+                "value": score
+            })
 
-            aligned_seq = None
-            for record in msa:
-                if record.id == matched_seq_id:
-                    aligned_seq = record.seq
-                    break
+            topology_positions.append((pos, aa, score, topo))
 
-            score_index = 0
-            position_scores = []
-            for aa in aligned_seq:
-                if aa == "-":
-                    position_scores.append(None)
-                else:
-                    if score_index < len(scores):
-                        _, score = scores[score_index]
-                        position_scores.append(score)
-                        score_index += 1
-                    else:
-                        position_scores.append(None)
-
-            # Map scores to topology positions
-            topology_positions = []
-            seq_no_gaps = ""
-            for i, aa in enumerate(aligned_seq):
-                if aa != "-":
-                    seq_no_gaps += aa
-                    topo_char = topology_str[len(seq_no_gaps) - 1]
-                    if position_scores[i] is not None:
-                        topology_positions.append((len(seq_no_gaps), aa, position_scores[i], topo_char))
-
-            # Save individual residue-level features (for outside residues)
-            for _, aa, score, topo in topology_positions:
-                if topo == "O":
-                    results.append({
-                        "feature": "rate4site_deeptmhmm",
-                        "subfeature": "outside_score_per_site",
-                        "value": score
-                    })
-
-            # Sliding window stats (only for outside residues)
-            outside_scores = [score for _, _, score, topo in topology_positions if topo == "O"]
-            window_size = 15
-            for i in range(len(outside_scores) - window_size + 1):
-                window = outside_scores[i:i + window_size]
-                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_avg", "value": sum(window)/window_size})
-                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_median", "value": statistics.median(window)})
-                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_min", "value": min(window)})
-                results.append({"feature": "rate4site_deeptmhmm", "subfeature": f"rolling_max", "value": max(window)})
+        # Sliding window on outside residues
+        outside_scores = [score for _, _, score, topo in topology_positions if topo == "O"]
+        window_size = 15
+        for i in range(len(outside_scores) - window_size + 1):
+            window = outside_scores[i:i + window_size]
+            results.append({
+                "feature": "rate4site_deeptmhmm",
+                "subfeature": "rolling_avg",
+                "value": sum(window) / window_size
+            })
+            results.append({
+                "feature": "rate4site_deeptmhmm",
+                "subfeature": "rolling_median",
+                "value": statistics.median(window)
+            })
+            results.append({
+                "feature": "rate4site_deeptmhmm",
+                "subfeature": "rolling_min",
+                "value": min(window)
+            })
+            results.append({
+                "feature": "rate4site_deeptmhmm",
+                "subfeature": "rolling_max",
+                "value": max(window)
+            })
 
     return results
-
 
 
 # ----------------------------- Orchestration Functions -----------------------------
