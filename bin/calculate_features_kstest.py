@@ -955,6 +955,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 if len(parts) >= 4:
                     pos, aa, score, msa_data = parts
                     scores.append((int(pos), aa, float(score)))
+        logging.debug(f"Parsed {len(scores)} scores from {filepath}")
         return scores
 
     def parse_deeptmhmm_3line(filepath):
@@ -962,17 +963,18 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
         with open(filepath) as f:
             lines = f.read().splitlines()
             for i in range(0, len(lines), 3):
-                header = lines[i]
-                seq = lines[i + 1]
-                topology = lines[i + 2]
-                antigen_id = header.split('|')[3]  # strain ID
-                topologies[antigen_id] = topology
+                try:
+                    header = lines[i]
+                    seq = lines[i + 1]
+                    topology = lines[i + 2]
+                    strain = header.split('|')[3]  # strain ID
+                    topologies[strain] = topology
+                except IndexError:
+                    logging.warning(f"Failed to parse lines {i}-{i+2} in {filepath}")
+        logging.debug(f"Parsed {len(topologies)} topologies from {filepath}")
         return topologies
 
     def get_reference_sequence_index_map(alignment, accession):
-        """
-        Return a mapping from alignment position to reference sequence residue index.
-        """
         ref_seq = None
         for record in alignment:
             if accession in record.id:
@@ -987,13 +989,10 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
             if res != '-':
                 ref_pos += 1
                 mapping[ref_pos] = i
+        logging.debug(f"Reference map created for {accession}: {len(mapping)} positions")
         return mapping
 
     def get_topology_by_alignment_position(alignment, topology_map, accession):
-        """
-        Build a topology array indexed by reference sequence positions.
-        Only takes topologies from strains that have matching alignment.
-        """
         topo_per_position = []
         for record in alignment:
             strain = record.id.split("|")[-1]
@@ -1011,68 +1010,89 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                     continue
                 topo_per_position.append(topology[topo_pos])
                 topo_pos += 1
-            break  # only need one good mapping strain
+            logging.debug(f"Topology mapping complete using strain {strain}")
+            break
+        logging.debug(f"Topology per alignment position: {len(topo_per_position)}")
         return topo_per_position
 
     results = []
     for rate4site_file in glob.glob(os.path.join(rate4site_dir, "*.out")):
-        accession = os.path.basename(rate4site_file).split("_combined")[0]
-        mafft_file = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
-        deeptmhmm_file = os.path.join(deeptmhmm_dir, f"{accession}_topologies.3line")
+        try:
+            accession = os.path.basename(rate4site_file).split("_combined")[0]
+            mafft_file = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
+            deeptmhmm_file = os.path.join(deeptmhmm_dir, f"{accession}_topologies.3line")
 
-        if not os.path.exists(mafft_file) or not os.path.exists(deeptmhmm_file):
-            continue
-
-        scores = parse_rate4site_out(rate4site_file)
-        alignment = AlignIO.read(mafft_file, "clustal")
-        topology_map = parse_deeptmhmm_3line(deeptmhmm_file)
-
-        ref_map = get_reference_sequence_index_map(alignment, accession)
-        topo_by_alignment_pos = get_topology_by_alignment_position(alignment, topology_map, accession)
-
-        topology_positions = []
-        for pos, aa, score in scores:
-            aln_index = ref_map.get(pos)
-            if aln_index is None or aln_index >= len(topo_by_alignment_pos):
+            if not os.path.exists(mafft_file):
+                logging.warning(f"Missing MAFFT file: {mafft_file}")
                 continue
-            topo = topo_by_alignment_pos[aln_index]
-            if topo is None:
+            if not os.path.exists(deeptmhmm_file):
+                logging.warning(f"Missing DeepTMHMM file: {deeptmhmm_file}")
                 continue
 
-            results.append({
-                "feature": "rate4site_deeptmhmm",
-                "subfeature": "outside_score_per_site",
-                "value": score
-            })
+            logging.info(f"Processing {accession}")
 
-            topology_positions.append((pos, aa, score, topo))
+            scores = parse_rate4site_out(rate4site_file)
+            if not scores:
+                logging.warning(f"No scores found in {rate4site_file}")
+                continue
 
-        # Sliding window on outside residues
-        outside_scores = [score for _, _, score, topo in topology_positions if topo == "O"]
-        window_size = 15
-        for i in range(len(outside_scores) - window_size + 1):
-            window = outside_scores[i:i + window_size]
-            results.append({
-                "feature": "rate4site_deeptmhmm",
-                "subfeature": "rolling_avg",
-                "value": sum(window) / window_size
-            })
-            results.append({
-                "feature": "rate4site_deeptmhmm",
-                "subfeature": "rolling_median",
-                "value": statistics.median(window)
-            })
-            results.append({
-                "feature": "rate4site_deeptmhmm",
-                "subfeature": "rolling_min",
-                "value": min(window)
-            })
-            results.append({
-                "feature": "rate4site_deeptmhmm",
-                "subfeature": "rolling_max",
-                "value": max(window)
-            })
+            alignment = AlignIO.read(mafft_file, "clustal")
+            topology_map = parse_deeptmhmm_3line(deeptmhmm_file)
+            if not topology_map:
+                logging.warning(f"No topologies found in {deeptmhmm_file}")
+                continue
 
+            ref_map = get_reference_sequence_index_map(alignment, accession)
+            topo_by_alignment_pos = get_topology_by_alignment_position(alignment, topology_map, accession)
+
+            topology_positions = []
+            for pos, aa, score in scores:
+                aln_index = ref_map.get(pos)
+                if aln_index is None or aln_index >= len(topo_by_alignment_pos):
+                    continue
+                topo = topo_by_alignment_pos[aln_index]
+                if topo is None:
+                    continue
+
+                results.append({
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "outside_score_per_site",
+                    "value": score
+                })
+
+                topology_positions.append((pos, aa, score, topo))
+
+            outside_scores = [score for _, _, score, topo in topology_positions if topo == "O"]
+            logging.debug(f"Found {len(outside_scores)} outside scores for {accession}")
+
+            window_size = 15
+            for i in range(len(outside_scores) - window_size + 1):
+                window = outside_scores[i:i + window_size]
+                results.append({
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "rolling_avg",
+                    "value": sum(window) / window_size
+                })
+                results.append({
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "rolling_median",
+                    "value": statistics.median(window)
+                })
+                results.append({
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "rolling_min",
+                    "value": min(window)
+                })
+                results.append({
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "rolling_max",
+                    "value": max(window)
+                })
+
+        except Exception as e:
+            logging.exception(f"Error processing {rate4site_file}: {str(e)}")
+
+    logging.info(f"Total features returned: {len(results)}")
     return results
 
 
