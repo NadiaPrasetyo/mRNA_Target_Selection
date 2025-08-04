@@ -106,7 +106,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         logging.info("✅ MAFFT alignment and tree restoration completed. Output files: "
                     f"{output_file}, {final_output_tree_file}")
         
-        cleanup_files = [tree_file]
+        cleanup_files = [temp_file]
         for f in cleanup_files:
             if f.exists():
                 f.unlink()
