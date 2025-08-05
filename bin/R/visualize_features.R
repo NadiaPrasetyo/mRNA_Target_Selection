@@ -126,7 +126,7 @@ categorize_feature <- function(feature, subfeature) {
     return("Immunogenicity")
   }
   # Conservation Analysis
-  if (feature == "cluster_conservation" ||
+  if (feature %in% c("cluster_conservation", "rate4site", "rate4site_deeptmhmm") ||
       subfeature %in% c("Percent identity / number of strains", "Average Log₁₀ e-value", "Average bit-score / length")) {
     return("Conservation Analysis Across Strains")
   }
