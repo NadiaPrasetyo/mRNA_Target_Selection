@@ -1,5 +1,5 @@
 """
-import logging
+run_ifnepitope2.py
 Runner for IfNePitope2 immunogenicity prediction tool.
 
 Overview:

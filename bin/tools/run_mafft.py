@@ -1,9 +1,12 @@
 """
+run_mafft.py
 Runner for MAFFT multiple sequence alignment tool.
 Overview:
     - Ensures the required Conda environment and dependencies are present.
     - Runs MAFFT (L-INS-i algorithm) on the provided input FASTA file using the external_tools_env Conda environment.
     - Outputs the aligned sequences in Clustal format, along with a guide tree.
+    - Restores original headers in the alignment and tree files.
+    - Optionally runs Rate4Site on the aligned sequences and guide tree if both are successfully generated.
 Arguments:
     tool_path (Path): Path to the MAFFT executable (ignored, required by interface).
     input_fasta (Path): Path to the input FASTA file.
@@ -14,10 +17,10 @@ Requirements:
     - MAFFT installed in the specified Conda environment.
     - Conda available in PATH.
 Outputs:
-    <output_dir>/<input_fasta_stem>_aligned.fasta   # Aligned sequences in Clustal format
+    <output_dir>/<input_fasta_stem>_aligned.fasta   # Aligned sequences in Clustal format.
+    <output_dir>/<input_fasta_stem>.tree            # Guide tree in Newick format (if generated).
+    <output_dir>/rate4site_results/                 # Rate4Site results directory (if Rate4Site is run).
 Author: Nadia
-run_mafft.py
-
 """
 import subprocess
 from pathlib import Path
@@ -41,6 +44,15 @@ def count_sequences(input_fasta: Path) -> int:
     
 
 def rename_tree_headers_from_files(tree_file, fasta_file):
+    """
+    Rename tree headers in the Newick tree file to match the FASTA headers
+    to ensure consistency between the alignment and the tree.
+    Args:
+    - tree_file (Path): Path to the Newick tree file.
+    - fasta_file (Path): Path to the FASTA file containing sequence headers.
+    Returns:
+    - None: The tree file is modified in place.
+    """
     # Read tree and FASTA file contents
     with open(tree_file, 'r') as tf:
         tree_str = tf.read()
@@ -64,6 +76,7 @@ def rename_tree_headers_from_files(tree_file, fasta_file):
 
     # Step 3: Replace all matching IDs in tree
     def replacer(match):
+        """Replace matched tree ID with corresponding FASTA header."""
         original = match.group(0)
         parts = original.split('_', 1)
         if len(parts) != 2:
@@ -81,14 +94,14 @@ def rename_tree_headers_from_files(tree_file, fasta_file):
 ############################ RUN MAFFT FUNCTION ############################
 
 
-def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
+def run(tool_path: Path, input_fasta: Path, output_dir: Path, rate4site: bool = True):
     """
     Runs MAFFT using the external_tools_env conda environment.
     Args:
     - tool_path: Path to the MAFFT executable (ignored, required by interface).
     - input_fasta: Path to the input FASTA file.
     - output_dir: Path to the output directory.
-    - batch_size: Batch size for processing (not used here, kept for compatibility).
+    - rate4site: Boolean flag to indicate if Rate4Site analysis should be run.
     Raises:
     - RuntimeError: If Conda is not available or if the MAFFT command fails.
     Outputs:
@@ -156,18 +169,20 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int):
         logging.error(e.stderr)
         raise
 
-    from tools import run_rate4site
-    # call run_rate4site to run rate4site on the aligned sequences if a the ouput files were created
-    if output_file.exists():
-        rate4site_output_dir = output_dir / "rate4site_results"
-        tree_file = output_dir / f"{input_fasta.stem}.tree"
-        if tree_file.exists():
-            rate4site_output_dir.mkdir(parents=True, exist_ok=True)
-            # Run Rate4Site with the aligned output and the tree file
-            run_rate4site.run(input_fasta=output_file, input_tree=tree_file, output_dir=rate4site_output_dir)
+    # If Rate4Site is enabled, run it on the aligned sequences and tree
+    if rate4site:
+        from tools import run_rate4site
+        # call run_rate4site to run rate4site on the aligned sequences if a the ouput files were created
+        if output_file.exists():
+            rate4site_output_dir = output_dir / "rate4site_results"
+            tree_file = output_dir / f"{input_fasta.stem}.tree"
+            if tree_file.exists():
+                rate4site_output_dir.mkdir(parents=True, exist_ok=True)
+                # Run Rate4Site with the aligned output and the tree file
+                run_rate4site.run(input_fasta=output_file, input_tree=tree_file, output_dir=rate4site_output_dir)
+            else:
+                logging.error("❌ MAFFT did not produce a tree file. Rate4Site will not be run.")
+                raise RuntimeError("MAFFT alignment completed but no tree file was generated.")
         else:
-            logging.error("❌ MAFFT did not produce a tree file. Rate4Site will not be run.")
-            raise RuntimeError("MAFFT alignment completed but no tree file was generated.")
-    else:
-        logging.error("❌ MAFFT did not produce the expected output file. Rate4Site will not be run.")
-        raise RuntimeError("MAFFT alignment failed, output file not created.")
+            logging.error("❌ MAFFT did not produce the expected output file. Rate4Site will not be run.")
+            raise RuntimeError("MAFFT alignment failed, output file not created.")

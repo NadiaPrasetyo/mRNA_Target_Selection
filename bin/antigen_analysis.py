@@ -1,10 +1,11 @@
 """
+antigen_analysis.py
 Runner for the antigen analysis pipeline.
 
 Overview:
     - Scans a specified pathogen sequence directory for FASTA files.
-    - Runs selected prediction tools (SignalP, TargetP, Cluster, AlgPred2, DeepLocPro, IfNePitope2) on each FASTA file.
-    - Supports parallel execution for efficient processing, with serial execution for tools requiring it.
+    - Runs selected prediction tools (SignalP, TargetP, Cluster, AlgPred, DeepLocPro, IfNePitope2, DeepTMHMM, MAFFT, MAFFT_RATE4SITE) on each FASTA file.
+    - Supports parallel execution for efficient processing, with serial execution for tools requiring it (e.g., AlgPred, IfNePitope2).
     - Organizes results into structured output directories.
     - Cleans up intermediate and temporary files after processing.
 
@@ -13,7 +14,7 @@ Arguments:
     sequence_dir (str): Subdirectory under `pathogen_dir` containing FASTA files.
     --tool-root (str): Root directory containing tool wrappers and executables (required for SignalP, TargetP, DeepLocPro).
     --threads (int): Number of parallel threads to use (default: 4).
-    --tools (list): List of tools to run (choices: SIGNALP, TARGETP, CLUSTER, ALGPRED, DEEPLOC, IFNEPITOPE2; default: all).
+    --tools (list): List of tools to run (choices: SIGNALP, TARGETP, CLUSTER, ALGPRED, DEEPLOC, IFNEPITOPE2, DEEPTMHMM, MAFFT, MAFFT_RATE4SITE; default: all).
     --batch-size (int): Batch size for SignalP/TargetP (default: 10000).
     --output-dir (str): Output directory for results (default: epitope_outputs).
     --verbose: Enable verbose output for debugging.
@@ -22,13 +23,18 @@ Arguments:
 Requirements:
     - Tool wrappers and executables for all selected tools available under `tool-root` as needed.
     - Input FASTA files present in the specified sequence directory.
-    - Python packages: argparse, pathlib, concurrent.futures, logging.
+    - Python packages: argparse, pathlib, concurrent.futures, logging, shutil.
 
 Outputs:
     data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<tool>.out   # Prediction results for each tool and input
     data/<pathogen_dir>/<output_dir>/cluster/<accession>_clu.tsv      # Cluster results
-    data/<pathogen_dir>/<output_dir>/algpred/<input_file>_algpred.csv # AlgPred2 results
+    data/<pathogen_dir>/<output_dir>/algpred/<input_file>_algpred.csv # AlgPred results
     data/<pathogen_dir>/<output_dir>/ifnepitope2/<input_file>_ifnepitope2.csv # IfNePitope2 results
+    data/<pathogen_dir>/<output_dir>/deeptmhmm/<input_file>_TMRs.gff3 # DeepTMHMM results
+    data/<pathogen_dir>/<output_dir>/mafft/<input_file>.fasta.tree    # MAFFT phylogenetic tree
+    data/<pathogen_dir>/<output_dir>/mafft_rate4site/<input_file>.fasta # MAFFT_RATE4SITE alignment
+    data/<pathogen_dir>/<output_dir>/mafft_rate4site/<input_file>.tree  # MAFFT_RATE4SITE tree
+    data/<pathogen_dir>/<output_dir>/mafft_rate4site/rate4site_results/ # Rate4Site results directory
 
 Author: Nadia
 """
@@ -51,6 +57,7 @@ TOOL_RUNNERS = {
     "DEEPLOC": run_deeplocpro.run,
     "IFNEPITOPE2": run_ifnepitope2.run,
     "DEEPTMHMM": run_deeptmhmm.run,
+    "MAFFT": run_mafft.run,
     "MAFFT_RATE4SITE": run_mafft.run
 }
 
@@ -106,10 +113,10 @@ def run_parallel_jobs(jobs, threads):
             logging.error(f"❌ {tool_name} failed for {input_file.name}: {e}")
 
 
-    # Clean up temporary and intermediate files after CLUSTER and MAFFT_RATE4SITE jobs
+    # Clean up temporary and intermediate files after CLUSTER, MAFFT, and MAFFT_RATE4SITE jobs
     for job in jobs:
         tool_name, _, input_file, output_dir, _, _ = job
-        if tool_name not in ["CLUSTER", "MAFFT_RATE4SITE"]:
+        if tool_name not in ["CLUSTER", "MAFFT_RATE4SITE", "MAFFT"]:
             continue
 
         db_name = input_file.stem
@@ -203,7 +210,8 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
         raise ValueError(f"Unknown mode '{mode}' passed to is_job_done()")
 
     extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv", "_ifnepitope2.csv", "_TMRs.gff3", "_probs.csv", 
-                  "_results.md", "_deeptmhmm_results.md", "_predicted_topologies.3line", "_plot.png", ".fasta.tree", ".aln"]
+                  "_results.md", "_deeptmhmm_results.md", "_predicted_topologies.3line", "_plot.png", "_combined_aligned.tree", "_combined_aligned.fasta",
+                  "_combined_aligned.out", "_combined_clu.tsv", "_combined_clu.fasta", "_combined_scores.m8"]
 
     for ext in extensions:
         for f in output_dir.glob(f"*{ext}"):
@@ -214,12 +222,12 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
 
 def main():
     """Main function to parse arguments and run the antigen analysis pipeline."""
-    parser = argparse.ArgumentParser(description="Run SignalP, TargetP,Cluster, Algpred2, and Ifnepitope2 on input FASTA files")
+    parser = argparse.ArgumentParser(description="Run selected antigen prediction tools on pathogen sequences.")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", help="Root directory for tools, required for SignalP, TargetP, and DeeplocPro", default="none")
     parser.add_argument("--threads", type=int, default=4)
-    parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS)
+    parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=["all"])
     parser.add_argument("--batch-size", type=int, default=10000)
     parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"))
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output for debugging")
@@ -281,7 +289,7 @@ def main():
     # Handle jobs
     for tool_name in args.tools:
         # Handle Cluster jobs
-        if tool_name in ["CLUSTER", "MAFFT_RATE4SITE"]:
+        if tool_name in ["CLUSTER", "MAFFT_RATE4SITE", "MAFFT"]:
             output_dir = output_root / tool_name.lower()
             cluster_input_dir = output_root / "cluster_inputs"
             grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)
@@ -291,7 +299,12 @@ def main():
                     logging.info(f"⏭️ Skipping CLUSTER for {fasta_path.name} (already processed)")
                     continue
 
-                jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, 0, tool_paths[tool_name]))
+                if tool_name == "CLUSTER":
+                    jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, args.batch_size, tool_paths[tool_name]))
+                elif tool_name == "MAFFT_RATE4SITE":
+                    jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, True, tool_paths[tool_name]))
+                elif tool_name == "MAFFT":
+                    jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, False, tool_paths[tool_name]))
 
         # Handle SignalP and TargetP jobs
         elif tool_name in ["SIGNALP", "TARGETP", "ALGPRED", "DEEPTMHMM"]:

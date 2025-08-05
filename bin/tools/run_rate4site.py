@@ -1,3 +1,27 @@
+"""
+run_rate4site.py
+
+Runner for the Rate4Site evolutionary rate estimation tool.
+
+Overview:
+    - Ensures the required Conda environment and dependencies are present.
+    - Executes Rate4Site to estimate evolutionary rates for each site in a protein or DNA sequence.
+    - Outputs the results and the processed tree file to the specified directory.
+
+Arguments:
+    input_fasta (Path): Path to the input FASTA file containing the sequence data.
+    input_tree (Path): Path to the input tree file in Newick format.
+    output_dir (Path): Directory where output files will be saved.
+
+Requirements:
+    - A Conda environment with Rate4Site installed.
+    - Conda available in PATH.
+
+Outputs:
+    <output_dir>/<input_fasta_stem>.out   # File containing evolutionary rate estimates.
+    <output_dir>/<input_fasta_stem>.tree  # Processed tree file.
+Author: Nadia
+"""
 import argparse
 import subprocess
 import logging

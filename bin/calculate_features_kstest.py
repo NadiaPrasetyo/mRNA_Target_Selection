@@ -3,7 +3,7 @@ calculate_features_kstest.py
 Command-line tool to extract immunological and sequence features from epitope and random protein sets, and compare their distributions using KS-test and AUROC.
 
 Overview:
-    - Extracts features (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, population coverage, DeeplocPro, Ellipro, IFNepitope2, MixMHC2Pred) from epitope (positive) and random sets.
+    - Extracts features (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, population coverage, DeeplocPro, Ellipro, IFNepitope2, MixMHC2Pred, DeepTMHMM, Rate4Site, Rate4Site_Mafft_DeepTMHMM) from epitope (positive) and random sets.
     - Aggregates and structures feature data for statistical comparison.
     - Performs Kolmogorov-Smirnov (KS) tests and computes AUROC for each feature/subfeature between positive and random sets.
     - Optionally writes raw feature data to disk for further analysis.
@@ -905,7 +905,33 @@ def parse_rate4site_dir(directory):
 
 
 def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir):
+    """
+    Parse the output directories for Rate4Site, MAFFT, and DeepTMHMM results by:
+    - Reading Rate4Site output files to get per-site conservation scores.
+    - Reading MAFFT alignment files to get the reference sequence and alignment.
+    - Reading DeepTMHMM topology files to get strain-antigen topologies.
+    Returns a list of dictionaries with feature values.
+    Args:
+        rate4site_dir (str): Path to the directory containing Rate4Site output files.
+        mafft_dir (str): Path to the directory containing MAFFT alignment files.
+        deeptmhmm_dir (str): Path to the directory containing DeepTMHMM topology files.
+    Returns:
+        List of dictionaries, where each dictionary represents a Rate4Site feature.
+    Each dictionary contains:
+        - "feature": "rate4site_deeptmhmm"
+        - "subfeature": "outside_score_per_site" or "rolling_avg" or "rolling_max" or "rolling_min"
+        - "strain": strain name
+        - "antigen": antigen accession
+        - "value": numerical value for the feature
+    """
     def parse_rate4site_out(filepath):
+        """        
+        Parse a Rate4Site output file to extract per-site conservation scores.
+        Args:
+            filepath (str): Path to the Rate4Site output file.
+        Returns:
+            List of tuples (position, amino acid, score) for each site.
+        """
         scores = []
         with open(filepath) as f:
             for line in f:
@@ -919,6 +945,13 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
         return scores
 
     def load_all_deeptmhmm_topologies(deeptmhmm_dir):
+        """
+        Load all DeepTMHMM topologies from the specified directory.
+        Args:
+            deeptmhmm_dir (str): Path to the directory containing DeepTMHMM topology files.
+        Returns:
+            dict: A mapping of strain names to their antigen topologies.
+        """
         topologies = {}  # strain -> antigen -> topology
         for path in glob.glob(os.path.join(deeptmhmm_dir, "*.3line")):
             try:
@@ -944,6 +977,9 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
         return topologies
 
     def get_reference_sequence_index_map(alignment, accession):
+        """
+        Create a mapping of reference sequence positions to alignment indices.
+        """
         ref_seq = None
         for record in alignment:
             if accession in record.id:
@@ -962,12 +998,18 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
         return mapping
 
     def get_strain_sequence_from_alignment(alignment, strain):
+        """
+        Get the sequence for a specific strain from the alignment.
+        """
         for record in alignment:
             if strain in record.id:
                 return str(record.seq)
         return None
 
     def map_topology_to_alignment(strain_seq, topology):
+        """
+        Map the topology to the strain sequence alignment.
+        """
         mapped = []
         topo_index = 0
         for res in strain_seq:
@@ -1086,7 +1128,8 @@ def extract_all_features(base_dir, eval_dir, threads=1):
     Returns:
         List of dictionaries, where each dictionary represents a feature.
     Each dictionary contains:
-        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov", "deeplocpro", "ellipro", "ifnepitope2", "mixmhc2pred",  "deeptmhmm")
+        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov", "deeplocpro", "ellipro",
+        "ifnepitope2", "mixmhc2pred",  "deeptmhmm", "rate4site", "rate4site_mafft_deeptmhmm")
         - "subfeature": specific subfeature name (e.g., "bepipred", "score", "prob_signalp", etc.)
         - "value": numerical value for the feature
     """
