@@ -262,49 +262,52 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 - 
 
 
-## Borreliella burgdorferi
+## Neisseria gonorrhoeae
 
 ### Type of Bacteria:
-- Borreliella burgdorferi is a Gram-negative spirochete.
+- Neisseria gonorrhoeae is a Gram-negative bacterium.
 
 ### Characteristics:
-- Helical-shaped with endoflagella for motility.
-- Microaerophilic.
-- Lacks lipopolysaccharide (LPS) in its outer membrane but contains abundant lipoproteins.
+- Diplococcal (pairs of spherical cells) in shape.
+- Non-motile and non-spore-forming.
+- Obligate aerobe but can grow in microaerophilic conditions.
+- Oxidase-positive and catalase-positive.
+- Exhibits a characteristic "kidney bean" shape under the microscope.
 
 ### Genome Size:
-- Approximately 1.5 million base pairs (Mb).
-- Composed of a linear chromosome and multiple plasmids.
-- Contains around 1,300 genes.
+- Approximately 2.1–2.2 million base pairs (Mb).
+- Contains around 2,000–2,100 genes.
 
 ### Infection Target:
-- Infects skin, joints, heart, and nervous system.
-- Causes Lyme disease, characterized by:
-    - Erythema migrans (bull's-eye rash).
-    - Arthritis.
-    - Neurological symptoms (e.g., facial palsy, meningitis).
-    - Carditis.
+- Infects mucosal surfaces of the urogenital tract, rectum, pharynx, and conjunctiva.
+- Can cause diseases such as:
+    - Gonorrhea
+    - Pelvic inflammatory disease (PID)
+    - Epididymitis
+    - Disseminated gonococcal infection (DGI)
+    - Neonatal conjunctivitis (ophthalmia neonatorum)
 
 ### Virulence Factors:
-- Outer surface proteins (e.g., OspA, OspC) for immune evasion and adhesion.
-- Ability to form biofilms.
-- Antigenic variation to evade host immune response.
+- Pili and outer membrane proteins (e.g., Opa, PorB) facilitate adhesion and invasion.
+- Lipooligosaccharide (LOS) triggers inflammation and immune evasion.
+- IgA protease degrades host antibodies.
+- Phase and antigenic variation mechanisms allow immune evasion.
 
 ### Antibiotic Resistance:
-- Resistance is rare, but persistence after treatment may occur due to immune evasion mechanisms.
+- Resistance to penicillin, tetracyclines, fluoroquinolones, and macrolides is widespread.
+- Increasing resistance to extended-spectrum cephalosporins (e.g., ceftriaxone) is a major public health concern.
 
 ### Habitat:
-- Transmitted to humans through the bite of infected Ixodes ticks.
+- Found in the human urogenital tract and transmitted through sexual contact or perinatal exposure.
 
 ### Pathogenicity:
-- Chronic infection can lead to long-term complications if untreated.
+- Strict human pathogen that causes localized infections and systemic complications if untreated.
 
 ### Strains of Interest:
-- B31: A reference strain widely used in Lyme disease research.
-- N40: Known for its ability to cause disseminated infection in animal models.
-- 297: Isolated from a human patient with Lyme disease.
-- ZS7: Associated with tick-borne transmission studies.
-- JD1: Frequently used in studies of antigenic variation and immune evasion.
+- FA1090: A well-studied strain used in research on pathogenesis and antibiotic resistance.
+- MS11: Frequently used in studies of pili and antigenic variation.
+- NCCP11945: A reference strain for genomic studies.
+- WHO reference strains (e.g., WHO F, WHO K): Used for monitoring antimicrobial resistance.
 
 ### Number of Antigens:
 - 
