@@ -89,14 +89,20 @@ if [ "$RANDOM_MODE" = true ]; then
 
     # get the reference genome for the pathogen
     REFERENCE_LENGTH=$(esearch -db nucleotide -query "\"${PATHOGEN_NAME}\"[Organism] AND \"complete genome\"[All Fields]" | \
-        efetch -format docsum | \
-        xtract -pattern DocumentSummary -element Slen | \
-        head -n 1) # Get the first result as the reference genome
+    efetch -format docsum | \
+    xtract -pattern DocumentSummary -element Slen | \
+    sort -nr | head -n 1)
 
     echo "Reference genome length for ${PATHOGEN_NAME}: ${REFERENCE_LENGTH} bp"
 
+    LOWER_BOUND=$((REFERENCE_LENGTH - 500000))
+    if [ "$LOWER_BOUND" -lt 1 ]; then
+        LOWER_BOUND=1
+    fi
+    UPPER_BOUND=$((REFERENCE_LENGTH + 500000))
+
     # Fetch random genome IDs that have sequence length within the range of 500,000 bp above or under the reference genome of the pathogen
-    RANDOM_GENOME_IDS=$(esearch -db nucleotide -query "\"${PATHOGEN_NAME}\"[Organism] AND \"complete genome\"[All Fields] AND (\"$((REFERENCE_LENGTH - 500000))\"[SLEN] : \"$((REFERENCE_LENGTH + 500000))\"[SLEN])" | \
+    RANDOM_GENOME_IDS=$(esearch -db nucleotide -query "\"${PATHOGEN_NAME}\"[Organism] AND \"complete genome\"[All Fields] AND (\"$LOWER_BOUND\"[SLEN] : \"$UPPER_BOUND\"[SLEN])" | \
         efetch -format docsum | \
         xtract -pattern DocumentSummary -element Caption | \
         shuf -n "$RANDOM_NUM") # Get random IDs by shuffling the results and selecting the top N
