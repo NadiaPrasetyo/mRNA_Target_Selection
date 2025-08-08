@@ -107,12 +107,107 @@ def load_literature_antigens(file_path, source_organism):
     df = pd.read_excel(file_path)
     df_out = pd.DataFrame()
     df_out["antigen_name"] = df["Name"]
-    df_out["gene_name"] = df["Gene"]
+    df_out["gene_name"] = df["Gene"] if "Gene" in df.columns else None #Gene is optional in the literature
     df_out["source_organism"] = source_organism
     df_out["host_organisms"] = "Homo sapiens"
     df_out["Uniprot_ID"] = None
     df_out["source"] = "literature"
     return df_out[["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"]]
+
+
+def normalize_name(name):
+    """Lowercase, strip punctuation except spaces, normalize spaces."""
+    if not name or pd.isna(name):
+        return ""
+    name = str(name).lower()
+    name = re.sub(r"[^a-z0-9\s]", "", name)  # remove punctuation
+    name = re.sub(r"\s+", " ", name).strip()
+    return name
+
+def expand_names(antigen_name, gene_name):
+    """
+    Extracts all possible names from antigen_name and gene_name.
+    Handles parentheses, 'also known as', commas, and 'and'.
+    """
+    names = set()
+
+    # From antigen_name
+    if pd.notna(antigen_name):
+        text = str(antigen_name)
+
+        # 1. Full antigen name
+        names.add(normalize_name(text))
+
+        # 2. Extract from parentheses
+        paren_content = re.findall(r"\((.*?)\)", text)
+        for content in paren_content:
+            # Remove "also known as"
+            if "also known as" in content.lower():
+                content = re.sub(r"also known as", "", content, flags=re.IGNORECASE)
+            for part in re.split(r",| and ", content):
+                names.add(normalize_name(part))
+
+        # 3. Remove parentheses content, split by comma/and
+        no_paren_text = re.sub(r"\(.*?\)", "", text)
+        for part in re.split(r",| and ", no_paren_text):
+            names.add(normalize_name(part))
+
+    # From gene_name
+    if pd.notna(gene_name):
+        for part in re.split(r",| and |\s", str(gene_name)):
+            names.add(normalize_name(part))
+
+    return {n for n in names if n}
+
+def check_for_duplicates(combined_df):
+    """Finds partial and exact duplicates by expanded antigen+gene names."""
+    name_sets = {
+        idx: expand_names(row['antigen_name'], row.get('gene_name', None))
+        for idx, row in combined_df.iterrows()
+    }
+
+    visited = set()
+    duplicates_groups = []
+
+    # Find overlaps
+    for i in combined_df.index:
+        if i in visited:
+            continue
+        group = {i}
+        for j in combined_df.index:
+            if i == j or j in visited:
+                continue
+            if name_sets[i] & name_sets[j]:  # non-empty intersection
+                group.add(j)
+        if len(group) > 1:
+            duplicates_groups.append(group)
+            visited |= group
+
+    # Interactive resolution (multi-keep allowed)
+    for group in duplicates_groups:
+        print("\n⚠ Possible duplicate entries found:\n")
+        for idx in sorted(group):
+            print(
+                f"[{idx}] {combined_df.loc[idx, 'antigen_name']} "
+                f"|Gene: {combined_df.loc[idx, 'gene_name']} "
+                f"| Source: {combined_df.loc[idx, 'source']}"
+            )
+
+        keep = set()
+        while not keep.issubset(group) or not keep:
+            try:
+                keep_input = input(
+                    f"Enter the indices to KEEP from {sorted(group)} (comma-separated): "
+                )
+                keep = {int(x.strip()) for x in keep_input.split(",") if x.strip()}
+            except ValueError:
+                print("Invalid input. Enter valid indices separated by commas.")
+
+        drop_ids = group - keep
+        combined_df = combined_df.drop(index=drop_ids)
+        print(f"✅ Kept indices {sorted(keep)}, removed {len(drop_ids)} duplicates.")
+
+    return combined_df
 
 def main(short_name, long_name):
     """
@@ -138,6 +233,12 @@ def main(short_name, long_name):
     if combined_df.empty:
         print("No antigen data found. Exiting.")
         return
+    
+    print(f"Loaded {len(iedb_df)} IEDB antigens and {len(literature_df)} literature/patent antigens: total {len(combined_df)} entries.")
+    combined_df = combined_df.drop_duplicates(subset=["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"])
+    combined_df = check_for_duplicates(combined_df)
+
+    print(f"After removing duplicates, {len(combined_df)} unique antigen entries remain.")
 
     # Output
     output_file = os.path.join(base_path, f"{organism_tag}_compiled_antigens.csv")

@@ -197,13 +197,14 @@ install.packages(c("ggplot2", "dplyr", "tidyr", "readr"))
 ```bash
 # 1. Fetch and compile data
 python bin/IEDB_fetch.py s_aureus "Staphylococcus aureus"
-python bin/IEDB_epitope.py s_aureus "Staphylococcus aureus"
 python bin/compile_antigens.py s_aureus "Staphylococcus aureus"
 python bin/fetch_sequences_Uniprot.py s_aureus "Staphylococcus aureus"
 python bin/generate_random_sequences.py s_aureus "Staphylococcus aureus"
 
 # 2. Fetch strain genomes and structures
 bash bin/fetch_NCBI_strain_genome.sh s_aureus S.aureus_strains.csv
+or
+bash bin/fetch_NCBI_strain_genome.sh --random "Staphylococcus aureus" --random-num 6 s_aureus
 python bin/fetch_PDB_structure.py s_aureus proteins --threads 8
 
 # 3. Run comprehensive analysis
