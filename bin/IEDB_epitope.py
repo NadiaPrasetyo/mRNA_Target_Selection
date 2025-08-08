@@ -124,12 +124,12 @@ def main():
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, default=[8, 11])
     parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, default=[11, 25])
-    parser.add_argument("--tools", nargs="+", choices=tool_runners.keys(), default=None)
+    parser.add_argument("--tools", help="Comma-separated list of tools to run (default: all available)", nargs=",", choices=tool_runners.keys(), default=None)
     parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default")
     parser.add_argument("--mhci-custom-alleles", nargs="+", default=None)
     parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default")
     parser.add_argument("--mhcii-custom-alleles", nargs="+", default=None)
-    parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"))
+    parser.add_argument("--output-dir", help="Output directory for results (default: epitope_outputs)", type=Path, default=Path("epitope_outputs"))
     parser.add_argument("--verbose", action="store_true")
 
     args = parser.parse_args()
@@ -174,7 +174,7 @@ def main():
         sys.exit(1)
 
     # Default tools: all except Ellipro
-    default_tools = ["MHCI", "MHCII", "BCell"]
+    default_tools = ["MHCI", "MHCII", "BCell", "Ellipro", "MixMHC2pred"]
     if args.tools is None:
         selected_tools = set([t for t in default_tools if t in tool_map])
     else:
