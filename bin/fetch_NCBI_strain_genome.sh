@@ -88,20 +88,12 @@ if [ "$RANDOM_MODE" = true ]; then
     echo "Fetching $RANDOM_NUM random complete genomes for pathogen: $PATHOGEN_NAME"
 
     # get the reference genome for the pathogen
-    REFERENCE_GENOME=$(esearch -db nucleotide -query "\"${PATHOGEN_NAME}\"[Organism] AND \"complete genome\"[All Fields]" | \
+    REFERENCE_LENGTH=$(esearch -db nucleotide -query "\"${PATHOGEN_NAME}\"[Organism] AND \"complete genome\"[All Fields]" | \
         efetch -format docsum | \
-        xtract -pattern DocumentSummary -element Caption | \
+        xtract -pattern DocumentSummary -element Slen | \
         head -n 1) # Get the first result as the reference genome
 
-    if [ -z "$REFERENCE_GENOME" ]; then
-        echo "Error: No reference genome found for pathogen: $PATHOGEN_NAME"
-        exit 1
-    fi
-
-    # Extract the sequence length from the reference genome
-    REFERENCE_LENGTH=$(esearch -db nucleotide -query "\"${REFERENCE_GENOME}\"[Caption]" | \
-        efetch -format docsum | \
-        xtract -pattern DocumentSummary -element Slen)
+    echo "Reference genome length for ${PATHOGEN_NAME}: ${REFERENCE_LENGTH} bp"
 
     # Fetch random genome IDs that have sequence length within the range of 500,000 bp above or under the reference genome of the pathogen
     RANDOM_GENOME_IDS=$(esearch -db nucleotide -query "\"${PATHOGEN_NAME}\"[Organism] AND \"complete genome\"[All Fields] AND (\"$((REFERENCE_LENGTH - 500000))\"[SLEN] : \"$((REFERENCE_LENGTH + 500000))\"[SLEN])" | \
