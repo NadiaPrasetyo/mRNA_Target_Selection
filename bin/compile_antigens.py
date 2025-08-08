@@ -200,6 +200,8 @@ def check_for_duplicates(combined_df):
                     f"Enter the indices to KEEP from {sorted(group)} (comma-separated): "
                 )
                 keep = {int(x.strip()) for x in keep_input.split(",") if x.strip()}
+                if keep == 0 or "none" in keep_input.lower():
+                    keep = set()
             except ValueError:
                 print("Invalid input. Enter valid indices separated by commas.")
 
@@ -208,6 +210,64 @@ def check_for_duplicates(combined_df):
         print(f"✅ Kept indices {sorted(keep)}, removed {len(drop_ids)} duplicates.")
 
     return combined_df
+
+def split_and_expand_entries(df):
+    """
+    Expands rows so that each antigen_name and gene_name combination is separate.
+    Splits on commas, 'and', and parentheses. Cleans names for search purposes.
+    Removes (UniProt:____) from antigen names before processing.
+    """
+    expanded_rows = []
+    
+    for _, row in df.iterrows():
+        antigen_names = set()
+        gene_names = set()
+        
+        # --- Extract antigen names ---
+        if pd.notna(row["antigen_name"]):
+            text = str(row["antigen_name"])
+            
+            # Remove any (UniProt:XXXX) from text
+            text = re.sub(r"\(.*?UniProt:[A-Z0-9]+\)", "", text, flags=re.IGNORECASE)
+            
+            # Add the cleaned full name
+            antigen_names.add(text.strip())
+            
+            # Split inside parentheses (ignore UniProt content)
+            for content in re.findall(r"\((.*?)\)", text):
+                if re.search(r"uniprot:[A-Z0-9]+", content, flags=re.IGNORECASE):
+                    continue
+                content = re.sub(r"also known as", "", content, flags=re.IGNORECASE)
+                for part in re.split(r",| and ", content):
+                    part = part.strip()
+                    if part:
+                        antigen_names.add(part)
+            
+            # Split without parentheses
+            no_paren = re.sub(r"\(.*?\)", "", text)
+            for part in re.split(r",| and ", no_paren):
+                part = part.strip()
+                if part:
+                    antigen_names.add(part)
+        
+        # --- Extract gene names ---
+        if pd.notna(row["gene_name"]):
+            for part in re.split(r",| and |\s", str(row["gene_name"])):
+                part = part.strip()
+                if part:
+                    gene_names.add(part)
+        else:
+            gene_names.add(None)
+        
+        # --- Expand to all name/gene combinations ---
+        for name in antigen_names:
+            for gene in gene_names:
+                new_row = row.copy()
+                new_row["antigen_name"] = name
+                new_row["gene_name"] = gene
+                expanded_rows.append(new_row)
+    
+    return pd.DataFrame(expanded_rows).reset_index(drop=True)
 
 def main(short_name, long_name):
     """
@@ -228,15 +288,23 @@ def main(short_name, long_name):
             literature_dfs.append(lit_df)
     literature_df = pd.concat(literature_dfs, ignore_index=True) if literature_dfs else pd.DataFrame()
 
-    # Combine all sources
+        # Combine all sources
     combined_df = pd.concat([iedb_df, literature_df], ignore_index=True)
     if combined_df.empty:
         print("No antigen data found. Exiting.")
         return
     
     print(f"Loaded {len(iedb_df)} IEDB antigens and {len(literature_df)} literature/patent antigens: total {len(combined_df)} entries.")
+
+    # Expand multiple names/genes into separate rows
+    combined_df = split_and_expand_entries(combined_df)
+
+    # Remove exact duplicate rows
     combined_df = combined_df.drop_duplicates(subset=["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"])
+
+    # Cross-check duplicates using expanded name sets (names + genes)
     combined_df = check_for_duplicates(combined_df)
+
 
     print(f"After removing duplicates, {len(combined_df)} unique antigen entries remain.")
 

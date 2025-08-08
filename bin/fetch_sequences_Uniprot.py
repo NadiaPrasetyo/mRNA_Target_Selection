@@ -118,6 +118,33 @@ def fetch_uniprot_by_gene(gene_name, organism):
         pass
     return None
 
+def fetch_uniprot_by_protein_name(protein_name, organism):
+    """
+    Fetches UniProt data using a protein name.
+    Queries the UniProt API for a given protein name and organism.
+    Returns the first matching protein entry if found.
+    Args:
+        protein_name (str): Protein name to query.
+        organism (str): Organism name for the query.
+    Returns:
+        dict or None: JSON response from UniProt or None if failed.
+    """
+    headers = {"Accept": "application/json"}
+    if organism is None or organism.lower() == "null":
+        query = f"{UNIPROT_API_BASE}?offset=0&size=1&protein={protein_name.replace(' ', '%20')}"
+    else:
+        organism = organism.replace(" ", "%20")
+        query = f"{UNIPROT_API_BASE}?offset=0&size=1&protein={protein_name.replace(' ', '%20')}&organism={organism}"
+    try:
+        response = requests.get(query, headers=headers)
+        if response.ok:
+            data = response.json()
+            return data[0] if data else None
+    except requests.RequestException as e:
+        print(f"[ERROR] Request failed for protein name {protein_name}: {e}")
+    return None
+
+
 def parse_uniprot_entry(entry):
     """
     Parses a UniProt protein entry and extracts relevant metadata.
@@ -220,8 +247,8 @@ def main(pathogen, organism="null", output=None, input=None, fasta=False):
         organism (str): Full name of the organism to search against.
     """
     pathogen_dir = os.path.join("data", pathogen)
-    if organism is not None and organism.lower() != "null":
-        organism_tag = organism.replace("_", " ").lower()
+    if organism.lower() != "null":
+        organism_tag = organism.replace(" ", "_").lower()
     else:
         organism_tag = "null"
 
@@ -260,7 +287,11 @@ def main(pathogen, organism="null", output=None, input=None, fasta=False):
             print(f"  [DEBUG] Attempting fetch by gene: {gene_name}")
             entry = fetch_uniprot_by_gene(gene_name, organism)
             used_method = "gene"
-
+        else:
+            print(f"  [DEBUG] Attempting fetch by protein name: {antigen_name}")
+            entry = fetch_uniprot_by_protein_name(antigen_name, organism)
+            used_method = "protein name"
+            
         if entry:
             parsed = parse_uniprot_entry(entry)
             if parsed and parsed["uniprot_accession"] not in seen_accessions:
@@ -295,7 +326,7 @@ if __name__ == "__main__":
         usage="python fetch_sequences_Uniprot.py <pathogen_directory> <pathogen_name>"
     )
     parser.add_argument("pathogen_directory", help="Directory name under data/")
-    parser.add_argument("--pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
     parser.add_argument("--output", help="Output directory for compiled protein data (default: <pathogen_directory>/<pathogen_name>_compiled_proteins.csv)")
     parser.add_argument("--input", help="Input CSV file with antigen data (default: <pathogen_directory>/<pathogen_name>_compiled_antigens.csv)")
     parser.add_argument("--fasta", action="store_true", help="Output in FASTA format AND CSV")
