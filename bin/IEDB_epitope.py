@@ -124,7 +124,7 @@ def main():
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
     parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, default=[8, 11])
     parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, default=[11, 25])
-    parser.add_argument("--tools", help="List of tools to run, join using spaces (default: all available)", nargs="+", choices=tool_runners.keys(), default=None)
+    parser.add_argument("--tools", help="List of tools to run, join using spaces (default: all available except for Ellipro)", nargs="+", choices=tool_runners.keys(), default=None)
     parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default")
     parser.add_argument("--mhci-custom-alleles", nargs="+", default=None)
     parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default")
@@ -174,7 +174,7 @@ def main():
         sys.exit(1)
 
     # Default tools: all except Ellipro
-    default_tools = ["MHCI", "MHCII", "BCell", "Ellipro", "MixMHC2pred"]
+    default_tools = ["MHCI", "MHCII", "BCell", "MixMHC2pred"]
     if args.tools is None:
         selected_tools = set([t for t in default_tools if t in tool_map])
     else:
