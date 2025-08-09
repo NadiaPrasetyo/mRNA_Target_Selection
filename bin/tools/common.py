@@ -567,7 +567,7 @@ def check_iedb_tool(base_path):
     paths = {
         "BCell": base / "bcell_standalone" / "predict_antibody_epitope.py",
         "MHCI": base / "ng_tc1-0.1.2-beta" / "src" / "tcell_mhci.py",
-        "MHCII": base / "ng_tc2-0.1.1-beta" / "src" / "tcell_mhcII.py",
+        "MHCII": base / "ng_tc2-0.1.1-beta" / "src" / "tcell_mhcii.py",
         "Ellipro": base / "ElliPro.jar",
         "MixMHC2pred": base / "MixMHC2pred-2.0" / "MixMHC2pred_unix"
     }
