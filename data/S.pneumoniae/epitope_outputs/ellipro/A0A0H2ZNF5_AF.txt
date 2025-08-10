@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A0H2ZNF5_AF,A,37,43,SFIYNEF,7,0.784,Linear
+2,A0A0H2ZNF5_AF,A,30,34,YLGQG,5,0.558,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A0H2ZNF5_AF,A:G36, A:S37, A:F38, A:I39, A:Y40,5,0.656,Discontinous
+2,A0A0H2ZNF5_AF,A:L31, A:G32, A:Q33,3,0.543,Discontinous
