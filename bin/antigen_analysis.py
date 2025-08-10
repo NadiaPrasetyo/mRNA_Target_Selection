@@ -227,7 +227,7 @@ def main():
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", help="Root directory for tools, required for SignalP, TargetP, and DeeplocPro", default="none")
     parser.add_argument("--threads", type=int, default=4)
-    parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=["all"])
+    parser.add_argument("--tools", nargs="+", choices=VALID_TOOLS, default=VALID_TOOLS, help="List of tools to run (default: all tools)")
     parser.add_argument("--batch-size", type=int, default=10000)
     parser.add_argument("--output-dir", type=Path, default=Path("epitope_outputs"))
     parser.add_argument("--verbose", action="store_true", help="Enable verbose output for debugging")
