@@ -540,8 +540,8 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
                 "PyBioLib is not installed. Please install it via: pip install pybiolib"
             )
         tool_paths["DEEPTMHMM"] = "deetmhmm"  # placeholder
-        
-    if "MAFFT_RATE4SITE" in tools:
+
+    if "MAFFT_RATE4SITE" or "MAFFT" in tools:
         try:
             algpred_path = Path("ext_tools_dependencies.yml")
             if not algpred_path.exists():
@@ -550,6 +550,7 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
                     "Please get the dependency file from GitHub."
                 )
             tool_paths["MAFFT_RATE4SITE"] = "mafft"  # placeholder
+            tool_paths["MAFFT"] = "mafft"  # placeholder
         except Exception as e:
             raise FileNotFoundError(f"MAFFT_RATE4SITE not found: {e}")
         
