@@ -43,53 +43,44 @@ def count_sequences(input_fasta: Path) -> int:
         return sum(1 for line in f if line.startswith('>'))
     
 
-def rename_tree_headers_from_files(tree_file, fasta_file):
+def rename_tree_headers_from_files(tree_file: Path, fasta_file: Path):
     """
-    Rename tree headers in the Newick tree file to match the FASTA headers
-    to ensure consistency between the alignment and the tree.
+    Replace MAFFT-style tree IDs with the exact FASTA headers.
     Args:
-    - tree_file (Path): Path to the Newick tree file.
-    - fasta_file (Path): Path to the FASTA file containing sequence headers.
-    Returns:
-    - None: The tree file is modified in place.
+    - tree_file: Path to the Newick tree file.
+    - fasta_file: Path to the aligned FASTA file.
     """
-    # Read tree and FASTA file contents
-    with open(tree_file, 'r') as tf:
-        tree_str = tf.read()
-    with open(fasta_file, 'r') as ff:
-        fasta_str = ff.read()
+    # Read tree and FASTA contents
+    tree_str = tree_file.read_text()
+    fasta_str = fasta_file.read_text()
 
-    # Step 1: Extract FASTA headers
-    fasta_headers = re.findall(r'^>(\S+)', fasta_str, re.MULTILINE)
+    # Extract FASTA headers as a list
+    fasta_headers = [line[1:].strip() for line in fasta_str.splitlines() if line.startswith(">")]
+
+    # Build a map from MAFFT tree ID (numeric prefix + '_' + header with | and . replaced by _) -> original FASTA header
+    # Example: For header "C1CEN2|NZ_CP063829.1"
+    # MAFFT ID would be like "2_C1CEN2_NZ_CP063829_1"
+    # We'll map "C1CEN2_NZ_CP063829_1" (without numeric prefix) to original header
     header_map = {}
-
-    # Step 2: Build mapping: tree-style ID → FASTA header
     for header in fasta_headers:
-        if '|' not in header:
-            continue
-        uniprot, accver = header.split('|', 1)
-        if '.' not in accver:
-            continue
-        accession, version = accver.split('.', 1)
-        tree_id = f"{uniprot}_{accession}_{version}"
-        header_map[tree_id] = f"{uniprot}|{accession}.{version}"
+        # Transform FASTA header to MAFFT ID pattern (without numeric prefix)
+        mafft_id = header.replace("|", "_").replace(".", "_")
+        header_map[mafft_id] = header
 
-    # Step 3: Replace all matching IDs in tree
+    # Regex to find MAFFT IDs in tree:
+    # IDs look like: (numeric prefix)_<mafft_id>
+    # numeric prefix is digits; mafft_id is letters/digits/underscores
+    pattern = re.compile(r"\b(\d+_([A-Za-z0-9_]+))\b")
+
     def replacer(match):
-        """Replace matched tree ID with corresponding FASTA header."""
-        original = match.group(0)
-        parts = original.split('_', 1)
-        if len(parts) != 2:
-            return original
-        id_body = parts[1]
-        return header_map.get(id_body, original)
+        full_id = match.group(1)    # e.g. "2_C1CEN2_NZ_CP063829_1"
+        mafft_id = match.group(2)   # e.g. "C1CEN2_NZ_CP063829_1"
+        return header_map.get(mafft_id, full_id)  # Replace with original FASTA header or keep as is
 
-    # Match tree IDs like 1_A0A0H3K6Z9_CP002114_3
-    updated_tree = re.sub(r'\b\d+_[A-Z0-9]+\_[A-Z0-9]+\_\d+\b', replacer, tree_str)
+    updated_tree = pattern.sub(replacer, tree_str)
 
-    # Step 4: Overwrite the original tree file
-    with open(tree_file, 'w') as tf:
-        tf.write(updated_tree)
+    # Write updated tree back
+    tree_file.write_text(updated_tree)
     
 ############################ RUN MAFFT FUNCTION ############################
 
