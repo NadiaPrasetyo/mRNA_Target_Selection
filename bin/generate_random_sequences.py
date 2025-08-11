@@ -31,7 +31,9 @@ import csv
 import random
 import requests
 import argparse
-from bin.fetch_sequences_Uniprot import parse_uniprot_entry  # ✅ using shared parser
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))  # Add parent directory to sys.path
+from bin.fetch_sequences_Uniprot import parse_uniprot_entry
 
 def get_antigen_protein_names(antigen_file):
     """
