@@ -1,0 +1,16 @@
+##gff-version 3
+antigen_38|A0A6G2D4Q2|Pneumococcal|NZ_CP089948.1|tpos:297214-297523	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.
+antigen_39|A0A0B7KUM4|Pneumococcal|NZ_CP089948.1|tpos:297214-297768	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.
+antigen_61|Q9KGY9|Choline|NZ_CP089948.1|tpos:112175-112514	TargetP-2.0	signal_peptide	1	27	0.989299	.	.	.
+antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|NZ_CP089948.1|tpos:23254-23351	TargetP-2.0	signal_peptide	1	27	0.535069	.	.	.
+antigen_47|Q8DQ24|Foldase|NZ_CP089948.1|tpos:290985-291297	TargetP-2.0	signal_peptide	1	21	0.992358	.	.	.
+antigen_34|A0A098ZLB0|ABC|NZ_CP089948.1|tpos:296109-296408	TargetP-2.0	signal_peptide	1	21	0.998492	.	.	.
+antigen_52|P0A4G3|Manganese|NZ_CP089948.1|tpos:296109-296412	TargetP-2.0	signal_peptide	1	21	0.998492	.	.	.
+antigen_55|A0A0B7LWN8|Oligopeptide-binding|NZ_CP089948.1|tpos:106925-107584	TargetP-2.0	signal_peptide	1	21	0.999389	.	.	.
+antigen_36|A0A0E7XNV3|Pneumococcal|NZ_CP089948.1|tpos:297214-298252	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.
+antigen_11|Q8DQ08|Pneumococcal|NZ_CP089948.1|tpos:297214-297768	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.
+antigen_35|A0A064C4V0|Adhesion|NZ_CP089948.1|tpos:296109-296413	TargetP-2.0	signal_peptide	1	21	0.998492	.	.	.
+antigen_62|O05168|PCPC|NZ_CP089948.1|tpos:112175-112514	TargetP-2.0	signal_peptide	1	27	0.989299	.	.	.
+antigen_37|A0A5C5EC23|Pneumococcal|NZ_CP089948.1|tpos:297214-297523	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.
+antigen_23|A0A6I3UXD9|Choline|NZ_CP089948.1|tpos:23254-23351	TargetP-2.0	signal_peptide	1	27	0.535069	.	.	.
+antigen_10|Q8DQ07|Pneumococcal|NZ_CP089948.1|tpos:297214-298252	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.

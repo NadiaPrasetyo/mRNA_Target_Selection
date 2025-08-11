@@ -1,0 +1,27 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|NZ_CP063829.1|tpos:118160-118278,0.344,0.0,-0.5,-0.156,Non-Allergen
+antigen_49|A0A822QE61|NADH|NZ_CP063829.1|tpos:235607-236065,0.368,0.0,-0.5,-0.132,Non-Allergen
+antigen_16|Q8DQZ1|6-phospho-beta-galactosidase|NZ_CP063829.1|tpos:146685-147154,0.102,0.0,0.0,0.102,Non-Allergen
+antigen_57|A0A4N5NE36|Surface|NZ_CP063829.1|tpos:118201-118279,0.341,0.0,0.0,0.341,Allergen
+antigen_67|A0A0H2UNY9|Pep27|NZ_CP063829.1|tpos:180842-180868,0.086,0.0,0.0,0.086,Non-Allergen
+antigen_46|A0A0T8T3N8|Endo-beta-N-acetylglucosaminidase|NZ_CP063829.1|tpos:117829-118278,0.338,0.5,-0.5,0.338,Allergen
+antigen_51|Q8DNW8|ABC|NZ_CP063829.1|tpos:149461-149694,0.031,0.0,-0.5,-0.469,Non-Allergen
+antigen_25|A0A0S2VEM8|CbpG|NZ_CP063829.1|tpos:117846-117941,0.324,0.5,-0.5,0.324,Allergen
+antigen_62|O05168|PCPC|NZ_CP063829.1|tpos:117948-118279,0.32,0.0,-0.5,-0.18,Non-Allergen
+antigen_41|Q8DQ36|Rqc2|NZ_CP063829.1|tpos:365713-366263,0.074,0.0,0.5,0.574,Allergen
+antigen_44|A0A4J1YT67|Hyaluronate|NZ_CP063829.1|tpos:98927-99038,0.545,0.0,-0.5,0.045,Non-Allergen
+antigen_27|A0AAP5JAE8|LPXTG-anchored|NZ_CP063829.1|tpos:196758-196961,0.436,0.0,0.0,0.436,Allergen
+antigen_40|A0A6G2D0Z1|Fibronectin-binding|NZ_CP063829.1|tpos:31601-32099,0.582,0.0,0.0,0.582,Allergen
+antigen_26|A0AAP5J8I6|LPXTG-anchored|NZ_CP063829.1|tpos:194729-196961,0.302,0.5,-0.5,0.302,Allergen
+antigen_18|Q8DRK2|Gram-positive|NZ_CP063829.1|tpos:31601-32761,0.543,0.5,0.0,1.043,Allergen
+antigen_13|Q8DQN7|Histidine|NZ_CP063829.1|tpos:200235-200797,0.047,0.0,-0.5,-0.453,Non-Allergen
+antigen_14|Q8DQS1|A|NZ_CP063829.1|tpos:180842-180868,0.086,0.0,0.0,0.086,Non-Allergen
+antigen_8|Q8DPK5|ABC|NZ_CP063829.1|tpos:237479-237671,0.094,0.0,-0.5,-0.406,Non-Allergen
+antigen_32|A0A0T8ZSI6|YSIRK-type|NZ_CP063829.1|tpos:196813-196915,0.409,0.0,0.0,0.409,Allergen
+antigen_63|A0A0H2ZP79|BlpS|NZ_CP063829.1|tpos:161654-161765,0.142,0.0,0.0,0.142,Non-Allergen
+antigen_66|A0A062WSP2|Elongation|NZ_CP063829.1|tpos:300338-300558,0.131,0.0,-0.5,-0.369,Non-Allergen
+antigen_5|Q8DN05|Choline|NZ_CP063829.1|tpos:117999-118278,0.312,0.0,-0.5,-0.188,Non-Allergen
+antigen_61|Q9KGY9|Choline|NZ_CP063829.1|tpos:117948-118279,0.32,0.0,-0.5,-0.18,Non-Allergen
+antigen_17|Q8DRI0|Surface|NZ_CP063829.1|tpos:118100-118278,0.323,0.0,-0.5,-0.177,Non-Allergen
+antigen_23|A0A6I3UXD9|Choline|NZ_CP063829.1|tpos:118160-118278,0.344,0.0,-0.5,-0.156,Non-Allergen
+antigen_24|A0A064BZ27|Choline|NZ_CP063829.1|tpos:117833-118278,0.339,0.5,-0.5,0.339,Allergen
