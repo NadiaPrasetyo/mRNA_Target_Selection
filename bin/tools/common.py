@@ -679,7 +679,6 @@ def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     """
     tool_map = {
         "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
-        "IFNepitope2": tool_root #doesn't need it
     }
 
     found = {}
