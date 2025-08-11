@@ -34,17 +34,19 @@ from pathlib import Path
 import shutil
 import logging
 
+
 def run(tool_path: Path, input_file: Path, output_dir: Path,
-        population="World", mhc_class="combined", plot=True):
+        population="World", mhc_class="combined", plot=False):
     """
     Run population coverage tool on a given input file.
+
     Args:
-    - tool_path (Path): Path to the directory containing calculate_population_coverage.py
-    - input_file (Path): Path to the input .txt file (epitope, allele format)
-    - output_dir (Path): Directory to save the results
-    - population (str): Population name (default: 'World')
-    - mhc_class (str): MHC class ('I', 'II', or 'combined')
-    - plot (bool): Whether to generate a plot (default: True)
+        tool_path (Path): Path to the directory containing calculate_population_coverage.py
+        input_file (Path): Path to the input .txt file (epitope, allele format)
+        output_dir (Path): Directory to save the results
+        population (str): Population name (default: 'World')
+        mhc_class (str): MHC class ('I', 'II', or 'combined')
+        plot (bool): Whether to generate a plot (default: False)
     """
     tool_path = Path(tool_path)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -52,10 +54,10 @@ def run(tool_path: Path, input_file: Path, output_dir: Path,
     script_path = tool_path / "calculate_population_coverage.py"
     output_prefix = input_file.stem
 
-    # Output files
+    # Output file
     output_txt = output_dir / f"{output_prefix}.txt"
-    plot_path = output_dir / f"{output_prefix}_plot.png"
 
+    # Build base command
     cmd = [
         "python", str(script_path),
         "-p", population,
@@ -63,8 +65,11 @@ def run(tool_path: Path, input_file: Path, output_dir: Path,
         "-f", str(input_file)
     ]
 
+    # Plot output handling
     if plot:
-        cmd += ["--plot", str(plot_path.with_suffix(""))]  # Script will add .png
+        plot_path = output_dir / "plot" / output_prefix
+        plot_path.parent.mkdir(parents=True, exist_ok=True)  # ensure plot/ exists
+        cmd += ["--plot", str(plot_path)]  # Script will add .png internally
 
     try:
         print(f"📊 Running PopCoverage: {input_file.name} for {population} (MHC-{mhc_class})")
@@ -74,32 +79,22 @@ def run(tool_path: Path, input_file: Path, output_dir: Path,
             f.write(result.stdout)
 
         print(f"✅ PopCoverage results saved: {output_txt.name}")
-        if plot and plot_path.exists():
-            print(f"📈 Plot saved: {plot_path.name}")
 
-        # Flatten PNGs from subdirectories into main output_dir if any exist
-        popcov_dir = output_dir
-        if not popcov_dir.exists():
-            logging.warning(f"⚠️ Output directory does not exist: {popcov_dir}")
-            return
-        for subdir in popcov_dir.glob("*"):
-            if subdir.is_dir():
-                name = subdir.name
-                for png_file in subdir.glob("*.png"):
-                    newname = f"{name}_{png_file.name}"
-                    dest = popcov_dir / newname
-                    try:
+        # If plots were generated, flatten them into plot/ directory
+        if plot:
+            plot_dir = output_dir / "plot"
+            for subdir in list(plot_dir.iterdir()):
+                if subdir.is_dir():
+                    for png_file in subdir.glob("*.png"):
+                        newname = f"{subdir.name}_{png_file.name}"
+                        dest = plot_dir / newname
                         shutil.move(str(png_file), str(dest))
-                    except Exception as e:
-                        logging.warning(f"⚠️ Failed to move {png_file} to {dest}: {e}")
-                # Delete the directory if it is empty after moving files
-                try:
-                    if not any(subdir.iterdir()):
+                    try:
                         subdir.rmdir()
-                except Exception as e:
-                    logging.warning(f"⚠️ Failed to remove empty directory {subdir}: {e}")
+                    except Exception as e:
+                        logging.warning(f"⚠️ Failed to remove empty directory {subdir}: {e}")
 
     except subprocess.CalledProcessError as e:
         print(f"❌ PopCoverage failed for {input_file.name}")
-        print(e.stderr)
-        print(e.stderr)
+        if e.stderr:
+            print(e.stderr)
