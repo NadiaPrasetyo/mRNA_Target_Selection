@@ -1,0 +1,190 @@
+##gff-version 3
+# antigen_35|A0A064C4V0|Adhesion|NZ_CP173225.1|tpos:403753-404057 Length: 305
+# antigen_35|A0A064C4V0|Adhesion|NZ_CP173225.1|tpos:403753-404057 Number of predicted TMRs: 0
+antigen_35|A0A064C4V0|Adhesion|NZ_CP173225.1|tpos:403753-404057	signal	1	20				
+antigen_35|A0A064C4V0|Adhesion|NZ_CP173225.1|tpos:403753-404057	outside	21	305				
+//
+# antigen_30|A0AAP5J5G2|ZmpA/ZmpB/ZmpC|NZ_CP173225.1|tpos:308892-309325 Length: 434
+# antigen_30|A0AAP5J5G2|ZmpA/ZmpB/ZmpC|NZ_CP173225.1|tpos:308892-309325 Number of predicted TMRs: 0
+antigen_30|A0AAP5J5G2|ZmpA/ZmpB/ZmpC|NZ_CP173225.1|tpos:308892-309325	outside	1	434				
+//
+# antigen_25|A0A0S2VEM8|CbpG|NZ_CP173225.1|tpos:235534-235805 Length: 272
+# antigen_25|A0A0S2VEM8|CbpG|NZ_CP173225.1|tpos:235534-235805 Number of predicted TMRs: 0
+antigen_25|A0A0S2VEM8|CbpG|NZ_CP173225.1|tpos:235534-235805	outside	1	272				
+//
+# antigen_26|A0AAP5J8I6|LPXTG-anchored|NZ_CP173225.1|tpos:261764-261920 Length: 157
+# antigen_26|A0AAP5J8I6|LPXTG-anchored|NZ_CP173225.1|tpos:261764-261920 Number of predicted TMRs: 0
+antigen_26|A0AAP5J8I6|LPXTG-anchored|NZ_CP173225.1|tpos:261764-261920	outside	1	157				
+//
+# antigen_47|Q8DQ24|Foldase|NZ_CP173225.1|tpos:398696-399008 Length: 313
+# antigen_47|Q8DQ24|Foldase|NZ_CP173225.1|tpos:398696-399008 Number of predicted TMRs: 0
+antigen_47|Q8DQ24|Foldase|NZ_CP173225.1|tpos:398696-399008	signal	1	20				
+antigen_47|Q8DQ24|Foldase|NZ_CP173225.1|tpos:398696-399008	outside	21	313				
+//
+# antigen_48|A0A0B7M798|Surface|NZ_CP173225.1|tpos:309618-309709 Length: 92
+# antigen_48|A0A0B7M798|Surface|NZ_CP173225.1|tpos:309618-309709 Number of predicted TMRs: 0
+antigen_48|A0A0B7M798|Surface|NZ_CP173225.1|tpos:309618-309709	inside	1	92				
+//
+# antigen_55|A0A0B7LWN8|Oligopeptide-binding|NZ_CP173225.1|tpos:226145-226804 Length: 660
+# antigen_55|A0A0B7LWN8|Oligopeptide-binding|NZ_CP173225.1|tpos:226145-226804 Number of predicted TMRs: 0
+antigen_55|A0A0B7LWN8|Oligopeptide-binding|NZ_CP173225.1|tpos:226145-226804	signal	1	22				
+antigen_55|A0A0B7LWN8|Oligopeptide-binding|NZ_CP173225.1|tpos:226145-226804	outside	23	660				
+//
+# antigen_31|A0A064C176|Zinc|NZ_CP173225.1|tpos:307845-309745 Length: 1901
+# antigen_31|A0A064C176|Zinc|NZ_CP173225.1|tpos:307845-309745 Number of predicted TMRs: 0
+antigen_31|A0A064C176|Zinc|NZ_CP173225.1|tpos:307845-309745	signal	1	33				
+antigen_31|A0A064C176|Zinc|NZ_CP173225.1|tpos:307845-309745	outside	34	1901				
+//
+# antigen_5|Q8DN05|Choline|NZ_CP173225.1|tpos:231919-232198 Length: 280
+# antigen_5|Q8DN05|Choline|NZ_CP173225.1|tpos:231919-232198 Number of predicted TMRs: 0
+antigen_5|Q8DN05|Choline|NZ_CP173225.1|tpos:231919-232198	outside	1	280				
+//
+# antigen_11|Q8DQ08|Pneumococcal|NZ_CP173225.1|tpos:406410-406462 Length: 53
+# antigen_11|Q8DQ08|Pneumococcal|NZ_CP173225.1|tpos:406410-406462 Number of predicted TMRs: 0
+antigen_11|Q8DQ08|Pneumococcal|NZ_CP173225.1|tpos:406410-406462	inside	1	53				
+//
+# antigen_18|Q8DRK2|Gram-positive|NZ_CP173225.1|tpos:148652-149812 Length: 1161
+# antigen_18|Q8DRK2|Gram-positive|NZ_CP173225.1|tpos:148652-149812 Number of predicted TMRs: 0
+antigen_18|Q8DRK2|Gram-positive|NZ_CP173225.1|tpos:148652-149812	signal	1	42				
+antigen_18|Q8DRK2|Gram-positive|NZ_CP173225.1|tpos:148652-149812	outside	43	1161				
+//
+# antigen_57|A0A4N5NE36|Surface|NZ_CP173225.1|tpos:232121-232199 Length: 79
+# antigen_57|A0A4N5NE36|Surface|NZ_CP173225.1|tpos:232121-232199 Number of predicted TMRs: 0
+antigen_57|A0A4N5NE36|Surface|NZ_CP173225.1|tpos:232121-232199	outside	1	79				
+//
+# antigen_32|A0A0T8ZSI6|YSIRK-type|NZ_CP173225.1|tpos:309069-309742 Length: 674
+# antigen_32|A0A0T8ZSI6|YSIRK-type|NZ_CP173225.1|tpos:309069-309742 Number of predicted TMRs: 0
+antigen_32|A0A0T8ZSI6|YSIRK-type|NZ_CP173225.1|tpos:309069-309742	outside	1	674				
+//
+# antigen_27|A0AAP5JAE8|LPXTG-anchored|NZ_CP173225.1|tpos:261787-261917 Length: 131
+# antigen_27|A0AAP5JAE8|LPXTG-anchored|NZ_CP173225.1|tpos:261787-261917 Number of predicted TMRs: 0
+antigen_27|A0AAP5JAE8|LPXTG-anchored|NZ_CP173225.1|tpos:261787-261917	outside	1	131				
+//
+# antigen_12|Q8DQN5|Zinc|NZ_CP173225.1|tpos:307845-309745 Length: 1901
+# antigen_12|Q8DQN5|Zinc|NZ_CP173225.1|tpos:307845-309745 Number of predicted TMRs: 0
+antigen_12|Q8DQN5|Zinc|NZ_CP173225.1|tpos:307845-309745	signal	1	33				
+antigen_12|Q8DQN5|Zinc|NZ_CP173225.1|tpos:307845-309745	outside	34	1901				
+//
+# antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542 Length: 721
+# antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542 Number of predicted TMRs: 5
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	signal	1	23				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	outside	24	514				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	TMhelix	515	542				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	inside	543	551				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	TMhelix	552	581				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	outside	582	593				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	TMhelix	594	610				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	inside	611	653				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	TMhelix	654	663				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	outside	664	691				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	TMhelix	692	713				
+antigen_8|Q8DPK5|ABC|NZ_CP173225.1|tpos:473822-474542	inside	714	721				
+//
+# antigen_1|Q59947|Immunoglobulin|NZ_CP173225.1|tpos:308478-309750 Length: 1273
+# antigen_1|Q59947|Immunoglobulin|NZ_CP173225.1|tpos:308478-309750 Number of predicted TMRs: 0
+antigen_1|Q59947|Immunoglobulin|NZ_CP173225.1|tpos:308478-309750	outside	1	1273				
+//
+# antigen_66|A0A062WSP2|Elongation|NZ_CP173225.1|tpos:246649-246812 Length: 164
+# antigen_66|A0A062WSP2|Elongation|NZ_CP173225.1|tpos:246649-246812 Number of predicted TMRs: 0
+antigen_66|A0A062WSP2|Elongation|NZ_CP173225.1|tpos:246649-246812	inside	1	164				
+//
+# antigen_16|Q8DQZ1|6-phospho-beta-galactosidase|NZ_CP173225.1|tpos:197179-197630 Length: 452
+# antigen_16|Q8DQZ1|6-phospho-beta-galactosidase|NZ_CP173225.1|tpos:197179-197630 Number of predicted TMRs: 0
+antigen_16|Q8DQZ1|6-phospho-beta-galactosidase|NZ_CP173225.1|tpos:197179-197630	outside	1	452				
+//
+# antigen_13|Q8DQN7|Histidine|NZ_CP173225.1|tpos:172995-173258 Length: 264
+# antigen_13|Q8DQN7|Histidine|NZ_CP173225.1|tpos:172995-173258 Number of predicted TMRs: 0
+antigen_13|Q8DQN7|Histidine|NZ_CP173225.1|tpos:172995-173258	inside	1	264				
+//
+# antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990 Length: 68
+# antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990 Number of predicted TMRs: 2
+antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990	signal	1	25				
+antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990	outside	26	27				
+antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990	TMhelix	28	46				
+antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990	inside	47	49				
+antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990	TMhelix	50	67				
+antigen_3|Q8CZ44|Immunity|NZ_CP173225.1|tpos:270923-270990	outside	68	68				
+//
+# antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|NZ_CP173225.1|tpos:232100-232198 Length: 99
+# antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|NZ_CP173225.1|tpos:232100-232198 Number of predicted TMRs: 0
+antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|NZ_CP173225.1|tpos:232100-232198	outside	1	99				
+//
+# antigen_33|A0A0H2UR96|Glycosyltransferase|NZ_CP173225.1|tpos:166374-166467 Length: 94
+# antigen_33|A0A0H2UR96|Glycosyltransferase|NZ_CP173225.1|tpos:166374-166467 Number of predicted TMRs: 0
+antigen_33|A0A0H2UR96|Glycosyltransferase|NZ_CP173225.1|tpos:166374-166467	inside	1	94				
+//
+# antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892 Length: 350
+# antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892 Number of predicted TMRs: 7
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	inside	1	3				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	TMhelix	4	24				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	outside	25	63				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	TMhelix	64	84				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	inside	85	115				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	TMhelix	116	136				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	outside	137	179				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	TMhelix	180	200				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	inside	201	219				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	TMhelix	220	241				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	outside	242	283				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	TMhelix	284	312				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	inside	313	339				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	TMhelix	340	349				
+antigen_15|Q8DQY9|Trk|NZ_CP173225.1|tpos:147543-147892	outside	350	350				
+//
+# antigen_51|Q8DNW8|ABC|NZ_CP173225.1|tpos:257101-257334 Length: 234
+# antigen_51|Q8DNW8|ABC|NZ_CP173225.1|tpos:257101-257334 Number of predicted TMRs: 0
+antigen_51|Q8DNW8|ABC|NZ_CP173225.1|tpos:257101-257334	inside	1	234				
+//
+# antigen_29|A0AA86X9D8|IgA1|NZ_CP173225.1|tpos:308517-309740 Length: 1224
+# antigen_29|A0AA86X9D8|IgA1|NZ_CP173225.1|tpos:308517-309740 Number of predicted TMRs: 0
+antigen_29|A0AA86X9D8|IgA1|NZ_CP173225.1|tpos:308517-309740	outside	1	1224				
+//
+# antigen_34|A0A098ZLB0|ABC|NZ_CP173225.1|tpos:403753-404052 Length: 300
+# antigen_34|A0A098ZLB0|ABC|NZ_CP173225.1|tpos:403753-404052 Number of predicted TMRs: 0
+antigen_34|A0A098ZLB0|ABC|NZ_CP173225.1|tpos:403753-404052	signal	1	20				
+antigen_34|A0A098ZLB0|ABC|NZ_CP173225.1|tpos:403753-404052	outside	21	300				
+//
+# antigen_39|A0A0B7KUM4|Pneumococcal|NZ_CP173225.1|tpos:406333-406462 Length: 130
+# antigen_39|A0A0B7KUM4|Pneumococcal|NZ_CP173225.1|tpos:406333-406462 Number of predicted TMRs: 0
+antigen_39|A0A0B7KUM4|Pneumococcal|NZ_CP173225.1|tpos:406333-406462	outside	1	130				
+//
+# antigen_17|Q8DRI0|Surface|NZ_CP173225.1|tpos:385835-386063 Length: 229
+# antigen_17|Q8DRI0|Surface|NZ_CP173225.1|tpos:385835-386063 Number of predicted TMRs: 0
+antigen_17|Q8DRI0|Surface|NZ_CP173225.1|tpos:385835-386063	outside	1	229				
+//
+# antigen_62|O05168|PCPC|NZ_CP173225.1|tpos:235812-236151 Length: 340
+# antigen_62|O05168|PCPC|NZ_CP173225.1|tpos:235812-236151 Number of predicted TMRs: 0
+antigen_62|O05168|PCPC|NZ_CP173225.1|tpos:235812-236151	signal	1	27				
+antigen_62|O05168|PCPC|NZ_CP173225.1|tpos:235812-236151	outside	28	340				
+//
+# antigen_23|A0A6I3UXD9|Choline|NZ_CP173225.1|tpos:232100-232198 Length: 99
+# antigen_23|A0A6I3UXD9|Choline|NZ_CP173225.1|tpos:232100-232198 Number of predicted TMRs: 0
+antigen_23|A0A6I3UXD9|Choline|NZ_CP173225.1|tpos:232100-232198	outside	1	99				
+//
+# antigen_24|A0A064BZ27|Choline|NZ_CP173225.1|tpos:385506-386131 Length: 626
+# antigen_24|A0A064BZ27|Choline|NZ_CP173225.1|tpos:385506-386131 Number of predicted TMRs: 0
+antigen_24|A0A064BZ27|Choline|NZ_CP173225.1|tpos:385506-386131	signal	1	25				
+antigen_24|A0A064BZ27|Choline|NZ_CP173225.1|tpos:385506-386131	outside	26	626				
+//
+# antigen_60|A0A4J1ZDL7|Beta-galactosidase|NZ_CP173225.1|tpos:143998-144592 Length: 595
+# antigen_60|A0A4J1ZDL7|Beta-galactosidase|NZ_CP173225.1|tpos:143998-144592 Number of predicted TMRs: 0
+antigen_60|A0A4J1ZDL7|Beta-galactosidase|NZ_CP173225.1|tpos:143998-144592	inside	1	595				
+//
+# antigen_52|P0A4G3|Manganese|NZ_CP173225.1|tpos:403753-404056 Length: 304
+# antigen_52|P0A4G3|Manganese|NZ_CP173225.1|tpos:403753-404056 Number of predicted TMRs: 0
+antigen_52|P0A4G3|Manganese|NZ_CP173225.1|tpos:403753-404056	signal	1	20				
+antigen_52|P0A4G3|Manganese|NZ_CP173225.1|tpos:403753-404056	outside	21	304				
+//
+# antigen_46|A0A0T8T3N8|Endo-beta-N-acetylglucosaminidase|NZ_CP173225.1|tpos:385779-386063 Length: 285
+# antigen_46|A0A0T8T3N8|Endo-beta-N-acetylglucosaminidase|NZ_CP173225.1|tpos:385779-386063 Number of predicted TMRs: 0
+antigen_46|A0A0T8T3N8|Endo-beta-N-acetylglucosaminidase|NZ_CP173225.1|tpos:385779-386063	outside	1	285				
+//
+# antigen_40|A0A6G2D0Z1|Fibronectin-binding|NZ_CP173225.1|tpos:148652-149150 Length: 499
+# antigen_40|A0A6G2D0Z1|Fibronectin-binding|NZ_CP173225.1|tpos:148652-149150 Number of predicted TMRs: 0
+antigen_40|A0A6G2D0Z1|Fibronectin-binding|NZ_CP173225.1|tpos:148652-149150	signal	1	42				
+antigen_40|A0A6G2D0Z1|Fibronectin-binding|NZ_CP173225.1|tpos:148652-149150	outside	43	499				
+//
+# antigen_61|Q9KGY9|Choline|NZ_CP173225.1|tpos:235812-236151 Length: 340
+# antigen_61|Q9KGY9|Choline|NZ_CP173225.1|tpos:235812-236151 Number of predicted TMRs: 0
+antigen_61|Q9KGY9|Choline|NZ_CP173225.1|tpos:235812-236151	signal	1	27				
+antigen_61|Q9KGY9|Choline|NZ_CP173225.1|tpos:235812-236151	outside	28	340				
