@@ -1,0 +1,38 @@
+class combined
+population/area	coverage	average_hit	pc90
+World	34.44%	5.07	2.14
+average	34.44%	5.07	2.14
+standard_deviation	0.0%	0.0	0.0
+
+population/area	epitope_hits	percent_individuals	cumulative_coverage
+World	0	65.56	100.0
+World	1	0.0	34.44
+World	2	0.0	34.44
+World	3	0.0	34.44
+World	4	0.0	34.44
+World	5	0.0	34.44
+World	6	0.0	34.44
+World	7	0.0	34.44
+World	8	0.0	34.44
+World	9	0.0	34.44
+World	10	0.0	34.44
+World	11	0.0	34.44
+World	12	0.0	34.44
+World	13	0.0	34.44
+World	14	32.63	34.44
+World	15	0.0	1.81
+World	16	0.0	1.81
+World	17	0.0	1.81
+World	18	0.0	1.81
+World	19	0.0	1.81
+World	20	0.0	1.81
+World	21	0.0	1.81
+World	22	0.0	1.81
+World	23	0.0	1.81
+World	24	0.0	1.81
+World	25	0.0	1.81
+World	26	0.0	1.81
+World	27	0.0	1.81
+World	28	1.81	1.81
+
+
