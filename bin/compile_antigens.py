@@ -107,7 +107,15 @@ def load_literature_antigens(file_path, source_organism):
     df = pd.read_excel(file_path)
     df_out = pd.DataFrame()
     df_out["antigen_name"] = df["Name"]
-    df_out["gene_name"] = df["Gene"] if "Gene" in df.columns else None #Gene is optional in the literature
+    if "Gene" in df.columns :
+        if df["Gene"].str.contains(r"(?i)\bspy", regex=True).any():
+            df_out["gene_name"] = df["Gene"].str.replace(r"(?i)\bspy(\d+)", r"SPy_\1", regex=True)
+        else:
+            df_out["gene_name"] = df["Gene"]
+
+    else:
+        df_out["gene_name"] = None #Gene is optional in the literature
+
     df_out["source_organism"] = source_organism
     df_out["host_organisms"] = "Homo sapiens"
     df_out["Uniprot_ID"] = None
@@ -159,12 +167,25 @@ def expand_names(antigen_name, gene_name):
 
     return {n for n in names if n}
 
-def check_for_duplicates(combined_df):
-    """Finds partial and exact duplicates by expanded antigen+gene names."""
-    name_sets = {
-        idx: expand_names(row['antigen_name'], row.get('gene_name', None))
-        for idx, row in combined_df.iterrows()
-    }
+def check_for_duplicates(combined_df, gene_only=False):
+    """
+    Finds partial and exact duplicates by expanded antigen+gene names or just genes.
+    Args:
+        combined_df (pd.DataFrame): The DataFrame containing antigen data.
+        gene_only (bool): If True, only checks for duplicates based on gene names.
+    Returns:
+        pd.DataFrame: The DataFrame with duplicates resolved.
+    """
+    if gene_only:
+        name_sets = {
+            idx: {normalize_name(row.get('gene_name', None))}
+            for idx, row in combined_df.iterrows()
+        }
+    else:
+        name_sets = {
+            idx: expand_names(row['antigen_name'], row.get('gene_name', None))
+            for idx, row in combined_df.iterrows()
+        }
 
     visited = set()
     duplicates_groups = []
@@ -189,7 +210,7 @@ def check_for_duplicates(combined_df):
         for idx in sorted(group):
             print(
                 f"[{idx}] {combined_df.loc[idx, 'antigen_name']} "
-                f"|Gene: {combined_df.loc[idx, 'gene_name']} "
+                f"| Gene: {combined_df.loc[idx, 'gene_name']} "
                 f"| Source: {combined_df.loc[idx, 'source']}"
             )
 
@@ -197,13 +218,16 @@ def check_for_duplicates(combined_df):
         while not keep.issubset(group) or not keep:
             try:
                 keep_input = input(
-                    f"Enter the indices to KEEP from {sorted(group)} (comma-separated): "
-                )
-                keep = {int(x.strip()) for x in keep_input.split(",") if x.strip()}
-                if keep == 0 or "none" in keep_input.lower():
+                    f"Enter the indices to KEEP from {sorted(group)} (comma-separated, or 'all' to keep all, 'none' to remove all): "
+                ).strip().lower()
+                if keep_input == "all":
+                    keep = group
+                elif keep_input == "none":
                     keep = set()
+                else:
+                    keep = {int(x.strip()) for x in keep_input.split(",") if x.strip()}
             except ValueError:
-                print("Invalid input. Enter valid indices separated by commas.")
+                print("Invalid input. Enter valid indices separated by commas, or 'all'/'none'.")
 
         drop_ids = group - keep
         combined_df = combined_df.drop(index=drop_ids)
@@ -303,8 +327,10 @@ def main(short_name, long_name):
     combined_df = combined_df.drop_duplicates(subset=["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"])
 
     # Cross-check duplicates using expanded name sets (names + genes)
-    combined_df = check_for_duplicates(combined_df)
+    combined_df = check_for_duplicates(combined_df, False)
 
+    # Another check of just genes
+    combined_df = check_for_duplicates(combined_df, True)
 
     print(f"After removing duplicates, {len(combined_df)} unique antigen entries remain.")
 

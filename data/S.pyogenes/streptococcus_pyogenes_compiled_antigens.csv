@@ -1,0 +1,168 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+"['Acinetobacter baumannii', 'Aggregatibacter actinomycetemcomitans serotype b str. Y4', 'Alcaligenes faecalis', 'Brucella', 'Brucella melitensis bv. 1 str. 16M', 'Campylobacter jejuni subsp. jejuni serotype HS:15', 'Candida albicans', 'Candidozyma auris', 'Citrobacter freundii', 'Clostridium difficile', 'Clostridium difficile BI / NAP1/ 027', 'Cryptococcus neoformans', 'Cryptococcus neoformans Mu-1', 'Enterococcus faecalis', 'Escherichia coli O25b:ST131', 'Francisella tularensis subsp. tularensis strain 15', 'Haemophilus influenzae', 'Haemophilus influenzae Serotype B', 'Klebsiella pneumoniae', 'Mycoplasmoides pneumoniae (Filterable agent of primary atypical pneumonia)', 'Neisseria meningitidis', 'Neisseria meningitidis serogroup A', 'Neisseria meningitidis serogroup B', 'Neisseria meningitidis serogroup C', 'Neisseria meningitidis serogroup C strain C11', 'Neisseria meningitidis serogroup C strain MC19', 'Neisseria meningitidis serogroup W', 'Neisseria meningitidis serogroup W-135', 'Neisseria meningitidis serogroup X', 'Neisseria meningitidis serogroup Y', 'Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)', 'Salmonella enterica subsp. enterica serovar Typhi', 'Salmonella enterica subsp. enterica serovar Typhimurium', 'Salmonella typhi 620Ty', 'Streptococcus agalactiae', 'Streptococcus agalactiae 18RS21 (Streptococcus agalactiae str. 18RS21)', 'Streptococcus agalactiae CJB111 (Streptococcus agalactiae str. CJB111)', 'Streptococcus agalactiae H36B (Streptococcus agalactiae str. H36B)', 'Streptococcus agalactiae serogroup Ia', 'Streptococcus agalactiae serogroup III', 'Streptococcus agalactiae serogroup III M781', 'Streptococcus agalactiae serogroup V', 'Streptococcus agalactiae serogroup VII strain 7271', 'Streptococcus anginosus K214-2K', 'Streptococcus dysgalactiae subsp. equisimilis ATCC 12388', 'Streptococcus pneumoniae', 'Streptococcus pneumoniae 23F', 'Streptococcus pneumoniae 7F', 'Streptococcus pneumoniae CCUG 1378', 'Streptococcus pneumoniae type 1', 'Streptococcus pneumoniae type 10A', 'Streptococcus pneumoniae type 14', 'Streptococcus pneumoniae type 19A', 'Streptococcus pneumoniae type 19F', 'Streptococcus pneumoniae type 2', 'Streptococcus pneumoniae type 27', 'Streptococcus pneumoniae type 3', 'Streptococcus pneumoniae type 37', 'Streptococcus pneumoniae type 6A', 'Streptococcus pneumoniae type 6B', 'Streptococcus pneumoniae type 8', 'Streptococcus pyogenes', 'Streptococcus pyogenes serotype M3 D58', ""Streptococcus sp. 'group A'"", ""Streptococcus sp. 'group B'"", 'Streptococcus suis 1178027', 'Streptococcus suis 13730', 'Streptococcus suis 2651', 'Streptococcus suis S735 (Streptococcus suis str. S735)', 'Trypanosoma cruzi', 'Vibrio vulnificus BO62316', 'Vibrio vulnificus MO6-24/O (Vibrio vulnificus str. MO6-24/O)']","['Canis lupus familiaris (dogs)', 'Equid (horse)', 'Equus caballus (domestic horse)', 'Felis catus (cat)', 'Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus BALB/c X DBA/2', 'Mus musculus C57BL/6', 'Mus musculus CD1', 'Mus musculus (mouse)', 'Mus musculus NHI Swiss', 'Mus musculus Swiss Webster', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)', 'Ovis aries (domestic sheep)', 'Sus scrofa (pig)']",['polysaccharide'],,18154,IEDB
+"['Clostridioides difficile 630 (Clostridium difficile 630 (epidemic type X))', 'Clostridium difficile', 'Streptococcus pyogenes']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Oryctolagus cuniculus (rabbit)']",['lipoteichoic acid'],,28640,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['DNA replication,,P0C0D1,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['DNA replication and repair protein RecF '],,P0C0D1,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],"[""DNA-directed RNA polymerase subunit beta' ""]",,P0C0E0,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Trigger factor '],,P0C0E1,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Lantibiotic transport ATP-binding protein SrtF '],,P0C0E3,IEDB
+"['Streptococcus pyogenes', 'Streptococcus pyogenes serotype M12 A374', 'Streptococcus pyogenes serotype M3 D58']","['Homo sapiens (human)', 'Mus musculus (mouse)', 'Oryctolagus cuniculus (rabbit)']",['Streptokinase A '],,P10520,IEDB
+"['Streptococcus pyogenes', 'Streptococcus pyogenes M1 GAS (Streptococcus pyogenes (serotype 1 / M1 GAS))']","['Homo sapiens (human)', 'Mus musculus Quackenbush']",['Protein GRAB '],,Q7DAL7,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['M protein trans-acting positive regulator '],,Q99XU9,IEDB
+"['Streptococcus pyogenes', 'Streptococcus pyogenes 156', 'Streptococcus pyogenes 88/25', 'Streptococcus pyogenes 88/30', 'Streptococcus pyogenes 88/544', 'Streptococcus pyogenes 90/85', 'Streptococcus pyogenes BSA10', 'Streptococcus pyogenes M1 GAS (Streptococcus pyogenes (serotype 1 / M1 GAS))', 'Streptococcus pyogenes NS1', 'Streptococcus pyogenes NS14', 'Streptococcus pyogenes NS27', 'Streptococcus pyogenes NS5', 'Streptococcus pyogenes serotype M11', 'Streptococcus pyogenes serotype M12', 'Streptococcus pyogenes serotype M13', 'Streptococcus pyogenes serotype M18 (Streptococcus pyogenes (serotype M18))', 'Streptococcus pyogenes serotype M2', 'Streptococcus pyogenes serotype M22', 'Streptococcus pyogenes serotype M24', 'Streptococcus pyogenes serotype M30', 'Streptococcus pyogenes serotype M3 (Streptococcus pyogenes (serotype M3))', 'Streptococcus pyogenes serotype M4', 'Streptococcus pyogenes serotype M41', 'Streptococcus pyogenes serotype M49', 'Streptococcus pyogenes serotype M5', 'Streptococcus pyogenes serotype M52', 'Streptococcus pyogenes serotype M54', 'Streptococcus pyogenes serotype M55', 'Streptococcus pyogenes serotype M57', 'Streptococcus pyogenes serotype M6', 'Streptococcus pyogenes serotype M60', 'Streptococcus pyogenes serotype M6 strain D471', 'Streptococcus pyogenes serotype M75', 'Streptococcus pyogenes serotype M8', 'Streptococcus pyogenes serotype M80', 'Streptococcus pyogenes str. Manfredo (Streptococcus pyogenes Manfredo)', ""Streptococcus sp. 'group A'""]","['Cavia porcellus (guinea pig)', 'Homo sapiens Australian Aboriginal', 'Homo sapiens Caucasian', 'Homo sapiens (human)', 'Mus musculus B10.BR', 'Mus musculus B10.D2', 'Mus musculus B10.M', 'Mus musculus B10.RIII', 'Mus musculus B10.S', 'Mus musculus B10.S(7R)', 'Mus musculus BALB/c', 'Mus musculus C3H.NB', 'Mus musculus C57BL/10', 'Mus musculus C57BL/10SnJ', 'Mus musculus C57BL/10 X DBA/2', 'Mus musculus C57BL/6', 'Mus musculus CBA/Ca', 'Mus musculus DBA/1', 'Mus musculus HLA-DQ6 Tg', 'Mus musculus (mouse)', 'Mus musculus MRL', 'Mus musculus NZW', 'Mus musculus Quackenbush', 'Mus musculus Swiss', 'Mus musculus Swiss Webster', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)', 'Rattus norvegicus Lewis']",['M protein type 1 '],,Q99XV0,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['PTS system lactose-specific EIICB component '],,Q99Y17,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Salivaricin A modification enzyme amino acid dehydration '],,Q99Y20,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Immunogenic secreted-like protein '],,Q99Y99,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Mid-cell-anchored protein Z '],,Q99YL6,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Internalin A '],,Q99Z76,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Lipoprotein '],,Q99ZH4,IEDB
+['Streptococcus pyogenes'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus (mouse)']",['CRISPR-associated endonuclease Cas9/Csn1 '],,Q99ZW2,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Histidine protein kinase '],,Q9A080,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],"['Fructose-specific enzyme II, PTS system BC component ']",,Q9A0B0,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['DUF2326 domain-containing protein '],,Q9A0Z2,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['42 kDa protein '],,Q9A147,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['DNA translocase FtsK '],,Q9A155,IEDB
+['Streptococcus pyogenes'],"['Homo sapiens (human)', 'Mus musculus BALB/c']",['C5a peptidase '],,Q9A180,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Surface exclusion protein '],,Q9A1H3,IEDB
+['Streptococcus pyogenes'],['Homo sapiens (human)'],['Secreted protein '],,Q9A1Z8,IEDB
+streptococcus pyogenes,Homo sapiens,Chaperone protein DnaK,,,literature
+streptococcus pyogenes,Homo sapiens,Maltose/maltodextrin-binding protein,,,literature
+streptococcus pyogenes,Homo sapiens,Oligopeptide-binding protein,,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical membrane associated protein,,,literature
+streptococcus pyogenes,Homo sapiens,Cell surface protein,,,literature
+streptococcus pyogenes,Homo sapiens,SpyAD,,,literature
+streptococcus pyogenes,Homo sapiens,Elongation factor Ts,,,literature
+streptococcus pyogenes,Homo sapiens,Metal ABC transporter substrate-binding lipoprotein,,,literature
+streptococcus pyogenes,Homo sapiens,Putative uncharacterised protein,,,literature
+streptococcus pyogenes,Homo sapiens,Streptolysin O,,,literature
+streptococcus pyogenes,Homo sapiens,Probable dipeptidase B,,,literature
+streptococcus pyogenes,Homo sapiens,Nicotine adenine dinucleotide glycohydrolase,,,literature
+streptococcus pyogenes,Homo sapiens,SpyCEP,,,literature
+streptococcus pyogenes,Homo sapiens,Periplasmic component of efflux system,,,literature
+streptococcus pyogenes,Homo sapiens,Sugar-binding protein,,,literature
+streptococcus pyogenes,Homo sapiens,M protein,,,literature
+streptococcus pyogenes,Homo sapiens,Pili,,,literature
+streptococcus pyogenes,Homo sapiens,Sfb1/PrtF1,,,literature
+streptococcus pyogenes,Homo sapiens,PrtF2/FbaB/PFBP,,,literature
+streptococcus pyogenes,Homo sapiens,Cpa/AP1,,,literature
+streptococcus pyogenes,Homo sapiens,SOF/Sfb2,,,literature
+streptococcus pyogenes,Homo sapiens,FbaA,,,literature
+streptococcus pyogenes,Homo sapiens,SfbX,,,literature
+streptococcus pyogenes,Homo sapiens,Scl1/2,,,literature
+streptococcus pyogenes,Homo sapiens,M proteins,,,literature
+streptococcus pyogenes,Homo sapiens,Mrp,,,literature
+streptococcus pyogenes,Homo sapiens,Arp,,,literature
+streptococcus pyogenes,Homo sapiens,Sir,,,literature
+streptococcus pyogenes,Homo sapiens,Lsp,,,literature
+streptococcus pyogenes,Homo sapiens,Lbp,,,literature
+streptococcus pyogenes,Homo sapiens,PAM,,,literature
+streptococcus pyogenes,Homo sapiens,Prp,,,literature
+streptococcus pyogenes,Homo sapiens,Epf,,,literature
+streptococcus pyogenes,Homo sapiens,AspA,,,literature
+streptococcus pyogenes,Homo sapiens,GrpE,,,literature
+streptococcus pyogenes,Homo sapiens,Protein H,,,literature
+streptococcus pyogenes,Homo sapiens,PulA,,,literature
+streptococcus pyogenes,Homo sapiens,R28,,,literature
+streptococcus pyogenes,Homo sapiens,Slr,,,literature
+streptococcus pyogenes,Homo sapiens,SlaA,,,literature
+streptococcus pyogenes,Homo sapiens,Shr,,,literature
+streptococcus pyogenes,Homo sapiens,GAPDH/SDH,,,literature
+streptococcus pyogenes,Homo sapiens,SEN,,,literature
+streptococcus pyogenes,Homo sapiens,Fbp54,,,literature
+streptococcus pyogenes,Homo sapiens,Capsule synthesis protein,,,literature
+streptococcus pyogenes,Homo sapiens,Laminin-binding surface protein LmB,,,literature
+streptococcus pyogenes,Homo sapiens,Lipoteichoic acid synthase LtaS type IIc,,,literature
+streptococcus pyogenes,Homo sapiens,Protein F,,,literature
+streptococcus pyogenes,Homo sapiens,Trypsin-resistant surface T6 protein,,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_0128,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_0130,,literature
+streptococcus pyogenes,Homo sapiens,Putative surface exclusion protein,SPy_0269,,literature
+streptococcus pyogenes,Homo sapiens,Putative cell envelope proteinase,SPy_0416,,literature
+streptococcus pyogenes,Homo sapiens,Conserved hypothetical protein,SPy_0747,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_0843,,literature
+streptococcus pyogenes,Homo sapiens,Putative secreted 5′ nucleotidase,SPy_0872,,literature
+streptococcus pyogenes,Homo sapiens,Putative pullulanase,SPy_1972,,literature
+streptococcus pyogenes,Homo sapiens,Collagen-like surface protein,SPy_1983,,literature
+streptococcus pyogenes,Homo sapiens,fibronectin-binding protein,SPy_2009,,literature
+streptococcus pyogenes,Homo sapiens,Collagen-binding proteinf,,,literature
+streptococcus pyogenes,Homo sapiens,Putative ABC transporter,SPy_0163,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_0210,,literature
+streptococcus pyogenes,Homo sapiens,Conserved hypothetical protein,SPy_0317,,literature
+streptococcus pyogenes,Homo sapiens,Metal-binding protein of ABC transporter,SPy_0453,,literature
+streptococcus pyogenes,Homo sapiens,Putative cyclophilin-type protein,SPy_0457,,literature
+streptococcus pyogenes,Homo sapiens,Conserved hypothetical protein,SPy_1094,,literature
+streptococcus pyogenes,Homo sapiens,periplasmic amino acid-binding protein,SPy_1274,,literature
+streptococcus pyogenes,Homo sapiens,Putative maltose/maltodextrin-binding protein,SPy_1294,,literature
+streptococcus pyogenes,Homo sapiens,Putative protease maturation protein,SPy_1390,,literature
+streptococcus pyogenes,Homo sapiens,Putative acid phosphatase,SPy_1882,,literature
+streptococcus pyogenes,Homo sapiens,Putative oligopeptide permeaseg,,,literature
+streptococcus pyogenes,Homo sapiens,Putative secreted protein,SPy_0019,,literature
+streptococcus pyogenes,Homo sapiens,Streptolysin O precursor,SPy_0167,,literature
+streptococcus pyogenes,Homo sapiens,d-alanyl-d-alanine carboxypeptidase,SPy_0292,,literature
+streptococcus pyogenes,Homo sapiens,Putative 42-kDa protein,SPy_0469,,literature
+streptococcus pyogenes,Homo sapiens,Putative adhesion protein,SPy_0714,,literature
+streptococcus pyogenes,Homo sapiens,Conserved hypothetical protein,SPy_1037,,literature
+streptococcus pyogenes,Homo sapiens,Putative transcription regulator,SPy_1733,,literature
+streptococcus pyogenes,Homo sapiens,SpeB,SPy_2039,,literature
+streptococcus pyogenes,Homo sapiens,Putative dipeptidase,SPy_2066,,literature
+streptococcus pyogenes,Homo sapiens,Putative cell division protein,SPy_0010,,literature
+streptococcus pyogenes,Homo sapiens,Putative acyltransferase,SPy_0041,,literature
+streptococcus pyogenes,Homo sapiens,Putative penicillin-binding protein 1b,SPy_0097,,literature
+streptococcus pyogenes,Homo sapiens,Putative signal peptidase I,SPy_0127,,literature
+streptococcus pyogenes,Homo sapiens,Putative triosephosphate isomerase,SPy_0613,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_0818,,literature
+streptococcus pyogenes,Homo sapiens,Conserved hypothetical protein,SPy_0836,,literature
+streptococcus pyogenes,Homo sapiens,sortase,SPy_1154,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_1315,,literature
+streptococcus pyogenes,Homo sapiens,Putative deacetylase,SPy_1370,,literature
+streptococcus pyogenes,Homo sapiens,Putative ornithine transcarbamylase,SPy_1544,,literature
+streptococcus pyogenes,Homo sapiens,Putative penicillin-binding protein 1A,SPy_1649,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_1686,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_1697,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein sharing similarity with several eukaryotic proteins,SPy_1798,,literature
+streptococcus pyogenes,Homo sapiens,Conserved hypothetical protein,SPy_1892,,literature
+streptococcus pyogenes,Homo sapiens,Putative prolyl-tRNA synthetase,SPy_1962,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_2006,,literature
+streptococcus pyogenes,Homo sapiens,Putative ATP-binding cassette transporter-like protein,SPy_2032,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_2033,,literature
+streptococcus pyogenes,Homo sapiens,Hypothetical protein,SPy_2065,,literature
+streptococcus pyogenes,Homo sapiens,DegP,SPy_2216,,literature
+streptococcus pyogenes,Homo sapiens,Putative GAPDH,SPy_0274,,literature
+streptococcus pyogenes,Homo sapiens,Putative translation elongation factor Tu,SPy_0611,,literature
+streptococcus pyogenes,Homo sapiens,50S ribosomal protein L7/L12,SPy_1073,,literature
+streptococcus pyogenes,Homo sapiens,Putative enolase,SPy_0731,,literature
+streptococcus pyogenes,Homo sapiens,Conserved hypothetical protein,SPy_1262,,literature
+streptococcus pyogenes,Homo sapiens,Putative pyruvate kinase,SPy_1282,,literature
+streptococcus pyogenes,Homo sapiens,Putative NADP-dependent GAPDH,SPy_1371,,literature
+streptococcus pyogenes,Homo sapiens,Putative phosphoenolpyruvate:sugar phosphotransferase system enzyme,SPy_1372,,literature
+streptococcus pyogenes,Homo sapiens,Streptococcal antitumor protein,SPy_1547,,literature
+streptococcus pyogenes,Homo sapiens,Mannose-specific phosphotransferase system component IIAB,SPy_1738,,literature
+streptococcus pyogenes,Homo sapiens,Phosphoglycerate kinase,SPy_1881,,literature
+streptococcus pyogenes,Homo sapiens,Putative fructose-bisphosphate aldolase,SPy_1889,,literature
+streptococcus pyogenes,Homo sapiens,RopA,SPy_1896,,literature
+streptococcus pyogenes,Homo sapiens,Heat shock protein,SPy_2070,,literature
+streptococcus pyogenes,Homo sapiens,Heat shock protein,SPy_2072,,literature
+streptococcus pyogenes,Homo sapiens,50S ribosomal protein L5,SPy_0063,,literature
+streptococcus pyogenes,Homo sapiens,30S ribosomal protein S8,SPy_0065,,literature
+streptococcus pyogenes,Homo sapiens,50S ribosomal protein L11,SPy_0460,,literature
+streptococcus pyogenes,Homo sapiens,Putative ribosomal protein S1-like DNA-binding protein,SPy_0913,,literature
+streptococcus pyogenes,Homo sapiens,Putative histone-like DNA-binding protein,SPy_1489,,literature
+streptococcus pyogenes,Homo sapiens,Putative pyruvate formate-lyase,SPy_1849,,literature
+streptococcus pyogenes,Homo sapiens,Putative major head protein; bacteriophage associated,SPy_0688,,literature
+streptococcus pyogenes,Homo sapiens,CsrS/CovS; two-component sensor histidine kinase,SPy_0336,,literature
+streptococcus pyogenes,Homo sapiens,FtsK; DNA translocase,SPy_0458,,literature
+streptococcus pyogenes,Homo sapiens,Chromosome segregation ATPase,SPy_0545,,literature
+streptococcus pyogenes,Homo sapiens,Putative membrane spanning protein,SPy_0575,,literature
+streptococcus pyogenes,Homo sapiens,Putative membrane associated protein,SPy_1034,,literature
+streptococcus pyogenes,Homo sapiens,nucleoside-binding protein,SPy_1228,,literature
+streptococcus pyogenes,Homo sapiens,Uncharacterized outer surface protein,SPy_1326,,literature
+streptococcus pyogenes,Homo sapiens,Uncharacterized acetyltransferase,SPy_1546,,literature
+streptococcus pyogenes,Homo sapiens,Putative ABC transporter substrate binding Lipoprot.,SPy_1592,,literature
+streptococcus pyogenes,Homo sapiens,Uncharacterized protein,SPy_1643,,literature
+streptococcus pyogenes,Homo sapiens,isp; immunogenic secreted protein,SPy_1801,,literature
+streptococcus pyogenes,Homo sapiens,Lrp; Leucine rich protein,SPy_1978,,literature
+streptococcus pyogenes,Homo sapiens,ScpA; steptococcal c5a peptidase,SPy_2010,,literature
+streptococcus pyogenes,Homo sapiens,PrsA2; Foldase protein,SPy_2037,,literature
+streptococcus pyogenes,Homo sapiens,Uncharacterized protein,SPy_2154,,literature
+streptococcus pyogenes,Homo sapiens,Uncharacterized protein,SPy_2176,,literature
+streptococcus pyogenes,Homo sapiens,Putative membrane associated protein,SPy_2197,,literature
