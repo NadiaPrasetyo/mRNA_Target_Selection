@@ -197,7 +197,8 @@ def main(pathogen, organism):
             "domains",
             "features",
             "sequence",
-            "organism_name"
+            "organism_name",
+            "pfam"
         ]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -220,3 +221,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(args.pathogen_directory, args.pathogen_name)
+

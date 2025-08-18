@@ -29,4 +29,5 @@ Keep up the good work - quite a sensible approach.
     - Use genomic epidemiology data to identify slow-evolving targets for longer-term vaccine efficacy.
 
 - **Tooling**:
-    - Use HMMER to pull models from Pfam based on taxonomy and InterPro.
+    - Use HMMER to pull models from Pfam based on taxonomy 
+    - InterPro

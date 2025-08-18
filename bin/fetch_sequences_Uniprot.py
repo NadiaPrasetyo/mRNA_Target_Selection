@@ -144,7 +144,6 @@ def fetch_uniprot_by_protein_name(protein_name, organism):
         print(f"[ERROR] Request failed for protein name {protein_name}: {e}")
     return None
 
-
 def parse_uniprot_entry(entry):
     """
     Parses a UniProt protein entry and extracts relevant metadata.
@@ -176,7 +175,11 @@ def parse_uniprot_entry(entry):
             for ref in entry.get("dbReferences", [])
             if ref["type"] in ("InterPro", "Pfam")
         ]
-
+        pfam_ids = [
+            ref.get("id", "")
+            for ref in entry.get("dbReferences", [])
+            if ref["type"] == "Pfam"
+        ]
         features = []
         for feat in entry.get("features", []):
             feat_type = feat.get("type", "")
@@ -187,7 +190,7 @@ def parse_uniprot_entry(entry):
                 features.append(f"{feat_type}:{desc}({begin}-{end})")
 
         sequence = entry.get("sequence", {}).get("sequence", "")
-
+        
         return {
             "uniprot_accession": accession,
             "organism_name": organism,
@@ -196,7 +199,8 @@ def parse_uniprot_entry(entry):
             "function": function,
             "domains": ";".join(domains),
             "features": ";".join(features),
-            "sequence": sequence
+            "sequence": sequence,
+            "pfam": ";".join(pfam_ids)
         }
     except Exception as e:
         print(f"[ERROR] Failed to parse entry for {entry.get('accession', 'unknown')}: {e}")
