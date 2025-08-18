@@ -1,11 +1,11 @@
 # Project-specific .gitignore
 outputs/
-data/S.aureus/combined_features.csv
-data/S.aureus/raw_positive_features.csv
-data/S.aureus/raw_random_features.csv
-data/S.aureus/raw_positive_features/
-data/S.aureus/raw_random_features/
-results/S.aureus/raw_data/
+data/*/combined_features.csv
+data/*/raw_positive_features.csv
+data/*/raw_random_features.csv
+data/*/raw_positive_features/
+data/*/raw_random_features/
+results/*/raw_data/
 notes/to_do_list.md
 
 # Byte-compiled / optimized / DLL files
