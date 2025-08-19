@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+import argparse
+import csv
+import os
+import subprocess
+import sys
+import re
+import tempfile
+import shutil
+
+
+def check_hmmer_installed():
+    """Ensure that hmmfetch from HMMER is available in PATH."""
+    if shutil.which("hmmfetch") is None:
+        print("❌ Error: hmmfetch not found. Please install HMMER (e.g., `conda install -c bioconda hmmer`).")
+        sys.exit(1)
+
+
+def load_pfam_accession_map(hmmfile):
+    """
+    Parse Pfam-A.hmm and create a mapping {PFxxxxx: PFxxxxx.yy}.
+    """
+    accession_map = {}
+    with open(hmmfile, "r") as f:
+        for line in f:
+            if line.startswith("ACC"):
+                acc_full = line.split()[1].strip()   # PFxxxxx.yy
+                acc_base = acc_full.split(".")[0]   # PFxxxxx
+                accession_map[acc_base] = acc_full
+    return accession_map
+
+
+def main():
+    """
+    Main function to execute the pipeline for fetching Pfam HMM profiles.
+    """
+    parser = argparse.ArgumentParser(
+        description="Fetch Pfam HMM profiles for proteins listed in an antigen CSV.",
+        usage="python fetch_pfam_hmmer.py <pathogen_directory> [--pathogen_name <name>] or [--input <input_csv>] --pfam_hmm <Pfam-A.hmm>"
+    )
+    parser.add_argument("pathogen_directory", help="Directory name under data/")
+    parser.add_argument("--pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus_aureus")')
+    parser.add_argument("--input", help="Input CSV file with antigen data (default: <pathogen_directory>/<pathogen_name>_compiled_proteins.csv)")
+    parser.add_argument("--output-dir", help="Output directory for Pfam HMM profiles (default: <pathogen_directory>/pfam_hmms)")
+    parser.add_argument("--pfam_hmm", required=True, help="Path to Pfam-A.hmm file")
+
+    args = parser.parse_args()
+
+    check_hmmer_installed()
+
+    base_dir = os.path.join("data/", args.pathogen_directory)
+
+    input_csv = args.input or os.path.join(base_dir, f"{args.pathogen_name}_compiled_proteins.csv")
+    output_dir = os.path.join(base_dir, args.output_dir) or os.path.join(base_dir, "pfam_hmms")
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Load accession mapping from Pfam-A.hmm
+    accession_map = load_pfam_accession_map(args.pfam_hmm)
+
+    # index the Pfam-A.hmm
+    subprocess.run(["hmmfetch", "--index", args.pfam_hmm], check=True)
+
+    # Temporary keys file
+    with tempfile.NamedTemporaryFile(mode="w", delete=True) as keys_tmp:
+        pfam_keys = []
+
+        # Collect Pfam accessions from CSV
+        with open(input_csv, newline="") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                uniprot_id = row["uniprot_accession"].strip()
+                pfam_field = row["pfam"].strip()
+                if not pfam_field:
+                    continue
+
+                # Pfam column may have multiple IDs separated by commas/semicolons
+                pfam_ids = re.split(r"[;, ]+", pfam_field)
+                for pfam_id in pfam_ids:
+                    pfam_id = pfam_id.strip()
+                    if not pfam_id:
+                        continue
+
+                    pfam_base = pfam_id.split(".")[0]  # normalize
+                    if pfam_base in accession_map:
+                        pfam_full = accession_map[pfam_base]
+                        pfam_keys.append(pfam_full)
+                        keys_tmp.write(pfam_full + "\n")
+                        keys_tmp.flush()
+
+                        # Fetch HMM for this accession
+                        hmm_outfile = os.path.join(output_dir, f"{uniprot_id}_{pfam_base}.hmm")
+                        try:
+                            subprocess.run(
+                                ["hmmfetch", args.pfam_hmm, pfam_full],
+                                check=True,
+                                stdout=open(hmm_outfile, "w"),
+                            )
+                        except subprocess.CalledProcessError:
+                            print(f"⚠️ Warning: Failed to fetch {pfam_full} for {uniprot_id}", file=sys.stderr)
+                    else:
+                        print(f"⚠️ Warning: Pfam ID {pfam_id} not found in Pfam-A.hmm", file=sys.stderr)
+
+        # keys_tmp will auto-delete on exit
+
+    print(f"✅ Done. HMMs saved in {output_dir}")
+
+
+if __name__ == "__main__":
+    main()
