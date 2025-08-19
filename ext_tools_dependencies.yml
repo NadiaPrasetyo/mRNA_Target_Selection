@@ -19,6 +19,7 @@ dependencies:
   - rate4site
   - mmseqs2
   - hmmer
+  - seqkit
   - pip
   - pip:
       - algpred2==1.4

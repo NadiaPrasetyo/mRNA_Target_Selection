@@ -396,7 +396,7 @@ def process_record(record, output_dir: Path):
 
 def main():
     """Main function to parse arguments and initiate PDB fetching."""
-    parser = argparse.ArgumentParser(description="Fetch all related PDB entries from FASTA files using RCSB Web API.")
+    parser = argparse.ArgumentParser(description="Fetch all related PDB entries from FASTA files using RCSB Web API. usage: python fetch_PDB_structure.py <pathogen_dir> <sequence_dir>")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--threads", type=int, default=4, help="Number of threads to use (default: 4)")

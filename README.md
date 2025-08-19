@@ -140,6 +140,8 @@ mRNA_Target_Selection/
 - [Seqkit](https://bioinf.shenwei.me/seqkit/)
 - [MAFFT](https://mafft.cbrc.jp/alignment/software/) (via conda)
 - [Rate4Site](https://www.tau.ac.il/~itaymay/cp/rate4site.html) (via conda)
+- [HMMER](http://hmmer.org/) (via conda)
+- [Pfam database](https://www.ebi.ac.uk/interpro/download/pfam/)
 
 ### Specialized Tools
 - [SignalP](https://services.healthtech.dtu.dk/services/SignalP-5.0/)
@@ -163,7 +165,7 @@ Install Python dependencies:
 pip install -r requirements.txt
 ```
 
-Create external tools environment:
+Create external tools environment: (includes: mafft, rate4site, mmseqs2, seqkit, hmmer, algpred2, ifnepitope2)
 ```bash
 conda env create -f ext_tools_dependencies.yml
 conda activate external_tools_env
@@ -182,6 +184,13 @@ conda install -c bioconda seqkit mmseqs2
 git clone https://github.com/Jaimomar99/deeplocpro.git
 cd deeplocpro && pip install .
 ```
+
+Install Pfam database: 
+```bash
+wget https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+gunzip Pfam-A.hmm.gz
+```
+
 
 Install R and visualization packages:
 ```r
@@ -206,6 +215,7 @@ bash bin/fetch_NCBI_strain_genome.sh s_aureus S.aureus_strains.csv
 or
 bash bin/fetch_NCBI_strain_genome.sh --random "Staphylococcus aureus" --random-num 6 s_aureus
 python bin/fetch_PDB_structure.py s_aureus proteins --threads 8
+python bin/fetch_pfam_hmmer.py s_aureus --pathogen_name "staphylococcus aureus" --pfam_hmm home/Pfam-A.hmm
 
 # 3. Run comprehensive analysis
 python bin/antigen_analysis.py s_aureus proteins --tool-root /path/to/tools --threads 8
