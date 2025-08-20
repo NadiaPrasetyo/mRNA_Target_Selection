@@ -34,6 +34,8 @@ import os
 import re
 import unicodedata
 import argparse
+import subprocess
+import tempfile
 
 UNIPROT_API_BASE = "https://www.ebi.ac.uk/proteins/api/proteins"
 
@@ -144,6 +146,46 @@ def fetch_uniprot_by_protein_name(protein_name, organism):
         print(f"[ERROR] Request failed for protein name {protein_name}: {e}")
     return None
 
+def fetch_nucleotide_seq(nucleotide_accession_EMBL):
+    """
+    Fetches nucleotide sequence from an EMBL accession using wget.
+    Downloads the file temporarily, extracts the sequence, and deletes the file.
+    Args:
+        nucleotide_accession_EMBL (str): EMBL accession ID for the nucleotide sequence.
+    Returns:
+        str: The nucleotide sequence as a string, or an empty string if failed.
+    """
+
+    if not nucleotide_accession_EMBL:
+        return ""
+    
+    url = f"https://www.ebi.ac.uk/ena/browser/api/fasta/{nucleotide_accession_EMBL}?download=true"
+
+    try:
+        # Download the file using requests
+        response = requests.get(url)
+        response.raise_for_status()
+
+        # Extract the sequence directly from the response content
+        sequence = []
+        in_sequence = False
+        for line in response.text.splitlines():
+            if line.startswith(">"):
+                in_sequence = True
+                continue
+            if in_sequence:
+                sequence.append(line.strip())
+
+        return "".join(sequence).replace(" ", "").upper()
+    except subprocess.CalledProcessError:
+        print(f"[ERROR] Failed to download or process EMBL file for accession {nucleotide_accession_EMBL}")
+        return ""
+    finally:
+        # Clean up the temporary file
+        if os.path.exists(temp_file.name):
+            os.remove(temp_file.name)
+
+
 def parse_uniprot_entry(entry):
     """
     Parses a UniProt protein entry and extracts relevant metadata.
@@ -190,7 +232,16 @@ def parse_uniprot_entry(entry):
                 features.append(f"{feat_type}:{desc}({begin}-{end})")
 
         sequence = entry.get("sequence", {}).get("sequence", "")
-        
+
+        nucleotide_seq_id = next(
+            (ref.get("properties", {}).get("protein sequence ID", "")
+             for ref in entry.get("dbReferences", [])
+             if ref["type"] == "EMBL"),
+            None
+        )
+
+        nucleotide_sequence = fetch_nucleotide_seq(nucleotide_seq_id) if nucleotide_seq_id else ""
+
         return {
             "uniprot_accession": accession,
             "organism_name": organism,
@@ -200,7 +251,8 @@ def parse_uniprot_entry(entry):
             "domains": ";".join(domains),
             "features": ";".join(features),
             "sequence": sequence,
-            "pfam": ";".join(pfam_ids)
+            "pfam": ";".join(pfam_ids), 
+            "nucleotide_sequence": nucleotide_sequence
         }
     except Exception as e:
         print(f"[ERROR] Failed to parse entry for {entry.get('accession', 'unknown')}: {e}")

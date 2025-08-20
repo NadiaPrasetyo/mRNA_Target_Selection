@@ -45,7 +45,7 @@ from pathlib import Path
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-def extract_antigens_to_fasta(csv_path, fasta_path):
+def extract_antigens_to_fasta(csv_path, fasta_path, mode="protein"):
     """
     Converts antigen CSV records into a FASTA file.
     Each row in the input CSV is formatted into a FASTA record using the UniProt accession,
@@ -53,6 +53,7 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
     Parameters:
         csv_path (str): Path to the antigen CSV file.
         fasta_path (str): Output path for the generated FASTA file.
+        mode (str): Mode for extraction ("protein" or "nucleotide").
     Returns:
         None
     """
@@ -61,7 +62,10 @@ def extract_antigens_to_fasta(csv_path, fasta_path):
         for idx, row in enumerate(reader):
             acc = row['uniprot_accession']
             name = row['protein_name']
-            seq = row['sequence'].replace('\r', '').replace('\n', '')
+            if mode == "protein":
+                seq = row['sequence'].replace('\r', '').replace('\n', '')
+            elif mode == "nucleotide":
+                seq = row['nucleotide_sequence'].replace('\r', '').replace('\n', '')
             f_out.write(f">antigen_{idx}|{acc}|{name}\n{seq}\n")
 
 def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch_qseq=False):
@@ -193,7 +197,7 @@ def extract_best_hits_with_sequences(strain_fasta_path, raw_tsv_path, output_tsv
             header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
             fasta_out.write(f">{header}\n{hit['tseq_slice']}\n")
 
-def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq):
+def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq, mode):
     """
     Entry point to execute the antigen-to-strain alignment workflow.
     Validates input files and directories, prepares an antigen FASTA file, and runs
@@ -213,11 +217,16 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq):
     strain_dir = base_dir / "strain_genomes"
     results_dir = Path(base_dir/output_dir)
     results_dir.mkdir(parents=True, exist_ok=True)
+    if mode == "protein":
+        strain_files = strain_dir.glob("*_translated.fasta")
+    else:
+        strain_files = strain_dir.glob("*.fasta")
+        strain_files = [f for f in strain_files if not f.name.endswith("_translated.fasta")]
 
     if not antigen_csv.exists():
         print(f"Error: Antigen CSV file {antigen_csv} does not exist.")
         sys.exit(1)
-    if not strain_dir.exists() or not any(strain_dir.glob("*_translated.fasta")):
+    if not strain_dir.exists() or not strain_files:
         print(f"Error: No strain FASTA files found in {strain_dir}.")
         sys.exit(1)
     if not shutil.which("mmseqs"):
@@ -229,9 +238,9 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq):
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".fasta") as tmp:
         antigen_fasta = tmp.name
-    extract_antigens_to_fasta(antigen_csv, antigen_fasta)
+    extract_antigens_to_fasta(antigen_csv, antigen_fasta, mode)
 
-    strain_fastas = list(strain_dir.glob("*_translated.fasta"))
+    strain_fastas = list(strain_files)
     print(f"Running MMseqs2 on {len(strain_fastas)} strains with {num_threads} workers...")
 
     with ProcessPoolExecutor(max_workers=num_threads) as executor:
@@ -257,6 +266,7 @@ if __name__ == "__main__":
     parser.add_argument("pathogen_directory", help="Directory name under data/")
     parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
     parser.add_argument("--threads", type=int, default=4, help="Number of threads (default: 4)")
+    parser.add_argument("--mode", choices=["protein", "nucleotide"], default="protein", help="Alignment mode (default: protein)")
     parser.add_argument(
         "--output-dir",
         default=None,
@@ -278,4 +288,4 @@ if __name__ == "__main__":
     if args.output_dir is None:
         args.output_dir = f"mmseqs_results"
 
-    main(args.pathogen_directory, args.pathogen_name, args.threads, args.output_dir, args.fetch_qseq)
+    main(args.pathogen_directory, args.pathogen_name, args.threads, args.output_dir, args.fetch_qseq, args.mode)

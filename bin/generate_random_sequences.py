@@ -198,7 +198,8 @@ def main(pathogen, organism):
             "features",
             "sequence",
             "organism_name",
-            "pfam"
+            "pfam",
+            "nucleotide_sequence"
         ]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
