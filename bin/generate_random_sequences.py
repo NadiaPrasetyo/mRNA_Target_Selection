@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 generate_random_sequences.py
 Command-line tool to fetch random reviewed UniProt protein entries for a given organism, excluding known antigens.

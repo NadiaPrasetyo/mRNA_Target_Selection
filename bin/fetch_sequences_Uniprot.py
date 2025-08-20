@@ -35,7 +35,6 @@ import re
 import unicodedata
 import argparse
 import subprocess
-import tempfile
 
 UNIPROT_API_BASE = "https://www.ebi.ac.uk/proteins/api/proteins"
 
