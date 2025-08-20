@@ -68,7 +68,7 @@ def extract_antigens_to_fasta(csv_path, fasta_path, mode="protein"):
                 seq = row['nucleotide_sequence'].replace('\r', '').replace('\n', '')
             f_out.write(f">antigen_{idx}|{acc}|{name}\n{seq}\n")
 
-def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch_qseq=False):
+def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch_qseq=False, mode="protein"):
     """
     Runs MMseqs2 easy-search and processes alignment results.
     Executes sequence alignment between the provided antigen FASTA file and a strain's translated genome FASTA file using MMseqs2.
@@ -95,10 +95,12 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
         if fetch_qseq:
             output_fields.append("qseq")
 
+        search_type = "2" if mode == "protein" else "3"  # 2 for translated, 3 for nucleotide
         subprocess.run([
             "mmseqs", "easy-search",
             antigen_fasta, str(strain_fasta),
             str(raw_result), tmpdir,
+            "--search-type", search_type,
             "--format-mode", "4",
             "--format-output", ",".join(output_fields)
         ], check=True)
@@ -245,7 +247,7 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq, mode)
 
     with ProcessPoolExecutor(max_workers=num_threads) as executor:
         futures = {
-            executor.submit(run_mmseqs2_and_process, f, antigen_fasta, results_dir, fetch_qseq): f
+            executor.submit(run_mmseqs2_and_process, f, antigen_fasta, results_dir, fetch_qseq, mode): f
             for f in strain_fastas
         }
         for future in as_completed(futures):
