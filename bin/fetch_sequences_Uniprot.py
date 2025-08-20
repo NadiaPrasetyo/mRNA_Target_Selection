@@ -359,7 +359,10 @@ def main(pathogen, organism="null", output=None, input=None, fasta=False):
         return
 
     with open(output_file, 'w', newline='') as outfile:
-        fieldnames = ["uniprot_accession", "protein_name", "short_name", "function", "domains", "features", "sequence", "organism_name"]
+        fieldnames = [
+            "uniprot_accession", "protein_name", "short_name", "function",
+            "domains", "features", "sequence", "organism_name", "pfam", "nucleotide_sequence"
+        ]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(protein_data)
