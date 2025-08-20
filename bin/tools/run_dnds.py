@@ -2,7 +2,7 @@ import subprocess
 import os
 from pathlib import Path
 import logging
-from tools import run_mafft
+from tools import run_mafft, common
 
 def run_hyphy(method, alignment, tree, output_dir):
     """
@@ -13,7 +13,8 @@ def run_hyphy(method, alignment, tree, output_dir):
     :param tree: Path to the tree file
     :param output_dir: Directory to save the output
     """
-    output_file = os.path.join(output_dir, f"{method}_results.json")
+    input_stem = alignment.stem
+    output_file = os.path.join(output_dir, f"{input_stem}_{method}_results.json")
     command = [
         "hyphy", method.lower(),
         "--alignment", str(alignment),
@@ -40,6 +41,8 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     Raises:
     - RuntimeError: If MAFFT or HyPhy commands fail.
     """
+    common.create_conda_env_if_needed()
+
     # Step 1: Run MAFFT to generate alignment and tree
     logging.info("🔍 Running MAFFT to generate alignment and tree...")
     run_mafft.run(tool_path, input_fasta, output_dir/"mafft", rate4site=False)

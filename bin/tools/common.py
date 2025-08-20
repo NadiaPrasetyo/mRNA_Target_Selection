@@ -553,7 +553,19 @@ def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
             tool_paths["MAFFT"] = "mafft"  # placeholder
         except Exception as e:
             raise FileNotFoundError(f"MAFFT_RATE4SITE not found: {e}")
-        
+
+    if "DNDS" in tools:
+        try:
+            dnds_path = Path("ext_tools_dependencies.yml")
+            if not dnds_path.exists():
+                logging.warning(
+                    f"⚠️ Dependencies file not found at {dnds_path}. "
+                    "Please get the dependency file from GitHub."
+                )
+            tool_paths["DNDS"] = "dnds"  # placeholder
+        except Exception as e:
+            raise FileNotFoundError(f"DNDS not found: {e}")
+
     return tool_paths
 
 def check_iedb_tool(base_path):

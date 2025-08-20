@@ -44,7 +44,7 @@ import sys
 import logging
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, run_mafft
+from tools import run_signalp, run_targetp, run_cluster, run_algpred, run_deeplocpro, run_ifnepitope2, run_deeptmhmm, run_mafft, run_dnds
 from tools import common
 import shutil
 
@@ -58,7 +58,8 @@ TOOL_RUNNERS = {
     "IFNEPITOPE2": run_ifnepitope2.run,
     "DEEPTMHMM": run_deeptmhmm.run,
     "MAFFT": run_mafft.run,
-    "MAFFT_RATE4SITE": run_mafft.run
+    "MAFFT_RATE4SITE": run_mafft.run,
+    "DNDS": run_dnds.run
 }
 
 # List of valid tools that can be run
@@ -116,7 +117,7 @@ def run_parallel_jobs(jobs, threads):
     # Clean up temporary and intermediate files after CLUSTER, MAFFT, and MAFFT_RATE4SITE jobs
     for job in jobs:
         tool_name, _, input_file, output_dir, _, _ = job
-        if tool_name not in ["CLUSTER", "MAFFT_RATE4SITE", "MAFFT"]:
+        if tool_name not in ["CLUSTER", "MAFFT_RATE4SITE", "MAFFT", "DNDS"]:
             continue
 
         db_name = input_file.stem
@@ -211,7 +212,7 @@ def is_job_done(fasta_path: Path, output_dir: Path, mode: str = "strain") -> boo
 
     extensions = [".tsv", ".fasta", ".txt", ".gff3", "_algpred.csv", "_ifnepitope2.csv", "_TMRs.gff3", "_probs.csv", 
                   "_results.md", "_deeptmhmm_results.md", "_predicted_topologies.3line", "_plot.png", "_combined_aligned.tree", "_combined_aligned.fasta",
-                  "_combined_aligned.out", "_combined_clu.tsv", "_combined_clu.fasta", "_combined_scores.m8"]
+                  "_combined_aligned.out", "_combined_clu.tsv", "_combined_clu.fasta", "_combined_scores.m8", "_results.json"]
 
     for ext in extensions:
         for f in output_dir.glob(f"*{ext}"):
@@ -289,7 +290,7 @@ def main():
     # Handle jobs
     for tool_name in args.tools:
         # Handle Cluster jobs
-        if tool_name in ["CLUSTER", "MAFFT_RATE4SITE", "MAFFT"]:
+        if tool_name in ["CLUSTER", "MAFFT_RATE4SITE", "MAFFT", "DNDS"]:
             output_dir = output_root / tool_name.lower()
             cluster_input_dir = output_root / "cluster_inputs"
             grouped_fastas = common.group_cluster_inputs(fasta_files, cluster_input_dir)
@@ -301,7 +302,7 @@ def main():
 
                 if tool_name == "CLUSTER":
                     jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, args.batch_size, tool_paths[tool_name]))
-                elif tool_name == "MAFFT_RATE4SITE":
+                elif tool_name == "MAFFT_RATE4SITE" or tool_name == "DNDS":
                     jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, True, tool_paths[tool_name]))
                 elif tool_name == "MAFFT":
                     jobs.append((tool_name, TOOL_RUNNERS[tool_name], fasta_path, output_dir, False, tool_paths[tool_name]))

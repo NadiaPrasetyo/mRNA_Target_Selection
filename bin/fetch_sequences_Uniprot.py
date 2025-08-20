@@ -180,10 +180,6 @@ def fetch_nucleotide_seq(nucleotide_accession_EMBL):
     except subprocess.CalledProcessError:
         print(f"[ERROR] Failed to download or process EMBL file for accession {nucleotide_accession_EMBL}")
         return ""
-    finally:
-        # Clean up the temporary file
-        if os.path.exists(temp_file.name):
-            os.remove(temp_file.name)
 
 
 def parse_uniprot_entry(entry):
