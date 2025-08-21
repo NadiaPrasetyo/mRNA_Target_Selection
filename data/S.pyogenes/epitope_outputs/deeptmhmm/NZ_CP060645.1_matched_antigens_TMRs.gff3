@@ -1,0 +1,196 @@
+##gff-version 3
+# antigen_21|Q9A1H3|Surface|NZ_CP060645.1|tpos:90194-91066 Length: 873
+# antigen_21|Q9A1H3|Surface|NZ_CP060645.1|tpos:90194-91066 Number of predicted TMRs: 0
+antigen_21|Q9A1H3|Surface|NZ_CP060645.1|tpos:90194-91066	signal	1	36				
+antigen_21|Q9A1H3|Surface|NZ_CP060645.1|tpos:90194-91066	outside	37	873				
+//
+# antigen_46|P0C0G6|Glyceraldehyde-3-phosphate|NZ_CP060645.1|tpos:92340-92675 Length: 336
+# antigen_46|P0C0G6|Glyceraldehyde-3-phosphate|NZ_CP060645.1|tpos:92340-92675 Number of predicted TMRs: 0
+antigen_46|P0C0G6|Glyceraldehyde-3-phosphate|NZ_CP060645.1|tpos:92340-92675	inside	1	336				
+//
+# antigen_48|A0A0H2UUI7|Capsule|NZ_CP060645.1|tpos:221838-222230 Length: 393
+# antigen_48|A0A0H2UUI7|Capsule|NZ_CP060645.1|tpos:221838-222230 Number of predicted TMRs: 0
+antigen_48|A0A0H2UUI7|Capsule|NZ_CP060645.1|tpos:221838-222230	signal	1	36				
+antigen_48|A0A0H2UUI7|Capsule|NZ_CP060645.1|tpos:221838-222230	outside	37	393				
+//
+# antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853 Length: 252
+# antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853 Number of predicted TMRs: 5
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	outside	1	56				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	TMhelix	57	82				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	inside	83	88				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	TMhelix	89	116				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	outside	117	126				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	TMhelix	127	142				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	inside	143	181				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	TMhelix	182	195				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	outside	196	223				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	TMhelix	224	244				
+antigen_84|Q99ZA4|ABC|NZ_CP060645.1|tpos:244602-244853	inside	245	252				
+//
+# antigen_33|A0A0H3BVP3|Sugar|NZ_CP060645.1|tpos:85428-85866 Length: 439
+# antigen_33|A0A0H3BVP3|Sugar|NZ_CP060645.1|tpos:85428-85866 Number of predicted TMRs: 0
+antigen_33|A0A0H3BVP3|Sugar|NZ_CP060645.1|tpos:85428-85866	signal	1	21				
+antigen_33|A0A0H3BVP3|Sugar|NZ_CP060645.1|tpos:85428-85866	outside	22	439				
+//
+# antigen_3|P0C0E3|Lantibiotic|NZ_CP060645.1|tpos:199623-199844 Length: 222
+# antigen_3|P0C0E3|Lantibiotic|NZ_CP060645.1|tpos:199623-199844 Number of predicted TMRs: 0
+antigen_3|P0C0E3|Lantibiotic|NZ_CP060645.1|tpos:199623-199844	inside	1	222				
+//
+# antigen_4|P10520|Streptokinase|NZ_CP060645.1|tpos:534406-534845 Length: 440
+# antigen_4|P10520|Streptokinase|NZ_CP060645.1|tpos:534406-534845 Number of predicted TMRs: 0
+antigen_4|P10520|Streptokinase|NZ_CP060645.1|tpos:534406-534845	signal	1	26				
+antigen_4|P10520|Streptokinase|NZ_CP060645.1|tpos:534406-534845	outside	27	440				
+//
+# antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262 Length: 648
+# antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262 Number of predicted TMRs: 8
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	inside	1	299				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	300	317				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	outside	318	340				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	341	361				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	inside	362	369				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	370	380				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	outside	381	407				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	408	425				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	inside	426	441				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	442	460				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	outside	461	526				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	527	547				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	inside	548	588				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	589	603				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	outside	604	622				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	TMhelix	623	643				
+antigen_16|Q9A0B0|Fructose-specific|NZ_CP060645.1|tpos:231615-232262	inside	644	648				
+//
+# antigen_114|Q9A066|Ribosomal|NZ_CP060645.1|tpos:247738-248138 Length: 401
+# antigen_114|Q9A066|Ribosomal|NZ_CP060645.1|tpos:247738-248138 Number of predicted TMRs: 0
+antigen_114|Q9A066|Ribosomal|NZ_CP060645.1|tpos:247738-248138	inside	1	401				
+//
+# antigen_97|P0C0G7|Glyceraldehyde-3-phosphate|NZ_CP060645.1|tpos:92340-92675 Length: 336
+# antigen_97|P0C0G7|Glyceraldehyde-3-phosphate|NZ_CP060645.1|tpos:92340-92675 Number of predicted TMRs: 0
+antigen_97|P0C0G7|Glyceraldehyde-3-phosphate|NZ_CP060645.1|tpos:92340-92675	inside	1	336				
+//
+# antigen_98|P69952|Elongation|NZ_CP060645.1|tpos:177244-177641 Length: 398
+# antigen_98|P69952|Elongation|NZ_CP060645.1|tpos:177244-177641 Number of predicted TMRs: 0
+antigen_98|P69952|Elongation|NZ_CP060645.1|tpos:177244-177641	inside	1	398				
+//
+# antigen_81|Q9A0D7|Capsule|NZ_CP060645.1|tpos:221801-222230 Length: 430
+# antigen_81|Q9A0D7|Capsule|NZ_CP060645.1|tpos:221801-222230 Number of predicted TMRs: 0
+antigen_81|Q9A0D7|Capsule|NZ_CP060645.1|tpos:221801-222230	signal	1	60				
+antigen_81|Q9A0D7|Capsule|NZ_CP060645.1|tpos:221801-222230	outside	61	430				
+//
+# antigen_83|Q99ZN4|Sortase|NZ_CP060645.1|tpos:293186-293434 Length: 249
+# antigen_83|Q99ZN4|Sortase|NZ_CP060645.1|tpos:293186-293434 Number of predicted TMRs: 1
+antigen_83|Q99ZN4|Sortase|NZ_CP060645.1|tpos:293186-293434	inside	1	18				
+antigen_83|Q99ZN4|Sortase|NZ_CP060645.1|tpos:293186-293434	TMhelix	19	34				
+antigen_83|Q99ZN4|Sortase|NZ_CP060645.1|tpos:293186-293434	outside	35	249				
+//
+# antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951 Length: 591
+# antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951 Number of predicted TMRs: 11
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	inside	1	10				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	11	20				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	outside	21	30				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	31	40				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	inside	41	71				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	72	90				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	outside	91	141				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	142	152				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	inside	153	165				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	166	184				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	outside	185	194				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	195	215				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	inside	216	235				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	236	253				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	outside	254	264				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	265	280				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	inside	281	304				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	305	314				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	outside	315	325				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	326	346				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	inside	347	369				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	TMhelix	370	384				
+antigen_77|Q9A1X8|Acyltransferase|NZ_CP060645.1|tpos:28361-28951	outside	385	591				
+//
+# antigen_19|Q9A155|DNA|NZ_CP060645.1|tpos:518046-518210 Length: 165
+# antigen_19|Q9A155|DNA|NZ_CP060645.1|tpos:518046-518210 Number of predicted TMRs: 0
+antigen_19|Q9A155|DNA|NZ_CP060645.1|tpos:518046-518210	inside	1	165				
+//
+# antigen_0|P0C0D1|DNA|NZ_CP060645.1|tpos:590977-591344 Length: 368
+# antigen_0|P0C0D1|DNA|NZ_CP060645.1|tpos:590977-591344 Number of predicted TMRs: 0
+antigen_0|P0C0D1|DNA|NZ_CP060645.1|tpos:590977-591344	inside	1	368				
+//
+# antigen_28|A0A4U7GRV0|Elongation|NZ_CP060645.1|tpos:567628-567973 Length: 346
+# antigen_28|A0A4U7GRV0|Elongation|NZ_CP060645.1|tpos:567628-567973 Number of predicted TMRs: 0
+antigen_28|A0A4U7GRV0|Elongation|NZ_CP060645.1|tpos:567628-567973	inside	1	346				
+//
+# antigen_96|Q99XG9|Serine|NZ_CP060645.1|tpos:595178-595584 Length: 407
+# antigen_96|Q99XG9|Serine|NZ_CP060645.1|tpos:595178-595584 Number of predicted TMRs: 0
+antigen_96|Q99XG9|Serine|NZ_CP060645.1|tpos:595178-595584	signal	1	26				
+antigen_96|Q99XG9|Serine|NZ_CP060645.1|tpos:595178-595584	outside	27	407				
+//
+# antigen_106|Q99YE6|PTS|NZ_CP060645.1|tpos:266344-266649 Length: 306
+# antigen_106|Q99YE6|PTS|NZ_CP060645.1|tpos:266344-266649 Number of predicted TMRs: 0
+antigen_106|Q99YE6|PTS|NZ_CP060645.1|tpos:266344-266649	inside	1	306				
+//
+# antigen_71|Q9A0L9|Zinc-binding|NZ_CP060645.1|tpos:189669-190183 Length: 515
+# antigen_71|Q9A0L9|Zinc-binding|NZ_CP060645.1|tpos:189669-190183 Number of predicted TMRs: 0
+antigen_71|Q9A0L9|Zinc-binding|NZ_CP060645.1|tpos:189669-190183	signal	1	28				
+antigen_71|Q9A0L9|Zinc-binding|NZ_CP060645.1|tpos:189669-190183	outside	29	515				
+//
+# antigen_99|P66063|Large|NZ_CP060645.1|tpos:270878-270998 Length: 121
+# antigen_99|P66063|Large|NZ_CP060645.1|tpos:270878-270998 Number of predicted TMRs: 0
+antigen_99|P66063|Large|NZ_CP060645.1|tpos:270878-270998	inside	1	121				
+//
+# antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948 Length: 256
+# antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948 Number of predicted TMRs: 6
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	inside	1	1				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	TMhelix	2	14				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	outside	15	38				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	TMhelix	39	57				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	inside	58	63				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	TMhelix	64	79				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	outside	80	90				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	TMhelix	91	111				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	inside	112	132				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	TMhelix	133	151				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	outside	152	156				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	TMhelix	157	173				
+antigen_127|Q99XL2|DUF2179|NZ_CP060645.1|tpos:592693-592948	inside	174	256				
+//
+# antigen_22|Q9A1Z8|Secreted|NZ_CP060645.1|tpos:7751-8148 Length: 398
+# antigen_22|Q9A1Z8|Secreted|NZ_CP060645.1|tpos:7751-8148 Number of predicted TMRs: 0
+antigen_22|Q9A1Z8|Secreted|NZ_CP060645.1|tpos:7751-8148	signal	1	24				
+antigen_22|Q9A1Z8|Secreted|NZ_CP060645.1|tpos:7751-8148	outside	25	398				
+//
+# antigen_78|Q9A1U2|Penicillin-binding|NZ_CP060645.1|tpos:43999-44768 Length: 770
+# antigen_78|Q9A1U2|Penicillin-binding|NZ_CP060645.1|tpos:43999-44768 Number of predicted TMRs: 1
+antigen_78|Q9A1U2|Penicillin-binding|NZ_CP060645.1|tpos:43999-44768	inside	1	38				
+antigen_78|Q9A1U2|Penicillin-binding|NZ_CP060645.1|tpos:43999-44768	TMhelix	39	59				
+antigen_78|Q9A1U2|Penicillin-binding|NZ_CP060645.1|tpos:43999-44768	outside	60	770				
+//
+# antigen_116|Q99Y65|Formate|NZ_CP060645.1|tpos:489357-490131 Length: 775
+# antigen_116|Q99Y65|Formate|NZ_CP060645.1|tpos:489357-490131 Number of predicted TMRs: 0
+antigen_116|Q99Y65|Formate|NZ_CP060645.1|tpos:489357-490131	inside	1	775				
+//
+# antigen_123|Q99YQ3|ABC|NZ_CP060645.1|tpos:85430-85687 Length: 258
+# antigen_123|Q99YQ3|ABC|NZ_CP060645.1|tpos:85430-85687 Number of predicted TMRs: 0
+antigen_123|Q99YQ3|ABC|NZ_CP060645.1|tpos:85430-85687	signal	1	19				
+antigen_123|Q99YQ3|ABC|NZ_CP060645.1|tpos:85430-85687	outside	20	258				
+//
+# antigen_86|P0C0D0|Ornithine|NZ_CP060645.1|tpos:224198-224348 Length: 151
+# antigen_86|P0C0D0|Ornithine|NZ_CP060645.1|tpos:224198-224348 Number of predicted TMRs: 0
+antigen_86|P0C0D0|Ornithine|NZ_CP060645.1|tpos:224198-224348	inside	1	151				
+//
+# antigen_50|P18481|Trypsin-resistant|NZ_CP060645.1|tpos:55209-55347 Length: 139
+# antigen_50|P18481|Trypsin-resistant|NZ_CP060645.1|tpos:55209-55347 Number of predicted TMRs: 0
+antigen_50|P18481|Trypsin-resistant|NZ_CP060645.1|tpos:55209-55347	outside	1	139				
+//
+# antigen_87|Q99YL1|Penicillin-binding|NZ_CP060645.1|tpos:437573-438292 Length: 720
+# antigen_87|Q99YL1|Penicillin-binding|NZ_CP060645.1|tpos:437573-438292 Number of predicted TMRs: 1
+antigen_87|Q99YL1|Penicillin-binding|NZ_CP060645.1|tpos:437573-438292	inside	1	14				
+antigen_87|Q99YL1|Penicillin-binding|NZ_CP060645.1|tpos:437573-438292	TMhelix	15	36				
+antigen_87|Q99YL1|Penicillin-binding|NZ_CP060645.1|tpos:437573-438292	outside	37	720				
+//
+# antigen_25|A0A0H3BWS8|Oligopeptide|NZ_CP060645.1|tpos:97733-98388 Length: 656
+# antigen_25|A0A0H3BWS8|Oligopeptide|NZ_CP060645.1|tpos:97733-98388 Number of predicted TMRs: 0
+antigen_25|A0A0H3BWS8|Oligopeptide|NZ_CP060645.1|tpos:97733-98388	signal	1	22				
+antigen_25|A0A0H3BWS8|Oligopeptide|NZ_CP060645.1|tpos:97733-98388	outside	23	656				

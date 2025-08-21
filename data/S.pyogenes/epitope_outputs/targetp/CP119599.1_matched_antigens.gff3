@@ -1,0 +1,10 @@
+##gff-version 3
+antigen_5|Q7DAL7|Protein|CP119599.1|tpos:388142-388179	TargetP-2.0	signal_peptide	1	31	0.495206	.	.	.
+antigen_61|Q9A1E5|Solute-binding|CP119599.1|tpos:59926-60196	TargetP-2.0	signal_peptide	1	19	0.740026	.	.	.
+antigen_62|P0A4G4|Iron|CP119599.1|tpos:522989-523298	TargetP-2.0	signal_peptide	1	23	0.967060	.	.	.
+antigen_41|P49054|Plasminogen-binding|CP119599.1|tpos:377700-378080	TargetP-2.0	signal_peptide	1	23	0.670238	.	.	.
+antigen_70|Q9A1G0|serine-type|CP119599.1|tpos:92129-92535	TargetP-2.0	signal_peptide	1	24	0.992063	.	.	.
+antigen_71|Q9A0L9|Zinc-binding|CP119599.1|tpos:522991-523290	TargetP-2.0	signal_peptide	1	21	0.991111	.	.	.
+antigen_25|A0A0H3BWS8|Oligopeptide|CP119599.1|tpos:487396-488051	TargetP-2.0	signal_peptide	1	21	0.999272	.	.	.
+antigen_65|Q99ZD7|Amino|CP119599.1|tpos:59919-60185	TargetP-2.0	signal_peptide	1	19	0.998479	.	.	.
+antigen_18|Q9A147|42|CP119599.1|tpos:526714-527098	TargetP-2.0	signal_peptide	1	23	0.995346	.	.	.
