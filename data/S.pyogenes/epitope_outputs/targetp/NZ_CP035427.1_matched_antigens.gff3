@@ -1,0 +1,16 @@
+##gff-version 3
+antigen_54|Q9A0C0|Gram-positive|NZ_CP035427.1|tpos:231847-232854	TargetP-2.0	signal_peptide	1	19	0.584124	.	.	.
+antigen_5|Q7DAL7|Protein|NZ_CP035427.1|tpos:271922-271956	TargetP-2.0	signal_peptide	1	27	0.829787	.	.	.
+antigen_75|Q99XS1|Probable|NZ_CP035427.1|tpos:540105-540603	TargetP-2.0	signal_peptide	1	25	0.960332	.	.	.
+antigen_13|Q99ZH4|Lipoprotein|NZ_CP035427.1|tpos:46971-47316	TargetP-2.0	signal_peptide	1	21	0.980818	.	.	.
+antigen_39|B1NWV1|Collagen-like|NZ_CP035427.1|tpos:271455-271956	TargetP-2.0	signal_peptide	1	31	0.938210	.	.	.
+antigen_33|A0A0H3BVP3|Sugar|NZ_CP035427.1|tpos:81122-81560	TargetP-2.0	signal_peptide	1	22	0.991853	.	.	.
+antigen_62|P0A4G4|Iron|NZ_CP035427.1|tpos:193838-194151	TargetP-2.0	signal_peptide	1	22	0.989742	.	.	.
+antigen_35|A2T8Z5|PrtF2|NZ_CP035427.1|tpos:37251-37503	TargetP-2.0	signal_peptide	1	23	0.995189	.	.	.
+antigen_7|Q99XV0|M|NZ_CP035427.1|tpos:271917-271956	TargetP-2.0	signal_peptide	1	32	0.453119	.	.	.
+antigen_71|Q9A0L9|Zinc-binding|NZ_CP035427.1|tpos:193837-194351	TargetP-2.0	signal_peptide	1	23	0.987541	.	.	.
+antigen_123|Q99YQ3|ABC|NZ_CP035427.1|tpos:81124-81381	TargetP-2.0	signal_peptide	1	20	0.997542	.	.	.
+antigen_57|Q7DAL3|Collagen-like|NZ_CP035427.1|tpos:271455-271956	TargetP-2.0	signal_peptide	1	31	0.938210	.	.	.
+antigen_59|Q9A1P7|ABC|NZ_CP035427.1|tpos:46976-47317	TargetP-2.0	signal_peptide	1	16	0.895569	.	.	.
+antigen_31|P0DD26|Probable|NZ_CP035427.1|tpos:540105-540603	TargetP-2.0	signal_peptide	1	25	0.960332	.	.	.
+antigen_25|A0A0H3BWS8|Oligopeptide|NZ_CP035427.1|tpos:93631-94286	TargetP-2.0	signal_peptide	1	21	0.999303	.	.	.
