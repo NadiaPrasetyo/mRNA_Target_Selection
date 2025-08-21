@@ -49,8 +49,9 @@ def main():
     check_hmmer_installed()
 
     base_dir = os.path.join("data/", args.pathogen_directory)
+    pathogen_name = args.pathogen_name.replace(" ", "_")
 
-    input_csv = args.input or os.path.join(base_dir, f"{args.pathogen_name}_compiled_proteins.csv")
+    input_csv = args.input or os.path.join(base_dir, f"{pathogen_name}_compiled_proteins.csv")
     output_dir = os.path.join(base_dir, args.output_dir if args.output_dir else "pfam_hmms")
     os.makedirs(output_dir, exist_ok=True)
 
