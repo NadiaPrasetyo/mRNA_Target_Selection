@@ -58,7 +58,17 @@ def main():
     accession_map = load_pfam_accession_map(args.pfam_hmm)
 
     # index the Pfam-A.hmm
-    subprocess.run(["hmmfetch", "--index", args.pfam_hmm], check=True)
+    if not os.path.isfile(args.pfam_hmm):
+        print(f"❌ Error: Pfam-A.hmm file not found at {args.pfam_hmm}. Please provide a valid file.", file=sys.stderr)
+        sys.exit(1)
+
+    index_file = f"{args.pfam_hmm}.ssi"
+    if not os.path.isfile(index_file):
+        try:
+            subprocess.run(["hmmfetch", "--index", args.pfam_hmm], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"❌ Error: Failed to index Pfam-A.hmm file. Ensure the file is valid and not corrupted.\n{e}", file=sys.stderr)
+            sys.exit(1)
 
     # Temporary keys file
     with tempfile.NamedTemporaryFile(mode="w", delete=True) as keys_tmp:
