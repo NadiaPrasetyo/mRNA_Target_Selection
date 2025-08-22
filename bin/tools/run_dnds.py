@@ -45,7 +45,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
         # Step 1: Run TranslatorX
         logging.info("🔍 Running TranslatorX for codon-aware alignment...")
         subprocess.run([
-            "perl",
             "translatorx",
             "-i", str(input_fasta),
             "-o", str(aln_prefix),
