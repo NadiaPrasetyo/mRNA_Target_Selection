@@ -37,37 +37,42 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     builds a tree, then optionally runs HyPhy analysis.
     """
     common.create_conda_env_if_needed()
+    msa_path = output_dir / "msa"
+    aln_prefix = msa_path / input_fasta.stem
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        tmpdir = Path(tmpdir)
-        aln_prefix = tmpdir / input_fasta.stem
+    # Step 1: Run TranslatorX
+    logging.info("🔍 Running TranslatorX for codon-aware alignment...")
+    subprocess.run([
+        "translatorx",
+        "-i", str(input_fasta),
+        "-o", str(aln_prefix),
+        "-p", "F"  # use MAFFT for protein alignment
+    ], check=True)
 
-        # Step 1: Run TranslatorX
-        logging.info("🔍 Running TranslatorX for codon-aware alignment...")
-        subprocess.run([
-            "translatorx",
-            "-i", str(input_fasta),
-            "-o", str(aln_prefix),
-            "-p", "F"  # use MAFFT for protein alignment
-        ], check=True)
+    alignment_file = aln_prefix.with_suffix(".nt_ali.fasta")
 
-        alignment_file = aln_prefix.with_suffix(".nt_ali.fasta")
-        if not alignment_file.exists():
-            raise RuntimeError("❌ TranslatorX failed to generate codon alignment.")
+    if not alignment_file.exists():
+        raise RuntimeError("❌ TranslatorX failed to generate codon alignment.")
+    logging.info(f"✅ TranslatorX completed. Codon alignment: {alignment_file}")
+    
+    # Step 2: Build a tree from the codon alignment
+    logging.info("🌳 Building phylogenetic tree from codon alignment...")
+    tree_file = aln_prefix.with_suffix(".tree")
 
-        logging.info(f"✅ TranslatorX completed. Codon alignment: {alignment_file}")
+    with open(tree_file, "w") as tree_out:
+        subprocess.run(["fasttree", "-nt", str(alignment_file)], check=True, stdout=tree_out)
+    logging.info(f"✅ Tree built: {tree_file}")
 
-        # Step 2: Build a tree from the codon alignment
-        logging.info("🌳 Building phylogenetic tree from codon alignment...")
-        tree_file = aln_prefix.with_suffix(".tree")
-        with open(tree_file, "w") as tree_out:
-            subprocess.run(["fasttree", "-nt", str(alignment_file)], check=True, stdout=tree_out)
+    # Step 3: Run HyPhy analysis if enabled
+    if run_hyphy_analysis:
+        logging.info("🔍 Running HyPhy analysis...")
+        for method in ["FEL", "FUBAR", "SLAC"]:
+            run_hyphy(method, alignment_file, tree_file, output_dir)
+        logging.info("✅ HyPhy analysis completed.")
 
-        logging.info(f"✅ Tree built: {tree_file}")
-
-        # Step 3: Run HyPhy analysis if enabled
-        if run_hyphy_analysis:
-            logging.info("🔍 Running HyPhy analysis...")
-            for method in ["FEL", "FUBAR", "SLAC"]:
-                run_hyphy(method, alignment_file, tree_file, output_dir)
-            logging.info("✅ HyPhy analysis completed.")
+    # Clean up temporary files
+    logging.info("🧹 Cleaning up temporary files...")
+    for tmp_file in [alignment_file, tree_file]:
+        if tmp_file.exists():
+            tmp_file.unlink()
+            logging.info(f"✅ Deleted temporary file: {tmp_file}")
