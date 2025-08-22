@@ -21,8 +21,6 @@ dependencies:
   - hmmer
   - seqkit
   - hyphy
-  - translatorx
-  - fasttree
   - pip
   - pip:
       - algpred2==1.4
