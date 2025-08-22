@@ -3,6 +3,38 @@ import os
 import logging
 from pathlib import Path
 from tools import common
+from Bio import SeqIO
+
+def clean_macse_alignment(input_fasta: Path, output_fasta: Path):
+    """
+    Clean MACSE codon alignment for HyPhy:
+    - Replace MACSE special characters with '-'
+    - Mask stop codons (TAA, TAG, TGA) with gaps
+    - Ensure length is divisible by 3
+    """
+    valid_codons = {"TAA", "TAG", "TGA"}
+    cleaned_records = []
+
+    for record in SeqIO.parse(str(input_fasta), "fasta"):
+        seq = str(record.seq).upper()
+        # Replace MACSE symbols
+        seq = seq.replace("!", "-").replace("~", "-").replace("#", "-")
+        # Codon-by-codon masking
+        codons = [seq[i:i+3] for i in range(0, len(seq), 3)]
+        new_codons = []
+        for codon in codons:
+            if len(codon) == 3:
+                if codon in valid_codons:
+                    new_codons.append("---")  # mask stop codon
+                else:
+                    new_codons.append(codon)
+        new_seq = "".join(new_codons)
+        # Ensure multiple of 3
+        new_seq = new_seq[:len(new_seq) - (len(new_seq) % 3)]
+        record.seq = type(record.seq)(new_seq)
+        cleaned_records.append(record)
+
+    SeqIO.write(cleaned_records, str(output_fasta), "fasta")
 
 
 def run_hyphy(method, alignment, tree, output_dir):
@@ -38,21 +70,23 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     common.create_conda_env_if_needed()
     msa_path = output_dir / "msa"
     msa_path.mkdir(parents=True, exist_ok=True)
-
+    raw_alignment = msa_path / f"{input_fasta.stem}_codon_aligned_raw.fasta"
     alignment_file = msa_path / f"{input_fasta.stem}_codon_aligned.fasta"
 
-    # Step 1: Run MACSE for codon-aware alignment
-    logging.info("🔍 Running MACSE for codon-aware alignment...")
+    # Run MACSE
     subprocess.run([
         "macse", "-prog", "alignSequences",
         "-seq", str(input_fasta),
-        "-out_NT", str(alignment_file)
+        "-out_NT", str(raw_alignment)
     ], check=True)
 
-    if not alignment_file.exists():
+    if not raw_alignment.exists():
         raise RuntimeError("❌ MACSE failed to generate codon alignment.")
-    logging.info(f"✅ MACSE completed. Codon alignment: {alignment_file}")
+    logging.info(f"✅ MACSE completed. Codon alignment: {raw_alignment}")
 
+    # Clean MACSE alignment for HyPhy
+    clean_macse_alignment(raw_alignment, alignment_file)
+    
     # Step 2: Build a tree from the codon alignment
     logging.info("🌳 Building phylogenetic tree from codon alignment...")
     tree_file = msa_path / f"{input_fasta.stem}.tree"
