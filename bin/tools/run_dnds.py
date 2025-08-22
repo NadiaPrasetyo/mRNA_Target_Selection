@@ -41,6 +41,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     aln_prefix = msa_path / input_fasta.stem
 
     # Step 1: Run TranslatorX
+    msa_path.mkdir(parents=True, exist_ok=True)  # Ensure msa_path exists
     logging.info("🔍 Running TranslatorX for codon-aware alignment...")
     subprocess.run([
         "translatorx",
