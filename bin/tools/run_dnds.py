@@ -47,7 +47,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
         "translatorx",
         "-i", str(input_fasta),
         "-o", str(aln_prefix),
-        "-p", "F"  # use MAFFT for protein alignment
+        "-p", "M"  # use MAFFT for protein alignment
     ], check=True)
 
     alignment_file = aln_prefix.with_suffix(".nt_ali.fasta")
