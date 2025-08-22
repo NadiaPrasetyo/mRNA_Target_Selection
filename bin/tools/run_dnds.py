@@ -46,7 +46,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     subprocess.run([
         "macse", "-prog", "alignSequences",
         "-seq", str(input_fasta),
-        "-out_aln", str(alignment_file)
+        "-out_NT", str(alignment_file)
     ], check=True)
 
     if not alignment_file.exists():
