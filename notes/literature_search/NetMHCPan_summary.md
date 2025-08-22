@@ -64,6 +64,14 @@ When you feed full‑length bacterial proteins (positive set) and length‑match
 ‑45); bacterial peptide repertoires are under‑represented, so the network cannot distinguish bacterial “true” epitopes from background peptides. Finally, antigenicity depends on many steps that are outside the scope of binding prediction (protein expression level, proteasomal cleavage, TAP transport, peptide stability, T‑cell receptor recognition). NetMHCpan therefore cannot be expected to separate “antigen” versus “non‑antigen” protein sets; it only separates binding versus non‑binding peptides.
 To observe discrimination you would need a peptide‑level benchmark (e.g., known bacterial T‑cell epitopes vs. random 9‑mers) and, if desired, combine NetMHCpan scores with additional processing predictors (e.g., proteasomal cleavage, TAP transport) before aggregating to the protein level. This explains the near‑random AUROC (≈0.5) you obtained.
 
+Why NetMHCpan‑4.1 was trained almost exclusively on human‑derived peptides  
+NetMHCpan‑4.1 was built to predict the binding of any peptide to human HLA‑I molecules. The training data therefore consist of (i) binding‑affinity (BA) measurements from in‑vitro assays that have been performed almost exclusively with human peptide–HLA pairs, and (ii) mass‑spectrometry eluted‑ligand (EL) datasets that were generated from human cell lines or human‑derived antigen‑presenting cells (e.g., EBV‑transformed B‑cells, primary leukocytes). In total the model ingests &gt;13 million data points covering 250 human HLA‑I alleles, but only a tiny fraction of those points originate from non‑human organisms.  
+What this means for the model’s purpose  
+The goal of NetMHCpan is pan‑specific HLA‑I binding prediction: given the amino‑acid sequence of a peptide and the pseudo‑sequence of any HLA allele (human or, via homology, mouse, cattle, etc.), the network learns the sequence motifs that drive binding to the human peptide‑binding groove. Human‑derived training data are ideal because (1) the biochemical environment (proteasomal cleavage, TAP transport, peptide loading) that shapes the natural ligand repertoire is specific to the human antigen‑processing pathway, and (2) the large, high‑quality human EL datasets provide the most comprehensive sampling of the motifs actually presented on human cells.  
+Why infectious‑disease peptides are still useful  
+Although the source of the training peptides is human, the model does not require the peptide itself to be of human origin. Any peptide—viral, bacterial, tumor‑derived, or synthetic—can be scored because the network has learned the binding rules of the HLA groove, not organism‑specific features. Thus NetMHCpan is routinely used to evaluate candidate epitopes from pathogens (e.g., influenza, SARS‑CoV‑2) or cancer neo‑antigens, even though those peptides were not part of the training set. The limitation is that the model cannot learn pathogen‑specific processing biases (e.g., unusual protease cleavage patterns) because such data are scarce in the human EL collections. Adding more non‑human EL data would improve predictions for those organisms, but the core objective—accurate HLA‑I binding prediction for any peptide—remains well served by the extensive human‑derived training set.
+
+
 **TLDR**
 
 **NetMHCpan (v4.1) Overview:**
@@ -104,5 +112,30 @@ To observe discrimination you would need a peptide‑level benchmark (e.g., know
 - Predicts binding/non-binding peptides, not antigenicity.
 - Random proteins often match HLA motifs by chance, leading to near-random AUROC (≈0.5).
 - Antigenicity depends on additional factors (e.g., proteasomal cleavage, TAP transport, T-cell recognition).
+
+- **Why Human-Derived Peptides Were Used:**
+    - NetMHCpan‑4.1 predicts peptide binding to human HLA‑I molecules.
+    - Training data include:
+        - Binding-affinity (BA) measurements from human peptide–HLA pairs.
+        - Eluted-ligand (EL) datasets from human cell lines or antigen-presenting cells.
+    - Over 13 million data points cover 250 human HLA‑I alleles, with minimal non-human data.
+
+- **Purpose of the Model:**
+    - Designed for pan-specific HLA‑I binding prediction.
+    - Learns sequence motifs driving binding to the human peptide-binding groove.
+    - Human-derived data are ideal due to:
+        1. Specificity of the human antigen-processing pathway.
+        2. High-quality, comprehensive human EL datasets.
+
+- **Usefulness for Infectious-Disease Peptides:**
+    - Can score peptides from any origin (viral, bacterial, tumor-derived, synthetic).
+    - Focuses on HLA binding rules, not organism-specific features.
+    - Commonly used for pathogen epitopes (e.g., influenza, SARS‑CoV‑2) and cancer neo-antigens.
+
+- **Limitations:**
+    - Cannot learn pathogen-specific processing biases due to limited non-human EL data.
+    - Adding more non-human data could improve predictions for non-human organisms.
+    - Core objective remains accurate HLA‑I binding prediction for any peptide.
+
 
 --- 
