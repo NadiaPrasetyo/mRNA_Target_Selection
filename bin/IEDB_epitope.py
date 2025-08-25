@@ -45,7 +45,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, run_mixmhc2pred, common
+from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, run_mixmhc2pred, common, run_dssp
 import sys
 import logging
 
@@ -54,8 +54,9 @@ tool_runners = {
     "MHCI": run_mhci.run,
     "MHCII": run_mhcii.run,
     "BCell": run_bcell.run,
-    "Ellipro": run_ellipro.run,  
-    "MixMHC2pred": run_mixmhc2pred.run
+    "Ellipro": run_ellipro.run,
+    "MixMHC2pred": run_mixmhc2pred.run,
+    "DSSP": run_dssp.run
 }
 
 def is_job_completed(tool_type, input_path, base_output_dir):
@@ -83,6 +84,10 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     # Check for any file that matches the base name and expected suffix
     if tool_type in ["BCell", "Ellipro"]:
         expected_suffix = ".txt"
+
+    # Check for any file that matches the base name and expected suffix
+    if tool_type == "DSSP":
+        expected_suffix = ".dssp"
 
     for file in subdir.glob(f"*{expected_suffix}"):
         if base_name in file.stem:
@@ -117,7 +122,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
 
 def main():
     """Main function to parse arguments and run epitope predictions."""
-    parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell, Ellipro)")
+    parser = argparse.ArgumentParser(description="Run epitope predictions (MHCI, MHCII, BCell, Ellipro, DSSP)")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing IEDB tools")
@@ -180,9 +185,9 @@ def main():
     else:
         selected_tools = set(args.tools)
 
-    # Ellipro can only be run by itself
-    if "Ellipro" in selected_tools and len(selected_tools) > 1:
-        logging.error("❌ Ellipro can only be run by itself due to input type differences. Please select only Ellipro or other tools.")
+    # Ellipro can only be run by itself or with DSSP
+    if "Ellipro" in selected_tools and "DSSP" in selected_tools and len(selected_tools) > 2:
+        logging.error("❌ Ellipro can only be run by itself or with DSSP due to input type differences. Please select only Ellipro or other tools.")
         sys.exit(1)
 
     missing_tools = selected_tools - set(tool_map.keys())
@@ -194,9 +199,9 @@ def main():
         logging.warning("❌ No tools available to run after filtering.")
         sys.exit(1)
 
-    # ONLY Get PDB files if Ellipro is selected
+    # ONLY Get PDB files if Ellipro or DSSP is selected
     pdb_files = []
-    if "Ellipro" in final_tools:
+    if "Ellipro" in final_tools or "DSSP" in final_tools:
         pdb_files = common.get_pdb_files(pathogen_path, args.sequence_dir)
         logging.info(f"📂 Found {len(pdb_files)} structure file(s): {[p.name for p in pdb_files]}")
     else:
@@ -216,6 +221,7 @@ def main():
         if tool_type == "MHCI":
             alleles = common.get_alleles(tool_type, args.mhci_allele_panel, args.mhci_custom_alleles)
             peptide_lengths = args.mhci_peptide_lengths
+            
 
         elif tool_type == "MHCII":
             alleles = common.get_alleles(tool_type, args.mhcii_allele_panel, args.mhcii_custom_alleles)
@@ -242,10 +248,10 @@ def main():
             temp_txt_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
 
-        elif tool_type == "Ellipro":
+        elif tool_type == "Ellipro" or tool_type == "DSSP":
             input_files_tool = pdb_files
 
-        elif tool_type not in ["MixMHC2pred"]:  # All others use original FASTA
+        elif tool_type not in ["MixMHC2pred", "Ellipro", "DSSP"]:  # All others use original FASTA
             temp_json_dir = output_dir / "temp_json"
             temp_json_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = fasta_files
