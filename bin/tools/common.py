@@ -583,7 +583,8 @@ def check_iedb_tool(base_path):
         "MHCII": base / "ng_tc2-0.2.2-beta" / "src" / "tcell_mhcii.py",
         "Ellipro": base / "ElliPro.jar",
         "MixMHC2pred": base / "MixMHC2pred-2.0" / "MixMHC2pred_unix",
-        "DSSP": base # just a place holder, it doesn't require a path
+        "DSSP": base, # just a place holder, it doesn't require a path
+        "ProtLearn": base # just a place holder, it doesn't require a path
     }
 
     tools = {}
