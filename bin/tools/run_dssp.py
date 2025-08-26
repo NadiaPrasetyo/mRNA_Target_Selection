@@ -12,9 +12,11 @@ import numpy as np
 import pydssp
 from tools import common
 
-
 def _extract_backbone_coords(pdb_file: Path) -> np.ndarray:
-    """Extract backbone coordinates (N, CA, C, O) for PyDSSP."""
+    """
+    Extract backbone coordinates (N, CA, C, O) for PyDSSP.
+    Skips residues missing any backbone atom.
+    """
     structure = gemmi.read_structure(str(pdb_file))
     model = structure[0]  # first model
     coords = []
@@ -22,17 +24,36 @@ def _extract_backbone_coords(pdb_file: Path) -> np.ndarray:
     for chain in model:
         for res in chain:
             atoms = []
+            missing_atom = False
             for atom_name in ["N", "CA", "C", "O"]:
-                atom_group = res[atom_name]  # returns an AtomGroup
-                if not atom_group:  # missing atom
+                try:
+                    atom_group = res[atom_name]  # may raise RuntimeError if missing
+                except RuntimeError:
+                    missing_atom = True
+                    logging.warning(
+                        "Skipping residue %s%d in chain %s: missing atom %s",
+                        res.name, res.seqid.num, chain.name, atom_name
+                    )
                     break
-                atom = atom_group[0]  # take first atom if multiple altlocs
+
+                if not atom_group:
+                    missing_atom = True
+                    logging.warning(
+                        "Skipping residue %s%d in chain %s: empty AtomGroup for %s",
+                        res.name, res.seqid.num, chain.name, atom_name
+                    )
+                    break
+
+                atom = atom_group[0]  # pick first atom if multiple altlocs
                 pos = atom.pos
                 atoms.append([pos.x, pos.y, pos.z])
-            if len(atoms) == 4:
+
+            if not missing_atom and len(atoms) == 4:
                 coords.append(atoms)
 
     coords = np.array(coords, dtype=np.float32)
+    if coords.size == 0:
+        raise RuntimeError(f"No residues with complete backbone found in {pdb_file}")
     return coords
 
 def run(input_file, tool_root, output_dir):
