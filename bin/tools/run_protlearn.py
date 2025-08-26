@@ -1,7 +1,8 @@
 import os
 import csv
 from Bio import PDB
-from Bio.PDB.Polypeptide import three_to_one
+from Bio.Data.IUPACData import protein_letters_3to1
+
 from protlearn.features import (
     length,
     aac,
@@ -50,7 +51,6 @@ FEATURE_FUNCTIONS = {
     'qso': qso,
 }
 
-
 def extract_sequence_from_pdb(pdb_file):
     """Extract amino acid sequence (1-letter) from a PDB file."""
     parser = PDB.PDBParser(QUIET=True)
@@ -60,13 +60,13 @@ def extract_sequence_from_pdb(pdb_file):
         for chain in model:
             for residue in chain:
                 if PDB.is_aa(residue, standard=True):
-                    try:
-                        seq.append(three_to_one(residue.resname))
-                    except KeyError:
-                        # Non-standard amino acid, skip
+                    resname = residue.resname.capitalize()
+                    if resname in protein_letters_3to1:
+                        seq.append(protein_letters_3to1[resname])
+                    else:
+                        # Skip unknown/non-standard residues
                         continue
     return ''.join(seq)
-
 
 def extract_all_features(seq):
     """Run all protlearn feature extractors on a protein sequence."""
