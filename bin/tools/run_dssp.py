@@ -22,13 +22,13 @@ def _extract_backbone_coords(pdb_file: Path) -> np.ndarray:
 
     for chain in model:
         for res in chain:
-            # Skip HETATM and missing backbone atoms
             atoms = []
             for atom_name in ["N", "CA", "C", "O"]:
                 atom = res[atom_name] if atom_name in res else None
                 if atom is None:
                     break
-                atoms.append([atom.x, atom.y, atom.z])
+                pos = atom.pos  # gemmi.Position object
+                atoms.append([pos.x, pos.y, pos.z])
             if len(atoms) == 4:
                 coords.append(atoms)
     coords = np.array(coords, dtype=np.float32)
