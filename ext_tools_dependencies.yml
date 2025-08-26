@@ -22,7 +22,6 @@ dependencies:
   - seqkit
   - hyphy
   - macse
-  - dssp
   - pip
   - pip:
       - algpred2==1.4
@@ -36,4 +35,3 @@ dependencies:
       - pybiolib
       - matplotlib
       - gemmi
-      - ssbio
