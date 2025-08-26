@@ -51,11 +51,11 @@ def run(input_file, tool_root, output_dir):
         # Run DSSP (will use the patched subprocess.run)
         dssp = DSSP(model, str(input_file), dssp="mkdssp")
 
-        # write DSSP data as tab-separated values
         with open(output_file, "w") as f:
-            for key in dssp.keys():
-                res_data = dssp[key]
-                line = key + "\t" + "\t".join(map(str, res_data)) + "\n"
+            for key, res_data in dssp.property_dict.items():
+                # key is a tuple like ('A', (' ', 12, ' '))
+                key_str = f"{key[0]}:{key[1][1]}"  # chain:residue_number
+                line = key_str + "\t" + "\t".join(map(str, res_data)) + "\n"
                 f.write(line)
 
         logging.info(f"✅ DSSP completed: {output_file.name}")
