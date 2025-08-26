@@ -53,10 +53,10 @@ def run(input_file, tool_root, output_dir):
 
         # write DSSP data as tab-separated values
         with open(output_file, "w") as f:
-        for key in dssp.keys():
-            res_data = dssp[key]
-            line = key + "\t" + "\t".join(map(str, res_data)) + "\n"
-            f.write(line)
+            for key in dssp.keys():
+                res_data = dssp[key]
+                line = key + "\t" + "\t".join(map(str, res_data)) + "\n"
+                f.write(line)
 
         logging.info(f"✅ DSSP completed: {output_file.name}")
         return True
