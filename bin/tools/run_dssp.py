@@ -40,8 +40,8 @@ def run(input_file, tool_root, output_dir):
         cmd = [
             "mkdssp",
             "--mmcif-dictionary", str(dic_path),
-            "-i", temp_pdb.name,
-            "-o", str(output_file)
+            temp_pdb.name,
+            str(output_file)
         ]
         subprocess.run(cmd, check=True)
 
