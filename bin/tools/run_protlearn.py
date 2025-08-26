@@ -95,8 +95,9 @@ def extract_all_features(seq):
 
 def run(input_file, tool_root, output_dir):
     """Main entry point: extract features from PDB and write to CSV."""
+    output_dir = os.path.join(output_dir, "protlearn")
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, "protlearn_features.csv")
+    output_file = os.path.join(output_dir, f"{input.stem}.csv")
 
     sequence = extract_sequence_from_pdb(input_file)
     features = extract_all_features(sequence)
