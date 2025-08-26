@@ -36,4 +36,3 @@ dependencies:
       - pybiolib
       - matplotlib
       - gemmi
-      - biopandas

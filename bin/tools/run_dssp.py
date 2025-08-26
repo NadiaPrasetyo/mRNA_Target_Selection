@@ -1,54 +1,59 @@
 """
 run_dssp.py
-Parse PDB with Biopython, rewrite in strict PDB format using Biopandas, then run mkdssp.
+Convert PDB -> mmCIF (preferably with gemmi), then run mkdssp with --mmcif-dictionary.
 
 Author: Nadia
 """
 import logging
-from pathlib import Path
-from tools import common
-from Bio.PDB import PDBParser
 import os
+import shutil
 import subprocess
 import tempfile
-from biopandas.pdb import PandasPdb
+from pathlib import Path
+import gemmi
+from tools import common
 
-def write_mkdssp_compatible_pdb(input_file):
-    """
-    Parse input PDB and write a temporary file with a mkdssp-compatible header.
-    """
-    import tempfile
-    from Bio.PDB import PDBParser, PDBIO
 
-    parser = PDBParser(QUIET=True)
-    structure = parser.get_structure("structure", str(input_file))
-
-    temp_pdb = tempfile.NamedTemporaryFile(suffix=".pdb", delete=False, mode="w")
-
-    # mkdssp-compatible header
-    header_lines = [
-        "HEADER    DSSP GENERATED\n",
-        "TITLE     DSSP CLEAN PDB\n",
-        "COMPND    MOL_ID: 1;\n",
-        "SOURCE    MOL_ID: 1; ORGANISM_SCIENTIFIC: UNKNOWN;\n",
-        "KEYWDS    DSSP\n",
-        "EXPDTA    X-RAY DIFFRACTION\n",
-        "AUTHOR    GENERATED\n"
+def _find_mmcif_dictionary(conda_prefix: Path) -> Path | None:
+    """Search common locations for mmcif_pdbx.dic inside a conda env."""
+    candidates = [
+        conda_prefix / "share/libcifpp/mmcif_pdbx.dic",
+        conda_prefix / "share/mmcif_pdbx.dic",
+        conda_prefix / "share/dssp/mmcif_pdbx.dic",
+        conda_prefix / "lib/libcifpp/mmcif_pdbx.dic",
     ]
-    temp_pdb.writelines(header_lines)
+    for p in candidates:
+        if p.is_file():
+            return p
+    return None
 
-    # Write ATOM/HETATM
-    io = PDBIO()
-    io.set_structure(structure)
-    io.save(temp_pdb.name, write_end=True)
 
-    temp_pdb.close()
-    return temp_pdb.name
+def _pdb_to_mmcif_with_gemmi(pdb_path: Path) -> str:
+    """Use gemmi to read the PDB and write a standards-compliant mmCIF file."""
+    # gemmi.read_structure handles many PDB oddities robustly
+    structure = gemmi.read_structure(str(pdb_path))
+    tmp_cif = tempfile.NamedTemporaryFile(suffix=".cif", delete=False)
+    tmp_cif.close()
+    # make_mmcif_document() returns a gemmi.cif.Document; write_file writes mmCIF
+    doc = structure.make_mmcif_document()
+    doc.write_file(tmp_cif.name)
+    return tmp_cif.name
+
+
+def _pdb_to_mmcif_tmp(pdb_path: Path) -> str:
+    """
+    Convert a PDB to a temporary mmCIF file using gemmi (better and faster)
+    Caller is responsible for deleting the returned path.
+    """
+    try:
+        return _pdb_to_mmcif_with_gemmi(pdb_path)
+    except Exception as e:
+        logging.warning("gemmi conversion failed: %s", e)
 
 
 def run(input_file, tool_root, output_dir):
     """
-    Run mkdssp on a cleaned, strictly formatted PDB.
+    Convert input PDB to mmCIF and run mkdssp on the mmCIF using --mmcif-dictionary.
 
     Args:
         input_file (str or Path): Path to the input PDB structure file.
@@ -62,41 +67,71 @@ def run(input_file, tool_root, output_dir):
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"{input_file.stem}.dssp"
 
+    # find mkdssp executable
+    mkdssp_path = shutil.which("mkdssp")
+    if mkdssp_path is None:
+        logging.error("❌ mkdssp not found on PATH. Please ensure mkdssp is installed and on PATH.")
+        return False
+
+    # locate the mmcif dictionary from CONDA_PREFIX
     conda_prefix = os.environ.get("CONDA_PREFIX")
     if not conda_prefix:
-        logging.error("❌ CONDA_PREFIX not set. Cannot locate DSSP dictionary.")
+        logging.error("❌ CONDA_PREFIX not set. Cannot locate DSSP/mmCIF dictionary.")
         return False
-    dic_path = Path(conda_prefix) / "share/libcifpp/mmcif_pdbx.dic"
 
-    strict_pdb_path = None
+    dic_path = _find_mmcif_dictionary(Path(conda_prefix))
+    if not dic_path:
+        logging.error("❌ Could not find 'mmcif_pdbx.dic' in the conda environment. Checked common locations under CONDA_PREFIX.")
+        return False
+
+    tmp_cif_path = None
     try:
-        # 1. Write strictly formatted PDB
-        strict_pdb_path = write_mkdssp_compatible_pdb(input_file)
+        # 1) Convert PDB -> mmCIF (gemmi preferred)
+        tmp_cif_path = _pdb_to_mmcif_tmp(input_file)
 
-        # 2. Run mkdssp directly
+        # 2) Run mkdssp on mmCIF with explicit dictionary
         cmd = [
-            "mkdssp",
+            mkdssp_path,
             "--mmcif-dictionary", str(dic_path),
-            strict_pdb_path,
-            str(output_file), "--verbose"
+            tmp_cif_path,
+            str(output_file),
+            "--verbose",
         ]
-        subprocess.run(cmd, check=True)
+        logging.debug("Running mkdssp: %s", " ".join(cmd))
+        # Capture output for diagnostics; mkdssp often prints diagnostic messages to stderr.
+        proc = subprocess.run(cmd, check=True, text=True, capture_output=True)
+
+        if proc.stdout:
+            logging.debug("mkdssp stdout: %s", proc.stdout.strip())
+        if proc.stderr:
+            logging.debug("mkdssp stderr: %s", proc.stderr.strip())
+
+        # optionally verify output file exists and non-empty
+        if not Path(output_file).is_file() or Path(output_file).stat().st_size == 0:
+            logging.error("❌ mkdssp did not produce a DSSP file (empty or missing): %s", output_file)
+            return False
 
         logging.info(f"✅ DSSP completed: {output_file.name}")
         return True
 
     except subprocess.CalledProcessError as e:
         logging.error(f"❌ mkdssp failed: {input_file.name}")
-        logging.error(e)
+        if e.stdout:
+            logging.error("mkdssp stdout:\n%s", e.stdout.strip())
+        if e.stderr:
+            logging.error("mkdssp stderr:\n%s", e.stderr.strip())
+        logging.exception(e)
         return False
+
     except Exception as e:
         logging.error(f"❌ DSSP processing failed: {input_file.name}")
-        logging.error(e)
+        logging.exception(e)
         return False
+
     finally:
-        # Clean up temporary strict PDB
-        if strict_pdb_path and Path(strict_pdb_path).exists():
+        # Clean up temp mmCIF
+        if tmp_cif_path:
             try:
-                os.remove(strict_pdb_path)
+                Path(tmp_cif_path).unlink()
             except Exception:
                 pass
