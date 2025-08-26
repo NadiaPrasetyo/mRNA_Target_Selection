@@ -9,7 +9,6 @@ from pathlib import Path
 from tools import common
 from Bio.PDB import PDBParser, DSSP
 import os
-import subprocess
 
 def run(input_file, tool_root, output_dir):
     """
@@ -28,19 +27,12 @@ def run(input_file, tool_root, output_dir):
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"{input_file.stem}.dssp"
 
-    # Point mkdssp to the mmcif_pdbx.dic inside conda
+    # Set environment variable for DSSP dictionary
     conda_prefix = os.environ.get("CONDA_PREFIX")
-    dic_path = Path(conda_prefix) / "share/libcifpp/mmcif_pdbx.dic"
-
-    # Monkey patch subprocess to include --mmcif-dictionary argument
-    original_run = subprocess.run
-
-    def patched_run(*popenargs, **kwargs):
-        if isinstance(popenargs[0], list) and popenargs[0][0].endswith("mkdssp"):
-            popenargs[0] = popenargs[0] + ["--mmcif-dictionary", str(dic_path)]
-        return original_run(*popenargs, **kwargs)
-
-    subprocess.run = patched_run
+    if not conda_prefix:
+        logging.error("❌ CONDA_PREFIX not set. Cannot locate DSSP dictionary.")
+        return False
+    os.environ["DSSP_DICTIONARY"] = str(Path(conda_prefix) / "share/libcifpp/mmcif_pdbx.dic")
 
     try:
         # Parse the structure
@@ -48,14 +40,19 @@ def run(input_file, tool_root, output_dir):
         structure = parser.get_structure(input_file.stem, str(input_file))
         model = structure[0]  # first model
 
-        # Run DSSP (will use the patched subprocess.run)
+        # Run DSSP
         dssp = DSSP(model, str(input_file), dssp="mkdssp")
 
+        # Write DSSP data
         with open(output_file, "w") as f:
-            for key, res_data in dssp.property_dict.items():
-                # key is a tuple like ('A', (' ', 12, ' '))
-                key_str = f"{key[0]}:{key[1][1]}"  # chain:residue_number
-                line = key_str + "\t" + "\t".join(map(str, res_data)) + "\n"
+            for key in dssp.keys():
+                res_data = dssp[key]
+                # key is a tuple (chain_id, (hetfield, resseq, icode))
+                chain_id, res_info = key
+                resseq = res_info[1]
+                icode = res_info[2].strip()
+                res_str = f"{chain_id}:{resseq}{icode}"
+                line = res_str + "\t" + "\t".join(map(str, res_data)) + "\n"
                 f.write(line)
 
         logging.info(f"✅ DSSP completed: {output_file.name}")
@@ -65,7 +62,3 @@ def run(input_file, tool_root, output_dir):
         logging.error(f"❌ DSSP failed: {input_file.name}")
         logging.error(e)
         return False
-
-    finally:
-        # Restore original subprocess.run
-        subprocess.run = original_run
