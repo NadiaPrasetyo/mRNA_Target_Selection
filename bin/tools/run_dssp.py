@@ -10,15 +10,8 @@ import requests
 import time
 from pathlib import Path
 
-def run(input_file, tool_root, output_dir):
-    """
-    Run DSSP on the specified input file after necessary conversions.
-    Via the API of DSSP
-    Args:
-        input_file (str or Path): Path to the input structure file (PDB, CIF, or CIF.GZ).
-        tool_root (str or Path): Unused
-        output_dir (str or Path): Directory to save the DSSP output.
-    """
+def run(input_file, tool_root, output_dir, max_retries=5):
+    
     input_file = Path(input_file)
     output_dir = Path(output_dir) / "dssp"
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -28,21 +21,30 @@ def run(input_file, tool_root, output_dir):
     # Read file content
     pdb_text = input_file.read_text()
 
-    # Do NOT set headers manually – requests will handle it
     data = {
-        "data": pdb_text,   # structure file as text
-        "format": "dssp"    # optional, defaults to dssp
+        "data": pdb_text,
+        "format": "dssp"
     }
 
-    try:
-        response = requests.post(dssp_URL, data=data)
-        response.raise_for_status()
+    retries = 0
+    wait_time = 2  # start with 2s
+    while retries < max_retries:
+        try:
+            response = requests.post(dssp_URL, data=data, timeout=60)
+            response.raise_for_status()
 
-        output_file = output_dir / f"{input_file.stem}.dssp"
-        output_file.write_text(response.text)
-        logging.info(f"✅ DSSP completed: {output_file.name}")
+            output_file = output_dir / f"{input_file.stem}.dssp"
+            output_file.write_text(response.text)
+            logging.info(f"✅ DSSP completed: {output_file.name}")
+            time.sleep(1)  # polite delay
+            return True
+        except requests.RequestException as e:
+            retries += 1
+            logging.warning(
+                f"⚠️ DSSP attempt {retries} failed for {input_file.name}: {e}"
+            )
+            time.sleep(wait_time)
+            wait_time *= 2  # exponential backoff
 
-        time.sleep(1)  # polite delay to avoid hammering server
-    except requests.RequestException as e:
-        logging.error(f"❌ DSSP failed: {input_file.name}")
-        logging.error(e)
+    logging.error(f"❌ DSSP failed after {max_retries} retries: {input_file.name}")
+    return False

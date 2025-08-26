@@ -207,6 +207,7 @@ def main():
     else:
         fasta_files = common.get_fasta_files(pathogen_path, args.sequence_dir)
 
+
     # Prepare temporary JSON directory for MHCI and MHCII and output directories for all tools
     output_dir = common.prepare_output_dirs(pathogen_path, output_dir, final_tools.keys())
     all_jobs = []
