@@ -9,6 +9,7 @@ from pathlib import Path
 from tools import common
 from Bio.PDB import PDBParser, DSSP
 import os
+import subprocess
 
 def run(input_file, tool_root, output_dir):
     """
@@ -27,12 +28,24 @@ def run(input_file, tool_root, output_dir):
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / f"{input_file.stem}.dssp"
 
-    # Set environment variable for DSSP dictionary
+    # Locate the mmcif dictionary inside conda
     conda_prefix = os.environ.get("CONDA_PREFIX")
     if not conda_prefix:
         logging.error("❌ CONDA_PREFIX not set. Cannot locate DSSP dictionary.")
         return False
-    os.environ["DSSP_DICTIONARY"] = str(Path(conda_prefix) / "share/libcifpp/mmcif_pdbx.dic")
+    dic_path = Path(conda_prefix) / "share/libcifpp/mmcif_pdbx.dic"
+
+    # Monkey patch subprocess.run to include --mmcif-dictionary safely
+    original_run = subprocess.run
+
+    def patched_run(*popenargs, **kwargs):
+        if isinstance(popenargs[0], list) and popenargs[0][0].endswith("mkdssp"):
+            # Copy the command list and append the dictionary argument
+            cmd = list(popenargs[0]) + ["--mmcif-dictionary", str(dic_path)]
+            popenargs = (cmd, *popenargs[1:])
+        return original_run(*popenargs, **kwargs)
+
+    subprocess.run = patched_run
 
     try:
         # Parse the structure
@@ -40,7 +53,7 @@ def run(input_file, tool_root, output_dir):
         structure = parser.get_structure(input_file.stem, str(input_file))
         model = structure[0]  # first model
 
-        # Run DSSP
+        # Run DSSP (mkdssp will receive --mmcif-dictionary)
         dssp = DSSP(model, str(input_file), dssp="mkdssp")
 
         # Write DSSP data
@@ -62,3 +75,7 @@ def run(input_file, tool_root, output_dir):
         logging.error(f"❌ DSSP failed: {input_file.name}")
         logging.error(e)
         return False
+
+    finally:
+        # Restore original subprocess.run
+        subprocess.run = original_run
