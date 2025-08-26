@@ -12,10 +12,9 @@ import numpy as np
 import pydssp
 from tools import common
 
+
 def _extract_backbone_coords(pdb_file: Path) -> np.ndarray:
-    """Extract backbone coordinates (N, CA, C, O) as a NumPy array for PyDSSP.
-    Shape: (residues, atoms=4, xyz=3)
-    """
+    """Extract backbone coordinates (N, CA, C, O) for PyDSSP."""
     structure = gemmi.read_structure(str(pdb_file))
     model = structure[0]  # first model
     coords = []
@@ -24,13 +23,15 @@ def _extract_backbone_coords(pdb_file: Path) -> np.ndarray:
         for res in chain:
             atoms = []
             for atom_name in ["N", "CA", "C", "O"]:
-                atom = res[atom_name] if atom_name in res else None
-                if atom is None:
+                atom_group = res[atom_name]  # returns an AtomGroup
+                if not atom_group:  # missing atom
                     break
-                pos = atom.pos  # gemmi.Position object
+                atom = atom_group[0]  # take first atom if multiple altlocs
+                pos = atom.pos
                 atoms.append([pos.x, pos.y, pos.z])
             if len(atoms) == 4:
                 coords.append(atoms)
+
     coords = np.array(coords, dtype=np.float32)
     return coords
 
