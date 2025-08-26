@@ -56,7 +56,7 @@ def run(input_file, tool_root, output_dir):
             for key in dssp.keys():
                 res_data = dssp[key]
                 # convert tuple to string
-                f.write(f"{key}\t{'\t'.join(map(str, res_data))}\n")
+                f.write(f"{key}\t{'\t'.join(map(str, res_data))}'\n'")
 
 
         logging.info(f"✅ DSSP completed: {output_file.name}")
