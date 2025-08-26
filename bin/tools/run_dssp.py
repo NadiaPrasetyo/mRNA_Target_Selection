@@ -15,7 +15,7 @@ from biopandas.pdb import PandasPdb
 
 def write_mkdssp_compatible_pdb(input_file):
     """
-    Parse input PDB and write a temporary file with a minimal header for mkdssp.
+    Parse input PDB and write a temporary file with a mkdssp-compatible header.
     """
     import tempfile
     from Bio.PDB import PDBParser, PDBIO
@@ -25,14 +25,14 @@ def write_mkdssp_compatible_pdb(input_file):
 
     temp_pdb = tempfile.NamedTemporaryFile(suffix=".pdb", delete=False, mode="w")
 
-    # Minimal header
+    # mkdssp-compatible header
     header_lines = [
         "HEADER    DSSP GENERATED\n",
         "TITLE     DSSP CLEAN PDB\n",
-        "COMPND    DSSP CLEAN PDB\n",
-        "SOURCE    GENERATED\n",
+        "COMPND    MOL_ID: 1;\n",
+        "SOURCE    MOL_ID: 1; ORGANISM_SCIENTIFIC: UNKNOWN;\n",
         "KEYWDS    DSSP\n",
-        "EXPDTA    X-RAY\n",
+        "EXPDTA    X-RAY DIFFRACTION\n",
         "AUTHOR    GENERATED\n"
     ]
     temp_pdb.writelines(header_lines)
@@ -44,6 +44,7 @@ def write_mkdssp_compatible_pdb(input_file):
 
     temp_pdb.close()
     return temp_pdb.name
+
 
 def run(input_file, tool_root, output_dir):
     """
