@@ -13,38 +13,37 @@ import subprocess
 import tempfile
 from biopandas.pdb import PandasPdb
 
-def write_strict_pdb(input_file):
+def write_mkdssp_compatible_pdb(input_file):
     """
-    Parse a PDB with Biopython, then rewrite it in strict PDB format using Biopandas.
-    This ensures compatibility with mkdssp.
-
-    Args:
-        input_file (str or Path): Original PDB file path.
-
-    Returns:
-        str: Path to the temporary strictly formatted PDB file.
+    Parse input PDB and write a temporary file with a minimal header for mkdssp.
     """
-    # Parse with Biopython to sanitize structure
+    import tempfile
+    from Bio.PDB import PDBParser, PDBIO
+
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure("structure", str(input_file))
 
-    # Save coordinates to temporary PDB using PDBIO
-    temp_io = tempfile.NamedTemporaryFile(suffix=".pdb", delete=False)
-    temp_io.close()
-    from Bio.PDB import PDBIO
+    temp_pdb = tempfile.NamedTemporaryFile(suffix=".pdb", delete=False, mode="w")
+
+    # Minimal header
+    header_lines = [
+        "HEADER    DSSP GENERATED\n",
+        "TITLE     DSSP CLEAN PDB\n",
+        "COMPND    DSSP CLEAN PDB\n",
+        "SOURCE    GENERATED\n",
+        "KEYWDS    DSSP\n",
+        "EXPDTA    X-RAY\n",
+        "AUTHOR    GENERATED\n"
+    ]
+    temp_pdb.writelines(header_lines)
+
+    # Write ATOM/HETATM
     io = PDBIO()
     io.set_structure(structure)
-    io.save(temp_io.name)
+    io.save(temp_pdb.name, write_end=True)
 
-    # Read with Biopandas and rewrite in strict PDB format
-    ppdb = PandasPdb().read_pdb(temp_io.name)
-    strict_temp = tempfile.NamedTemporaryFile(suffix=".pdb", delete=False)
-    strict_temp.close()
-    ppdb.to_pdb(path=str(strict_temp.name), records=['ATOM', 'HETATM'], gz=False, append_newline=True)
-
-    # Remove intermediate file
-    os.remove(temp_io.name)
-    return strict_temp.name
+    temp_pdb.close()
+    return temp_pdb.name
 
 def run(input_file, tool_root, output_dir):
     """
@@ -71,7 +70,7 @@ def run(input_file, tool_root, output_dir):
     strict_pdb_path = None
     try:
         # 1. Write strictly formatted PDB
-        strict_pdb_path = write_strict_pdb(input_file)
+        strict_pdb_path = write_mkdssp_compatible_pdb(input_file)
 
         # 2. Run mkdssp directly
         cmd = [
