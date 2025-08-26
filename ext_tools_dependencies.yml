@@ -22,6 +22,7 @@ dependencies:
   - seqkit
   - hyphy
   - macse
+  - dssp
   - pip
   - pip:
       - algpred2==1.4

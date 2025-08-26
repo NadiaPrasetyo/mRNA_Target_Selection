@@ -1,50 +1,49 @@
 """
 run_dssp.py
-Run DSSP on a given structure file using the DSSP API.
-
+Run DSSP on a given structure file using the local DSSP binary (conda hcc::dssp).
 
 Author: Nadia
 """
 import logging
-import requests
-import time
+import subprocess
 from pathlib import Path
+from tools import common
 
-def run(input_file, tool_root, output_dir, max_retries=5):
+
+def run(input_file, tool_root, output_dir):
+    """
+    Run DSSP on the specified input file using the local mkdssp binary.
+
+    Args:
+        input_file (str or Path): Path to the input structure file (PDB, CIF, or CIF.GZ).
+        tool_root (str or Path): Unused, kept for API consistency.
+        output_dir (str or Path): Directory to save the DSSP output.
+    """
+
+    common.create_conda_env_if_needed()
     
     input_file = Path(input_file)
     output_dir = Path(output_dir) / "dssp"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    dssp_URL = "https://pdb-redo.eu/dssp/do"
+    output_file = output_dir / f"{input_file.stem}.dssp"
 
-    # Read file content
-    pdb_text = input_file.read_text()
+    try:
+        # Run mkdssp with positional input/output arguments
+        subprocess.run(
+            ["mkdssp", str(input_file), str(output_file)],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        logging.info(f"✅ DSSP completed: {output_file.name}")
+        return True
 
-    data = {
-        "data": pdb_text,
-        "format": "dssp"
-    }
+    except subprocess.CalledProcessError as e:
+        logging.error(f"❌ DSSP failed: {input_file.name}")
+        logging.error(e.stderr)
+        return False
 
-    retries = 0
-    wait_time = 2  # start with 2s
-    while retries < max_retries:
-        try:
-            response = requests.post(dssp_URL, data=data, timeout=60)
-            response.raise_for_status()
-
-            output_file = output_dir / f"{input_file.stem}.dssp"
-            output_file.write_text(response.text)
-            logging.info(f"✅ DSSP completed: {output_file.name}")
-            time.sleep(1)  # polite delay
-            return True
-        except requests.RequestException as e:
-            retries += 1
-            logging.warning(
-                f"⚠️ DSSP attempt {retries} failed for {input_file.name}: {e}"
-            )
-            time.sleep(wait_time)
-            wait_time *= 2  # exponential backoff
-
-    logging.error(f"❌ DSSP failed after {max_retries} retries: {input_file.name}")
-    return False
+    except FileNotFoundError:
+        logging.error("❌ mkdssp binary not found. Make sure your conda env with hcc::dssp is activated.")
+        return False
