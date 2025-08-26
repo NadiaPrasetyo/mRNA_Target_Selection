@@ -41,7 +41,7 @@ def run(input_file, tool_root, output_dir):
             "mkdssp",
             "--mmcif-dictionary", str(dic_path),
             temp_pdb.name,
-            str(output_file)
+            str(output_file), "--verbose"
         ]
         subprocess.run(cmd, check=True)
 
