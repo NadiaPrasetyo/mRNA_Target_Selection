@@ -1,6 +1,21 @@
 """
 run_dssp.py
-Use PyDSSP to assign secondary structure from a PDB file.
+Utility to execute PyDSSP secondary structure assignment on a given PDB file.
+
+Overview:
+    - Supports input: .pdb
+    - Extracts backbone coordinates (N, CA, C, O) for secondary structure assignment
+    - Runs PyDSSP to assign secondary structure
+    - Stores output in specified directory as a .dssp file
+
+Arguments:
+    input_file (str or Path): PDB file to analyze.
+    tool_root (str or Path): Unused, included for API compatibility.
+    output_dir (str or Path): Output directory for DSSP results.
+
+Requirements:
+    - PyDSSP must be installed and available in the Python environment
+    - Input PDB file must contain residues with complete backbone atoms (N, CA, C, O)
 
 Author: Nadia
 """
@@ -16,6 +31,11 @@ def _extract_backbone_coords(pdb_file: Path) -> np.ndarray:
     """
     Extract backbone coordinates (N, CA, C, O) for PyDSSP.
     Skips residues missing any backbone atom.
+    Args:
+        pdb_file (Path): Path to the input PDB file.
+
+    Returns:
+        np.ndarray: Array of backbone coordinates (N, CA, C, O) for each residue.
     """
     structure = gemmi.read_structure(str(pdb_file))
     model = structure[0]  # first model
