@@ -1082,7 +1082,8 @@ def parse_dnds_dir(directory):
     for dnds_file in Path(directory).glob("*.json"):
         # e.g.: A0A0H2UTN5_combined_codon_aligned_FEL_results.json
         type = dnds_file.stem.split("_")[-2] # Extract the type from the filename
-        content = dnds_file.read_json().get("MLE").get("content").get("0")
+        with open(dnds_file, "r") as f:
+            content = json.load(f).get("MLE", {}).get("content", {}).get("0")
         match type:
             case "FEL":
                 for each in content:
@@ -1162,12 +1163,16 @@ aac_F,0.018957345971563982
             reader = csv.DictReader(f)
             for row in reader:
                 feature = row["feature"]
-                value = row["value"]
-                results.append({
-                    "feature": "ProtLearn",
-                    "subfeature": feature,
-                    "value": int(value)
-                })
+                value = row["value"].strip("[]")  # Remove brackets if present
+                try:
+                    value = int(float(value))  # Convert to float first, then to int
+                    results.append({
+                        "feature": "ProtLearn",
+                        "subfeature": feature,
+                        "value": value
+                    })
+                except ValueError as e:
+                    logging.debug(f"Skipping row due to conversion error: {e}")
     return results
 
 # ----------------------------- Orchestration Functions -----------------------------
