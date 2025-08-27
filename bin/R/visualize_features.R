@@ -32,9 +32,9 @@
 library(tidyverse)
 
 # Define paths
-ks_file <- "../../results/S.pneumoniae/ks_test_results.csv"
-base_path <- "../../results/S.pneumoniae/raw_data"
-output_dir <- "../../results/S.pneumoniae/feature_distributions"
+ks_file <- "../../results/S.pyogenes/ks_test_results.csv"
+base_path <- "../../results/S.pyogenes/raw_data"
+output_dir <- "../../results/S.pyogenes/feature_distributions"
 
 # Read KS test results and filter for significant features with p-value < 0.05
 ks_results <- read_csv(ks_file, show_col_types = FALSE)
