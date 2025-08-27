@@ -40,7 +40,7 @@ import json
 import csv
 import sys
 import pandas as pd
-from scipy.stats import ks_2samp
+from scipy.stats import ks_2samp, ttest_ind
 import collections
 from collections import defaultdict
 import logging
@@ -52,9 +52,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import statistics
 from Bio import AlignIO
 import glob
-import re
 import traceback
-import tempfile
 from pathlib import Path
 
 # ----------------------------- Utility Functions -----------------------------
@@ -1214,8 +1212,6 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "dssp": lambda: parse_dssp_dir(os.path.join(base_dir, "dssp"))
     }
 
-    import traceback
-
     results = []
     with ThreadPoolExecutor(max_workers=threads) as executor:
         future_to_name = {executor.submit(parser): name for name, parser in parsers.items()}
@@ -1515,12 +1511,61 @@ def write_features_by_feature(features, label, output_dir):
                 })
         logging.debug(f"Wrote feature file: {filepath}")
 
+
+def add_ttest_results(result_df, pos_features, rand_features, logger):
+    """
+    Runs t-tests on features to determine directionality and updates result_df in place.
+    
+    Args:
+        result_df (pd.DataFrame): DataFrame containing KS test results
+        pos_features (list[dict]): Extracted positive feature data
+        rand_features (list[dict]): Extracted random feature data
+        logger (logging.Logger): Logger instance for debug/info messages
+    
+    Returns:
+        pd.DataFrame: Updated DataFrame with t-test results
+    """
+
+    def group_values(data):
+        grouped = defaultdict(list)
+        for row in data:
+            if "feature" in row and "subfeature" in row and "value" in row:
+                key = (row["feature"], row["subfeature"])
+                grouped[key].append(row["value"])
+        return grouped
+
+    pos_grouped = group_values(pos_features)
+    rand_grouped = group_values(rand_features)
+
+    # add empty columns if missing
+    if "t_statistic" not in result_df.columns:
+        result_df["t_statistic"] = None
+    if "t_p_value" not in result_df.columns:
+        result_df["t_p_value"] = None
+
+    for index, row in result_df.iterrows():
+        feature = row["feature"]
+        subfeature = row["subfeature"]
+        pos_vals = pos_grouped.get((feature, subfeature), [])
+        rand_vals = rand_grouped.get((feature, subfeature), [])
+
+        if pos_vals and rand_vals:
+            try:
+                t_stat, t_pval = ttest_ind(pos_vals, rand_vals, equal_var=False)
+                result_df.at[index, "t_statistic"] = t_stat
+                result_df.at[index, "t_p_value"] = t_pval
+            except Exception as e:
+                logger.debug(f"T-test failed for {feature}/{subfeature}: {e}")
+
+    return result_df
+
+
 # ----------------------------- Entry Point -----------------------------
 
 def main(pathogen_dir, threads, verbose=False, write_raw=False):
     """
     Main entry point for the script.
-    Initializes logging, extracts features, performs KS tests, and writes results.
+    Initializes logging, extracts features, performs KS tests, t-tests, and writes results.
     Args:
         pathogen_dir (str): Pathogen directory name under data/
         threads (int): Optional -number of threads to use for feature extraction.
@@ -1557,9 +1602,12 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
         logger.info(f"Writing random features to {raw_out_dir}")
         write_features_by_feature(rand_features, "random", raw_out_dir)
 
-
     logger.info("Running KS test on features")
     result_df = compare_ks(pos_features, rand_features, output_dir)
+    
+    logger.info("Running t-test on features to determine directionality")
+    result_df = add_ttest_results(result_df, pos_features, rand_features, logger)
+
     plot_auroc_summary(result_df, output_dir)
 
     # Sort the DataFrame alphabetically by the first column
@@ -1567,7 +1615,7 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
     logger.info("\n" + result_df.to_string(index=False))
 
     ks_out_path = os.path.join("results", pathogen_dir, "ks_test_results.csv")
-    logger.info(f"Writing KS test results to {ks_out_path}")
+    logger.info(f"Writing KS test and t-test results to {ks_out_path}")
     result_df.to_csv(ks_out_path, index=False)
 
     logger.info("Processing complete.")
