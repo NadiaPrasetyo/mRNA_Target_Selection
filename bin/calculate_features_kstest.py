@@ -3,7 +3,7 @@ calculate_features_kstest.py
 Command-line tool to extract immunological and sequence features from epitope and random protein sets, and compare their distributions using KS-test and AUROC.
 
 Overview:
-    - Extracts features (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, population coverage, DeeplocPro, Ellipro, IFNepitope2, MixMHC2Pred, DeepTMHMM, Rate4Site, Rate4Site_Mafft_DeepTMHMM) from epitope (positive) and random sets.
+    - Extracts features (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, DeeplocPro, Ellipro, IFNepitope2, MixMHC2Pred, DeepTMHMM, Rate4Site, Rate4Site_Mafft_DeepTMHMM) from epitope (positive) and random sets.
     - Aggregates and structures feature data for statistical comparison.
     - Performs Kolmogorov-Smirnov (KS) tests and computes AUROC for each feature/subfeature between positive and random sets.
     - Optionally writes raw feature data to disk for further analysis.
@@ -55,6 +55,7 @@ import glob
 import re
 import traceback
 import tempfile
+from pathlib import Path
 
 # ----------------------------- Utility Functions -----------------------------
 
@@ -374,22 +375,22 @@ def parse_cluster_dir(directory):
         - "subfeature": "conservation_score"
         - "value": numerical conservation score
 
-- add the percent identities and divide by number of strains (simple)
-- sum of bit scores (length confounding) / sum of the length
-- sum the log₁₀(e-value)
+    - add the percent identities and divide by number of strains (simple)
+    - sum of bit scores (length confounding) / sum of the length
+    - sum the log₁₀(e-value)
 
-0 	Query sequence ID
-1 	Subject (database) sequence ID
-2 	Percent Identity
-3 	Alignment Length
-4 	Number of gaps
-5 	Number of mismatches
-6 	Start on the query sequence
-7 	End on the query sequence
-8 	Start on the database sequence
-9 	End on the database sequence
-10 	E value - the expectation that this alignment is random given the length of the sequence and length of the database
-11 	bit score - the score of the alignment itself
+    0 	Query sequence ID
+    1 	Subject (database) sequence ID
+    2 	Percent Identity
+    3 	Alignment Length
+    4 	Number of gaps
+    5 	Number of mismatches
+    6 	Start on the query sequence
+    7 	End on the query sequence
+    8 	Start on the database sequence
+    9 	End on the database sequence
+    10 	E value - the expectation that this alignment is random given the length of the sequence and length of the database
+    11 	bit score - the score of the alignment itself
     """
     logging.info(f"Parsing cluster conservation dir {directory}")
     clusters = defaultdict(list)
@@ -463,79 +464,6 @@ def parse_cluster_dir(directory):
     logging.info(f"Completed cluster parsing with {len(results)} results")
     return results
 
-def parse_popcov_dir(directory):
-    """
-    Parse population coverage files in the specified directory.
-    Expected files are text files with population coverage data.
-    Returns a list of dictionaries with feature values.
-    Args:
-        directory (str): Path to the directory containing population coverage files.
-    Returns:
-        List of dictionaries, where each dictionary represents a population coverage feature.
-    Each dictionary contains:
-        - "feature": "popcov"
-        - "subfeature": "coverage_average"
-        - "value": numerical average coverage value
-    """
-    logging.info(f"Parsing population coverage dir {directory}")
-    results = []
-
-    # Step 1: List all popcov files
-    try:
-        files = [f for f in os.listdir(directory) if f.endswith(".txt")]
-        logging.debug(f"Found {len(files)} popcov files")
-    except Exception as e:
-        logging.error(f"Failed listing popcov directory {directory}: {e}")
-        return []
-
-    # Step 2: Parse each popcov file
-    for file in files:
-        path = os.path.join(directory, file)
-        logging.debug(f"Parsing popcov file {file}")
-        try:
-            with open(path) as f:
-                lines = f.readlines()
-        except Exception as e:
-            logging.error(f"Failed reading popcov file {file}: {e}")
-            continue
-
-        # Step 3: Extract "average" coverage from the first table
-        data_started = False
-        for i, line in enumerate(lines):
-            stripped = line.strip()
-
-            # Skip empty or header lines
-            if not stripped or stripped.lower().startswith("class combined"):
-                continue
-
-            if not data_started:
-                if stripped.startswith("population/area") and "coverage" in stripped:
-                    data_started = True
-                continue
-
-            # We're now in the first table
-            if data_started:
-                parts = stripped.split('\t')
-                if len(parts) < 4:
-                    continue
-
-                region = parts[0].strip()
-                coverage_str = parts[1].strip()
-
-                if region.lower() == "average":
-                    try:
-                        coverage_val = float(coverage_str.strip('%'))
-                        results.append({
-                            "feature": "popcov",
-                            "subfeature": "coverage_average",
-                            "value": coverage_val
-                        })
-                    except ValueError as e:
-                        logging.debug(f"Failed to parse coverage value in {file}, line {i}: {e}")
-                    break  # only need the "average" row from the first table
-
-    logging.info(f"Completed popcov parsing with {len(results)} results")
-    return results
 
 def parse_deeplocpro_dir(directory):
     """
@@ -1115,6 +1043,134 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
     logging.info(f"Total features returned: {len(results)}")
     return results
 
+def parse_dssp_dir(dssp_dir):
+    """
+    Parse the DSSP directory for structural features.
+    data/S.pyogenes/epitope_outputs/dssp/1I5K_P49054.dssp
+    --E------------EE----EEE-----------------HHH-------E--------EEEE------EEEE---E----E------------EE----EE--------------HHH-HHH-------E--------EEEE------EEEE---E-----HHHHHHHHHHHHHHHHHHHHH-----HHHHHHHHHHHHHHHHHHHHH-  1I5K_P49054.pdb
+
+    """
+    results = []
+    for dssp_file in Path(dssp_dir).glob("*.dssp"):
+        contents = dssp_file.read_text()
+        percent_helix = contents.count('H') / len(contents) if len(contents) > 0 else 0
+        percent_sheet = contents.count('E') / len(contents) if len(contents) > 0 else 0
+        percent_loop = contents.count('-') / len(contents) if len(contents) > 0 else 0
+
+        results.append({
+            "feature": "dssp",
+            "subfeature": "percent_helix",
+            "value": percent_helix
+        })
+        results.append({
+            "feature": "dssp",
+            "subfeature": "percent_sheet",
+            "value": percent_sheet
+        })
+        results.append({
+            "feature": "dssp",
+            "subfeature": "percent_loop",
+            "value": percent_loop
+        })
+
+    return results
+
+def parse_dnds_dir(directory):
+    """
+    Parse the DNDS directory for structural features.
+
+    """
+    results = []
+    for dnds_file in Path(directory).glob("*.json"):
+        # e.g.: A0A0H2UTN5_combined_codon_aligned_FEL_results.json
+        type = dnds_file.stem.split("_")[-2] # Extract the type from the filename
+        content = dnds_file.read_json().get("MLE").get("content").get("0")
+        match type:
+            case "FEL":
+                for each in content:
+                    sum_n += each[1]
+                    sum_s += each[0]
+
+                results.append({
+                    "feature": "FEL dN/dS",
+                    "subfeature": "sumN/sumS",
+                    "value": sum_n / sum_s if sum_s > 0 else 0
+                })
+            case "SLAC":
+                content = content.get("by-site").get("AVERAGED")
+                for each in content:
+                    sum_n += each[3]
+                    sum_s += each[2]
+
+                    dn = each[6]
+                    ds = each[5]
+                    results.append({
+                        "feature": "SLAC dN/dS",
+                        "subfeature": "dN/dS",
+                        "value": dn / ds if ds > 0 else 0
+                    })
+
+                results.append({
+                    "feature": "SLAC dN/dS",
+                    "subfeature": "sumN/sumS",
+                    "value": sum_n / sum_s if sum_s > 0 else 0
+                })
+            case "FUBAR":
+                for each in content:
+                    dn = each[1]
+                    ds = each[0]
+
+                    prob_neg_selection = each[3]
+                    prob_pos_selection = each[4]
+
+                    results.append({
+                        "feature": "FUBAR dN/dS",
+                        "subfeature": "dN/dS",
+                        "value": dn / ds if ds > 0 else 0
+                    })
+
+                    results.append({
+                        "feature": "FUBAR dN/dS",
+                        "subfeature": "Probability negative selection",
+                        "value": prob_neg_selection
+                    })
+                    results.append({
+                        "feature": "FUBAR dN/dS",
+                        "subfeature": "Probability positive selection",
+                        "value": prob_pos_selection
+                    })
+            
+            case _:
+                logging.warning(f"Unknown dN/dS type: {type}")
+                continue
+
+    return results
+
+def parse_protlearn_dir(directory):
+    """
+    Parse the ProtLearn directory for structural features.
+    feature,value
+length,[211.]
+aac_A,0.04739336492890995
+aac_C,0.05687203791469194
+aac_D,0.06635071090047394
+aac_E,0.10900473933649289
+aac_F,0.018957345971563982
+
+    """
+    results = []
+    for protlearn_file in Path(directory).glob("*.csv"):
+        with open(protlearn_file, "r") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                feature = row["feature"]
+                value = row["value"]
+                results.append({
+                    "feature": "ProtLearn",
+                    "subfeature": feature,
+                    "value": int(value)
+                })
+    return results
 
 # ----------------------------- Orchestration Functions -----------------------------
 
@@ -1142,7 +1198,6 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         "targetp": lambda: parse_targetp_dir(os.path.join(base_dir, "targetp")),
         "allergenicity": lambda: parse_allergenicity_dir(os.path.join(base_dir, "algpred")),
         "cluster": lambda: parse_cluster_dir(os.path.join(base_dir, "cluster")),
-        "popcov": lambda: parse_popcov_dir(os.path.join(eval_dir, "popcoverage")),
         "deeplocpro": lambda: parse_deeplocpro_dir(os.path.join(base_dir, "deeplocpro")),
         "ellipro": lambda: parse_ellipro_dir(os.path.join(base_dir, "ellipro")),
         "ifnepitope2": lambda: parse_ifnepitope2_dir(os.path.join(base_dir, "ifnepitope2")),
@@ -1153,7 +1208,10 @@ def extract_all_features(base_dir, eval_dir, threads=1):
             os.path.join(base_dir, "mafft_rate4site/rate4site_results"),
             os.path.join(base_dir, "mafft_rate4site"),
             os.path.join(base_dir, "deeptmhmm")
-        )
+        ),
+        "dnds": lambda: parse_dnds_dir(os.path.join(base_dir, "dnds")),
+        "protlearn": lambda: parse_protlearn_dir(os.path.join(base_dir, "protlearn")),
+        "dssp": lambda: parse_dssp_dir(os.path.join(base_dir, "dssp"))
     }
 
     import traceback
@@ -1262,7 +1320,7 @@ def categorize_feature(feature, subfeature):
     if feature == "ifnepitope2":
         return "Immunogenicity"
     # Conservation Analysis
-    if feature in ["cluster_conservation", "rate4site", "rate4site_deeptmhmm"] or subfeature in [
+    if feature in ["cluster_conservation", "rate4site", "rate4site_deeptmhmm", "dnds"] or subfeature in [
         "Percent identity / number of strains",
         "Average Log₁₀ e-value",
         "Average bit-score / length",
@@ -1281,8 +1339,8 @@ def categorize_feature(feature, subfeature):
     if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred"]:
         return "Epitope Prediction"
     # Epitope evaluation
-    if feature == "popcov":
-        return "Epitope evaluation"
+    if feature in ["dssp", "protlearn"]:
+        return "Structure Analysis"
     return "Other"
 
 def plot_auroc_summary(results_df, output_dir):
@@ -1423,7 +1481,7 @@ def compare_ks(pos_features, rand_features, output_dir):
     logging.info("KS and AUROC comparison complete")
     return pd.DataFrame(results)
 
-
+    
 def write_features_by_feature(features, label, output_dir):
     """
     Write features to disk, grouped by "feature" field.
