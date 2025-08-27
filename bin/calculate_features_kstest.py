@@ -1086,6 +1086,7 @@ def parse_dnds_dir(directory):
             content = json.load(f).get("MLE", {}).get("content", {}).get("0")
         match type:
             case "FEL":
+                sum_n, sum_s = 0, 0
                 for each in content:
                     sum_n += each[1]
                     sum_s += each[0]
@@ -1097,6 +1098,7 @@ def parse_dnds_dir(directory):
                 })
             case "SLAC":
                 content = content.get("by-site").get("AVERAGED")
+                sum_n, sum_s = 0, 0
                 for each in content:
                     sum_n += each[3]
                     sum_s += each[2]
