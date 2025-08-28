@@ -1112,18 +1112,31 @@ def parse_dnds_dir(directory):
 
             match type:
                 case "FEL":
-                    sum_n, sum_s = 0, 0
+                    sum_alpha, sum_beta, sum_lrt, count = 0, 0, 0, 0
                     for each in content:
-                        s, n = each[0], each[1]
-                        if s is not None:
-                            sum_s += s
-                        if n is not None:
-                            sum_n += n
+                        alpha, beta, lrt = each[0], each[1], each[3]
+                        if alpha is not None and alpha != 0 and beta is not None and beta != 0:
+                            sum_alpha += alpha
+                            sum_beta += beta
+                            sum_lrt += lrt
+                            count += 1
 
                     results.append({
                         "feature": "FEL",
-                        "subfeature": "sumN/sumS",
-                        "value": safe_div(sum_n, sum_s)
+                        "subfeature": "mean_alpha",
+                        "value": safe_div(sum_alpha, count)
+                    })
+
+                    results.append({
+                        "feature": "FEL",
+                        "subfeature": "mean_beta",
+                        "value": safe_div(sum_beta, count)
+                    })
+
+                    results.append({
+                        "feature": "FEL",
+                        "subfeature": "mean_lrt",
+                        "value": safe_div(sum_lrt, count)
                     })
 
                 case "SLAC":
@@ -1132,49 +1145,69 @@ def parse_dnds_dir(directory):
                         logging.warning(f"Missing or invalid SLAC content in {dnds_file}")
                         continue
 
-                    sum_n, sum_s = 0, 0
+                    sum_n, sum_s, sum_dn, sum_ds, count = 0, 0, 0, 0, 0
                     for each in content:
                         s, n, ds, dn = each[2], each[3], each[5], each[6]
-
-                        if n is not None:
+                        if n is not None and n != s and s is not None and s != 0:
                             sum_n += n
-                        if s is not None:
                             sum_s += s
-
-                        results.append({
-                            "feature": "SLAC",
-                            "subfeature": "dN/dS",
-                            "value": safe_div(dn, ds)
-                        })
+                            sum_dn += dn
+                            sum_ds += ds
+                            count += 1
+                        
+                    results.append({
+                        "feature": "SLAC",
+                        "subfeature": "dN/dS",
+                        "value": safe_div(sum_dn, sum_ds)
+                    })
 
                     results.append({
                         "feature": "SLAC",
-                        "subfeature": "sumN/sumS",
-                        "value": safe_div(sum_n, sum_s)
+                        "subfeature": "mean_n",
+                        "value": safe_div(sum_n, count)
+                    })
+
+                    results.append({
+                        "feature": "SLAC",
+                        "subfeature": "mean_s",
+                        "value": safe_div(sum_s, count)
                     })
 
                 case "FUBAR":
+                    sum_alpha, sum_beta, sum_prob_pos, sum_prob_neg, count = 0, 0, 0, 0, 0
                     for each in content:
-                        ds, dn = each[0], each[1]
-                        prob_neg_selection, prob_pos_selection = each[3], each[4]
+                        alpha, beta, difference, prob_pos, prob_neg = each[0], each[1], each[2], each[3], each[4]
+                        # Only counting the positive difference (non synonymous > synonymous changes)
+                        if (difference>0):
+                            sum_alpha += alpha
+                            sum_beta += beta
+                            sum_prob_pos += prob_pos
+                            sum_prob_neg += prob_neg
+                            count += 1
 
-                        results.append({
-                            "feature": "FUBAR",
-                            "subfeature": "dN/dS",
-                            "value": safe_div(dn, ds)
-                        })
-                        if prob_neg_selection is not None:
-                            results.append({
-                                "feature": "FUBAR",
-                                "subfeature": "probability_negative_selection",
-                                "value": prob_neg_selection
-                            })
-                        if prob_pos_selection is not None:
-                            results.append({
-                                "feature": "FUBAR",
-                                "subfeature": "probability_positive_selection",
-                                "value": prob_pos_selection
-                            })
+                    results.append({
+                        "feature": "FUBAR",
+                        "subfeature": "mean_alpha",
+                        "value": safe_div(sum_alpha, count)
+                    })
+
+                    results.append({
+                        "feature": "FUBAR",
+                        "subfeature": "mean_beta",
+                        "value": safe_div(sum_beta, count)
+                    })
+
+                    results.append({
+                        "feature": "FUBAR",
+                        "subfeature": "mean_prob_pos",
+                        "value": safe_div(sum_prob_pos, count)
+                    })
+
+                    results.append({
+                        "feature": "FUBAR",
+                        "subfeature": "mean_prob_neg",
+                        "value": safe_div(sum_prob_neg, count)
+                    })
 
                 case _:
                     logging.warning(f"Unknown dN/dS type: {type}")
