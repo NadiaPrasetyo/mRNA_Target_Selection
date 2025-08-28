@@ -2,21 +2,3 @@ feature,value
 length,Error: Data must be alphabetical!
 aac,Error: Data must be alphabetical!
 aaindex1,Error: Data must be alphabetical!
-ngram,Error: Data must be alphabetical!
-entropy,Error: Data must be alphabetical!
-posrich,Error: posrich() missing 2 required keyword-only arguments: 'position' and 'aminoacid'
-motif,Error: motif() missing 1 required positional argument: 'pattern'
-atc,Error: Data must be alphabetical!
-binary,Error: Data must be alphabetical!
-cksaap,Error: Data must be alphabetical!
-ctd,Error: Data must be alphabetical!
-ctdc,Error: Data must be alphabetical!
-ctdt,Error: Data must be alphabetical!
-ctdd,Error: Data must be alphabetical!
-moreau_broto,Error: Lag parameter d must be smaller than sequence length!
-moran,Error: Lag parameter d must be smaller than sequence length!
-geary,Error: Lag parameter d must be smaller than sequence length!
-paac,Error: Data must be alphabetical!
-apaac,Error: Data must be alphabetical!
-socn,Error: Lag parameter d must be smaller than sequence length!
-qso,Error: Lag parameter d must be smaller than sequence length!
