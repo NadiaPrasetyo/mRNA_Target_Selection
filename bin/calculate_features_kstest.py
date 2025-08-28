@@ -1076,80 +1076,102 @@ def parse_dssp_dir(dssp_dir):
 def parse_dnds_dir(directory):
     """
     Parse the DNDS directory for structural features.
-
+    Handles FEL, SLAC, and FUBAR result files.
     """
+
+    def safe_div(n, d):
+        """Safely divide n / d, return 0 if invalid or denominator <= 0."""
+        try:
+            if d is None or n is None or d <= 0:
+                return 0
+            return n / d
+        except Exception:
+            return 0
+
     results = []
     for dnds_file in Path(directory).glob("*.json"):
-        # e.g.: A0A0H2UTN5_combined_codon_aligned_FEL_results.json
-        type = dnds_file.stem.split("_")[-2] # Extract the type from the filename
-        with open(dnds_file, "r") as f:
-            content = json.load(f).get("MLE", {}).get("content", {}).get("0")
+        try:
+            type = dnds_file.stem.split("_")[-2]  # Extract method type (FEL, SLAC, FUBAR)
+            with open(dnds_file, "r") as f:
+                content = json.load(f).get("MLE", {}).get("content", {}).get("0")
+
             if not content:
                 logging.warning(f"Missing or invalid content in {dnds_file}")
                 continue
-        match type:
-            case "FEL":
-                sum_n, sum_s = 0, 0
-                for each in content:
-                    sum_n += each[1]
-                    sum_s += each[0]
 
-                results.append({
-                    "feature": "FEL dN/dS",
-                    "subfeature": "sumN/sumS",
-                    "value": sum_n / sum_s if sum_s > 0 else 0
-                })
-            case "SLAC":
-                content = content.get("by-site", {}).get("AVERAGED", [])
-                if not content:
-                    logging.warning(f"Missing or invalid SLAC content in {dnds_file}")
-                    continue
-                sum_n, sum_s = 0, 0
-                for each in content:
-                    sum_n += each[3]
-                    sum_s += each[2]
+            match type:
+                case "FEL":
+                    sum_n, sum_s = 0, 0
+                    for each in content:
+                        s, n = each[0], each[1]
+                        if s is not None:
+                            sum_s += s
+                        if n is not None:
+                            sum_n += n
 
-                    dn = each[6]
-                    ds = each[5]
+                    results.append({
+                        "feature": "FEL dN/dS",
+                        "subfeature": "sumN/sumS",
+                        "value": safe_div(sum_n, sum_s)
+                    })
+
+                case "SLAC":
+                    content = content.get("by-site", {}).get("AVERAGED", [])
+                    if not content:
+                        logging.warning(f"Missing or invalid SLAC content in {dnds_file}")
+                        continue
+
+                    sum_n, sum_s = 0, 0
+                    for each in content:
+                        s, n, ds, dn = each[2], each[3], each[5], each[6]
+
+                        if n is not None:
+                            sum_n += n
+                        if s is not None:
+                            sum_s += s
+
+                        results.append({
+                            "feature": "SLAC dN/dS",
+                            "subfeature": "dN/dS",
+                            "value": safe_div(dn, ds)
+                        })
+
                     results.append({
                         "feature": "SLAC dN/dS",
-                        "subfeature": "dN/dS",
-                        "value": dn / ds if ds > 0 else 0
+                        "subfeature": "sumN/sumS",
+                        "value": safe_div(sum_n, sum_s)
                     })
 
-                results.append({
-                    "feature": "SLAC dN/dS",
-                    "subfeature": "sumN/sumS",
-                    "value": sum_n / sum_s if sum_s > 0 else 0
-                })
-            case "FUBAR":
-                for each in content:
-                    dn = each[1]
-                    ds = each[0]
+                case "FUBAR":
+                    for each in content:
+                        ds, dn = each[0], each[1]
+                        prob_neg_selection, prob_pos_selection = each[3], each[4]
 
-                    prob_neg_selection = each[3]
-                    prob_pos_selection = each[4]
+                        results.append({
+                            "feature": "FUBAR dN/dS",
+                            "subfeature": "dN/dS",
+                            "value": safe_div(dn, ds)
+                        })
+                        if prob_neg_selection is not None:
+                            results.append({
+                                "feature": "FUBAR dN/dS",
+                                "subfeature": "Probability negative selection",
+                                "value": prob_neg_selection
+                            })
+                        if prob_pos_selection is not None:
+                            results.append({
+                                "feature": "FUBAR dN/dS",
+                                "subfeature": "Probability positive selection",
+                                "value": prob_pos_selection
+                            })
 
-                    results.append({
-                        "feature": "FUBAR dN/dS",
-                        "subfeature": "dN/dS",
-                        "value": dn / ds if ds > 0 else 0
-                    })
+                case _:
+                    logging.warning(f"Unknown dN/dS type: {type}")
+                    continue
 
-                    results.append({
-                        "feature": "FUBAR dN/dS",
-                        "subfeature": "Probability negative selection",
-                        "value": prob_neg_selection
-                    })
-                    results.append({
-                        "feature": "FUBAR dN/dS",
-                        "subfeature": "Probability positive selection",
-                        "value": prob_pos_selection
-                    })
-            
-            case _:
-                logging.warning(f"Unknown dN/dS type: {type}")
-                continue
+        except Exception as e:
+            logging.error(f"Failed parsing {dnds_file}: {e}", exc_info=True)
+            continue
 
     return results
 
