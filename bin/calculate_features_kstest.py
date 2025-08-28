@@ -1422,6 +1422,7 @@ def plot_auroc_summary(results_df, output_dir):
             "Conservation Analysis Across Strains": "#e7298a",
             "Epitope Prediction": "#66a61e",
             "Epitope evaluation": "#e6ab02",
+            "Structure Analysis": "#d010e1",
             "Other": "#a6761d"
         }
         # Map colors

@@ -126,7 +126,7 @@ categorize_feature <- function(feature, subfeature) {
     return("Immunogenicity")
   }
   # Conservation Analysis
-  if (feature %in% c("cluster_conservation", "rate4site", "rate4site_deeptmhmm") ||
+  if (feature %in% c("cluster_conservation", "rate4site", "rate4site_deeptmhmm", "dnds") ||
       subfeature %in% c("Percent identity / number of strains", "Average Log₁₀ e-value", "Average bit-score / length")) {
     return("Conservation Analysis Across Strains")
   }
@@ -137,6 +137,10 @@ categorize_feature <- function(feature, subfeature) {
   # Epitope evaluation
   if (feature == "popcov") {
     return("Epitope evaluation")
+  }
+
+  if (feature %in% c("protlearn", "dssp")) {
+    return("Structure Analysis")
   }
   return("Other")
 }
@@ -164,6 +168,7 @@ plot_ks_statistics <- function(ks_df, output_dir) {
     "Conservation Analysis Across Strains" = "#e7298a",
     "Epitope Prediction" = "#66a61e",
     "Epitope evaluation" = "#e6ab02",
+    "Structure Analysis" = "#d010e1",
     "Other" = "#a6761d"
   )
   
