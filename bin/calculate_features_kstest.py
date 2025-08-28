@@ -1073,6 +1073,7 @@ def parse_dssp_dir(dssp_dir):
 
     return results
 
+
 def parse_dnds_dir(directory):
     """
     Parse the DNDS directory for structural features.
@@ -1091,10 +1092,20 @@ def parse_dnds_dir(directory):
     results = []
     for dnds_file in Path(directory).glob("*.json"):
         try:
+            # Skip empty files quickly
+            if dnds_file.stat().st_size == 0:
+                logging.warning(f"Skipping empty JSON file: {dnds_file}")
+                continue
+
             type = dnds_file.stem.split("_")[-2]  # Extract method type (FEL, SLAC, FUBAR)
             with open(dnds_file, "r") as f:
-                content = json.load(f).get("MLE", {}).get("content", {}).get("0")
+                try:
+                    data = json.load(f)
+                except json.JSONDecodeError:
+                    logging.warning(f"Skipping invalid JSON file: {dnds_file}")
+                    continue
 
+            content = data.get("MLE", {}).get("content", {}).get("0")
             if not content:
                 logging.warning(f"Missing or invalid content in {dnds_file}")
                 continue
