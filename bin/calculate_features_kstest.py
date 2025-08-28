@@ -1084,6 +1084,9 @@ def parse_dnds_dir(directory):
         type = dnds_file.stem.split("_")[-2] # Extract the type from the filename
         with open(dnds_file, "r") as f:
             content = json.load(f).get("MLE", {}).get("content", {}).get("0")
+            if not content:
+                logging.warning(f"Missing or invalid content in {dnds_file}")
+                continue
         match type:
             case "FEL":
                 sum_n, sum_s = 0, 0
@@ -1097,7 +1100,10 @@ def parse_dnds_dir(directory):
                     "value": sum_n / sum_s if sum_s > 0 else 0
                 })
             case "SLAC":
-                content = content.get("by-site").get("AVERAGED")
+                content = content.get("by-site", {}).get("AVERAGED", [])
+                if not content:
+                    logging.warning(f"Missing or invalid SLAC content in {dnds_file}")
+                    continue
                 sum_n, sum_s = 0, 0
                 for each in content:
                     sum_n += each[3]
