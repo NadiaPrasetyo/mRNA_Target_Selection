@@ -1237,7 +1237,7 @@ aac_F,0.018957345971563982
             reader = csv.DictReader(f)
             for row in reader:
                 feature = row["feature"]
-                value = row["value"].strip("[]")  # Remove brackets if present
+                value = row["value"].strip("[]") if row["value"] is not None else None  # Remove brackets if present
                 try:
                     value = int(float(value))  # Convert to float first, then to int
                     results.append({
