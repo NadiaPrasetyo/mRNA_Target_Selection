@@ -1239,8 +1239,9 @@ aac_F,0.018957345971563982
                 feature = row["feature"]
                 value = row["value"].strip("[]") if row["value"] is not None else None  # Remove brackets if present
                 try:
-                    value = int(float(value))  # Convert to float first, then to int
-                    results.append({
+                    if value is not None:  # Ensure value is not None before conversion
+                        value = int(float(value))  # Convert to float first, then to int
+                        results.append({
                         "feature": "ProtLearn",
                         "subfeature": feature,
                         "value": value
