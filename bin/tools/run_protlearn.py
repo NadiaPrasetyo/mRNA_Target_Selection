@@ -6,49 +6,13 @@ from Bio.Data.IUPACData import protein_letters_3to1
 from protlearn.features import (
     length,
     aac,
-    aaindex1,
-    ngram,
-    entropy,
-    posrich,
-    motif,
-    atc,
-    binary,
-    cksaap,
-    ctd,
-    ctdc,
-    ctdt,
-    ctdd,
-    moreau_broto,
-    moran,
-    geary,
-    paac,
-    apaac,
-    socn,
-    qso,
+    aaindex1
 )
 
 FEATURE_FUNCTIONS = {
     'length': length,
     'aac': aac,
-    'aaindex1': aaindex1,
-    'ngram': ngram,
-    'entropy': entropy,
-    'posrich': posrich,
-    'motif': motif,
-    'atc': atc,
-    'binary': binary,
-    'cksaap': cksaap,
-    'ctd': ctd,
-    'ctdc': ctdc,
-    'ctdt': ctdt,
-    'ctdd': ctdd,
-    'moreau_broto': moreau_broto,
-    'moran': moran,
-    'geary': geary,
-    'paac': paac,
-    'apaac': apaac,
-    'socn': socn,
-    'qso': qso,
+    'aaindex1': aaindex1
 }
 
 def extract_sequence_from_pdb(pdb_file):
