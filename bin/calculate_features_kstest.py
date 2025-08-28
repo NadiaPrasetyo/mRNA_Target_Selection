@@ -1121,7 +1121,7 @@ def parse_dnds_dir(directory):
                             sum_n += n
 
                     results.append({
-                        "feature": "FEL dN/dS",
+                        "feature": "FEL",
                         "subfeature": "sumN/sumS",
                         "value": safe_div(sum_n, sum_s)
                     })
@@ -1142,13 +1142,13 @@ def parse_dnds_dir(directory):
                             sum_s += s
 
                         results.append({
-                            "feature": "SLAC dN/dS",
+                            "feature": "SLAC",
                             "subfeature": "dN/dS",
                             "value": safe_div(dn, ds)
                         })
 
                     results.append({
-                        "feature": "SLAC dN/dS",
+                        "feature": "SLAC",
                         "subfeature": "sumN/sumS",
                         "value": safe_div(sum_n, sum_s)
                     })
@@ -1159,20 +1159,20 @@ def parse_dnds_dir(directory):
                         prob_neg_selection, prob_pos_selection = each[3], each[4]
 
                         results.append({
-                            "feature": "FUBAR dN/dS",
+                            "feature": "FUBAR",
                             "subfeature": "dN/dS",
                             "value": safe_div(dn, ds)
                         })
                         if prob_neg_selection is not None:
                             results.append({
-                                "feature": "FUBAR dN/dS",
-                                "subfeature": "Probability negative selection",
+                                "feature": "FUBAR",
+                                "subfeature": "probability_negative_selection",
                                 "value": prob_neg_selection
                             })
                         if prob_pos_selection is not None:
                             results.append({
-                                "feature": "FUBAR dN/dS",
-                                "subfeature": "Probability positive selection",
+                                "feature": "FUBAR",
+                                "subfeature": "probability_positive_selection",
                                 "value": prob_pos_selection
                             })
 
