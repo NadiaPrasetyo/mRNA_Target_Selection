@@ -1345,7 +1345,7 @@ def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir):
         output_dir (str): Directory to save the ROC plot.
     This function will create a directory "roc_plots" inside output_dir if it doesn't exist
     and save the ROC plot as a PNG file named "{feature}_{subfeature}_roc.png".
-    If the values are not numeric, it will skip plotting.
+    If the AUROC is exactly 0.5, it will skip plotting.
     If any error occurs during plotting, it will log the error but not raise an exception.
     """
     output_dir = os.path.join(output_dir, "roc_plots")
@@ -1358,8 +1358,14 @@ def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir):
         if not all(isinstance(v, (int, float)) for v in y_scores):
             return
 
-        fpr, tpr, _ = roc_curve(y_true, y_scores)
         auc = roc_auc_score(y_true, y_scores)
+
+        # Skip plotting if AUROC is exactly 0.5
+        if auc == 0.5:
+            logging.info(f"Skipping ROC plot for {feature}/{subfeature} as AUROC is 0.5")
+            return
+
+        fpr, tpr, _ = roc_curve(y_true, y_scores)
 
         # Make output directory if needed
         os.makedirs(output_dir, exist_ok=True)
@@ -1422,7 +1428,7 @@ def categorize_feature(feature, subfeature):
 def plot_auroc_summary(results_df, output_dir):
     """
     Create a bar plot of AUROC values for all features, categorized and colored.
-    AUROCs < 0.5 are adjusted as 1 - AUROC.
+    AUROCs < 0.5 are adjusted as 1 - AUROC. Excludes data where AUROC is exactly 0.5.
     Args:
         results_df (pd.DataFrame): DataFrame containing feature results with columns:
             - "feature": feature name (e.g., "bcell", "mhci")
@@ -1433,8 +1439,9 @@ def plot_auroc_summary(results_df, output_dir):
     output_path = os.path.join(output_dir, "auroc_summary.png")
     os.makedirs(output_dir, exist_ok=True)
     try:
-        # Drop missing AUROCs
+        # Drop missing AUROCs and exclude AUROCs exactly 0.5
         df = results_df.dropna(subset=["auroc"]).copy()
+        df = df[df["auroc"] != 0.5]
 
         # Adjust AUROCs < 0.5
         df["adjusted_auroc"] = df["auroc"].apply(lambda x: x if x >= 0.5 else 1 - x)
