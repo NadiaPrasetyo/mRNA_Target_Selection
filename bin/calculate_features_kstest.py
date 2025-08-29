@@ -1361,7 +1361,7 @@ def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir):
         auc = roc_auc_score(y_true, y_scores)
 
         # Skip plotting if AUROC is exactly 0.5
-        if auc == 0.5:
+        if auc == 0.5 or auc == 0.500:
             logging.info(f"Skipping ROC plot for {feature}/{subfeature} as AUROC is 0.5")
             return
 
@@ -1402,7 +1402,7 @@ def categorize_feature(feature, subfeature):
     if feature == "ifnepitope2":
         return "Immunogenicity"
     # Conservation Analysis
-    if feature in ["cluster_conservation", "rate4site", "rate4site_deeptmhmm", "dnds"] or subfeature in [
+    if feature in ["cluster_conservation", "rate4site", "rate4site_deeptmhmm", "FEL", "SLAC", "FUBAR"] or subfeature in [
         "Percent identity / number of strains",
         "Average Log₁₀ e-value",
         "Average bit-score / length",
@@ -1442,6 +1442,8 @@ def plot_auroc_summary(results_df, output_dir):
         # Drop missing AUROCs and exclude AUROCs exactly 0.5
         df = results_df.dropna(subset=["auroc"]).copy()
         df = df[df["auroc"] != 0.5]
+        # filter for p value <0.05
+        df = df[df["p_value"] < 0.05]
 
         # Adjust AUROCs < 0.5
         df["adjusted_auroc"] = df["auroc"].apply(lambda x: x if x >= 0.5 else 1 - x)
