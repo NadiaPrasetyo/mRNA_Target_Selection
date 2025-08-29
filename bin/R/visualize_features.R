@@ -126,7 +126,7 @@ categorize_feature <- function(feature, subfeature) {
     return("Immunogenicity")
   }
   # Conservation Analysis
-  if (feature %in% c("cluster_conservation", "rate4site", "rate4site_deeptmhmm", "dnds") ||
+  if (feature %in% c("cluster_conservation", "rate4site", "rate4site_deeptmhmm", "dnds", "FEL", "FUBAR", "SLAC") ||
       subfeature %in% c("Percent identity / number of strains", "Average Log₁₀ e-value", "Average bit-score / length")) {
     return("Conservation Analysis Across Strains")
   }
@@ -139,7 +139,7 @@ categorize_feature <- function(feature, subfeature) {
     return("Epitope evaluation")
   }
 
-  if (feature %in% c("protlearn", "dssp")) {
+  if (feature %in% c("ProtLearn", "dssp")) {
     return("Structure Analysis")
   }
   return("Other")
