@@ -1421,7 +1421,7 @@ def categorize_feature(feature, subfeature):
     if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred"]:
         return "Epitope Prediction"
     # Epitope evaluation
-    if feature in ["dssp", "protlearn"]:
+    if feature in ["dssp", "ProtLearn"]:
         return "Structure Analysis"
     return "Other"
 
