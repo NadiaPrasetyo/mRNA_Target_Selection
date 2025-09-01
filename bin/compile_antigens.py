@@ -179,7 +179,7 @@ def check_for_duplicates(combined_df, gene_only=False):
     if gene_only:
         name_sets = {
             idx: {normalize_name(row.get('gene_name', None))}
-            for idx, row in combined_df.iterrows()
+            for idx, row in combined_df.iterrows() if pd.notna(row.get('gene_name', None))
         }
     else:
         name_sets = {
