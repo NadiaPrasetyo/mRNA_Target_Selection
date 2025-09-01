@@ -1,0 +1,340 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus BALB/c']",['Other Chlamydia trachomatis protein'],,,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Large ribosomal subunit protein bL31B (UniProt:O84025)'],,O84025,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Macro domain-containing protein (UniProt:O84061)'],,O84061,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Low Calcium Response E (UniProt:O84091)'],,O84091,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Membrane associated protein (UniProt:O84103)'],,O84103,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus C57BL/6']",['Uncharacterized protein (UniProt:O84145)'],,O84145,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Integral membrane protein (UniProt:O84149)'],,O84149,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Candidate inclusion membrane protein (UniProt:O84226)'],,O84226,IEDB
+['Chlamydia trachomatis Sweden2 (Chlamydia trachomatis str. Sweden2)'],['Homo sapiens (human)'],['Membrane associated protein (UniProt:O84229)'],,O84229,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Recombination protein RecR (UniProt:O84243)'],,O84243,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Probable ATP-dependent Clp protease ATP-binding subunit (UniProt:O84288)'],,O84288,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['ComEC/Rec2-related protein domain-containing protein (UniProt:O84343)'],,O84343,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['GTPase HflX (UniProt:O84383)'],,O84383,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Probable ABC transporter arginine-binding protein ArtJ (UniProt:O84385)'],,O84385,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Probable outer membrane protein PmpC (UniProt:O84419)'],,O84419,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus C57BL/6 X BALB/cByJ', 'Mus musculus Clone 19 TCR Tg']","['Sulfur-rich protein, serovar D (UniProt:O84449)']",,O84449,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar D']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Oryctolagus cuniculus New Zealand White']",['Translocated actin-recruiting phosphoprotein (UniProt:O84462)'],,O84462,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis A2497 (Chlamydia trachomatis str. A2497)', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus (mouse)']",['Uncharacterized protein (UniProt:O84534)'],,O84534,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Aspartate--tRNA(Asp/Asn) ligase (UniProt:O84546)'],,O84546,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Gen. Secretion Protein D (UniProt:O84576)'],,O84576,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Protein CT_579 (UniProt:O84583)'],,O84583,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Enolase (UniProt:O84591)'],,O84591,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['PPM-type phosphatase domain-containing protein (UniProt:O84593)'],,O84593,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['Invasin repeat family phosphatase (UniProt:O84606)'],,O84606,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Thio-specific Antioxidant (TSA) Peroxidase (UniProt:O84608)'],,O84608,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['4-aminobenzoate synthase (UniProt:O84616)'],,O84616,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis A2497 (Chlamydia trachomatis str. A2497)', 'Chlamydia trachomatis B/TZ1A828/OT (Chlamydia trachomatis str. B/TZ1A828/OT)', 'Chlamydia trachomatis D-EC (Chlamydia trachomatis str. D-EC)', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c']",['Uncharacterized protein (UniProt:O84623)'],,O84623,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus C57BL/6']",['CHLPN 76kDa Homolog (UniProt:O84627)'],,O84627,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['Na(+)-translocating NADH-quinone reductase subunit A (UniProt:O84639)'],,O84639,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],"['Exodeoxyribonuclease V, Gamma (UniProt:O84646)']",,O84646,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['Predicted Efflux Protein (UniProt:O84647)'],,O84647,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Type III secretion system effector protein (UniProt:O84700)'],,O84700,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:O84701)'],,O84701,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']",['Homo sapiens (human)'],['DNA primase (UniProt:O84799)'],,O84799,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:O84801)'],,O84801,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis D-EC (Chlamydia trachomatis str. D-EC)', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus (mouse)']",['Probable outer membrane protein PmpD (UniProt:O84818)'],,O84818,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['IncA family protein (UniProt:O84819)'],,O84819,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['ATP-dependent zinc metalloprotease FtsH (UniProt:O84848)'],,O84848,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['Uncharacterized protein (UniProt:O84854)'],,O84854,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']",['Integral membrane protein (UniProt:O84858)'],,O84858,IEDB
+['Chlamydia trachomatis Serovar L2'],"['Homo sapiens (human)', 'Mus musculus HLA-DR4 Tg']",['Protein CT_858 (UniProt:O84866)'],,O84866,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Uncharacterized protein CT_875 (UniProt:O84883)'],,O84883,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus C3H/He', 'Mus musculus C57BL/6', 'Oryctolagus cuniculus New Zealand White']",['Chaperonin GroEL (UniProt:P0C0Z7)'],,P0C0Z7,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus BALB/c']",['Large cysteine-rich periplasmic protein OmcB (UniProt:P0CC04)'],,P0CC04,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Large ribosomal subunit protein uL16 (UniProt:P0CD83)'],,P0CD83,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Histone H1-like protein Hc1 (UniProt:P0CE15)'],,P0CE15,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Inclusion membrane protein A (UniProt:P0CI27)'],,P0CI27,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c']",['Inclusion membrane protein E (UniProt:P0DJI4)'],,P0DJI4,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus (mouse)']",['Inclusion membrane protein G (UniProt:P0DPS6)'],,P0DPS6,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus BALB/c']",['Chaperone protein DnaK (UniProt:P17821)'],,P17821,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['RNA polymerase sigma factor SigA (UniProt:P18333)'],,P18333,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Probable periplasmic serine endoprotease DegP-like (UniProt:P18584)'],,P18584,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Peptidyl-prolyl cis-trans isomerase Mip (UniProt:P26623)'],,P26623,IEDB
+['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus Swiss Webster', 'Oryctolagus cuniculus (rabbit)']",['Outer membrane protein B (UniProt:P38006)'],,P38006,IEDB
+"['Chlamydia trachomatis', 'Chlamydia trachomatis A/HAR-13 (Chlamydia trachomatis str. A/HAR-13)', 'Chlamydia trachomatis B/Jali-20/OT', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)', 'Chlamydia trachomatis Serovar A', 'Chlamydia trachomatis Serovar B', 'Chlamydia trachomatis Serovar C', 'Chlamydia trachomatis Serovar D', 'Chlamydia trachomatis Serovar Da', 'Chlamydia trachomatis Serovar E', 'Chlamydia trachomatis Serovar F', 'Chlamydia trachomatis Serovar H', 'Chlamydia trachomatis Serovar I', 'Chlamydia trachomatis Serovar J', 'Chlamydia trachomatis serovar K', 'Chlamydia trachomatis Serovar L1', 'Chlamydia trachomatis Serovar L2', 'Chlamydia trachomatis Serovar L3']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Macaca fascicularis (crab eating macaque)', 'Mus musculus A.BY', 'Mus musculus A/J', 'Mus musculus A.SW', 'Mus musculus B10.A', 'Mus musculus B10.BR', 'Mus musculus B10.D2', 'Mus musculus BALB/c', 'Mus musculus C3H/He', 'Mus musculus C3H/He-mg', 'Mus musculus C57BL/10', 'Mus musculus C57BL/10 X DBA/2', 'Mus musculus C57BL/6', 'Mus musculus CBA', 'Mus musculus DBA/1', 'Mus musculus HLA-DQ8 Tg', 'Mus musculus (mouse)', 'Mus musculus NMRI', 'Mus musculus SJL', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)', 'Oryctolagus cuniculus Sandy Half-Lop', 'Rattus norvegicus (brown rat)']","['Major outer membrane porin, serovar D (UniProt:Q46409)']",,Q46409,IEDB
+['Chlamydia trachomatis'],['Homo sapiens (human)'],['Metal-binding protein YtgA (UniProt:Q9S529)'],,Q9S529,IEDB
+chlamydia trachomatis,Homo sapiens,Cap1,,,literature
+chlamydia trachomatis,Homo sapiens,MOMP,,,literature
+chlamydia trachomatis,Homo sapiens,OMP2,,,literature
+chlamydia trachomatis,Homo sapiens,HSP60,,,literature
+chlamydia trachomatis,Homo sapiens,YopD,,,literature
+chlamydia trachomatis,Homo sapiens,PmpD,,,literature
+chlamydia trachomatis,Homo sapiens,COMC,,,literature
+chlamydia trachomatis,Homo sapiens,PmpA,,,literature
+chlamydia trachomatis,Homo sapiens,PmpB,,,literature
+chlamydia trachomatis,Homo sapiens,PmpC,,,literature
+chlamydia trachomatis,Homo sapiens,PmpE,,,literature
+chlamydia trachomatis,Homo sapiens,PmpF,,,literature
+chlamydia trachomatis,Homo sapiens,PmpG,,,literature
+chlamydia trachomatis,Homo sapiens,PmpH,,,literature
+chlamydia trachomatis,Homo sapiens,PmpI,,,literature
+chlamydia trachomatis,Homo sapiens,Pgp3,,,literature
+chlamydia trachomatis,Homo sapiens,OmcB,,,literature
+chlamydia trachomatis,Homo sapiens,Tarp,,,literature
+chlamydia trachomatis,Homo sapiens,MIP,,,literature
+chlamydia trachomatis,Homo sapiens,CopB,,,literature
+chlamydia trachomatis,Homo sapiens,CopD,,,literature
+chlamydia trachomatis,Homo sapiens,CT584,,,literature
+chlamydia trachomatis,Homo sapiens,PorB,,,literature
+chlamydia trachomatis,Homo sapiens,NrdB,,,literature
+chlamydia trachomatis,Homo sapiens,glycogen phosphorylase,,,literature
+chlamydia trachomatis,Homo sapiens,CT067,,,literature
+chlamydia trachomatis,Homo sapiens,CT142,,,literature
+chlamydia trachomatis,Homo sapiens,CT143,,,literature
+chlamydia trachomatis,Homo sapiens,CT147,,,literature
+chlamydia trachomatis,Homo sapiens,CT153,,,literature
+chlamydia trachomatis,Homo sapiens,CT322,,,literature
+chlamydia trachomatis,Homo sapiens,CT376,,,literature
+chlamydia trachomatis,Homo sapiens,CT381,,,literature
+chlamydia trachomatis,Homo sapiens,CT414,,,literature
+chlamydia trachomatis,Homo sapiens,CT443,,,literature
+chlamydia trachomatis,Homo sapiens,CT456,,,literature
+chlamydia trachomatis,Homo sapiens,CT529,,,literature
+chlamydia trachomatis,Homo sapiens,CT557,,,literature
+chlamydia trachomatis,Homo sapiens,CT603,,,literature
+chlamydia trachomatis,Homo sapiens,CT694,,,literature
+chlamydia trachomatis,Homo sapiens,CT795,,,literature
+chlamydia trachomatis,Homo sapiens,CT798,,,literature
+chlamydia trachomatis,Homo sapiens,CT806,,,literature
+chlamydia trachomatis,Homo sapiens,CT812,,,literature
+chlamydia trachomatis,Homo sapiens,CT813,,,literature
+chlamydia trachomatis,Homo sapiens,CT823,,,literature
+chlamydia trachomatis,Homo sapiens,CT866,,,literature
+chlamydia trachomatis,Homo sapiens,pCT03,,,literature
+chlamydia trachomatis,Homo sapiens,CT695,,,literature
+chlamydia trachomatis,Homo sapiens,CT667,,,literature
+chlamydia trachomatis,Homo sapiens,CT019,,,literature
+chlamydia trachomatis,Homo sapiens,CT301,,,literature
+chlamydia trachomatis,Homo sapiens,CT553,,,literature
+chlamydia trachomatis,Homo sapiens,CT556,,,literature
+chlamydia trachomatis,Homo sapiens,CT709,,,literature
+chlamydia trachomatis,Homo sapiens,CT656,,,literature
+chlamydia trachomatis,Homo sapiens,CT404,,,literature
+chlamydia trachomatis,Homo sapiens,CT279,,,literature
+chlamydia trachomatis,Homo sapiens,CT368,,,literature
+chlamydia trachomatis,Homo sapiens,CT651,,,literature
+chlamydia trachomatis,Homo sapiens,CT817,,,literature
+chlamydia trachomatis,Homo sapiens,CT864,,,literature
+chlamydia trachomatis,Homo sapiens,CT039,,,literature
+chlamydia trachomatis,Homo sapiens,CT148,,,literature
+chlamydia trachomatis,Homo sapiens,CT763,,,literature
+chlamydia trachomatis,Homo sapiens,CT268,,,literature
+chlamydia trachomatis,Homo sapiens,CT543,,,literature
+chlamydia trachomatis,Homo sapiens,CT507,,,literature
+chlamydia trachomatis,Homo sapiens,CT315,,,literature
+chlamydia trachomatis,Homo sapiens,CT226,,,literature
+chlamydia trachomatis,Homo sapiens,CT314,,,literature
+chlamydia trachomatis,Homo sapiens,CT486,,,literature
+chlamydia trachomatis,Homo sapiens,CT845,,,literature
+chlamydia trachomatis,Homo sapiens,CT030,,,literature
+chlamydia trachomatis,Homo sapiens,CT533,,,literature
+chlamydia trachomatis,Homo sapiens,CT064,,,literature
+chlamydia trachomatis,Homo sapiens,CT262,,,literature
+chlamydia trachomatis,Homo sapiens,CT283,,,literature
+chlamydia trachomatis,Homo sapiens,CT668,,,literature
+chlamydia trachomatis,Homo sapiens,CT677,,,literature
+chlamydia trachomatis,Homo sapiens,CT741,,,literature
+chlamydia trachomatis,Homo sapiens,CT101,,,literature
+chlamydia trachomatis,Homo sapiens,CT097,,,literature
+chlamydia trachomatis,Homo sapiens,CT022,,,literature
+chlamydia trachomatis,Homo sapiens,CT332,,,literature
+chlamydia trachomatis,Homo sapiens,CT664,,,literature
+chlamydia trachomatis,Homo sapiens,CT621,,,literature
+chlamydia trachomatis,Homo sapiens,CT727,,,literature
+chlamydia trachomatis,Homo sapiens,CT434,,,literature
+chlamydia trachomatis,Homo sapiens,CT012,,,literature
+chlamydia trachomatis,Homo sapiens,CT384,,,literature
+chlamydia trachomatis,Homo sapiens,CT023,,,literature
+chlamydia trachomatis,Homo sapiens,CT054,,,literature
+chlamydia trachomatis,Homo sapiens,CT323,,,literature
+chlamydia trachomatis,Homo sapiens,CT766,,,literature
+chlamydia trachomatis,Homo sapiens,CT275,,,literature
+chlamydia trachomatis,Homo sapiens,CT737,,,literature
+chlamydia trachomatis,Homo sapiens,CT757,,,literature
+chlamydia trachomatis,Homo sapiens,CT821,,,literature
+chlamydia trachomatis,Homo sapiens,CT444,,,literature
+chlamydia trachomatis,Homo sapiens,CT230,,,literature
+chlamydia trachomatis,Homo sapiens,CT457,,,literature
+chlamydia trachomatis,Homo sapiens,CT123,,,literature
+chlamydia trachomatis,Homo sapiens,CT616,,,literature
+chlamydia trachomatis,Homo sapiens,CT642,,,literature
+chlamydia trachomatis,Homo sapiens,CT751,,,literature
+chlamydia trachomatis,Homo sapiens,CT190,,,literature
+chlamydia trachomatis,Homo sapiens,CT660,,,literature
+chlamydia trachomatis,Homo sapiens,CT213,,,literature
+chlamydia trachomatis,Homo sapiens,CT602,,,literature
+chlamydia trachomatis,Homo sapiens,CT532,,,literature
+chlamydia trachomatis,Homo sapiens,CT078,,,literature
+chlamydia trachomatis,Homo sapiens,CT583,,,literature
+chlamydia trachomatis,Homo sapiens,CT875,,,literature
+chlamydia trachomatis,Homo sapiens,CT542,,,literature
+chlamydia trachomatis,Homo sapiens,CT084,,,literature
+chlamydia trachomatis,Homo sapiens,CT225,,,literature
+chlamydia trachomatis,Homo sapiens,CT437,,,literature
+chlamydia trachomatis,Homo sapiens,CT841,,,literature
+chlamydia trachomatis,Homo sapiens,CT098,,,literature
+chlamydia trachomatis,Homo sapiens,CT328,,,literature
+chlamydia trachomatis,Homo sapiens,CT752,,,literature
+chlamydia trachomatis,Homo sapiens,CT622,,,literature
+chlamydia trachomatis,Homo sapiens,CT541,,,literature
+chlamydia trachomatis,Homo sapiens,CT659,,,literature
+chlamydia trachomatis,Homo sapiens,CT365,,,literature
+chlamydia trachomatis,Homo sapiens,CT099,,,literature
+chlamydia trachomatis,Homo sapiens,CT679,,,literature
+chlamydia trachomatis,Homo sapiens,CT467,,,literature
+chlamydia trachomatis,Homo sapiens,CT772,,,literature
+chlamydia trachomatis,Homo sapiens,CT558,,,literature
+chlamydia trachomatis,Homo sapiens,CT001,,,literature
+chlamydia trachomatis,Homo sapiens,CT736,,,literature
+chlamydia trachomatis,Homo sapiens,CT237,,,literature
+chlamydia trachomatis,Homo sapiens,CT228,,,literature
+chlamydia trachomatis,Homo sapiens,CT249,,,literature
+chlamydia trachomatis,Homo sapiens,CT288,,,literature
+chlamydia trachomatis,Homo sapiens,CT358,,,literature
+chlamydia trachomatis,Homo sapiens,CT440,,,literature
+chlamydia trachomatis,Homo sapiens,CT618,,,literature
+chlamydia trachomatis,Homo sapiens,CT058,,,literature
+chlamydia trachomatis,Homo sapiens,CT192,,,literature
+chlamydia trachomatis,Homo sapiens,CT195,,,literature
+chlamydia trachomatis,Homo sapiens,CT383,,,literature
+chlamydia trachomatis,Homo sapiens,CT484,,,literature
+chlamydia trachomatis,Homo sapiens,CT565,,,literature
+chlamydia trachomatis,Homo sapiens,CT850,,,literature
+chlamydia trachomatis,Homo sapiens,CT005,,,literature
+chlamydia trachomatis,Homo sapiens,CT006,,,literature
+chlamydia trachomatis,Homo sapiens,CT036,,,literature
+chlamydia trachomatis,Homo sapiens,CT134,,,literature
+chlamydia trachomatis,Homo sapiens,CT135,,,literature
+chlamydia trachomatis,Homo sapiens,CT164,,,literature
+chlamydia trachomatis,Homo sapiens,CT179,,,literature
+chlamydia trachomatis,Homo sapiens,CT196,,,literature
+chlamydia trachomatis,Homo sapiens,CT214,,,literature
+chlamydia trachomatis,Homo sapiens,CT222,,,literature
+chlamydia trachomatis,Homo sapiens,CT224,,,literature
+chlamydia trachomatis,Homo sapiens,CT227,,,literature
+chlamydia trachomatis,Homo sapiens,CT300,,,literature
+chlamydia trachomatis,Homo sapiens,CT345,,,literature
+chlamydia trachomatis,Homo sapiens,CT357,,,literature
+chlamydia trachomatis,Homo sapiens,CT449,,,literature
+chlamydia trachomatis,Homo sapiens,CT483,,,literature
+chlamydia trachomatis,Homo sapiens,CT728,,,literature
+chlamydia trachomatis,Homo sapiens,CT789,,,literature
+chlamydia trachomatis,Homo sapiens,CT011,,,literature
+chlamydia trachomatis,Homo sapiens,CT018,,,literature
+chlamydia trachomatis,Homo sapiens,CT021,,,literature
+chlamydia trachomatis,Homo sapiens,CT049,,,literature
+chlamydia trachomatis,Homo sapiens,CT056,,,literature
+chlamydia trachomatis,Homo sapiens,CT085,,,literature
+chlamydia trachomatis,Homo sapiens,CT088,sycE,,literature
+chlamydia trachomatis,Homo sapiens,CT089,lcrE,,literature
+chlamydia trachomatis,Homo sapiens,CT110,groEL1,,literature
+chlamydia trachomatis,Homo sapiens,CT111,groES,,literature
+chlamydia trachomatis,Homo sapiens,CT112,pepF,,literature
+chlamydia trachomatis,Homo sapiens,CT113,clpB,,literature
+chlamydia trachomatis,Homo sapiens,CT115,incD,,literature
+chlamydia trachomatis,Homo sapiens,CT116,incE,,literature
+chlamydia trachomatis,Homo sapiens,CT117,incF,,literature
+chlamydia trachomatis,Homo sapiens,CT118,incG,,literature
+chlamydia trachomatis,Homo sapiens,CT119,incA,,literature
+chlamydia trachomatis,Homo sapiens,CT133,,,literature
+chlamydia trachomatis,Homo sapiens,CT141,secA,,literature
+chlamydia trachomatis,Homo sapiens,CT149,,,literature
+chlamydia trachomatis,Homo sapiens,CT151,,,literature
+chlamydia trachomatis,Homo sapiens,CT154,,,literature
+chlamydia trachomatis,Homo sapiens,CT155,,,literature
+chlamydia trachomatis,Homo sapiens,CT161,,,literature
+chlamydia trachomatis,Homo sapiens,CT162,,,literature
+chlamydia trachomatis,Homo sapiens,CT163,,,literature
+chlamydia trachomatis,Homo sapiens,CT165,,,literature
+chlamydia trachomatis,Homo sapiens,CT171,trpA,,literature
+chlamydia trachomatis,Homo sapiens,CT173,,,literature
+chlamydia trachomatis,Homo sapiens,CT174,,,literature
+chlamydia trachomatis,Homo sapiens,CT181,,,literature
+chlamydia trachomatis,Homo sapiens,CT191,,,literature
+chlamydia trachomatis,Homo sapiens,CT223,inc,,literature
+chlamydia trachomatis,Homo sapiens,CT227C,,,literature
+chlamydia trachomatis,Homo sapiens,CT229,inc,,literature
+chlamydia trachomatis,Homo sapiens,CT232,incB,,literature
+chlamydia trachomatis,Homo sapiens,CT233,incC,,literature
+chlamydia trachomatis,Homo sapiens,CT260,,,literature
+chlamydia trachomatis,Homo sapiens,CT266,,,literature
+chlamydia trachomatis,Homo sapiens,CT277,,,literature
+chlamydia trachomatis,Homo sapiens,CT286,clpC,,literature
+chlamydia trachomatis,Homo sapiens,CT296,,,literature
+chlamydia trachomatis,Homo sapiens,CT309,,,literature
+chlamydia trachomatis,Homo sapiens,CT321,secE,,literature
+chlamydia trachomatis,Homo sapiens,CT324,,,literature
+chlamydia trachomatis,Homo sapiens,CT338,,,literature
+chlamydia trachomatis,Homo sapiens,CT341,dnaJ,,literature
+chlamydia trachomatis,Homo sapiens,CT343,endopeptidase,,literature
+chlamydia trachomatis,Homo sapiens,CT344,lon,,literature
+chlamydia trachomatis,Homo sapiens,CT351,,,literature
+chlamydia trachomatis,Homo sapiens,CT365N,,,literature
+chlamydia trachomatis,Homo sapiens,CT372,,,literature
+chlamydia trachomatis,Homo sapiens,CT395,grpE,,literature
+chlamydia trachomatis,Homo sapiens,CT396,dnaK,,literature
+chlamydia trachomatis,Homo sapiens,CT406,,,literature
+chlamydia trachomatis,Homo sapiens,CT407,dksA,,literature
+chlamydia trachomatis,Homo sapiens,CT421,,,literature
+chlamydia trachomatis,Homo sapiens,CT422,metalloproteas,,literature
+chlamydia trachomatis,Homo sapiens,CT425,,,literature
+chlamydia trachomatis,Homo sapiens,CT427,,,literature
+chlamydia trachomatis,Homo sapiens,CT431,clpP,,literature
+chlamydia trachomatis,Homo sapiens,CT442,crpA,,literature
+chlamydia trachomatis,Homo sapiens,CT446,euo,,literature
+chlamydia trachomatis,Homo sapiens,CT457C,yebC,,literature
+chlamydia trachomatis,Homo sapiens,CT473,,,literature
+chlamydia trachomatis,Homo sapiens,CT474,,,literature
+chlamydia trachomatis,Homo sapiens,CT482,,,literature
+chlamydia trachomatis,Homo sapiens,CT493C,polA,,literature
+chlamydia trachomatis,Homo sapiens,CT546,,,literature
+chlamydia trachomatis,Homo sapiens,CT548,,,literature
+chlamydia trachomatis,Homo sapiens,CT560,,,literature
+chlamydia trachomatis,Homo sapiens,CT569,,,literature
+chlamydia trachomatis,Homo sapiens,CT571N,gspE,,literature
+chlamydia trachomatis,Homo sapiens,CT572,gspD,,literature
+chlamydia trachomatis,Homo sapiens,CT573,,,literature
+chlamydia trachomatis,Homo sapiens,CT574,pepP,,literature
+chlamydia trachomatis,Homo sapiens,CT576,lcrH,,literature
+chlamydia trachomatis,Homo sapiens,CT577,,,literature
+chlamydia trachomatis,Homo sapiens,CT604,groEL2,,literature
+chlamydia trachomatis,Homo sapiens,CT606,,,literature
+chlamydia trachomatis,Homo sapiens,CT611,,,literature
+chlamydia trachomatis,Homo sapiens,CT627,yceA,,literature
+chlamydia trachomatis,Homo sapiens,CT638,,,literature
+chlamydia trachomatis,Homo sapiens,CT647,,,literature
+chlamydia trachomatis,Homo sapiens,CT648,,,literature
+chlamydia trachomatis,Homo sapiens,CT654,,,literature
+chlamydia trachomatis,Homo sapiens,CT657,,,literature
+chlamydia trachomatis,Homo sapiens,CT670,,,literature
+chlamydia trachomatis,Homo sapiens,CT671,,,literature
+chlamydia trachomatis,Homo sapiens,CT676,,,literature
+chlamydia trachomatis,Homo sapiens,CT681,ompA,,literature
+chlamydia trachomatis,Homo sapiens,CT700,,,literature
+chlamydia trachomatis,Homo sapiens,CT701,secA2,,literature
+chlamydia trachomatis,Homo sapiens,CT705,clpX,,literature
+chlamydia trachomatis,Homo sapiens,CT706,clpP2,,literature
+chlamydia trachomatis,Homo sapiens,CT712,,,literature
+chlamydia trachomatis,Homo sapiens,CT717,flil,,literature
+chlamydia trachomatis,Homo sapiens,CT718,,,literature
+chlamydia trachomatis,Homo sapiens,CT724,,,literature
+chlamydia trachomatis,Homo sapiens,CT733,,,literature
+chlamydia trachomatis,Homo sapiens,CT734,,,literature
+chlamydia trachomatis,Homo sapiens,CT739C,ftsK,,literature
+chlamydia trachomatis,Homo sapiens,CT753,,,literature
+chlamydia trachomatis,Homo sapiens,CT755,groEL3,,literature
+chlamydia trachomatis,Homo sapiens,CT716,,,literature
+chlamydia trachomatis,Homo sapiens,CT764,,,literature
+chlamydia trachomatis,Homo sapiens,CT768,,,literature
+chlamydia trachomatis,Homo sapiens,CT779,,,literature
+chlamydia trachomatis,Homo sapiens,CT789b,,,literature
+chlamydia trachomatis,Homo sapiens,CT814,,,literature
+chlamydia trachomatis,Homo sapiens,CT814.1,,,literature
+chlamydia trachomatis,Homo sapiens,CT820,fstY,,literature
+chlamydia trachomatis,Homo sapiens,CT823C,htrA,,literature
+chlamydia trachomatis,Homo sapiens,CT825C,,,literature
+chlamydia trachomatis,Homo sapiens,CT847,,,literature
+chlamydia trachomatis,Homo sapiens,CT849,,,literature
+chlamydia trachomatis,Homo sapiens,CT858,cpaf,,literature

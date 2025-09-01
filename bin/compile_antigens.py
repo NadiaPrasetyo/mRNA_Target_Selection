@@ -224,6 +224,7 @@ def check_for_duplicates(combined_df, gene_only=False):
                     keep = group
                 elif keep_input == "none":
                     keep = set()
+                    break
                 else:
                     keep = {int(x.strip()) for x in keep_input.split(",") if x.strip()}
             except ValueError:
@@ -247,49 +248,55 @@ def split_and_expand_entries(df):
         antigen_names = set()
         gene_names = set()
         
-        # --- Extract antigen names ---
-        if pd.notna(row["antigen_name"]):
-            text = str(row["antigen_name"])
-            
-            # Remove any (UniProt:XXXX) from text
-            text = re.sub(r"\(.*?UniProt:[A-Z0-9]+\)", "", text, flags=re.IGNORECASE)
-            
-            # Add the cleaned full name
-            antigen_names.add(text.strip())
-            
-            # Split inside parentheses (ignore UniProt content)
-            for content in re.findall(r"\((.*?)\)", text):
-                if re.search(r"uniprot:[A-Z0-9]+", content, flags=re.IGNORECASE):
-                    continue
-                content = re.sub(r"also known as", "", content, flags=re.IGNORECASE)
-                for part in re.split(r",| and ", content):
+        # Only process rows where the source is not "IEDB"
+        if row["source"] != "IEDB":
+            # --- Extract antigen names ---
+            if pd.notna(row["antigen_name"]):
+                text = str(row["antigen_name"])
+                
+                # Remove any (UniProt:XXXX) from text
+                text = re.sub(r"\(.*?UniProt:[A-Z0-9]+\)", "", text, flags=re.IGNORECASE)
+                
+                # Add the cleaned full name
+                antigen_names.add(text.strip())
+                
+                # Split inside parentheses (ignore UniProt content)
+                for content in re.findall(r"\((.*?)\)", text):
+                    if re.search(r"uniprot:[A-Z0-9]+", content, flags=re.IGNORECASE):
+                        continue
+                    content = re.sub(r"also known as", "", content, flags=re.IGNORECASE)
+                    for part in re.split(r",| and ", content):
+                        part = part.strip()
+                        if part:
+                            antigen_names.add(part)
+                
+                # Split without parentheses
+                no_paren = re.sub(r"\(.*?\)", "", text)
+                for part in re.split(r",| and ", no_paren):
                     part = part.strip()
                     if part:
                         antigen_names.add(part)
             
-            # Split without parentheses
-            no_paren = re.sub(r"\(.*?\)", "", text)
-            for part in re.split(r",| and ", no_paren):
-                part = part.strip()
-                if part:
-                    antigen_names.add(part)
-        
-        # --- Extract gene names ---
-        if pd.notna(row["gene_name"]):
-            for part in re.split(r",| and |\s", str(row["gene_name"])):
-                part = part.strip()
-                if part:
-                    gene_names.add(part)
-        else:
-            gene_names.add(None)
+            # --- Extract gene names ---
+            if pd.notna(row["gene_name"]):
+                for part in re.split(r",| and |\s", str(row["gene_name"])):
+                    part = part.strip()
+                    if part:
+                        gene_names.add(part)
+            else:
+                gene_names.add(None)
         
         # --- Expand to all name/gene combinations ---
-        for name in antigen_names:
-            for gene in gene_names:
-                new_row = row.copy()
-                new_row["antigen_name"] = name
-                new_row["gene_name"] = gene
-                expanded_rows.append(new_row)
+        if antigen_names or gene_names:
+            for name in antigen_names:
+                for gene in gene_names:
+                    new_row = row.copy()
+                    new_row["antigen_name"] = name
+                    new_row["gene_name"] = gene
+                    expanded_rows.append(new_row)
+        else:
+            # If no expansion is needed, keep the row as is
+            expanded_rows.append(row)
     
     return pd.DataFrame(expanded_rows).reset_index(drop=True)
 
