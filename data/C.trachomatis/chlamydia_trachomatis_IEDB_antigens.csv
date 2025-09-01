@@ -1,0 +1,57 @@
+parent_source_antigen_iri,parent_source_antigen_names,source_organism_names,host_organism_names
+taxon_protein:813-other,['Other Chlamydia trachomatis protein'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:O84025,['Large ribosomal subunit protein bL31B (UniProt:O84025)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84061,['Macro domain-containing protein (UniProt:O84061)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84091,['Low Calcium Response E (UniProt:O84091)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84103,['Membrane associated protein (UniProt:O84103)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84145,['Uncharacterized protein (UniProt:O84145)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus C57BL/6']"
+UNIPROT:O84149,['Integral membrane protein (UniProt:O84149)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84226,['Candidate inclusion membrane protein (UniProt:O84226)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84229,['Membrane associated protein (UniProt:O84229)'],['Chlamydia trachomatis Sweden2 (Chlamydia trachomatis str. Sweden2)'],['Homo sapiens (human)']
+UNIPROT:O84243,['Recombination protein RecR (UniProt:O84243)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84288,['Probable ATP-dependent Clp protease ATP-binding subunit (UniProt:O84288)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84343,['ComEC/Rec2-related protein domain-containing protein (UniProt:O84343)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84383,['GTPase HflX (UniProt:O84383)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84385,['Probable ABC transporter arginine-binding protein ArtJ (UniProt:O84385)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84419,['Probable outer membrane protein PmpC (UniProt:O84419)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84449,"['Sulfur-rich protein, serovar D (UniProt:O84449)']","['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus C57BL/6 X BALB/cByJ', 'Mus musculus Clone 19 TCR Tg']"
+UNIPROT:O84462,['Translocated actin-recruiting phosphoprotein (UniProt:O84462)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar D']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Oryctolagus cuniculus New Zealand White']"
+UNIPROT:O84534,['Uncharacterized protein (UniProt:O84534)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis A2497 (Chlamydia trachomatis str. A2497)', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus (mouse)']"
+UNIPROT:O84546,['Aspartate--tRNA(Asp/Asn) ligase (UniProt:O84546)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84576,['Gen. Secretion Protein D (UniProt:O84576)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84583,['Protein CT_579 (UniProt:O84583)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84591,['Enolase (UniProt:O84591)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84593,['PPM-type phosphatase domain-containing protein (UniProt:O84593)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84606,['Invasin repeat family phosphatase (UniProt:O84606)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84608,['Thio-specific Antioxidant (TSA) Peroxidase (UniProt:O84608)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84616,['4-aminobenzoate synthase (UniProt:O84616)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84623,['Uncharacterized protein (UniProt:O84623)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis A2497 (Chlamydia trachomatis str. A2497)', 'Chlamydia trachomatis B/TZ1A828/OT (Chlamydia trachomatis str. B/TZ1A828/OT)', 'Chlamydia trachomatis D-EC (Chlamydia trachomatis str. D-EC)', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c']"
+UNIPROT:O84627,['CHLPN 76kDa Homolog (UniProt:O84627)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus C57BL/6']"
+UNIPROT:O84639,['Na(+)-translocating NADH-quinone reductase subunit A (UniProt:O84639)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84646,"['Exodeoxyribonuclease V, Gamma (UniProt:O84646)']",['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84647,['Predicted Efflux Protein (UniProt:O84647)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84700,['Type III secretion system effector protein (UniProt:O84700)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84701,['Uncharacterized protein (UniProt:O84701)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84799,['DNA primase (UniProt:O84799)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']",['Homo sapiens (human)']
+UNIPROT:O84801,['Uncharacterized protein (UniProt:O84801)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84818,['Probable outer membrane protein PmpD (UniProt:O84818)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis D-EC (Chlamydia trachomatis str. D-EC)', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus (mouse)']"
+UNIPROT:O84819,['IncA family protein (UniProt:O84819)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:O84848,['ATP-dependent zinc metalloprotease FtsH (UniProt:O84848)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84854,['Uncharacterized protein (UniProt:O84854)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84858,['Integral membrane protein (UniProt:O84858)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus HLA-B*27:05 Tg']"
+UNIPROT:O84866,['Protein CT_858 (UniProt:O84866)'],['Chlamydia trachomatis Serovar L2'],"['Homo sapiens (human)', 'Mus musculus HLA-DR4 Tg']"
+UNIPROT:O84883,['Uncharacterized protein CT_875 (UniProt:O84883)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:P0C0Z7,['Chaperonin GroEL (UniProt:P0C0Z7)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus C3H/He', 'Mus musculus C57BL/6', 'Oryctolagus cuniculus New Zealand White']"
+UNIPROT:P0CC04,['Large cysteine-rich periplasmic protein OmcB (UniProt:P0CC04)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P0CD83,['Large ribosomal subunit protein uL16 (UniProt:P0CD83)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:P0CE15,['Histone H1-like protein Hc1 (UniProt:P0CE15)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:P0CI27,['Inclusion membrane protein A (UniProt:P0CI27)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:P0DJI4,['Inclusion membrane protein E (UniProt:P0DJI4)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c']"
+UNIPROT:P0DPS6,['Inclusion membrane protein G (UniProt:P0DPS6)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus (mouse)']"
+UNIPROT:P17821,['Chaperone protein DnaK (UniProt:P17821)'],"['Chlamydia trachomatis', 'Chlamydia trachomatis Serovar L2']","['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P18333,['RNA polymerase sigma factor SigA (UniProt:P18333)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:P18584,['Probable periplasmic serine endoprotease DegP-like (UniProt:P18584)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:P26623,['Peptidyl-prolyl cis-trans isomerase Mip (UniProt:P26623)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
+UNIPROT:P38006,['Outer membrane protein B (UniProt:P38006)'],['Chlamydia trachomatis'],"['Homo sapiens (human)', 'Mus musculus Swiss Webster', 'Oryctolagus cuniculus (rabbit)']"
+UNIPROT:Q46409,"['Major outer membrane porin, serovar D (UniProt:Q46409)']","['Chlamydia trachomatis', 'Chlamydia trachomatis A/HAR-13 (Chlamydia trachomatis str. A/HAR-13)', 'Chlamydia trachomatis B/Jali-20/OT', 'Chlamydia trachomatis D/UW-3/CX (Chlamydia trachomatis str. D/UW-3/CX)', 'Chlamydia trachomatis Serovar A', 'Chlamydia trachomatis Serovar B', 'Chlamydia trachomatis Serovar C', 'Chlamydia trachomatis Serovar D', 'Chlamydia trachomatis Serovar Da', 'Chlamydia trachomatis Serovar E', 'Chlamydia trachomatis Serovar F', 'Chlamydia trachomatis Serovar H', 'Chlamydia trachomatis Serovar I', 'Chlamydia trachomatis Serovar J', 'Chlamydia trachomatis serovar K', 'Chlamydia trachomatis Serovar L1', 'Chlamydia trachomatis Serovar L2', 'Chlamydia trachomatis Serovar L3']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Macaca fascicularis (crab eating macaque)', 'Mus musculus A.BY', 'Mus musculus A/J', 'Mus musculus A.SW', 'Mus musculus B10.A', 'Mus musculus B10.BR', 'Mus musculus B10.D2', 'Mus musculus BALB/c', 'Mus musculus C3H/He', 'Mus musculus C3H/He-mg', 'Mus musculus C57BL/10', 'Mus musculus C57BL/10 X DBA/2', 'Mus musculus C57BL/6', 'Mus musculus CBA', 'Mus musculus DBA/1', 'Mus musculus HLA-DQ8 Tg', 'Mus musculus (mouse)', 'Mus musculus NMRI', 'Mus musculus SJL', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)', 'Oryctolagus cuniculus Sandy Half-Lop', 'Rattus norvegicus (brown rat)']"
+UNIPROT:Q9S529,['Metal-binding protein YtgA (UniProt:Q9S529)'],['Chlamydia trachomatis'],['Homo sapiens (human)']
