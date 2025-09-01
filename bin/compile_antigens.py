@@ -190,13 +190,13 @@ def check_for_duplicates(combined_df, gene_only=False):
     visited = set()
     duplicates_groups = []
 
-    # Find overlaps
+    # Find overlaps only for rows with valid name_sets
     for i in combined_df.index:
-        if i in visited:
+        if i in visited or i not in name_sets:
             continue
         group = {i}
         for j in combined_df.index:
-            if i == j or j in visited:
+            if i == j or j in visited or j not in name_sets:
                 continue
             if name_sets[i] & name_sets[j]:  # non-empty intersection
                 group.add(j)
@@ -300,7 +300,7 @@ def split_and_expand_entries(df):
     
     return pd.DataFrame(expanded_rows).reset_index(drop=True)
 
-def main(short_name, long_name):
+def main(short_name, long_name, output_file):
     """
     Main entry point to compile various sources of antigens.
     """
@@ -319,7 +319,7 @@ def main(short_name, long_name):
             literature_dfs.append(lit_df)
     literature_df = pd.concat(literature_dfs, ignore_index=True) if literature_dfs else pd.DataFrame()
 
-        # Combine all sources
+    # Combine all sources
     combined_df = pd.concat([iedb_df, literature_df], ignore_index=True)
     if combined_df.empty:
         print("No antigen data found. Exiting.")
@@ -342,7 +342,10 @@ def main(short_name, long_name):
     print(f"After removing duplicates, {len(combined_df)} unique antigen entries remain.")
 
     # Output
-    output_file = os.path.join(base_path, f"{organism_tag}_compiled_antigens.csv")
+    if output_file is None:
+        output_file = os.path.join(base_path, f"{organism_tag}_compiled_antigens.csv")
+    else:
+        output_file = os.path.join(base_path, output_file)
     combined_df.to_csv(output_file, index=False)
     print(f"Compiled antigen data saved to: {output_file}")
 
@@ -352,13 +355,15 @@ if __name__ == "__main__":
     Parses command-line arguments for pathogen directory and name, then calls main function."""
     parser = argparse.ArgumentParser(
         description="Compile antigen data from IEDB and literature sources for a given organism.",
-        usage="python compile_antigens.py <pathogen_directory> <pathogen_name>"
+        usage="python compile_antigens.py <pathogen_directory> <pathogen_name> [--output <output_file>]"
     )
     parser.add_argument("pathogen_directory", help="Directory name under data/")
     parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    parser.add_argument("--output", help="Path to the output CSV file", default=None)
     args = parser.parse_args()
 
     if not os.path.exists(f"data/{args.pathogen_directory}"):
         os.makedirs(f"data/{args.pathogen_directory}")
         print(f"Created directory: data/{args.pathogen_directory}")
-    main(args.pathogen_directory, args.pathogen_name)
+
+    main(args.pathogen_directory, args.pathogen_name, args.output)
