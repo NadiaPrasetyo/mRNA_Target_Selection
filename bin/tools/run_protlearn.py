@@ -20,27 +20,37 @@ def extract_sequence(file_path):
     """
     Extract amino acid sequence (1-letter) from a PDB or CIF file.
     Only allows plain .pdb or .cif files.
-    Falls back to text-based parsing if Biopython chokes.
     """
     file_path_str = str(file_path).lower()
+
+    # Block gzipped files with helpful hint
+    if file_path_str.endswith((".pdb.gz", ".cif.gz")):
+        raise ValueError(
+            f"Compressed file detected: {file_path}\n"
+            "Please decompress (.gz) before running. "
+            "Use: gunzip <file>.gz or zcat <file>.gz > <file>"
+        )
+
     if not (file_path_str.endswith(".pdb") or file_path_str.endswith(".cif")):
-        raise ValueError(f"Invalid input file: {file_path}. Expected .pdb or .cif")
+        raise ValueError(
+            f"Unsupported file extension: {file_path}\n"
+            "Expected one of: .pdb or .cif"
+        )
 
     seq = []
     structure = None
-
     try:
         if file_path_str.endswith(".cif"):
             parser = MMCIFParser(QUIET=True)
-            structure = parser.get_structure("protein", file_path)
         else:
             parser = PDB.PDBParser(QUIET=True)
-            structure = parser.get_structure("protein", file_path)
+
+        structure = parser.get_structure("protein", file_path)
     except Exception as e:
         print(f"[WARN] Failed structured parse of {file_path}: {e}")
         return extract_sequence_loose(file_path)
 
-    # Extract residues if structure parsed
+    # Extract residues
     for model in structure:
         for chain in model:
             for residue in chain:
