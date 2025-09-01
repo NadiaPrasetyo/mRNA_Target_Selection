@@ -88,7 +88,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     # Clean MACSE alignment for HyPhy
     clean_macse_alignment(raw_alignment, alignment_file)
     
-    # Step 2: Build a tree from the codon alignment
+        # Step 2: Build a tree from the codon alignment
     logging.info("🌳 Building phylogenetic tree from codon alignment...")
     tree_file = msa_path / f"{input_fasta.stem}.tree"
     with open(tree_file, "w") as tree_out:
@@ -96,7 +96,17 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
             "conda", "run", "-n", common.CONDA_ENV_NAME,
             "fasttree", "-nt", str(alignment_file)
         ], check=True, stdout=tree_out)
+
+    # Validate tree content
+    tree_str = tree_file.read_text().strip()
+    if not tree_str or tree_str in {"()", ";", "();"}:
+        logging.warning(f"⚠️ FastTree produced a degenerate tree for {input_fasta}. Skipping HyPhy.")
+        return
+    if not tree_str.startswith("("):
+        raise RuntimeError(f"❌ Invalid Newick tree generated: {tree_file}")
+
     logging.info(f"✅ Tree built: {tree_file}")
+
 
     # Step 3: Run HyPhy analysis if enabled
     if run_hyphy_analysis:
