@@ -19,13 +19,18 @@ FEATURE_FUNCTIONS = {
 def extract_sequence(file_path):
     """
     Extract amino acid sequence (1-letter) from a PDB or CIF file.
+    Only allows plain .pdb or .cif files.
     Falls back to text-based parsing if Biopython chokes.
     """
+    file_path_str = str(file_path).lower()
+    if not (file_path_str.endswith(".pdb") or file_path_str.endswith(".cif")):
+        raise ValueError(f"Invalid input file: {file_path}. Expected .pdb or .cif")
+
     seq = []
     structure = None
 
     try:
-        if str(file_path).lower().endswith((".cif", ".mmcif")):
+        if file_path_str.endswith(".cif"):
             parser = MMCIFParser(QUIET=True)
             structure = parser.get_structure("protein", file_path)
         else:
