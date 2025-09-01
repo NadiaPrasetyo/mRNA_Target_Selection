@@ -75,6 +75,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
 
     # Run MACSE
     subprocess.run([
+        "conda", "run", "-n", common.CONDA_ENV_NAME,
         "macse", "-prog", "alignSequences",
         "-seq", str(input_fasta),
         "-out_NT", str(raw_alignment)
