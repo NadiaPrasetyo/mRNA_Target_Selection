@@ -1,8 +1,8 @@
 name: external_tools_env
 channels:
-  - defaults
   - conda-forge
   - bioconda
+  - defaults
   - hcc
   - biocore
 dependencies:
@@ -14,7 +14,7 @@ dependencies:
   - joblib=1.2.0
   - mafft
   - ca-certificates
-  - libstdcxx
+  - libstdcxx-ng
   - openssl
   - rate4site
   - mmseqs2
@@ -23,6 +23,8 @@ dependencies:
   - hyphy
   - macse
   - fasttree
+  - libgfortran5=15.1.0
+  - llvm-openmp=16.0.0
   - pip
   - pip:
       - algpred2==1.4
