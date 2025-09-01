@@ -22,6 +22,7 @@ dependencies:
   - seqkit
   - hyphy
   - macse
+  - fasttree
   - pip
   - pip:
       - algpred2==1.4
