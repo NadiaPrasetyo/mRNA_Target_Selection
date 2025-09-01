@@ -92,7 +92,10 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     logging.info("🌳 Building phylogenetic tree from codon alignment...")
     tree_file = msa_path / f"{input_fasta.stem}.tree"
     with open(tree_file, "w") as tree_out:
-        subprocess.run(["fasttree", "-nt", str(alignment_file)], check=True, stdout=tree_out)
+        subprocess.run([
+            "conda", "run", "-n", common.CONDA_ENV_NAME,
+            "fasttree", "-nt", str(alignment_file)
+        ], check=True, stdout=tree_out)
     logging.info(f"✅ Tree built: {tree_file}")
 
     # Step 3: Run HyPhy analysis if enabled
