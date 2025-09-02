@@ -49,6 +49,7 @@ def run_hyphy(method, alignment, tree, output_dir):
     input_stem = alignment.stem
     output_file = os.path.join(output_dir, f"{input_stem}_{method}_results.json")
     command = [
+        "conda", "run", "-n", common.CONDA_ENV_NAME,
         "hyphy", method.lower(),
         "--alignment", str(alignment),
         "--tree", str(tree),
