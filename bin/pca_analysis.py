@@ -197,8 +197,8 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
 # ----------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run PCA analysis on bacterial raw data.")
-    parser.add_argument("--base-dir", type=str, default=".", help="Base directory containing bacteria data folders")
-    parser.add_argument("--output-dir", type=str, default="pca_output", help="Directory to save output plots")
+    parser.add_argument("--base-dir", type=str, default="./results", help="Base directory containing bacteria data , default: ./results")
+    parser.add_argument("--output-dir", type=str, default="./results", help="Directory to save output plots, default: ./results")
     parser.add_argument("--input-dir", nargs="+", required=True, help="List of bacteria names (folders under base-dir)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     args = parser.parse_args()
