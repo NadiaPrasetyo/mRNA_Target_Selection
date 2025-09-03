@@ -78,6 +78,8 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
         return
     all_data = pd.concat(dfs, ignore_index=True)
     logging.info(f"Loaded data for {len(input_dirs)} bacteria. Total rows: {len(all_data)}")
+    logging.info(f"Raw dataframe memory usage: {all_data.memory_usage(deep=True).sum() / 1e9:.2f} GB")
+
 
     # ----------------------
     # Pivot to wide format
@@ -95,6 +97,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
         aggfunc="mean"
     )
     logging.info(f"Pivoted data to wide format. Shape: {wide_df.shape}")
+    logging.info(f"Wide dataframe shape: {wide_df.shape}")
+    logging.info(f"Wide dataframe memory usage: {wide_df.memory_usage(deep=True).sum() / 1e9:.2f} GB")
+
 
     # Metadata for labels
     meta = all_data.drop_duplicates(subset=["sample_id"])[["sample_id", "label"]].set_index("sample_id")
