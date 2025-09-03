@@ -1148,12 +1148,13 @@ def parse_dnds_dir(directory):
                     sum_n, sum_s, sum_dn, sum_ds, count = 0, 0, 0, 0, 0
                     for each in content:
                         s, n, ds, dn = each[2], each[3], each[5], each[6]
-                        if n is not None and n != s and s is not None and s != 0:
-                            sum_n += n
-                            sum_s += s
-                            sum_dn += dn
-                            sum_ds += ds
-                            count += 1
+                        if n is not None and s is not None and ds is not None and dn is not None:
+                            if n != s and s != 0:
+                                sum_n += n
+                                sum_s += s
+                                sum_dn += dn
+                                sum_ds += ds
+                                count += 1
                         
                     results.append({
                         "feature": "SLAC",
@@ -1177,8 +1178,8 @@ def parse_dnds_dir(directory):
                     sum_alpha, sum_beta, sum_prob_pos, sum_prob_neg, count = 0, 0, 0, 0, 0
                     for each in content:
                         alpha, beta, difference, prob_pos, prob_neg = each[0], each[1], each[2], each[3], each[4]
-                        # Only counting the positive difference (non synonymous > synonymous changes)
-                        if (difference>0):
+                        # Only counting the positive difference (non synonymous > synonymous changes) and if they are not none
+                        if difference>0 and alpha is not None and beta is not None and prob_pos is not None and prob_neg is not None:
                             sum_alpha += alpha
                             sum_beta += beta
                             sum_prob_pos += prob_pos
