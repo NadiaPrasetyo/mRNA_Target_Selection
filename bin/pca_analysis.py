@@ -12,26 +12,28 @@ import logging
 # ----------------------
 # Configuration
 # ----------------------
-def setup_logging(verbose):
+def setup_logging(verbose: bool) -> None:
     """
     Set up logging configuration.
-    if Verbose is true, it will print to both the CLI and a file
+    If verbose is True, logs will be printed to console and written to a file.
     """
     log_file = "pca_analysis.log" if verbose else None
     level = logging.DEBUG if verbose else logging.INFO
     format_str = "%(asctime)s - %(levelname)s - %(message)s"
     
-    # Create a logger
+    # Clear previous handlers
     logger = logging.getLogger()
+    if logger.hasHandlers():
+        logger.handlers.clear()
     logger.setLevel(level)
     
-    # Create console handler
+    # Console handler
     console_handler = logging.StreamHandler()
     console_handler.setLevel(level)
     console_handler.setFormatter(logging.Formatter(format_str))
     logger.addHandler(console_handler)
     
-    # Create file handler if log_file is provided
+    # File handler if verbose
     if log_file:
         file_handler = logging.FileHandler(log_file)
         file_handler.setLevel(level)
@@ -42,7 +44,7 @@ def setup_logging(verbose):
 # ----------------------
 # Load data
 # ----------------------
-def load_bacterium_data(base_dir, bacterium):
+def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
     folder = os.path.join(base_dir, bacterium, "raw_data")
     logging.info(f"Loading data for bacterium: {bacterium} from {folder}")
     files = glob.glob(os.path.join(folder, "*_raw_data.csv"))
@@ -53,17 +55,28 @@ def load_bacterium_data(base_dir, bacterium):
         df = pd.read_csv(f)
         df["bacterium"] = bacterium
         dfs.append(df)
+    if not dfs:
+        logging.warning(f"No files found for {bacterium} in {folder}")
+        return pd.DataFrame()
     logging.info(f"Loaded {len(dfs)} dataframes for bacterium: {bacterium}")
     return pd.concat(dfs, ignore_index=True)
 
-def main(base_dir, output_dir, input_dirs):
+
+# ----------------------
+# Main analysis
+# ----------------------
+def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     logging.info("Starting PCA analysis...")
-    input_dirs = input_dirs if isinstance(input_dirs, list) else [input_dirs]
-    logging.info(f"Input directories: {input_dirs}")
+    os.makedirs(output_dir, exist_ok=True)
 
     # Load all bacteria data into one combined dataset
     logging.info("Loading data for all bacteria...")
-    all_data = pd.concat([load_bacterium_data(base_dir, b) for b in input_dirs], ignore_index=True)
+    dfs = [load_bacterium_data(base_dir, b) for b in input_dirs]
+    dfs = [df for df in dfs if not df.empty]
+    if not dfs:
+        logging.error("No data loaded. Exiting.")
+        return
+    all_data = pd.concat(dfs, ignore_index=True)
     logging.info(f"Loaded data for {len(input_dirs)} bacteria. Total rows: {len(all_data)}")
 
     # ----------------------
@@ -91,7 +104,7 @@ def main(base_dir, output_dir, input_dirs):
     # PCA
     # ----------------------
     logging.info("Performing PCA...")
-    X = wide_df.fillna(0)  # replace missing values
+    X = wide_df.fillna(0)
     logging.debug("Missing values filled with 0")
     X_scaled = StandardScaler().fit_transform(X)
     logging.debug("Data standardized")
@@ -109,7 +122,10 @@ def main(base_dir, output_dir, input_dirs):
     # ----------------------
     logging.info("Generating scree plot...")
     plt.figure(figsize=(8, 6))
-    plt.plot(range(1, len(pca.explained_variance_ratio_) + 1), pca.explained_variance_ratio_, 'o-', markersize=6)
+    plt.plot(
+        range(1, len(pca.explained_variance_ratio_) + 1),
+        pca.explained_variance_ratio_, 'o-', markersize=6
+    )
     plt.xlabel('Principal Component')
     plt.ylabel('Variance Explained')
     plt.title('Scree Plot')
@@ -174,3 +190,18 @@ def main(base_dir, output_dir, input_dirs):
     logging.info(f"Covariance matrix heatmap saved to {covariance_path}")
 
     logging.info(f"✅ Analysis complete. Plots saved in {output_dir}")
+
+
+# ----------------------
+# Entry point
+# ----------------------
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run PCA analysis on bacterial raw data.")
+    parser.add_argument("--base-dir", type=str, default=".", help="Base directory containing bacteria data folders")
+    parser.add_argument("--output-dir", type=str, default="pca_output", help="Directory to save output plots")
+    parser.add_argument("--input-dir", nargs="+", required=True, help="List of bacteria names (folders under base-dir)")
+    parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
+    args = parser.parse_args()
+
+    setup_logging(args.verbose)
+    main(args.base_dir, args.output_dir, args.input_dir)
