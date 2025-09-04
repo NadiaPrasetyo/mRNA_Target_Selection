@@ -68,7 +68,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     logging.info("Starting PCA analysis...")
     os.makedirs(output_dir, exist_ok=True)
 
+    # ----------------------
     # Load data
+    # ----------------------
     dfs = [load_bacterium_data(base_dir, b) for b in input_dirs]
     dfs = [df for df in dfs if not df.empty]
     if not dfs:
@@ -79,27 +81,31 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     logging.info(f"Raw dataframe memory usage: {all_data.memory_usage(deep=True).sum()/1e9:.2f} GB")
 
     # ----------------------
-    # Prepare sparse matrix
+    # Assign sample IDs safely (avoid groupby cumcount)
+    # ----------------------
+    logging.info("Assigning sample IDs...")
+    label_codes, label_indices = pd.factorize(all_data["label"])
+    counters = np.zeros(len(np.unique(label_codes)), dtype=int)
+    sample_ids = []
+
+    for code in label_codes:
+        sample_ids.append(f"{counters[code]}_{all_data['label'].iloc[len(sample_ids)]}")
+        counters[code] += 1
+    all_data["sample_id"] = sample_ids
+    all_data["feature_subfeature"] = all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
+
+    # ----------------------
+    # Sparse matrix creation
     # ----------------------
     logging.info("Building sparse matrix for samples x features...")
-    all_data["sample_id"] = (
-        all_data.groupby(["label"]).cumcount().astype(str)
-        + "_" + all_data["label"].astype(str)
-    )
-    all_data["feature_subfeature"] = (
-        all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
-    )
-
     sample_enc = LabelEncoder()
     feature_enc = LabelEncoder()
     row_idx = sample_enc.fit_transform(all_data["sample_id"])
     col_idx = feature_enc.fit_transform(all_data["feature_subfeature"])
-
     X_sparse = coo_matrix(
         (all_data["value"].astype(np.float32), (row_idx, col_idx)),
         shape=(len(sample_enc.classes_), len(feature_enc.classes_))
     ).tocsr()
-
     logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}, density={X_sparse.nnz / (X_sparse.shape[0]*X_sparse.shape[1]):.6e}")
 
     meta = pd.DataFrame({
@@ -124,7 +130,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     # Scree plot
     # ----------------------
     plt.figure(figsize=(8, 6))
-    plt.plot(range(1, len(ipca.explained_variance_ratio_) + 1),
+    plt.plot(range(1, len(ipca.explained_variance_ratio_)+1),
              ipca.explained_variance_ratio_, 'o-', markersize=6)
     plt.xlabel('Principal Component')
     plt.ylabel('Variance Explained')
@@ -150,17 +156,15 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     plt.title("PCA Biplot")
     plt.axhline(0, color='black', linewidth=0.5)
     plt.axvline(0, color='black', linewidth=0.5)
-    biplot_path = os.path.join(output_dir, "pca_biplot.png")
-    plt.savefig(biplot_path, dpi=300)
+    plt.savefig(os.path.join(output_dir, "pca_biplot.png"), dpi=300)
     plt.close()
-    logging.info(f"PCA biplot saved to {biplot_path}")
+    logging.info("PCA biplot saved.")
 
     # ----------------------
     # Covariance heatmap
     # ----------------------
     max_cov_features = 2000
     if n_features <= max_cov_features:
-        logging.info("Generating covariance matrix heatmap...")
         cov_matrix = np.cov(X_scaled.T.toarray())
         feature_names = feature_enc.inverse_transform(np.arange(n_features))
         cov_df = pd.DataFrame(cov_matrix, index=feature_names, columns=feature_names)
