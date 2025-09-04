@@ -80,17 +80,21 @@ def extract_all_features(seq):
         try:
             if name == "aaindex1":
                 # Filter aaindex1 to include only specific indices
-                selected_indices = [
+                selected_indices = {
                     "ARGP820101", "JOND750101", "BHAR880101", "CHOC750101",
                     "DAYM780101", "DAYM780201", "GRAR740101", "GRAR740102",
                     "GRAR740103", "JOND750102", "KYTJ820101"
-                ]
-                arr, desc = func([seq], props=selected_indices)
+                }
+                arr, desc = func([seq])
+                values = arr[0]
+                for d, v in zip(desc, values):
+                    if d in selected_indices:
+                        features[f"{name}_{d}"] = v
             else:
                 arr, desc = func([seq])
-            values = arr[0]
-            for d, v in zip(desc, values):
-                features[f"{name}_{d}"] = v
+                values = arr[0]
+                for d, v in zip(desc, values):
+                    features[f"{name}_{d}"] = v
         except Exception as e:
             try:
                 out = func([seq])
