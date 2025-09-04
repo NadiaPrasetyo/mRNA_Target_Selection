@@ -7,13 +7,11 @@ from Bio.Data.IUPACData import protein_letters_3to1
 
 from protlearn.features import (
     length,
-    aac,
     aaindex1
 )
 
 FEATURE_FUNCTIONS = {
     'length': length,
-    'aac': aac,
     'aaindex1': aaindex1
 }
 
@@ -80,7 +78,16 @@ def extract_all_features(seq):
     features = {}
     for name, func in FEATURE_FUNCTIONS.items():
         try:
-            arr, desc = func([seq])
+            if name == "aaindex1":
+                # Filter aaindex1 to include only specific indices
+                selected_indices = [
+                    "ARGP820101", "JOND750101", "BHAR880101", "CHOC750101",
+                    "DAYM780101", "DAYM780201", "GRAR740101", "GRAR740102",
+                    "GRAR740103", "JOND750102", "KYTJ820101"
+                ]
+                arr, desc = func([seq], props=selected_indices)
+            else:
+                arr, desc = func([seq])
             values = arr[0]
             for d, v in zip(desc, values):
                 features[f"{name}_{d}"] = v
