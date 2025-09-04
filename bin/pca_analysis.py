@@ -74,27 +74,32 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
 # ----------------------
 def plot_scree(ipca, output_dir: str):
     """Plot scree plot with variance explained and cumulative variance."""
+    explained_var = ipca.explained_variance_ratio_ * 100
+    cum_var = np.cumsum(explained_var)
 
     plt.figure(figsize=(8, 6))
-    plt.plot(range(1, len(ipca.explained_variance_ratio_)+1),
-             ipca.explained_variance_ratio_, 'o-', markersize=6)
-    plt.xlabel('Principal Component')
-    plt.ylabel('Variance Explained')
-    plt.title('Scree Plot')
-    plt.grid(True)
-    scree_plot_path = os.path.join(output_dir, "scree_plot.png")
-    plt.savefig(scree_plot_path, dpi=300)
+    plt.plot(range(1, len(explained_var) + 1), explained_var, 'o-', label="Individual")
+    plt.plot(range(1, len(cum_var) + 1), cum_var, 's--', label="Cumulative")
+    plt.axhline(1, color="gray", linestyle="--", alpha=0.5)  # Kaiser criterion
+    plt.axhline(90, color="red", linestyle="--", alpha=0.6, label="90% threshold")
+
+    plt.xlabel("Principal Component")
+    plt.ylabel("Variance Explained (%)")
+    plt.title("Scree Plot")
+    plt.legend()
+    plt.grid(True, linestyle="--", alpha=0.5)
+    plt.savefig(os.path.join(output_dir, "scree_plot.png"), dpi=300)
     plt.close()
-    logging.info(f"Scree plot saved to {scree_plot_path}")
 
-    # Save the dataplot into a csv
+    # Save explained variance table
     pd.DataFrame({
-        "PC": [f"PC{i+1}" for i in range(len(ipca.explained_variance_ratio_))],
-        "Variance Explained": ipca.explained_variance_ratio_
-    }).to_csv(os.path.join(output_dir, "scree_plot_data.csv"), index=False)
+        "PC": [f"PC{i+1}" for i in range(len(explained_var))],
+        "Variance (%)": explained_var,
+        "Cumulative (%)": cum_var
+    }).to_csv(os.path.join(output_dir, "explained_variance.csv"), index=False)
 
 
-def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=5):
+def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=15):
     """PCA biplot with samples and top feature loadings."""
     plt.figure(figsize=(10, 8))
     sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", s=60, alpha=0.7)
@@ -120,7 +125,7 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=5):
 
 
 def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=20):
-    """Scatter plot of feature loadings on PC1 vs PC2 with adjusted text labels."""
+    """Scatter plot of feature loadings on PC1 vs PC2."""
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))
 
@@ -132,19 +137,42 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=20):
     plt.axvline(0, color='black', linewidth=0.8)
     plt.scatter(loadings[:, 0], loadings[:, 1], alpha=0.3, color="lightgray", s=20, label="Other features")
 
-    texts = []
     for i in top_idx:
         x, y = loadings[i, 0], loadings[i, 1]
         plt.scatter(x, y, color="red", s=60)
-        texts.append(plt.text(x, y, feature_names[i], fontsize=9))
+        plt.text(x * 1.05, y * 1.05, feature_names[i], fontsize=9)
 
-    adjust_text(texts, arrowprops=dict(arrowstyle="->", color='gray', lw=0.5))
     plt.xlabel("Loading on PC1")
     plt.ylabel("Loading on PC2")
     plt.title(f"PCA Feature Loadings (Top {top_n})")
     plt.grid(True, linestyle="--", alpha=0.5)
     plt.savefig(os.path.join(output_dir, "pca_loading_scatter.png"), dpi=300)
     plt.close()
+
+
+def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
+    """Plot correlation matrix heatmap with clustering."""
+    n_features = X_scaled.shape[1]
+
+    if n_features > max_features:
+        logging.warning(f"Too many features ({n_features}), downsampling to top {max_features}.")
+        col_var = np.array(X_scaled.power(2).mean(axis=0) - np.power(X_scaled.mean(axis=0), 2)).ravel()
+        top_idx = np.argpartition(col_var, -max_features)[-max_features:]
+        X_scaled = X_scaled[:, top_idx]
+        feature_names = feature_enc.inverse_transform(top_idx)
+    else:
+        feature_names = feature_enc.inverse_transform(np.arange(n_features))
+
+    X_dense = X_scaled.toarray().astype(np.float32)
+    corr_matrix = np.corrcoef(X_dense, rowvar=False)
+
+    corr_df = pd.DataFrame(corr_matrix, index=feature_names, columns=feature_names)
+    sns.clustermap(corr_df, cmap="coolwarm", center=0, figsize=(14, 12))
+    plt.savefig(os.path.join(output_dir, "correlation_matrix.png"), dpi=300)
+    plt.close()
+
+    # Save values
+    corr_df.to_csv(os.path.join(output_dir, "correlation_matrix.csv"))
 
 
 def plot_covariance_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
@@ -242,6 +270,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     plot_pca_biplot(pca_df, ipca, feature_enc, output_dir)
     plot_loading_scatter(ipca, feature_enc, output_dir)
     plot_covariance_matrix(X_scaled, feature_enc, output_dir)
+    plot_correlation_matrix(X_scaled, feature_enc, output_dir)
 
     logging.info(f"✅ Analysis complete. Plots and CSVs saved in {output_dir}")
 
