@@ -220,18 +220,39 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     all_data = pd.concat(dfs, ignore_index=True)
     logging.info(f"Loaded data for {len(input_dirs)} bacteria. Rows: {len(all_data):,}")
 
+    # ----------------------
+    # Assign sample IDs
+    # ----------------------
+    logging.info("Assigning sample IDs...")
+    label_codes, label_indices = pd.factorize(all_data["label"])
+    counters = np.zeros(len(np.unique(label_codes)), dtype=int)
+    sample_ids = []
+
+    for code in label_codes:
+        sample_ids.append(f"{counters[code]}_{all_data['label'].iloc[len(sample_ids)]}")
+        counters[code] += 1
+
+    all_data["sample_id"] = sample_ids
+    all_data["feature_subfeature"] = all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
+
+
     all_data = preprocess_data(all_data)
 
-    # Build sparse matrix
+    # ----------------------
+    # Sparse matrix
+    # ----------------------
     sample_enc = LabelEncoder()
     feature_enc = LabelEncoder()
     row_idx = sample_enc.fit_transform(all_data["sample_id"])
-    col_idx = feature_enc.fit_transform(all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str))
+    col_idx = feature_enc.fit_transform(all_data["feature_subfeature"])
+
     X_sparse = coo_matrix(
         (all_data["value"].astype(np.float32), (row_idx, col_idx)),
         shape=(len(sample_enc.classes_), len(feature_enc.classes_))
     ).tocsr()
-    logging.info(f"Sparse matrix shape: {X_sparse.shape}")
+
+    logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}")
+
 
     meta = pd.DataFrame({"sample_id": sample_enc.classes_, "label": [s.split("_")[-1] for s in sample_enc.classes_]})
     meta = meta.set_index("sample_id")
