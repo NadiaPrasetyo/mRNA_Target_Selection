@@ -161,6 +161,7 @@ def parse_mhc_dir(directory):
     """
     Parse MHC epitope prediction files in the specified directory.
     Expected files are JSONs with MHC I/II prediction results.
+    Filters peptides based on %Rank thresholds for SBs and WBs.
     Returns a list of dictionaries with feature values.
     Args:
         directory (str): Path to the directory containing MHC prediction files.
@@ -180,6 +181,8 @@ def parse_mhc_dir(directory):
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
+    # Define %Rank thresholds for Strong Binders (threshold defined in Reynisson et al, 2020)
+    sb_threshold = 0.5 if prefix == "mhci" else 2.0
 
     for file in files:
         path = os.path.join(directory, file)
@@ -198,12 +201,14 @@ def parse_mhc_dir(directory):
                         except ValueError as e:
                             logging.warning(f"Missing expected columns in {file}: {e}")
                             continue
-
                         for i, row in enumerate(table):
                             try:
-                                results.append({"feature": prefix, "subfeature": "score", "value": float(row[idx_score])})
-                                results.append({"feature": prefix, "subfeature": "percentile", "value": float(row[idx_percentile])})
-                                results.append({"feature": prefix, "subfeature": "peptide_length", "value": len(row[idx_peptide])})
+                                percentile = float(row[idx_percentile])
+                                # Filter peptides based on SB thresholds
+                                if percentile < sb_threshold:
+                                    results.append({"feature": prefix, "subfeature": "score", "value": float(row[idx_score])})
+                                    results.append({"feature": prefix, "subfeature": "percentile", "value": percentile})
+                                    results.append({"feature": prefix, "subfeature": "peptide_length", "value": len(row[idx_peptide])})
                             except Exception as e:
                                 logging.debug(f"Skipping row {i} in {file} due to error: {e}")
         except Exception as e:
