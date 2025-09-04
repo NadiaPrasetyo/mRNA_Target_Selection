@@ -94,6 +94,12 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     all_data["sample_id"] = sample_ids
     all_data["feature_subfeature"] = all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
 
+    n_rows = all_data["label"].nunique()
+    n_features = all_data["feature_subfeature"].nunique()
+    estimated_bytes = n_rows * n_features * 4  # float32
+    estimated_GB = estimated_bytes / 1e9
+    print(f"Estimated dense matrix size: {estimated_GB:.2f} GB")
+
     # ----------------------
     # Sparse matrix creation
     # ----------------------
