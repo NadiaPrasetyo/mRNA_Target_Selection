@@ -60,6 +60,12 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
     out["value"] = pd.to_numeric(out["value"], downcast="float")
     return out
 
+def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
+    # Basic preprocessing steps
+    df = df.dropna()
+    df = df[df["value"] > 0]
+    return df
+
 
 # ----------------------
 # Main analysis
@@ -99,6 +105,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     estimated_bytes = n_rows * n_features * 4  # float32
     estimated_GB = estimated_bytes / 1e9
     print(f"Estimated dense matrix size: {estimated_GB:.2f} GB")
+
+    # Clean and preprocess data
+    all_data = preprocess_data(all_data)
 
     # ----------------------
     # Sparse matrix creation
