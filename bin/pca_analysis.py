@@ -99,7 +99,7 @@ def plot_scree(ipca, output_dir: str):
     }).to_csv(os.path.join(output_dir, "explained_variance.csv"), index=False)
 
 
-def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=15):
+def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10):
     """PCA biplot with samples and top feature loadings."""
     plt.figure(figsize=(10, 8))
     sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", s=60, alpha=0.7)
@@ -124,7 +124,7 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=15):
     plt.close()
 
 
-def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=20):
+def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=10):
     """Scatter plot of feature loadings on PC1 vs PC2."""
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))
@@ -140,7 +140,7 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=20):
     for i in top_idx:
         x, y = loadings[i, 0], loadings[i, 1]
         plt.scatter(x, y, color="red", s=60)
-        plt.text(x * 1.05, y * 1.05, feature_names[i], fontsize=9)
+        plt.text(x * 1.1, y * 1.1, feature_names[i], fontsize=9)
 
     plt.xlabel("Loading on PC1")
     plt.ylabel("Loading on PC2")
