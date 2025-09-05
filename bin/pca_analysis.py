@@ -99,30 +99,43 @@ def plot_scree(ipca, output_dir: str):
     }).to_csv(os.path.join(output_dir, "explained_variance.csv"), index=False)
 
 
-def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10):
-    """PCA biplot with samples and top feature loadings."""
+def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=2.5):
+    """PCA biplot with samples and top feature loadings, improved label placement."""
     plt.figure(figsize=(10, 8))
     sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", s=60, alpha=0.7)
 
+    # Loadings
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))
 
+    # Top features by vector length
     norms = np.linalg.norm(loadings, axis=1)
     top_idx = np.argsort(norms)[-top_n:]
 
     texts = []
     for i in top_idx:
-        x, y = loadings[i, 0], loadings[i, 1]
-        plt.arrow(0, 0, x, y, color='red', alpha=0.5, head_width=0.02)
-        texts.append(plt.text(x * 1.1, y * 1.1, feature_names[i], fontsize=9))
+        x, y = loadings[i, 0] * scale, loadings[i, 1] * scale
+        plt.arrow(0, 0, x, y, color='red', alpha=0.5, head_width=0.02*scale)
+        texts.append(plt.text(x, y, feature_names[i], fontsize=9, color="darkred"))
 
-    adjust_text(texts)
+    # Adjust labels with repelling forces
+    adjust_text(
+        texts,
+        only_move={'points':'y', 'text':'y'},  # move vertically for cleaner alignment
+        arrowprops=dict(arrowstyle="-", color='gray', lw=0.5),
+        expand_points=(1.2, 1.4),
+        expand_text=(1.2, 1.4),
+        force_points=0.2,
+        force_text=0.2
+    )
+
     plt.axhline(0, color='black', linewidth=0.5)
     plt.axvline(0, color='black', linewidth=0.5)
     plt.title("PCA Biplot (Top Features)")
+    plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "pca_biplot.png"), dpi=300)
     plt.close()
-
+    
 
 def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=10):
     """Scatter plot of feature loadings on PC1 vs PC2."""
