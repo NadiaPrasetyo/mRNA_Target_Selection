@@ -119,7 +119,7 @@ def main():
     
     # Define all steps
     all_steps = ["iedb", "compile", "random", "genomes", "uniprot", "align", "analysis", "epitopes", "pdb", "pfam", "evaluate", "features"]
-    steps_to_run = args.steps if args.steps else all_steps
+    steps_to_run = [step for step in (args.steps if args.steps else all_steps) if not args.skip or step not in args.skip]
     
     success_count = 0
     total_steps = len(steps_to_run)
