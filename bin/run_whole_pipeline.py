@@ -165,6 +165,13 @@ def main():
             if args.skip and "genomes" in args.skip and (base_dir / "strain_genomes").exists():
                 logging.info("⏭️  Skipping genome fetch - data already exists")
             else:
+                # chmod the script first
+                cmd = ["chmod", "+x", "fetch_NCBI_strain_genome.sh"]
+                if args.dry_run:
+                    logging.info(f"Would run: {' '.join(cmd)}")
+                elif run_command(cmd, "Make fetch_NCBI_strain_genome.sh executable"):
+                    success_count += 1
+
                 cmd = ["bash", "fetch_NCBI_strain_genome.sh", "--random", args.pathogen_name, 
                        "--random-num", str(args.random_genomes), "--threads", str(args.threads), args.pathogen_dir]
                 if args.dry_run:
@@ -176,7 +183,7 @@ def main():
         if "align" in steps_to_run:
             # Protein alignment (antigens)
             cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, args.pathogen_name, 
-                   "--threads", str(args.threads), "--output-dir", "mmseqs_protein", "--fetch-qseq"]
+                   "--threads", str(args.threads), "--output-dir", "mmseqs_protein"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Protein alignment with MMseqs2"):
