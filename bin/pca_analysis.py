@@ -101,9 +101,15 @@ def plot_scree(ipca, output_dir: str):
 
 def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=2.5):
     """PCA biplot with samples and top feature loadings, improved label placement."""
-    plt.figure(figsize=(10, 8))
-    sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", s=60, alpha=0.7)
-
+    plt.figure(figsize=(12, 10))
+    
+    # Create scatter plot with samples
+    scatter = sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", s=60, alpha=0.7, palette="viridis")
+    
+    # Get legend and remove it for custom placement
+    legend = plt.legend()
+    legend.remove()
+    
     # Loadings
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))
@@ -111,55 +117,134 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=
     # Top features by vector length
     norms = np.linalg.norm(loadings, axis=1)
     top_idx = np.argsort(norms)[-top_n:]
+    
+    # Calculate dynamic scaling based on data range
+    x_range = pca_df["PC1"].max() - pca_df["PC1"].min()
+    y_range = pca_df["PC2"].max() - pca_df["PC2"].min()
+    avg_range = (x_range + y_range) / 2
+    dynamic_scale = scale * (avg_range / 5)  # Adjust scale based on data range
 
     texts = []
+    arrows = []
+    
+    # Plot feature vectors and labels
     for i in top_idx:
-        x, y = loadings[i, 0] * scale, loadings[i, 1] * scale
-        plt.arrow(0, 0, x, y, color='red', alpha=0.5, head_width=0.02*scale)
-        texts.append(plt.text(x, y, feature_names[i], fontsize=9, color="darkred"))
+        x, y = loadings[i, 0] * dynamic_scale, loadings[i, 1] * dynamic_scale
+        
+        # Draw arrow
+        arrow = plt.arrow(0, 0, x, y, color='red', alpha=0.7, head_width=0.03*dynamic_scale, 
+                          length_includes_head=True, linewidth=1.5)
+        arrows.append(arrow)
+        
+        # Add text label with initial positioning
+        text = plt.text(x * 1.15, y * 1.15, feature_names[i], fontsize=10, 
+                        color="darkred", weight='bold',
+                        bbox=dict(boxstyle="round,pad=0.3", facecolor="white", 
+                                 alpha=0.9, edgecolor="red", linewidth=0.5))
+        texts.append(text)
 
-    # Adjust labels with repelling forces
+    # Adjust labels with improved parameters
     adjust_text(
         texts,
-        only_move={'points':'y', 'text':'y'},  # move vertically for cleaner alignment
-        arrowprops=dict(arrowstyle="-", color='gray', lw=0.5),
-        expand_points=(1.2, 1.4),
-        expand_text=(1.2, 1.4),
-        force_points=0.2,
-        force_text=0.2
+        arrowprops=dict(arrowstyle="->", color='gray', lw=0.8, alpha=0.7),
+        expand_points=(1.5, 1.8),
+        expand_text=(1.3, 1.6),
+        force_points=(0.5, 0.8),
+        force_text=(0.8, 1.2),
+        va='center',
+        ha='center',
+        only_move={'points':'xy', 'text':'xy', 'objects':'xy'},
+        avoid_points=True,
+        avoid_text=True,
+        lim=100  # Increase iteration limit for better convergence
     )
 
-    plt.axhline(0, color='black', linewidth=0.5)
-    plt.axvline(0, color='black', linewidth=0.5)
-    plt.title("PCA Biplot (Top Features)")
-    plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, "pca_biplot.png"), dpi=300)
-    plt.close()
+    # Add center lines
+    plt.axhline(0, color='black', linewidth=0.8, linestyle='--', alpha=0.7)
+    plt.axvline(0, color='black', linewidth=0.8, linestyle='--', alpha=0.7)
     
+    # Add labels and title
+    plt.xlabel(f"PC1 ({ipca.explained_variance_ratio_[0]*100:.1f}%)", fontsize=12)
+    plt.ylabel(f"PC2 ({ipca.explained_variance_ratio_[1]*100:.1f}%)", fontsize=12)
+    plt.title("PCA Biplot (Top Features)", fontsize=14, pad=20)
+    
+    # Add grid for better readability
+    plt.grid(True, linestyle='--', alpha=0.3)
+    
+    # Add legend back in a better position
+    plt.legend(handles=scatter.legend_.legend_handles, 
+               title="Label",
+               loc='upper left' if dynamic_scale > 0 else 'upper right',
+               bbox_to_anchor=(1.05, 1),
+               borderaxespad=0.)
+    
+    plt.tight_layout()
+    
+    # Ensure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
+    plt.savefig(os.path.join(output_dir, "pca_biplot.png"), dpi=300, bbox_inches='tight')
+    plt.close()
+
 
 def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=10):
-    """Scatter plot of feature loadings on PC1 vs PC2."""
+    """Scatter plot of feature loadings on PC1 vs PC2 with non-overlapping labels."""
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))
 
     norms = np.linalg.norm(loadings, axis=1)
     top_idx = np.argsort(norms)[-top_n:]
+    
+    # Get the top feature names and their loadings
+    top_features = [feature_names[i] for i in top_idx]
+    top_loadings = loadings[top_idx]
 
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(12, 10))
     plt.axhline(0, color='black', linewidth=0.8)
     plt.axvline(0, color='black', linewidth=0.8)
+    
+    # Plot all points in light gray
     plt.scatter(loadings[:, 0], loadings[:, 1], alpha=0.3, color="lightgray", s=20, label="Other features")
-
-    for i in top_idx:
-        x, y = loadings[i, 0], loadings[i, 1]
-        plt.scatter(x, y, color="red", s=60)
-        plt.text(x * 1.1, y * 1.1, feature_names[i], fontsize=9)
-
-    plt.xlabel("Loading on PC1")
-    plt.ylabel("Loading on PC2")
-    plt.title(f"PCA Feature Loadings (Top {top_n})")
+    
+    # Plot top points in red
+    plt.scatter(top_loadings[:, 0], top_loadings[:, 1], color="red", s=80, label=f"Top {top_n} features")
+    
+    # Add labels with adjustments to prevent overlap
+    text_objects = []
+    for i, (x, y) in enumerate(top_loadings):
+        # Determine the optimal text position
+        offset_x = 0.02 * (1 if x >= 0 else -1)
+        offset_y = 0.02 * (1 if y >= 0 else -1)
+        
+        # Create annotation with arrow
+        ann = plt.annotate(
+            top_features[i], 
+            xy=(x, y), 
+            xytext=(x + offset_x, y + offset_y),
+            fontsize=10,
+            ha='left' if x >= 0 else 'right',
+            va='bottom' if y >= 0 else 'top',
+            bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8, edgecolor="none"),
+            arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=0", color="black", alpha=0.6, lw=0.8)
+        )
+        text_objects.append(ann)
+    
+    # Adjust text positions to minimize overlaps
+    adjust_text(text_objects, 
+                arrowprops=dict(arrowstyle="->", color='black', lw=0.5),
+                expand_points=(1.5, 1.5),
+                expand_text=(1.2, 1.2),
+                force_text=(0.5, 0.8),
+                only_move={'points':'y', 'text':'xy', 'objects':'xy'})
+    
+    plt.xlabel("Loading on PC1", fontsize=12)
+    plt.ylabel("Loading on PC2", fontsize=12)
+    plt.title(f"PCA Feature Loadings (Top {top_n})", fontsize=14, pad=20)
     plt.grid(True, linestyle="--", alpha=0.5)
-    plt.savefig(os.path.join(output_dir, "pca_loading_scatter.png"), dpi=300)
+    plt.legend(loc='best')
+    plt.tight_layout()
+    
+    # Save with high DPI for better quality
+    plt.savefig(os.path.join(output_dir, "pca_loading_scatter.png"), dpi=300, bbox_inches='tight')
     plt.close()
 
 
