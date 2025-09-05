@@ -93,10 +93,10 @@ def main():
     parser.add_argument("-r","--random-genomes", type=int, default=5, help="Number of random genomes to fetch (default: 5)")
     parser.add_argument("--pfam-hmm", help="Path to Pfam-A.hmm file (required for Pfam analysis)")
     parser.add_argument("--skip", nargs="+", choices=[
-        "1.iedb", "2.compile", "3.uniprot", "4.random", "5.genomes", "6.align", "7.pdb", "8.pfam", "9.analysis", "10.epitopes", "11.features"
+        "iedb", "compile", "uniprot", "random", "genomes", "align", "pdb", "pfam", "analysis", "epitopes", "features"
     ], help="Skip specific steps (default: none)")
     parser.add_argument("--steps", nargs="+", choices=[
-        "1.iedb", "2.compile", "3.uniprot", "4.random", "5.genomes", "6.align", "7.pdb", "8.pfam", "9.analysis", "10.epitopes", "11.features"
+        "iedb", "compile", "uniprot", "random", "genomes", "align", "pdb", "pfam", "analysis", "epitopes", "features"
     ], help="Run only specific steps (default: all)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     parser.add_argument("--dry-run", action="store_true", help="Show commands without executing")
