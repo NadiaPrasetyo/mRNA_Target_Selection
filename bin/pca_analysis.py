@@ -100,13 +100,32 @@ def plot_scree(ipca, output_dir: str):
 
 
 def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=2.5):
-    """PCA biplot with samples and top feature loadings, improved label placement."""
+    """PCA biplot with samples and top feature loadings using manual label placement."""
     plt.figure(figsize=(12, 10))
     
-    # Create scatter plot with samples and store the scatter object
-    scatter = sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", s=60, alpha=0.7, palette="viridis")
+    # Create a custom palette where 'random' is red and others use viridis
+    unique_labels = pca_df['label'].unique()
+    if 'random' in unique_labels:
+        # Create custom palette: random=red, others=viridis
+        n_other_labels = len(unique_labels) - 1
+        other_colors = sns.color_palette("viridis", n_other_labels)
+        
+        custom_palette = {}
+        other_idx = 0
+        for label in unique_labels:
+            if label == 'random':
+                custom_palette[label] = 'red'
+            else:
+                custom_palette[label] = other_colors[other_idx]
+                other_idx += 1
+    else:
+        custom_palette = "viridis"
     
-    # Store legend handles and labels before potentially removing the legend
+    # Create scatter plot with samples using custom palette
+    scatter = sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", 
+                             s=60, alpha=0.7, palette=custom_palette)
+    
+    # Store legend handles and labels
     handles, labels = scatter.get_legend_handles_labels()
     
     # Loadings
