@@ -103,12 +103,11 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=
     """PCA biplot with samples and top feature loadings, improved label placement."""
     plt.figure(figsize=(12, 10))
     
-    # Create scatter plot with samples
+    # Create scatter plot with samples and store the scatter object
     scatter = sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", s=60, alpha=0.7, palette="viridis")
     
-    # Get legend and remove it for custom placement
-    legend = plt.legend()
-    legend.remove()
+    # Store legend handles and labels before potentially removing the legend
+    handles, labels = scatter.get_legend_handles_labels()
     
     # Loadings
     loadings = ipca.components_[:2].T
@@ -125,16 +124,17 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=
     dynamic_scale = scale * (avg_range / 5)  # Adjust scale based on data range
 
     texts = []
-    arrows = []
     
     # Plot feature vectors and labels
     for i in top_idx:
         x, y = loadings[i, 0] * dynamic_scale, loadings[i, 1] * dynamic_scale
         
-        # Draw arrow
-        arrow = plt.arrow(0, 0, x, y, color='red', alpha=0.7, head_width=0.03*dynamic_scale, 
-                          length_includes_head=True, linewidth=1.5)
-        arrows.append(arrow)
+        # Draw arrow using plt.arrow instead of FancyArrowPatch
+        plt.arrow(0, 0, x, y, color='red', alpha=0.7, 
+                  head_width=0.03*dynamic_scale, 
+                  length_includes_head=True, 
+                  linewidth=1.5,
+                  overhang=0.3)  # Added overhang to improve arrow appearance
         
         # Add text label with initial positioning
         text = plt.text(x * 1.15, y * 1.15, feature_names[i], fontsize=10, 
@@ -143,21 +143,29 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=
                                  alpha=0.9, edgecolor="red", linewidth=0.5))
         texts.append(text)
 
-    # Adjust labels with improved parameters
-    adjust_text(
-        texts,
-        arrowprops=dict(arrowstyle="->", color='gray', lw=0.8, alpha=0.7),
-        expand_points=(1.5, 1.8),
-        expand_text=(1.3, 1.6),
-        force_points=(0.5, 0.8),
-        force_text=(0.8, 1.2),
-        va='center',
-        ha='center',
-        only_move={'points':'xy', 'text':'xy', 'objects':'xy'},
-        avoid_points=True,
-        avoid_text=True,
-        lim=100  # Increase iteration limit for better convergence
-    )
+    # Adjust labels if adjust_text is available
+    try:
+        adjust_text(
+            texts,
+            arrowprops=dict(arrowstyle="->", color='gray', lw=0.8, alpha=0.7),
+            expand_points=(1.5, 1.8),
+            expand_text=(1.3, 1.6),
+            force_points=(0.5, 0.8),
+            force_text=(0.8, 1.2),
+            va='center',
+            ha='center',
+            only_move={'points':'xy', 'text':'xy', 'objects':'xy'},
+            avoid_points=True,
+            avoid_text=True,
+            lim=100  # Increase iteration limit for better convergence
+        )
+    except ImportError:
+        # Fallback: manual label placement if adjust_text is not available
+        print("adjustText package not available, using manual label placement")
+        for text in texts:
+            # Simple manual adjustment to reduce overlaps
+            pos = text.get_position()
+            text.set_position((pos[0] + 0.02, pos[1] + 0.02))
 
     # Add center lines
     plt.axhline(0, color='black', linewidth=0.8, linestyle='--', alpha=0.7)
@@ -171,10 +179,10 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=
     # Add grid for better readability
     plt.grid(True, linestyle='--', alpha=0.3)
     
-    # Add legend back in a better position
-    plt.legend(handles=scatter.legend_.legend_handles, 
+    # Add legend using the stored handles and labels
+    plt.legend(handles=handles, labels=labels, 
                title="Label",
-               loc='upper left' if dynamic_scale > 0 else 'upper right',
+               loc='upper left',
                bbox_to_anchor=(1.05, 1),
                borderaxespad=0.)
     
