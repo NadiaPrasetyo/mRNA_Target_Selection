@@ -100,7 +100,8 @@ def main():
     ], help="Run only specific steps (default: all)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     parser.add_argument("--dry-run", action="store_true", help="Show commands without executing")
-    
+    parser.add_argument("--human-negative", help="Use human instead of random as a negative set")
+
     args = parser.parse_args()
     
     # Setup directories and logging
@@ -123,7 +124,9 @@ def main():
     
     success_count = 0
     total_steps = len(steps_to_run)
-    
+
+    prefix = "random" if args.human_negative else "human"
+
     try:
         # Step 1: IEDB Fetch
         if "iedb" in steps_to_run:
@@ -154,7 +157,10 @@ def main():
 
         # Step 4: Generate Random Sequences
         if "random" in steps_to_run:
-            cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, args.pathogen_name]
+            if args.human_negative:
+                cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, args.pathogen_name, "--human"]
+            else:
+                cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, args.pathogen_name]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Generate random sequences"):
@@ -198,19 +204,19 @@ def main():
                 success_count += 1
             
             # Random protein alignment
-            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, "random", 
-                   "--threads", str(args.threads), "--output-dir", "random_mmseqs_protein"]
+            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{prefix}", 
+                   "--threads", str(args.threads), "--output-dir", f"{prefix}_mmseqs_protein"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Random protein alignment with MMseqs2"):
+            elif run_command(cmd, f"{prefix} protein alignment with MMseqs2"):
                 success_count += 1
             
             # Random nucleotide alignment
-            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, "random", 
-                   "--threads", str(args.threads), "--output-dir", "random_mmseqs_nucleotide", "--mode", "nucleotide"]
+            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{prefix}", 
+                   "--threads", str(args.threads), "--output-dir", f"{prefix}_mmseqs_nucleotide", "--mode", "nucleotide"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Random nucleotide alignment with MMseqs2"):
+            elif run_command(cmd, f"{prefix} nucleotide alignment with MMseqs2"):
                 success_count += 1
         
         # Step 7: Fetch PDB Structures
@@ -226,8 +232,8 @@ def main():
                 success_count += 1
             
             # PDB structures for random sequences
-            cmd = ["python", "bin/fetch_PDB_structure.py", args.pathogen_dir, "random_mmseqs_protein",
-                   "--threads", str(args.threads), "--output-dir", "random_pdb_sequences"]
+            cmd = ["python", "bin/fetch_PDB_structure.py", args.pathogen_dir, f"{prefix}_mmseqs_protein",
+                   "--threads", str(args.threads), "--output-dir", f"{prefix}_pdb_sequences"]
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -248,9 +254,9 @@ def main():
                 success_count += 1
             
             # IEDB epitope prediction on random PDB structures (non-default tools)
-            cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, "random_pdb_sequences",
+            cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, f"{prefix}_pdb_sequences",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
-                   "--tools"] + nondefault_tools + ["--output-dir", "random_analysis"]
+                   "--tools"] + nondefault_tools + ["--output-dir", f"{prefix}_analysis"]
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -275,7 +281,7 @@ def main():
                 
                 # Pfam analysis for random sequences
                 cmd = ["python", "bin/fetch_pfam_hmmer.py", args.pathogen_dir,
-                       "--pathogen_name", "random", "--pfam_hmm", args.pfam_hmm, "--output-dir", "random_pfam"]
+                       "--pathogen_name", f"{prefix}", "--pfam_hmm", args.pfam_hmm, "--output-dir", f"{prefix}_pfam"]
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
                 elif run_command(cmd, "Fetch Pfam HMMs for random sequences"):
@@ -297,14 +303,14 @@ def main():
                 success_count += 1
             
             # Random analysis
-            cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, "random_mmseqs_protein",
+            cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, f"{prefix}_mmseqs_protein",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
-                   "--output-dir", "random_analysis"]
+                   "--output-dir", f"{prefix}_analysis"]
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Random sequence analysis (protein-based)"):
+            elif run_command(cmd, f"{prefix} sequence analysis (protein-based)"):
                 success_count += 1
             
             # dN/dS analysis on nucleotide alignments (antigens)
@@ -319,14 +325,14 @@ def main():
                 success_count += 1
             
             # dN/dS analysis on random nucleotide alignments
-            cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, "random_mmseqs_nucleotide",
+            cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, f"{prefix}_mmseqs_nucleotide",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
-                   "--tools", "DNDS", "--output-dir", "random_analysis"]
+                   "--tools", "DNDS", "--output-dir", f"{prefix}_analysis"]
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Random dN/dS analysis"):
+            elif run_command(cmd, f"{prefix} dN/dS analysis"):
                 success_count += 1
         
         # Step 10: IEDB Epitope Prediction (default tools)
@@ -344,9 +350,9 @@ def main():
                 success_count += 1
             
             # Epitope prediction on random sequences
-            cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, "random_mmseqs_protein",
+            cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, f"{prefix}_mmseqs_protein",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
-                   "--output-dir", "random_analysis"]
+                   "--output-dir", f"{prefix}_analysis"]
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -356,7 +362,11 @@ def main():
         
         # Step 11: Feature Analysis and KS Tests (Final step after all others complete)
         if "features" in steps_to_run:
-            cmd = ["python", "bin/calculate_features_kstest.py", args.pathogen_dir,
+            if args.human_negative:
+                cmd = ["python", "bin/calculate_features_kstest.py", args.pathogen_dir,
+                       "--threads", str(args.threads), "--human"]
+            else:
+                cmd = ["python", "bin/calculate_features_kstest.py", args.pathogen_dir,
                    "--threads", str(args.threads)]
             if args.verbose:
                 cmd.extend(["--verbose", "--write-raw"])

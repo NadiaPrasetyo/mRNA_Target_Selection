@@ -1258,7 +1258,7 @@ aac_F,0.018957345971563982
 
 # ----------------------------- Orchestration Functions -----------------------------
 
-def extract_all_features(base_dir, eval_dir, threads=1):
+def extract_all_features(base_dir, threads=1):
     """
     Extract all features from the specified base and evaluation directories using multiple threads.
     Args:
@@ -1273,7 +1273,7 @@ def extract_all_features(base_dir, eval_dir, threads=1):
         - "subfeature": specific subfeature name (e.g., "bepipred", "score", "prob_signalp", etc.)
         - "value": numerical value for the feature
     """
-    logging.info(f"Extracting features from base_dir: {base_dir} and eval_dir: {eval_dir} using {threads} threads")
+    logging.info(f"Extracting features from base_dir: {base_dir} using {threads} threads")
     parsers = {
         "bcell": lambda: parse_bcell_dir(os.path.join(base_dir, "bcell")),
         "mhci": lambda: parse_mhc_dir(os.path.join(base_dir, "mhci")),
@@ -1507,7 +1507,7 @@ def plot_auroc_summary(results_df, output_dir):
         logging.error(f"Failed to generate AUROC summary plot: {e}")
 
 
-def compare_ks(pos_features, rand_features, output_dir):
+def compare_ks(pos_features, rand_features, output_dir, prefix):
     """
     Compare distributions using KS test and AUROC.
     Returns a DataFrame with all results.
@@ -1524,7 +1524,7 @@ def compare_ks(pos_features, rand_features, output_dir):
         - "p_value": p-value from KS test (float)
         - "auroc": AUROC value (float)
         - "positive_n": number of positive samples (int)
-        - "random_n": number of random samples (int)
+        - f"{prefix}_n": number of random samples (int)
     """
     logging.info("Starting KS and AUROC comparison")
     results = []
@@ -1567,7 +1567,7 @@ def compare_ks(pos_features, rand_features, output_dir):
             "p_value": pval,
             "auroc": auroc,
             "positive_n": len(pos_vals),
-            "random_n": len(rand_vals)
+            f"{prefix}_n": len(rand_vals)
         })
 
     logging.info("KS and AUROC comparison complete")
@@ -1580,7 +1580,7 @@ def write_features_by_feature(features, label, output_dir):
     Each feature will be written to a separate CSV file named <feature>_<label>_raw_data.csv
     Args:
         features (list): List of dictionaries representing features.
-        label (str): Label for the features (e.g., "positive", "random").
+        label (str): Label for the features (e.g., "positive", "random or human").
         output_dir (str): Directory to write the feature files to.
     """
     logging.info(f"Writing features to disk for label {label} in {output_dir}")
@@ -1658,7 +1658,7 @@ def add_ttest_results(result_df, pos_features, rand_features, logger):
 
 # ----------------------------- Entry Point -----------------------------
 
-def main(pathogen_dir, threads, verbose=False, write_raw=False):
+def main(pathogen_dir, threads, verbose=False, write_raw=False, human_negative=False):
     """
     Main entry point for the script.
     Initializes logging, extracts features, performs KS tests, t-tests, and writes results.
@@ -1671,22 +1671,22 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
     init_logging(verbose, pathogen_dir)
     logger = logging.getLogger()
 
+    prefix = "human" if human_negative else "random"
+
     logger.info(f"Starting processing for pathogen: {pathogen_dir}")
 
     pos_dir = os.path.join("data", pathogen_dir, "epitope_outputs")
-    rand_dir = os.path.join("data", pathogen_dir, "random_analysis")
-    pos_eval_dir = os.path.join("data", pathogen_dir, "evaluation_outputs")
-    rand_eval_dir = os.path.join("data", pathogen_dir, "random_evaluation")
+    rand_dir = os.path.join("data", pathogen_dir, f"{prefix}_analysis")
 
     logger.info(f"Extracting positive features from {pos_dir}")
-    pos_features = extract_all_features(pos_dir, pos_eval_dir, threads)
+    pos_features = extract_all_features(pos_dir, threads)
 
     logger.info(f"Extracting random features from {rand_dir}")
-    rand_features = extract_all_features(rand_dir, rand_eval_dir, threads)
+    rand_features = extract_all_features(rand_dir, threads)
 
     logger.info("Estimating memory usage of extracted features")
     logger.info(f"Positive features: {sizeof_fmt(sys.getsizeof(pos_features))}")
-    logger.info(f"Random features: {sizeof_fmt(sys.getsizeof(rand_features))}")
+    logger.info(f"{prefix} features: {sizeof_fmt(sys.getsizeof(rand_features))}")
     output_dir = os.path.join("results", pathogen_dir)
 
     raw_out_dir = os.path.join("results", pathogen_dir, "raw_data")
@@ -1695,12 +1695,12 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False):
         logger.info(f"Writing positive features to {raw_out_dir}")
         write_features_by_feature(pos_features, "positive", raw_out_dir)
 
-        logger.info(f"Writing random features to {raw_out_dir}")
-        write_features_by_feature(rand_features, "random", raw_out_dir)
+        logger.info(f"Writing {prefix} features to {raw_out_dir}")
+        write_features_by_feature(rand_features, prefix, raw_out_dir)
 
     logger.info("Running KS test on features")
-    result_df = compare_ks(pos_features, rand_features, output_dir)
-    
+    result_df = compare_ks(pos_features, rand_features, output_dir, prefix)
+
     logger.info("Running t-test on features to determine directionality")
     result_df = add_ttest_results(result_df, pos_features, rand_features, logger)
 
@@ -1739,6 +1739,7 @@ if __name__ == "__main__":
     parser.add_argument("--threads", type=int, default=1, help="Number of threads to use for parsing")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging to file")
     parser.add_argument("--write-raw", action="store_true", help="Write raw feature data to disk (optional, large output)")
+    parser.add_argument("--human", help="Use human negative set instead of random")
     args = parser.parse_args()
 
-    main(args.pathogen_dir, args.threads, args.verbose, args.write_raw)
+    main(args.pathogen_dir, args.threads, args.verbose, args.write_raw, args.human)
