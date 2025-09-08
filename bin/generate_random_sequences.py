@@ -74,6 +74,55 @@ def get_antigen_length_bounds(antigen_file):
         return None, None
     return min(lengths), max(lengths)
 
+
+def trim_human_proteins_to_length(protein_data, min_length, max_length):
+    """
+    Randomly trim human protein sequences (and corresponding nucleotide sequences)
+    to fit within the given length range.
+    
+    Args:
+        protein_data (list[dict]): List of protein dicts, each with keys:
+            - "sequence": amino acid sequence (string)
+            - "nucleotide_sequence": nucleotide sequence (string, codon-aligned)
+        min_length (int): Minimum allowed trimmed protein length.
+        max_length (int): Maximum allowed trimmed protein length.
+    
+    Returns:
+        list[dict]: Updated list with trimmed sequences.
+    """
+    for protein in protein_data:
+        seq = protein.get("sequence", "").strip()
+        nuc_seq = protein.get("nucleotide_sequence", "").strip()
+
+        if not seq or not nuc_seq:
+            continue  # skip if missing data
+
+        seq_len = len(seq)
+
+        # Skip if protein is too short
+        if seq_len < min_length:
+            print(f"Skipping protein {protein.get('id')} - length {seq_len} < min_length {min_length}")
+            continue
+
+        # Choose a target length within the allowed range
+        target_len = random.randint(min_length, min(max_length, seq_len))
+
+        # Choose a random start position that allows target_len
+        max_offset = seq_len - target_len
+        offset = random.randint(0, max_offset) if max_offset > 0 else 0
+
+        # Trim amino acid sequence
+        trimmed_seq = seq[offset:offset + target_len]
+
+        # Trim nucleotide sequence (codon-aligned)
+        nuc_offset = offset * 3
+        trimmed_nuc_seq = nuc_seq[nuc_offset:nuc_offset + target_len * 3]
+
+        protein["sequence"] = trimmed_seq
+        protein["nucleotide_sequence"] = trimmed_nuc_seq
+
+    return protein_data
+
 def fetch_random_uniprot_protein_entries(n=200, organism="Staphylococcus aureus", antigen_names=set(), min_len=None, max_len=None):
     """
     Fetch random reviewed UniProt protein entries for a given organism, excluding known antigens.
@@ -141,7 +190,7 @@ def fetch_random_uniprot_protein_entries(n=200, organism="Staphylococcus aureus"
 
     return selected_entries
 
-def main(pathogen, organism):
+def main(pathogen, organism, include_human=False):
     """
     Main function to execute the pipeline for generating non-antigen protein candidates.
     Args:
@@ -153,7 +202,7 @@ def main(pathogen, organism):
     organism_tag = organism.lower().replace(" ", "_")
     pathogen_dir = os.path.join("data", pathogen)
     antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv")
-    output_file = os.path.join(pathogen_dir, f"random_compiled_proteins.csv")
+    output_file = os.path.join(pathogen_dir, f"human_compiled_proteins.csv") if include_human else os.path.join(pathogen_dir, f"random_compiled_proteins.csv")
 
     if not os.path.exists(antigens_file):
         print("[FATAL] Missing antigen protein file.")
@@ -170,10 +219,10 @@ def main(pathogen, organism):
     # Step 2: Fetch random UniProt proteins
     entries = fetch_random_uniprot_protein_entries(
         n=200,
-        organism=organism,
+        organism="Homo sapiens" if include_human else organism,
         antigen_names=antigen_names,
-        min_len=min_len,
-        max_len=max_len
+        min_len=min_len if not include_human else None,
+        max_len=max_len if not include_human else None
     )
 
     # Step 3: Parse UniProt entries
@@ -187,6 +236,10 @@ def main(pathogen, organism):
     if not protein_data:
         print("[WARN] No protein entries were successfully parsed.")
         return
+    
+    # Step 3.5: trim human proteins to the length ranges
+    if include_human:
+        protein_data = trim_human_proteins_to_length(protein_data, min_len, max_len)
 
     # Step 4: Write to CSV
     with open(output_file, "w", newline='') as outfile:
@@ -220,7 +273,8 @@ if __name__ == "__main__":
     )
     parser.add_argument("pathogen_directory", help="Directory name under data/")
     parser.add_argument("pathogen_name", help='Full organism name (e.g., "staphylococcus aureus")')
+    parser.add_argument("--human", action="store_true", help="Take human proteins")
     args = parser.parse_args()
 
-    main(args.pathogen_directory, args.pathogen_name)
+    main(args.pathogen_directory, args.pathogen_name, include_human=args.human)
 
