@@ -125,7 +125,7 @@ def main():
     success_count = 0
     total_steps = len(steps_to_run)
 
-    prefix = "random" if args.human_negative else "human"
+    prefix = "human" if args.human_negative else "random"
 
     try:
         # Step 1: IEDB Fetch
