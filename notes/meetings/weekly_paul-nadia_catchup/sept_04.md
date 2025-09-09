@@ -25,4 +25,4 @@
 3. **Take statistical summaries** of each feature for each antigen:
      - Ensure memory load remains low.
 
-4. **Adding glycoprotein antigen epitope prediction tool**: [SEPPA3.0](https://academic.oup.com/nar/article/47/W1/W388/5494762)
+4. **Adding glycoprotein antigen epitope prediction tool**: [SEPPA3.0](https://academic.oup.com/nar/article/47/W1/W388/5494762) - doesn't work (API no longer supported with the most recent version)
