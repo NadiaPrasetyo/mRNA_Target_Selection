@@ -100,7 +100,7 @@ def main():
     ], help="Run only specific steps (default: all)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     parser.add_argument("--dry-run", action="store_true", help="Show commands without executing")
-    parser.add_argument("--human-negative", help="Use human instead of random as a negative set")
+    parser.add_argument("--human-negative", action ="store_true", help="Use human instead of random as a negative set")
 
     args = parser.parse_args()
     
