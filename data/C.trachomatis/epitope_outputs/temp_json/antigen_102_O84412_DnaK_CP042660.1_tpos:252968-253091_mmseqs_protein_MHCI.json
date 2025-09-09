@@ -1,0 +1,14 @@
+{
+  "input_sequence_text": ">antigen_102|O84412|DnaK|CP042660.1|tpos:252968-253091\nMPLTDEEIANFKTRLLEMKAKLSHTLEGNAQEVKKPNEATGYSQHQADQGTDTFDRTISLEVTTKEYKLLRQIDRALEKIEEASYGICDVSGEEIPLARLMAIPYATMTVKSQEKFEKGLLSGN",
+  "peptide_length_range": [
+    8,
+    11
+  ],
+  "alleles": "HLA-A*02:01,HLA-A*01:01",
+  "predictors": [
+    {
+      "type": "binding",
+      "method": "netmhcpan_el"
+    }
+  ]
+}

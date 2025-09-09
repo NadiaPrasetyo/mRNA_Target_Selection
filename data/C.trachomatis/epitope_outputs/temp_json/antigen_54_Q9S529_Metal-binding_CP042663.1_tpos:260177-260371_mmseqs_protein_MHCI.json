@@ -1,0 +1,14 @@
+{
+  "input_sequence_text": ">antigen_54|Q9S529|Metal-binding|CP042663.1|tpos:260177-260371\nVEQIAGDTCQVFSIVMDNHDPHNYELSPKYIEKIRQVELWFRIGEGFEKTCERIISCKQVDLAANIDKITNGACCQRFLSFDTHTWLSPKNLKIQIQAITEALVETAPEHETLYRKNCSLLQSQLDLLDQKISSIVSSTSQRNVLVTHGAFAYFCRDYGFIQHTIERANHSELSPKDVVRVERTIRDHNLHSVIL",
+  "peptide_length_range": [
+    8,
+    11
+  ],
+  "alleles": "HLA-A*02:01,HLA-A*01:01",
+  "predictors": [
+    {
+      "type": "binding",
+      "method": "netmhcpan_el"
+    }
+  ]
+}

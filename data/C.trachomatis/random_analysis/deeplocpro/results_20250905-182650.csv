@@ -1,0 +1,38 @@
+,ACC,Localization,Cell wall & surface,Extracellular,Cytoplasmic,Cytoplasmic Membrane,Outer Membrane,Periplasmic
+0,antigen_115|B0BC28|Proline--tRNA|CP156064.1|tpos:207845-207971,Cytoplasmic,0.0000,0.0000,0.9990,0.0000,0.0007,0.0002
+1,"antigen_81|O84874|1,4-alpha-glucan|CP156064.1|tpos:323494-324231",Cytoplasmic,0.0003,0.0253,0.9691,0.0030,0.0014,0.0009
+2,antigen_4|B0BAL3|UDP-N-acetylmuramoylalanine--D-glutamate|CP156064.1|tpos:282546-282961,Cytoplasmic,0.0001,0.0009,0.9974,0.0007,0.0009,0.0000
+3,antigen_141|Q3KKW5|Serine--tRNA|CP156064.1|tpos:207765-208059,Cytoplasmic,0.0000,0.0000,0.9998,0.0000,0.0002,0.0000
+4,"antigen_2|O84737|6,7-dimethyl-8-ribityllumazine|CP156064.1|tpos:267996-268152",Cytoplasmic,0.0003,0.1082,0.8643,0.0016,0.0141,0.0116
+5,"antigen_88|Q3KM93|UDP-N-acetylmuramoyl-L-alanyl-D-glutamate--2,6-diaminopimelate|CP156064.1|tpos:282620-282741",Cytoplasmic,0.0000,0.0004,0.9961,0.0021,0.0013,0.0000
+6,antigen_126|B0BAL6|UDP-N-acetylglucosamine--N-acetylmuramyl-(pentapeptide)|CP156064.1|tpos:283517-283868,Cytoplasmic,0.0007,0.0013,0.5124,0.4114,0.0730,0.0013
+7,antigen_194|B0BAB7|Glutamyl-tRNA|CP156064.1|tpos:240729-241063,Cytoplasmic,0.0003,0.0095,0.9659,0.0110,0.0133,0.0001
+8,antigen_62|P08780|Major|CP156064.1|tpos:309582-309665,Extracellular,0.0000,0.4886,0.0283,0.4408,0.0420,0.0002
+9,antigen_182|B0BBT8|V-type|CP156064.1|tpos:242724-243119,Cytoplasmic,0.0002,0.0008,0.7763,0.0869,0.1345,0.0013
+10,antigen_99|O84694|Probable|CP156064.1|tpos:250750-251030,Cytoplasmic,0.0002,0.0010,0.9965,0.0007,0.0015,0.0000
+11,antigen_20|O84421|Probable|CP156064.1|tpos:45863-46047,Cytoplasmic Membrane,0.0005,0.0026,0.2165,0.7477,0.0316,0.0011
+12,antigen_98|B0B7U3|Arginine/agmatine|CP156064.1|tpos:135087-135569,Cytoplasmic Membrane,0.0000,0.0005,0.0000,0.9991,0.0004,0.0000
+13,antigen_172|B0BAX0|4-hydroxy-3-methylbut-2-enyl|CP156064.1|tpos:320622-320928,Cytoplasmic,0.0001,0.0013,0.9777,0.0096,0.0108,0.0005
+14,antigen_157|O84456|Isoprenyl|CP156064.1|tpos:166441-166693,Cytoplasmic,0.0002,0.0066,0.9847,0.0049,0.0035,0.0001
+15,antigen_175|B0B846|Putative|CP156064.1|tpos:173606-173709,Cytoplasmic Membrane,0.0002,0.2376,0.0716,0.6595,0.0294,0.0017
+16,antigen_171|O84834|Ribonucleoside-diphosphate|CP156064.1|tpos:308834-309880,Cytoplasmic,0.0027,0.0605,0.5551,0.0287,0.3509,0.0021
+17,antigen_142|O84222|Flavin|CP156064.1|tpos:78747-78938,Cytoplasmic,0.0003,0.0062,0.9889,0.0016,0.0026,0.0004
+18,antigen_134|P0DPS8|Serine/threonine-protein|CP156064.1|tpos:243986-244216,Cytoplasmic,0.0001,0.0042,0.9447,0.0495,0.0016,0.0000
+19,antigen_193|O84188|Glucose-6-phosphate|CP156064.1|tpos:65330-65768,Cytoplasmic,0.0024,0.0511,0.9155,0.0056,0.0231,0.0023
+20,antigen_25|Q3KLY0|Arginine/agmatine|CP156064.1|tpos:135087-135569,Cytoplasmic Membrane,0.0000,0.0005,0.0000,0.9991,0.0004,0.0000
+21,antigen_162|O84734|Serine--tRNA|CP156064.1|tpos:207765-208059,Cytoplasmic,0.0000,0.0000,0.9998,0.0000,0.0002,0.0000
+22,antigen_9|B0BAI4|Serine--tRNA|CP156064.1|tpos:207765-208059,Cytoplasmic,0.0000,0.0000,0.9998,0.0000,0.0002,0.0000
+23,antigen_74|O84127|Large|CP156064.1|tpos:44757-44906,Outer Membrane,0.0000,0.0000,0.1367,0.0001,0.8631,0.0001
+24,antigen_56|Q3KLG6|Acyl-[acyl-carrier-protein]--UDP-N-acetylglucosamine|CP156064.1|tpos:85970-86162,Cytoplasmic,0.0000,0.0000,0.9989,0.0002,0.0009,0.0000
+25,antigen_109|O84420|Putative|CP156064.1|tpos:25332-25545,Cytoplasmic,0.0066,0.0865,0.6193,0.0105,0.0671,0.2101
+26,antigen_57|P13467|Major|CP156064.1|tpos:309582-309662,Cytoplasmic Membrane,0.0000,0.4025,0.0597,0.4936,0.0439,0.0003
+27,antigen_105|Q3KLY3|Pyruvoyl-dependent|CP156064.1|tpos:134887-135081,Cytoplasmic,0.0009,0.0075,0.9078,0.0531,0.0288,0.0018
+28,antigen_131|B0BBD3|DNA|CP156064.1|tpos:51727-52389,Cytoplasmic,0.0001,0.0004,0.9981,0.0002,0.0011,0.0001
+29,"antigen_11|B0B8V8|6,7-dimethyl-8-ribityllumazine|CP156064.1|tpos:267996-268152",Cytoplasmic,0.0003,0.1082,0.8643,0.0016,0.0141,0.0116
+30,antigen_89|Q3KLZ0|3-phosphoshikimate|CP156064.1|tpos:132419-132858,Cytoplasmic,0.0003,0.0637,0.9253,0.0104,0.0003,0.0000
+31,antigen_35|Q3KL32|Glutamyl-tRNA|CP156064.1|tpos:240729-241063,Cytoplasmic,0.0003,0.0095,0.9659,0.0110,0.0133,0.0001
+32,antigen_123|P0DPS7|Serine/threonine-protein|CP156064.1|tpos:243980-244172,Cytoplasmic,0.0000,0.0015,0.9239,0.0709,0.0037,0.0000
+33,antigen_120|B0B8Y7|UDP-N-acetylglucosamine--N-acetylmuramyl-(pentapeptide)|CP156064.1|tpos:283517-283868,Cytoplasmic,0.0007,0.0013,0.5124,0.4114,0.0730,0.0013
+34,antigen_147|B0B8D2|Lipoyl|CP156064.1|tpos:200051-200361,Cytoplasmic,0.0003,0.0022,0.9663,0.0104,0.0137,0.0071
+35,antigen_148|Q3KKJ9|tRNA(Ile)-lysidine|CP156064.1|tpos:313441-313761,Cytoplasmic,0.0003,0.0005,0.9858,0.0051,0.0079,0.0003
+36,antigen_146|O84847|tRNA(Ile)-lysidine|CP156064.1|tpos:313441-313761,Cytoplasmic,0.0003,0.0005,0.9858,0.0051,0.0079,0.0003

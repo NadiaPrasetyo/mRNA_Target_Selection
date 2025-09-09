@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,Q3KMZ6_AF,A,41,47,DPHSEQN,7,0.73,Linear
+2,Q3KMZ6_AF,A,24,35,DVESPRDGKYIE,12,0.7,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,Q3KMZ6_AF,A:Y102, A:L106, A:A107, A:A108, A:R109, A:K110, A:A111, A:E112, A:A113, A:A114, A:A115, A:K116,12,0.909,Discontinous
+2,Q3KMZ6_AF,A:R100, A:A101, A:Q104, A:R105,4,0.748,Discontinous
+3,Q3KMZ6_AF,A:M1, A:A2, A:Q9, A:Q10, A:G11, A:C12, A:H15, A:V16, A:D24, A:V25, A:E26, A:S27, A:P28, A:R29, A:D30, A:G31, A:K32, A:Y33, A:I34, A:E35, A:D41, A:P42, A:H43, A:S44, A:E45, A:Q46, A:N47, A:R54, A:Y57, A:Q61,30,0.695,Discontinous
+4,Q3KMZ6_AF,A:A77, A:P78, A:G79,3,0.517,Discontinous

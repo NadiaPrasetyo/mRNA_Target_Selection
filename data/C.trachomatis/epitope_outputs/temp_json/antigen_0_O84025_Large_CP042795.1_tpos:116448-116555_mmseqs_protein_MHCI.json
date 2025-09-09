@@ -1,0 +1,14 @@
+{
+  "input_sequence_text": ">antigen_0|O84025|Large|CP042795.1|tpos:116448-116555\nMKKNTHPEYRQVLFVDSSTGYKFVCGSTYQTDKTEVFEGQEYPVCYVSISSSSHPFFTGSKKLVDAEGRVDKFLKRYSGIKQSAPKPETVVEDVLPKGKKKSPAKKKK",
+  "peptide_length_range": [
+    8,
+    11
+  ],
+  "alleles": "HLA-A*02:01,HLA-A*01:01",
+  "predictors": [
+    {
+      "type": "binding",
+      "method": "netmhcpan_el"
+    }
+  ]
+}
