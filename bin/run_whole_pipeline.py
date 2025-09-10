@@ -163,7 +163,7 @@ def main():
                 cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, args.pathogen_name]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Generate random sequences"):
+            elif run_command(cmd, f"Generate {prefix} sequences"):
                 success_count += 1
            
         # Step 5: Fetch NCBI Strain Genomes
@@ -238,7 +238,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Fetch PDB structures for random sequences"):
+            elif run_command(cmd, f"Fetch PDB structures for {prefix} sequences"):
                 success_count += 1
             
             # IEDB epitope prediction on PDB structures (non-default tools) - antigens
@@ -261,7 +261,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "IEDB epitope prediction on random structures (structure-based tools)"):
+            elif run_command(cmd, f"IEDB epitope prediction on {prefix} structures (structure-based tools)"):
                 success_count += 1
         
         # Step 8: Fetch Pfam HMMs
@@ -284,7 +284,7 @@ def main():
                        "--pathogen_name", f"{prefix}", "--pfam_hmm", args.pfam_hmm, "--output-dir", f"{prefix}_pfam"]
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, "Fetch Pfam HMMs for random sequences"):
+                elif run_command(cmd, f"Fetch Pfam HMMs for {prefix} sequences"):
                     success_count += 1
 
         
@@ -357,7 +357,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "IEDB epitope prediction on random sequences (default tools)"):
+            elif run_command(cmd, f"IEDB epitope prediction on {prefix} sequences (default tools)"):
                 success_count += 1
         
         # Step 11: Feature Analysis and KS Tests (Final step after all others complete)
