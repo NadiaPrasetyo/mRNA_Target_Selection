@@ -1,0 +1,1055 @@
+Seq_ID,Pattern_ID,Sequence,ML_Score,BLAST_Score,Total_Score,Prediction
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_1,LIITLLFTV,0.52,0,0.52,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_2,IITLLFTVI,0.59,0,0.59,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_3,ITLLFTVIE,0.57,0,0.57,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_4,TLLFTVIEF,0.56,0,0.56,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_5,LLFTVIEFV,0.44,0,0.44,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_6,LFTVIEFVG,0.53,0,0.53,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_7,FTVIEFVGG,0.65,0,0.65,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_8,TVIEFVGGL,0.76,0,0.76,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_9,VIEFVGGLV,0.75,0,0.75,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_10,IEFVGGLVS,0.7,0,0.7,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_11,EFVGGLVSN,0.66,0,0.66,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_12,FVGGLVSNS,0.65,0,0.65,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_13,VGGLVSNSL,0.7,0,0.7,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_14,GGLVSNSLA,0.76,0,0.76,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_15,GLVSNSLAL,0.78,0,0.78,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_16,LVSNSLALL,0.72,0,0.72,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_17,VSNSLALLS,0.61,0,0.61,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_18,SNSLALLSD,0.55,0,0.55,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_19,NSLALLSDS,0.57,0,0.57,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_20,SLALLSDSF,0.49,0,0.49,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_21,LALLSDSFH,0.51,0,0.51,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_22,ALLSDSFHM,0.39,0,0.39,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_23,LLSDSFHML,0.31,0,0.31,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_24,LSDSFHMLS,0.2,0,0.2,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_25,SDSFHMLSD,0.18,0,0.18,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_26,DSFHMLSDV,0.28,0,0.28,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_27,SFHMLSDVL,0.51,0,0.51,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_28,FHMLSDVLA,0.58,0,0.58,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_29,HMLSDVLAL,0.57,0,0.57,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_30,MLSDVLALG,0.7,0,0.7,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_31,LSDVLALGL,0.76,0,0.76,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_32,SDVLALGLS,0.76,0,0.76,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_33,DVLALGLSM,0.74,0,0.74,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_34,VLALGLSML,0.83,0,0.83,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_35,LALGLSMLA,0.83,0,0.83,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_36,ALGLSMLAI,0.79,0,0.79,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_37,LGLSMLAIY,0.81,0,0.81,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_38,GLSMLAIYF,0.7,0,0.7,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_39,LSMLAIYFA,0.55,0,0.55,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_40,SMLAIYFAS,0.56,0,0.56,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_41,MLAIYFASK,0.56,0,0.56,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_42,LAIYFASKK,0.55,0,0.55,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_43,AIYFASKKP,0.54,0,0.54,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_44,IYFASKKPT,0.61,0,0.61,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_45,YFASKKPTA,0.63,0,0.63,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_46,FASKKPTAR,0.65,0,0.65,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_47,ASKKPTARY,0.68,0,0.68,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_48,SKKPTARYT,0.69,0,0.69,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_49,KKPTARYTF,0.68,0,0.68,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_50,KPTARYTFG,0.65,0,0.65,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_51,PTARYTFGY,0.6,0,0.6,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_52,TARYTFGYL,0.42,0,0.42,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_53,ARYTFGYLR,0.45,0,0.45,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_54,RYTFGYLRF,0.35,0,0.35,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_55,YTFGYLRFE,0.42,0,0.42,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_56,TFGYLRFEI,0.48,0,0.48,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_57,FGYLRFEIL,0.49,0,0.49,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_58,GYLRFEILA,0.58,0,0.58,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_59,YLRFEILAA,0.58,0,0.58,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_60,LRFEILAAF,0.55,0,0.55,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_61,RFEILAAFL,0.6,0,0.6,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_62,FEILAAFLN,0.43,0,0.43,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_63,EILAAFLNG,0.42,0,0.42,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_64,ILAAFLNGL,0.56,0,0.56,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_65,LAAFLNGLA,0.57,0,0.57,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_66,AAFLNGLAL,0.56,0,0.56,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_67,AFLNGLALI,0.59,0,0.59,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_68,FLNGLALIV,0.66,0,0.66,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_69,LNGLALIVI,0.61,0,0.61,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_70,NGLALIVIS,0.58,0,0.58,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_71,GLALIVISI,0.53,0,0.53,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_72,LALIVISIW,0.3,0,0.3,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_73,ALIVISIWI,0.29,0,0.29,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_74,LIVISIWIL,0.23,0,0.23,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_75,IVISIWILY,0.17,0,0.17,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_76,VISIWILYE,0.29,0,0.29,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_77,ISIWILYEA,0.47,0,0.47,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_78,SIWILYEAI,0.5,0,0.5,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_79,IWILYEAIV,0.46,0,0.46,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_80,WILYEAIVR,0.55,0,0.55,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_81,ILYEAIVRI,0.52,0,0.52,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_82,LYEAIVRII,0.49,0,0.49,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_83,YEAIVRIIY,0.52,0,0.52,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_84,EAIVRIIYP,0.52,0,0.52,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_85,AIVRIIYPQ,0.44,0,0.44,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_86,IVRIIYPQP,0.55,0,0.55,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_87,VRIIYPQPI,0.73,0,0.73,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_88,RIIYPQPIE,0.75,0,0.75,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_89,IIYPQPIES,0.8,0,0.8,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_90,IYPQPIESG,0.78,0,0.78,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_91,YPQPIESGI,0.83,0,0.83,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_92,PQPIESGIM,0.84,0,0.84,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_93,QPIESGIMF,0.57,0,0.57,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_94,PIESGIMFM,0.4,0,0.4,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_95,IESGIMFMI,0.38,0,0.38,Non-inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_96,ESGIMFMIA,0.5,0,0.5,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_97,SGIMFMIAS,0.54,0,0.54,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_98,GIMFMIASI,0.59,0,0.59,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_99,IMFMIASIG,0.6,0,0.6,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_100,MFMIASIGL,0.65,0,0.65,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_101,FMIASIGLL,0.69,0,0.69,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_102,MIASIGLLV,0.69,0,0.69,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_103,IASIGLLVN,0.71,0,0.71,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_104,ASIGLLVNI,0.7,0,0.7,IFN-γ inducer
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294,Pattern_105,SIGLLVNII,0.57,0,0.57,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_1,RRSKMTNRQ,0.45,0,0.45,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_2,RSKMTNRQW,0.46,0,0.46,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_3,SKMTNRQWE,0.61,0,0.61,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_4,KMTNRQWET,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_5,MTNRQWETL,0.83,0,0.83,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_6,TNRQWETLR,0.73,0,0.73,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_7,NRQWETLRE,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_8,RQWETLREY,0.62,0,0.62,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_9,QWETLREYD,0.61,0,0.61,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_10,WETLREYDE,0.56,0,0.56,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_11,ETLREYDEI,0.56,0,0.56,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_12,TLREYDEIK,0.5,0,0.5,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_13,LREYDEIKY,0.38,0,0.38,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_14,REYDEIKYE,0.24,0,0.24,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_15,EYDEIKYEF,0.23,0,0.23,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_16,YDEIKYEFY,0.28,0,0.28,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_17,DEIKYEFYE,0.28,0,0.28,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_18,EIKYEFYEG,0.33,0,0.33,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_19,IKYEFYEGI,0.35,0,0.35,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_20,KYEFYEGIA,0.47,0,0.47,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_21,YEFYEGIAK,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_22,EFYEGIAKV,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_23,FYEGIAKVT,0.59,0,0.59,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_24,YEGIAKVTI,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_25,EGIAKVTIN,0.7,0,0.7,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_26,GIAKVTINR,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_27,IAKVTINRP,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_28,AKVTINRPE,0.68,0,0.68,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_29,KVTINRPEV,0.72,0,0.72,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_30,VTINRPEVR,0.73,0,0.73,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_31,TINRPEVRN,0.72,0,0.72,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_32,INRPEVRNA,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_33,NRPEVRNAF,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_34,RPEVRNAFT,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_35,PEVRNAFTP,0.7,0,0.7,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_36,EVRNAFTPK,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_37,VRNAFTPKT,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_38,RNAFTPKTV,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_39,NAFTPKTVA,0.7,0,0.7,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_40,AFTPKTVAE,0.72,0,0.72,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_41,FTPKTVAEM,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_42,TPKTVAEMI,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_43,PKTVAEMID,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_44,KTVAEMIDA,0.64,0,0.64,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_45,TVAEMIDAF,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_46,VAEMIDAFS,0.46,0,0.46,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_47,AEMIDAFSR,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_48,EMIDAFSRA,0.32,0,0.32,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_49,MIDAFSRAR,0.33,0,0.33,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_50,IDAFSRARD,0.29,0,0.29,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_51,DAFSRARDD,0.17,0,0.17,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_52,AFSRARDDQ,0.23,0,0.23,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_53,FSRARDDQN,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_54,SRARDDQNV,0.47,0,0.47,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_55,RARDDQNVS,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_56,ARDDQNVSV,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_57,RDDQNVSVI,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_58,DDQNVSVIV,0.56,0,0.56,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_59,DQNVSVIVL,0.51,0,0.51,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_60,QNVSVIVLT,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_61,NVSVIVLTG,0.57,0,0.57,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_62,VSVIVLTGE,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_63,SVIVLTGEG,0.68,0,0.68,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_64,VIVLTGEGD,0.76,0,0.76,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_65,IVLTGEGDL,0.77,0,0.77,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_66,VLTGEGDLA,0.79,0,0.79,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_67,LTGEGDLAF,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_68,TGEGDLAFC,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_69,GEGDLAFCS,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_70,EGDLAFCSG,0.7,0,0.7,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_71,GDLAFCSGG,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_72,DLAFCSGGD,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_73,LAFCSGGDQ,0.62,0,0.62,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_74,AFCSGGDQK,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_75,FCSGGDQKK,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_76,CSGGDQKKR,0.6,0,0.6,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_77,SGGDQKKRG,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_78,GGDQKKRGH,0.39,0,0.39,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_79,GDQKKRGHG,0.45,0,0.45,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_80,DQKKRGHGG,0.41,0,0.41,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_81,QKKRGHGGY,0.51,0,0.51,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_82,KKRGHGGYV,0.46,0,0.46,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_83,KRGHGGYVG,0.51,0,0.51,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_84,RGHGGYVGE,0.5,0,0.5,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_85,GHGGYVGED,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_86,HGGYVGEDQ,0.56,0,0.56,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_87,GGYVGEDQI,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_88,GYVGEDQIP,0.62,0,0.62,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_89,YVGEDQIPR,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_90,VGEDQIPRL,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_91,GEDQIPRLN,0.63,0,0.63,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_92,EDQIPRLNV,0.59,0,0.59,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_93,DQIPRLNVL,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_94,QIPRLNVLD,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_95,IPRLNVLDL,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_96,PRLNVLDLQ,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_97,RLNVLDLQR,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_98,LNVLDLQRL,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_99,NVLDLQRLI,0.56,0,0.56,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_100,VLDLQRLIR,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_101,LDLQRLIRI,0.63,0,0.63,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_102,DLQRLIRII,0.61,0,0.61,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_103,LQRLIRIIP,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_104,QRLIRIIPK,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_105,RLIRIIPKP,0.7,0,0.7,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_106,LIRIIPKPV,0.8,0,0.8,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_107,IRIIPKPVI,0.76,0,0.76,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_108,RIIPKPVIA,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_109,IIPKPVIAM,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_110,IPKPVIAMV,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_111,PKPVIAMVK,0.56,0,0.56,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_112,KPVIAMVKG,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_113,PVIAMVKGY,0.57,0,0.57,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_114,VIAMVKGYA,0.61,0,0.61,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_115,IAMVKGYAV,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_116,AMVKGYAVG,0.75,0,0.75,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_117,MVKGYAVGG,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_118,VKGYAVGGG,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_119,KGYAVGGGN,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_120,GYAVGGGNV,0.51,0,0.51,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_121,YAVGGGNVL,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_122,AVGGGNVLN,0.6,0,0.6,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_123,VGGGNVLNV,0.64,0,0.64,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_124,GGGNVLNVV,0.59,0,0.59,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_125,GGNVLNVVC,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_126,GNVLNVVCD,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_127,NVLNVVCDL,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_128,VLNVVCDLT,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_129,LNVVCDLTI,0.59,0,0.59,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_130,NVVCDLTIA,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_131,VVCDLTIAA,0.56,0,0.56,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_132,VCDLTIAAD,0.46,0,0.46,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_133,CDLTIAADN,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_134,DLTIAADNA,0.51,0,0.51,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_135,LTIAADNAI,0.64,0,0.64,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_136,TIAADNAIF,0.63,0,0.63,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_137,IAADNAIFG,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_138,AADNAIFGQ,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_139,ADNAIFGQT,0.59,0,0.59,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_140,DNAIFGQTG,0.57,0,0.57,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_141,NAIFGQTGP,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_142,AIFGQTGPK,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_143,IFGQTGPKV,0.6,0,0.6,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_144,FGQTGPKVG,0.61,0,0.61,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_145,GQTGPKVGS,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_146,QTGPKVGSF,0.54,0,0.54,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_147,TGPKVGSFD,0.5,0,0.5,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_148,GPKVGSFDA,0.45,0,0.45,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_149,PKVGSFDAG,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_150,KVGSFDAGY,0.4,0,0.4,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_151,VGSFDAGYG,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_152,GSFDAGYGS,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_153,SFDAGYGSG,0.48,0,0.48,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_154,FDAGYGSGY,0.5,0,0.5,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_155,DAGYGSGYL,0.51,0,0.51,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_156,AGYGSGYLA,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_157,GYGSGYLAR,0.6,0,0.6,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_158,YGSGYLARI,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_159,GSGYLARIV,0.45,0,0.45,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_160,SGYLARIVG,0.35,0,0.35,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_161,GYLARIVGH,0.37,0,0.37,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_162,YLARIVGHK,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_163,LARIVGHKK,0.43,0,0.43,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_164,ARIVGHKKA,0.47,0,0.47,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_165,RIVGHKKAR,0.47,0,0.47,Non-inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_166,IVGHKKARE,0.5,0,0.5,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_167,VGHKKAREI,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_168,GHKKAREIW,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_169,HKKAREIWY,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_170,KKAREIWYL,0.64,0,0.64,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_171,KAREIWYLC,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_172,AREIWYLCR,0.75,0,0.75,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_173,REIWYLCRQ,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_174,EIWYLCRQY,0.64,0,0.64,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_175,IWYLCRQYN,0.75,0,0.75,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_176,WYLCRQYNA,0.77,0,0.77,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_177,YLCRQYNAQ,0.76,0,0.76,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_178,LCRQYNAQE,0.85,0,0.85,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_179,CRQYNAQEA,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_180,RQYNAQEAL,0.71,0,0.71,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_181,QYNAQEALD,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_182,YNAQEALDM,0.63,0,0.63,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_183,NAQEALDMG,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_184,AQEALDMGL,0.84,0,0.84,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_185,QEALDMGLV,0.76,0,0.76,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_186,EALDMGLVN,0.81,0,0.81,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_187,ALDMGLVNT,0.82,0,0.82,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_188,LDMGLVNTV,0.77,0,0.77,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_189,DMGLVNTVV,0.83,0,0.83,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_190,MGLVNTVVP,0.82,0,0.82,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_191,GLVNTVVPL,0.67,0,0.67,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_192,LVNTVVPLE,0.66,0,0.66,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_193,VNTVVPLEK,0.6,0,0.6,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_194,NTVVPLEKV,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_195,TVVPLEKVE,0.63,0,0.63,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_196,VVPLEKVED,0.69,0,0.69,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_197,VPLEKVEDE,0.73,0,0.73,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_198,PLEKVEDET,0.77,0,0.77,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_199,LEKVEDETV,0.8,0,0.8,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_200,EKVEDETVQ,0.72,0,0.72,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_201,KVEDETVQW,0.85,0,0.85,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_202,VEDETVQWC,0.91,0,0.91,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_203,EDETVQWCK,0.8,0,0.8,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_204,DETVQWCKE,0.68,0,0.68,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_205,ETVQWCKEI,0.62,0,0.62,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_206,TVQWCKEIM,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_207,VQWCKEIMK,0.61,0,0.61,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_208,QWCKEIMKH,0.74,0,0.74,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_209,WCKEIMKHS,0.58,0,0.58,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_210,CKEIMKHSP,0.55,0,0.55,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_211,KEIMKHSPT,0.65,0,0.65,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_212,EIMKHSPTA,0.75,0,0.75,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_213,IMKHSPTAL,0.63,0,0.63,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_214,MKHSPTALR,0.57,0,0.57,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_215,KHSPTALRF,0.62,0,0.62,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_216,HSPTALRFL,0.81,0,0.81,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_217,SPTALRFLK,0.81,0,0.81,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_218,PTALRFLKA,0.79,0,0.79,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_219,TALRFLKAA,0.51,0,0.51,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_220,ALRFLKAAM,0.53,0,0.53,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_221,LRFLKAAMN,0.52,0,0.52,IFN-γ inducer
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483,Pattern_222,RFLKAAMNA,0.62,0,0.62,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_1,FLVIGTIAY,0.64,0,0.64,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_2,LVIGTIAYN,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_3,VIGTIAYNY,0.63,0,0.63,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_4,IGTIAYNYI,0.69,0,0.69,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_5,GTIAYNYIE,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_6,TIAYNYIEI,0.69,0,0.69,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_7,IAYNYIEIG,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_8,AYNYIEIGT,0.54,0,0.54,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_9,YNYIEIGTM,0.49,0,0.49,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_10,NYIEIGTMF,0.39,0,0.39,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_11,YIEIGTMFP,0.43,0,0.43,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_12,IEIGTMFPQ,0.55,0,0.55,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_13,EIGTMFPQS,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_14,IGTMFPQSG,0.64,0,0.64,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_15,GTMFPQSGG,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_16,TMFPQSGGM,0.63,0,0.63,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_17,MFPQSGGMS,0.67,0,0.67,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_18,FPQSGGMSN,0.76,0,0.76,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_19,PQSGGMSNY,0.7,0,0.7,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_20,QSGGMSNYA,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_21,SGGMSNYAQ,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_22,GGMSNYAQY,0.7,0,0.7,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_23,GMSNYAQYT,0.75,0,0.75,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_24,MSNYAQYTH,0.62,0,0.62,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_25,SNYAQYTHG,0.59,0,0.59,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_26,NYAQYTHGS,0.67,0,0.67,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_27,YAQYTHGSL,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_28,AQYTHGSLL,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_29,QYTHGSLLG,0.56,0,0.56,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_30,YTHGSLLGF,0.63,0,0.63,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_31,THGSLLGFI,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_32,HGSLLGFIA,0.81,0,0.81,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_33,GSLLGFIAA,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_34,SLLGFIAAW,0.63,0,0.63,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_35,LLGFIAAWA,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_36,LGFIAAWAN,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_37,GFIAAWANW,0.67,0,0.67,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_38,FIAAWANWV,0.67,0,0.67,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_39,IAAWANWVS,0.77,0,0.77,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_40,AAWANWVSL,0.7,0,0.7,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_41,AWANWVSLV,0.8,0,0.8,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_42,WANWVSLVT,0.82,0,0.82,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_43,ANWVSLVTI,0.71,0,0.71,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_44,NWVSLVTII,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_45,WVSLVTIIP,0.64,0,0.64,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_46,VSLVTIIPI,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_47,SLVTIIPIE,0.63,0,0.63,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_48,LVTIIPIEA,0.61,0,0.61,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_49,VTIIPIEAV,0.66,0,0.66,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_50,TIIPIEAVS,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_51,IIPIEAVSA,0.59,0,0.59,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_52,IPIEAVSAV,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_53,PIEAVSAVQ,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_54,IEAVSAVQY,0.48,0,0.48,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_55,EAVSAVQYM,0.55,0,0.55,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_56,AVSAVQYMS,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_57,VSAVQYMSS,0.56,0,0.56,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_58,SAVQYMSSW,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_59,AVQYMSSWP,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_60,VQYMSSWPW,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_61,QYMSSWPWH,0.77,0,0.77,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_62,YMSSWPWHW,0.76,0,0.76,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_63,MSSWPWHWA,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_64,SSWPWHWAK,0.73,0,0.73,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_65,SWPWHWAKP,0.82,0,0.82,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_66,WPWHWAKPM,0.84,0,0.84,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_67,PWHWAKPMR,0.86,0,0.86,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_68,WHWAKPMRY,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_69,HWAKPMRYL,0.7,0,0.7,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_70,WAKPMRYLM,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_71,AKPMRYLME,0.64,0,0.64,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_72,KPMRYLMEN,0.62,0,0.62,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_73,PMRYLMENG,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_74,MRYLMENGS,0.63,0,0.63,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_75,RYLMENGSI,0.51,0,0.51,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_76,YLMENGSIS,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_77,LMENGSIST,0.59,0,0.59,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_78,MENGSISTY,0.47,0,0.47,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_79,ENGSISTYG,0.46,0,0.46,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_80,NGSISTYGL,0.52,0,0.52,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_81,GSISTYGLL,0.42,0,0.42,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_82,SISTYGLLA,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_83,ISTYGLLAV,0.73,0,0.73,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_84,STYGLLAVY,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_85,TYGLLAVYL,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_86,YGLLAVYLI,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_87,GLLAVYLII,0.79,0,0.79,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_88,LLAVYLIIV,0.49,0,0.49,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_89,LAVYLIIVI,0.44,0,0.44,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_90,AVYLIIVIF,0.28,0,0.28,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_91,VYLIIVIFS,0.25,0,0.25,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_92,YLIIVIFSL,0.33,0,0.33,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_93,LIIVIFSLL,0.23,0,0.23,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_94,IIVIFSLLN,0.35,0,0.35,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_95,IVIFSLLNY,0.4,0,0.4,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_96,VIFSLLNYW,0.42,0,0.42,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_97,IFSLLNYWS,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_98,FSLLNYWSV,0.63,0,0.63,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_99,SLLNYWSVK,0.52,0,0.52,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_100,LLNYWSVKL,0.49,0,0.49,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_101,LNYWSVKLL,0.49,0,0.49,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_102,NYWSVKLLT,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_103,YWSVKLLTS,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_104,WSVKLLTSF,0.71,0,0.71,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_105,SVKLLTSFT,0.73,0,0.73,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_106,VKLLTSFTS,0.75,0,0.75,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_107,KLLTSFTSL,0.72,0,0.72,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_108,LLTSFTSLI,0.66,0,0.66,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_109,LTSFTSLIS,0.42,0,0.42,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_110,TSFTSLISV,0.35,0,0.35,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_111,SFTSLISVF,0.29,0,0.29,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_112,FTSLISVFK,0.3,0,0.3,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_113,TSLISVFKL,0.42,0,0.42,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_114,SLISVFKLG,0.49,0,0.49,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_115,LISVFKLGV,0.56,0,0.56,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_116,ISVFKLGVP,0.66,0,0.66,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_117,SVFKLGVPM,0.71,0,0.71,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_118,VFKLGVPML,0.7,0,0.7,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_119,FKLGVPMLT,0.81,0,0.81,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_120,KLGVPMLTI,0.92,0,0.92,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_121,LGVPMLTII,0.87,0,0.87,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_122,GVPMLTIIM,0.79,0,0.79,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_123,VPMLTIIML,0.8,0,0.8,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_124,PMLTIIMLM,0.69,0,0.69,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_125,MLTIIMLML,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_126,LTIIMLMLS,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_127,TIIMLMLSG,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_128,IIMLMLSGF,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_129,IMLMLSGFD,0.62,0,0.62,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_130,MLMLSGFDT,0.59,0,0.59,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_131,LMLSGFDTS,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_132,MLSGFDTSN,0.5,0,0.5,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_133,LSGFDTSNY,0.45,0,0.45,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_134,SGFDTSNYG,0.5,0,0.5,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_135,GFDTSNYGH,0.47,0,0.47,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_136,FDTSNYGHS,0.44,0,0.44,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_137,DTSNYGHSA,0.51,0,0.51,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_138,TSNYGHSAS,0.54,0,0.54,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_139,SNYGHSAST,0.54,0,0.54,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_140,NYGHSASTF,0.56,0,0.56,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_141,YGHSASTFM,0.56,0,0.56,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_142,GHSASTFMP,0.6,0,0.6,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_143,HSASTFMPY,0.72,0,0.72,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_144,SASTFMPYG,0.7,0,0.7,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_145,ASTFMPYGS,0.59,0,0.59,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_146,STFMPYGSA,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_147,TFMPYGSAP,0.65,0,0.65,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_148,FMPYGSAPI,0.69,0,0.69,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_149,MPYGSAPIF,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_150,PYGSAPIFA,0.74,0,0.74,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_151,YGSAPIFAA,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_152,GSAPIFAAT,0.56,0,0.56,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_153,SAPIFAATT,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_154,APIFAATTA,0.61,0,0.61,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_155,PIFAATTAS,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_156,IFAATTASG,0.5,0,0.5,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_157,FAATTASGI,0.53,0,0.53,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_158,AATTASGII,0.49,0,0.49,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_159,ATTASGIIF,0.52,0,0.52,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_160,TTASGIIFS,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_161,TASGIIFSF,0.5,0,0.5,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_162,ASGIIFSFN,0.45,0,0.45,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_163,SGIIFSFNS,0.49,0,0.49,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_164,GIIFSFNSF,0.47,0,0.47,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_165,IIFSFNSFQ,0.36,0,0.36,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_166,IFSFNSFQT,0.51,0,0.51,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_167,FSFNSFQTI,0.52,0,0.52,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_168,SFNSFQTII,0.37,0,0.37,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_169,FNSFQTIIN,0.32,0,0.32,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_170,NSFQTIINM,0.54,0,0.54,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_171,SFQTIINMG,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_172,FQTIINMGS,0.73,0,0.73,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_173,QTIINMGSE,0.76,0,0.76,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_174,TIINMGSEI,0.78,0,0.78,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_175,IINMGSEIK,0.8,0,0.8,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_176,INMGSEIKN,0.73,0,0.73,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_177,NMGSEIKNP,0.81,0,0.81,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_178,MGSEIKNPE,0.72,0,0.72,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_179,GSEIKNPEK,0.62,0,0.62,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_180,SEIKNPEKN,0.66,0,0.66,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_181,EIKNPEKNI,0.72,0,0.72,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_182,IKNPEKNIA,0.78,0,0.78,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_183,KNPEKNIAR,0.73,0,0.73,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_184,NPEKNIARG,0.69,0,0.69,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_185,PEKNIARGI,0.61,0,0.61,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_186,EKNIARGIA,0.61,0,0.61,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_187,KNIARGIAI,0.58,0,0.58,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_188,NIARGIAIS,0.53,0,0.53,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_189,IARGIAISL,0.62,0,0.62,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_190,ARGIAISLS,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_191,RGIAISLSI,0.81,0,0.81,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_192,GIAISLSIS,0.78,0,0.78,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_193,IAISLSISA,0.76,0,0.76,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_194,AISLSISAV,0.68,0,0.68,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_195,ISLSISAVL,0.73,0,0.73,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_196,SLSISAVLY,0.7,0,0.7,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_197,LSISAVLYI,0.57,0,0.57,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_198,SISAVLYII,0.47,0,0.47,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_199,ISAVLYIIL,0.56,0,0.56,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_200,SAVLYIILQ,0.53,0,0.53,IFN-γ inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_201,AVLYIILQS,0.47,0,0.47,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_202,VLYIILQST,0.39,0,0.39,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_203,LYIILQSTF,0.29,0,0.29,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_204,YIILQSTFI,0.38,0,0.38,Non-inducer
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981,Pattern_205,IILQSTFIT,0.45,0,0.45,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_1,HPDAGKTTL,0.6,0,0.6,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_2,PDAGKTTLT,0.58,0,0.58,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_3,DAGKTTLTE,0.62,0,0.62,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_4,AGKTTLTEK,0.65,0,0.65,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_5,GKTTLTEKL,0.75,0,0.75,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_6,KTTLTEKLL,0.71,0,0.71,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_7,TTLTEKLLY,0.74,0,0.74,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_8,TLTEKLLYF,0.67,0,0.67,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_9,LTEKLLYFS,0.59,0,0.59,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_10,TEKLLYFSG,0.55,0,0.55,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_11,EKLLYFSGA,0.6,0,0.6,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_12,KLLYFSGAI,0.62,0,0.62,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_13,LLYFSGAIR,0.48,0,0.48,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_14,LYFSGAIRE,0.49,0,0.49,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_15,YFSGAIREA,0.59,0,0.59,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_16,FSGAIREAG,0.55,0,0.55,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_17,SGAIREAGT,0.54,0,0.54,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_18,GAIREAGTV,0.69,0,0.69,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_19,AIREAGTVK,0.6,0,0.6,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_20,IREAGTVKG,0.57,0,0.57,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_21,REAGTVKGK,0.54,0,0.54,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_22,EAGTVKGKK,0.55,0,0.55,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_23,AGTVKGKKT,0.59,0,0.59,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_24,GTVKGKKTG,0.64,0,0.64,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_25,TVKGKKTGK,0.65,0,0.65,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_26,VKGKKTGKF,0.65,0,0.65,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_27,KGKKTGKFA,0.75,0,0.75,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_28,GKKTGKFAT,0.63,0,0.63,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_29,KKTGKFATS,0.63,0,0.63,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_30,KTGKFATSD,0.62,0,0.62,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_31,TGKFATSDW,0.74,0,0.74,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_32,GKFATSDWM,0.71,0,0.71,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_33,KFATSDWMK,0.48,0,0.48,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_34,FATSDWMKV,0.56,0,0.56,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_35,ATSDWMKVE,0.72,0,0.72,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_36,TSDWMKVEQ,0.7,0,0.7,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_37,SDWMKVEQE,0.81,0,0.81,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_38,DWMKVEQER,0.81,0,0.81,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_39,WMKVEQERG,0.78,0,0.78,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_40,MKVEQERGI,0.81,0,0.81,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_41,KVEQERGIS,0.72,0,0.72,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_42,VEQERGISV,0.73,0,0.73,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_43,EQERGISVT,0.75,0,0.75,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_44,QERGISVTS,0.66,0,0.66,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_45,ERGISVTSS,0.62,0,0.62,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_46,RGISVTSSV,0.61,0,0.61,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_47,GISVTSSVM,0.64,0,0.64,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_48,ISVTSSVMQ,0.61,0,0.61,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_49,SVTSSVMQF,0.47,0,0.47,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_50,VTSSVMQFD,0.49,0,0.49,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_51,TSSVMQFDY,0.45,0,0.45,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_52,SSVMQFDYD,0.46,0,0.46,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_53,SVMQFDYDD,0.29,0,0.29,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_54,VMQFDYDDY,0.18,0,0.18,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_55,MQFDYDDYK,0.27,0,0.27,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_56,QFDYDDYKI,0.41,0,0.41,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_57,FDYDDYKIN,0.41,0,0.41,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_58,DYDDYKINI,0.4,0,0.4,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_59,YDDYKINIL,0.41,0,0.41,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_60,DDYKINILD,0.6,0,0.6,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_61,DYKINILDT,0.63,0,0.63,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_62,YKINILDTP,0.63,0,0.63,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_63,KINILDTPG,0.58,0,0.58,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_64,INILDTPGH,0.49,0,0.49,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_65,NILDTPGHE,0.56,0,0.56,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_66,ILDTPGHED,0.72,0,0.72,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_67,LDTPGHEDF,0.69,0,0.69,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_68,DTPGHEDFS,0.64,0,0.64,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_69,TPGHEDFSE,0.59,0,0.59,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_70,PGHEDFSED,0.49,0,0.49,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_71,GHEDFSEDT,0.49,0,0.49,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_72,HEDFSEDTY,0.49,0,0.49,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_73,EDFSEDTYR,0.41,0,0.41,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_74,DFSEDTYRT,0.4,0,0.4,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_75,FSEDTYRTL,0.35,0,0.35,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_76,SEDTYRTLM,0.51,0,0.51,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_77,EDTYRTLMA,0.58,0,0.58,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_78,DTYRTLMAV,0.69,0,0.69,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_79,TYRTLMAVD,0.57,0,0.57,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_80,YRTLMAVDS,0.54,0,0.54,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_81,RTLMAVDSA,0.64,0,0.64,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_82,TLMAVDSAV,0.68,0,0.68,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_83,LMAVDSAVM,0.59,0,0.59,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_84,MAVDSAVMV,0.55,0,0.55,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_85,AVDSAVMVI,0.52,0,0.52,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_86,VDSAVMVID,0.48,0,0.48,Non-inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_87,DSAVMVIDC,0.63,0,0.63,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_88,SAVMVIDCA,0.65,0,0.65,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_89,AVMVIDCAK,0.65,0,0.65,IFN-γ inducer
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039,Pattern_90,VMVIDCAKG,0.64,0,0.64,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_1,LQVKIKQKK,0.5,0,0.5,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_2,QVKIKQKKK,0.44,0,0.44,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_3,VKIKQKKKW,0.53,0,0.53,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_4,KIKQKKKWC,0.8,0,0.8,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_5,IKQKKKWCV,0.76,0,0.76,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_6,KQKKKWCVK,0.59,0,0.59,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_7,QKKKWCVKL,0.58,0,0.58,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_8,KKKWCVKLV,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_9,KKWCVKLVL,0.55,0,0.55,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_10,KWCVKLVLR,0.64,0,0.64,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_11,WCVKLVLRG,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_12,CVKLVLRGT,0.68,0,0.68,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_13,VKLVLRGTI,0.61,0,0.61,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_14,KLVLRGTIR,0.6,0,0.6,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_15,LVLRGTIRG,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_16,VLRGTIRGI,0.75,0,0.75,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_17,LRGTIRGIK,0.76,0,0.76,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_18,RGTIRGIKL,0.62,0,0.62,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_19,GTIRGIKLM,0.59,0,0.59,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_20,TIRGIKLMN,0.53,0,0.53,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_21,IRGIKLMNN,0.48,0,0.48,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_22,RGIKLMNNL,0.45,0,0.45,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_23,GIKLMNNLN,0.48,0,0.48,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_24,IKLMNNLNI,0.46,0,0.46,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_25,KLMNNLNIK,0.46,0,0.46,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_26,LMNNLNIKN,0.52,0,0.52,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_27,MNNLNIKNI,0.51,0,0.51,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_28,NNLNIKNIK,0.51,0,0.51,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_29,NLNIKNIKI,0.73,0,0.73,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_30,LNIKNIKII,0.69,0,0.69,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_31,NIKNIKIIS,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_32,IKNIKIISK,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_33,KNIKIISKK,0.6,0,0.6,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_34,NIKIISKKH,0.37,0,0.37,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_35,IKIISKKHL,0.44,0,0.44,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_36,KIISKKHLL,0.48,0,0.48,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_37,IISKKHLLL,0.45,0,0.45,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_38,ISKKHLLLS,0.4,0,0.4,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_39,SKKHLLLSK,0.47,0,0.47,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_40,KKHLLLSKF,0.42,0,0.42,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_41,KHLLLSKFY,0.42,0,0.42,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_42,HLLLSKFYN,0.36,0,0.36,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_43,LLLSKFYNI,0.26,0,0.26,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_44,LLSKFYNIL,0.4,0,0.4,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_45,LSKFYNILR,0.31,0,0.31,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_46,SKFYNILRN,0.43,0,0.43,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_47,KFYNILRNM,0.64,0,0.64,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_48,FYNILRNMA,0.72,0,0.72,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_49,YNILRNMAL,0.67,0,0.67,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_50,NILRNMALI,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_51,ILRNMALIF,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_52,LRNMALIFK,0.56,0,0.56,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_53,RNMALIFKK,0.55,0,0.55,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_54,NMALIFKKR,0.57,0,0.57,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_55,MALIFKKRL,0.5,0,0.5,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_56,ALIFKKRLK,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_57,LIFKKRLKK,0.72,0,0.72,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_58,IFKKRLKKK,0.64,0,0.64,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_59,FKKRLKKKN,0.69,0,0.69,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_60,KKRLKKKNV,0.64,0,0.64,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_61,KRLKKKNVA,0.5,0,0.5,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_62,RLKKKNVAH,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_63,LKKKNVAHH,0.69,0,0.69,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_64,KKKNVAHHV,0.75,0,0.75,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_65,KKNVAHHVI,0.68,0,0.68,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_66,KNVAHHVIL,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_67,NVAHHVILK,0.5,0,0.5,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_68,VAHHVILKI,0.44,0,0.44,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_69,AHHVILKIL,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_70,HHVILKILH,0.53,0,0.53,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_71,HVILKILHM,0.49,0,0.49,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_72,VILKILHML,0.54,0,0.54,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_73,ILKILHMLV,0.41,0,0.41,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_74,LKILHMLVN,0.35,0,0.35,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_75,KILHMLVNL,0.43,0,0.43,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_76,ILHMLVNLG,0.57,0,0.57,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_77,LHMLVNLGV,0.62,0,0.62,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_78,HMLVNLGVL,0.79,0,0.79,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_79,MLVNLGVLI,0.81,0,0.81,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_80,LVNLGVLIV,0.67,0,0.67,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_81,VNLGVLIVM,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_82,NLGVLIVMQ,0.64,0,0.64,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_83,LGVLIVMQH,0.68,0,0.68,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_84,GVLIVMQHL,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_85,VLIVMQHLK,0.64,0,0.64,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_86,LIVMQHLKM,0.69,0,0.69,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_87,IVMQHLKMT,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_88,VMQHLKMTS,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_89,MQHLKMTSL,0.73,0,0.73,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_90,QHLKMTSLI,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_91,HLKMTSLIS,0.59,0,0.59,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_92,LKMTSLISS,0.51,0,0.51,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_93,KMTSLISSA,0.45,0,0.45,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_94,MTSLISSAE,0.42,0,0.42,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_95,TSLISSAEF,0.41,0,0.41,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_96,SLISSAEFK,0.44,0,0.44,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_97,LISSAEFKV,0.46,0,0.46,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_98,ISSAEFKVD,0.46,0,0.46,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_99,SSAEFKVDN,0.51,0,0.51,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_100,SAEFKVDNL,0.62,0,0.62,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_101,AEFKVDNLS,0.52,0,0.52,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_102,EFKVDNLST,0.48,0,0.48,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_103,FKVDNLSTL,0.52,0,0.52,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_104,KVDNLSTLE,0.52,0,0.52,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_105,VDNLSTLER,0.56,0,0.56,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_106,DNLSTLERH,0.67,0,0.67,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_107,NLSTLERHH,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_108,LSTLERHHI,0.67,0,0.67,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_109,STLERHHIL,0.77,0,0.77,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_110,TLERHHILH,0.83,0,0.83,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_111,LERHHILHI,0.74,0,0.74,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_112,ERHHILHIK,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_113,RHHILHIKR,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_114,HHILHIKRL,0.49,0,0.49,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_115,HILHIKRLS,0.5,0,0.5,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_116,ILHIKRLSE,0.5,0,0.5,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_117,LHIKRLSEK,0.48,0,0.48,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_118,HIKRLSEKS,0.51,0,0.51,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_119,IKRLSEKSK,0.5,0,0.5,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_120,KRLSEKSKK,0.61,0,0.61,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_121,RLSEKSKKR,0.61,0,0.61,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_122,LSEKSKKRM,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_123,SEKSKKRMN,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_124,EKSKKRMNI,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_125,KSKKRMNIK,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_126,SKKRMNIKN,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_127,KKRMNIKNL,0.55,0,0.55,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_128,KRMNIKNLL,0.53,0,0.53,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_129,RMNIKNLLK,0.66,0,0.66,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_130,MNIKNLLKS,0.6,0,0.6,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_131,NIKNLLKSK,0.52,0,0.52,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_132,IKNLLKSKI,0.61,0,0.61,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_133,KNLLKSKIL,0.54,0,0.54,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_134,NLLKSKILR,0.49,0,0.49,Non-inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_135,LLKSKILRK,0.55,0,0.55,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_136,LKSKILRKQ,0.51,0,0.51,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_137,KSKILRKQP,0.57,0,0.57,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_138,SKILRKQPL,0.6,0,0.6,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_139,KILRKQPLL,0.67,0,0.67,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_140,ILRKQPLLE,0.72,0,0.72,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_141,LRKQPLLEM,0.74,0,0.74,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_142,RKQPLLEMK,0.7,0,0.7,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_143,KQPLLEMKL,0.71,0,0.71,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_144,QPLLEMKLK,0.77,0,0.77,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_145,PLLEMKLKH,0.8,0,0.8,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_146,LLEMKLKHK,0.73,0,0.73,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_147,LEMKLKHKL,0.75,0,0.75,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_148,EMKLKHKLR,0.77,0,0.77,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_149,MKLKHKLRV,0.83,0,0.83,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_150,KLKHKLRVR,0.74,0,0.74,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_151,LKHKLRVRC,0.74,0,0.74,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_152,KHKLRVRCN,0.67,0,0.67,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_153,HKLRVRCNM,0.65,0,0.65,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_154,KLRVRCNMM,0.63,0,0.63,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_155,LRVRCNMMT,0.69,0,0.69,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_156,RVRCNMMTH,0.79,0,0.79,IFN-γ inducer
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587,Pattern_157,VRCNMMTHN,0.73,0,0.73,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_1,GSGVVYKKS,0.67,0,0.67,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_2,SGVVYKKSG,0.68,0,0.68,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_3,GVVYKKSGD,0.67,0,0.67,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_4,VVYKKSGDT,0.61,0,0.61,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_5,VYKKSGDTL,0.57,0,0.57,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_6,YKKSGDTLY,0.54,0,0.54,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_7,KKSGDTLYI,0.5,0,0.5,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_8,KSGDTLYIV,0.4,0,0.4,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_9,SGDTLYIVT,0.4,0,0.4,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_10,GDTLYIVTN,0.43,0,0.43,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_11,DTLYIVTNA,0.39,0,0.39,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_12,TLYIVTNAH,0.45,0,0.45,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_13,LYIVTNAHV,0.39,0,0.39,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_14,YIVTNAHVV,0.37,0,0.37,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_15,IVTNAHVVG,0.48,0,0.48,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_16,VTNAHVVGD,0.72,0,0.72,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_17,TNAHVVGDK,0.69,0,0.69,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_18,NAHVVGDKE,0.69,0,0.69,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_19,AHVVGDKEN,0.66,0,0.66,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_20,HVVGDKENQ,0.61,0,0.61,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_21,VVGDKENQK,0.62,0,0.62,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_22,VGDKENQKI,0.62,0,0.62,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_23,GDKENQKIT,0.66,0,0.66,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_24,DKENQKITF,0.65,0,0.65,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_25,KENQKITFS,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_26,ENQKITFSN,0.6,0,0.6,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_27,NQKITFSNN,0.46,0,0.46,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_28,QKITFSNNK,0.46,0,0.46,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_29,KITFSNNKS,0.39,0,0.39,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_30,ITFSNNKSV,0.3,0,0.3,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_31,TFSNNKSVV,0.38,0,0.38,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_32,FSNNKSVVG,0.46,0,0.46,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_33,SNNKSVVGK,0.61,0,0.61,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_34,NNKSVVGKV,0.67,0,0.67,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_35,NKSVVGKVL,0.68,0,0.68,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_36,KSVVGKVLG,0.76,0,0.76,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_37,SVVGKVLGK,0.7,0,0.7,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_38,VVGKVLGKD,0.73,0,0.73,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_39,VGKVLGKDK,0.76,0,0.76,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_40,GKVLGKDKW,0.8,0,0.8,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_41,KVLGKDKWS,0.8,0,0.8,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_42,VLGKDKWSD,0.75,0,0.75,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_43,LGKDKWSDL,0.72,0,0.72,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_44,GKDKWSDLA,0.68,0,0.68,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_45,KDKWSDLAV,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_46,DKWSDLAVV,0.53,0,0.53,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_47,KWSDLAVVK,0.6,0,0.6,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_48,WSDLAVVKA,0.54,0,0.54,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_49,SDLAVVKAT,0.51,0,0.51,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_50,DLAVVKATS,0.52,0,0.52,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_51,LAVVKATSS,0.61,0,0.61,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_52,AVVKATSSD,0.57,0,0.57,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_53,VVKATSSDS,0.44,0,0.44,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_54,VKATSSDSS,0.54,0,0.54,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_55,KATSSDSSV,0.56,0,0.56,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_56,ATSSDSSVK,0.47,0,0.47,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_57,TSSDSSVKE,0.51,0,0.51,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_58,SSDSSVKEI,0.43,0,0.43,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_59,SDSSVKEIA,0.4,0,0.4,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_60,DSSVKEIAI,0.51,0,0.51,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_61,SSVKEIAIG,0.56,0,0.56,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_62,SVKEIAIGD,0.63,0,0.63,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_63,VKEIAIGDS,0.61,0,0.61,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_64,KEIAIGDSN,0.62,0,0.62,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_65,EIAIGDSNN,0.56,0,0.56,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_66,IAIGDSNNL,0.59,0,0.59,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_67,AIGDSNNLV,0.62,0,0.62,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_68,IGDSNNLVL,0.61,0,0.61,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_69,GDSNNLVLG,0.66,0,0.66,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_70,DSNNLVLGE,0.7,0,0.7,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_71,SNNLVLGEP,0.76,0,0.76,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_72,NNLVLGEPI,0.74,0,0.74,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_73,NLVLGEPIL,0.76,0,0.76,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_74,LVLGEPILV,0.77,0,0.77,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_75,VLGEPILVV,0.78,0,0.78,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_76,LGEPILVVG,0.69,0,0.69,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_77,GEPILVVGN,0.66,0,0.66,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_78,EPILVVGNP,0.67,0,0.67,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_79,PILVVGNPL,0.58,0,0.58,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_80,ILVVGNPLG,0.67,0,0.67,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_81,LVVGNPLGV,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_82,VVGNPLGVD,0.55,0,0.55,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_83,VGNPLGVDF,0.63,0,0.63,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_84,GNPLGVDFK,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_85,NPLGVDFKG,0.65,0,0.65,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_86,PLGVDFKGT,0.72,0,0.72,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_87,LGVDFKGTV,0.78,0,0.78,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_88,GVDFKGTVT,0.74,0,0.74,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_89,VDFKGTVTE,0.72,0,0.72,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_90,DFKGTVTEG,0.72,0,0.72,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_91,FKGTVTEGI,0.78,0,0.78,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_92,KGTVTEGII,0.78,0,0.78,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_93,GTVTEGIIS,0.76,0,0.76,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_94,TVTEGIISG,0.73,0,0.73,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_95,VTEGIISGL,0.8,0,0.8,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_96,TEGIISGLN,0.81,0,0.81,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_97,EGIISGLNR,0.82,0,0.82,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_98,GIISGLNRN,0.79,0,0.79,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_99,IISGLNRNV,0.79,0,0.79,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_100,ISGLNRNVP,0.84,0,0.84,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_101,SGLNRNVPI,0.74,0,0.74,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_102,GLNRNVPID,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_103,LNRNVPIDF,0.6,0,0.6,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_104,NRNVPIDFD,0.62,0,0.62,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_105,RNVPIDFDK,0.6,0,0.6,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_106,NVPIDFDKD,0.55,0,0.55,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_107,VPIDFDKDN,0.54,0,0.54,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_108,PIDFDKDNK,0.52,0,0.52,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_109,IDFDKDNKY,0.38,0,0.38,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_110,DFDKDNKYD,0.25,0,0.25,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_111,FDKDNKYDM,0.23,0,0.23,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_112,DKDNKYDML,0.27,0,0.27,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_113,KDNKYDMLM,0.31,0,0.31,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_114,DNKYDMLMK,0.28,0,0.28,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_115,NKYDMLMKA,0.32,0,0.32,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_116,KYDMLMKAF,0.48,0,0.48,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_117,YDMLMKAFQ,0.67,0,0.67,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_118,DMLMKAFQI,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_119,MLMKAFQID,0.62,0,0.62,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_120,LMKAFQIDA,0.5,0,0.5,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_121,MKAFQIDAS,0.51,0,0.51,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_122,KAFQIDASV,0.48,0,0.48,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_123,AFQIDASVN,0.43,0,0.43,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_124,FQIDASVNP,0.48,0,0.48,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_125,QIDASVNPG,0.51,0,0.51,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_126,IDASVNPGN,0.51,0,0.51,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_127,DASVNPGNS,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_128,ASVNPGNSG,0.64,0,0.64,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_129,SVNPGNSGG,0.57,0,0.57,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_130,VNPGNSGGA,0.55,0,0.55,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_131,NPGNSGGAV,0.57,0,0.57,IFN-γ inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_132,PGNSGGAVV,0.44,0,0.44,Non-inducer
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482,Pattern_133,GNSGGAVVN,0.39,0,0.39,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_1,IEFRQVSKT,0.57,0,0.57,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_2,EFRQVSKTF,0.55,0,0.55,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_3,FRQVSKTFN,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_4,RQVSKTFNK,0.57,0,0.57,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_5,QVSKTFNKK,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_6,VSKTFNKKK,0.55,0,0.55,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_7,SKTFNKKKQ,0.53,0,0.53,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_8,KTFNKKKQK,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_9,TFNKKKQKI,0.59,0,0.59,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_10,FNKKKQKIH,0.59,0,0.59,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_11,NKKKQKIHA,0.62,0,0.62,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_12,KKKQKIHAL,0.77,0,0.77,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_13,KKQKIHALK,0.79,0,0.79,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_14,KQKIHALKD,0.74,0,0.74,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_15,QKIHALKDV,0.67,0,0.67,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_16,KIHALKDVS,0.72,0,0.72,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_17,IHALKDVSF,0.74,0,0.74,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_18,HALKDVSFK,0.74,0,0.74,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_19,ALKDVSFKV,0.75,0,0.75,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_20,LKDVSFKVN,0.66,0,0.66,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_21,KDVSFKVNR,0.53,0,0.53,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_22,DVSFKVNRN,0.54,0,0.54,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_23,VSFKVNRND,0.49,0,0.49,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_24,SFKVNRNDI,0.53,0,0.53,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_25,FKVNRNDIF,0.56,0,0.56,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_26,KVNRNDIFG,0.53,0,0.53,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_27,VNRNDIFGV,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_28,NRNDIFGVI,0.57,0,0.57,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_29,RNDIFGVIG,0.62,0,0.62,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_30,NDIFGVIGY,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_31,DIFGVIGYS,0.51,0,0.51,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_32,IFGVIGYSG,0.57,0,0.57,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_33,FGVIGYSGA,0.56,0,0.56,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_34,GVIGYSGAG,0.56,0,0.56,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_35,VIGYSGAGK,0.4,0,0.4,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_36,IGYSGAGKS,0.59,0,0.59,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_37,GYSGAGKST,0.55,0,0.55,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_38,YSGAGKSTL,0.54,0,0.54,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_39,SGAGKSTLV,0.46,0,0.46,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_40,GAGKSTLVR,0.48,0,0.48,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_41,AGKSTLVRL,0.46,0,0.46,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_42,GKSTLVRLV,0.54,0,0.54,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_43,KSTLVRLVN,0.55,0,0.55,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_44,STLVRLVNH,0.62,0,0.62,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_45,TLVRLVNHL,0.54,0,0.54,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_46,LVRLVNHLE,0.34,0,0.34,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_47,VRLVNHLEA,0.46,0,0.46,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_48,RLVNHLEAA,0.63,0,0.63,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_49,LVNHLEAAS,0.64,0,0.64,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_50,VNHLEAASS,0.56,0,0.56,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_51,NHLEAASSG,0.46,0,0.46,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_52,HLEAASSGQ,0.46,0,0.46,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_53,LEAASSGQV,0.51,0,0.51,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_54,EAASSGQVL,0.48,0,0.48,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_55,AASSGQVLV,0.54,0,0.54,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_56,ASSGQVLVD,0.67,0,0.67,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_57,SSGQVLVDG,0.58,0,0.58,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_58,SGQVLVDGH,0.65,0,0.65,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_59,GQVLVDGHD,0.63,0,0.63,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_60,QVLVDGHDI,0.59,0,0.59,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_61,VLVDGHDIT,0.53,0,0.53,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_62,LVDGHDITN,0.41,0,0.41,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_63,VDGHDITNY,0.34,0,0.34,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_64,DGHDITNYS,0.42,0,0.42,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_65,GHDITNYSE,0.47,0,0.47,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_66,HDITNYSEK,0.47,0,0.47,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_67,DITNYSEKG,0.44,0,0.44,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_68,ITNYSEKGM,0.56,0,0.56,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_69,TNYSEKGMR,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_70,NYSEKGMRE,0.57,0,0.57,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_71,YSEKGMREI,0.57,0,0.57,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_72,SEKGMREIK,0.65,0,0.65,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_73,EKGMREIKK,0.66,0,0.66,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_74,KGMREIKKD,0.68,0,0.68,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_75,GMREIKKDI,0.59,0,0.59,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_76,MREIKKDIG,0.54,0,0.54,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_77,REIKKDIGM,0.58,0,0.58,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_78,EIKKDIGMI,0.64,0,0.64,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_79,IKKDIGMIF,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_80,KKDIGMIFQ,0.63,0,0.63,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_81,KDIGMIFQH,0.63,0,0.63,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_82,DIGMIFQHF,0.7,0,0.7,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_83,IGMIFQHFN,0.59,0,0.59,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_84,GMIFQHFNL,0.57,0,0.57,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_85,MIFQHFNLL,0.42,0,0.42,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_86,IFQHFNLLN,0.44,0,0.44,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_87,FQHFNLLNS,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_88,QHFNLLNSA,0.72,0,0.72,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_89,HFNLLNSAT,0.72,0,0.72,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_90,FNLLNSATV,0.78,0,0.78,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_91,NLLNSATVF,0.77,0,0.77,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_92,LLNSATVFK,0.62,0,0.62,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_93,LNSATVFKN,0.58,0,0.58,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_94,NSATVFKNV,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_95,SATVFKNVA,0.63,0,0.63,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_96,ATVFKNVAM,0.62,0,0.62,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_97,TVFKNVAMP,0.64,0,0.64,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_98,VFKNVAMPL,0.65,0,0.65,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_99,FKNVAMPLI,0.66,0,0.66,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_100,KNVAMPLIL,0.63,0,0.63,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_101,NVAMPLILS,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_102,VAMPLILSK,0.52,0,0.52,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_103,AMPLILSKK,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_104,MPLILSKKS,0.63,0,0.63,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_105,PLILSKKSK,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_106,LILSKKSKT,0.71,0,0.71,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_107,ILSKKSKTE,0.76,0,0.76,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_108,LSKKSKTEI,0.76,0,0.76,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_109,SKKSKTEIK,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_110,KKSKTEIKQ,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_111,KSKTEIKQR,0.48,0,0.48,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_112,SKTEIKQRV,0.5,0,0.5,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_113,KTEIKQRVT,0.55,0,0.55,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_114,TEIKQRVTE,0.69,0,0.69,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_115,EIKQRVTEM,0.69,0,0.69,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_116,IKQRVTEML,0.68,0,0.68,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_117,KQRVTEMLE,0.64,0,0.64,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_118,QRVTEMLEF,0.68,0,0.68,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_119,RVTEMLEFV,0.79,0,0.79,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_120,VTEMLEFVG,0.76,0,0.76,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_121,TEMLEFVGL,0.77,0,0.77,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_122,EMLEFVGLS,0.78,0,0.78,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_123,MLEFVGLSD,0.68,0,0.68,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_124,LEFVGLSDK,0.66,0,0.66,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_125,EFVGLSDKK,0.68,0,0.68,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_126,FVGLSDKKD,0.58,0,0.58,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_127,VGLSDKKDQ,0.54,0,0.54,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_128,GLSDKKDQF,0.44,0,0.44,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_129,LSDKKDQFP,0.38,0,0.38,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_130,SDKKDQFPD,0.43,0,0.43,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_131,DKKDQFPDE,0.37,0,0.37,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_132,KKDQFPDEL,0.33,0,0.33,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_133,KDQFPDELS,0.31,0,0.31,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_134,DQFPDELSG,0.34,0,0.34,Non-inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_135,QFPDELSGG,0.51,0,0.51,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_136,FPDELSGGQ,0.56,0,0.56,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_137,PDELSGGQK,0.61,0,0.61,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_138,DELSGGQKQ,0.68,0,0.68,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_139,ELSGGQKQR,0.7,0,0.7,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_140,LSGGQKQRV,0.68,0,0.68,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_141,SGGQKQRVA,0.6,0,0.6,IFN-γ inducer
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389,Pattern_142,GGQKQRVAI,0.58,0,0.58,IFN-γ inducer

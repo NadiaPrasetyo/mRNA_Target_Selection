@@ -1,0 +1,48 @@
+##gff-version 3
+# antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294 Length: 113
+# antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294 Number of predicted TMRs: 4
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	inside	1	1				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	TMhelix	2	17				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	outside	18	26				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	TMhelix	27	44				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	inside	45	63				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	TMhelix	64	86				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	outside	87	98				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	TMhelix	99	112				
+antigen_105|Q6XR72-3|Isoform|HE681097.1|tpos:50182-50294	inside	113	113				
+//
+# antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483 Length: 230
+# antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483 Number of predicted TMRs: 0
+antigen_35|Q8N8U2|Chromodomain|HE681097.1|tpos:305254-305483	inside	1	230				
+//
+# antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981 Length: 213
+# antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981 Number of predicted TMRs: 6
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	outside	1	1				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	TMhelix	2	12				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	inside	13	38				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	TMhelix	39	63				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	outside	64	86				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	TMhelix	87	104				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	inside	105	111				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	TMhelix	112	133				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	outside	134	155				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	TMhelix	156	169				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	inside	170	191				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	TMhelix	192	208				
+antigen_171|Q9UM01|Y+L|HE681097.1|tpos:785769-785981	outside	209	213				
+//
+# antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039 Length: 98
+# antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039 Number of predicted TMRs: 0
+antigen_143|P68104|Elongation|HE681097.1|tpos:296942-297039	inside	1	98				
+//
+# antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587 Length: 165
+# antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587 Number of predicted TMRs: 0
+antigen_18|Q7L1W4|Volume-regulated|HE681097.1|tpos:165423-165587	inside	1	165				
+//
+# antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482 Length: 141
+# antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482 Number of predicted TMRs: 0
+antigen_116|O43464-4|Isoform|HE681097.1|tpos:298342-298482	outside	1	141				
+//
+# antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389 Length: 150
+# antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389 Number of predicted TMRs: 0
+antigen_187|P33527-8|Isoform|HE681097.1|tpos:139240-139389	inside	1	150				

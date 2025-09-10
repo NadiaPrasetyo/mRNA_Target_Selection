@@ -1,0 +1,14 @@
+{
+  "input_sequence_text": ">antigen_74|A0A6A9GWB2|Fibrinogen-binding|CP000253.1|tpos:65811-65880\nSTLKGTQGESSDIEVKPQATETTEASQYGPRPQFNKTPKYVKYRDAGTGIREYNDGTFGYEARPRFNKPS",
+  "peptide_length_range": [
+    8,
+    11
+  ],
+  "alleles": "HLA-A*02:01,HLA-A*01:01",
+  "predictors": [
+    {
+      "type": "binding",
+      "method": "netmhcpan_el"
+    }
+  ]
+}

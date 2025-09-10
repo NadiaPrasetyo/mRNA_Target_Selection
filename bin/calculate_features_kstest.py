@@ -1431,7 +1431,7 @@ def categorize_feature(feature, subfeature):
         return "Structure Analysis"
     return "Other"
 
-def plot_auroc_summary(results_df, output_dir):
+def plot_auroc_summary(results_df, output_dir, prefix):
     """
     Create a bar plot of AUROC values for all features, categorized and colored.
     AUROCs < 0.5 are adjusted as 1 - AUROC. Excludes data where AUROC is exactly 0.5.
@@ -1442,7 +1442,7 @@ def plot_auroc_summary(results_df, output_dir):
             - "auroc": AUROC value (float)
         output_dir (str): Directory to save the AUROC summary plot.
     """
-    output_path = os.path.join(output_dir, "auroc_summary.png")
+    output_path = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
     try:
         # Drop missing AUROCs and exclude AUROCs exactly 0.5
@@ -1658,7 +1658,7 @@ def add_ttest_results(result_df, pos_features, rand_features, logger):
 
 # ----------------------------- Entry Point -----------------------------
 
-def main(pathogen_dir, threads, verbose=False, write_raw=False, human_negative=False):
+def main(pathogen_dir, threads, verbose=False, write_raw=False, human_negative=False, raw_out_dir=None):
     """
     Main entry point for the script.
     Initializes logging, extracts features, performs KS tests, t-tests, and writes results.
@@ -1689,7 +1689,10 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False, human_negative=F
     logger.info(f"{prefix} features: {sizeof_fmt(sys.getsizeof(rand_features))}")
     output_dir = os.path.join("results", pathogen_dir)
 
-    raw_out_dir = os.path.join("results", pathogen_dir, "raw_data")
+
+
+    if raw_out_dir is None:
+        raw_out_dir = os.path.join("results", pathogen_dir, "raw_data")
 
     if write_raw:
         logger.info(f"Writing positive features to {raw_out_dir}")
@@ -1704,13 +1707,13 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False, human_negative=F
     logger.info("Running t-test on features to determine directionality")
     result_df = add_ttest_results(result_df, pos_features, rand_features, logger)
 
-    plot_auroc_summary(result_df, output_dir)
+    plot_auroc_summary(result_df, output_dir, prefix)
 
     # Sort the DataFrame alphabetically by the first column
     result_df = result_df.sort_values(by=result_df.columns[0])
     logger.info("\n" + result_df.to_string(index=False))
 
-    ks_out_path = os.path.join("results", pathogen_dir, "ks_test_results.csv")
+    ks_out_path = os.path.join("results", pathogen_dir, f"ks_test_results_{prefix}.csv")
     logger.info(f"Writing KS test and t-test results to {ks_out_path}")
     result_df.to_csv(ks_out_path, index=False)
 
@@ -1739,7 +1742,8 @@ if __name__ == "__main__":
     parser.add_argument("--threads", type=int, default=1, help="Number of threads to use for parsing")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose logging to file")
     parser.add_argument("--write-raw", action="store_true", help="Write raw feature data to disk (optional, large output)")
-    parser.add_argument("--human", help="Use human negative set instead of random")
+    parser.add_argument("--raw-output-dir", help="Write raw features to this output folder. Default: results/pathogen_dir/raw_data")
+    parser.add_argument("--human", action="store_true", help="Use human negative set instead of random")
     args = parser.parse_args()
 
-    main(args.pathogen_dir, args.threads, args.verbose, args.write_raw, args.human)
+    main(args.pathogen_dir, args.threads, args.verbose, args.write_raw, args.human, args.raw_output_dir)
