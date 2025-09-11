@@ -169,8 +169,8 @@ def parse_mhc_dir(directory):
         List of dictionaries, where each dictionary represents an MHC feature.
     Each dictionary contains:
         - "feature": "mhci" or "mhcii" based on the directory name
-        - "subfeature": "score", "percentile", or "peptide_length"
-        - "value": numerical score or length value
+        - "subfeature": "score", "percentile", "peptide_length", or "num_peptides"
+        - "value": numerical score, length, or count value
     """
     prefix = "mhcii" if "mhcii" in directory else "mhci"
     logging.info(f"Parsing MHC dir {directory} with prefix {prefix}")
@@ -190,6 +190,7 @@ def parse_mhc_dir(directory):
         try:
             with open(path) as f:
                 data = json.load(f)
+                num_peptides = 0  # Initialize peptide count for this file
                 for result in data.get("results", []):
                     if result.get("type") == "peptide_table":
                         cols = result.get("table_columns", [])
@@ -197,7 +198,6 @@ def parse_mhc_dir(directory):
                         try:
                             idx_score = cols.index("score")
                             idx_percentile = cols.index("percentile")
-                            idx_peptide = cols.index("peptide")
                         except ValueError as e:
                             logging.warning(f"Missing expected columns in {file}: {e}")
                             continue
@@ -206,11 +206,13 @@ def parse_mhc_dir(directory):
                                 percentile = float(row[idx_percentile])
                                 # Filter peptides based on SB thresholds
                                 if percentile < sb_threshold:
+                                    num_peptides += 1
                                     results.append({"feature": prefix, "subfeature": "score", "value": float(row[idx_score])})
                                     results.append({"feature": prefix, "subfeature": "percentile", "value": percentile})
-                                    results.append({"feature": prefix, "subfeature": "peptide_length", "value": len(row[idx_peptide])})
                             except Exception as e:
                                 logging.debug(f"Skipping row {i} in {file} due to error: {e}")
+                # Add num_peptides as a subfeature
+                results.append({"feature": prefix, "subfeature": "num_peptides", "value": num_peptides})
         except Exception as e:
             logging.error(f"Failed parsing MHC file {file}: {e}")
     logging.info(f"Completed MHC parsing with {len(results)} results")
