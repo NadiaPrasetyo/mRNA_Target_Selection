@@ -147,14 +147,6 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 - MRSA252 (BX571856)
 - JKD6159 (CP002114)
 
-### Number of Antigens:
-- 107 (only 94 retrieved sequences)
-
-### Number of Epitopes in IEDB:
-- 835
-
-### Random Antigens:
-- 200
 
 ## Chlamydia trachomatis
 
@@ -198,15 +190,6 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 - D/UW-3/Cx: A reference strain for urogenital infections.
 - A/HAR-13: Associated with trachoma, a leading cause of blindness.
 - E/Bour: Frequently isolated from urogenital infections.
-
-### Number of Antigens:
-- 
-
-### Number of Epitopes in IEDB:
-- 
-
-### Random Antigens:
-- 
 
 
 ## Helicobacter pylori
@@ -252,14 +235,6 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 - G27: Commonly used in research for studying pathogenesis.
 - B8: Associated with gastric cancer.
 
-### Number of Antigens:
-- 
-
-### Number of Epitopes in IEDB:
-- 
-
-### Random Antigens:
-- 
 
 
 ## Neisseria gonorrhoeae
@@ -309,14 +284,6 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 - NCCP11945: A reference strain for genomic studies.
 - WHO reference strains (e.g., WHO F, WHO K): Used for monitoring antimicrobial resistance.
 
-### Number of Antigens:
-- 
-
-### Number of Epitopes in IEDB:
-- 
-
-### Random Antigens:
-- 
 
 ## Streptococcus pneumoniae
 
@@ -374,14 +341,6 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 - ATCC 6303: A reference strain used in vaccine efficacy studies.
 - SPN23F (CP003646): A serotype 23F strain linked to invasive diseases in children.
 
-### Number of Antigens:
-- 
-
-### Number of Epitopes in IEDB:
-- 
-
-### Random Antigens:
-- 
 
 ## Streptococcus pyogenes
 
@@ -434,14 +393,373 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 - SF370: A reference strain used for genomic studies.
 - M1T1: Known for its hypervirulent phenotype and association with severe invasive diseases.
 
-### Number of Antigens:
-- 
 
-### Number of Epitopes in IEDB:
-- 
+## Mycoplasma pneumoniae
 
-### Random Antigens:
-- 
+### Type of Bacteria:
+- Mycoplasma pneumoniae is a Gram-negative bacterium.
+
+### Characteristics:
+- Lacks a cell wall, making it resistant to beta-lactam antibiotics.
+- Pleomorphic in shape (can change shape).
+- Obligate aerobe (requires oxygen for growth).
+- Non-motile and non-spore-forming.
+
+### Genome Size:
+- Approximately 0.8–1.0 million base pairs (Mb).
+- Contains around 700–1,000 genes.
+
+### Infection Target:
+- Infects the respiratory tract.
+- Causes diseases such as:
+    - Atypical pneumonia (walking pneumonia)
+    - Tracheobronchitis
+    - Pharyngitis
+
+### Virulence Factors:
+- Adhesins (e.g., P1 protein) facilitate attachment to respiratory epithelial cells.
+- Production of hydrogen peroxide damages host cells.
+- Evades immune response by varying surface proteins.
+
+### Antibiotic Resistance:
+- Resistance to macrolides (e.g., azithromycin) has been reported.
+
+### Habitat:
+- Found in the human respiratory tract.
+- Transmission occurs via respiratory droplets.
+
+### Pathogenicity:
+- Causes persistent infections by evading the immune system.
+
+### Strains of Interest:
+- M129: A reference strain used in genomic studies.
+- FH: Frequently used in research on pathogenesis.
+
+
+## Clostridium difficile
+
+### Type of Bacteria:
+- Clostridium difficile is a Gram-positive bacterium.
+
+### Characteristics:
+- Rod-shaped (bacillus).
+- Obligate anaerobe (grows in the absence of oxygen).
+- Spore-forming, allowing survival in harsh environments.
+- Produces toxins that cause disease.
+
+### Genome Size:
+- Approximately 4.0–4.3 million base pairs (Mb).
+- Contains around 3,500–4,000 genes.
+
+### Infection Target:
+- Infects the gastrointestinal tract.
+- Causes diseases such as:
+    - Antibiotic-associated diarrhea
+    - Pseudomembranous colitis
+
+### Virulence Factors:
+- Toxin A (TcdA) and Toxin B (TcdB) disrupt the intestinal epithelium.
+- Surface layer proteins aid in adhesion to host cells.
+
+### Antibiotic Resistance:
+- Resistance to fluoroquinolones and clindamycin is common.
+
+### Habitat:
+- Found in the human gut microbiota and the environment.
+- Transmission occurs via the fecal-oral route.
+
+### Pathogenicity:
+- Opportunistic pathogen that causes disease after disruption of the gut microbiota.
+
+### Strains of Interest:
+- R20291: A hypervirulent strain associated with outbreaks.
+- 630: A reference strain used in research.
+
+
+## Mycobacterium tuberculosis
+
+### Type of Bacteria:
+- Mycobacterium tuberculosis is a Gram-positive bacterium.
+
+### Characteristics:
+- Rod-shaped (bacillus).
+- Acid-fast due to a high lipid content in the cell wall.
+- Obligate aerobe (requires oxygen for growth).
+- Non-motile and non-spore-forming.
+
+### Genome Size:
+- Approximately 4.4 million base pairs (Mb).
+- Contains around 4,000 genes.
+
+### Infection Target:
+- Infects the lungs but can disseminate to other organs.
+- Causes tuberculosis (TB).
+
+### Virulence Factors:
+- Mycolic acids and glycolipids in the cell wall prevent phagosome-lysosome fusion.
+- ESX secretion systems aid in immune evasion.
+
+### Antibiotic Resistance:
+- Multidrug-resistant (MDR) and extensively drug-resistant (XDR) strains are a major concern.
+
+### Habitat:
+- Found in human hosts; transmitted via respiratory droplets.
+
+### Pathogenicity:
+- Causes chronic infections and can remain latent for years.
+
+### Strains of Interest:
+- H37Rv: A reference strain used in research.
+- CDC1551: Known for its high virulence.
+
+
+## Mycobacterium leprae
+
+### Type of Bacteria:
+- Mycobacterium leprae is a Gram-positive bacterium.
+
+### Characteristics:
+- Rod-shaped (bacillus).
+- Acid-fast due to a high lipid content in the cell wall.
+- Obligate intracellular pathogen.
+- Non-motile and non-spore-forming.
+
+### Genome Size:
+- Approximately 3.3 million base pairs (Mb).
+- Contains around 1,600 genes.
+
+### Infection Target:
+- Infects skin and peripheral nerves.
+- Causes leprosy (Hansen's disease).
+
+### Virulence Factors:
+- Phenolic glycolipid-1 (PGL-1) aids in adhesion to Schwann cells.
+- Evades immune response by suppressing macrophage activation.
+
+### Antibiotic Resistance:
+- Resistance to dapsone and rifampin has been reported.
+
+### Habitat:
+- Found in human hosts; transmission occurs via prolonged close contact.
+
+### Pathogenicity:
+- Causes chronic infections with a long incubation period.
+
+### Strains of Interest:
+- TN: A reference strain used in genomic studies.
+
+
+## Treponema pallidum
+
+### Type of Bacteria:
+- Treponema pallidum is a Gram-negative bacterium.
+
+### Characteristics:
+- Spiral-shaped (spirochete).
+- Obligate microaerophile (requires low oxygen levels).
+- Non-motile and non-spore-forming.
+
+### Genome Size:
+- Approximately 1.1 million base pairs (Mb).
+- Contains around 1,000 genes.
+
+### Infection Target:
+- Infects mucous membranes and skin.
+- Causes syphilis.
+
+### Virulence Factors:
+- Outer membrane proteins facilitate adhesion to host cells.
+- Hyaluronidase aids in tissue invasion.
+
+### Antibiotic Resistance:
+- Resistance to macrolides has been reported.
+
+### Habitat:
+- Found in human hosts; transmitted via sexual contact or congenital transmission.
+
+### Pathogenicity:
+- Causes chronic infections with distinct stages.
+
+### Strains of Interest:
+- Nichols: A reference strain used in research.
+
+
+## Brucella melitensis
+
+### Type of Bacteria:
+- Brucella melitensis is a Gram-negative bacterium.
+
+### Characteristics:
+- Coccobacillus in shape.
+- Facultative intracellular pathogen.
+- Non-motile and non-spore-forming.
+
+### Genome Size:
+- Approximately 3.3 million base pairs (Mb).
+- Contains around 3,200 genes.
+
+### Infection Target:
+- Infects the reticuloendothelial system.
+- Causes brucellosis.
+
+### Virulence Factors:
+- Type IV secretion system (T4SS) aids in intracellular survival.
+- Lipopolysaccharide (LPS) evades immune detection.
+
+### Antibiotic Resistance:
+- Generally sensitive to antibiotics, but treatment requires prolonged therapy.
+
+### Habitat:
+- Found in livestock; transmitted to humans via unpasteurized dairy products or direct contact.
+
+### Pathogenicity:
+- Causes chronic infections with systemic symptoms.
+
+### Strains of Interest:
+- 16M: A reference strain used in research.
+
+
+## Orienta tsutsugamushi
+
+### Type of Bacteria:
+- Orienta tsutsugamushi is a Gram-negative bacterium.
+
+### Characteristics:
+- Obligate intracellular pathogen.
+- Non-motile and non-spore-forming.
+
+### Genome Size:
+- Approximately 2.0–2.2 million base pairs (Mb).
+- Contains around 1,800–2,000 genes.
+
+### Infection Target:
+- Infects endothelial cells.
+- Causes scrub typhus.
+
+### Virulence Factors:
+- Type IV secretion system (T4SS) aids in intracellular survival.
+- Surface proteins facilitate adhesion to host cells.
+
+### Antibiotic Resistance:
+- Resistance to doxycycline has been reported in some strains.
+
+### Habitat:
+- Found in chiggers (larval mites); transmitted to humans via bites.
+
+### Pathogenicity:
+- Causes acute febrile illness with systemic involvement.
+
+### Strains of Interest:
+- Karp: A reference strain used in research.
+
+
+## Haemophilus influenzae
+
+### Type of Bacteria:
+- Haemophilus influenzae is a Gram-negative bacterium.
+
+### Characteristics:
+- Coccobacillus in shape.
+- Facultative anaerobe (can grow in both aerobic and anaerobic conditions).
+- Non-motile and non-spore-forming.
+
+### Genome Size:
+- Approximately 1.8–2.0 million base pairs (Mb).
+- Contains around 1,700–2,000 genes.
+
+### Infection Target:
+- Infects the respiratory tract.
+- Causes diseases such as:
+    - Otitis media
+    - Sinusitis
+    - Pneumonia
+    - Meningitis (type b strains)
+
+### Virulence Factors:
+- Polysaccharide capsule prevents phagocytosis.
+- IgA protease degrades host antibodies.
+
+### Antibiotic Resistance:
+- Resistance to beta-lactams and macrolides is common.
+
+### Habitat:
+- Found in the human nasopharynx; transmitted via respiratory droplets.
+
+### Pathogenicity:
+- Opportunistic pathogen that can cause invasive infections.
+
+### Strains of Interest:
+- Rd KW20: A reference strain used in genomic studies.
+
+
+## Vibrio cholerae
+
+### Type of Bacteria:
+- Vibrio cholerae is a Gram-negative bacterium.
+
+### Characteristics:
+- Comma-shaped (vibrio).
+- Facultative anaerobe (can grow in both aerobic and anaerobic conditions).
+- Motile with a single polar flagellum.
+
+### Genome Size:
+- Approximately 4.0–4.3 million base pairs (Mb).
+- Contains around 3,800–4,000 genes.
+
+### Infection Target:
+- Infects the small intestine.
+- Causes cholera.
+
+### Virulence Factors:
+- Cholera toxin (CT) disrupts ion transport in intestinal cells.
+- Toxin-coregulated pilus (TCP) aids in colonization.
+
+### Antibiotic Resistance:
+- Resistance to tetracyclines and fluoroquinolones has been reported.
+
+### Habitat:
+- Found in aquatic environments; transmitted via contaminated water or food.
+
+### Pathogenicity:
+- Causes acute diarrheal disease with severe dehydration.
+
+### Strains of Interest:
+- N16961: A reference strain used in research.
+
+
+## Salmonella typhi
+
+### Type of Bacteria:
+- Salmonella typhi is a Gram-negative bacterium.
+
+### Characteristics:
+- Rod-shaped (bacillus).
+- Facultative anaerobe (can grow in both aerobic and anaerobic conditions).
+- Motile with peritrichous flagella.
+
+### Genome Size:
+- Approximately 4.8–5.0 million base pairs (Mb).
+- Contains around 4,500–5,000 genes.
+
+### Infection Target:
+- Infects the gastrointestinal tract and bloodstream.
+- Causes typhoid fever.
+
+### Virulence Factors:
+- Vi capsular antigen prevents phagocytosis.
+- Type III secretion system (T3SS) aids in invasion and intracellular survival.
+
+### Antibiotic Resistance:
+- Resistance to fluoroquinolones and third-generation cephalosporins is common.
+
+### Habitat:
+- Found in human hosts; transmitted via contaminated water or food.
+
+### Pathogenicity:
+- Causes systemic infection with prolonged fever.
+
+### Strains of Interest:
+- Ty2: A reference strain used in research.
 
 # Pathogens to test (Infectious disease):
 ## Other Bacteria from IEDB
