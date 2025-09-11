@@ -1,7 +1,0 @@
-Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
-antigen_39|Q8N7Q3|Zinc|CP000253.1|tpos:244414-244563,0.265,0.5,0.0,0.765,Allergen
-antigen_187|P33527-8|Isoform|CP000253.1|tpos:226000-226066,0.148,0.0,-0.5,-0.352,Non-Allergen
-antigen_116|O43464-4|Isoform|CP000253.1|tpos:287901-288041,0.425,0.0,-0.5,-0.075,Non-Allergen
-antigen_171|Q9UM01|Y+L|CP000253.1|tpos:832760-832962,0.04,0.0,-0.5,-0.46,Non-Allergen
-antigen_18|Q7L1W4|Volume-regulated|CP000253.1|tpos:155554-155718,0.099,0.0,0.0,0.099,Non-Allergen
-antigen_143|P68104|Elongation|CP000253.1|tpos:286502-286599,0.509,0.0,-0.5,0.009,Non-Allergen
