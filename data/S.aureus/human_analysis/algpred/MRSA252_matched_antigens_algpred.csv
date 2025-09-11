@@ -1,7 +1,0 @@
-Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
-antigen_116|O43464-4|Isoform|BX571856.1|tpos:581663-581800,0.31,0.0,-0.5,-0.19,Non-Allergen
-antigen_187|P33527-8|Isoform|BX571856.1|tpos:215639-216017,0.031,0.5,-0.5,0.031,Non-Allergen
-antigen_18|Q7L1W4|Volume-regulated|BX571856.1|tpos:799863-800209,0.147,0.0,0.0,0.147,Non-Allergen
-antigen_87|P51648-2|Isoform|BX571856.1|tpos:58055-58389,0.468,0.0,0.5,0.968,Allergen
-antigen_171|Q9UM01|Y+L|BX571856.1|tpos:806842-806931,0.387,0.0,-0.5,-0.113,Non-Allergen
-antigen_143|P68104|Elongation|BX571856.1|tpos:319221-319318,0.509,0.0,-0.5,0.009,Non-Allergen
