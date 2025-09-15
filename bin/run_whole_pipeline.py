@@ -45,7 +45,7 @@ def setup_logging(verbose=False, log_file=None):
         file_handler.setLevel(level)
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
-        
+
 def run_command(cmd, description, check_files=None):
     """Run a command and handle errors."""
     logging.info(f"Starting: {description}")
@@ -130,7 +130,7 @@ def main():
             if args.skip and "iedb" in args.skip or (base_dir / f"{args.pathogen_dir}_IEDB_antigens.csv").exists():
                 logging.info("⏭️  Skipping IEDB fetch - data already exists")
             else:
-                cmd = ["python", "bin/IEDB_fetch.py", args.pathogen_dir, args.pathogen_name]
+                cmd = ["python", "bin/IEDB_fetch.py", args.pathogen_dir, f"{args.pathogen_name}"]
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
                 elif run_command(cmd, "IEDB data fetch"):
@@ -138,7 +138,7 @@ def main():
         
         # Step 2: Compile Antigens
         if "compile" in steps_to_run:
-            cmd = ["python", "bin/compile_antigens.py", args.pathogen_dir, args.pathogen_name]
+            cmd = ["python", "bin/compile_antigens.py", args.pathogen_dir, f"{args.pathogen_name}"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Compile antigens"):
@@ -146,7 +146,7 @@ def main():
         
         # Step 3: Fetch UniProt Sequences
         if "uniprot" in steps_to_run:
-            cmd = ["python", "bin/fetch_sequences_Uniprot.py", args.pathogen_dir, args.pathogen_name]
+            cmd = ["python", "bin/fetch_sequences_Uniprot.py", args.pathogen_dir, f"{args.pathogen_name}"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Fetch UniProt sequences"):
@@ -155,9 +155,9 @@ def main():
         # Step 4: Generate Random Sequences
         if "random" in steps_to_run:
             if args.human_negative:
-                cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, args.pathogen_name, "--human"]
+                cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, f"{args.pathogen_name}", "--human"]
             else:
-                cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, args.pathogen_name]
+                cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, f"{args.pathogen_name}"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, f"Generate {prefix} sequences"):
@@ -175,7 +175,7 @@ def main():
                 elif run_command(cmd, "Make fetch_NCBI_strain_genome.sh executable"):
                     success_count += 1
 
-                cmd = ["bash", "fetch_NCBI_strain_genome.sh", "--random", args.pathogen_name, 
+                cmd = ["bash", "fetch_NCBI_strain_genome.sh", "--random", f"{args.pathogen_name}", 
                        "--random-num", str(args.random_genomes), "--threads", str(args.threads), args.pathogen_dir]
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
@@ -185,7 +185,7 @@ def main():
         # Step 6: Align Antigens with MMseqs2
         if "align" in steps_to_run:
             # Protein alignment (antigens)
-            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, args.pathogen_name, 
+            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{args.pathogen_name}", 
                    "--threads", str(args.threads), "--output-dir", "mmseqs_protein"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
@@ -193,7 +193,7 @@ def main():
                 success_count += 1
             
             # Nucleotide alignment (antigens)
-            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, args.pathogen_name, 
+            cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{args.pathogen_name}", 
                    "--threads", str(args.threads), "--output-dir", "mmseqs_nucleotide", "--mode", "nucleotide"]
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
