@@ -106,6 +106,10 @@ def load_literature_antigens(file_path, source_organism):
         return pd.DataFrame()
     df = pd.read_excel(file_path)
     df_out = pd.DataFrame()
+    df.columns = df.columns.str.strip()  # removes leading/trailing spaces
+    if "Name" not in df.columns:
+        print(f"Warning: 'Name' column not found in {file_path}. Skipping.")
+        return pd.DataFrame()
     df_out["antigen_name"] = df["Name"]
     if "Gene" in df.columns :
         if df["Gene"].str.contains(r"(?i)\bspy", regex=True).any():
