@@ -761,6 +761,10 @@ HLA-DRB1*01:01, HLA-DRB1*03:01, HLA-DRB1*04:01, HLA-DRB1*04:05, HLA-DRB1*07:01, 
 ### Strains of Interest:
 - Ty2: A reference strain used in research.
 
+# Pathogenic bacteria:
+![Pathogenic Bacteria Tree](../pathogenic_bacteria.jpg)
+[Source: https://bmcmicrobiol.biomedcentral.com/articles/10.1186/1471-2180-5-19](https://bmcmicrobiol.biomedcentral.com/articles/10.1186/1471-2180-5-19)
+
 # Pathogens to test (Infectious disease):
 ## Other Bacteria from IEDB
 Query parameters: 
