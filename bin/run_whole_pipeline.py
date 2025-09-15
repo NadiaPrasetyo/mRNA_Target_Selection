@@ -169,13 +169,13 @@ def main():
                 logging.info("⏭️  Skipping genome fetch - data already exists")
             else:
                 # chmod the script first
-                cmd = ["chmod", "+x", "fetch_NCBI_strain_genome.sh"]
+                cmd = ["chmod", "+x", "bin/fetch_NCBI_strain_genome.sh"]
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, "Make fetch_NCBI_strain_genome.sh executable"):
+                elif run_command(cmd, "Make bin/fetch_NCBI_strain_genome.sh executable"):
                     success_count += 1
 
-                cmd = ["bash", "fetch_NCBI_strain_genome.sh", "--random", f"{args.pathogen_name}", 
+                cmd = ["bash", "bin/fetch_NCBI_strain_genome.sh", "--random", f"{args.pathogen_name}", 
                        "--random-num", str(args.random_genomes), "--threads", str(args.threads), args.pathogen_dir]
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
