@@ -45,21 +45,18 @@ def setup_logging(verbose=False, log_file=None):
         file_handler.setLevel(level)
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
-
+        
 def run_command(cmd, description, check_files=None):
     """Run a command and handle errors."""
     logging.info(f"Starting: {description}")
     logging.debug(f"Command: {' '.join(cmd)}")
     
     try:
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        result = subprocess.run(cmd, check=True, text=True)  # no capture
         logging.info(f"✅ Completed: {description}")
-        if result.stdout:
-            logging.debug(f"STDOUT: {result.stdout}")
         return True
     except subprocess.CalledProcessError as e:
-        logging.error(f"❌ Failed: {description}")
-        logging.error(f"Error: {e.stderr}")
+        logging.error(f"❌ Failed: {description} (exit code {e.returncode})")
         return False
     except FileNotFoundError:
         logging.error(f"❌ Command not found for: {description}")

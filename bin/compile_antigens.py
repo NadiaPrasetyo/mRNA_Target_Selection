@@ -30,6 +30,9 @@ import os
 from glob import glob
 import re
 import argparse
+import sys
+print = lambda *args, **kwargs: __builtins__.print(*args, **kwargs, flush=True)
+
 
 def extract_uniprot_id(iri):
     """
