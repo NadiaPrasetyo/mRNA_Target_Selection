@@ -115,7 +115,7 @@ def load_literature_antigens(file_path, source_organism):
         return pd.DataFrame()
     df_out["antigen_name"] = df["Name"]
     if "Gene" in df.columns :
-        if df["Gene"].str.contains(r"(?i)\bspy", regex=True).any():
+        if df["Gene"].astype(str).str.contains(r"(?i)\bspy", regex=True).any():
             df_out["gene_name"] = df["Gene"].str.replace(r"(?i)\bspy(\d+)", r"SPy_\1", regex=True)
         else:
             df_out["gene_name"] = df["Gene"]
