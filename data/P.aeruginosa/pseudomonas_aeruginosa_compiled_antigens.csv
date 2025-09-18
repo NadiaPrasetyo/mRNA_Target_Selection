@@ -1,0 +1,187 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa C3719 (Pseudomonas aeruginosa str. C3719)']","['Homo sapiens (human)', 'Mus musculus C57BL/6']",['Other Pseudomonas aeruginosa protein'],,,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PAO1 (Pseudomonas sp. PAO1)']",['Homo sapiens (human)'],['UDP-N-acetyl-2-amino-2-deoxy-D-glucuronate oxidase (UniProt:G3XD23)'],,G3XD23,IEDB
+['Pseudomonas aeruginosa'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Mus musculus (mouse)', 'Mus musculus VelocImmune']",['Type III secretion protein PcrV (UniProt:G3XD49)'],,G3XD49,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Respiratory nitrate reductase beta chain (UniProt:G3XD87)'],,G3XD87,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['N-succinylglutamate 5-semialdehyde dehydrogenase (UniProt:O50174)'],,O50174,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Bifunctional enzyme CysN/CysC (UniProt:O50274)'],,O50274,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa 2192 (Pseudomonas aeruginosa str. 2192)']",['Homo sapiens (human)'],['Glucose-6-phosphate 1-dehydrogenase (UniProt:O68282)'],,O68282,IEDB
+['Pseudomonas aeruginosa'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus BALB/cAnN', 'Mus musculus (mouse)', 'Mus musculus NMRI', 'Oryctolagus cuniculus (rabbit)', 'Rattus norvegicus Sprague-Dawley']",['Exotoxin A (UniProt:P11439)'],,P11439,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa Immunotype 4', 'Pseudomonas aeruginosa PAO1 (Pseudomonas sp. PAO1)']","['Chlorocebus aethiops (African green monkey)', 'Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Mus musculus DBA/2', 'Mus musculus HLA-DRB1*01:01 Tg', 'Mus musculus HLA-DRB1*04:01 Tg', 'Mus musculus HLA-DRB1*15:01 Tg', 'Mus musculus ICR', 'Mus musculus (mouse)', 'Oryctolagus cuniculus New Zealand White', 'Rattus norvegicus (brown rat)']",['Outer membrane porin F (UniProt:P13794)'],,P13794,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Diaminopimelate decarboxylase (UniProt:P19572)'],,P19572,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Type IV pilus assembly ATPase PilB (UniProt:P22608)'],,P22608,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Phosphomannomutase/phosphoglucomutase (UniProt:P26276)'],,P26276,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Carbamoyl phosphate synthase large chain (UniProt:P38100)'],,P38100,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)']",['Homo sapiens (human)'],['Outer-membrane lipoprotein LolB (UniProt:P42812)'],,P42812,IEDB
+['Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)'],['Homo sapiens (human)'],['Oxygen-independent coproporphyrinogen III oxidase (UniProt:P77915)'],,P77915,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Uncharacterized protein PA2218 (UniProt:Q01609)'],,Q01609,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Pyocin-S2 immunity protein (UniProt:Q06579)'],,Q06579,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Glycerol kinase 2 (UniProt:Q51390)'],,Q51390,IEDB
+['Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)'],['Homo sapiens (human)'],['Pyruvate dehydrogenase E1 component (UniProt:Q59637)'],,Q59637,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PAO1 (Pseudomonas sp. PAO1)']",['Homo sapiens (human)'],['Probable family 20 transposase (UniProt:Q9HI37)'],,Q9HI37,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)']",['Homo sapiens (human)'],['Serine hydroxymethyltransferase 1 (UniProt:Q9HTE9)'],,Q9HTE9,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['4-hydroxybenzoate octaprenyltransferase (UniProt:Q9HTK0)'],,Q9HTK0,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa C3719 (Pseudomonas aeruginosa str. C3719)']",['Homo sapiens (human)'],['Transcriptional regulator GlcC (UniProt:Q9HTK2)'],,Q9HTK2,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PAO1 (Pseudomonas sp. PAO1)']",['Homo sapiens (human)'],['Transmembrane protein (UniProt:Q9HTT4)'],,Q9HTT4,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['DUF2339 domain-containing protein (UniProt:Q9HU70)'],,Q9HU70,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['DUF3999 domain-containing protein (UniProt:Q9HU71)'],,Q9HU71,IEDB
+['Pseudomonas aeruginosa UCBPP-PA14'],['Homo sapiens (human)'],['Probable acyl-CoA dehydrogenase (UniProt:Q9HUI6)'],,Q9HUI6,IEDB
+['Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)'],['Homo sapiens (human)'],['Formate dehydrogenase iron-sulfur subunit (UniProt:Q9HUZ8)'],,Q9HUZ8,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],"[""ER-bound oxygenase mpaB/mpaB'/Rubber oxygenase catalytic domain-containing protein (UniProt:Q9HV65)""]",,Q9HV65,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Protein-methionine-sulfoxide reductase catalytic subunit MsrP (UniProt:Q9HVA4)'],,Q9HVA4,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Cell division protein ZapE (UniProt:Q9HVN8)'],,Q9HVN8,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Probable two-component response regulator (UniProt:Q9HW10)'],,Q9HW10,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['D-alanine--D-alanine ligase A (UniProt:Q9HWI0)'],,Q9HWI0,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Ferric enterobactin transport protein FepC (UniProt:Q9HWM3)'],,Q9HWM3,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],"['Oligopeptide transporter, OPT family (UniProt:Q9HX82)']",,Q9HX82,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PAO1 (Pseudomonas sp. PAO1)']",['Homo sapiens (human)'],['Probable sodium/hydrogen antiporter (UniProt:Q9HXX9)'],,Q9HXX9,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Haem-oxygenase-associated N-terminal helices domain-containing protein (UniProt:Q9HY90)'],,Q9HY90,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['YceK/YidQ family lipoprotein (UniProt:Q9HYK5)'],,Q9HYK5,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Nitrous-oxide reductase (UniProt:Q9HYL2)'],,Q9HYL2,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],"['Putative quercetin 2,3-dioxygenase PA3240 (UniProt:Q9HZ00)']",,Q9HZ00,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Probable glycine betaine-binding protein (UniProt:Q9HZ04)'],,Q9HZ04,IEDB
+['Pseudomonas aeruginosa UCBPP-PA14'],['Homo sapiens (human)'],['Probable FMN oxidoreductase (UniProt:Q9I0C6)'],,Q9I0C6,IEDB
+['Pseudomonas aeruginosa UCBPP-PA14'],['Homo sapiens (human)'],['PhoX family phosphatase (UniProt:Q9I0K3)'],,Q9I0K3,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Probable acyl-CoA dehydrogenase (UniProt:Q9I0T2)'],,Q9I0T2,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Anthranilate dioxygenase large subunit (UniProt:Q9I0X0)'],,Q9I0X0,IEDB
+['Pseudomonas aeruginosa UCBPP-PA14'],['Homo sapiens (human)'],['SMI1/KNR4 family protein (UniProt:Q9I0X9)'],,Q9I0X9,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Dibenzothiophene monooxygenase (UniProt:Q9I1F4)'],,Q9I1F4,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)', 'Pseudomonas aeruginosa UCBPP-PA14']","['Bos taurus (bovine)', 'Homo sapiens (human)']",['Mandelate racemase/muconate lactonizing enzyme C-terminal domain-containing protein (UniProt:Q9I1Q2)'],,Q9I1Q2,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Hydrogen cyanide synthase subunit HcnB (UniProt:Q9I1S2)'],,Q9I1S2,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Methyltransferase small domain-containing protein (UniProt:Q9I1T6)'],,Q9I1T6,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Probable transcriptional regulator (UniProt:Q9I1Z2)'],,Q9I1Z2,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['DUF3509 domain-containing protein (UniProt:Q9I2P3)'],,Q9I2P3,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Inactive transglutaminase fused to 7 transmembrane helices (UniProt:Q9I2X2)'],,Q9I2X2,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Probable AMP-binding enzyme (UniProt:Q9I3A5)'],,Q9I3A5,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Succinate dehydrogenase flavoprotein subunit (UniProt:Q9I3D5)'],,Q9I3D5,IEDB
+['Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)'],['Homo sapiens (human)'],['Cytochrome c-type biogenesis protein CcmF (UniProt:Q9I3N2)'],,Q9I3N2,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Probable cation-transporting P-type ATPase (UniProt:Q9I3R5)'],,Q9I3R5,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa 2192 (Pseudomonas aeruginosa str. 2192)']",['Homo sapiens (human)'],['Probable glycosyl transferase (UniProt:Q9I3V9)'],,Q9I3V9,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Amino acid ABC transporter membrane protein (UniProt:Q9I403)'],,Q9I403,IEDB
+['Pseudomonas aeruginosa UCBPP-PA14'],['Homo sapiens (human)'],['Probable short-chain dehydrogenase (UniProt:Q9I414)'],,Q9I414,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['Strictosidine synthase conserved region domain-containing protein (UniProt:Q9I451)'],,Q9I451,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Peptidoglycan hydrolase FlgJ (UniProt:Q9I4P4)'],,Q9I4P4,IEDB
+['Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)'],['Homo sapiens (human)'],['Probable NADH dehydrogenase (UniProt:Q9I4S0)'],,Q9I4S0,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['DUF4824 family protein (UniProt:Q9I5J4)'],,Q9I5J4,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['N-acetylmuramate/N-acetylglucosamine kinase (UniProt:Q9I5U1)'],,Q9I5U1,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Adenosylhomocysteinase (UniProt:Q9I685)'],,Q9I685,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa UCBPP-PA14']",['Homo sapiens (human)'],['ATP-dependent RNA helicase RhlE (UniProt:Q9I689)'],,Q9I689,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Spermidine-binding periplasmic protein SpuE (UniProt:Q9I6J0)'],,Q9I6J0,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PACS2 (Pseudomonas aeruginosa str. PACS2)']",['Homo sapiens (human)'],['Protein-glutamate methylesterase/protein-glutamine glutaminase 2 (UniProt:Q9I6V9)'],,Q9I6V9,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Immune protein Tsi7 (UniProt:Q9I732)'],,Q9I732,IEDB
+"['Pseudomonas aeruginosa', 'Pseudomonas aeruginosa PAO1 (Pseudomonas sp. PAO1)']",['Homo sapiens (human)'],['Divalent metal cation transporter MntH 1 (UniProt:Q9RPF3)'],,Q9RPF3,IEDB
+['Pseudomonas aeruginosa'],['Homo sapiens (human)'],['Bifunctional uridylyltransferase/uridylyl-removing enzyme (UniProt:Q9Z9H0)'],,Q9Z9H0,IEDB
+pseudomonas aeruginosa,Homo sapiens,Type IV pili,,,literature
+pseudomonas aeruginosa,Homo sapiens,Lectins,,,literature
+pseudomonas aeruginosa,Homo sapiens,Glycocalix,,,literature
+pseudomonas aeruginosa,Homo sapiens,Alginate,,,literature
+pseudomonas aeruginosa,Homo sapiens,Neuraminidase,,,literature
+pseudomonas aeruginosa,Homo sapiens,Flagella,,,literature
+pseudomonas aeruginosa,Homo sapiens,Elastases,,,literature
+pseudomonas aeruginosa,Homo sapiens,LasA,,,literature
+pseudomonas aeruginosa,Homo sapiens,LasB,,,literature
+pseudomonas aeruginosa,Homo sapiens,Alkaline Protease,,,literature
+pseudomonas aeruginosa,Homo sapiens,Haemolysins,,,literature
+pseudomonas aeruginosa,Homo sapiens,Phospholipase,,,literature
+pseudomonas aeruginosa,Homo sapiens,Rhamnolipid,,,literature
+pseudomonas aeruginosa,Homo sapiens,Leukocidin,,,literature
+pseudomonas aeruginosa,Homo sapiens,Pyocyanin,,,literature
+pseudomonas aeruginosa,Homo sapiens,Siderophore,,,literature
+pseudomonas aeruginosa,Homo sapiens,LecA,,,literature
+pseudomonas aeruginosa,Homo sapiens,LecB,,,literature
+pseudomonas aeruginosa,Homo sapiens,FliD,,,literature
+pseudomonas aeruginosa,Homo sapiens,FliC,,,literature
+pseudomonas aeruginosa,Homo sapiens,FpvA,,,literature
+pseudomonas aeruginosa,Homo sapiens,FpvB,,,literature
+pseudomonas aeruginosa,Homo sapiens,PVD,,,literature
+pseudomonas aeruginosa,Homo sapiens,T4P,,,literature
+pseudomonas aeruginosa,Homo sapiens,pPilY1,,,literature
+pseudomonas aeruginosa,Homo sapiens,PilV,,,literature
+pseudomonas aeruginosa,Homo sapiens,PilW,,,literature
+pseudomonas aeruginosa,Homo sapiens,PilX,,,literature
+pseudomonas aeruginosa,Homo sapiens,FimU,,,literature
+pseudomonas aeruginosa,Homo sapiens,PilA,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprH,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprF,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprO,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprP,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprB,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprG,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprD,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprQ,,,literature
+pseudomonas aeruginosa,Homo sapiens,OPS,,,literature
+pseudomonas aeruginosa,Homo sapiens,Lipid A,,,literature
+pseudomonas aeruginosa,Homo sapiens,PopD,,,literature
+pseudomonas aeruginosa,Homo sapiens,PopB,,,literature
+pseudomonas aeruginosa,Homo sapiens,PcrV,,,literature
+pseudomonas aeruginosa,Homo sapiens,PscF,,,literature
+pseudomonas aeruginosa,Homo sapiens,Hcp,,,literature
+pseudomonas aeruginosa,Homo sapiens,TssD,,,literature
+pseudomonas aeruginosa,Homo sapiens,Vrg,,,literature
+pseudomonas aeruginosa,Homo sapiens,Tssl,,,literature
+pseudomonas aeruginosa,Homo sapiens,ArpA,,,literature
+pseudomonas aeruginosa,Homo sapiens,PIV,,,literature
+pseudomonas aeruginosa,Homo sapiens,ETA,,,literature
+pseudomonas aeruginosa,Homo sapiens,Lipase,,,literature
+pseudomonas aeruginosa,Homo sapiens,C12HSL,,,literature
+pseudomonas aeruginosa,Homo sapiens,C4HSL,,,literature
+pseudomonas aeruginosa,Homo sapiens,PQS,,,literature
+pseudomonas aeruginosa,Homo sapiens,BamBDE,,,literature
+pseudomonas aeruginosa,Homo sapiens,LptE,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprJ,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprM,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprN,,,literature
+pseudomonas aeruginosa,Homo sapiens,OmpG,,,literature
+pseudomonas aeruginosa,Homo sapiens,OmpB,,,literature
+pseudomonas aeruginosa,Homo sapiens,OmpE,,,literature
+pseudomonas aeruginosa,Homo sapiens,MEP,,,literature
+pseudomonas aeruginosa,Homo sapiens,PASP,,,literature
+pseudomonas aeruginosa,Homo sapiens,LepA,,,literature
+pseudomonas aeruginosa,Homo sapiens,PAAP,,,literature
+pseudomonas aeruginosa,Homo sapiens,MucD,,,literature
+pseudomonas aeruginosa,Homo sapiens,LipA,,,literature
+pseudomonas aeruginosa,Homo sapiens,EstA,,,literature
+pseudomonas aeruginosa,Homo sapiens,KatA,,,literature
+pseudomonas aeruginosa,Homo sapiens,LipC,,,literature
+pseudomonas aeruginosa,Homo sapiens,Phospholipase C,,,literature
+pseudomonas aeruginosa,Homo sapiens,Esterase A,,,literature
+pseudomonas aeruginosa,Homo sapiens,KatB,,,literature
+pseudomonas aeruginosa,Homo sapiens,KatE,,,literature
+pseudomonas aeruginosa,Homo sapiens,Flagellum,,,literature
+pseudomonas aeruginosa,Homo sapiens,Type 4 Pili,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprI,,,literature
+pseudomonas aeruginosa,Homo sapiens,AlgE,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprL,,,literature
+pseudomonas aeruginosa,Homo sapiens,Hcp1,,,literature
+pseudomonas aeruginosa,Homo sapiens,PcrH,,,literature
+pseudomonas aeruginosa,Homo sapiens,FoxA,,,literature
+pseudomonas aeruginosa,Homo sapiens,HasR,,,literature
+pseudomonas aeruginosa,Homo sapiens,HitA,,,literature
+pseudomonas aeruginosa,Homo sapiens,flagellins,,,literature
+pseudomonas aeruginosa,Homo sapiens,PilQ,,,literature
+pseudomonas aeruginosa,Homo sapiens,Pili,,,literature
+pseudomonas aeruginosa,Homo sapiens,Lipopolysaccharide,,,literature
+pseudomonas aeruginosa,Homo sapiens,O-antigen,,,literature
+pseudomonas aeruginosa,Homo sapiens,Pyoverdine,,,literature
+pseudomonas aeruginosa,Homo sapiens,Protease IV,,,literature
+pseudomonas aeruginosa,Homo sapiens,Elastase,,,literature
+pseudomonas aeruginosa,Homo sapiens,acyl homoserine lactones,,,literature
+pseudomonas aeruginosa,Homo sapiens,Rhamnolipids,,,literature
+pseudomonas aeruginosa,Homo sapiens,O specific polysaccharide,,,literature
+pseudomonas aeruginosa,Homo sapiens,2-amino-2-deoxyuronic acids,,,literature
+pseudomonas aeruginosa,Homo sapiens,"2,3-diamino-2,3-dideoxyuronic acids",,,literature
+pseudomonas aeruginosa,Homo sapiens,5,,,literature
+pseudomonas aeruginosa,Homo sapiens,7-diamino-3,,,literature
+pseudomonas aeruginosa,Homo sapiens,"5,7-diamino-3,5,7,9-tetradeoxynonulosonic acid",,,literature
+pseudomonas aeruginosa,Homo sapiens,9-tetradeoxynonulosonic acid,,,literature
+pseudomonas aeruginosa,Homo sapiens,CPA,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprC,,,literature
+pseudomonas aeruginosa,Homo sapiens,esterase,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprD1,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprD2,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprE,,,literature
+pseudomonas aeruginosa,Homo sapiens,OprH1,,,literature
+pseudomonas aeruginosa,Homo sapiens,POprH2,,,literature
+pseudomonas aeruginosa,Homo sapiens,IROMPs,,,literature
+pseudomonas aeruginosa,Homo sapiens,Protease I,,,literature
+pseudomonas aeruginosa,Homo sapiens,Protease III,,,literature

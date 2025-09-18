@@ -1,0 +1,16 @@
+##gff-version 3
+antigen_88|A0A0H2ZDM7|Phosphate-specific|NZ_CP140515.1|tpos:643164-643601	TargetP-2.0	signal_peptide	1	22	0.999607	.	.	.
+antigen_102|A0A072ZF12|AdeC/adeK/oprM|NZ_CP140515.1|tpos:2160879-2161341	TargetP-2.0	signal_peptide	1	18	0.958865	.	.	.
+antigen_84|A0A0H2ZFZ5|Type|NZ_CP140515.1|tpos:74512-75293	TargetP-2.0	signal_peptide	1	15	0.748719	.	.	.
+antigen_127|A0A0H2ZKS8|Anaerobically-induced|NZ_CP140515.1|tpos:150148-150607	TargetP-2.0	signal_peptide	1	29	0.834134	.	.	.
+antigen_92|A0A069PXM6|Aspartyl/Asparaginyl|NZ_CP140515.1|tpos:1676241-1676524	TargetP-2.0	signal_peptide	1	21	0.600291	.	.	.
+antigen_66|Q9I6J0|Spermidine-binding|NZ_CP140515.1|tpos:153825-154191	TargetP-2.0	signal_peptide	1	24	0.994047	.	.	.
+antigen_87|A0A0H2ZE10|Pyrophosphate-specific|NZ_CP140515.1|tpos:643164-643601	TargetP-2.0	signal_peptide	1	22	0.999607	.	.	.
+antigen_89|A0A0H2ZCB8|Glucose/carbohydrate|NZ_CP140515.1|tpos:676509-676962	TargetP-2.0	signal_peptide	1	31	0.996655	.	.	.
+antigen_117|A0A0H2ZE02|Haem|NZ_CP140515.1|tpos:594084-594974	TargetP-2.0	signal_peptide	1	36	0.967580	.	.	.
+antigen_124|A0A2R4KQH6|Rhamnolipids|NZ_CP140515.1|tpos:756378-756622	TargetP-2.0	transit_peptide	1	34	0.605641	.	.	Note=Mitochondrion
+antigen_77|A0A1B2AS06|FAD-binding|NZ_CP140515.1|tpos:912963-913291	TargetP-2.0	signal_peptide	1	18	0.616023	.	.	.
+antigen_62|Q9I5J4|DUF4824|NZ_CP140515.1|tpos:1778367-1778637	TargetP-2.0	signal_peptide	1	25	0.889759	.	.	.
+antigen_36|Q9HYK5|YceK/YidQ|NZ_CP140515.1|tpos:598177-598289	TargetP-2.0	signal_peptide	1	20	0.999875	.	.	.
+antigen_59|Q9I451|Strictosidine|NZ_CP140515.1|tpos:1536082-1536434	TargetP-2.0	signal_peptide	1	23	0.996019	.	.	.
+antigen_126|O31209|OprD2-like|NZ_CP140515.1|tpos:961136-961583	TargetP-2.0	signal_peptide	1	26	0.993386	.	.	.

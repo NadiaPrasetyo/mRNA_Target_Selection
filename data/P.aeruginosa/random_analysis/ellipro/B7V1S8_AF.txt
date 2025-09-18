@@ -1,0 +1,12 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,B7V1S8_AF,A,1,12,MDLSPREKDKLL,12,0.753,Linear
+2,B7V1S8_AF,A,22,30,RRLARGLKL,9,0.729,Linear
+3,B7V1S8_AF,A,48,55,RDGRSVAE,8,0.696,Linear
+4,B7V1S8_AF,A,69,78,VMEGVPEMIP,10,0.617,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,B7V1S8_AF,A:M1, A:D2, A:L3, A:S4, A:P5, A:E7, A:K8, A:D9, A:L11, A:L12, A:T15,11,0.797,Discontinous
+2,B7V1S8_AF,A:P87, A:D88, A:G89, A:T90, A:K91,5,0.752,Discontinous
+3,B7V1S8_AF,A:R48, A:D49, A:G50, A:R51, A:S52, A:V53, A:A54, A:E55,8,0.696,Discontinous
+4,B7V1S8_AF,A:L19, A:R22, A:R23, A:L24, A:A25, A:R26, A:G27, A:L28, A:K29, A:L30, A:V69, A:M70,12,0.682,Discontinous
+5,B7V1S8_AF,A:L64, A:N65, A:R66, A:E67, A:E71, A:G72, A:P74, A:E75, A:M76, A:I77, A:I99, A:A100,12,0.599,Discontinous

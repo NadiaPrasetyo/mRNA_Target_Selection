@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,B7UVI9_AF,A,96,108,SGMQLPPGFKMPF,13,0.724,Linear
+2,B7UVI9_AF,A,37,40,GAGL,4,0.648,Linear
+3,B7UVI9_AF,A,47,70,GRHDVKRVSLDDSLMQEDKEILED,24,0.644,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,B7UVI9_AF,A:G37, A:A38, A:G39, A:L40, A:D57, A:D58, A:S59, A:L60, A:M61, A:Q62, A:E63, A:D64, A:K65, A:E66, A:I67, A:L68, A:E69, A:D70,18,0.732,Discontinous
+2,B7UVI9_AF,A:G4, A:G5, A:M6, A:A7, A:G8, A:L9, A:M10, A:K11, A:Q14, A:Q15, A:Q17, A:E18,12,0.701,Discontinous
+3,B7UVI9_AF,A:S92, A:S96, A:G97, A:M98, A:L100, A:P101, A:P102, A:G103, A:F104, A:K105, A:M106, A:P107, A:F108,13,0.692,Discontinous
+4,B7UVI9_AF,A:Q21, A:K22, A:E25,3,0.565,Discontinous
