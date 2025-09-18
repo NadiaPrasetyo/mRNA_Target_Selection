@@ -1,0 +1,49 @@
+parent_source_antigen_iri,parent_source_antigen_names,source_organism_names,host_organism_names
+taxon_protein:210-other,['Other Helicobacter pylori protein'],['Helicobacter pylori'],['Homo sapiens (human)']
+UNIPROT:O24894,['Restriction endonuclease (UniProt:O24894)'],"['Helicobacter pylori', 'Helicobacter pylori 26695 (Helicobacter pylori (strain 26695))']",['Homo sapiens (human)']
+UNIPROT:O24913,['Malate:quinone oxidoreductase (UniProt:O24913)'],['Helicobacter pylori Hp M5'],['Homo sapiens (human)']
+UNIPROT:O25034,['Outer membrane protein (Omp7) (UniProt:O25034)'],['Helicobacter pylori SouthAfrica50'],['Homo sapiens (human)']
+UNIPROT:O25044,['Cytochrome c biogenesis protein (CcdA) (UniProt:O25044)'],"['Helicobacter pylori', 'Helicobacter pylori J99 (Helicobacter pylori str. J99)']","['Homo sapiens (human)', 'Mus musculus C57BL/6']"
+UNIPROT:O25155,['Calcineurin-like phosphoesterase domain-containing protein (UniProt:O25155)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25162,['DUF3972 domain-containing protein (UniProt:O25162)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O25204,['Competence protein ComB (UniProt:O25204)'],['Helicobacter pylori'],['Homo sapiens (human)']
+UNIPROT:O25233,"['Potassium channel protein, putative (UniProt:O25233)']",['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25249,['Plasminogen-binding protein PgbA (UniProt:O25249)'],['Helicobacter pylori'],"['Homo sapiens (human)', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)']"
+UNIPROT:O25522,['Conserved hypothetical integral membrane protein (UniProt:O25522)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25532,['Urease accessory protein UreH-like transmembrane domain-containing protein (UniProt:O25532)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O25537,['Lipid-A-disaccharide synthase (UniProt:O25537)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O25571,['Outer membrane protein (Omp21) (UniProt:O25571)'],"['Helicobacter pylori', 'Helicobacter pylori J99 (Helicobacter pylori str. J99)']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O25578,['Uncharacterized protein HP_0920 (UniProt:O25578)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25606,['Conserved hypothetical integral membrane protein (UniProt:O25606)'],['Helicobacter pylori 26695 (Helicobacter pylori (strain 26695))'],['Homo sapiens (human)']
+UNIPROT:O25617,['GTPase (UniProt:O25617)'],['Helicobacter pylori'],['Homo sapiens (human)']
+UNIPROT:O25658,['7-alpha-hydroxysteroid dehydrogenase (HdhA) (UniProt:O25658)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25794,['tRNA(Ile)-lysidine/2-thiocytidine synthase N-terminal domain-containing protein (UniProt:O25794)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O25844,"['Oligopeptide ABC transporter, permease protein (OppB) (UniProt:O25844)']",['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25848,['Conserved hypothetical mitochondrial protein 4 (UniProt:O25848)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25950,['Iron(III) dicitrate transport protein (FecA) (UniProt:O25950)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O25969,['Outer membrane beta-barrel protein (UniProt:O25969)'],['Helicobacter pylori 26695 (Helicobacter pylori (strain 26695))'],['Homo sapiens (human)']
+UNIPROT:O25977,['Valine--tRNA ligase (UniProt:O25977)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O26002,['Conserved hypothetical integral membrane protein (UniProt:O26002)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O26005,['Outer membrane protein (Omp31) (UniProt:O26005)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O26013,"[""DNA 3'-5' helicase (UniProt:O26013)""]",['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:O26020,['Conserved hypothetical integral membrane protein (UniProt:O26020)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O26060,['Glutamine--fructose-6-phosphate aminotransferase [isomerizing] (UniProt:O26060)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O26074,['Protein translocase subunit SecD (UniProt:O26074)'],['Helicobacter pylori PZ5056'],['Homo sapiens (human)']
+UNIPROT:O26092,['Regulatory protein DniR (UniProt:O26092)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:O26107,['UPF0174 protein HP_1588 (UniProt:O26107)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:P0A0R3,['Co-chaperonin GroES (UniProt:P0A0R3)'],['Helicobacter pylori NCTC 11637 = CCUG 17874 = ATCC 43504 = JCM 12093 (Helicobacter pylori ATCC 43504)'],"['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P0A0S1,['Flagellin A (UniProt:P0A0S1)'],"['Helicobacter pylori', 'Helicobacter pylori 51 (Helicobacter pylori str. 51)']","['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P0A0V0,['LPP20 lipoprotein (UniProt:P0A0V0)'],"['Helicobacter pylori', 'Helicobacter pylori NCTC 11639 (Helicobacter pylori str. NCTC 11639)']","['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P14916,['Urease subunit alpha (UniProt:P14916)'],"['Helicobacter pylori', 'Helicobacter pylori 26695 (Helicobacter pylori (strain 26695))', 'Helicobacter pylori SS1']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Oryctolagus cuniculus (rabbit)', 'Rattus norvegicus Sprague-Dawley']"
+UNIPROT:P42383,['Chaperonin GroEL (UniProt:P42383)'],['Helicobacter pylori'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6']"
+UNIPROT:P55969,['Neuraminyllactose-binding hemagglutinin (UniProt:P55969)'],['Helicobacter pylori'],"['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P55980,['Cytotoxicity-associated immunodominant antigen (UniProt:P55980)'],"['Helicobacter pylori', 'Helicobacter pylori F16 (Helicobacter pylori str. F16)']","['Homo sapiens (human)', 'Mus musculus BALB/c']"
+UNIPROT:P56005,['Signal recognition particle protein (UniProt:P56005)'],['Helicobacter pylori'],['Homo sapiens (human)']
+UNIPROT:P56009,['Small ribosomal subunit protein uS2 (UniProt:P56009)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:P56010,['Small ribosomal subunit protein uS3 (UniProt:P56010)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:P56013,['Small ribosomal subunit protein bS6 (UniProt:P56013)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:P56105,['DNA polymerase I (UniProt:P56105)'],['Helicobacter pylori'],['Homo sapiens (human)']
+UNIPROT:P56130,['Putative methylthiotransferase HP_0285 (UniProt:P56130)'],['Helicobacter pylori'],['Homo sapiens (human)']
+UNIPROT:P56457,['Leucine--tRNA ligase (UniProt:P56457)'],['Helicobacter pylori J99 (Helicobacter pylori str. J99)'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:P69996,['Urease subunit beta (UniProt:P69996)'],"['Helicobacter pylori', 'Helicobacter pylori 26695 (Helicobacter pylori (strain 26695))', 'Helicobacter pylori SS1']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus (mouse)', 'Oryctolagus cuniculus (rabbit)']"
+UNIPROT:P77872,['Catalase (UniProt:P77872)'],['Helicobacter pylori'],['Homo sapiens (human)']
