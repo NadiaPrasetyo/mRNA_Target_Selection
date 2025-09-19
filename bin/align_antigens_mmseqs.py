@@ -98,11 +98,13 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
             output_fields.append("qseq")
 
         search_type = "2" if mode == "protein" else "3"  # 2 for translated, 3 for nucleotide
+        dbtype = "1" if mode == "protein" else "2"    # Database type 0: auto, 1: amino acid 2: nucleotides [0]
         subprocess.run([
             "mmseqs", "easy-search",
             antigen_fasta, str(strain_fasta),
             str(raw_result), tmpdir,
             "--search-type", search_type,
+            "--dbtype", dbtype,
             "--format-mode", "4",
             "--format-output", ",".join(output_fields)
         ], check=True)
