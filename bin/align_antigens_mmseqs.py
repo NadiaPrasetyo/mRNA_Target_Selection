@@ -43,6 +43,8 @@ import argparse
 from Bio import SeqIO
 from pathlib import Path
 from pathlib import Path
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 def extract_antigens_to_fasta(csv_path, fasta_path, mode="protein"):
@@ -105,9 +107,11 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
             "--format-output", ",".join(output_fields)
         ], check=True)
 
+        logging.info(f"[✓] {strain_name} with mode {mode} MMseqs2 search complete. Extracting best hits...")
+
         extract_best_hits_with_sequences(strain_fasta_path,raw_result, best_result, antigen_seqs_out, fetch_qseq)
 
-    print(f"[✓] {strain_name} aligned. Hits + sequences saved.")
+    logging.info(f"[✓] {strain_name} aligned. Hits + sequences saved.")
     return strain_name
 
 def extract_best_hits_with_sequences(strain_fasta_path, raw_tsv_path, output_tsv_path, fasta_out_path, fetch_qseq):
@@ -224,26 +228,29 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq, mode)
     else:
         strain_files = strain_dir.glob("*.fasta")
         strain_files = [f for f in strain_files if not f.name.endswith("_translated.fasta")]
+        logging.info(f"Running in nucleotide mode. Found {len(strain_files)} files: {strain_files} .")
 
     if not antigen_csv.exists():
-        print(f"Error: Antigen CSV file {antigen_csv} does not exist.")
+        logging.error(f"Antigen CSV file {antigen_csv} does not exist.")
         sys.exit(1)
     if not strain_dir.exists() or not strain_files:
-        print(f"Error: No strain FASTA files found in {strain_dir}.")
+        logging.error(f"No strain FASTA files found in {strain_dir}.")
         sys.exit(1)
     if not shutil.which("mmseqs"):
-        print("Error: MMseqs2 is not installed or not found in PATH.")
+        logging.error("MMseqs2 is not installed or not found in PATH.")
         sys.exit(1)
     if not base_dir.exists() or not base_dir.is_dir():
-        print(f"Error: Base directory {base_dir} does not exist.")
+        logging.error(f"Error: Base directory {base_dir} does not exist.")
         sys.exit(1)
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".fasta") as tmp:
         antigen_fasta = tmp.name
     extract_antigens_to_fasta(antigen_csv, antigen_fasta, mode)
 
+    logging.info(f"Antigen FASTA file created with mode {mode}: ({antigen_fasta}).")
+
     strain_fastas = list(strain_files)
-    print(f"Running MMseqs2 on {len(strain_fastas)} strains with {num_threads} workers...")
+    logging.info(f"Running MMseqs2 on {len(strain_fastas)} strains with {num_threads} workers...")
 
     with ProcessPoolExecutor(max_workers=num_threads) as executor:
         futures = {
@@ -254,7 +261,7 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq, mode)
             future.result()
 
     os.remove(antigen_fasta)
-    print("All alignments complete.")
+    logging.info("All alignments complete.")
 
 if __name__ == "__main__":
     """
@@ -283,7 +290,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.threads < 2:
-        print("Please specify at least 2 threads with --threads.")
+        logging.error("Please specify at least 2 threads with --threads.")
         sys.exit(1)
 
     # Set default output dir if not provided
