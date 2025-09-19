@@ -104,22 +104,34 @@ def sizeof_fmt(num, suffix="B"):
 
 # ----------------------------- Feature Parsers -----------------------------
 
+
 def parse_bcell_dir(directory):
     """
-    Parse B-cell epitope prediction files in the specified directory.
-    Expected files are CSVs with various B-cell prediction methods.
-    Returns a list of dictionaries with feature values.
+    Parse B-cell epitope prediction CSV files in a directory.
+
+    Expected format:
+    - A metadata line starting with "input:".
+    - A peptide table between:
+        "No,Start,End,Peptipe,Length"
+        ... and ...
+        "Position,Residue,Score,Assignment"
+
+    Extracted features:
+        - Number of peptides
+        - Average peptide length
+
     Args:
-        directory (str): Path to the directory containing B-cell prediction files.
+        directory (str): Path to directory containing B-cell CSV files.
+
     Returns:
-        List of dictionaries, where each dictionary represents a B-cell feature.
-    Each dictionary contains:
-        - "feature": "bcell"
-        - "subfeature": method name (e.g., "bepipred", "chou-fasman", etc.)
-        - "value": numerical score for the epitope
+        List[dict]: Each dictionary contains:
+            - "feature": always "bcell"
+            - "subfeature": method-specific metric (e.g., "bepipred_num_peptides")
+            - "value": numerical value
     """
     logging.info(f"Parsing B-cell features in {directory}")
     results = []
+
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".csv")]
         logging.debug(f"Found {len(files)} CSV files in B-cell dir")
@@ -131,29 +143,55 @@ def parse_bcell_dir(directory):
         method = os.path.basename(file).split("_")[-1].replace(".csv", "").lower()
         path = os.path.join(directory, file)
         logging.debug(f"Parsing B-cell file: {file} with method {method}")
+
         try:
             with open(path) as f:
                 reader = csv.reader(f)
-                headers = next(reader)
-                if method == "bepipred":
-                    idx = headers.index("Score")
-                    for i, row in enumerate(reader):
+
+                accession = None
+                num_peptides = 0
+                sum_length = 0
+                in_peptide_section = False
+
+                for line in reader:
+                    if not line:
+                        continue
+
+                    # Capture accession from the input line
+                    if line[0].startswith("input:"):
                         try:
-                            val = float(row[idx])
-                            results.append({"feature": "bcell", "subfeature": method, "value": val})
+                            parts = line[0].split(",")[1].split("|")
+                            accession = f"{parts[1]}_{parts[3]}"
+                            logging.debug(f"Accession parsed: {accession}")
                         except Exception as e:
-                            logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
-                else:
-                    if method in ["chou-fasman", "emini", "karplus-schulz", "kolaskar-tongaonkar", "parker"]:
-                        idx = headers.index("Score")
-                        for i, row in enumerate(reader):
-                            try:
-                                val = float(row[idx])
-                                results.append({"feature": "bcell", "subfeature": method, "value": val})
-                            except Exception as e:
-                                logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+                            logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
+
+                    # Detect start of peptide section
+                    elif line[0].startswith("No,Start,End,Peptipe,Length"):
+                        in_peptide_section = True
+                        continue
+
+                    # Detect end of peptide section
+                    elif line[0].startswith("Position,Residue,Score,Assignment"):
+                        in_peptide_section = False
+                        break
+
+                    # Parse peptide rows
+                    elif in_peptide_section:
+                        try:
+                            length = int(line[4])
+                            sum_length += length
+                            num_peptides += 1
+                        except Exception as e:
+                            logging.debug(f"Skipping malformed peptide line in {file}: {line} ({e})")
+
+                avg_length = float(sum_length / num_peptides) if num_peptides > 0 else 0
+                results.append({"accession": accession, "feature": "bcell", "subfeature": f"{method}_num_peptides", "value": num_peptides})
+                results.append({"accession": accession, "feature": "bcell", "subfeature": f"{method}_avg_peptide_length", "value": avg_length})
+
         except Exception as e:
             logging.error(f"Failed parsing B-cell file {file}: {e}")
+
     logging.info(f"Completed B-cell parsing with {len(results)} results")
     return results
 
@@ -187,10 +225,13 @@ def parse_mhc_dir(directory):
     for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing MHC file: {file}")
+        accession = os.path.basename(file).split("_")[2] + "_" + os.path.basename(file).split("4")[1]
         try:
             with open(path) as f:
                 data = json.load(f)
                 num_peptides = 0  # Initialize peptide count for this file
+                scores = []
+                percentiles = []
                 for result in data.get("results", []):
                     if result.get("type") == "peptide_table":
                         cols = result.get("table_columns", [])
@@ -207,12 +248,21 @@ def parse_mhc_dir(directory):
                                 # Filter peptides based on SB thresholds
                                 if percentile < sb_threshold:
                                     num_peptides += 1
-                                    results.append({"feature": prefix, "subfeature": "score", "value": float(row[idx_score])})
-                                    results.append({"feature": prefix, "subfeature": "percentile", "value": percentile})
+                                    scores.append(float(row[idx_score]))
+                                    percentiles.append(percentile)
                             except Exception as e:
                                 logging.debug(f"Skipping row {i} in {file} due to error: {e}")
-                # Add num_peptides as a subfeature
-                results.append({"feature": prefix, "subfeature": "num_peptides", "value": num_peptides})
+
+            # Store aggregated results
+            results.append({"accession": accession, "feature": prefix, "subfeature": "num_peptides", "value": num_peptides})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "mean_score", "value": statistics.mean(scores) if scores else 0})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "median_score", "value": statistics.median(scores) if scores else 0})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "min_score", "value": min(scores) if scores else 0})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "max_score", "value": max(scores) if scores else 0})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "mean_percentile", "value": statistics.mean(percentiles) if percentiles else 0})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "median_percentile", "value": statistics.median(percentiles) if percentiles else 0})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "min_percentile", "value": min(percentiles) if percentiles else 0})
+            results.append({"accession": accession, "feature": prefix, "subfeature": "max_percentile", "value": max(percentiles) if percentiles else 0})
         except Exception as e:
             logging.error(f"Failed parsing MHC file {file}: {e}")
     logging.info(f"Completed MHC parsing with {len(results)} results")
@@ -249,10 +299,11 @@ def parse_signalp_dir(directory):
                     if line.startswith("#") or not line.strip():
                         continue
                     parts = line.strip().split('\t')
+                    accession = parts[0].split('|')[1] + "_" + parts[0].split('|')[3]	
                     if len(parts) >= 4:
                         try:
-                            results.append({"feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
-                            results.append({"feature": "signalp", "subfeature": "prob_other", "value": float(parts[3])})
+                            results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
+                            results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_other", "value": float(parts[3])})
                         except Exception as e:
                             logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
@@ -292,10 +343,11 @@ def parse_targetp_dir(directory):
                         continue
                     parts = line.strip().split('\t')
                     if len(parts) >= 5:
+                        accession = parts[0].split('|')[1] + "_" + parts[0].split('|')[3]
                         try:
-                            results.append({"feature": "targetp", "subfeature": "prob_noTP", "value": float(parts[2])})
-                            results.append({"feature": "targetp", "subfeature": "prob_SP", "value": float(parts[3])})
-                            results.append({"feature": "targetp", "subfeature": "prob_mTP", "value": float(parts[4])})
+                            results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_noTP", "value": float(parts[2])})
+                            results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_SP", "value": float(parts[3])})
+                            results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_mTP", "value": float(parts[4])})
                         except Exception as e:
                             logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
@@ -337,22 +389,26 @@ def parse_allergenicity_dir(directory):
                 reader = csv.DictReader(csvfile)
                 for i, row in enumerate(reader):
                     try:
+                        accession = row["Subject"].split('|')[1] + "_" + row["Subject"].split('|')[3]
                         merci_score = float(row["MERCI Score"])
                         blast_score = float(row["BLAST Score"])
                         hybrid_score = float(row["Hybrid Score"])
 
                         results.extend([
                             {
+                                "accession": accession,
                                 "feature": "allergenicity",
                                 "subfeature": "merci_score",
                                 "value": merci_score
                             },
                             {
+                                "accession": accession,
                                 "feature": "allergenicity",
                                 "subfeature": "blast_score",
                                 "value": blast_score
                             },
                             {
+                                "accession": accession,
                                 "feature": "allergenicity",
                                 "subfeature": "hybrid_score",
                                 "value": hybrid_score
@@ -445,20 +501,24 @@ def parse_cluster_dir(directory):
         if not scores:
             continue
         try:
+            accession = cluster_id
             percent_identity_num_strain = sum(scores[0::3]) / len(unique_strains)  #sum of percent identities divided by number of strains
             avg_bit_score = sum(scores[1::3]) / len(scores[1::3]) # sum of bit scores divided by number of scores
             avg_log_e_value = sum(scores[2::3]) / len(scores[2::3]) # sum of e-values divided by number of e-values
             results.append({
+                "accession": accession,
                 "feature": "cluster_conservation",
                 "subfeature": "percent_identity/num_strain",
                 "value": percent_identity_num_strain
             })
             results.append({
+                "accession": accession,
                 "feature": "cluster_conservation",
                 "subfeature": "bit_score_normalized",
                 "value": avg_bit_score
             })
             results.append({
+                "accession": accession,
                 "feature": "cluster_conservation",
                 "subfeature": "e_value_average",
                 "value": avg_log_e_value
@@ -498,6 +558,7 @@ def parse_deeplocpro_dir(directory):
         try:
             
                 df = pd.read_csv(path)
+                accession = df["ACC"].split('|')[1] + "_" + df["ACC"].split('|')[3]
                 # Assume columns: ...,"Cell wall/surface","Extracellular","Cytoplasmic","Cytoplasmic membrane","Outer membrane","Periplasmic"
                 prob_cols = [
                     ("cell_wall_surface", "Cell wall/surface"),
@@ -516,18 +577,12 @@ def parse_deeplocpro_dir(directory):
                             prob = None
                         if prob is not None:
                             results.append({
+                                "accession": accession,
                                 "feature": "deeplocpro",
                                 "subfeature": f"prob_{loc}",
                                 "value": prob
                             })
                             probs.append(prob)
-                    # Add max probability as "max"
-                    if probs:
-                        results.append({
-                            "feature": "deeplocpro",
-                            "subfeature": "prob_max",
-                            "value": max(probs)
-                        })
         except Exception as e:
             logging.error(f"Failed parsing DeeplocPro file {file}: {e}")
     logging.info(f"Completed DeeplocPro parsing with {len(results)} results")
@@ -555,9 +610,17 @@ def parse_ellipro_dir(directory):
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
+    
     for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing Ellipro file: {file}")
+        linear_score = []
+        discontinuous_score = []
+        # Determine accession from filename
+        if "_" in os.path.basename(file):
+            accession = os.path.basename(file).split("_")[0].replace(".txt", "") if os.path.basename(file).split("_")[1] != "AF.txt" else os.path.basename(file).split("_")[1].replace(".txt", "")
+        else:
+            accession = os.path.basename(file).replace(".txt", "")
         try:
             with open(path) as f:
                 lines = f.readlines()
@@ -569,12 +632,8 @@ def parse_ellipro_dir(directory):
                     if len(parts) < 3:
                         continue  # Skip malformed lines
                     try:
-                        score = float(parts[-2])  # Take the second-to-last field as the score
-                        results.append({
-                            "feature": "ellipro",
-                            "subfeature": "linear_epitope_score",
-                            "value": score
-                        })
+                        # Take the second-to-last field as the score
+                        linear_score.append(float(parts[-2]))
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
 
@@ -586,16 +645,49 @@ def parse_ellipro_dir(directory):
                     if len(parts) < 3:
                         continue  # Skip malformed lines
                     try:
-                        score = float(parts[-2])  # Take the second-to-last field as the score
-                        results.append({
-                            "feature": "ellipro",
-                            "subfeature": "discontinuous_epitope_score",
-                            "value": score
-                        })
+                        discontinuous_score.append(float(parts[-2]))  # Take the second-to-last field as the score
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+            # Store results
+            results.append({
+                "accession": accession,
+                "feature": "ellipro",
+                "subfeature": "mean_linear_score",
+                "value": statistics.mean(linear_score) if linear_score else 0
+            })
+            results.append({
+                "accession": accession,
+                "feature": "ellipro",
+                "subfeature": "mean_discontinuous_score",
+                "value": statistics.mean(discontinuous_score) if discontinuous_score else 0
+            })
+            results.append({
+                "accession": accession,
+                "feature": "ellipro",
+                "subfeature": "med_linear_score",
+                "value": statistics.median(linear_score) if linear_score else 0
+            })
+            results.append({
+                "accession": accession,
+                "feature": "ellipro",
+                "subfeature": "med_discontinuous_score",
+                "value": statistics.median(discontinuous_score) if discontinuous_score else 0
+            })
+            results.append({
+                "accession": accession,
+                "feature": "ellipro",
+                "subfeature": "num_linear_epitopes",
+                "value": len(linear_score)
+            })
+            results.append({
+                "accession": accession,
+                "feature": "ellipro",
+                "subfeature": "num_discontinuous_epitopes",
+                "value": len(discontinuous_score)
+            })
         except Exception as e:
             logging.error(f"Failed parsing Ellipro file {file}: {e}")
+
     logging.info(f"Completed Ellipro parsing with {len(results)} results")
     return results
 
@@ -625,31 +717,59 @@ def parse_ifnepitope2_dir(directory):
     for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing IFNepitope2 file: {file}")
+        ml_score = defaultdict(list)
+        blast_score = defaultdict(list)
+        total_score = defaultdict(list)
         try:
             with open(path) as f:
                 reader = csv.DictReader(f)
                 for i, row in enumerate(reader):
                     try:
-                        ml_score = float(row["ML_Score"])
-                        blast_score = float(row["BLAST_Score"])
-                        total_score = float(row["Total_Score"])
-                        results.append({
-                            "feature": "ifnepitope2",
-                            "subfeature": "ml_score",
-                            "value": ml_score
-                        })
-                        results.append({
-                            "feature": "ifnepitope2",
-                            "subfeature": "blast_score",
-                            "value": blast_score
-                        })
-                        results.append({
-                            "feature": "ifnepitope2",
-                            "subfeature": "total_score",
-                            "value": total_score
-                        })
+                        accession = row["Seq_ID"].split('|')[1] + "_" + row["Seq_ID"].split('|')[3]
+                        ml_score[accession] = float(row["ML_Score"])
+                        blast_score[accession] = float(row["BLAST_Score"])
+                        total_score[accession] = float(row["Total_Score"])
+                        
                     except ValueError as e:
                         logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+
+            for accession in ml_score:
+                results.append({
+                    "accession": accession,
+                    "feature": "ifnepitope2",
+                    "subfeature": "mean_ml_score",
+                    "value": statistics.mean(ml_score[accession]) if ml_score[accession] else 0
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "ifnepitope2",
+                    "subfeature": "mean_blast_score",
+                    "value": statistics.mean(blast_score[accession]) if blast_score[accession] else 0
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "ifnepitope2",
+                    "subfeature": "mean_total_score",
+                    "value": statistics.mean(total_score[accession]) if total_score[accession] else 0
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "ifnepitope2",
+                    "subfeature": "med_ml_score",
+                    "value": statistics.median(ml_score[accession]) if ml_score[accession] else 0
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "ifnepitope2",
+                    "subfeature": "med_blast_score",
+                    "value": statistics.median(blast_score[accession]) if blast_score[accession] else 0
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "ifnepitope2",
+                    "subfeature": "med_total_score",
+                    "value": statistics.median(total_score[accession]) if total_score[accession] else 0
+                })
         except Exception as e:
             logging.error(f"Failed parsing IFNepitope2 file {file}: {e}")
     logging.info(f"Completed IFNepitope2 parsing with {len(results)} results")
@@ -737,6 +857,8 @@ def parse_deeptmhmm_dir(directory):
                         if i + 2 >= len(lines):
                             logging.warning(f"File {file} does not have enough lines after header at line {i}")
                             break
+                        header = lines[i].strip()
+                        accession = header.split('|')[1] + "_" + header.split('|')[3]  # Extract accession from header
                         sequence = lines[i + 1].strip()
                         topology = lines[i + 2].strip()
                         if len(sequence) != len(topology):
@@ -749,6 +871,7 @@ def parse_deeptmhmm_dir(directory):
                         else:
                             proportion_outside = 0.0
                         results.append({
+                            "accession": accession,
                             "feature": "deeptmhmm",
                             "subfeature": "proportion_outside",
                             "value": proportion_outside
@@ -786,6 +909,7 @@ def parse_rate4site_dir(directory):
     for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing Rate4Site file: {file}")
+        accession = os.path.basename(file).split("_")[0] if "_" in os.path.basename(file) else os.path.basename(file).replace(".out", "")
         try:
             scores = []
             with open(path) as f:
@@ -798,39 +922,59 @@ def parse_rate4site_dir(directory):
                     try:
                         score = float(parts[2])
                         scores.append(score)
-                        results.append({
-                            "feature": "rate4site",
-                            "subfeature": "per_site_score",
-                            "value": score
-                        })
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
 
-            # Compute rolling window statistics (15-peptide window)
-            window_size = 15
-            for j in range(len(scores)):
-                window = scores[max(0, j - window_size + 1):j + 1]
-                if len(window) > 0:
-                    results.append({
-                        "feature": "rate4site",
-                        "subfeature": "rolling_mean",
-                        "value": sum(window) / len(window)
-                    })
-                    results.append({
-                        "feature": "rate4site",
-                        "subfeature": "rolling_median",
-                        "value": statistics.median(window)
-                    })
-                    results.append({
-                        "feature": "rate4site",
-                        "subfeature": "rolling_max",
-                        "value": max(window)
-                    })
-                    results.append({
-                        "feature": "rate4site",
-                        "subfeature": "rolling_min",
-                        "value": min(window)
-                    })
+            results.append({
+                "accession": accession,
+                "feature": "rate4site",
+                "subfeature": "mean_per_site_score",
+                "value": statistics.mean(scores) if scores else 0
+            })
+            results.append({
+                "accession": accession,
+                "feature": "rate4site",
+                "subfeature": "median_per_site_score",
+                "value": statistics.median(scores) if scores else 0
+            })
+            results.append({
+                "accession": accession,
+                "feature": "rate4site",
+                "subfeature": "min_per_site_score",
+                "value": min(scores) if scores else 0
+            })
+            results.append({
+                "accession": accession,
+                "feature": "rate4site",
+                "subfeature": "max_per_site_score",
+                "value": max(scores) if scores else 0
+            })
+
+            # # Compute rolling window statistics (15-peptide window)
+            # window_size = 15
+            # for j in range(len(scores)):
+            #     window = scores[max(0, j - window_size + 1):j + 1]
+            #     if len(window) > 0:
+            #         results.append({
+            #             "feature": "rate4site",
+            #             "subfeature": "rolling_mean",
+            #             "value": sum(window) / len(window)
+            #         })
+            #         results.append({
+            #             "feature": "rate4site",
+            #             "subfeature": "rolling_median",
+            #             "value": statistics.median(window)
+            #         })
+            #         results.append({
+            #             "feature": "rate4site",
+            #             "subfeature": "rolling_max",
+            #             "value": max(window)
+            #         })
+            #         results.append({
+            #             "feature": "rate4site",
+            #             "subfeature": "rolling_min",
+            #             "value": min(window)
+            #         })
         except Exception as e:
             logging.error(f"Failed parsing Rate4Site file {file}: {e}")
     logging.info(f"Completed Rate4Site parsing with {len(results)} results")
@@ -893,7 +1037,6 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                     for i in range(0, len(lines), 3):
                         try:
                             header = lines[i]
-                            seq = lines[i + 1]
                             topology = lines[i + 2]
                             fields = header.lstrip(">").split("|")
                             if len(fields) < 4:
@@ -960,7 +1103,8 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
 
     for rate4site_file in glob.glob(os.path.join(rate4site_dir, "*.out")):
         try:
-            accession = os.path.basename(rate4site_file).split("_combined")[0]
+            outside_per_site_scores = []
+            accession = os.path.basename(rate4site_file).split("_")[0]
             mafft_file = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
 
             if not os.path.exists(mafft_file):
@@ -996,51 +1140,70 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                     if topo is None:
                         continue
 
-                    results.append({
-                        "feature": "rate4site_deeptmhmm",
-                        "subfeature": "outside_score_per_site",
-                        "strain": strain,
-                        "antigen": accession,
-                        "value": score
-                    })
+                    outside_per_site_scores.append(score)
 
                     strain_topology_positions.append((pos, aa, score, topo))
 
-                # Rolling window stats for this strain-antigen pair
-                outside_scores = [s for _, _, s, t in strain_topology_positions if t == "O"]
-                window_size = 15
-                for i in range(len(outside_scores) - window_size + 1):
-                    window = outside_scores[i:i + window_size]
-                    results.extend([
-                        {
-                            "strain": strain,
-                            "accession": accession,
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_avg",
-                            "value": sum(window) / window_size
-                        },
-                        {
-                            "strain": strain,
-                            "accession": accession,
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_median",
-                            "value": statistics.median(window)
-                        },
-                        {
-                            "strain": strain,
-                            "accession": accession,
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_min",
-                            "value": min(window)
-                        },
-                        {
-                            "strain": strain,
-                            "accession": accession,
-                            "feature": "rate4site_deeptmhmm",
-                            "subfeature": "rolling_max",
-                            "value": max(window)
-                        }
-                    ])
+                results.append({
+                    "accession": accession,
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "mean_outside_scores",
+                    "value": statistics.mean(outside_per_site_scores) if outside_per_site_scores else None
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "rate4site_deeptmhmm",
+                    "subfature": "median_outside_scores",
+                    "value": statistics.median(outside_per_site_scores) if outside_per_site_scores else None
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "min_outside_scores",
+                    "value": min(outside_per_site_scores) if outside_per_site_scores else None
+                })
+                results.append({
+                    "accession": accession,
+                    "feature": "rate4site_deeptmhmm",
+                    "subfeature": "max_outside_scores",
+                    "value": max(outside_per_site_scores) if outside_per_site_scores else None
+                })
+
+                # # Rolling window stats for this strain-antigen pair
+                # outside_scores = [s for _, _, s, t in strain_topology_positions if t == "O"]
+                # window_size = 15
+                # for i in range(len(outside_scores) - window_size + 1):
+                #     window = outside_scores[i:i + window_size]
+                #     results.extend([
+                #         {
+                #             "strain": strain,
+                #             "accession": accession,
+                #             "feature": "rate4site_deeptmhmm",
+                #             "subfeature": "rolling_avg",
+                #             "value": sum(window) / window_size
+                #         },
+                #         {
+                #             "strain": strain,
+                #             "accession": accession,
+                #             "feature": "rate4site_deeptmhmm",
+                #             "subfeature": "rolling_median",
+                #             "value": statistics.median(window)
+                #         },
+                #         {
+                #             "strain": strain,
+                #             "accession": accession,
+                #             "feature": "rate4site_deeptmhmm",
+                #             "subfeature": "rolling_min",
+                #             "value": min(window)
+                #         },
+                #         {
+                #             "strain": strain,
+                #             "accession": accession,
+                #             "feature": "rate4site_deeptmhmm",
+                #             "subfeature": "rolling_max",
+                #             "value": max(window)
+                #         }
+                #     ])
 
         except Exception as e:
             logging.exception(f"Error processing {rate4site_file}: {str(e)}")
@@ -1057,22 +1220,29 @@ def parse_dssp_dir(dssp_dir):
     """
     results = []
     for dssp_file in Path(dssp_dir).glob("*.dssp"):
+        if "_" in dssp_file.stem:
+            accession = dssp_file.stem.split("_")[0] if dssp_file.stem.split("_")[1] != "AF" else dssp_file.stem.split("_")[1]
+        else:
+            accession = dssp_file.stem
         contents = dssp_file.read_text()
         percent_helix = contents.count('H') / len(contents) if len(contents) > 0 else 0
         percent_sheet = contents.count('E') / len(contents) if len(contents) > 0 else 0
         percent_loop = contents.count('-') / len(contents) if len(contents) > 0 else 0
 
         results.append({
+            "accession": accession,
             "feature": "dssp",
             "subfeature": "percent_helix",
             "value": percent_helix
         })
         results.append({
+            "accession": accession,
             "feature": "dssp",
             "subfeature": "percent_sheet",
             "value": percent_sheet
         })
         results.append({
+            "accession": accession,
             "feature": "dssp",
             "subfeature": "percent_loop",
             "value": percent_loop
@@ -1103,7 +1273,7 @@ def parse_dnds_dir(directory):
             if dnds_file.stat().st_size == 0:
                 logging.warning(f"Skipping empty JSON file: {dnds_file}")
                 continue
-
+            accession = dnds_file.stem.split("_")[0] if "_" in dnds_file.stem else dnds_file.stem
             type = dnds_file.stem.split("_")[-2]  # Extract method type (FEL, SLAC, FUBAR)
             with open(dnds_file, "r") as f:
                 try:
@@ -1129,18 +1299,21 @@ def parse_dnds_dir(directory):
                             count += 1
 
                     results.append({
+                        "accession": accession,
                         "feature": "FEL",
                         "subfeature": "mean_alpha",
                         "value": safe_div(sum_alpha, count)
                     })
 
                     results.append({
+                        "accession": accession,
                         "feature": "FEL",
                         "subfeature": "mean_beta",
                         "value": safe_div(sum_beta, count)
                     })
 
                     results.append({
+                        "accession": accession,
                         "feature": "FEL",
                         "subfeature": "mean_lrt",
                         "value": safe_div(sum_lrt, count)
@@ -1164,18 +1337,21 @@ def parse_dnds_dir(directory):
                                 count += 1
                         
                     results.append({
+                        "accession": accession,
                         "feature": "SLAC",
-                        "subfeature": "dN/dS",
+                        "subfeature": "mean_dN/dS",
                         "value": safe_div(sum_dn, sum_ds)
                     })
 
                     results.append({
+                        "accession": accession,
                         "feature": "SLAC",
                         "subfeature": "mean_n",
                         "value": safe_div(sum_n, count)
                     })
 
                     results.append({
+                        "accession": accession,
                         "feature": "SLAC",
                         "subfeature": "mean_s",
                         "value": safe_div(sum_s, count)
@@ -1194,24 +1370,28 @@ def parse_dnds_dir(directory):
                             count += 1
 
                     results.append({
+                        "accession": accession,
                         "feature": "FUBAR",
                         "subfeature": "mean_alpha",
                         "value": safe_div(sum_alpha, count)
                     })
 
                     results.append({
+                        "accession": accession,
                         "feature": "FUBAR",
                         "subfeature": "mean_beta",
                         "value": safe_div(sum_beta, count)
                     })
 
                     results.append({
+                        "accession": accession,
                         "feature": "FUBAR",
                         "subfeature": "mean_prob_pos",
                         "value": safe_div(sum_prob_pos, count)
                     })
 
                     results.append({
+                        "accession": accession,
                         "feature": "FUBAR",
                         "subfeature": "mean_prob_neg",
                         "value": safe_div(sum_prob_neg, count)
@@ -1241,6 +1421,8 @@ aac_F,0.018957345971563982
     """
     results = []
     for protlearn_file in Path(directory).glob("*.csv"):
+        if "_" in protlearn_file.stem:
+            accession = protlearn_file.stem.split("_")[0] if protlearn_file.stem.split("_")[1] != "AF" else protlearn_file.stem.split("_")[1]
         with open(protlearn_file, "r") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -1250,6 +1432,7 @@ aac_F,0.018957345971563982
                     if value is not None:  # Ensure value is not None before conversion
                         value = int(float(value))  # Convert to float first, then to int
                         results.append({
+                        "accession": accession,
                         "feature": "ProtLearn",
                         "subfeature": feature,
                         "value": value
@@ -1602,6 +1785,7 @@ def write_features_by_feature(features, label, output_dir):
 
             for row in rows:
                 writer.writerow({
+                    "accession": row.get("accession", ""),
                     "label": label,
                     "feature": row.get("feature", ""),
                     "subfeature": row.get("subfeature", ""),

@@ -44,8 +44,25 @@ from Bio import SeqIO
 from pathlib import Path
 from pathlib import Path
 import logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 from concurrent.futures import ProcessPoolExecutor, as_completed
+
+def setup_logging(verbose, output_dir):
+    """
+    Configures logging to output to both console and a log file.
+    Args:
+        verbose (bool): If True, enables verbose logging.
+        output_dir (str): Path to the output directory.
+    """
+    log_level = logging.DEBUG if verbose else logging.INFO
+    log_file = Path(output_dir) / "mmseqs_alignment.log"
+    logging.basicConfig(
+        level=log_level,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.StreamHandler(),  # Log to console
+            logging.FileHandler(log_file) if verbose else None  # Log to file
+        ]
+    )
 
 def extract_antigens_to_fasta(csv_path, fasta_path, mode="protein"):
     """
@@ -288,8 +305,14 @@ if __name__ == "__main__":
         action="store_true",
         help="Include qseq (query sequence) in MMseqs2 output"
     )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Enable verbose logging to console and file"
+    )
 
     args = parser.parse_args()
+    setup_logging(args.verbose, output_dir=args.output_dir if args.output_dir else f"data/{args.pathogen_directory}/mmseqs_results")
 
     if args.threads < 2:
         logging.error("Please specify at least 2 threads with --threads.")

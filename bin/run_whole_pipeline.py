@@ -21,7 +21,6 @@ import sys
 import subprocess
 import logging
 from pathlib import Path
-import tempfile
 import shutil
 
 def setup_logging(verbose=False, log_file=None):
@@ -46,11 +45,11 @@ def setup_logging(verbose=False, log_file=None):
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
 
+def run_command(cmd: list[str], description: str, logger: logging.Logger) -> bool:
+    """Run a command, streaming stdout/stderr to the logger, preserving child log formatting."""
 
-def run_command(cmd, description):
-    """Run a command and stream its output to logging."""
-    logging.info(f"Starting: {description}")
-    logging.debug(f"Command: {' '.join(cmd)}")
+    logger.info(f"▶️ Starting: {description}")
+    logger.debug(f"Command: {' '.join(cmd)}")
 
     process = subprocess.Popen(
         cmd,
@@ -58,23 +57,21 @@ def run_command(cmd, description):
         stderr=subprocess.PIPE,
         text=True,
         bufsize=1,
-        universal_newlines=True,
     )
 
-    # Stream stdout
+    # Directly forward child output without adding prefixes
     for line in process.stdout:
-        logging.info(f"[stdout] {line.strip()}")
-    # Stream stderr
+        sys.stdout.write(line)  
     for line in process.stderr:
-        logging.error(f"[stderr] {line.strip()}")
+        sys.stderr.write(line)  
 
     process.wait()
 
     if process.returncode == 0:
-        logging.info(f"✅ Completed: {description}")
+        logger.info(f"✅ Completed: {description}")
         return True
     else:
-        logging.error(f"❌ Failed: {description} (exit code {process.returncode})")
+        logger.error(f"❌ Failed: {description} (exit code {process.returncode})")
         return False
 
 def check_dependencies():
