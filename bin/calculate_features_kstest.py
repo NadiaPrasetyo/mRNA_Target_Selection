@@ -160,9 +160,16 @@ def parse_bcell_dir(directory):
                     # Capture accession from the input line
                     if line[0].startswith("input:"):
                         try:
-                            parts = line[0].split(",")[1].split("|")
-                            accession = f"{parts[1]}_{parts[3]}"
-                            logging.debug(f"Accession parsed: {accession}")
+                            try:
+                                parts = line[0].split(",")[1].split("|")
+                                if len(parts) > 3:
+                                    accession = f"{parts[1]}_{parts[3]}"
+                                    logging.debug(f"Accession parsed: {accession}")
+                                else:
+                                    logging.warning(f"Unexpected format in line: {line[0]}")
+                                    accession = "unknown"
+                            except IndexError as e:
+                                logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
                         except Exception as e:
                             logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
 
@@ -225,8 +232,13 @@ def parse_mhc_dir(directory):
     for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing MHC file: {file}")
-        accession = os.path.basename(file).split("_")[2] + "_" + os.path.basename(file).split("4")[1]
         try:
+            parts = file.stem.split("_")
+            if len(parts) > 2:
+                accession = f"{parts[2]}_{parts[4]}"
+            else:
+                logging.warning(f"Unexpected filename format: {file}")
+                accession = "unknown"
             with open(path) as f:
                 data = json.load(f)
                 num_peptides = 0  # Initialize peptide count for this file
@@ -558,7 +570,6 @@ def parse_deeplocpro_dir(directory):
         try:
             
                 df = pd.read_csv(path)
-                accession = df["ACC"].split('|')[1] + "_" + df["ACC"].split('|')[3]
                 # Assume columns: ...,"Cell wall/surface","Extracellular","Cytoplasmic","Cytoplasmic membrane","Outer membrane","Periplasmic"
                 prob_cols = [
                     ("cell_wall_surface", "Cell wall/surface"),
@@ -569,20 +580,25 @@ def parse_deeplocpro_dir(directory):
                     ("periplasmic", "Periplasmic"),
                 ]
                 for i, row in df.iterrows():
-                    probs = []
+                    try:
+                        accession = f"{row['ACC'].split('|')[1]}_{row['ACC'].split('|')[3]}"
+                    except IndexError:
+                        logging.warning(f"Unexpected ACC format: {row['ACC']}")
+                        accession = "unknown"
+
                     for loc, col in prob_cols:
                         try:
                             prob = float(row[col])
-                        except Exception:
-                            prob = None
-                        if prob is not None:
                             results.append({
                                 "accession": accession,
                                 "feature": "deeplocpro",
                                 "subfeature": f"prob_{loc}",
                                 "value": prob
                             })
-                            probs.append(prob)
+                        except ValueError:
+                            logging.debug(f"Invalid probability value in column {col} for row {i}")
+                        except KeyError:
+                            logging.debug(f"Missing column {col} in row {i}")
         except Exception as e:
             logging.error(f"Failed parsing DeeplocPro file {file}: {e}")
     logging.info(f"Completed DeeplocPro parsing with {len(results)} results")
@@ -626,7 +642,7 @@ def parse_ellipro_dir(directory):
                 lines = f.readlines()
                 # Parse linear epitopes
                 for i, line in enumerate(lines):
-                    if line.startswith("No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type"):
+                    if i == 0 or "No." in line:
                         continue  # Skip header
                     parts = line.strip().rsplit(',', 2)  # Split into three parts from the right
                     if len(parts) < 3:
@@ -639,7 +655,7 @@ def parse_ellipro_dir(directory):
 
                 # Parse discontinuous epitopes
                 for i, line in enumerate(lines):
-                    if line.startswith("No.,Structure,Residues,Number of Residues,Score,Type"):
+                    if i == 0 or "No." in line:
                         continue  # Skip header
                     parts = line.strip().rsplit(',', 2)  # Split into three parts from the right
                     if len(parts) < 3:
@@ -726,9 +742,9 @@ def parse_ifnepitope2_dir(directory):
                 for i, row in enumerate(reader):
                     try:
                         accession = row["Seq_ID"].split('|')[1] + "_" + row["Seq_ID"].split('|')[3]
-                        ml_score[accession] = float(row["ML_Score"])
-                        blast_score[accession] = float(row["BLAST_Score"])
-                        total_score[accession] = float(row["Total_Score"])
+                        ml_score[accession].append(float(row["ML_Score"]))
+                        blast_score[accession].append(float(row["BLAST_Score"]))
+                        total_score[accession].append(float(row["Total_Score"]))
                         
                     except ValueError as e:
                         logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
@@ -1780,7 +1796,7 @@ def write_features_by_feature(features, label, output_dir):
         filepath = os.path.join(output_dir, f"{feature}_{label}_raw_data.csv")
 
         with open(filepath, "w", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=["label", "feature", "subfeature", "value"])
+            writer = csv.DictWriter(f, fieldnames=["accession", "label", "feature", "subfeature", "value"])
             writer.writeheader()
 
             for row in rows:
@@ -1789,7 +1805,7 @@ def write_features_by_feature(features, label, output_dir):
                     "label": label,
                     "feature": row.get("feature", ""),
                     "subfeature": row.get("subfeature", ""),
-                    "value": row.get("value", "")
+                    "value": row.get("value", "")                    
                 })
         logging.debug(f"Wrote feature file: {filepath}")
 
