@@ -5,7 +5,7 @@ Runner for the antigen analysis pipeline.
 Overview:
     - Scans a specified pathogen sequence directory for FASTA files.
     - Runs selected prediction tools (SignalP, TargetP, Cluster, AlgPred, DeepLocPro, IfNePitope2, DeepTMHMM, MAFFT, MAFFT_RATE4SITE) on each FASTA file.
-    - Supports parallel execution for efficient processing, with serial execution for tools requiring it (e.g., AlgPred, IfNePitope2).
+    - Supports parallel execution for efficient processing, with serial execution for tools requiring it (e.g., AlgPred, IfNePitope2, DeepTMHMM).
     - Organizes results into structured output directories.
     - Cleans up intermediate and temporary files after processing.
 
@@ -91,8 +91,8 @@ def run_parallel_jobs(jobs, threads):
         threads (int): Number of threads to use for parallel execution.
     """
 
-    serial_jobs = [job for job in jobs if job[0] == "ALGPRED" or job[0] == "IFNEPITOPE2"]
-    other_jobs = [job for job in jobs if job[0] != "ALGPRED" and job[0] != "IFNEPITOPE2"]
+    serial_jobs = [job for job in jobs if job[0] == "ALGPRED" or job[0] == "IFNEPITOPE2" or job[0] == "DEEPTMHMM"]
+    other_jobs = [job for job in jobs if job[0] != "ALGPRED" and job[0] != "IFNEPITOPE2" and job[0] != "DEEPTMHMM"]
 
     with ThreadPoolExecutor(max_workers=threads) as executor:
         # Run non-Allergenicity jobs in parallel
@@ -104,7 +104,7 @@ def run_parallel_jobs(jobs, threads):
             except Exception as e:
                 logging.error(f"❌ Job failed: {e}")
 
-    # Run Allergenicity and IFNepitope2 jobs serially
+    # Run Allergenicity and IFNepitope2 and DEEPTMHMM jobs serially
     for job in serial_jobs:
         tool_name, _, input_file, _, _, _ = job
         try:
