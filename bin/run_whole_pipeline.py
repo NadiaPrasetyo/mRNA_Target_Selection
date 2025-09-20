@@ -45,8 +45,10 @@ def setup_logging(verbose=False, log_file=None):
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
 
-def run_command(cmd: list[str], description: str, logger: logging.Logger) -> bool:
+def run_command(cmd: list[str], description: str) -> bool:
     """Run a command, streaming stdout/stderr to the logger, preserving child log formatting."""
+
+    logger = logging.getLogger()
 
     logger.info(f"▶️ Starting: {description}")
     logger.debug(f"Command: {' '.join(cmd)}")
@@ -61,9 +63,9 @@ def run_command(cmd: list[str], description: str, logger: logging.Logger) -> boo
 
     # Directly forward child output without adding prefixes
     for line in process.stdout:
-        sys.stdout.write(line)  
+        sys.stdout.write(line)
     for line in process.stderr:
-        sys.stderr.write(line)  
+        sys.stderr.write(line)
 
     process.wait()
 
