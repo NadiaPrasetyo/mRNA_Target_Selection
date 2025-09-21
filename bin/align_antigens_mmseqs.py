@@ -116,16 +116,20 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
             output_fields.append("qseq")
 
         search_type = "2" if mode == "protein" else "3"  # 2 for translated, 3 for nucleotide
-        dbtype = "1" if mode == "protein" else "2"    # Database type 0: auto, 1: amino acid 2: nucleotides [0]
-        subprocess.run([
+        cmd = [
             "mmseqs", "easy-search",
             antigen_fasta, str(strain_fasta),
             str(raw_result), tmpdir,
             "--search-type", search_type,
-            "--dbtype", dbtype,
             "--format-mode", "4",
             "--format-output", ",".join(output_fields)
-        ], check=True)
+        ]
+
+        # Only add dbtype if nucleotide mode
+        if mode == "nucleotide":
+            cmd.extend(["--dbtype", "2"])
+
+        subprocess.run(cmd, check=True)
 
         logging.info(f"[✓] {strain_name} with mode {mode} MMseqs2 search complete. Extracting best hits...")
 
@@ -244,10 +248,9 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq, mode)
     results_dir = Path(base_dir/output_dir)
     results_dir.mkdir(parents=True, exist_ok=True)
     if mode == "protein":
-        strain_files = strain_dir.glob("*_translated.fasta")
-    else:
-        strain_files = strain_dir.glob("*.fasta")
-        strain_files = [f for f in strain_files if not f.name.endswith("_translated.fasta")]
+        strain_files = list(strain_dir.glob("*_translated.fasta"))
+    else:  # nucleotide
+        strain_files = [f for f in strain_dir.glob("*.fasta") if not f.name.endswith("_translated.fasta")]
         logging.info(f"Running in nucleotide mode. Found {len(strain_files)} files: {strain_files} .")
 
     if not antigen_csv.exists():
