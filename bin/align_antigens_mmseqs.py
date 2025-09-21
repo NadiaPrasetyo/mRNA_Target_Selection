@@ -125,6 +125,10 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
             "--format-output", ",".join(output_fields)
         ]
 
+        # Only add dbtype if nucleotide mode
+        if mode == "nucleotide":
+            cmd.extend(["--dbtype", "2"])
+
         subprocess.run(cmd, check=True)
 
         logging.info(f"[✓] {strain_name} with mode {mode} MMseqs2 search complete. Extracting best hits...")

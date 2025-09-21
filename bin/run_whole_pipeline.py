@@ -22,6 +22,7 @@ import subprocess
 import logging
 from pathlib import Path
 import shutil
+import threading
 
 def setup_logging(verbose=False, log_file=None):
     """Setup logging configuration."""
@@ -45,6 +46,7 @@ def setup_logging(verbose=False, log_file=None):
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
 
+
 def run_command(cmd: list[str], description: str) -> bool:
     """Run a command, streaming stdout/stderr to the logger, preserving child log formatting."""
 
@@ -61,13 +63,25 @@ def run_command(cmd: list[str], description: str) -> bool:
         bufsize=1,
     )
 
-    # Directly forward child output without adding prefixes
-    for line in process.stdout:
-        sys.stdout.write(line)
-    for line in process.stderr:
-        sys.stderr.write(line)
+    def stream_output(pipe, target):
+        try:
+            for line in iter(pipe.readline, ''):
+                target.write(line)
+                target.flush()
+        finally:
+            pipe.close()
 
+    threads = []
+    for pipe, target in [(process.stdout, sys.stdout), (process.stderr, sys.stderr)]:
+        t = threading.Thread(target=stream_output, args=(pipe, target))
+        t.daemon = True
+        t.start()
+        threads.append(t)
+
+    # Wait for process to finish
     process.wait()
+    for t in threads:
+        t.join()
 
     if process.returncode == 0:
         logger.info(f"✅ Completed: {description}")
