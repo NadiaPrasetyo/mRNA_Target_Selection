@@ -111,6 +111,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
     with ThreadPoolExecutor(max_workers=max_threads) as executor:
         futures = []
         for job in job_list:
+            logging.info(f"🔬 Scheduling job: {job[0]} on {job[2].name}")
             tool_type = job[0]
 
             if tool_type == "MixMHC2pred":
@@ -123,6 +124,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
 
         for f in futures:
             f.result()
+            logging.info(f"✅ Completed job: {f}")
 
 def main():
     """Main function to parse arguments and run epitope predictions."""
