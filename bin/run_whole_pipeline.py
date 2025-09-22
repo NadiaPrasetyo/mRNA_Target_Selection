@@ -44,39 +44,28 @@ def setup_logging(verbose=False, log_file=None):
         file_handler.setLevel(level)
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
-        
 
-def run_command(cmd: list[str], description: str) -> bool:
-    """Run a command, streaming stdout/stderr live to sys.stdout/stderr."""
 
-    logger = logging.getLogger()
+def run_command(cmd, description):
+    """Run a command and log outcome."""
+    logging.info(f"🚀 {description}")
+    logging.debug(f"Command: {' '.join(cmd)}")
 
-    logger.info(f"▶️ Starting: {description}")
-    logger.debug(f"Command: {' '.join(cmd)}")
-
-    process = subprocess.Popen(
-        cmd,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,  # merge stderr into stdout
-        text=True,
-        bufsize=1,
-    )
-
-    # Stream output directly
-    assert process.stdout is not None
-    for line in process.stdout:
-        sys.stdout.write(line)
-        sys.stdout.flush()
-
-    process.wait()
-
-    if process.returncode == 0:
-        logger.info(f"✅ Completed: {description}")
+    try:
+        result = subprocess.run(cmd, check=True, text=True, capture_output=True)
+        if result.stdout:
+            logging.debug(result.stdout.strip())
+        if result.stderr:
+            logging.debug(result.stderr.strip())
+        logging.info(f"✅ {description} completed")
         return True
-    else:
-        logger.error(f"❌ Failed: {description} (exit code {process.returncode})")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"❌ {description} failed (exit {e.returncode})")
         return False
-
+    except FileNotFoundError:
+        logging.error(f"❌ Command not found: {cmd[0]}")
+        return False
+    
 def check_dependencies():
     """Check if required external tools are available."""
     required_tools = ["mmseqs", "wget"]
