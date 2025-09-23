@@ -1,0 +1,8 @@
+parent_source_antigen_iri,parent_source_antigen_names,source_organism_names,host_organism_names
+UNIPROT:Q5F5U2,['Large ribosomal subunit protein uL6 (UniProt:Q5F5U2)'],['Neisseria gonorrhoeae'],['Homo sapiens (human)']
+UNIPROT:Q5F6Q4,['Transferrin-binding protein A (UniProt:Q5F6Q4)'],['Neisseria gonorrhoeae'],['Homo sapiens (human)']
+UNIPROT:Q5F875,['Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (UniProt:Q5F875)'],['Neisseria gonorrhoeae'],['Homo sapiens (human)']
+UNIPROT:Q5F8Y0,['DNA gyrase subunit A (UniProt:Q5F8Y0)'],['Neisseria gonorrhoeae'],"['Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)']"
+UNIPROT:Q5F9W2,['IgA-specific serine endopeptidase (UniProt:Q5F9W2)'],"['Neisseria gonorrhoeae', 'Neisseria gonorrhoeae MS11']","['Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)', 'Mus musculus (mouse)']"
+UNIPROT:Q5FAG7,['Pilus assembly protein (UniProt:Q5FAG7)'],"['Neisseria gonorrhoeae', 'Neisseria gonorrhoeae FA 1090 (Neisseria gonorrhoeae str. FA 1090)']","['Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)']"
+UNIPROT:Q5FAH2,['Carbamoyl phosphate synthase large chain (UniProt:Q5FAH2)'],['Neisseria gonorrhoeae'],['Homo sapiens (human)']

@@ -1,0 +1,147 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+['Neisseria gonorrhoeae'],['Homo sapiens (human)'],['Large ribosomal subunit protein uL6 (UniProt:Q5F5U2)'],,Q5F5U2,IEDB
+['Neisseria gonorrhoeae'],['Homo sapiens (human)'],['Transferrin-binding protein A (UniProt:Q5F6Q4)'],,Q5F6Q4,IEDB
+['Neisseria gonorrhoeae'],['Homo sapiens (human)'],['Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (UniProt:Q5F875)'],,Q5F875,IEDB
+['Neisseria gonorrhoeae'],"['Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)']",['DNA gyrase subunit A (UniProt:Q5F8Y0)'],,Q5F8Y0,IEDB
+"['Neisseria gonorrhoeae', 'Neisseria gonorrhoeae MS11']","['Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)', 'Mus musculus (mouse)']",['IgA-specific serine endopeptidase (UniProt:Q5F9W2)'],,Q5F9W2,IEDB
+"['Neisseria gonorrhoeae', 'Neisseria gonorrhoeae FA 1090 (Neisseria gonorrhoeae str. FA 1090)']","['Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)']",['Pilus assembly protein (UniProt:Q5FAG7)'],,Q5FAG7,IEDB
+['Neisseria gonorrhoeae'],['Homo sapiens (human)'],['Carbamoyl phosphate synthase large chain (UniProt:Q5FAH2)'],,Q5FAH2,IEDB
+neisseria gonorrhoeae,Homo sapiens,AbuA,,,literature
+neisseria gonorrhoeae,Homo sapiens,IgA1 protease,,,literature
+neisseria gonorrhoeae,Homo sapiens,NGO1985,,,literature
+neisseria gonorrhoeae,Homo sapiens,NGO1559,,,literature
+neisseria gonorrhoeae,Homo sapiens,NGO1344,,,literature
+neisseria gonorrhoeae,Homo sapiens,NgMIP,,,literature
+neisseria gonorrhoeae,Homo sapiens,PilN,,,literature
+neisseria gonorrhoeae,Homo sapiens,Slam2,,,literature
+neisseria gonorrhoeae,Homo sapiens,SliC,,,literature
+neisseria gonorrhoeae,Homo sapiens,ZnuD,,,literature
+neisseria gonorrhoeae,Homo sapiens,Outer membrane phospho-lipase A,PldA,,literature
+neisseria gonorrhoeae,Homo sapiens,Neisseria gonorrhoeae phospho-lipase D,PLD,,literature
+neisseria gonorrhoeae,Homo sapiens,PilC,pilC,,literature
+neisseria gonorrhoeae,Homo sapiens,PilQ,pilQ,,literature
+neisseria gonorrhoeae,Homo sapiens,Porin,porB,,literature
+neisseria gonorrhoeae,Homo sapiens,Opacity proteins,opa,,literature
+neisseria gonorrhoeae,Homo sapiens,OpcA,opcA,,literature
+neisseria gonorrhoeae,Homo sapiens,Outer membrane protein A,ompA,,literature
+neisseria gonorrhoeae,Homo sapiens,Neisseria heparin binding antigen,nhba,,literature
+neisseria gonorrhoeae,Homo sapiens,Transferrin-binding protein B,tbpB,,literature
+neisseria gonorrhoeae,Homo sapiens,Lactoferrin-binding protein A,lbpA,,literature
+neisseria gonorrhoeae,Homo sapiens,Lactoferrin-binding protein B,lbpB,,literature
+neisseria gonorrhoeae,Homo sapiens,Ferric entero-bactin transporter A,fetA,,literature
+neisseria gonorrhoeae,Homo sapiens,Ferric entero-bactin transporter B,fetB,,literature
+neisseria gonorrhoeae,Homo sapiens,TonB-dependent family J,tdfJ,,literature
+neisseria gonorrhoeae,Homo sapiens,TonB-dependent family H,tdfH,,literature
+neisseria gonorrhoeae,Homo sapiens,Anaerobically induced protein A,aniA,,literature
+neisseria gonorrhoeae,Homo sapiens,"Alpha-2,3-sialy-transferase",lst,,literature
+neisseria gonorrhoeae,Homo sapiens,Neisserial surface protein A,nspA,,literature
+neisseria gonorrhoeae,Homo sapiens,Lipooligo-saccharide  epitope 2C7,lgtG,,literature
+neisseria gonorrhoeae,Homo sapiens,IgA1-specific protease,iga,,literature
+neisseria gonorrhoeae,Homo sapiens,Macro-phage Infectivity Potentiator (MIP) lipoprotein,mip,,literature
+neisseria gonorrhoeae,Homo sapiens,Methionine sulfoxide reductase,mrsAB,,literature
+neisseria gonorrhoeae,Homo sapiens,Multiple transferable resistance protein E,mtrE,,literature
+neisseria gonorrhoeae,Homo sapiens,Filamentous bacteriophage proteins,NgoΦ6,,literature
+neisseria gonorrhoeae,Homo sapiens,Adhesin complex protein,acp,,literature
+neisseria gonorrhoeae,Homo sapiens,IgA2 protease,iga2,,literature
+neisseria gonorrhoeae,Homo sapiens,Beta-barrel assembly machinery protein A,bamA,,literature
+neisseria gonorrhoeae,Homo sapiens,Beta-barrel assembly machinery protein E,bamE,,literature
+neisseria gonorrhoeae,Homo sapiens,Curl-specific gene G,csgG,,literature
+neisseria gonorrhoeae,Homo sapiens,Lipoprotein outer membrane localization lipoprotein B,lolB,,literature
+neisseria gonorrhoeae,Homo sapiens,Lipoprotein I,lprI,,literature
+neisseria gonorrhoeae,Homo sapiens,Lipopolysaccharide assembly protein D,lptD,,literature
+neisseria gonorrhoeae,Homo sapiens,Lipopolysaccharide assembly protein E,lptE,,literature
+neisseria gonorrhoeae,Homo sapiens,Multiple adhesin family A,mafA,,literature
+neisseria gonorrhoeae,Homo sapiens,Methionine binding lipoprotein Q,metQ,,literature
+neisseria gonorrhoeae,Homo sapiens,Outer membrane porin protein U,ompU,,literature
+neisseria gonorrhoeae,Homo sapiens,Surface-exposed lysozyme inhibitor of c-type lysozyme,silC,,literature
+neisseria gonorrhoeae,Homo sapiens,Trans-location and assembly module A,tamA,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO0416,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO0425,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO0690,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO0778,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO0948,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO1043,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO1215,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO1251,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO1701,,literature
+neisseria gonorrhoeae,Homo sapiens,-,NGO2054,,literature
+neisseria gonorrhoeae,Homo sapiens,tbpA,,,literature
+neisseria gonorrhoeae,Homo sapiens,fbpC,,,literature
+neisseria gonorrhoeae,Homo sapiens,fbpB,,,literature
+neisseria gonorrhoeae,Homo sapiens,fbpA,,,literature
+neisseria gonorrhoeae,Homo sapiens,tdfF,,,literature
+neisseria gonorrhoeae,Homo sapiens,tdfG,,,literature
+neisseria gonorrhoeae,Homo sapiens,exbD,,,literature
+neisseria gonorrhoeae,Homo sapiens,exbB,,,literature
+neisseria gonorrhoeae,Homo sapiens,fur,,,literature
+neisseria gonorrhoeae,Homo sapiens,tonB,,,literature
+neisseria gonorrhoeae,Homo sapiens,FarAB,,,literature
+neisseria gonorrhoeae,Homo sapiens,fatty acid resistance system,,,literature
+neisseria gonorrhoeae,Homo sapiens,HmbR,,,literature
+neisseria gonorrhoeae,Homo sapiens,haemoglobin receptor,,,literature
+neisseria gonorrhoeae,Homo sapiens,HpuA,,,literature
+neisseria gonorrhoeae,Homo sapiens,haemoglobin-heptaglobin utilization,,,literature
+neisseria gonorrhoeae,Homo sapiens,HpuB,,,literature
+neisseria gonorrhoeae,Homo sapiens,KatA,,,literature
+neisseria gonorrhoeae,Homo sapiens,catalase,,,literature
+neisseria gonorrhoeae,Homo sapiens,LbpAB,,,literature
+neisseria gonorrhoeae,Homo sapiens,IgAP,,,literature
+neisseria gonorrhoeae,Homo sapiens,LOS,,,literature
+neisseria gonorrhoeae,Homo sapiens,MntABC,,,literature
+neisseria gonorrhoeae,Homo sapiens,MsrAB,,,literature
+neisseria gonorrhoeae,Homo sapiens,methionine sulphoxide reductase,,,literature
+neisseria gonorrhoeae,Homo sapiens,MtrCDE,,,literature
+neisseria gonorrhoeae,Homo sapiens,NGO1686,,,literature
+neisseria gonorrhoeae,Homo sapiens,NMB0741,,,literature
+neisseria gonorrhoeae,Homo sapiens,NMB1828,,,literature
+neisseria gonorrhoeae,Homo sapiens,opacity-associated proteins,,,literature
+neisseria gonorrhoeae,Homo sapiens,Opa proteins,,,literature
+neisseria gonorrhoeae,Homo sapiens,PacA,,,literature
+neisseria gonorrhoeae,Homo sapiens,peptidoglycan O-acyltransferase,,,literature
+neisseria gonorrhoeae,Homo sapiens,Porin,,,literature
+neisseria gonorrhoeae,Homo sapiens,RecN,,,literature
+neisseria gonorrhoeae,Homo sapiens,Superoxide dismutase,,,literature
+neisseria gonorrhoeae,Homo sapiens,transferrin-binding protein complex,,,literature
+neisseria gonorrhoeae,Homo sapiens,TbpAB,,,literature
+neisseria gonorrhoeae,Homo sapiens,Type IV pili,pilE,,literature
+neisseria gonorrhoeae,Homo sapiens,type IV pili,,,literature
+neisseria gonorrhoeae,Homo sapiens,opacity,,,literature
+neisseria gonorrhoeae,Homo sapiens,Outer membrane vesicles,,,literature
+neisseria gonorrhoeae,Homo sapiens,HBP,,,literature
+neisseria gonorrhoeae,Homo sapiens,FarA,,,literature
+neisseria gonorrhoeae,Homo sapiens,FarB,,,literature
+neisseria gonorrhoeae,Homo sapiens,MtrC,,,literature
+neisseria gonorrhoeae,Homo sapiens,MtrD,,,literature
+neisseria gonorrhoeae,Homo sapiens,LpbA,,,literature
+neisseria gonorrhoeae,Homo sapiens,LpbB,,,literature
+neisseria gonorrhoeae,Homo sapiens,Lipid A,,,literature
+neisseria gonorrhoeae,Homo sapiens,Factor H,,,literature
+neisseria gonorrhoeae,Homo sapiens,Opc,,,literature
+neisseria gonorrhoeae,Homo sapiens,pili,,,literature
+neisseria gonorrhoeae,Homo sapiens,L1,,,literature
+neisseria gonorrhoeae,Homo sapiens,L2,,,literature
+neisseria gonorrhoeae,Homo sapiens,L3,,,literature
+neisseria gonorrhoeae,Homo sapiens,L4,,,literature
+neisseria gonorrhoeae,Homo sapiens,L5,,,literature
+neisseria gonorrhoeae,Homo sapiens,L6,,,literature
+neisseria gonorrhoeae,Homo sapiens,L7,,,literature
+neisseria gonorrhoeae,Homo sapiens,L8,,,literature
+neisseria gonorrhoeae,Homo sapiens,L9,,,literature
+neisseria gonorrhoeae,Homo sapiens,L10,,,literature
+neisseria gonorrhoeae,Homo sapiens,L11,,,literature
+neisseria gonorrhoeae,Homo sapiens,L12,,,literature
+neisseria gonorrhoeae,Homo sapiens,pilS,,,literature
+neisseria gonorrhoeae,Homo sapiens,pilX,,,literature
+neisseria gonorrhoeae,Homo sapiens,pptA,,,literature
+neisseria gonorrhoeae,Homo sapiens,App,,,literature
+neisseria gonorrhoeae,Homo sapiens,IgA protease,,,literature
+neisseria gonorrhoeae,Homo sapiens,pilin,,,literature
+neisseria gonorrhoeae,Homo sapiens,MacA,,,literature
+neisseria gonorrhoeae,Homo sapiens,MacB,,,literature
+neisseria gonorrhoeae,Homo sapiens,NorM,,,literature
+neisseria gonorrhoeae,Homo sapiens,ComP,,,literature
+neisseria gonorrhoeae,Homo sapiens,PilV,,,literature
+neisseria gonorrhoeae,Homo sapiens,PilH,,,literature
+neisseria gonorrhoeae,Homo sapiens,PilJ,,,literature
+neisseria gonorrhoeae,Homo sapiens,PilK,,,literature
+neisseria gonorrhoeae,Homo sapiens,PilL,,,literature

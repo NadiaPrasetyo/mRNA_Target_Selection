@@ -5,26 +5,33 @@ Command-line tool to fetch protein sequence and metadata from UniProt based on a
 Overview:
     - Loads antigen records (antigen names, gene names, UniProt IDs) from a compiled CSV file.
     - Queries the UniProt API to retrieve full protein information for each antigen.
-    - Parses and standardizes protein metadata including sequence, function, domains, and features.
+    - Fetches RefSeq nucleotide sequences for matching proteins, if available.
+    - Parses and standardizes protein metadata including sequence, organism, domains, and features.
     - Compiles and saves the protein data into a new CSV file for downstream analysis.
 
 Arguments:
-    pathogen (str): Subdirectory under `data/` containing pathogen data and antigen CSV.
-    organism (str): Full name of the organism (used in UniProt queries).
-    output (str): Optional output directory for compiled protein data. If not specified, defaults to
-                  `data/<pathogen>/<organism>_compiled_proteins.csv`.
-    input (str): Optional input CSV file with antigen data. If not specified, defaults to
-                 `data/<pathogen>/<organism>_compiled_antigens.csv`.
+    pathogen_directory (str): Subdirectory under `data/` containing pathogen data and antigen CSV.
+    pathogen_name (str): Full name of the organism (used in UniProt queries).
+    --output (str): Optional output CSV file path for compiled protein data. Defaults to
+                    `data/<pathogen>/<organism>_compiled_proteins.csv`.
+    --input (str): Optional input CSV file path with antigen data. Defaults to
+                   `data/<pathogen>/<organism>_compiled_antigens.csv`.
 
 Requirements:
     - Input CSV file with antigen data present in the specified pathogen directory.
-    - Python packages: argparse, csv, requests, os, re, unicodedata.
+    - Python packages: argparse, csv, requests, os, re, unicodedata, time.
 
 Usage Example:
-    python fetch_sequences_Uniprot.py sars_cov_2 "SARS-CoV-2"
+    python fetch_sequences_Uniprot.py sars_cov_2 "SARS-CoV-2" --output proteins.csv --input antigens.csv
 
 Outputs:
-    data/<pathogen>/<organism>_compiled_proteins.csv   # Compiled protein metadata for the specified organism
+    - A CSV file containing compiled protein metadata for the specified organism, including:
+        - UniProt accession
+        - Protein name
+        - Protein sequence
+        - Organism name
+        - Pfam domains
+        - RefSeq nucleotide sequences (if available)
 
 Author: Nadia
 """
@@ -34,19 +41,15 @@ import os
 import re
 import unicodedata
 import argparse
-import subprocess
-
-UNIPROT_API_BASE = "https://www.ebi.ac.uk/proteins/api/proteins"
+import time
 
 def clean_antigen_name(name):
     """
-    Cleans and normalizes an antigen name by removing special characters,
-    normalizing Unicode to ASCII, and stripping Greek letters and other
-    extraneous tokens to return a clean, comparable name string.
+    Clean and standardize the antigen name.
     Args:
-        name (str): The antigen name to clean.
+        name (str): Original antigen name.
     Returns:
-        str: The cleaned antigen name.
+        str: Cleaned antigen name.
     """
     if not isinstance(name, str):
         return ""
@@ -60,208 +63,116 @@ def clean_antigen_name(name):
     name = name.lower()
     name = re.sub(r'\(.*?\)', '', name)
     name = re.sub(r'\[.*?\]', '', name)
-    name = re.sub(r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?', '', name, flags=re.IGNORECASE)
+    name = re.sub(
+        r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?',
+        '', name, flags=re.IGNORECASE
+    )
     name = re.split(r'[,/;]', name)[0]
     name = re.sub(r'\s+', ' ', name).strip()
     name = re.sub(r'^\W+|\W+$', '', name)
     return name
 
-def fetch_uniprot_by_accession(accession, organism):
-    """
-    Fetches UniProt data using a UniProt accession number.
-    Queries the UniProt API for a given accession and organism. 
-    Returns the first matching protein entry if found.
+
+def fetch_uniprot_data(query, retries=3, delay=5):
+    """Fetch data from UniProt API with retries.
     Args:
-        accession (str): UniProt accession number.
-        organism (str): Organism name for the query.
+        query (str): The search query for UniProt.
+        retries (int): Number of retry attempts on failure.
+        delay (int): Delay in seconds between retries.
     Returns:
-        dict or None: JSON response from UniProt or None if failed."""
-    if organism is None or organism.lower() == "null":
-        url = f"{UNIPROT_API_BASE}/{accession}"
+        dict: JSON response from UniProt API or None if all retries fail.
+    """
+    base_url = "https://rest.uniprot.org/uniprotkb/search"
+    params = {
+        "query": query,
+        "fields": "accession,protein_name,sequence,organism_name,xref_pfam,xref_refseq",
+        "format": "json",
+        "size": 1  # only fetch the top hit
+    }
+
+    for attempt in range(retries):
+        try:
+            response = requests.get(base_url, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Attempt {attempt + 1} failed: {e}")
+            if attempt < retries - 1:
+                print(f"Retrying in {delay} seconds...")
+                time.sleep(delay)
+            else:
+                print("All retries failed.")
+                return None
+
+
+def fetch_refseq_nucleotide(refseq_id):
+    base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+
+    # If ID is a protein (WP_, YP_, NP_), query protein db, not nuccore
+    if refseq_id.startswith(("WP_", "YP_", "NP_")):
+        db = "protein"
     else:
-        url = f"{UNIPROT_API_BASE}?offset=0&size=-1&accession={accession}&organism={organism.replace(' ', '%20')}"
-    headers = {"Accept": "application/json"}
+        db = "nuccore"
+
+    params = {
+        "db": db,
+        "id": refseq_id,
+        "rettype": "fasta",
+        "retmode": "text"
+    }
     try:
-        response = requests.get(url, headers=headers)
-        if response.ok:
-            data = response.json()
-            if isinstance(data, list) and data:
-                return data[0]
-            elif isinstance(data, dict):
-                return data
-    except requests.RequestException as e:
-        print(f"[ERROR] Request failed for accession {accession}: {e}")
-    return None
-
-def fetch_uniprot_by_gene(gene_name, organism):
-    """
-    Fetches UniProt data using a gene name.
-    Queries the UniProt API for a given gene name and organism.
-    Returns the first matching protein entry if found.
-    Args:
-        gene_name (str): Gene name to query.
-        organism (str): Organism name for the query.
-    Returns:
-        dict or None: JSON response from UniProt or None if failed.
-    """
-    headers = {"Accept": "application/json"}
-    if organism is None or organism.lower() == "null":
-        query = f"{UNIPROT_API_BASE}?offset=0&size=-1&gene={gene_name}"
-    else:
-        organism = organism.replace(" ", "%20")
-    query = f"{UNIPROT_API_BASE}?offset=0&size=-1&gene={gene_name}&organism={organism}"
-    try:
-        response = requests.get(query, headers=headers)
-        if response.ok:
-            data = response.json()
-            return data[0] if data else None
-    except requests.RequestException:
-        pass
-    return None
-
-def fetch_uniprot_by_protein_name(protein_name, organism):
-    """
-    Fetches UniProt data using a protein name.
-    Queries the UniProt API for a given protein name and organism.
-    Returns the first matching protein entry if found.
-    Args:
-        protein_name (str): Protein name to query.
-        organism (str): Organism name for the query.
-    Returns:
-        dict or None: JSON response from UniProt or None if failed.
-    """
-    headers = {"Accept": "application/json"}
-    if organism is None or organism.lower() == "null":
-        query = f"{UNIPROT_API_BASE}?offset=0&size=1&protein={protein_name.replace(' ', '%20')}"
-    else:
-        organism = organism.replace(" ", "%20")
-        query = f"{UNIPROT_API_BASE}?offset=0&size=1&protein={protein_name.replace(' ', '%20')}&organism={organism}"
-    try:
-        response = requests.get(query, headers=headers)
-        if response.ok:
-            data = response.json()
-            return data[0] if data else None
-    except requests.RequestException as e:
-        print(f"[ERROR] Request failed for protein name {protein_name}: {e}")
-    return None
-
-def fetch_nucleotide_seq(nucleotide_accession_EMBL):
-    """
-    Fetches nucleotide sequence from an EMBL accession using wget.
-    Downloads the file temporarily, extracts the sequence, and deletes the file.
-    Args:
-        nucleotide_accession_EMBL (str): EMBL accession ID for the nucleotide sequence.
-    Returns:
-        str: The nucleotide sequence as a string, or an empty string if failed.
-    """
-
-    if not nucleotide_accession_EMBL:
-        return ""
-    
-    url = f"https://www.ebi.ac.uk/ena/browser/api/fasta/{nucleotide_accession_EMBL}?download=true"
-
-    try:
-        # Download the file using requests
-        response = requests.get(url)
+        response = requests.get(base_url, params=params)
         response.raise_for_status()
-
-        # Extract the sequence directly from the response content
-        sequence = []
-        in_sequence = False
-        for line in response.text.splitlines():
-            if line.startswith(">"):
-                in_sequence = True
-                continue
-            if in_sequence:
-                sequence.append(line.strip())
-
-        return "".join(sequence).replace(" ", "").upper()
-    except subprocess.CalledProcessError:
-        print(f"[ERROR] Failed to download or process EMBL file for accession {nucleotide_accession_EMBL}")
+        return response.text.strip()
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to fetch RefSeq {refseq_id} from {db}: {e}")
         return ""
 
 
-def parse_uniprot_entry(entry):
-    """
-    Parses a UniProt protein entry and extracts relevant metadata.
+
+def parse_uniprot_response(data):
+    """Parse UniProt API response to extract relevant fields.
     Args:
-        entry (dict): Raw JSON entry from UniProt API.
+        data (dict): JSON response from UniProt API.
     Returns:
-        dict or None: Structured dictionary of protein data or None if parsing fails.
+        list: List of dictionaries containing extracted information.
     """
-    try:
-        accession = entry.get("accession", "")
-        organism = entry.get("organism", {}).get("names", [{}])[0].get("value", "").lower()
-        name = entry.get("id", "")
+    results = []
+    if not data or "results" not in data:
+        return results
 
-        protein_data = entry.get("protein", {})
-        protein_name = ""
-        if "recommendedName" in protein_data:
-            protein_name = protein_data["recommendedName"].get("fullName", {}).get("value", "")
-        elif "submittedName" in protein_data:
-            protein_name = protein_data["submittedName"][0].get("fullName", {}).get("value", "")
+    for entry in data.get("results", []):
+        accession = entry.get("primaryAccession", "")
+        protein_name = entry.get("proteinDescription", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
+        sequence = entry.get("sequence", {}).get("value", "")
+        organism = entry.get("organism", {}).get("scientificName", "")
+        pfam = ";".join([xref["id"] for xref in entry.get("uniProtKBCrossReferences", []) if xref.get("database") == "Pfam"])
 
-        function = ""
-        for comment in entry.get("comments", []):
-            if comment.get("type") == "FUNCTION":
-                function = comment.get("text", [{}])[0].get("value", "")
-                break
+        # Extract RefSeq nucleotide sequences
+        refseq_ids = [xref["id"] for xref in entry.get("uniProtKBCrossReferences", []) if xref.get("database") == "RefSeq"]
+        nucleotide_sequences = []
+        for refseq_id in refseq_ids:
+            seq = fetch_refseq_nucleotide(refseq_id)
+            if seq:
+                nucleotide_sequences.append(seq)
 
-        domains = [
-            ref.get("properties", {}).get("entry name", "")
-            for ref in entry.get("dbReferences", [])
-            if ref["type"] in ("InterPro", "Pfam")
-        ]
-        pfam_ids = [
-            ref.get("id", "")
-            for ref in entry.get("dbReferences", [])
-            if ref["type"] == "Pfam"
-        ]
-        features = []
-        for feat in entry.get("features", []):
-            feat_type = feat.get("type", "")
-            desc = feat.get("description", "")
-            begin = feat.get("begin", "")
-            end = feat.get("end", "")
-            if begin and end:
-                features.append(f"{feat_type}:{desc}({begin}-{end})")
-
-        sequence = entry.get("sequence", {}).get("sequence", "")
-
-        nucleotide_seq_id = next(
-            (ref.get("properties", {}).get("protein sequence ID", "")
-             for ref in entry.get("dbReferences", [])
-             if ref["type"] == "EMBL"),
-            None
-        )
-
-        nucleotide_sequence = fetch_nucleotide_seq(nucleotide_seq_id) if nucleotide_seq_id else ""
-
-        return {
+        results.append({
             "uniprot_accession": accession,
-            "organism_name": organism,
             "protein_name": protein_name,
-            "short_name": name,
-            "function": function,
-            "domains": ";".join(domains),
-            "features": ";".join(features),
             "sequence": sequence,
-            "pfam": ";".join(pfam_ids), 
-            "nucleotide_sequence": nucleotide_sequence
-        }
-    except Exception as e:
-        print(f"[ERROR] Failed to parse entry for {entry.get('accession', 'unknown')}: {e}")
-        return None
+            "organism_name": organism,
+            "pfam": pfam,
+            "nucleotide_sequence": "\n".join(nucleotide_sequences)
+        })
+    return results
+
 
 def load_antigen_records(file_path):
-    """
-    Loads antigen records from a CSV file and cleans the antigen names.
-    Parses the CSV file to extract antigen names, gene names, and UniProt IDs,
-    and cleans the antigen names using the `clean_antigen_name` function.
+    """Load antigen records from a CSV file.
     Args:
-        file_path (str): Path to the CSV file containing antigen data.
+        file_path (str): Path to the CSV file.
     Returns:
-        list: List of dictionaries containing cleaned antigen records.
+        list: List of dictionaries with antigen data.
     """
     records = []
     with open(file_path, newline='') as csvfile:
@@ -275,42 +186,21 @@ def load_antigen_records(file_path):
             records.append(antigen)
     return records
 
-def write_fasta_file(protein_data, output_file):
-    """
-    Writes protein sequences to a FASTA file.
-    Args:
-        protein_data (list): List of dictionaries containing protein metadata.
-        output_file (str): Path to the output FASTA file.
-    """
-    with open(output_file, 'w') as fasta_out:
-        for protein in protein_data:
-            fasta_out.write(f">{protein['uniprot_accession']} {protein['protein_name']} ({protein['organism_name']})\n")
-            fasta_out.write(protein['sequence'] + '\n')
-    print(f"[DONE] Wrote {len(protein_data)} proteins to FASTA: {output_file}")
 
 def main(pathogen, organism="null", output=None, input=None, fasta=False):
-    """
-    Main function to fetch and compile UniProt protein data based on antigen records.
-    Reads antigen data from a CSV file, queries UniProt for each antigen,
-    extracts relevant metadata, and writes the compiled protein data to a new CSV file.
+    """Main function to fetch and compile protein data from UniProt.
     Args:
-        pathogen (str): Subdirectory under `data/` containing pathogen data and antigen CSV.
-        organism (str): Full name of the organism to search against.
+        pathogen (str): Subdirectory under `data/` containing pathogen data.
+        organism (str): Full name of the organism for UniProt queries.
+        output (str): Output CSV file path for compiled protein data.
+        input (str): Input CSV file path with antigen data.
+        fasta (bool): If True, output FASTA files instead of CSV.
     """
     pathogen_dir = os.path.join("data", pathogen)
-    if organism.lower() != "null":
-        organism_tag = organism.replace(" ", "_").lower()
-    else:
-        organism_tag = "null"
+    organism_tag = organism.replace(" ", "_").lower() if organism.lower() != "null" else "null"
 
-    if not input:
-        antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_antigens.csv")
-    else:
-        antigens_file = os.path.join(pathogen_dir, input)
-    if not output:
-        output_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv") # Default output path
-    else:
-        output_file = os.path.join(pathogen_dir, output)
+    antigens_file = os.path.join(pathogen_dir, input or f"{organism_tag}_compiled_antigens.csv")
+    output_file = os.path.join(pathogen_dir, output or f"{organism_tag}_compiled_proteins.csv")
 
     if not os.path.exists(antigens_file):
         print(f"[FATAL] Antigen file not found: {antigens_file}")
@@ -327,66 +217,48 @@ def main(pathogen, organism="null", output=None, input=None, fasta=False):
 
         print(f"[INFO] Processing antigen: {antigen_name}, Gene: {gene_name}, UniProt ID: {uniprot_id}")
 
-        entry = None
-        used_method = None
-
+        query = None
         if uniprot_id:
-            print(f"  [DEBUG] Attempting fetch by accession: {uniprot_id}")
-            entry = fetch_uniprot_by_accession(uniprot_id, organism)
-            used_method = "accession"
+            query = f"accession:{uniprot_id}"
         elif gene_name:
-            print(f"  [DEBUG] Attempting fetch by gene: {gene_name}")
-            entry = fetch_uniprot_by_gene(gene_name, organism)
-            used_method = "gene"
-        else:
-            print(f"  [DEBUG] Attempting fetch by protein name: {antigen_name}")
-            entry = fetch_uniprot_by_protein_name(antigen_name, organism)
-            used_method = "protein name"
-            
-        if entry:
-            parsed = parse_uniprot_entry(entry)
-            if parsed and parsed["uniprot_accession"] not in seen_accessions:
-                protein_data.append(parsed)
-                seen_accessions.add(parsed["uniprot_accession"])
-                print(f"  [✓] {used_method.upper()} match: {parsed['uniprot_accession']}")
-            else:
-                print("  [WARN] Entry found but could not be parsed or is duplicate")
-        else:
-            print("  [WARN] No entry found for antigen")
+            query = f"gene:{gene_name}"
+        elif antigen_name:
+            query = f"protein_name:{antigen_name}"
+
+        if organism.lower() != "null" and query:
+            query += f" AND organism_name:\"{organism}\""
+
+        if query:
+            entry = fetch_uniprot_data(query)
+            parsed = parse_uniprot_response(entry)
+            for p in parsed:
+                if p["uniprot_accession"] not in seen_accessions:
+                    protein_data.append(p)
+                    seen_accessions.add(p["uniprot_accession"])
+                    print(f"  [✓] Match: {p['uniprot_accession']}")
+                else:
+                    print("  [WARN] Duplicate entry skipped")
 
     if not protein_data:
         print("[WARN] No matching proteins found.")
         return
 
+    fieldnames = ["uniprot_accession", "protein_name", "sequence", "organism_name", "pfam", "nucleotide_sequence"]
     with open(output_file, 'w', newline='') as outfile:
-        fieldnames = [
-            "uniprot_accession", "protein_name", "short_name", "function",
-            "domains", "features", "sequence", "organism_name", "pfam", "nucleotide_sequence"
-        ]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(protein_data)
 
-    if fasta:
-        fasta_file = output_file.replace(".csv", ".fasta")
-        write_fasta_file(protein_data, fasta_file)
-
     print(f"[DONE] Wrote {len(protein_data)} proteins to: {output_file}")
 
+
 if __name__ == "__main__":
-    """Command-line interface for fetching protein sequences from UniProt based on antigen data."""
-    parser = argparse.ArgumentParser(
-        description="Fetch protein sequence and metadata from UniProt based on antigen data.",
-        usage="python fetch_sequences_Uniprot.py <pathogen_directory> <pathogen_name>"
-    )
+    """Command-line interface for fetching protein sequences from UniProt."""
+    parser = argparse.ArgumentParser(description="Fetch protein sequence and metadata from UniProt based on antigen data.")
     parser.add_argument("pathogen_directory", help="Directory name under data/")
-    parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
-    parser.add_argument("--output", help="Output directory for compiled protein data (default: <pathogen_directory>/<pathogen_name>_compiled_proteins.csv)")
-    parser.add_argument("--input", help="Input CSV file with antigen data (default: <pathogen_directory>/<pathogen_name>_compiled_antigens.csv)")
-    parser.add_argument("--fasta", action="store_true", help="Output in FASTA format AND CSV")
+    parser.add_argument("pathogen_name", help='Organism name (e.g., "SARS-CoV-2")')
+    parser.add_argument("--output", help="Output CSV file path")
+    parser.add_argument("--input", help="Input antigen CSV file path")
     args = parser.parse_args()
 
-    if not args.pathogen_name and not args.input:
-        parser.error("You must specify either a pathogen name or an input file.")
-
-    main(args.pathogen_directory, args.pathogen_name, output=args.output, input=args.input, fasta=args.fasta)
+    main(args.pathogen_directory, args.pathogen_name, output=args.output, input=args.input)
