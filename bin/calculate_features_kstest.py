@@ -160,15 +160,14 @@ def parse_bcell_dir(directory):
                     # Capture accession from the input line
                     if line[0].startswith("input:"):
                         # input:,antigen_9|Q2FVL8|Assimilatory|HE681097.1|tpos:143397-143728
-                        try:
-                            logging.debug(f"Parsing accession from line: {line[0]}")
-                        except Exception as e:
-                            logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
-
-
-                    # Detect start of peptide section
-                    elif line[0].startswith("No,Start,End,Peptipe,Length"):
-                        in_peptide_section = True
+                        logging.info(f"Parsing accession from line: {line[0]}")
+                        parts = line[0].split('|')
+                        if len(parts) > 3:
+                            accession = f"{parts[1]}_{parts[3]}"
+                            logging.info(f"Accession parsed: {accession}")
+                        else:
+                            logging.warning(f"No '|' found in input line: {line[0]}")
+                            accession = "unknown"
                         continue
 
                     # Detect end of peptide section
