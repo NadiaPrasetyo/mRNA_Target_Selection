@@ -233,7 +233,7 @@ def parse_mhc_dir(directory):
         path = os.path.join(directory, file)
         logging.debug(f"Parsing MHC file: {file}")
         try:
-            parts = file.stem.split("_")
+            parts = Path(file).stem.split("_")
             if len(parts) > 2:
                 accession = f"{parts[2]}_{parts[4]}"
             else:
