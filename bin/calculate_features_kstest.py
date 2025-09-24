@@ -159,25 +159,19 @@ def parse_bcell_dir(directory):
 
                     # Capture accession from the input line
                     if line[0].startswith("input:"):
+                        # input:,antigen_9|Q2FVL8|Assimilatory|HE681097.1|tpos:143397-143728
                         try:
-                            try:
-                                try:
-                                    parts = line[0][6:].strip().split('|')
-                                    if len(parts) > 3:
-                                        accession = f"{parts[1]}_{parts[3]}"
-                                        logging.debug(f"Accession parsed: {accession}")
-                                    else:
-                                        logging.warning(f"Unexpected format in line: {line[0]}")
-                                        accession = "unknown"
-                                except IndexError as e:
-                                    logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
-                                else:
-                                    logging.warning(f"Unexpected format in line: {line[0]}")
-                                    accession = "unknown"
-                            except IndexError as e:
-                                logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
-                        except Exception as e:
+                            parts = line[0][7:].strip().split('|')
+                            logging.debug(f"Input line parts: {parts}")
+                            if len(parts) > 3:
+                                accession = f"{parts[1]}_{parts[3]}"
+                                logging.debug(f"Accession parsed: {accession}")
+                            else:
+                                logging.warning(f"Unexpected format in line: {line[0]}")
+                                accession = "unknown"
+                        except IndexError as e:
                             logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
+
 
                     # Detect start of peptide section
                     elif line[0].startswith("No,Start,End,Peptipe,Length"):
