@@ -160,11 +160,10 @@ def parse_bcell_dir(directory):
                     # Capture accession from the input line
                     if line and line[0].startswith("input:"):
                         # input:,antigen_9|Q2FVL8|Assimilatory|HE681097.1|tpos:143397-143728
-                        logging.info(f"Parsing accession from line: {','.join(line)}")
                         parts = ','.join(line).split('|')
                         if len(parts) > 3:
                             accession = f"{parts[1]}_{parts[3]}"
-                            logging.info(f"Accession parsed: {accession}")
+                            logging.info(f"Bcell accession parsed: {accession}")
                         else:
                             logging.warning(f"No '|' found in input line: {','.join(line)}")
                             accession = "unknown"
@@ -1119,7 +1118,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 logging.warning(f"Missing MAFFT file: {mafft_file}")
                 continue
 
-            logging.info(f"Processing accession: {accession}")
+            logging.info(f"Processing rate4site accession: {accession}")
             scores = parse_rate4site_out(rate4site_file)
             if not scores:
                 logging.warning(f"No scores found in {rate4site_file}")
