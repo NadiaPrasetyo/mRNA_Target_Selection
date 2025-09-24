@@ -158,15 +158,15 @@ def parse_bcell_dir(directory):
                         continue
 
                     # Capture accession from the input line
-                    if line[0].startswith("input:,"):
+                    if line and line[0].startswith("input:"):
                         # input:,antigen_9|Q2FVL8|Assimilatory|HE681097.1|tpos:143397-143728
-                        logging.info(f"Parsing accession from line: {line[0]}")
-                        parts = line[0].split('|')
+                        logging.info(f"Parsing accession from line: {','.join(line)}")
+                        parts = ','.join(line).split('|')
                         if len(parts) > 3:
                             accession = f"{parts[1]}_{parts[3]}"
                             logging.info(f"Accession parsed: {accession}")
                         else:
-                            logging.warning(f"No '|' found in input line: {line[0]}")
+                            logging.warning(f"No '|' found in input line: {','.join(line)}")
                             accession = "unknown"
                         continue
 
