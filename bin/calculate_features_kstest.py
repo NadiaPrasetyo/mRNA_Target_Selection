@@ -158,7 +158,7 @@ def parse_bcell_dir(directory):
                         continue
 
                     # Capture accession from the input line
-                    if line[0].startswith("input:"):
+                    if line[0].startswith("input:,"):
                         # input:,antigen_9|Q2FVL8|Assimilatory|HE681097.1|tpos:143397-143728
                         logging.info(f"Parsing accession from line: {line[0]}")
                         parts = line[0].split('|')
