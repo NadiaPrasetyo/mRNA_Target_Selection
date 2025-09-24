@@ -161,10 +161,16 @@ def parse_bcell_dir(directory):
                     if line[0].startswith("input:"):
                         try:
                             try:
-                                parts = line[0].split(",")[1].split("|")
-                                if len(parts) > 3:
-                                    accession = f"{parts[1]}_{parts[3]}"
-                                    logging.debug(f"Accession parsed: {accession}")
+                                try:
+                                    parts = line[0][6:].strip().split('|')
+                                    if len(parts) > 3:
+                                        accession = f"{parts[1]}_{parts[3]}"
+                                        logging.debug(f"Accession parsed: {accession}")
+                                    else:
+                                        logging.warning(f"Unexpected format in line: {line[0]}")
+                                        accession = "unknown"
+                                except IndexError as e:
+                                    logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
                                 else:
                                     logging.warning(f"Unexpected format in line: {line[0]}")
                                     accession = "unknown"
