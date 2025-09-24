@@ -161,15 +161,21 @@ def parse_bcell_dir(directory):
                     if line[0].startswith("input:"):
                         # input:,antigen_9|Q2FVL8|Assimilatory|HE681097.1|tpos:143397-143728
                         try:
-                            parts = line[0][7:].strip().split('|')
-                            logging.debug(f"Input line parts: {parts}")
-                            if len(parts) > 3:
-                                accession = f"{parts[1]}_{parts[3]}"
-                                logging.debug(f"Accession parsed: {accession}")
+                            logging.debug(f"Parsing accession from line: {line[0]}")
+                            input_data = line[0][7:].strip()
+                            if "|" in input_data:
+                                parts = input_data.split('|')
+                                logging.debug(f"Input line parts: {parts}")
+                                if len(parts) > 3:
+                                    accession = f"{parts[1]}_{parts[3]}"
+                                    logging.debug(f"Accession parsed: {accession}")
+                                else:
+                                    logging.warning(f"Unexpected format in line: {line[0]}")
+                                    accession = "unknown"
                             else:
-                                logging.warning(f"Unexpected format in line: {line[0]}")
+                                logging.warning(f"No '|' found in input line: {line[0]}")
                                 accession = "unknown"
-                        except IndexError as e:
+                        except Exception as e:
                             logging.warning(f"Failed parsing accession in {file}: {line} ({e})")
 
 
