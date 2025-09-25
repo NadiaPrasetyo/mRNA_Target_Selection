@@ -1,50 +1,84 @@
 """
 run_mhcii.py
-Utility to execute MHCII epitope prediction tool on a given JSON input file.
+Utility to execute NetMHCIIpan-4.3 epitope prediction tool on a given FASTA input file.
 
 Overview:
-    - Runs the specified MHCII prediction tool as a subprocess.
-    - Organizes output files in a dedicated 'mhcii' subdirectory within the given output directory.
-    - Handles subprocess errors and provides user-friendly status messages.
+    - Runs the external NetMHCIIpan-4.3 tool using subprocess.
+    - Uses a predefined set of common MHCII alleles.
+    - Organizes output files into a dedicated 'mhcii' subdirectory within the specified output directory.
+    - Handles process execution and error reporting.
 
 Arguments:
-    json_file (str or Path): Path to the input JSON file containing peptide data for prediction.
-    tool_path (str or Path): Path to the MHCII prediction tool script to be executed.
-    output_dir (str or Path): Directory where output files will be stored (creates 'mhcii' subdirectory).
+    fasta_file (str or Path): Path to the input FASTA file containing peptide/protein sequences.
+    tool_path (str or Path): Path to the NetMHCIIpan-4.3 executable.
+    output_dir (str or Path): Directory where output files will be stored. Results are placed in a 'mhcii' subfolder.
 
 Requirements:
-    - The specified tool must be executable with Python 3 and accept '-j', '-o', and '-f' arguments.
+    - NetMHCIIpan-4.3 must be installed and executable at `tool_path`.
     - Python packages: subprocess, pathlib.
 
 Usage Example:
-    run("input/peptides.json", "/tools/mhcii_predictor.py", "results/epitopes")
+    run("input/protein.fasta",
+        "/projects/.../NetMHCIIpan-4.3/Linux_x86_64/bin/netMHCIIpan",
+        "results/epitopes")
 
 Outputs:
-    Prints a success message if the tool runs successfully, or an error message with details if it fails.
+    - Writes tool output to `output_dir/mhcii/<basename>.out`
+    - Writes Excel output to `output_dir/mhcii/<basename>.xls`
+    - Prints success or error messages accordingly.
 
 Author: Nadia
 """
+
 import subprocess
 from pathlib import Path
 
-def run(json_file, tool_path, output_dir):
-    """
-    Run the MHCII prediction tool on the provided JSON file.
-    Args:
-        json_file (str or Path): Path to the input JSON file.
-        tool_path (str or Path): Path to the MHCII prediction tool script.
-        output_dir (str or Path): Directory where output files will be stored.
-    """
+
+MHCII_DEFAULT = [
+    "HLA-DRB1*03:01", "HLA-DRB1*07:01", "HLA-DRB1*15:01", "HLA-DRB3*01:01",
+    "HLA-DRB3*02:02", "HLA-DRB4*01:01", "HLA-DRB5*01:01"
+]
+
+
+def run(fasta_file, tool_path, output_dir):
+    # Default parameters
+    rank_threshold = 1.0
+    weak_threshold = 5.0
+    allele_string = ",".join(MHCII_DEFAULT)
+
+    fasta_file = Path(fasta_file)
+    tool_path = Path(tool_path)
     output_dir = Path(output_dir) / "mhcii"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    out_base = Path(json_file).stem
-    output_prefix = output_dir / out_base
+    output_file = output_dir / f"{fasta_file.stem}_mhcii"
 
-    cmd = ["python3", tool_path, "-j", str(json_file), "-o", str(output_prefix), "-f", "json"]
+    cmd = [
+        str(tool_path),
+        "-a", allele_string,
+        "-f", str(fasta_file),
+        "-rankS", str(rank_threshold),
+        "-rankW", str(weak_threshold),
+        "-xls",
+        "-xlsfile", str(output_file.with_suffix(".xls")),
+    ]
+
+    print(f"Running NetMHCIIpan-4.3 on {fasta_file} with {len(MHCII_DEFAULT)} alleles...")
     try:
-        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
-        print(f"✅ MHCII done: {json_file.name}")
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        # Save stdout into .out file
+        output_file.write_text(result.stdout)
+
+        print(f"✅ NetMHCIIpan-4.3 completed successfully.")
+        print(f"Results saved in: {output_file} and {output_file.with_suffix('.xls')}")
     except subprocess.CalledProcessError as e:
-        print(f"❌ MHCII error: {json_file.name}")
-        print(e.stderr)
+        print("❌ NetMHCIIpan-4.3 failed.")
+        print("Command:", " ".join(cmd))
+        print("Stdout:", e.stdout)
+        print("Stderr:", e.stderr)
+        raise
