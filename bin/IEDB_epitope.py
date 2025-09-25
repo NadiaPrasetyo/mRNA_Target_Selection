@@ -79,11 +79,13 @@ def is_job_completed(tool_type, input_path, base_output_dir):
         return False
 
     base_name = input_path.stem
-    expected_suffix = f"{tool_type.upper()}.json" # e.g., "MHCI.json", "MHCII.json", "BCELL.txt", "Ellipro.txt"
+    expected_suffix = ""
     # Check for any file that matches the base name and expected suffix
-    
+    if tool_type in ["MHCI", "MHCII"]:
+        expected_suffix = ".xls"
+
     # Check for any file that matches the base name and expected suffix
-    if tool_type in ["BCell", "Ellipro"]:
+    if tool_type in ["BCell", "Ellipro", "MixMHC2pred"]:
         expected_suffix = ".txt"
 
     # Check for any file that matches the base name and expected suffix
