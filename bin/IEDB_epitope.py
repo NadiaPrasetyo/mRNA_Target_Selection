@@ -221,9 +221,10 @@ def main():
 
         if tool_type == "MHCI" or tool_type == "MHCII":
             # temporary FASTA directory for MHCI and MHCII
-            temp_fasta_dir = output_dir / f"temp_{tool_type}_fasta"
+            temp_fasta_dir = output_dir / f"temp_fasta"
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.rename_fasta_headers(fasta_files=fasta_files, tmp_fasta_dir=temp_fasta_dir)
+            logging.info(f"input_files_tool: {[f.name for f in input_files_tool]}")
 
         if tool_type == "MixMHC2pred":
             alleles = run_mixmhc2pred.MHCII_DEFAULT
