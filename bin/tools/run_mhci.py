@@ -44,7 +44,6 @@ MHCI_EXTENDED = [
 ]
 
 def run(fasta_file, tool_path, output_dir):
-    logging.info(f"Starting NetMHCpan-4.2 epitope prediction on {Path(fasta_file)}...")
     # Default parameters
     rank_threshold = 0.5
     weak_threshold = 2.0

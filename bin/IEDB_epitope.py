@@ -224,13 +224,8 @@ def main():
             temp_fasta_dir = output_dir / f"temp_fasta"
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.rename_fasta_headers(fasta_files=fasta_files, tmp_fasta_dir=temp_fasta_dir)
-            logging.info("Head of each input file:")
-            for f in input_files_tool:
-                with open(f, "r") as fh:
-                    header = fh.readline().strip()
-                    logging.info(f"  - {f.name}: {header}")
 
-        if tool_type == "MixMHC2pred":
+        elif tool_type == "MixMHC2pred":
             alleles = run_mixmhc2pred.MHCII_DEFAULT
 
             temp_fasta_dir = output_dir / "temp_fasta"
@@ -238,7 +233,7 @@ def main():
             input_files_tool = common.split_protein_fasta_to_peptides(fasta_files, temp_fasta_dir)
 
         # Input file handling
-        if tool_type == "BCell":
+        elif tool_type == "BCell":
             temp_txt_dir = output_dir / "temp_txt"
             temp_txt_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
@@ -246,7 +241,7 @@ def main():
         elif tool_type == "Ellipro" or tool_type == "DSSP" or tool_type == "ProtLearn":
             input_files_tool = pdb_files
 
-        elif tool_type not in ["MixMHC2pred", "Ellipro", "DSSP", "ProtLearn"]:  # All others use original FASTA
+        else:  # All others use original FASTA
             input_files_tool = fasta_files
 
         # Sanity check

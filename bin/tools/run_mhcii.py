@@ -42,7 +42,6 @@ MHCII_DEFAULT = [
 
 
 def run(fasta_file, tool_path, output_dir):
-    logging.info(f"Starting NetMHCIIpan-4.3 epitope prediction on {Path(fasta_file)}...")
     # Default parameters
     rank_threshold = 1.0
     weak_threshold = 5.0
