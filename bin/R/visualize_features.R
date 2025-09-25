@@ -32,9 +32,11 @@
 library(tidyverse)
 
 # Define paths
-ks_file <- "../../results/C.trachomatis/ks_test_results.csv"
-base_path <- "../../results/C.trachomatis/raw_data"
-output_dir <- "../../results/C.trachomatis/feature_distributions"
+pathogen_dir <- "P.aeruginosa"
+ks_file <- glue::glue("../../results/{pathogen_dir}/ks_test_results_random.csv")
+base_path <- glue::glue("../../results/{pathogen_dir}/raw_data")
+output_dir <- glue::glue("../../results/{pathogen_dir}/feature_distributions")
+summary_out <- glue::glue("../../results/{pathogen_dir}")
 
 # Read KS test results and filter for significant features with p-value < 0.05
 ks_results <- read_csv(ks_file, show_col_types = FALSE)
@@ -198,6 +200,6 @@ plot_ks_statistics <- function(ks_df, output_dir) {
 # Run pipeline
 all_data <- load_all_data(feature_subfeature)
 plot_distributions(all_data, output_dir)
-plot_ks_statistics(ks_results, output_dir)
+plot_ks_statistics(ks_results, summary_out)
 
 message("✅ Plots saved to: ", output_dir)
