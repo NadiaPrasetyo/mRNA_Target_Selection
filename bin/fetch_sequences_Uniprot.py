@@ -76,7 +76,7 @@ def clean_antigen_name(name):
 def fetch_uniprot_data(query, retries=3, delay=5):
     """Fetch data from UniProt API with retries.
     Args:
-        query (str): The search query for UniProt.
+        query (str): Query string for UniProt API.
         retries (int): Number of retry attempts on failure.
         delay (int): Delay in seconds between retries.
     Returns:
@@ -106,13 +106,10 @@ def fetch_uniprot_data(query, retries=3, delay=5):
 
 
 def fetch_refseq_nucleotide(refseq_id):
+    """Fetch RefSeq sequence and return bare nucleotide/protein sequence without headers."""
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 
-    # If ID is a protein (WP_, YP_, NP_), query protein db, not nuccore
-    if refseq_id.startswith(("WP_", "YP_", "NP_")):
-        db = "protein"
-    else:
-        db = "nuccore"
+    db = "protein" if refseq_id.startswith(("WP_", "YP_", "NP_")) else "nuccore"
 
     params = {
         "db": db,
@@ -120,14 +117,17 @@ def fetch_refseq_nucleotide(refseq_id):
         "rettype": "fasta",
         "retmode": "text"
     }
+
     try:
         response = requests.get(base_url, params=params)
         response.raise_for_status()
-        return response.text.strip()
+        # Remove FASTA headers and newlines
+        lines = response.text.strip().splitlines()
+        seq = "".join(line for line in lines if not line.startswith(">"))
+        return seq
     except requests.exceptions.RequestException as e:
         print(f"Failed to fetch RefSeq {refseq_id} from {db}: {e}")
         return ""
-
 
 
 def parse_uniprot_response(data):
@@ -135,7 +135,7 @@ def parse_uniprot_response(data):
     Args:
         data (dict): JSON response from UniProt API.
     Returns:
-        list: List of dictionaries containing extracted information.
+        list: List of dictionaries with parsed protein data.
     """
     results = []
     if not data or "results" not in data:
@@ -148,13 +148,11 @@ def parse_uniprot_response(data):
         organism = entry.get("organism", {}).get("scientificName", "")
         pfam = ";".join([xref["id"] for xref in entry.get("uniProtKBCrossReferences", []) if xref.get("database") == "Pfam"])
 
-        # Extract RefSeq nucleotide sequences
+        # Only fetch the first RefSeq nucleotide sequence
         refseq_ids = [xref["id"] for xref in entry.get("uniProtKBCrossReferences", []) if xref.get("database") == "RefSeq"]
-        nucleotide_sequences = []
-        for refseq_id in refseq_ids:
-            seq = fetch_refseq_nucleotide(refseq_id)
-            if seq:
-                nucleotide_sequences.append(seq)
+        nucleotide_sequence = ""
+        if refseq_ids:
+            nucleotide_sequence = fetch_refseq_nucleotide(refseq_ids[0])
 
         results.append({
             "uniprot_accession": accession,
@@ -162,7 +160,7 @@ def parse_uniprot_response(data):
             "sequence": sequence,
             "organism_name": organism,
             "pfam": pfam,
-            "nucleotide_sequence": "\n".join(nucleotide_sequences)
+            "nucleotide_sequence": nucleotide_sequence
         })
     return results
 

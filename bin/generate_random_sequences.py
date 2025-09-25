@@ -34,17 +34,11 @@ import requests
 import argparse
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))  # Add parent directory to sys.path
-from bin.fetch_sequences_Uniprot import parse_uniprot_entry
+from bin.fetch_sequences_Uniprot import parse_uniprot_response, fetch_refseq_nucleotide
+
 
 def get_antigen_protein_names(antigen_file):
-    """
-    Extract antigen protein names from the CSV file.
-    Reads the input file and collects a set of all known antigen protein names,
-    converted to lowercase and stripped of whitespace.
-    Args:
-        antigen_file (str): Path to the compiled antigens CSV file.
-    Returns:
-        set: Set of known antigen protein names (lowercased)."""
+    """Extract antigen protein names from the CSV file."""
     names = set()
     with open(antigen_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -54,15 +48,9 @@ def get_antigen_protein_names(antigen_file):
                 names.add(name)
     return names
 
+
 def get_antigen_length_bounds(antigen_file):
-    """
-    Calculate the minimum and maximum lengths of antigen sequences from the CSV file.
-    Args:
-        antigen_file (str): Path to the compiled antigens CSV file.
-    Returns:
-        tuple: (min_length, max_length) where both are integers.
-               Returns (None, None) if no sequences are found.
-    """
+    """Calculate the minimum and maximum lengths of antigen sequences from the CSV file."""
     lengths = []
     with open(antigen_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -76,147 +64,152 @@ def get_antigen_length_bounds(antigen_file):
 
 
 def trim_human_proteins_to_length(protein_data, min_length, max_length):
-    """
-    Randomly trim human protein sequences (and corresponding nucleotide sequences)
-    to fit within the given length range.
-    
-    Args:
-        protein_data (list[dict]): List of protein dicts, each with keys:
-            - "sequence": amino acid sequence (string)
-            - "nucleotide_sequence": nucleotide sequence (string, codon-aligned)
-        min_length (int): Minimum allowed trimmed protein length.
-        max_length (int): Maximum allowed trimmed protein length.
-    
-    Returns:
-        list[dict]: Updated list with trimmed sequences.
-    """
+    """Randomly trim human protein sequences (and nucleotide sequences) to fit within given bounds."""
     for protein in protein_data:
         seq = protein.get("sequence", "").strip()
         nuc_seq = protein.get("nucleotide_sequence", "").strip()
 
         if not seq or not nuc_seq:
-            continue  # skip if missing data
+            continue
 
         seq_len = len(seq)
-
-        # Skip if protein is too short
         if seq_len < min_length:
             print(f"Skipping protein {protein.get('id')} - length {seq_len} < min_length {min_length}")
             continue
 
-        # Choose a target length within the allowed range
         target_len = random.randint(min_length, min(max_length, seq_len))
-
-        # Choose a random start position that allows target_len
         max_offset = seq_len - target_len
         offset = random.randint(0, max_offset) if max_offset > 0 else 0
 
-        # Trim amino acid sequence
-        trimmed_seq = seq[offset:offset + target_len]
-
-        # Trim nucleotide sequence (codon-aligned)
-        nuc_offset = offset * 3
-        trimmed_nuc_seq = nuc_seq[nuc_offset:nuc_offset + target_len * 3]
-
-        protein["sequence"] = trimmed_seq
-        protein["nucleotide_sequence"] = trimmed_nuc_seq
+        protein["sequence"] = seq[offset:offset + target_len]
+        protein["nucleotide_sequence"] = nuc_seq[offset * 3: offset * 3 + target_len * 3]
 
     return protein_data
+
+def get_entry_name(entry):
+    """Extract a usable protein name from UniProt entry."""
+    protein_desc = entry.get("proteinDescription", {})
+
+    # Recommended name
+    rec_name = protein_desc.get("recommendedName", {})
+    full_name = rec_name.get("fullName", {}).get("value", "")
+    if full_name:
+        return full_name.lower()
+
+    # Alternative names
+    for alt in protein_desc.get("alternativeNames", []):
+        full_name = alt.get("fullName", {}).get("value", "")
+        if full_name:
+            return full_name.lower()
+
+    # Fallback
+    return entry.get("primaryAccession", "").lower()
+
+
+# Extract next link from headers
+def get_next_link(headers):
+    link_header = headers.get("link")
+    if not link_header:
+        return None
+    # Example format: <url>; rel="next"
+    parts = link_header.split(";")
+    if len(parts) >= 2 and 'rel="next"' in parts[1]:
+        url = parts[0].strip()[1:-1]  # remove < and >
+        return url
+    return None
 
 def fetch_random_uniprot_protein_entries(n=200, organism="Staphylococcus aureus", antigen_names=set(), min_len=None, max_len=None):
     """
     Fetch random reviewed UniProt protein entries for a given organism, excluding known antigens.
-    Args:
-        n (int): Number of protein entries to fetch.
-        organism (str): Full organism name (e.g., "Staphylococcus aureus").
-        antigen_names (set): Set of known antigen protein names to exclude.
-        min_len (int): Minimum sequence length for filtering.
-        max_len (int): Maximum sequence length for filtering.
-    Returns:
-        list: List of randomly sampled UniProt entry JSONs.
+    Uses the new UniProt REST API (https://rest.uniprot.org/uniprotkb/search).
     """
     headers = {"Accept": "application/json"}
-    encoded_org = requests.utils.quote(organism)
+    query_parts = [f'organism_name:"{organism}"', "reviewed:true"]
+    if min_len and max_len:
+        query_parts.append(f"length:[{min_len} TO {max_len}]")
+    query = " AND ".join(query_parts)
 
-    seq_length_param = f"&seqLength={min_len}-{max_len}" if min_len and max_len else ""
-    base_url = f"https://www.ebi.ac.uk/proteins/api/proteins?reviewed=true&organism={encoded_org}{seq_length_param}"
+    base_url = "https://rest.uniprot.org/uniprotkb/search"
+    params = {
+        "size": 500, # Initial request to get total count
+        "query": query,
+        "fields": "accession,protein_name,organism_name,length,sequence,xref_pfam,xref_refseq",
+    }
 
-    print(f"[INFO] Fetching record count for organism: {organism} with seqLength={min_len}-{max_len}")
-
+    print(f"[INFO] Querying UniProt: {query}")
     try:
-        test_url = f"{base_url}&offset=0&size=1"
-        response = requests.get(test_url, headers=headers)
+        response = requests.get(base_url, headers=headers, params=params)
         response.raise_for_status()
-        max_records = int(response.headers.get("x-pagination-totalrecords", 0))
-        if max_records == 0:
-            print(f"[FATAL] No proteins found for organism with sequence length bounds.")
-            return []
-        print(f"[INFO] Found {max_records} total reviewed protein records within sequence range.")
+        results = response.json()
+        # get the response header to get total results
+        response_headers = response.headers
+        total_records = int(response_headers.get("x-total-results", "0"))
+        if total_records == 0:
+            print("[FATAL] No proteins found for organism with sequence length bounds.")
+            return {"results": []}
+        print(f"[INFO] Found {total_records} reviewed protein records within sequence range.")
     except Exception as e:
-        print(f"[ERROR] Failed to get protein count: {e}")
-        return []
+        print(f"[ERROR] Failed to query UniProt API: {e}")
+        return {"results": []}
 
-    selected_entries = []
-    tried_offsets = set()
-
-    print(f"[INFO] Sampling {n} random reviewed UniProt protein entries...")
-    while len(selected_entries) < n and len(tried_offsets) < max_records:
-        offset = random.randint(0, max_records - 1)
-        if offset in tried_offsets:
-            continue
-        tried_offsets.add(offset)
-
+    # Collect initial page of results
+    all_entries = results.get("results", [])
+    cursor = get_next_link(response_headers)
+    
+    # Paginate until no more pages
+    while cursor:
         try:
-            url = f"{base_url}&offset={offset}&size=1"
-            r = requests.get(url, headers=headers)
+            r = requests.get(cursor, headers=headers)
             r.raise_for_status()
-            entries = r.json()
-
-            if not isinstance(entries, list):
-                continue
-
-            for entry in entries:
-                name = entry.get("protein", {}).get("recommendedName", {}).get("fullName", {}).get("value", "").lower()
-                if name and name not in antigen_names:
-                    selected_entries.append(entry)
-                    print(f"  [INFO] Sampled: {name} ({len(selected_entries)}/{n})")
-
+            data = r.json()
+            all_entries.extend(data.get("results", []))
+            cursor = get_next_link(r.headers)
         except Exception as e:
-            print(f"[WARN] Offset {offset} failed: {e}")
+            print(f"[WARN] Pagination fetch failed: {e}")
+            break
+
+    print(f"[INFO] Collected {len(all_entries)} total protein entries from UniProt.")
+    
+    # Filter and deduplicate
+    filtered_entries = []
+    seen_names = set()
+
+    for entry in all_entries:
+        name = get_entry_name(entry)
+        if not name or name in antigen_names or name in seen_names:
             continue
+        seen_names.add(name)
+        filtered_entries.append(entry)
 
-    if len(selected_entries) < n:
-        print(f"[WARN] Only collected {len(selected_entries)} proteins out of {n} requested.")
+    print(f"[INFO] {len(filtered_entries)} entries remain after antigen filtering and deduplication.")
 
-    return selected_entries
+    # Random sample from the filtered pool
+    if not filtered_entries:
+        print("[FATAL] No eligible proteins left after filtering.")
+        return {"results": []}
+
+    sampled = random.sample(filtered_entries, k=min(n, len(filtered_entries)))
+
+    return {"results": sampled}
+
 
 def main(pathogen, organism, include_human=False):
-    """
-    Main function to execute the pipeline for generating non-antigen protein candidates.
-    Args:
-        pathogen (str): Pathogen short name (used as subdirectory in `data/`).
-        organism (str): Full organism name (e.g., "Staphylococcus aureus").
-    Returns:
-        None
-    """
+    """Main function to generate non-antigen protein candidates."""
     organism_tag = organism.lower().replace(" ", "_")
     pathogen_dir = os.path.join("data", pathogen)
     antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv")
-    output_file = os.path.join(pathogen_dir, f"human_compiled_proteins.csv") if include_human else os.path.join(pathogen_dir, f"random_compiled_proteins.csv")
+    output_file = os.path.join(pathogen_dir, "human_compiled_proteins.csv" if include_human else "random_compiled_proteins.csv")
 
     if not os.path.exists(antigens_file):
         print("[FATAL] Missing antigen protein file.")
         return
 
-    # Step 1: Get antigen names and length bounds
     antigen_names = get_antigen_protein_names(antigens_file)
     min_len, max_len = get_antigen_length_bounds(antigens_file)
-
     if not min_len or not max_len:
         print("[FATAL] Could not determine antigen sequence length bounds.")
         return
 
-    # Step 2: Fetch random UniProt proteins
     entries = fetch_random_uniprot_protein_entries(
         n=200,
         organism="Homo sapiens" if include_human else organism,
@@ -225,23 +218,15 @@ def main(pathogen, organism, include_human=False):
         max_len=max_len if not include_human else None
     )
 
-    # Step 3: Parse UniProt entries
-    protein_data = []
-    for entry in entries:
-        protein_name = entry.get("protein", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
-        parsed = parse_uniprot_entry(entry)
-        if parsed:
-            protein_data.append(parsed)
+    protein_data = parse_uniprot_response(entries)
 
     if not protein_data:
         print("[WARN] No protein entries were successfully parsed.")
         return
-    
-    # Step 3.5: trim human proteins to the length ranges
+
     if include_human:
         protein_data = trim_human_proteins_to_length(protein_data, min_len, max_len)
 
-    # Step 4: Write to CSV
     with open(output_file, "w", newline='') as outfile:
         fieldnames = [
             "uniprot_accession",
@@ -261,15 +246,11 @@ def main(pathogen, organism, include_human=False):
 
     print(f"[DONE] Wrote {len(protein_data)} protein sequences to {output_file}")
 
+
 if __name__ == "__main__":
-    """
-    Entry point for the script.
-    Parses command-line arguments for pathogen directory and organism name,
-    then executes the main function to generate random protein sequences.
-    """
     parser = argparse.ArgumentParser(
-        description="Fetch random reviewed UniProt protein entries for a given organism, excluding known antigens.",
-        usage="python generate_random_proteins_per_strain.py <pathogen_directory> <pathogen_name>"
+        description="Fetch random UniProt protein entries for a given organism, excluding known antigens.",
+        usage="python generate_random_sequences.py <pathogen_directory> <pathogen_name>"
     )
     parser.add_argument("pathogen_directory", help="Directory name under data/")
     parser.add_argument("pathogen_name", help='Full organism name (e.g., "staphylococcus aureus")')
@@ -277,4 +258,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     main(args.pathogen_directory, args.pathogen_name, include_human=args.human)
-

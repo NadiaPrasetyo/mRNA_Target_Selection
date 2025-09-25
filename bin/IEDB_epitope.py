@@ -133,21 +133,13 @@ def main():
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing IEDB tools")
     parser.add_argument("--threads", type=int, default=4, help="Number of parallel threads")
-    parser.add_argument("--mhci-peptide-lengths", "-mhci-pl", nargs=2, type=int, default=[8, 11])
-    parser.add_argument("--mhcii-peptide-lengths", "-mhcii-pl", nargs=2, type=int, default=[11, 25])
     parser.add_argument("--tools", help="List of tools to run, join using spaces (default: MHCI, MHCII, BCell, and MixMHC2Pred)", nargs="+", choices=tool_runners.keys(), default=None)
-    parser.add_argument("--mhci-allele-panel", choices=["default", "extended", "custom"], default="default")
-    parser.add_argument("--mhci-custom-alleles", nargs="+", default=None)
-    parser.add_argument("--mhcii-allele-panel", choices=["default", "extended", "custom"], default="default")
-    parser.add_argument("--mhcii-custom-alleles", nargs="+", default=None)
     parser.add_argument("--output-dir", help="Output directory for results (default: epitope_outputs)", type=Path, default=Path("epitope_outputs"))
     parser.add_argument("--verbose", action="store_true")
 
     args = parser.parse_args()
-    temp_json_dir = None
     temp_txt_dir = None
     temp_fasta_dir = None
-
 
     data_dir = Path("data")
     pathogen_path = data_dir / args.pathogen_dir
@@ -223,29 +215,10 @@ def main():
     for tool_type, tool_path in final_tools.items():
         logging.info(f"\n🧪 Preparing {tool_type} predictions")
         input_files_tool = None
-        alleles = []
-        peptide_lengths = None
+        alleles = []           
 
-        # Get allele panel and peptide lengths
-        if tool_type == "MHCI":
-            alleles = common.get_alleles(tool_type, args.mhci_allele_panel, args.mhci_custom_alleles)
-            peptide_lengths = args.mhci_peptide_lengths
-            
-
-        elif tool_type == "MHCII":
-            alleles = common.get_alleles(tool_type, args.mhcii_allele_panel, args.mhcii_custom_alleles)
-            peptide_lengths = args.mhcii_peptide_lengths
-
-        elif tool_type == "MixMHC2pred":
-            if args.mhcii_allele_panel == "default":
-                alleles = run_mixmhc2pred.MHCII_DEFAULT
-            elif args.mhcii_allele_panel == "extended":
-                alleles = run_mixmhc2pred.MHCII_EXTENDED
-            elif args.mhcii_custom_alleles:
-                alleles = args.mhcii_custom_alleles
-            else:
-                logging.error("❌ No valid MixMHC2pred alleles provided.")
-                sys.exit(1)
+        if tool_type == "MixMHC2pred":
+            alleles = run_mixmhc2pred.MHCII_DEFAULT
 
             temp_fasta_dir = output_dir / "temp_fasta"
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
@@ -261,8 +234,6 @@ def main():
             input_files_tool = pdb_files
 
         elif tool_type not in ["MixMHC2pred", "Ellipro", "DSSP", "ProtLearn"]:  # All others use original FASTA
-            temp_json_dir = output_dir / "temp_json"
-            temp_json_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = fasta_files
 
         # Sanity check
@@ -278,15 +249,6 @@ def main():
                 logging.info(f"⏩ Skipping {input_file.name} — {tool_type} result already exists.")
                 continue
 
-            # Tool-specific job handling
-            if tool_type in ["MHCI", "MHCII"]:
-                json_paths = common.parse_fasta_to_jsons(input_file, temp_json_dir, alleles, peptide_lengths, tool_type, args.sequence_dir)
-                for jp in json_paths:
-                    if is_job_completed(tool_type, jp, output_dir):
-                        logging.info(f"⏩ Skipping {jp.name} — already processed.")
-                        continue
-                    all_jobs.append((tool_type, tool_path, jp))
-
             elif tool_type == "MixMHC2pred":
                 logging.info(f"🧬 Processing {input_file.name} for MixMHC2pred")
                 all_jobs.append((tool_type, tool_path, input_file, alleles))
@@ -296,7 +258,7 @@ def main():
 
     if not all_jobs:
         logging.warning("❌ No jobs to run.")# Clean up only the temp directories that were created
-        temp_dirs = [d for d in [temp_json_dir, temp_txt_dir, temp_fasta_dir] if d and d.exists()]
+        temp_dirs = [d for d in [temp_txt_dir, temp_fasta_dir] if d and d.exists()]
         common.cleanup_temp(temp_dirs)
 
         sys.exit(1)
@@ -311,7 +273,7 @@ def main():
     run_predictions_parallel(all_jobs, output_dir, args.threads)
 
     # Clean up only the temp directories that were created
-    temp_dirs = [d for d in [temp_json_dir, temp_txt_dir, temp_fasta_dir] if d and d.exists()]
+    temp_dirs = [d for d in [temp_txt_dir, temp_fasta_dir] if d and d.exists()]
     common.cleanup_temp(temp_dirs)
 
 
