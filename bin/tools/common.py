@@ -103,20 +103,17 @@ def rename_fasta_headers(fasta_dir: Path, tmp_fasta_dir: Path):
         fasta_file (Path): Input FASTA file path.
         output_file (Path): Output FASTA file path with renamed headers.
     """
-    header_pattern = re.compile(
-        # >antigen_77|Q5HDD7|Immunoglobulin-binding|HE681097.1|tpos:773380-773815
-        r"^>[^|]*\|(?P<accession>[A-Z0-9_.-]+)\|[^|]*\|(?P<strain_acc>[A-Z0-9_.-]+)\|.*$"
-    )
     output_files = []
     for fasta_file in fasta_dir.glob("*.fasta"):
         output_file = tmp_fasta_dir / fasta_file.name
         with open(fasta_file, "r") as in_f, open(output_file, "w") as out_f:
             for line in in_f:
+                # >antigen_77|Q5HDD7|Immunoglobulin-binding|HE681097.1|tpos:773380-773815
                 if line.startswith(">"):
-                    match = header_pattern.match(line.strip())
-                    if match:
-                        accession = match.group("accession")
-                        strain_acc = match.group("strain_acc") or ""  # Default to empty if not present
+                    parts = line.split("|")
+                    if len(parts) >= 2:
+                        accession = parts[1]
+                        strain_acc = parts[3] if len(parts) > 3 else ""  # Default to empty if not present
                         new_header = f">{accession}|{strain_acc}\n"
                         out_f.write(new_header)
                     else:
