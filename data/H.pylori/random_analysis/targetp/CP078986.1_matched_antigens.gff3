@@ -1,0 +1,3 @@
+##gff-version 3
+antigen_125|Q9ZMK8|Peptide|CP078986.1|tpos:72002-72360	TargetP-2.0	signal_peptide	1	27	0.989511	.	.	.
+antigen_104|O26043|L-seryl-tRNA(Sec)|CP078986.1|tpos:203079-203235	TargetP-2.0	transit_peptide	1	24	0.685340	.	.	Note=Mitochondrion

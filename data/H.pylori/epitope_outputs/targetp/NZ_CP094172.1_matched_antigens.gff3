@@ -1,0 +1,5 @@
+##gff-version 3
+antigen_2|O25249|Plasminogen-binding|NZ_CP094172.1|tpos:191014-191448	TargetP-2.0	signal_peptide	1	19	0.994187	.	.	.
+antigen_14|A0A1Q9J9W6|Outer|NZ_CP094172.1|tpos:249871-250176	TargetP-2.0	signal_peptide	1	17	0.981714	.	.	.
+antigen_21|A0A060PT92|LPP20|NZ_CP094172.1|tpos:25478-25652	TargetP-2.0	signal_peptide	1	22	0.723548	.	.	.
+antigen_28|Q7X2K0|SabA|NZ_CP094172.1|tpos:400183-400252	TargetP-2.0	signal_peptide	1	16	0.897942	.	.	.

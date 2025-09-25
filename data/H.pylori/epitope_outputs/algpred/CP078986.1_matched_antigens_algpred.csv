@@ -1,0 +1,11 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_24|J0IQC3|Outer|CP078986.1|tpos:422403-423058,0.313,0.0,0.0,0.313,Allergen
+antigen_30|Q9ZHT1|Vacuolating|CP078986.1|tpos:283000-283096,0.447,0.5,0.0,0.947,Allergen
+antigen_13|P56130|Putative|CP078986.1|tpos:91195-91612,0.08,0.0,-0.5,-0.42,Non-Allergen
+antigen_14|A0A1Q9J9W6|Outer|CP078986.1|tpos:202521-202827,0.253,0.5,0.0,0.753,Allergen
+antigen_16|A0A060PRJ6|Outer|CP078986.1|tpos:422365-422754,0.266,0.0,0.0,0.266,Non-Allergen
+antigen_17|A0A238GT21|Outer|CP078986.1|tpos:422403-422758,0.263,0.0,0.0,0.263,Non-Allergen
+antigen_3|O25522|Conserved|CP078986.1|tpos:272800-273026,0.049,0.0,0.0,0.049,Non-Allergen
+antigen_6|O25571|Outer|CP078986.1|tpos:231979-232161,0.245,0.0,0.0,0.245,Non-Allergen
+antigen_28|Q7X2K0|SabA|CP078986.1|tpos:231524-231624,0.137,0.5,0.0,0.637,Allergen
+antigen_29|Q75X90|Cag|CP078986.1|tpos:476214-476484,0.038,0.0,-0.5,-0.462,Non-Allergen

@@ -1,0 +1,14 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_6|O25571|Outer|CP175939.1|tpos:414075-414301,0.254,0.0,0.0,0.254,Non-Allergen
+antigen_7|O25578|Uncharacterized|CP175939.1|tpos:119225-119453,0.077,0.0,-0.5,-0.423,Non-Allergen
+antigen_12|P56105|DNA|CP175939.1|tpos:462558-463454,0.076,0.0,-0.5,-0.424,Non-Allergen
+antigen_16|A0A060PRJ6|Outer|CP175939.1|tpos:413633-413987,0.184,0.0,0.0,0.184,Non-Allergen
+antigen_17|A0A238GT21|Outer|CP175939.1|tpos:413671-414002,0.191,0.0,0.0,0.191,Non-Allergen
+antigen_19|A0A060CUG4|Cag|CP175939.1|tpos:84447-84886,0.091,0.0,0.0,0.091,Non-Allergen
+antigen_14|A0A1Q9J9W6|Outer|CP175939.1|tpos:175658-175961,0.272,0.5,0.0,0.772,Allergen
+antigen_24|J0IQC3|Outer|CP175939.1|tpos:413671-414301,0.232,0.0,0.0,0.232,Non-Allergen
+antigen_25|P0A0R3|Co-chaperonin|CP175939.1|tpos:412919-413036,0.554,0.0,0.0,0.554,Allergen
+antigen_26|Q6DT22|Adhesin|CP175939.1|tpos:413780-413968,0.178,0.0,0.0,0.178,Non-Allergen
+antigen_27|Q9AI97|BabB|CP175939.1|tpos:413794-413933,0.252,0.0,0.0,0.252,Non-Allergen
+antigen_28|Q7X2K0|SabA|CP175939.1|tpos:413635-413722,0.206,0.0,0.0,0.206,Non-Allergen
+antigen_29|Q75X90|Cag|CP175939.1|tpos:478129-478399,0.04,0.0,-0.5,-0.46,Non-Allergen
