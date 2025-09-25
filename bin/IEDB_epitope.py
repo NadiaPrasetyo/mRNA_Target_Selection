@@ -224,7 +224,11 @@ def main():
             temp_fasta_dir = output_dir / f"temp_fasta"
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.rename_fasta_headers(fasta_files=fasta_files, tmp_fasta_dir=temp_fasta_dir)
-            logging.info(f"input_files_tool: {[f.name for f in input_files_tool]}")
+            logging.info("Head of each input file:")
+            for f in input_files_tool:
+                with open(f, "r") as fh:
+                    header = fh.readline().strip()
+                    logging.info(f"  - {f.name}: {header}")
 
         if tool_type == "MixMHC2pred":
             alleles = run_mixmhc2pred.MHCII_DEFAULT
