@@ -32,6 +32,7 @@ Author: Nadia
 
 import subprocess
 from pathlib import Path
+import logging
 
 
 MHCII_DEFAULT = [
@@ -63,7 +64,7 @@ def run(fasta_file, tool_path, output_dir):
         "-xlsfile", str(output_file.with_suffix(".xls")),
     ]
 
-    print(f"Running NetMHCIIpan-4.3 on {fasta_file} with {len(MHCII_DEFAULT)} alleles...")
+    logging.info(f"Running NetMHCIIpan-4.3 on {fasta_file} with {len(MHCII_DEFAULT)} alleles...")
     try:
         result = subprocess.run(
             cmd,
@@ -74,11 +75,11 @@ def run(fasta_file, tool_path, output_dir):
         # Save stdout into .out file
         output_file.write_text(result.stdout)
 
-        print(f"✅ NetMHCIIpan-4.3 completed successfully.")
-        print(f"Results saved in: {output_file} and {output_file.with_suffix('.xls')}")
+        logging.info(f"✅ NetMHCIIpan-4.3 completed successfully.")
+        logging.info(f"Results saved in: {output_file} and {output_file.with_suffix('.xls')}")
     except subprocess.CalledProcessError as e:
-        print("❌ NetMHCIIpan-4.3 failed.")
-        print("Command:", " ".join(cmd))
-        print("Stdout:", e.stdout)
-        print("Stderr:", e.stderr)
+        logging.info("❌ NetMHCIIpan-4.3 failed.")
+        logging.info("Command:", " ".join(cmd))
+        logging.info("Stdout:", e.stdout)
+        logging.info("Stderr:", e.stderr)
         raise

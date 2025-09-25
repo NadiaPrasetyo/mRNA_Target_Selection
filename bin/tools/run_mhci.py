@@ -31,7 +31,7 @@ Author: Nadia
 """
 import subprocess
 from pathlib import Path
-
+import logging
 
 MHCI_EXTENDED = [
     "HLA-A*01:01", "HLA-A*02:01", "HLA-A*02:03", "HLA-A*02:06", "HLA-A*03:01", "HLA-A*11:01", "HLA-A*23:01", "HLA-A*24:02",
@@ -63,7 +63,7 @@ def run(fasta_file, tool_path, output_dir):
         "-xlsfile", str(output_file.with_suffix(".xls")),
     ]
 
-    print(f"Running NetMHCpan-4.2 on {fasta_file} with {len(MHCI_EXTENDED)} alleles...")
+    logging.info(f"Running NetMHCpan-4.2 on {fasta_file} with {len(MHCI_EXTENDED)} alleles...")
     try:
         result = subprocess.run(
             cmd,
@@ -74,11 +74,11 @@ def run(fasta_file, tool_path, output_dir):
         # Save stdout into .out file
         output_file.write_text(result.stdout)
 
-        print(f"✅ NetMHCpan-4.2 completed successfully.")
-        print(f"Results saved in: {output_file} and {output_file.with_suffix('.xls')}")
+        logging.info(f"✅ NetMHCpan-4.2 completed successfully.")
+        logging.info(f"Results saved in: {output_file} and {output_file.with_suffix('.xls')}")
     except subprocess.CalledProcessError as e:
-        print("❌ NetMHCpan-4.2 failed.")
-        print("Command:", " ".join(cmd))
-        print("Stdout:", e.stdout)
-        print("Stderr:", e.stderr)
+        logging.info("❌ NetMHCpan-4.2 failed.")
+        logging.info("Command:", " ".join(cmd))
+        logging.info("Stdout:", e.stdout)
+        logging.info("Stderr:", e.stderr)
         raise
