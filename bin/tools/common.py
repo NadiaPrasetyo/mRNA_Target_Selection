@@ -16,18 +16,12 @@ General Functionality:
     - Splits protein FASTA files into peptide FASTA files using a sliding window.
     - Contains unit tests for key parsing and conversion functions.
 
-Constants:
-    - MHCI_DEFAULT, MHCI_EXTENDED: Default and extended allele panels for MHC-I.
-    - MHCII_DEFAULT, MHCII_EXTENDED: Default and extended allele panels for MHC-II.
-    - ALLELE_PRESETS: Dictionary mapping tool types to their allele panels.
 
 Author: Nadia
 """
-import json
 from pathlib import Path
 import shutil
 import tempfile
-import csv
 import logging
 import re
 from collections import defaultdict
@@ -100,6 +94,38 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
         output_paths[accession] = output_path
 
     return output_paths
+
+def rename_fasta_headers(fasta_dir: Path, tmp_fasta_dir: Path):
+    """
+    Renames FASTA headers to only include the accession code and strain
+
+    Args:
+        fasta_file (Path): Input FASTA file path.
+        output_file (Path): Output FASTA file path with renamed headers.
+    """
+    header_pattern = re.compile(
+        # >antigen_77|Q5HDD7|Immunoglobulin-binding|HE681097.1|tpos:773380-773815
+        r"^>[^|]*\|(?P<accession>[A-Z0-9_.-]+)\|[^|]*\|(?P<strain_acc>[A-Z0-9_.-]+)\|.*$"
+    )
+    output_files = []
+    for fasta_file in fasta_dir.glob("*.fasta"):
+        output_file = tmp_fasta_dir / fasta_file.name
+        with open(fasta_file, "r") as in_f, open(output_file, "w") as out_f:
+            for line in in_f:
+                if line.startswith(">"):
+                    match = header_pattern.match(line.strip())
+                    if match:
+                        accession = match.group("accession")
+                        strain_acc = match.group("strain_acc") or ""  # Default to empty if not present
+                        new_header = f">{accession}|{strain_acc}\n"
+                        out_f.write(new_header)
+                    else:
+                        raise ValueError(f"Could not parse accession from header: {line.strip()}")
+                else:
+                    out_f.write(line)
+        output_files.append(output_file)
+    
+    return output_files
 
 def ensure_writable_dir(path: Path) -> bool:
     """
@@ -211,65 +237,6 @@ def cleanup_temp(temp_dirs):
         else:
             logging.debug(f"⚠️ Temporary directory does not exist: {temp_dir}")
 
-
-""" Constants for MHC Allele Panels """
-MHCI_DEFAULT = [
-    "HLA-A*02:01", "HLA-A*01:01"
-]
-
-MHCI_EXTENDED = [
-    "HLA-A*01:01", "HLA-A*02:01", "HLA-A*02:03", "HLA-A*02:06", "HLA-A*03:01", "HLA-A*11:01", "HLA-A*23:01", "HLA-A*24:02",
-    "HLA-A*26:01", "HLA-A*30:01", "HLA-A*30:02", "HLA-A*31:01", "HLA-A*32:01", "HLA-A*33:01", "HLA-A*68:01", "HLA-A*68:02",
-    "HLA-B*07:02", "HLA-B*08:01", "HLA-B*15:01", "HLA-B*35:01", "HLA-B*40:01", "HLA-B*44:02", "HLA-B*44:03", "HLA-B*51:01",
-    "HLA-B*53:01", "HLA-B*57:01", "HLA-B*58:01"
-]
-
-MHCII_DEFAULT = [
-    "HLA-DRB1*03:01", "HLA-DRB1*07:01", "HLA-DRB1*15:01", "HLA-DRB3*01:01",
-    "HLA-DRB3*02:02", "HLA-DRB4*01:01", "HLA-DRB5*01:01"
-]
-
-MHCII_EXTENDED = [
-    "HLA-DRB1*01:01", "HLA-DRB1*03:01", "HLA-DRB1*04:01", "HLA-DRB1*04:05", "HLA-DRB1*07:01", "HLA-DRB1*08:02",
-    "HLA-DRB1*09:01", "HLA-DRB1*11:01", "HLA-DRB1*12:01", "HLA-DRB1*13:02", "HLA-DRB1*15:01", "HLA-DRB3*01:01",
-    "HLA-DRB3*02:02", "HLA-DRB4*01:01", "HLA-DRB5*01:01", "HLA-DQA1*05:01/DQB1*02:01", "HLA-DQA1*05:01/DQB1*03:01",
-    "HLA-DQA1*03:01/DQB1*03:02", "HLA-DQA1*04:01/DQB1*04:02", "HLA-DQA1*01:01/DQB1*05:01", "HLA-DQA1*01:02/DQB1*06:02",
-    "HLA-DPA1*02:01/DPB1*01:01", "HLA-DPA1*01:03/DPB1*02:01", "HLA-DPA1*01:03/DPB1*04:01", "HLA-DPA1*03:01/DPB1*04:02",
-    "HLA-DPA1*02:01/DPB1*05:01", "HLA-DPA1*02:01/DPB1*14:01"
-]
-
-ALLELE_PRESETS = {
-    "MHCI": {
-        "default": MHCI_DEFAULT,
-        "extended": MHCI_EXTENDED
-    },
-    "MHCII": {
-        "default": MHCII_DEFAULT,
-        "extended": MHCII_EXTENDED
-    }
-}
-
-def get_alleles(tool_type, panel="default", custom_alleles=None):
-    """
-    Get the list of alleles for the specified tool type and panel.
-    Args:
-        tool_type (str): Type of tool (e.g., "MHCI", "MHCII").
-        panel (str): Name of the allele panel ("default", "extended", or "custom").
-        custom_alleles (list, optional): List of custom alleles if panel is "custom".
-    Returns:
-        list: List of alleles for the specified tool type and panel.
-    """
-    panel = panel.lower()
-    if panel == "custom":
-        if not custom_alleles:
-            print(f"⚠️ Custom allele panel selected but no alleles provided for {tool_type}. Using default panel.")
-            return ALLELE_PRESETS[tool_type]["default"]
-        return [a.strip() for a in custom_alleles]
-    elif panel in ALLELE_PRESETS[tool_type]:
-        return ALLELE_PRESETS[tool_type][panel]
-    else:
-        print(f"⚠️ Invalid allele panel '{panel}' for {tool_type}, using default.")
-        return ALLELE_PRESETS[tool_type]["default"]
 
 def check_antigen_tools(tools: list[str], tool_root: Path) -> dict:
     """
@@ -428,78 +395,6 @@ def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
         txt_files.append(txt_file)
     return txt_files
 
-def write_json(seq_id_line, seq_lines, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
-    """
-    Write a JSON file for a given sequence ID and its associated sequence lines.
-    Args:
-        seq_id_line (str): The sequence ID line from the FASTA file.
-        seq_lines (list): List of sequence lines corresponding to the ID.
-        temp_dir (Path): Directory where the JSON file will be saved.
-        alleles (list): List of alleles to include in the JSON.
-        peptide_lengths (tuple): Tuple specifying the peptide length range (min, max).
-        tool_type (str): Type of tool for which this JSON is being generated.
-        strain_name (str): Name of the strain associated with this sequence.
-        method (str): Method to use for prediction, default is "netmhcpan_el".
-    Returns:
-        json_path (Path): Path to the created JSON file, or None if an error occurred.
-    """
-    header = seq_id_line.strip()
-    antigen_id = header[1:].split()[0]
-    sequence = "".join(seq_lines).replace("*", "").strip()
-    method = "netmhcpan_el" if tool_type.lower() == "mhci" else "netmhciipan_el"
-    
-    if not sequence:
-        print(f"⚠️ Empty sequence for {antigen_id}")
-        return None
-
-    if method is None:
-        print(f"⚠️ Unknown tool type '{tool_type}' for {antigen_id}, skipping JSON generation.")
-        return None
-
-    json_data = {
-        "input_sequence_text": f">{antigen_id}\n{sequence}",
-        "peptide_length_range": peptide_lengths,
-        "alleles": ",".join(a.strip() for a in alleles),
-        "predictors": [{"type": "binding", "method": method}]
-    }
-
-    safe_antigen_id = antigen_id.replace(" ", "_").replace("/", "_").replace("|", "_")
-    filename = f"{safe_antigen_id}_{strain_name}_{tool_type}.json"
-    json_path = Path(temp_dir) / filename
-
-    with open(json_path, "w") as f:
-        json.dump(json_data, f, indent=2)
-
-    return json_path
-
-def parse_fasta_to_jsons(fasta_path, temp_dir, alleles, peptide_lengths, tool_type, strain_name):
-    """
-    Parse a FASTA file and convert each sequence to a JSON file.
-    Args:
-        fasta_path (str): Path to the input FASTA file.
-        temp_dir (Path): Directory where JSON files will be saved.
-        alleles (list): List of alleles to include in the JSON.
-        peptide_lengths (tuple): Tuple specifying the peptide length range (min, max).
-        tool_type (str): Type of tool for which this JSON is being generated.
-        strain_name (str): Name of the strain associated with this sequence.
-    Returns:
-        list: List of paths to the created JSON files.
-    """
-    json_paths, seq_id, seq_data = [], None, []
-    with open(fasta_path, 'r') as infile:
-        for line in infile:
-            if line.startswith(">"):
-                if seq_id:
-                    path = write_json(seq_id, seq_data, temp_dir, alleles, peptide_lengths, tool_type, strain_name)
-                    if path: json_paths.append(path)
-                seq_id, seq_data = line.strip(), []
-            else:
-                seq_data.append(line.strip())
-        if seq_id:
-            path = write_json(seq_id, seq_data, temp_dir, alleles, peptide_lengths, tool_type, strain_name)
-            if path: json_paths.append(path)
-    return json_paths
-
 def check_epitope_evaluation_tools(tool_root: Path) -> dict:
     """
     Detects available evaluation tools (Allergenicity, Population Coverage, Cluster).
@@ -566,18 +461,6 @@ def split_protein_fasta_to_peptides(input_fasta, output_dir, peptide_length=15):
 if __name__ == "__main__":
     """ Main function for unit testing of allele retrieval functionality. """
     import unittest
-    class AlleleTests(unittest.TestCase):
-        def test_default_mhci(self):
-            self.assertTrue(len(get_alleles("MHCI")) >= len(MHCI_DEFAULT))
-
-        def test_custom(self):
-            custom = ["HLA-X*01", "HLA-Y*02"]
-            aa = get_alleles("MHCI", "custom", custom)
-            self.assertEqual(aa, custom)
-
-        def test_invalid_panel(self):
-            aa = get_alleles("MHCII", "NOT-FOUND")
-            self.assertEqual(aa, MHCII_DEFAULT)
     
     class GroupClusterInputsTests(unittest.TestCase):
         def setUp(self):
