@@ -95,7 +95,7 @@ def group_cluster_inputs(fasta_files: List[Path], fasta_inputs_dir: Path) -> dic
 
     return output_paths
 
-def rename_fasta_headers(fasta_dir: Path, tmp_fasta_dir: Path):
+def rename_fasta_headers(fasta_files: list[Path], tmp_fasta_dir: Path):
     """
     Renames FASTA headers to only include the accession code and strain
 
@@ -104,7 +104,7 @@ def rename_fasta_headers(fasta_dir: Path, tmp_fasta_dir: Path):
         output_file (Path): Output FASTA file path with renamed headers.
     """
     output_files = []
-    for fasta_file in fasta_dir.glob("*.fasta"):
+    for fasta_file in fasta_files:
         output_file = tmp_fasta_dir / fasta_file.name
         with open(fasta_file, "r") as in_f, open(output_file, "w") as out_f:
             for line in in_f:
@@ -458,6 +458,56 @@ def split_protein_fasta_to_peptides(input_fasta, output_dir, peptide_length=15):
 if __name__ == "__main__":
     """ Main function for unit testing of allele retrieval functionality. """
     import unittest
+
+    class RenameFastaHeadersTests(unittest.TestCase):
+        def setUp(self):
+            self.test_dir = tempfile.TemporaryDirectory()
+            self.input_dir = Path(self.test_dir.name) / "input"
+            self.output_dir = Path(self.test_dir.name) / "output"
+            self.input_dir.mkdir(parents=True)
+            self.output_dir.mkdir(parents=True)
+
+            self.fasta1 = self.input_dir / "strain1.fasta"
+            self.fasta2 = self.input_dir / "strain2.fasta"
+
+            self.fasta1.write_text(
+                ">antigen_153|Q6GHG2|Small|HE681097.1|tpos:380962-381050\n"
+                "MAISQERKNEIIKEYRVHETDTGSPEVQIAVLTAEINAVNEHLRTHKKDHHSRRGLLKMVGRRRHLLNYLRSKDIQRYRELIKSLGIRR\n"
+            )
+
+            self.fasta2.write_text(
+                ">antigen_153|Q6GHG2|Small|HE681098.1|tpos:380962-381050\n"
+                "MAISQERKNEIIKEYRVHETDTGSPEVQIAVLTAEINAVNEHLRTTESTHSRRGLLKMVGRRRHLLNYLRSKDIQRYRELIKSLGIRR\n"
+                ">antigen_149|Q99QV7|Putative|HE681097.1|tpos:139239-139462\n"
+                "MIEFRQVSKTFNKKKQKIHALKDVSFKVNRNDIFGVIGYSGAGKSTLVRLVNHLEAASSGQVLVDGHDITNY\n"
+            )
+
+        def tearDown(self):
+            self.test_dir.cleanup()
+
+        def test_rename_fasta_headers(self):
+            result_files = rename_fasta_headers(
+                fasta_files=[self.fasta1, self.fasta2],
+                tmp_fasta_dir=self.output_dir
+            )
+            expected_files = [
+                self.output_dir / "strain1.fasta",
+                self.output_dir / "strain2.fasta"
+            ]
+            self.assertEqual(set(result_files), set(expected_files))
+
+            with open(expected_files[0], "r") as f:
+                content = f.read()
+                self.assertIn(">Q6GHG2|HE681097.1", content)
+                self.assertNotIn("antigen_153", content)
+
+            with open(expected_files[1], "r") as f:
+                content = f.read()
+                self.assertIn(">Q6GHG2|HE681098.1", content)
+                self.assertIn(">Q99QV7|HE681097.1", content)
+                self.assertNotIn("antigen_153", content)
+                self.assertNotIn("antigen_149", content)
+
     
     class GroupClusterInputsTests(unittest.TestCase):
         def setUp(self):
