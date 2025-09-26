@@ -1,0 +1,107 @@
+parent_source_antigen_iri,parent_source_antigen_names,source_organism_names,host_organism_names
+taxon_protein:777-other,['Other Coxiella burnetii protein'],"['Coxiella burnetii', 'Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']","['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:H7C7D7,['Outer membrane protein (UniProt:H7C7D7)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg', 'Mus musculus (mouse)']"
+UNIPROT:H7C7E4,['Uncharacterized protein (UniProt:H7C7E4)'],"['Coxiella burnetii', 'Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)']","['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:P0C8S3,['Large ribosomal subunit protein bL12 (UniProt:P0C8S3)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:P19421,['Chaperonin GroEL (UniProt:P19421)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:P51752,['Peptidyl-prolyl cis-trans isomerase Mip (UniProt:P51752)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:P59650,['Deoxyhypusine synthase-like protein (UniProt:P59650)'],"[""Coxiella burnetii 'MSU Goat Q177' (Coxiella burnetii str. 'MSU Goat Q177')"", 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q45952,['Uncharacterized protein CBUA0006 (UniProt:Q45952)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q81ZP4,['Transposase (UniProt:Q81ZP4)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q820B6,['Serine/threonine protein kinase domain protein (UniProt:Q820B6)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83A25,['Transcription termination factor Rho (UniProt:Q83A25)'],['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83A33,['Fic family protein (UniProt:Q83A33)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83A39,['Hypothetical exported protein (UniProt:Q83A39)'],"['Coxiella burnetii', 'Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q83A45,['Hypothetical exported protein (UniProt:Q83A45)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83A52,['Proline/betaine transporter (UniProt:Q83A52)'],['Coxiella burnetii RSA 493'],['Homo sapiens (human)']
+UNIPROT:Q83A56,"[""DNA 3'-5' helicase (UniProt:Q83A56)""]",['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83A58,['Uncharacterized protein (UniProt:Q83A58)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83A93,['YqaJ viral recombinase domain-containing protein (UniProt:Q83A93)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83A99,['Uncharacterized protein (UniProt:Q83A99)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83AA5,['DNA topoisomerase 1 (UniProt:Q83AA5)'],"['Coxiella burnetii', 'Coxiella burnetii RSA 493']","['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83AD7,['Bcr/CflA family efflux transporter (UniProt:Q83AD7)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83AF7,['ATP synthase subunit alpha (UniProt:Q83AF7)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83AI2,['Cell division ATP-binding protein FtsE (UniProt:Q83AI2)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83AL4,['Hypothetical exported protein (UniProt:Q83AL4)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83AM5,['Oligopeptide transport system permease protein (UniProt:Q83AM5)'],"['Coxiella burnetii', 'Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)']",['Homo sapiens (human)']
+UNIPROT:Q83AM7,['3-hydroxyisobutyryl-CoA hydrolase (UniProt:Q83AM7)'],['Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)'],['Homo sapiens (human)']
+UNIPROT:Q83AN0,['GtrA family protein (UniProt:Q83AN0)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83AP6,['Protoporphyrinogen oxidase (UniProt:Q83AP6)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83AW0,['Hypothetical exported protein (UniProt:Q83AW0)'],"['Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83AX3,['Uncharacterized protein CBU_1754 (UniProt:Q83AX3)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83B02,['Thiol:disulfide interchange protein DsbD (UniProt:Q83B02)'],"['Coxiella burnetii', ""Coxiella burnetii 'MSU Goat Q177' (Coxiella burnetii str. 'MSU Goat Q177')"", 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q83B06,['Aminomethyltransferase (UniProt:Q83B06)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83B41,['Hypothetical cytosolic protein (UniProt:Q83B41)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83B70,['ATP-binding protein (UniProt:Q83B70)'],['Coxiella burnetii'],"['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:Q83B74,['Uncharacterized protein (UniProt:Q83B74)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83B91,['IcmB (UniProt:Q83B91)'],"['Coxiella burnetii', 'Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q83BF4,['Hypothetical membrane spanning protein (UniProt:Q83BF4)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83BF6,['Vitamin B12-dependent ribonucleotide reductase (UniProt:Q83BF6)'],['Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)'],['Homo sapiens (human)']
+UNIPROT:Q83BG5,['F-box domain-containing protein (UniProt:Q83BG5)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83BJ5,['Short chain dehydrogenase (UniProt:Q83BJ5)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83BP6,['Tetratricopeptide repeat family protein (UniProt:Q83BP6)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83BS3,['Hypothetical membrane spanning protein (UniProt:Q83BS3)'],"['Coxiella burnetii', 'Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q83BT6,['Uncharacterized HTH-type transcriptional regulator CBU_1416 (UniProt:Q83BT6)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83BU7,['Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (UniProt:Q83BU7)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83BV5,"['Ditrans,polycis-undecaprenyl-diphosphate synthase ((2E,6E)-farnesyl-diphosphate specific) (UniProt:Q83BV5)']","['Coxiella burnetii', ""Coxiella burnetii 'MSU Goat Q177' (Coxiella burnetii str. 'MSU Goat Q177')""]",['Homo sapiens (human)']
+UNIPROT:Q83BY5,['ATP-dependent zinc metalloprotease FtsH (UniProt:Q83BY5)'],"['Coxiella burnetii', 'Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)']","['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83BY8,['Hypothetical cytosolic protein (UniProt:Q83BY8)'],"['Coxiella burnetii', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83BZ5,"[""Inosine-5'-monophosphate dehydrogenase (UniProt:Q83BZ5)""]",['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83C21,['Hypothetical cytosolic protein (UniProt:Q83C21)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83C50,['Carbamoyl phosphate synthase large chain (UniProt:Q83C50)'],"['Coxiella burnetii', 'Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)']","['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83C63,['Lipoyl synthase (UniProt:Q83C63)'],['Coxiella burnetii Q321 (Coxiella burnetii str. Q321)'],['Homo sapiens (human)']
+UNIPROT:Q83C69,['Uncharacterized protein CBU_1260 (UniProt:Q83C69)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83C79,['Integral membrane protein (UniProt:Q83C79)'],"['Coxiella burnetii', 'Coxiella burnetii CbuK_Q154 (Coxiella burnetii str. CbuK_Q154)', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q83C94,['Hypothetical ATPase (UniProt:Q83C94)'],['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83C98,"[""DNA 3'-5' helicase (UniProt:Q83C98)""]","['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83CA7,['Hypothetical membrane spanning protein (UniProt:Q83CA7)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83CG1,['Hypothetical exported protein (UniProt:Q83CG1)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg', 'Mus musculus (mouse)']"
+UNIPROT:Q83CG9,['Transcription-repair-coupling factor (UniProt:Q83CG9)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']","['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83CH1,['Hypothetical membrane associated protein (UniProt:Q83CH1)'],"['Coxiella burnetii', 'Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83CH2,['Sec translocon accessory complex subunit YajC (UniProt:Q83CH2)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83CH8,['Enhanced entry protein (UniProt:Q83CH8)'],['Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)'],['Homo sapiens (human)']
+UNIPROT:Q83CM3,['Ribonuclease R (UniProt:Q83CM3)'],['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83CN2,['DUF924 domain-containing protein (UniProt:Q83CN2)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83CP8,['Segregation and condensation protein A (UniProt:Q83CP8)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']","['Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus (mouse)']"
+UNIPROT:Q83CY3,['phospholipase D (UniProt:Q83CY3)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83D52,['Hypothetical exported membrane associated protein (UniProt:Q83D52)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83D57,['Hypothetical cytosolic protein (UniProt:Q83D57)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83D89,['Hypothetical membrane spanning protein (UniProt:Q83D89)'],"['Coxiella burnetii', ""Coxiella burnetii 'MSU Goat Q177' (Coxiella burnetii str. 'MSU Goat Q177')""]","['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83DA1,['Hypothetical membrane spanning protein (UniProt:Q83DA1)'],['Coxiella burnetii RSA 493'],['Homo sapiens (human)']
+UNIPROT:Q83DA5,['Phospholipid-lipopolysaccharide ABC transporter (UniProt:Q83DA5)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83DE4,['Uncharacterized protein (UniProt:Q83DE4)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83DF0,['Polyketide synthase (UniProt:Q83DF0)'],['Coxiella burnetii'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83DF6,['Putative ankyrin repeat protein CBU_0781 (UniProt:Q83DF6)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83DG3,['PhnB (UniProt:Q83DG3)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83DH7,['Acriflavin resistance periplasmic protein (UniProt:Q83DH7)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83DH8,['Acriflavin resistance plasma membrane protein (UniProt:Q83DH8)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83DJ3,['Trigger factor (UniProt:Q83DJ3)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg', 'Mus musculus (mouse)']"
+UNIPROT:Q83DK8,['Hypothetical membrane associated protein (UniProt:Q83DK8)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83DN3,['Uncharacterized protein (UniProt:Q83DN3)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83DN5,['Uncharacterized protein (UniProt:Q83DN5)'],"['Coxiella burnetii', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83DP9,['GTP cyclohydrolase-2 (UniProt:Q83DP9)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']","['Bos taurus (bovine)', 'Homo sapiens (human)']"
+UNIPROT:Q83DR4,['Ferritin (UniProt:Q83DR4)'],"[""Coxiella burnetii 'MSU Goat Q177' (Coxiella burnetii str. 'MSU Goat Q177')""]",['Homo sapiens (human)']
+UNIPROT:Q83DT1,['Outer membrane protein (UniProt:Q83DT1)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83DV3,"['Ferredoxin, 2Fe-2s (UniProt:Q83DV3)']",['Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)'],['Homo sapiens (human)']
+UNIPROT:Q83DY1,['Leucine--tRNA ligase (UniProt:Q83DY1)'],['Coxiella burnetii'],"['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83DZ3,['LemA (UniProt:Q83DZ3)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg', 'Mus musculus (mouse)']"
+UNIPROT:Q83E03,['Hypothetical membrane associated protein (UniProt:Q83E03)'],['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83E37,['3-oxoacyl-[acyl-carrier-protein] synthase 2 (UniProt:Q83E37)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83E44,"[""Bis(5'-nucleosyl)-tetraphosphatase (Symmetrical) (UniProt:Q83E44)""]","['Coxiella burnetii', 'Coxiella burnetii Dugway 5J108-111 (Coxiella burnetii str. Dugway)', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q83ED8,['GTPase Obg (UniProt:Q83ED8)'],['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83EE1,['DNA-3-methyladenine glycosylase (UniProt:Q83EE1)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg', 'Mus musculus (mouse)']"
+UNIPROT:Q83EF6,['Phosphate regulon transcriptional regulatory protein PhoB (UniProt:Q83EF6)'],"['Coxiella burnetii', ""Coxiella burnetii 'MSU Goat Q177' (Coxiella burnetii str. 'MSU Goat Q177')""]",['Homo sapiens (human)']
+UNIPROT:Q83EK8,['Outer membrane protein P1 (UniProt:Q83EK8)'],['Coxiella burnetii'],"['Homo sapiens (human)', 'Mus musculus C57BL/6']"
+UNIPROT:Q83EL2,['Outer membrane protein (UniProt:Q83EL2)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg', 'Mus musculus (mouse)']"
+UNIPROT:Q83EN6,['Amidinotransferase family protein (UniProt:Q83EN6)'],"['Coxiella burnetii', ""Coxiella burnetii 'MSU Goat Q177' (Coxiella burnetii str. 'MSU Goat Q177')"", 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)']",['Homo sapiens (human)']
+UNIPROT:Q83ES6,['Elongation factor Tu (UniProt:Q83ES6)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83EV3,['Glutamate--tRNA ligase 1 (UniProt:Q83EV3)'],['Coxiella burnetii CbuG_Q212 (Coxiella burnetii str. CbuG_Q212)'],['Homo sapiens (human)']
+UNIPROT:Q83EX8,"['Peptidoglycan-specific endopeptidase, M23 family (UniProt:Q83EX8)']","['Coxiella burnetii', 'Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)']","['Homo sapiens (human)', 'Mus musculus (mouse)']"
+UNIPROT:Q83EY1,['Glycine betaine transport system permease protein (UniProt:Q83EY1)'],['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q83EZ2,['Uncharacterized protein (UniProt:Q83EZ2)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 493']",['Homo sapiens (human)']
+UNIPROT:Q83F42,['Lipoprotein (UniProt:Q83F42)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83F50,['Phosphohistidine phosphatase SixA homolog (UniProt:Q83F50)'],"['Coxiella burnetii', 'Coxiella burnetii Q321 (Coxiella burnetii str. Q321)', 'Coxiella burnetii RSA 331 (Coxiella burnetii str. RSA 331)']",['Homo sapiens (human)']
+UNIPROT:Q83F57,['Cell division coordinator CpoB (UniProt:Q83F57)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus C57BL/6', 'Mus musculus HLA-DR3 Tg']"
+UNIPROT:Q83F71,['Hypothetical membrane spanning protein (UniProt:Q83F71)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)']"
+UNIPROT:Q83F92,['Type I secretion outer membrane protein (UniProt:Q83F92)'],['Coxiella burnetii'],['Homo sapiens (human)']
+UNIPROT:Q9ZH99,['Isocitrate dehydrogenase [NADP] (UniProt:Q9ZH99)'],['Coxiella burnetii'],"['Cavia porcellus Duncan-Hartley', 'Homo sapiens (human)', 'Mus musculus HLA-DR3 Tg']"
