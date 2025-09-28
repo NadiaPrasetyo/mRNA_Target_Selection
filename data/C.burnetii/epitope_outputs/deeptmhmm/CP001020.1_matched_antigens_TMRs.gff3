@@ -1,0 +1,203 @@
+##gff-version 3
+# antigen_85|Q83E03||CP001020.1|tpos:399988-400385 Length: 398
+# antigen_85|Q83E03||CP001020.1|tpos:399988-400385 Number of predicted TMRs: 0
+antigen_85|Q83E03||CP001020.1|tpos:399988-400385	inside	1	398				
+//
+# antigen_30|Q83B06|Aminomethyltransferase|CP001020.1|tpos:85311-85673 Length: 363
+# antigen_30|Q83B06|Aminomethyltransferase|CP001020.1|tpos:85311-85673 Number of predicted TMRs: 0
+antigen_30|Q83B06|Aminomethyltransferase|CP001020.1|tpos:85311-85673	inside	1	363				
+//
+# antigen_86|Q83E37|3-oxoacyl-[acyl-carrier-protein]|CP001020.1|tpos:189897-190168 Length: 272
+# antigen_86|Q83E37|3-oxoacyl-[acyl-carrier-protein]|CP001020.1|tpos:189897-190168 Number of predicted TMRs: 0
+antigen_86|Q83E37|3-oxoacyl-[acyl-carrier-protein]|CP001020.1|tpos:189897-190168	inside	1	272				
+//
+# antigen_94|Q83ES6|Elongation|CP001020.1|tpos:120468-120864 Length: 397
+# antigen_94|Q83ES6|Elongation|CP001020.1|tpos:120468-120864 Number of predicted TMRs: 0
+antigen_94|Q83ES6|Elongation|CP001020.1|tpos:120468-120864	inside	1	397				
+//
+# antigen_120|Q83DG2||CP001020.1|tpos:186138-186219 Length: 82
+# antigen_120|Q83DG2||CP001020.1|tpos:186138-186219 Number of predicted TMRs: 2
+antigen_120|Q83DG2||CP001020.1|tpos:186138-186219	inside	1	36				
+antigen_120|Q83DG2||CP001020.1|tpos:186138-186219	TMhelix	37	46				
+antigen_120|Q83DG2||CP001020.1|tpos:186138-186219	outside	47	47				
+antigen_120|Q83DG2||CP001020.1|tpos:186138-186219	TMhelix	48	61				
+antigen_120|Q83DG2||CP001020.1|tpos:186138-186219	inside	62	82				
+//
+# antigen_128|Q83A87||CP001020.1|tpos:158538-158915 Length: 378
+# antigen_128|Q83A87||CP001020.1|tpos:158538-158915 Number of predicted TMRs: 10
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	inside	1	27				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	28	52				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	outside	53	74				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	75	90				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	inside	91	97				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	98	119				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	outside	120	139				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	140	153				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	inside	154	174				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	175	196				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	outside	197	234				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	235	255				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	inside	256	283				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	284	299				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	outside	300	304				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	305	322				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	inside	323	340				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	341	360				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	outside	361	365				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	TMhelix	366	377				
+antigen_128|Q83A87||CP001020.1|tpos:158538-158915	inside	378	378				
+//
+# antigen_111|A9KBP9|Succinate|CP001020.1|tpos:594158-594670 Length: 513
+# antigen_111|A9KBP9|Succinate|CP001020.1|tpos:594158-594670 Number of predicted TMRs: 0
+antigen_111|A9KBP9|Succinate|CP001020.1|tpos:594158-594670	inside	1	513				
+//
+# antigen_68|Q83DA5||CP001020.1|tpos:634916-635141 Length: 226
+# antigen_68|Q83DA5||CP001020.1|tpos:634916-635141 Number of predicted TMRs: 0
+antigen_68|Q83DA5||CP001020.1|tpos:634916-635141	inside	1	226				
+//
+# antigen_52|Q83C94||CP001020.1|tpos:332974-333212 Length: 239
+# antigen_52|Q83C94||CP001020.1|tpos:332974-333212 Number of predicted TMRs: 0
+antigen_52|Q83C94||CP001020.1|tpos:332974-333212	inside	1	239				
+//
+# antigen_66|Q83D89||CP001020.1|tpos:212668-212956 Length: 289
+# antigen_66|Q83D89||CP001020.1|tpos:212668-212956 Number of predicted TMRs: 7
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	inside	1	20				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	TMhelix	21	39				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	outside	40	56				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	TMhelix	57	76				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	inside	77	131				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	TMhelix	132	152				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	outside	153	161				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	TMhelix	162	182				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	inside	183	215				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	TMhelix	216	236				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	outside	237	250				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	TMhelix	251	264				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	inside	265	270				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	TMhelix	271	283				
+antigen_66|Q83D89||CP001020.1|tpos:212668-212956	outside	284	289				
+//
+# antigen_110|A9KFJ2||CP001020.1|tpos:209400-209593 Length: 194
+# antigen_110|A9KFJ2||CP001020.1|tpos:209400-209593 Number of predicted TMRs: 0
+antigen_110|A9KFJ2||CP001020.1|tpos:209400-209593	inside	1	194				
+//
+# antigen_108|Q93N39||CP001020.1|tpos:267707-267906 Length: 200
+# antigen_108|Q93N39||CP001020.1|tpos:267707-267906 Number of predicted TMRs: 0
+antigen_108|Q93N39||CP001020.1|tpos:267707-267906	inside	1	200				
+//
+# antigen_124|Q83DG0||CP001020.1|tpos:267712-267924 Length: 213
+# antigen_124|Q83DG0||CP001020.1|tpos:267712-267924 Number of predicted TMRs: 0
+antigen_124|Q83DG0||CP001020.1|tpos:267712-267924	inside	1	213				
+//
+# antigen_59|Q83CH8||CP001020.1|tpos:274088-274242 Length: 155
+# antigen_59|Q83CH8||CP001020.1|tpos:274088-274242 Number of predicted TMRs: 0
+antigen_59|Q83CH8||CP001020.1|tpos:274088-274242	signal	1	14				
+antigen_59|Q83CH8||CP001020.1|tpos:274088-274242	outside	15	155				
+//
+# antigen_67|Q83DA1||CP001020.1|tpos:207252-207745 Length: 494
+# antigen_67|Q83DA1||CP001020.1|tpos:207252-207745 Number of predicted TMRs: 11
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	inside	1	6				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	7	16				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	outside	17	86				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	87	104				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	inside	105	109				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	110	123				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	outside	124	141				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	142	152				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	inside	153	160				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	161	174				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	outside	175	180				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	181	194				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	inside	195	198				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	199	212				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	outside	213	280				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	281	290				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	inside	291	300				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	301	316				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	outside	317	337				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	338	347				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	inside	348	356				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	TMhelix	357	368				
+antigen_67|Q83DA1||CP001020.1|tpos:207252-207745	outside	369	494				
+//
+# antigen_71|Q83DF6|Putative|CP001020.1|tpos:187466-187514 Length: 49
+# antigen_71|Q83DF6|Putative|CP001020.1|tpos:187466-187514 Number of predicted TMRs: 0
+antigen_71|Q83DF6|Putative|CP001020.1|tpos:187466-187514	inside	1	49				
+//
+# antigen_76|Q83DK8||CP001020.1|tpos:467997-468090 Length: 94
+# antigen_76|Q83DK8||CP001020.1|tpos:467997-468090 Number of predicted TMRs: 0
+antigen_76|Q83DK8||CP001020.1|tpos:467997-468090	inside	1	94				
+//
+# antigen_3|P19421|Chaperonin|CP001020.1|tpos:84699-85250 Length: 552
+# antigen_3|P19421|Chaperonin|CP001020.1|tpos:84699-85250 Number of predicted TMRs: 0
+antigen_3|P19421|Chaperonin|CP001020.1|tpos:84699-85250	inside	1	552				
+//
+# antigen_7|Q81ZP4||CP001020.1|tpos:545350-545730 Length: 381
+# antigen_7|Q81ZP4||CP001020.1|tpos:545350-545730 Number of predicted TMRs: 0
+antigen_7|Q81ZP4||CP001020.1|tpos:545350-545730	inside	1	381				
+//
+# antigen_11|Q83A39||CP001020.1|tpos:645004-645168 Length: 165
+# antigen_11|Q83A39||CP001020.1|tpos:645004-645168 Number of predicted TMRs: 0
+antigen_11|Q83A39||CP001020.1|tpos:645004-645168	signal	1	23				
+antigen_11|Q83A39||CP001020.1|tpos:645004-645168	outside	24	165				
+//
+# antigen_14|Q83A56|DNA|CP001020.1|tpos:639469-640191 Length: 723
+# antigen_14|Q83A56|DNA|CP001020.1|tpos:639469-640191 Number of predicted TMRs: 0
+antigen_14|Q83A56|DNA|CP001020.1|tpos:639469-640191	inside	1	723				
+//
+# antigen_20|Q83AF7|ATP|CP001020.1|tpos:15052-15566 Length: 515
+# antigen_20|Q83AF7|ATP|CP001020.1|tpos:15052-15566 Number of predicted TMRs: 0
+antigen_20|Q83AF7|ATP|CP001020.1|tpos:15052-15566	inside	1	515				
+//
+# antigen_21|Q83AI2|Cell|CP001020.1|tpos:250197-250416 Length: 220
+# antigen_21|Q83AI2|Cell|CP001020.1|tpos:250197-250416 Number of predicted TMRs: 0
+antigen_21|Q83AI2|Cell|CP001020.1|tpos:250197-250416	inside	1	220				
+//
+# antigen_38|Q83BJ5||CP001020.1|tpos:269440-269625 Length: 186
+# antigen_38|Q83BJ5||CP001020.1|tpos:269440-269625 Number of predicted TMRs: 0
+antigen_38|Q83BJ5||CP001020.1|tpos:269440-269625	inside	1	186				
+//
+# antigen_70|Q83DF0||CP001020.1|tpos:189650-191261 Length: 1612
+# antigen_70|Q83DF0||CP001020.1|tpos:189650-191261 Number of predicted TMRs: 0
+antigen_70|Q83DF0||CP001020.1|tpos:189650-191261	inside	1	1612				
+//
+# antigen_9|Q83A25|Transcription|CP001020.1|tpos:15206-15471 Length: 266
+# antigen_9|Q83A25|Transcription|CP001020.1|tpos:15206-15471 Number of predicted TMRs: 0
+antigen_9|Q83A25|Transcription|CP001020.1|tpos:15206-15471	inside	1	266				
+//
+# antigen_121|Q83DD8||CP001020.1|tpos:194710-194846 Length: 137
+# antigen_121|Q83DD8||CP001020.1|tpos:194710-194846 Number of predicted TMRs: 0
+antigen_121|Q83DD8||CP001020.1|tpos:194710-194846	inside	1	137				
+//
+# antigen_129|Q83DH3||CP001020.1|tpos:70865-70991 Length: 127
+# antigen_129|Q83DH3||CP001020.1|tpos:70865-70991 Number of predicted TMRs: 0
+antigen_129|Q83DH3||CP001020.1|tpos:70865-70991	inside	1	127				
+//
+# antigen_126|Q83EF7|histidine|CP001020.1|tpos:70589-70827 Length: 239
+# antigen_126|Q83EF7|histidine|CP001020.1|tpos:70589-70827 Number of predicted TMRs: 0
+antigen_126|Q83EF7|histidine|CP001020.1|tpos:70589-70827	inside	1	239				
+//
+# antigen_53|Q83C98|DNA|CP001020.1|tpos:639654-640048 Length: 395
+# antigen_53|Q83C98|DNA|CP001020.1|tpos:639654-640048 Number of predicted TMRs: 0
+antigen_53|Q83C98|DNA|CP001020.1|tpos:639654-640048	inside	1	395				
+//
+# antigen_89|Q83EE1|DNA-3-methyladenine|CP001020.1|tpos:166966-167177 Length: 212
+# antigen_89|Q83EE1|DNA-3-methyladenine|CP001020.1|tpos:166966-167177 Number of predicted TMRs: 0
+antigen_89|Q83EE1|DNA-3-methyladenine|CP001020.1|tpos:166966-167177	inside	1	212				
+//
+# antigen_107|B6J161|Lipid-A-disaccharide|CP001020.1|tpos:499479-499854 Length: 376
+# antigen_107|B6J161|Lipid-A-disaccharide|CP001020.1|tpos:499479-499854 Number of predicted TMRs: 0
+antigen_107|B6J161|Lipid-A-disaccharide|CP001020.1|tpos:499479-499854	inside	1	376				
+//
+# antigen_90|Q83EF6|Phosphate|CP001020.1|tpos:329025-329245 Length: 221
+# antigen_90|Q83EF6|Phosphate|CP001020.1|tpos:329025-329245 Number of predicted TMRs: 0
+antigen_90|Q83EF6|Phosphate|CP001020.1|tpos:329025-329245	inside	1	221				
+//
+# antigen_117|Q83D46||CP001020.1|tpos:226434-226543 Length: 110
+# antigen_117|Q83D46||CP001020.1|tpos:226434-226543 Number of predicted TMRs: 0
+antigen_117|Q83D46||CP001020.1|tpos:226434-226543	signal	1	18				
+antigen_117|Q83D46||CP001020.1|tpos:226434-226543	outside	19	110				
+//
+# antigen_10|Q83A33||CP001020.1|tpos:337506-337659 Length: 154
+# antigen_10|Q83A33||CP001020.1|tpos:337506-337659 Number of predicted TMRs: 0
+antigen_10|Q83A33||CP001020.1|tpos:337506-337659	inside	1	154				

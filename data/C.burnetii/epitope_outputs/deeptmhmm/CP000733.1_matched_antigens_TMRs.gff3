@@ -1,0 +1,270 @@
+##gff-version 3
+# antigen_138|Q83F76||CP000733.1|tpos:82417-82577 Length: 161
+# antigen_138|Q83F76||CP000733.1|tpos:82417-82577 Number of predicted TMRs: 0
+antigen_138|Q83F76||CP000733.1|tpos:82417-82577	inside	1	161				
+//
+# antigen_5|P59650|Deoxyhypusine|CP000733.1|tpos:224943-225294 Length: 352
+# antigen_5|P59650|Deoxyhypusine|CP000733.1|tpos:224943-225294 Number of predicted TMRs: 0
+antigen_5|P59650|Deoxyhypusine|CP000733.1|tpos:224943-225294	inside	1	352				
+//
+# antigen_73|Q83DH7||CP000733.1|tpos:268756-269089 Length: 334
+# antigen_73|Q83DH7||CP000733.1|tpos:268756-269089 Number of predicted TMRs: 1
+antigen_73|Q83DH7||CP000733.1|tpos:268756-269089	inside	1	1				
+antigen_73|Q83DH7||CP000733.1|tpos:268756-269089	TMhelix	2	11				
+antigen_73|Q83DH7||CP000733.1|tpos:268756-269089	outside	12	334				
+//
+# antigen_63|Q83CY3|phospholipase|CP000733.1|tpos:333252-333427 Length: 176
+# antigen_63|Q83CY3|phospholipase|CP000733.1|tpos:333252-333427 Number of predicted TMRs: 0
+antigen_63|Q83CY3|phospholipase|CP000733.1|tpos:333252-333427	signal	1	20				
+antigen_63|Q83CY3|phospholipase|CP000733.1|tpos:333252-333427	outside	21	176				
+//
+# antigen_56|Q83CG9|Transcription-repair-coupling|CP000733.1|tpos:386131-387287 Length: 1157
+# antigen_56|Q83CG9|Transcription-repair-coupling|CP000733.1|tpos:386131-387287 Number of predicted TMRs: 0
+antigen_56|Q83CG9|Transcription-repair-coupling|CP000733.1|tpos:386131-387287	inside	1	1157				
+//
+# antigen_120|Q83DG2||CP000733.1|tpos:252886-252967 Length: 82
+# antigen_120|Q83DG2||CP000733.1|tpos:252886-252967 Number of predicted TMRs: 2
+antigen_120|Q83DG2||CP000733.1|tpos:252886-252967	inside	1	36				
+antigen_120|Q83DG2||CP000733.1|tpos:252886-252967	TMhelix	37	46				
+antigen_120|Q83DG2||CP000733.1|tpos:252886-252967	outside	47	47				
+antigen_120|Q83DG2||CP000733.1|tpos:252886-252967	TMhelix	48	61				
+antigen_120|Q83DG2||CP000733.1|tpos:252886-252967	inside	62	82				
+//
+# antigen_124|Q83DG0||CP000733.1|tpos:227933-228156 Length: 224
+# antigen_124|Q83DG0||CP000733.1|tpos:227933-228156 Number of predicted TMRs: 0
+antigen_124|Q83DG0||CP000733.1|tpos:227933-228156	inside	1	224				
+//
+# antigen_32|Q83B70||CP000733.1|tpos:610620-610764 Length: 145
+# antigen_32|Q83B70||CP000733.1|tpos:610620-610764 Number of predicted TMRs: 0
+antigen_32|Q83B70||CP000733.1|tpos:610620-610764	inside	1	145				
+//
+# antigen_88|Q83ED8|GTPase|CP000733.1|tpos:324351-324473 Length: 123
+# antigen_88|Q83ED8|GTPase|CP000733.1|tpos:324351-324473 Number of predicted TMRs: 0
+antigen_88|Q83ED8|GTPase|CP000733.1|tpos:324351-324473	inside	1	123				
+//
+# antigen_129|Q83DH3||CP000733.1|tpos:72407-72533 Length: 127
+# antigen_129|Q83DH3||CP000733.1|tpos:72407-72533 Number of predicted TMRs: 0
+antigen_129|Q83DH3||CP000733.1|tpos:72407-72533	inside	1	127				
+//
+# antigen_4|P51752|Peptidyl-prolyl|CP000733.1|tpos:197283-197512 Length: 230
+# antigen_4|P51752|Peptidyl-prolyl|CP000733.1|tpos:197283-197512 Number of predicted TMRs: 0
+antigen_4|P51752|Peptidyl-prolyl|CP000733.1|tpos:197283-197512	signal	1	21				
+antigen_4|P51752|Peptidyl-prolyl|CP000733.1|tpos:197283-197512	outside	22	230				
+//
+# antigen_14|Q83A56|DNA|CP000733.1|tpos:669998-670720 Length: 723
+# antigen_14|Q83A56|DNA|CP000733.1|tpos:669998-670720 Number of predicted TMRs: 0
+antigen_14|Q83A56|DNA|CP000733.1|tpos:669998-670720	inside	1	723				
+//
+# antigen_108|Q93N39||CP000733.1|tpos:600056-600253 Length: 198
+# antigen_108|Q93N39||CP000733.1|tpos:600056-600253 Number of predicted TMRs: 0
+antigen_108|Q93N39||CP000733.1|tpos:600056-600253	inside	1	198				
+//
+# antigen_42|Q83BU7|Dihydrolipoyllysine-residue|CP000733.1|tpos:181450-181854 Length: 405
+# antigen_42|Q83BU7|Dihydrolipoyllysine-residue|CP000733.1|tpos:181450-181854 Number of predicted TMRs: 0
+antigen_42|Q83BU7|Dihydrolipoyllysine-residue|CP000733.1|tpos:181450-181854	inside	1	405				
+//
+# antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592 Length: 248
+# antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592 Number of predicted TMRs: 8
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	signal	1	23				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	periplasm	24	38				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	39	47				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	outside	48	79				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	80	88				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	periplasm	89	93				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	94	101				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	outside	102	134				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	135	142				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	periplasm	143	149				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	150	159				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	outside	160	198				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	199	207				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	periplasm	208	212				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	213	222				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	outside	223	237				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	Beta sheet	238	246				
+antigen_50|Q83C69|Uncharacterized|CP000733.1|tpos:423345-423592	periplasm	247	248				
+//
+# antigen_92|Q83EL2||CP000733.1|tpos:423347-423592 Length: 246
+# antigen_92|Q83EL2||CP000733.1|tpos:423347-423592 Number of predicted TMRs: 8
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	signal	1	21				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	periplasm	22	36				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	37	45				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	outside	46	77				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	78	86				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	periplasm	87	91				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	92	99				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	outside	100	132				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	133	140				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	periplasm	141	147				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	148	157				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	outside	158	196				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	197	205				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	periplasm	206	210				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	211	220				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	outside	221	235				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	Beta sheet	236	244				
+antigen_92|Q83EL2||CP000733.1|tpos:423347-423592	periplasm	245	246				
+//
+# antigen_52|Q83C94||CP000733.1|tpos:151365-151607 Length: 243
+# antigen_52|Q83C94||CP000733.1|tpos:151365-151607 Number of predicted TMRs: 0
+antigen_52|Q83C94||CP000733.1|tpos:151365-151607	inside	1	243				
+//
+# antigen_65|Q83D57||CP000733.1|tpos:295964-296351 Length: 388
+# antigen_65|Q83D57||CP000733.1|tpos:295964-296351 Number of predicted TMRs: 0
+antigen_65|Q83D57||CP000733.1|tpos:295964-296351	inside	1	388				
+//
+# antigen_126|Q83EF7|histidine|CP000733.1|tpos:72131-72369 Length: 239
+# antigen_126|Q83EF7|histidine|CP000733.1|tpos:72131-72369 Number of predicted TMRs: 0
+antigen_126|Q83EF7|histidine|CP000733.1|tpos:72131-72369	inside	1	239				
+//
+# antigen_137|Q83CY8|Putative|CP000733.1|tpos:334802-334952 Length: 151
+# antigen_137|Q83CY8|Putative|CP000733.1|tpos:334802-334952 Number of predicted TMRs: 0
+antigen_137|Q83CY8|Putative|CP000733.1|tpos:334802-334952	outside	1	151				
+//
+# antigen_68|Q83DA5||CP000733.1|tpos:600040-600266 Length: 227
+# antigen_68|Q83DA5||CP000733.1|tpos:600040-600266 Number of predicted TMRs: 0
+antigen_68|Q83DA5||CP000733.1|tpos:600040-600266	inside	1	227				
+//
+# antigen_79|Q83DP9|GTP|CP000733.1|tpos:203187-203573 Length: 387
+# antigen_79|Q83DP9|GTP|CP000733.1|tpos:203187-203573 Number of predicted TMRs: 0
+antigen_79|Q83DP9|GTP|CP000733.1|tpos:203187-203573	inside	1	387				
+//
+# antigen_109|A0A7G6J4B0||CP000733.1|tpos:642055-642161 Length: 107
+# antigen_109|A0A7G6J4B0||CP000733.1|tpos:642055-642161 Number of predicted TMRs: 0
+antigen_109|A0A7G6J4B0||CP000733.1|tpos:642055-642161	outside	1	107				
+//
+# antigen_31|Q83B41||CP000733.1|tpos:97591-97734 Length: 144
+# antigen_31|Q83B41||CP000733.1|tpos:97591-97734 Number of predicted TMRs: 0
+antigen_31|Q83B41||CP000733.1|tpos:97591-97734	inside	1	144				
+//
+# antigen_46|Q83BZ5|Inosine-5'-monophosphate|CP000733.1|tpos:472043-472142 Length: 100
+# antigen_46|Q83BZ5|Inosine-5'-monophosphate|CP000733.1|tpos:472043-472142 Number of predicted TMRs: 0
+antigen_46|Q83BZ5|Inosine-5'-monophosphate|CP000733.1|tpos:472043-472142	inside	1	100				
+//
+# antigen_110|A9KFJ2||CP000733.1|tpos:282871-283064 Length: 194
+# antigen_110|A9KFJ2||CP000733.1|tpos:282871-283064 Number of predicted TMRs: 0
+antigen_110|A9KFJ2||CP000733.1|tpos:282871-283064	inside	1	194				
+//
+# antigen_43|Q83BV5|Ditrans,polycis-undecaprenyl-diphosphate|CP000733.1|tpos:187071-187307 Length: 237
+# antigen_43|Q83BV5|Ditrans,polycis-undecaprenyl-diphosphate|CP000733.1|tpos:187071-187307 Number of predicted TMRs: 0
+antigen_43|Q83BV5|Ditrans,polycis-undecaprenyl-diphosphate|CP000733.1|tpos:187071-187307	inside	1	237				
+//
+# antigen_90|Q83EF6|Phosphate|CP000733.1|tpos:540832-541079 Length: 248
+# antigen_90|Q83EF6|Phosphate|CP000733.1|tpos:540832-541079 Number of predicted TMRs: 0
+antigen_90|Q83EF6|Phosphate|CP000733.1|tpos:540832-541079	inside	1	248				
+//
+# antigen_7|Q81ZP4||CP000733.1|tpos:162064-162183 Length: 120
+# antigen_7|Q81ZP4||CP000733.1|tpos:162064-162183 Number of predicted TMRs: 0
+antigen_7|Q81ZP4||CP000733.1|tpos:162064-162183	inside	1	120				
+//
+# antigen_21|Q83AI2|Cell|CP000733.1|tpos:600039-600254 Length: 216
+# antigen_21|Q83AI2|Cell|CP000733.1|tpos:600039-600254 Number of predicted TMRs: 0
+antigen_21|Q83AI2|Cell|CP000733.1|tpos:600039-600254	inside	1	216				
+//
+# antigen_45|Q83BY8||CP000733.1|tpos:526693-526982 Length: 290
+# antigen_45|Q83BY8||CP000733.1|tpos:526693-526982 Number of predicted TMRs: 0
+antigen_45|Q83BY8||CP000733.1|tpos:526693-526982	inside	1	290				
+//
+# antigen_67|Q83DA1||CP000733.1|tpos:280723-281216 Length: 494
+# antigen_67|Q83DA1||CP000733.1|tpos:280723-281216 Number of predicted TMRs: 11
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	inside	1	6				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	7	16				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	outside	17	86				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	87	104				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	inside	105	109				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	110	123				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	outside	124	141				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	142	152				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	inside	153	160				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	161	174				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	outside	175	180				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	181	194				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	inside	195	198				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	199	212				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	outside	213	280				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	281	290				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	inside	291	300				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	301	316				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	outside	317	337				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	338	347				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	inside	348	352				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	TMhelix	353	368				
+antigen_67|Q83DA1||CP000733.1|tpos:280723-281216	outside	369	494				
+//
+# antigen_87|Q83E44||CP000733.1|tpos:650151-650272 Length: 122
+# antigen_87|Q83E44||CP000733.1|tpos:650151-650272 Number of predicted TMRs: 0
+antigen_87|Q83E44||CP000733.1|tpos:650151-650272	inside	1	122				
+//
+# antigen_94|Q83ES6|Elongation|CP000733.1|tpos:170800-170988 Length: 189
+# antigen_94|Q83ES6|Elongation|CP000733.1|tpos:170800-170988 Number of predicted TMRs: 0
+antigen_94|Q83ES6|Elongation|CP000733.1|tpos:170800-170988	inside	1	189				
+//
+# antigen_139|Q83E81||CP000733.1|tpos:514163-514346 Length: 184
+# antigen_139|Q83E81||CP000733.1|tpos:514163-514346 Number of predicted TMRs: 0
+antigen_139|Q83E81||CP000733.1|tpos:514163-514346	inside	1	184				
+//
+# antigen_44|Q83BY5|ATP-dependent|CP000733.1|tpos:656913-656991 Length: 79
+# antigen_44|Q83BY5|ATP-dependent|CP000733.1|tpos:656913-656991 Number of predicted TMRs: 0
+antigen_44|Q83BY5|ATP-dependent|CP000733.1|tpos:656913-656991	inside	1	79				
+//
+# antigen_66|Q83D89||CP000733.1|tpos:286140-286428 Length: 289
+# antigen_66|Q83D89||CP000733.1|tpos:286140-286428 Number of predicted TMRs: 7
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	inside	1	20				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	TMhelix	21	39				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	outside	40	56				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	TMhelix	57	76				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	inside	77	130				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	TMhelix	131	151				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	outside	152	161				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	TMhelix	162	182				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	inside	183	215				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	TMhelix	216	237				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	outside	238	250				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	TMhelix	251	264				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	inside	265	270				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	TMhelix	271	283				
+antigen_66|Q83D89||CP000733.1|tpos:286140-286428	outside	284	289				
+//
+# antigen_83|Q83DY1|Leucine--tRNA|CP000733.1|tpos:474099-474918 Length: 820
+# antigen_83|Q83DY1|Leucine--tRNA|CP000733.1|tpos:474099-474918 Number of predicted TMRs: 0
+antigen_83|Q83DY1|Leucine--tRNA|CP000733.1|tpos:474099-474918	inside	1	820				
+//
+# antigen_53|Q83C98|DNA|CP000733.1|tpos:670183-670577 Length: 395
+# antigen_53|Q83C98|DNA|CP000733.1|tpos:670183-670577 Number of predicted TMRs: 0
+antigen_53|Q83C98|DNA|CP000733.1|tpos:670183-670577	inside	1	395				
+//
+# antigen_85|Q83E03||CP000733.1|tpos:482760-483157 Length: 398
+# antigen_85|Q83E03||CP000733.1|tpos:482760-483157 Number of predicted TMRs: 0
+antigen_85|Q83E03||CP000733.1|tpos:482760-483157	inside	1	398				
+//
+# antigen_111|A9KBP9|Succinate|CP000733.1|tpos:625300-625812 Length: 513
+# antigen_111|A9KBP9|Succinate|CP000733.1|tpos:625300-625812 Number of predicted TMRs: 0
+antigen_111|A9KBP9|Succinate|CP000733.1|tpos:625300-625812	inside	1	513				
+//
+# antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869 Length: 409
+# antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869 Number of predicted TMRs: 12
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	inside	1	23				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	24	35				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	outside	36	61				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	62	73				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	inside	74	89				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	90	107				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	outside	108	120				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	121	130				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	inside	131	150				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	151	160				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	outside	161	178				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	179	196				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	inside	197	227				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	228	243				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	outside	244	264				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	265	280				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	inside	281	293				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	294	314				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	outside	315	321				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	322	337				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	inside	338	357				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	358	374				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	outside	375	386				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	TMhelix	387	401				
+antigen_19|Q83AD7|Bcr/CflA|CP000733.1|tpos:645461-645869	inside	402	409				
