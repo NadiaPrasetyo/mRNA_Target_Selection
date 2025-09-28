@@ -123,8 +123,10 @@ def main():
     all_steps = ["iedb", "compile", "random", "genomes", "uniprot", "align", "analysis", "epitopes", "pdb", "pfam", "evaluate", "features"]
     steps_to_run = [step for step in (args.steps if args.steps else all_steps) if not args.skip or step not in args.skip]
     
-    success_count = 0
-    total_steps = len(steps_to_run)
+    success_count = 0           # successful sub-commands
+    attempted_count = 0         # attempted sub-commands
+    total_steps = len(steps_to_run)  # high-level pipeline steps
+
 
     prefix = "human" if args.human_negative else "random"
 
@@ -135,6 +137,7 @@ def main():
                 logging.info("⏭️  Skipping IEDB fetch - data already exists")
             else:
                 cmd = ["python", "bin/IEDB_fetch.py", args.pathogen_dir, f"{args.pathogen_name}"]
+                attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
                 elif run_command(cmd, "IEDB data fetch"):
@@ -143,6 +146,7 @@ def main():
         # Step 2: Compile Antigens
         if "compile" in steps_to_run:
             cmd = ["python", "bin/compile_antigens.py", args.pathogen_dir, f"{args.pathogen_name}"]
+            attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Compile antigens"):
@@ -151,6 +155,7 @@ def main():
         # Step 3: Fetch UniProt Sequences
         if "uniprot" in steps_to_run:
             cmd = ["python", "bin/fetch_sequences_Uniprot.py", args.pathogen_dir, f"{args.pathogen_name}"]
+            attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Fetch UniProt sequences"):
@@ -160,8 +165,10 @@ def main():
         if "random" in steps_to_run:
             if args.human_negative:
                 cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, f"{args.pathogen_name}", "--human"]
+                attempted_count += 1
             else:
                 cmd = ["python", "bin/generate_random_sequences.py", args.pathogen_dir, f"{args.pathogen_name}"]
+                attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, f"Generate {prefix} sequences"):
@@ -174,6 +181,7 @@ def main():
             else:
                 # chmod the script first
                 cmd = ["chmod", "+x", "bin/fetch_NCBI_strain_genome.sh"]
+                attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
                 elif run_command(cmd, "Make bin/fetch_NCBI_strain_genome.sh executable"):
@@ -181,6 +189,7 @@ def main():
 
                 cmd = ["bash", "bin/fetch_NCBI_strain_genome.sh", "--random", f"{args.pathogen_name}", 
                        "--random-num", str(args.random_genomes), "--threads", str(args.threads), args.pathogen_dir]
+                attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
                 elif run_command(cmd, "Fetch strain genomes"):
@@ -191,6 +200,7 @@ def main():
             # Protein alignment (antigens)
             cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{args.pathogen_name}", 
                    "--threads", str(args.threads), "--output-dir", "mmseqs_protein"]
+            attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Protein alignment with MMseqs2"):
@@ -199,6 +209,7 @@ def main():
             # Nucleotide alignment (antigens)
             cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{args.pathogen_name}", 
                    "--threads", str(args.threads), "--output-dir", "mmseqs_nucleotide", "--mode", "nucleotide"]
+            attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, "Nucleotide alignment with MMseqs2"):
@@ -207,6 +218,7 @@ def main():
             # Random protein alignment
             cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{prefix}", 
                    "--threads", str(args.threads), "--output-dir", f"{prefix}_mmseqs_protein"]
+            attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, f"{prefix} protein alignment with MMseqs2"):
@@ -215,6 +227,7 @@ def main():
             # Random nucleotide alignment
             cmd = ["python", "bin/align_antigens_mmseqs.py", args.pathogen_dir, f"{prefix}", 
                    "--threads", str(args.threads), "--output-dir", f"{prefix}_mmseqs_nucleotide", "--mode", "nucleotide"]
+            attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
             elif run_command(cmd, f"{prefix} nucleotide alignment with MMseqs2"):
@@ -225,6 +238,7 @@ def main():
             # PDB structures for antigens
             cmd = ["python", "bin/fetch_PDB_structure.py", args.pathogen_dir, "mmseqs_protein",
                    "--threads", str(args.threads), "--output-dir", "pdb_sequences"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -235,6 +249,7 @@ def main():
             # PDB structures for random sequences
             cmd = ["python", "bin/fetch_PDB_structure.py", args.pathogen_dir, f"{prefix}_mmseqs_protein",
                    "--threads", str(args.threads), "--output-dir", f"{prefix}_pdb_sequences"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -247,6 +262,7 @@ def main():
             cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, "pdb_sequences",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--tools"] + nondefault_tools + ["--output-dir", "epitope_outputs"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -258,6 +274,7 @@ def main():
             cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, f"{prefix}_pdb_sequences",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--tools"] + nondefault_tools + ["--output-dir", f"{prefix}_analysis"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -275,6 +292,7 @@ def main():
                 # Pfam analysis for antigens
                 cmd = ["python", "bin/fetch_pfam_hmmer.py", args.pathogen_dir,
                        "--pathogen_name", pathogen_name_clean, "--pfam_hmm", args.pfam_hmm]
+                attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
                 elif run_command(cmd, "Fetch Pfam HMMs"):
@@ -283,6 +301,7 @@ def main():
                 # Pfam analysis for random sequences
                 cmd = ["python", "bin/fetch_pfam_hmmer.py", args.pathogen_dir,
                        "--pathogen_name", f"{prefix}", "--pfam_hmm", args.pfam_hmm, "--output-dir", f"{prefix}_pfam"]
+                attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
                 elif run_command(cmd, f"Fetch Pfam HMMs for {prefix} sequences"):
@@ -296,6 +315,7 @@ def main():
             cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, "mmseqs_protein",
                    "--tool-root", args.tool_root, "--threads", str(args.threads), 
                    "--output-dir", "epitope_outputs"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -307,6 +327,7 @@ def main():
             cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, f"{prefix}_mmseqs_protein",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--output-dir", f"{prefix}_analysis"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -318,6 +339,7 @@ def main():
             cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, "mmseqs_nucleotide",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--tools", "DNDS", "--output-dir", "epitope_outputs"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -329,6 +351,7 @@ def main():
             cmd = ["python", "bin/antigen_analysis.py", args.pathogen_dir, f"{prefix}_mmseqs_nucleotide",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--tools", "DNDS", "--output-dir", f"{prefix}_analysis"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -343,6 +366,7 @@ def main():
             cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, "mmseqs_protein",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--output-dir", "epitope_outputs"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -354,6 +378,7 @@ def main():
             cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, f"{prefix}_mmseqs_protein",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--output-dir", f"{prefix}_analysis"]
+            attempted_count += 1
             if args.verbose:
                 cmd.append("--verbose")
             if args.dry_run:
@@ -366,9 +391,11 @@ def main():
             if args.human_negative:
                 cmd = ["python", "bin/calculate_features_kstest.py", args.pathogen_dir,
                        "--threads", str(args.threads), "--human"]
+                attempted_count += 1
             else:
                 cmd = ["python", "bin/calculate_features_kstest.py", args.pathogen_dir,
                    "--threads", str(args.threads)]
+                attempted_count += 1
             if args.verbose:
                 cmd.extend(["--verbose", "--write-raw"])
             if args.dry_run:
@@ -388,13 +415,17 @@ def main():
     if args.dry_run:
         logging.info("Dry run completed - no commands were executed")
     else:
-        logging.info(f"Pipeline completed: {success_count}/{total_steps} steps successful")
-        if success_count == total_steps:
+        logging.info(
+            f"Pipeline completed: {success_count}/{attempted_count} sub-commands succeeded "
+            f"across {total_steps} pipeline steps"
+        )
+        if success_count == attempted_count:
             logging.info("🎉 All steps completed successfully!")
             logging.info(f"Results available in: {base_dir.absolute()}")
         else:
-            logging.warning(f"⚠️  Some steps failed. Check logs for details.")
+            logging.warning("⚠️  Some steps failed. Check logs for details.")
             sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
