@@ -1,0 +1,15 @@
+##gff-version 3
+antigen_11|Q9S369||NZ_AP023067.1|tpos:554100-554195	TargetP-2.0	transit_peptide	1	19	0.656004	.	.	Note=Mitochondrion
+antigen_16|Q9S6B9||NZ_AP023067.1|tpos:29840-30052	TargetP-2.0	signal_peptide	1	18	0.997741	.	.	.
+antigen_34|Q5F8S0||NZ_AP023067.1|tpos:294210-294331	TargetP-2.0	signal_peptide	1	19	0.996378	.	.	.
+antigen_45|Q50964||NZ_AP023067.1|tpos:443339-443669	TargetP-2.0	signal_peptide	1	22	0.997137	.	.	.
+antigen_23|E0WDF8|Peptidyl-prolyl|NZ_AP023067.1|tpos:124101-124372	TargetP-2.0	signal_peptide	1	21	0.966751	.	.	.
+antigen_31|Q9X6P2|Adhesin|NZ_AP023067.1|tpos:64445-64735	TargetP-2.0	signal_peptide	1	20	0.942331	.	.	.
+antigen_39|Q5F7C7|Type|NZ_AP023067.1|tpos:115474-115638	TargetP-2.0	signal_peptide	1	22	0.973729	.	.	.
+antigen_44|Q50965||NZ_AP023067.1|tpos:370819-370882	TargetP-2.0	signal_peptide	1	25	0.997995	.	.	.
+antigen_26|P95359|Outer|NZ_AP023067.1|tpos:594888-595679	TargetP-2.0	signal_peptide	1	21	0.995588	.	.	.
+antigen_62|Q01996|Transferrin-binding|NZ_AP023067.1|tpos:29834-30748	TargetP-2.0	signal_peptide	1	24	0.987689	.	.	.
+antigen_1|Q5F6Q4|Transferrin-binding|NZ_AP023067.1|tpos:29834-30748	TargetP-2.0	signal_peptide	1	24	0.987689	.	.	.
+antigen_14|Q50952||NZ_AP023067.1|tpos:29834-30748	TargetP-2.0	signal_peptide	1	24	0.987689	.	.	.
+antigen_66|Q06758|Probable|NZ_AP023067.1|tpos:663087-663350	TargetP-2.0	signal_peptide	1	21	0.947274	.	.	.
+antigen_10|Q5XKW2||NZ_AP023067.1|tpos:211508-211582	TargetP-2.0	signal_peptide	1	19	0.999088	.	.	.

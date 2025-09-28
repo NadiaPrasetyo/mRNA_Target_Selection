@@ -1,0 +1,24 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_0|Q5F5U2|Large|NZ_CP078117.1|tpos:140601-140777,0.34,0.0,0.0,0.34,Allergen
+antigen_3|Q5F8Y0|DNA|NZ_CP078117.1|tpos:524261-525176,0.041,0.0,-0.5,-0.459,Non-Allergen
+antigen_11|Q9S369||NZ_CP078117.1|tpos:37160-37289,0.212,0.0,0.0,0.212,Non-Allergen
+antigen_37|Q5F7X2||NZ_CP078117.1|tpos:400047-400160,0.514,0.5,0.0,1.014,Allergen
+antigen_44|Q50965||NZ_CP078117.1|tpos:289473-289607,0.082,0.0,0.0,0.082,Non-Allergen
+antigen_5|Q5FAG7||NZ_CP078117.1|tpos:108898-109885,0.326,0.0,0.0,0.326,Allergen
+antigen_8|O33372||NZ_CP078117.1|tpos:108857-109885,0.311,0.0,0.0,0.311,Allergen
+antigen_63|B0LVE7||NZ_CP078117.1|tpos:60918-61039,0.351,0.0,0.0,0.351,Allergen
+antigen_65|A0A378W2W5||NZ_CP078117.1|tpos:61912-62034,0.26,0.0,0.0,0.26,Non-Allergen
+antigen_30|A0AAQ1IME3|LPS-assembly|NZ_CP078117.1|tpos:318702-318860,0.017,0.0,0.0,0.017,Non-Allergen
+antigen_75|A0A379B0S6|50S|NZ_CP078117.1|tpos:140290-140373,0.21,0.0,0.0,0.21,Non-Allergen
+antigen_20|C6ZG64||NZ_CP078117.1|tpos:61841-62034,0.328,0.0,0.0,0.328,Allergen
+antigen_57|Q5F676|DD-carboxypeptidase/endopeptidase|NZ_CP078117.1|tpos:396192-396285,0.283,0.0,-0.5,-0.217,Non-Allergen
+antigen_43|Q50966|Fe(3+)|NZ_CP078117.1|tpos:190733-190929,0.028,0.0,-0.5,-0.472,Non-Allergen
+antigen_58|Q4PZE8||NZ_CP078117.1|tpos:560758-560787,0.306,0.0,0.0,0.306,Allergen
+antigen_80|A0AB74ETB9|Ribosomal|NZ_CP078117.1|tpos:170159-170206,0.167,0.0,-0.5,-0.333,Non-Allergen
+antigen_35|Q5F8J5||NZ_CP078117.1|tpos:474721-474864,0.285,0.0,0.0,0.285,Non-Allergen
+antigen_40|Q5F665||NZ_CP078117.1|tpos:40468-40618,0.326,0.0,0.0,0.326,Allergen
+antigen_71|A0A379B0E4||NZ_CP078117.1|tpos:132425-132476,0.334,0.0,0.0,0.334,Allergen
+antigen_2|Q5F875|Dihydrolipoyllysine-residue|NZ_CP078117.1|tpos:548798-549193,0.326,0.5,-0.5,0.326,Allergen
+antigen_76|A0A2U9I6P4|50S|NZ_CP078117.1|tpos:140613-140750,0.247,0.0,0.0,0.247,Non-Allergen
+antigen_84|Q5MK06|Macrolide|NZ_CP078117.1|tpos:190723-190961,0.033,0.0,-0.5,-0.467,Non-Allergen
+antigen_69|A0A379B108|Lipid-A-disaccharide|NZ_CP078117.1|tpos:155943-156303,0.016,0.0,-0.5,-0.484,Non-Allergen

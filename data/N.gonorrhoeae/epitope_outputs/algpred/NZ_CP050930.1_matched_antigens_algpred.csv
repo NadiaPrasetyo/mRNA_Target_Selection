@@ -1,0 +1,24 @@
+Subject,ML Score,MERCI Score,BLAST Score,Hybrid Score,Prediction
+antigen_11|Q9S369||NZ_CP050930.1|tpos:561801-561857,0.53,0,0.0,0.53,Allergen
+antigen_58|Q4PZE8||NZ_CP050930.1|tpos:360431-360621,0.076,0,0.0,0.076,Non-Allergen
+antigen_59|Q4PR64||NZ_CP050930.1|tpos:222439-222530,0.168,0,0.0,0.168,Non-Allergen
+antigen_10|Q5XKW2||NZ_CP050930.1|tpos:222443-222512,0.162,0,0.0,0.162,Non-Allergen
+antigen_15|Q9Z4N2|Transferrin-binding|NZ_CP050930.1|tpos:83097-83707,0.46,0,-0.5,-0.04,Non-Allergen
+antigen_50|Q9RQ29|Fatty|NZ_CP050930.1|tpos:220131-220526,0.071,0,-0.5,-0.429,Non-Allergen
+antigen_80|A0AB74ETB9|Ribosomal|NZ_CP050930.1|tpos:685653-685700,0.167,0,-0.5,-0.333,Non-Allergen
+antigen_54|P72074|N-acetyllactosaminide|NZ_CP050930.1|tpos:159994-160364,0.171,0,-0.5,-0.329,Non-Allergen
+antigen_60|A0A378VZD7|DNA|NZ_CP050930.1|tpos:102790-103077,0.131,0,0.0,0.131,Non-Allergen
+antigen_7|Q6W764||NZ_CP050930.1|tpos:220605-221129,0.032,0,-0.5,-0.468,Non-Allergen
+antigen_19|Q3B9W3||NZ_CP050930.1|tpos:159994-160371,0.166,0,-0.5,-0.334,Non-Allergen
+antigen_84|Q5MK06|Macrolide|NZ_CP050930.1|tpos:671478-671700,0.036,0,-0.5,-0.464,Non-Allergen
+antigen_12|E0WDG1||NZ_CP050930.1|tpos:517888-518112,0.267,0,-0.5,-0.233,Non-Allergen
+antigen_20|C6ZG64||NZ_CP050930.1|tpos:517275-517452,0.37,0,0.0,0.37,Allergen
+antigen_30|A0AAQ1IME3|LPS-assembly|NZ_CP050930.1|tpos:92365-92523,0.019,0,0.0,0.019,Non-Allergen
+antigen_65|A0A378W2W5||NZ_CP050930.1|tpos:419953-420072,0.25,0,0.0,0.25,Non-Allergen
+antigen_44|Q50965||NZ_CP050930.1|tpos:63327-63461,0.082,0,0.0,0.082,Non-Allergen
+antigen_13|B0B796|Transferrin-binding|NZ_CP050930.1|tpos:83098-83701,0.456,0,-0.5,-0.044,Non-Allergen
+antigen_35|Q5F8J5||NZ_CP050930.1|tpos:274481-274624,0.285,0,0.0,0.285,Non-Allergen
+antigen_3|Q5F8Y0|DNA|NZ_CP050930.1|tpos:324193-325108,0.037,0,-0.5,-0.463,Non-Allergen
+antigen_43|Q50966|Fe(3+)|NZ_CP050930.1|tpos:671479-671715,0.016,0,-0.5,-0.484,Non-Allergen
+antigen_63|B0LVE7||NZ_CP050930.1|tpos:419505-419635,0.354,0,0.0,0.354,Allergen
+antigen_55|P14930|Peptide|NZ_CP050930.1|tpos:19371-19486,0.213,0,0.5,0.713,Allergen

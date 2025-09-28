@@ -1,0 +1,6 @@
+##gff-version 3
+antigen_40|Q5F665||NZ_CP107264.1|tpos:557326-557476	TargetP-2.0	signal_peptide	1	24	0.987456	.	.	.
+antigen_28|A0A378W121|Outer-membrane|NZ_CP107264.1|tpos:142020-142175	TargetP-2.0	signal_peptide	1	17	0.997045	.	.	.
+antigen_11|Q9S369||NZ_CP107264.1|tpos:554110-554205	TargetP-2.0	transit_peptide	1	23	0.720425	.	.	Note=Mitochondrion
+antigen_66|Q06758|Probable|NZ_CP107264.1|tpos:120134-120404	TargetP-2.0	signal_peptide	1	24	0.996269	.	.	.
+antigen_31|Q9X6P2|Adhesin|NZ_CP107264.1|tpos:518030-518320	TargetP-2.0	signal_peptide	1	20	0.941713	.	.	.
