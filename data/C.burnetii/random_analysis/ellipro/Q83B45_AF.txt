@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,Q83B45_AF,A,70,89,HARNDLGMIKKNEVFYQIVK,20,0.792,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,Q83B45_AF,A:H70, A:A71, A:N73, A:D74, A:L75, A:G76, A:M77, A:I78, A:K79, A:K80, A:N81, A:E82, A:V83, A:F84, A:Y85, A:Q86, A:I87, A:V88, A:K89,19,0.81,Discontinous
+2,Q83B45_AF,A:M1, A:P3, A:I4, A:I5, A:A6, A:I7, A:L8, A:I9, A:A10, A:L11, A:F12, A:I13, A:L14, A:L15, A:Q18, A:A22, A:A23, A:G24,18,0.68,Discontinous

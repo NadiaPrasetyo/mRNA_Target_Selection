@@ -1,0 +1,10 @@
+##gff-version 3
+antigen_4|P51752|Peptidyl-prolyl|NZ_CP040059.1|tpos:181662-181891	TargetP-2.0	signal_peptide	1	21	0.998973	.	.	.
+antigen_103|Q83F92||NZ_CP040059.1|tpos:16354-16969	TargetP-2.0	signal_peptide	1	23	0.999130	.	.	.
+antigen_81|Q83DT1||NZ_CP040059.1|tpos:176316-176480	TargetP-2.0	signal_peptide	1	21	0.917063	.	.	.
+antigen_123|Q83B22|Endonuclease|NZ_CP040059.1|tpos:272749-272876	TargetP-2.0	transit_peptide	1	23	0.645576	.	.	Note=Mitochondrion
+antigen_111|A9KBP9|Succinate|NZ_CP040059.1|tpos:327376-327434	TargetP-2.0	transit_peptide	1	20	0.482446	.	.	Note=Mitochondrion
+antigen_147|Q83EI5||NZ_CP040059.1|tpos:95191-95411	TargetP-2.0	signal_peptide	1	24	0.554436	.	.	.
+antigen_11|Q83A39||NZ_CP040059.1|tpos:615688-615852	TargetP-2.0	signal_peptide	1	23	0.999904	.	.	.
+antigen_22|Q83AL4||NZ_CP040059.1|tpos:559158-559374	TargetP-2.0	signal_peptide	1	20	0.997501	.	.	.
+antigen_50|Q83C69|Uncharacterized|NZ_CP040059.1|tpos:373771-374018	TargetP-2.0	signal_peptide	1	23	0.947763	.	.	.

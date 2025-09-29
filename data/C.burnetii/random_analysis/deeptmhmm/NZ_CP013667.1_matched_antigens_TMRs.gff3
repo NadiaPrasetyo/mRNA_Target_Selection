@@ -1,0 +1,292 @@
+##gff-version 3
+# antigen_184|Q83B45|Cell|NZ_CP013667.1|tpos:210934-211022 Length: 89
+# antigen_184|Q83B45|Cell|NZ_CP013667.1|tpos:210934-211022 Number of predicted TMRs: 1
+antigen_184|Q83B45|Cell|NZ_CP013667.1|tpos:210934-211022	inside	1	3				
+antigen_184|Q83B45|Cell|NZ_CP013667.1|tpos:210934-211022	TMhelix	4	21				
+antigen_184|Q83B45|Cell|NZ_CP013667.1|tpos:210934-211022	outside	22	89				
+//
+# antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359 Length: 485
+# antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359 Number of predicted TMRs: 8
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	inside	1	3				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	4	16				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	outside	17	23				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	24	37				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	inside	38	48				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	49	58				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	outside	59	75				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	76	103				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	inside	104	110				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	111	131				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	outside	132	158				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	159	177				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	inside	178	185				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	186	202				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	outside	203	468				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	TMhelix	469	484				
+antigen_191|Q820B4|Apolipoprotein|NZ_CP013667.1|tpos:580875-581359	inside	485	485				
+//
+# antigen_13|A9KB96|Iron-sulfur|NZ_CP013667.1|tpos:144428-144561 Length: 134
+# antigen_13|A9KB96|Iron-sulfur|NZ_CP013667.1|tpos:144428-144561 Number of predicted TMRs: 0
+antigen_13|A9KB96|Iron-sulfur|NZ_CP013667.1|tpos:144428-144561	inside	1	134				
+//
+# antigen_110|B6J5S7|UPF0758|NZ_CP013667.1|tpos:656527-656743 Length: 217
+# antigen_110|B6J5S7|UPF0758|NZ_CP013667.1|tpos:656527-656743 Number of predicted TMRs: 0
+antigen_110|B6J5S7|UPF0758|NZ_CP013667.1|tpos:656527-656743	inside	1	217				
+//
+# antigen_116|B6J3T6|Porphobilinogen|NZ_CP013667.1|tpos:103105-103411 Length: 307
+# antigen_116|B6J3T6|Porphobilinogen|NZ_CP013667.1|tpos:103105-103411 Number of predicted TMRs: 0
+antigen_116|B6J3T6|Porphobilinogen|NZ_CP013667.1|tpos:103105-103411	inside	1	307				
+//
+# antigen_174|A9KGS6|UPF0758|NZ_CP013667.1|tpos:656527-656743 Length: 217
+# antigen_174|A9KGS6|UPF0758|NZ_CP013667.1|tpos:656527-656743 Number of predicted TMRs: 0
+antigen_174|A9KGS6|UPF0758|NZ_CP013667.1|tpos:656527-656743	inside	1	217				
+//
+# antigen_179|A9KBS9|tRNA|NZ_CP013667.1|tpos:360774-360906 Length: 133
+# antigen_179|A9KBS9|tRNA|NZ_CP013667.1|tpos:360774-360906 Number of predicted TMRs: 0
+antigen_179|A9KBS9|tRNA|NZ_CP013667.1|tpos:360774-360906	inside	1	133				
+//
+# antigen_72|B6J1S2|Isoleucine--tRNA|NZ_CP013667.1|tpos:307497-308432 Length: 936
+# antigen_72|B6J1S2|Isoleucine--tRNA|NZ_CP013667.1|tpos:307497-308432 Number of predicted TMRs: 0
+antigen_72|B6J1S2|Isoleucine--tRNA|NZ_CP013667.1|tpos:307497-308432	inside	1	936				
+//
+# antigen_33|Q83DD0|Valine--tRNA|NZ_CP013667.1|tpos:307542-308356 Length: 815
+# antigen_33|Q83DD0|Valine--tRNA|NZ_CP013667.1|tpos:307542-308356 Number of predicted TMRs: 0
+antigen_33|Q83DD0|Valine--tRNA|NZ_CP013667.1|tpos:307542-308356	inside	1	815				
+//
+# antigen_165|B6J0K9|Glucose-6-phosphate|NZ_CP013667.1|tpos:457928-458474 Length: 547
+# antigen_165|B6J0K9|Glucose-6-phosphate|NZ_CP013667.1|tpos:457928-458474 Number of predicted TMRs: 0
+antigen_165|B6J0K9|Glucose-6-phosphate|NZ_CP013667.1|tpos:457928-458474	inside	1	547				
+//
+# antigen_9|B6J4L3|Glycerol-3-phosphate|NZ_CP013667.1|tpos:258728-259059 Length: 332
+# antigen_9|B6J4L3|Glycerol-3-phosphate|NZ_CP013667.1|tpos:258728-259059 Number of predicted TMRs: 0
+antigen_9|B6J4L3|Glycerol-3-phosphate|NZ_CP013667.1|tpos:258728-259059	inside	1	332				
+//
+# antigen_55|A9KBK7|NADH-quinone|NZ_CP013667.1|tpos:284778-285194 Length: 417
+# antigen_55|A9KBK7|NADH-quinone|NZ_CP013667.1|tpos:284778-285194 Number of predicted TMRs: 0
+antigen_55|A9KBK7|NADH-quinone|NZ_CP013667.1|tpos:284778-285194	inside	1	417				
+//
+# antigen_83|B6J2S1|L-threonine|NZ_CP013667.1|tpos:508717-508793 Length: 77
+# antigen_83|B6J2S1|L-threonine|NZ_CP013667.1|tpos:508717-508793 Number of predicted TMRs: 0
+antigen_83|B6J2S1|L-threonine|NZ_CP013667.1|tpos:508717-508793	inside	1	77				
+//
+# antigen_58|Q83A83|Cystathionine|NZ_CP013667.1|tpos:88856-89242 Length: 387
+# antigen_58|Q83A83|Cystathionine|NZ_CP013667.1|tpos:88856-89242 Number of predicted TMRs: 0
+antigen_58|Q83A83|Cystathionine|NZ_CP013667.1|tpos:88856-89242	inside	1	387				
+//
+# antigen_91|A9KH31|ATP-dependent|NZ_CP013667.1|tpos:326143-326201 Length: 59
+# antigen_91|A9KH31|ATP-dependent|NZ_CP013667.1|tpos:326143-326201 Number of predicted TMRs: 0
+antigen_91|A9KH31|ATP-dependent|NZ_CP013667.1|tpos:326143-326201	inside	1	59				
+//
+# antigen_49|B6J4E1|Probable|NZ_CP013667.1|tpos:264175-264334 Length: 160
+# antigen_49|B6J4E1|Probable|NZ_CP013667.1|tpos:264175-264334 Number of predicted TMRs: 0
+antigen_49|B6J4E1|Probable|NZ_CP013667.1|tpos:264175-264334	inside	1	160				
+//
+# antigen_56|Q83F55|Chaperone|NZ_CP013667.1|tpos:379838-380387 Length: 550
+# antigen_56|Q83F55|Chaperone|NZ_CP013667.1|tpos:379838-380387 Number of predicted TMRs: 0
+antigen_56|Q83F55|Chaperone|NZ_CP013667.1|tpos:379838-380387	inside	1	550				
+//
+# antigen_114|B6J9K3|Large|NZ_CP013667.1|tpos:303762-303851 Length: 90
+# antigen_114|B6J9K3|Large|NZ_CP013667.1|tpos:303762-303851 Number of predicted TMRs: 0
+antigen_114|B6J9K3|Large|NZ_CP013667.1|tpos:303762-303851	inside	1	90				
+//
+# antigen_125|A9NAF8|Cell|NZ_CP013667.1|tpos:38887-39144 Length: 258
+# antigen_125|A9NAF8|Cell|NZ_CP013667.1|tpos:38887-39144 Number of predicted TMRs: 0
+antigen_125|A9NAF8|Cell|NZ_CP013667.1|tpos:38887-39144	inside	1	258				
+//
+# antigen_123|B6J7Q3|GTPase|NZ_CP013667.1|tpos:360617-361059 Length: 443
+# antigen_123|B6J7Q3|GTPase|NZ_CP013667.1|tpos:360617-361059 Number of predicted TMRs: 0
+antigen_123|B6J7Q3|GTPase|NZ_CP013667.1|tpos:360617-361059	inside	1	443				
+//
+# antigen_163|Q83AY0|Stringent|NZ_CP013667.1|tpos:447309-447522 Length: 214
+# antigen_163|Q83AY0|Stringent|NZ_CP013667.1|tpos:447309-447522 Number of predicted TMRs: 0
+antigen_163|Q83AY0|Stringent|NZ_CP013667.1|tpos:447309-447522	inside	1	214				
+//
+# antigen_25|B6J738|Uracil-DNA|NZ_CP013667.1|tpos:499447-499675 Length: 229
+# antigen_25|B6J738|Uracil-DNA|NZ_CP013667.1|tpos:499447-499675 Number of predicted TMRs: 0
+antigen_25|B6J738|Uracil-DNA|NZ_CP013667.1|tpos:499447-499675	inside	1	229				
+//
+# antigen_101|A9KH17|Protein|NZ_CP013667.1|tpos:79549-79706 Length: 158
+# antigen_101|A9KH17|Protein|NZ_CP013667.1|tpos:79549-79706 Number of predicted TMRs: 0
+antigen_101|A9KH17|Protein|NZ_CP013667.1|tpos:79549-79706	inside	1	158				
+//
+# antigen_178|B6J6M4|Putative|NZ_CP013667.1|tpos:109219-109359 Length: 141
+# antigen_178|B6J6M4|Putative|NZ_CP013667.1|tpos:109219-109359 Number of predicted TMRs: 0
+antigen_178|B6J6M4|Putative|NZ_CP013667.1|tpos:109219-109359	inside	1	141				
+//
+# antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957 Length: 482
+# antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957 Number of predicted TMRs: 14
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	1	7				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	8	31				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	inside	32	39				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	40	57				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	58	77				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	78	97				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	inside	98	110				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	111	127				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	128	130				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	131	151				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	inside	152	164				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	165	184				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	185	209				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	210	230				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	inside	231	241				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	242	262				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	263	277				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	278	298				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	inside	299	303				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	304	322				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	323	330				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	331	351				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	inside	352	375				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	376	396				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	397	410				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	411	429				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	inside	430	454				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	TMhelix	455	475				
+antigen_185|Q83BR8|NADH-quinone|NZ_CP013667.1|tpos:288476-288957	outside	476	482				
+//
+# antigen_8|Q45968|Transposase|NZ_CP013667.1|tpos:104026-104389 Length: 364
+# antigen_8|Q45968|Transposase|NZ_CP013667.1|tpos:104026-104389 Number of predicted TMRs: 0
+antigen_8|Q45968|Transposase|NZ_CP013667.1|tpos:104026-104389	inside	1	364				
+//
+# antigen_39|B6J836|Thiosulfate|NZ_CP013667.1|tpos:572066-572172 Length: 107
+# antigen_39|B6J836|Thiosulfate|NZ_CP013667.1|tpos:572066-572172 Number of predicted TMRs: 0
+antigen_39|B6J836|Thiosulfate|NZ_CP013667.1|tpos:572066-572172	inside	1	107				
+//
+# antigen_42|Q83C15|Phenylalanine--tRNA|NZ_CP013667.1|tpos:337288-338079 Length: 792
+# antigen_42|Q83C15|Phenylalanine--tRNA|NZ_CP013667.1|tpos:337288-338079 Number of predicted TMRs: 0
+antigen_42|Q83C15|Phenylalanine--tRNA|NZ_CP013667.1|tpos:337288-338079	inside	1	792				
+//
+# antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458 Length: 587
+# antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458 Number of predicted TMRs: 6
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	inside	1	22				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	TMhelix	23	47				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	outside	48	67				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	TMhelix	68	88				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	inside	89	140				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	TMhelix	141	161				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	outside	162	166				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	TMhelix	167	185				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	inside	186	248				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	TMhelix	249	269				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	outside	270	284				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	TMhelix	285	305				
+antigen_102|Q83D84|ATP-dependent|NZ_CP013667.1|tpos:460872-461458	inside	306	587				
+//
+# antigen_134|B6IZE4|Ribonuclease|NZ_CP013667.1|tpos:331027-331228 Length: 202
+# antigen_134|B6IZE4|Ribonuclease|NZ_CP013667.1|tpos:331027-331228 Number of predicted TMRs: 0
+antigen_134|B6IZE4|Ribonuclease|NZ_CP013667.1|tpos:331027-331228	inside	1	202				
+//
+# antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416 Length: 305
+# antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416 Number of predicted TMRs: 9
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	inside	1	27				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	28	43				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	outside	44	51				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	52	70				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	inside	71	99				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	100	118				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	outside	119	121				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	122	138				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	inside	139	149				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	150	166				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	outside	167	175				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	176	192				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	inside	193	220				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	221	240				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	outside	241	244				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	245	263				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	inside	264	277				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	TMhelix	278	298				
+antigen_68|Q83CV6|Protoheme|NZ_CP013667.1|tpos:501112-501416	outside	299	305				
+//
+# antigen_18|B6J5I5|NADPH-dependent|NZ_CP013667.1|tpos:38589-38866 Length: 278
+# antigen_18|B6J5I5|NADPH-dependent|NZ_CP013667.1|tpos:38589-38866 Number of predicted TMRs: 0
+antigen_18|B6J5I5|NADPH-dependent|NZ_CP013667.1|tpos:38589-38866	inside	1	278				
+//
+# antigen_93|B6J8S3|Chromosomal|NZ_CP013667.1|tpos:110136-110586 Length: 451
+# antigen_93|B6J8S3|Chromosomal|NZ_CP013667.1|tpos:110136-110586 Number of predicted TMRs: 0
+antigen_93|B6J8S3|Chromosomal|NZ_CP013667.1|tpos:110136-110586	inside	1	451				
+//
+# antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219 Length: 261
+# antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219 Number of predicted TMRs: 7
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	outside	1	20				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	TMhelix	21	36				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	inside	37	55				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	TMhelix	56	76				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	outside	77	97				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	TMhelix	98	111				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	inside	112	126				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	TMhelix	127	145				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	outside	146	171				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	TMhelix	172	192				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	inside	193	200				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	TMhelix	201	220				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	outside	221	236				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	TMhelix	237	256				
+antigen_140|B6J4N9|Phosphatidylglycerol--prolipoprotein|NZ_CP013667.1|tpos:248959-249219	inside	257	261				
+//
+# antigen_180|Q83F44|Methionine|NZ_CP013667.1|tpos:179305-179581 Length: 277
+# antigen_180|Q83F44|Methionine|NZ_CP013667.1|tpos:179305-179581 Number of predicted TMRs: 0
+antigen_180|Q83F44|Methionine|NZ_CP013667.1|tpos:179305-179581	inside	1	277				
+//
+# antigen_30|A9KG28|Alanine--tRNA|NZ_CP013667.1|tpos:335803-335951 Length: 149
+# antigen_30|A9KG28|Alanine--tRNA|NZ_CP013667.1|tpos:335803-335951 Number of predicted TMRs: 0
+antigen_30|A9KG28|Alanine--tRNA|NZ_CP013667.1|tpos:335803-335951	inside	1	149				
+//
+# antigen_19|B6J213|Large|NZ_CP013667.1|tpos:656773-656851 Length: 79
+# antigen_19|B6J213|Large|NZ_CP013667.1|tpos:656773-656851 Number of predicted TMRs: 0
+antigen_19|B6J213|Large|NZ_CP013667.1|tpos:656773-656851	inside	1	79				
+//
+# antigen_21|P45680|Universal|NZ_CP013667.1|tpos:76286-76427 Length: 142
+# antigen_21|P45680|Universal|NZ_CP013667.1|tpos:76286-76427 Number of predicted TMRs: 0
+antigen_21|P45680|Universal|NZ_CP013667.1|tpos:76286-76427	inside	1	142				
+//
+# antigen_109|B6J316|Phosphatidylserine|NZ_CP013667.1|tpos:161009-161290 Length: 282
+# antigen_109|B6J316|Phosphatidylserine|NZ_CP013667.1|tpos:161009-161290 Number of predicted TMRs: 0
+antigen_109|B6J316|Phosphatidylserine|NZ_CP013667.1|tpos:161009-161290	inside	1	282				
+//
+# antigen_132|A9KF44|Aspartate--tRNA(Asp/Asn)|NZ_CP013667.1|tpos:315435-315886 Length: 452
+# antigen_132|A9KF44|Aspartate--tRNA(Asp/Asn)|NZ_CP013667.1|tpos:315435-315886 Number of predicted TMRs: 0
+antigen_132|A9KF44|Aspartate--tRNA(Asp/Asn)|NZ_CP013667.1|tpos:315435-315886	inside	1	452				
+//
+# antigen_162|A9KG91|Protein|NZ_CP013667.1|tpos:344552-344755 Length: 204
+# antigen_162|A9KG91|Protein|NZ_CP013667.1|tpos:344552-344755 Number of predicted TMRs: 0
+antigen_162|A9KG91|Protein|NZ_CP013667.1|tpos:344552-344755	inside	1	204				
+//
+# antigen_127|Q83DY4|Probable|NZ_CP013667.1|tpos:584036-584250 Length: 215
+# antigen_127|Q83DY4|Probable|NZ_CP013667.1|tpos:584036-584250 Number of predicted TMRs: 0
+antigen_127|Q83DY4|Probable|NZ_CP013667.1|tpos:584036-584250	inside	1	215				
+//
+# antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407 Length: 272
+# antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407 Number of predicted TMRs: 9
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	inside	1	1				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	2	19				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	outside	20	27				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	28	46				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	inside	47	76				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	77	94				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	outside	95	97				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	98	114				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	inside	115	125				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	126	142				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	outside	143	151				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	152	168				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	inside	169	196				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	197	216				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	outside	217	220				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	221	239				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	inside	240	253				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	TMhelix	254	270				
+antigen_141|B6J375|4-hydroxybenzoate|NZ_CP013667.1|tpos:501136-501407	outside	271	272				
+//
+# antigen_153|Q83C88|tRNA|NZ_CP013667.1|tpos:363212-363550 Length: 339
+# antigen_153|Q83C88|tRNA|NZ_CP013667.1|tpos:363212-363550 Number of predicted TMRs: 0
+antigen_153|Q83C88|tRNA|NZ_CP013667.1|tpos:363212-363550	inside	1	339				
+//
+# antigen_173|Q83AC1|Universal|NZ_CP013667.1|tpos:76285-76428 Length: 144
+# antigen_173|Q83AC1|Universal|NZ_CP013667.1|tpos:76285-76428 Number of predicted TMRs: 0
+antigen_173|Q83AC1|Universal|NZ_CP013667.1|tpos:76285-76428	inside	1	144				
+//
+# antigen_189|B6J3X3|2-dehydro-3-deoxyphosphooctonate|NZ_CP013667.1|tpos:210173-210451 Length: 279
+# antigen_189|B6J3X3|2-dehydro-3-deoxyphosphooctonate|NZ_CP013667.1|tpos:210173-210451 Number of predicted TMRs: 0
+antigen_189|B6J3X3|2-dehydro-3-deoxyphosphooctonate|NZ_CP013667.1|tpos:210173-210451	inside	1	279				
