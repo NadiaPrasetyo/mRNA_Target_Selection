@@ -78,11 +78,14 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
     # Execute the command
     result = subprocess.run(
         cmd,
-        shell=True,
         capture_output=True,
         text=True,
         check=True
     )
+
+    logging.info("STDOUT:\n%s", result.stdout)
+    logging.info("STDERR:\n%s", result.stderr)
+
 
     # Output logs
     if result.returncode != 0:
