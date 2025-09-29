@@ -59,13 +59,15 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
     # Validate input
     fasta_file = Path(fasta_file)
     output_dir = Path(output_dir)/"bcell"/fasta_file.stem
+    tool_path = Path(tool_path)
+    # tool path would be like: /path/to/BepiPred3_src/bepipred3_CLI.py
 
     # Ensure output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
 
     cmd = [
         "conda", "run", "-n", common.CONDA_ENV_NAME,
-        "python", tool_path,
+        "python", str(tool_path),
         "-i", str(fasta_file),
         "-o", str(output_dir),
         "-pred", "vt_pred"
@@ -79,7 +81,7 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
         shell=True,
         capture_output=True,
         text=True,
-        cwd=str(tool_path)
+        check=True
     )
 
     # Output logs
