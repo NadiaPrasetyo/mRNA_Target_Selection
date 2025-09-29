@@ -75,26 +75,23 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
 
     logging.info(f"[INFO] Running BepiPred-3.0:\n{cmd}")
 
-    # Execute the command
-    result = subprocess.run(
-        cmd,
-        capture_output=True,
-        text=True,
-        check=True
-    )
-
-    logging.info("STDOUT:\n%s", result.stdout)
-    logging.info("STDERR:\n%s", result.stderr)
-
-
-    # Output logs
-    if result.returncode != 0:
-        logging.error("[ERROR] BepiPred-3.0 run failed!")
-        logging.info(result.stderr)
-        raise RuntimeError("BepiPred-3.0 execution failed.")
-    else:
-        logging.info("[INFO] BepiPred-3.0 run completed successfully.")
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        logging.info("STDOUT:\n%s", result.stdout)
+        logging.info("STDERR:\n%s", result.stderr)
+        
+        logging.info(f"[INFO] BepiPred-3.0 run completed successfully. results saved to {output_dir}")
         logging.info(result.stdout)
 
-    return output_dir
+    except subprocess.CalledProcessError as e:
+        logging.error("BepiPred-3.0 failed with exit code %s", e.returncode)
+        logging.error("STDOUT:\n%s", e.stdout)
+        logging.error("STDERR:\n%s", e.stderr)
+        raise      # re-raise or handle as needed
+
 
