@@ -359,7 +359,7 @@ def check_iedb_tool(base_path):
     """
     base = Path(base_path)
     paths = {
-        "BCell": base / "bcell_standalone" / "predict_antibody_epitope.py",
+        "BCell": base / "BepiPred3_src"/ "bepipred3_CLI.py",
         "MHCI": base / "netMHCpan-4.2" / "netMHCpan",
         "MHCII": base / "netMHCIIpan-4.3"/ "netMHCIIpan",
         "Ellipro": base / "ElliPro.jar",
@@ -392,26 +392,6 @@ def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
         txt_files.append(txt_file)
     return txt_files
 
-def check_epitope_evaluation_tools(tool_root: Path) -> dict:
-    """
-    Detects available evaluation tools (Allergenicity, Population Coverage, Cluster).
-    Args:
-        tool_root (Path): Root directory where tools are expected to be located.
-    Returns:
-        dict: Dictionary mapping tool names to their executable paths.
-    """
-    tool_map = {
-        "PopCoverage": tool_root / "population_coverage" /"calculate_population_coverage.py",
-    }
-
-    found = {}
-    for name, path in tool_map.items():
-        if path.exists():
-            found[name] = str(path.parent)
-        else:
-            print(f"❌ {name} tool not found at: {path.parent}")
-
-    return found
 
 def split_protein_fasta_to_peptides(input_fasta, output_dir, peptide_length=15):
     """

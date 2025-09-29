@@ -85,8 +85,11 @@ def is_job_completed(tool_type, input_path, base_output_dir):
         expected_suffix = ".xls"
 
     # Check for any file that matches the base name and expected suffix
-    if tool_type in ["BCell", "Ellipro", "MixMHC2pred"]:
+    if tool_type in ["Ellipro", "MixMHC2pred"]:
         expected_suffix = ".txt"
+
+    if tool_type == "BCell":
+        expected_suffix = ".fasta"
 
     # Check for any file that matches the base name and expected suffix
     if tool_type == "DSSP":
@@ -231,12 +234,6 @@ def main():
             temp_fasta_dir = output_dir / "temp_fasta"
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.split_protein_fasta_to_peptides(fasta_files, temp_fasta_dir)
-
-        # Input file handling
-        elif tool_type == "BCell":
-            temp_txt_dir = output_dir / "temp_txt"
-            temp_txt_dir.mkdir(parents=True, exist_ok=True)
-            input_files_tool = common.convert_fasta_to_txt(fasta_files, temp_txt_dir)
 
         elif tool_type == "Ellipro" or tool_type == "DSSP" or tool_type == "ProtLearn":
             input_files_tool = pdb_files
