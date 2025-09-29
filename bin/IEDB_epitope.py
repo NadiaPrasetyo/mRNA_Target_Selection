@@ -222,7 +222,7 @@ def main():
         input_files_tool = None
         alleles = []           
 
-        if tool_type == "MHCI" or tool_type == "MHCII":
+        if tool_type == "MHCI" or tool_type == "MHCII" or tool_type == "BCell":
             # temporary FASTA directory for MHCI and MHCII
             temp_fasta_dir = output_dir / f"temp_fasta"
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
