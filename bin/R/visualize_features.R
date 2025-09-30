@@ -64,18 +64,6 @@ run_visualization <- function(pathogen_dir) {
   message(glue("✅ Plots saved for {pathogen_dir} to {output_dir}"))
 }
 
-
-# -------------------------------
-# Load KS test results
-# -------------------------------
-ks_results <- read_csv(ks_file, show_col_types = FALSE)
-
-# Select significant features/subfeatures
-feature_subfeature <- ks_results %>%
-  filter(p_value < 0.05) %>%
-  select(feature, subfeature) %>%
-  distinct()
-
 # -------------------------------
 # Function to load raw data
 # -------------------------------
@@ -163,18 +151,16 @@ categorize_feature <- function(feature, subfeature) {
 # -------------------------------
 # Function to plot KS statistics with t-test directionality
 # -------------------------------
-plot_ks_statistics <- function(ks_df, ttest_df, output_dir) {
+plot_ks_statistics <- function(ks_df, output_dir) {
   if (!"ks_statistic" %in% colnames(ks_df)) stop("Column 'ks_statistic' not found in KS results.")
   
-  # Merge KS results with t-test statistics
+  # Filter significant features and set bar patterns
   ks_filtered <- ks_df %>%
     filter(p_value < 0.05) %>%
-    left_join(ttest_df %>% select(feature, subfeature, t_statistic), by = c("feature", "subfeature")) %>%
     mutate(
       label = paste(feature, subfeature, sep = " / "),
       label_safe = str_replace_all(label, "/", "-"),
       category = mapply(categorize_feature, feature, subfeature),
-      # Define bar pattern: solid for t_statistic >=0, striped for <0
       pattern = ifelse(is.na(t_statistic) | t_statistic >= 0, "solid", "striped")
     ) %>%
     arrange(desc(ks_statistic))
@@ -190,12 +176,13 @@ plot_ks_statistics <- function(ks_df, ttest_df, output_dir) {
     "Other" = "#a6761d"
   )
   
-  # ggpattern package allows striped/solid patterns
+  # Load ggpattern for striped bars
   if (!requireNamespace("ggpattern", quietly = TRUE)) {
     install.packages("ggpattern")
   }
   library(ggpattern)
   
+  # Plot with solid vs striped bars
   p <- ggplot(ks_filtered, aes(
     x = reorder(label_safe, ks_statistic),
     y = ks_statistic,
@@ -230,6 +217,7 @@ plot_ks_statistics <- function(ks_df, ttest_df, output_dir) {
     height = max(6, nrow(ks_filtered) * 0.25)
   )
 }
+
 
 # -------------------------------
 # Run pipeline
