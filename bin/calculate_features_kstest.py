@@ -210,7 +210,7 @@ def parse_mhc_dir(directory):
     logging.info(f"Parsing MHC dir {directory} with prefix {prefix}")
     results = []
     try:
-        files = [f for f in os.listdir(directory) if "matched_antigens" in f.lower())]
+        files = [f for f in os.listdir(directory) if "matched_antigens" in f.lower()]
         logging.debug(f"Found {len(files)} out files in MHC dir")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
