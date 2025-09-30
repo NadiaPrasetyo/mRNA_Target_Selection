@@ -1,0 +1,225 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+"['Acinetobacter baumannii', 'Aggregatibacter actinomycetemcomitans serotype b str. Y4', 'Alcaligenes faecalis', 'Brucella', 'Brucella melitensis bv. 1 str. 16M', 'Campylobacter jejuni subsp. jejuni serotype HS:15', 'Candida albicans', 'Candidozyma auris', 'Citrobacter freundii', 'Clostridium difficile', 'Clostridium difficile BI / NAP1/ 027', 'Cryptococcus neoformans', 'Cryptococcus neoformans Mu-1', 'Enterococcus faecalis', 'Escherichia coli O25b:ST131', 'Francisella tularensis subsp. tularensis strain 15', 'Haemophilus influenzae', 'Haemophilus influenzae Serotype B', 'Klebsiella pneumoniae', 'Mycoplasmoides pneumoniae (Filterable agent of primary atypical pneumonia)', 'Neisseria meningitidis', 'Neisseria meningitidis serogroup A', 'Neisseria meningitidis serogroup B', 'Neisseria meningitidis serogroup C', 'Neisseria meningitidis serogroup C strain C11', 'Neisseria meningitidis serogroup C strain MC19', 'Neisseria meningitidis serogroup W', 'Neisseria meningitidis serogroup W-135', 'Neisseria meningitidis serogroup X', 'Neisseria meningitidis serogroup Y', 'Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)', 'Salmonella enterica subsp. enterica serovar Typhi', 'Salmonella enterica subsp. enterica serovar Typhimurium', 'Salmonella typhi 620Ty', 'Streptococcus agalactiae', 'Streptococcus agalactiae 18RS21 (Streptococcus agalactiae str. 18RS21)', 'Streptococcus agalactiae CJB111 (Streptococcus agalactiae str. CJB111)', 'Streptococcus agalactiae H36B (Streptococcus agalactiae str. H36B)', 'Streptococcus agalactiae serogroup Ia', 'Streptococcus agalactiae serogroup III', 'Streptococcus agalactiae serogroup III M781', 'Streptococcus agalactiae serogroup V', 'Streptococcus agalactiae serogroup VII strain 7271', 'Streptococcus anginosus K214-2K', 'Streptococcus dysgalactiae subsp. equisimilis ATCC 12388', 'Streptococcus pneumoniae', 'Streptococcus pneumoniae 23F', 'Streptococcus pneumoniae 7F', 'Streptococcus pneumoniae CCUG 1378', 'Streptococcus pneumoniae type 1', 'Streptococcus pneumoniae type 10A', 'Streptococcus pneumoniae type 14', 'Streptococcus pneumoniae type 19A', 'Streptococcus pneumoniae type 19F', 'Streptococcus pneumoniae type 2', 'Streptococcus pneumoniae type 27', 'Streptococcus pneumoniae type 3', 'Streptococcus pneumoniae type 37', 'Streptococcus pneumoniae type 6A', 'Streptococcus pneumoniae type 6B', 'Streptococcus pneumoniae type 8', 'Streptococcus pyogenes', 'Streptococcus pyogenes serotype M3 D58', ""Streptococcus sp. 'group A'"", ""Streptococcus sp. 'group B'"", 'Streptococcus suis 1178027', 'Streptococcus suis 13730', 'Streptococcus suis 2651', 'Streptococcus suis S735 (Streptococcus suis str. S735)', 'Trypanosoma cruzi', 'Vibrio vulnificus BO62316', 'Vibrio vulnificus MO6-24/O (Vibrio vulnificus str. MO6-24/O)']","['Canis lupus familiaris (dogs)', 'Equid (horse)', 'Equus caballus (domestic horse)', 'Felis catus (cat)', 'Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus BALB/c X DBA/2', 'Mus musculus C57BL/6', 'Mus musculus CD1', 'Mus musculus (mouse)', 'Mus musculus NHI Swiss', 'Mus musculus Swiss Webster', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)', 'Ovis aries (domestic sheep)', 'Sus scrofa (pig)']",['polysaccharide'],,18154,IEDB
+['Brucella suis (Brucella melitensis bv. Suis)'],['Homo sapiens (human)'],['Other Brucella suis (Brucella melitensis bv. Suis) protein'],,,IEDB
+"['Brucella suis 1330 (Brucella suis str. 1330)', 'Brucella suis (Brucella melitensis bv. Suis)']",['Homo sapiens (human)'],['Phosphinothricin N-acetyltransferase (UniProt:A0A0H3G1D4)'],,A0A0H3G1D4,IEDB
+"['Brucella suis 1330 (Brucella suis str. 1330)', 'Brucella suis (Brucella melitensis bv. Suis)']",['Homo sapiens (human)'],['Uncharacterized protein (UniProt:A0A0H3G3B6)'],,A0A0H3G3B6,IEDB
+"['Brucella suis 1330 (Brucella suis str. 1330)', 'Brucella suis (Brucella melitensis bv. Suis)']",['Homo sapiens (human)'],['HlyD family secretion protein (UniProt:A0A0H3G7K2)'],,A0A0H3G7K2,IEDB
+"['Brucella suis 1330 (Brucella suis str. 1330)', 'Brucella suis (Brucella melitensis bv. Suis)']",['Homo sapiens (human)'],['Uncharacterized protein (UniProt:A0A0H3G7W2)'],,A0A0H3G7W2,IEDB
+"['Brucella suis 1330 (Brucella suis str. 1330)', 'Brucella suis (Brucella melitensis bv. Suis)']",['Homo sapiens (human)'],['Uncharacterized protein (UniProt:A0A0H3GD96)'],,A0A0H3GD96,IEDB
+"['Brucella suis 1330 (Brucella suis str. 1330)', 'Brucella suis (Brucella melitensis bv. Suis)']","['Bos taurus (bovine)', 'Homo sapiens (human)']",['Nickel-cobalt-cadmium resistance protein (UniProt:A0A0H3GDT6)'],,A0A0H3GDT6,IEDB
+['Brucella suis (Brucella melitensis bv. Suis)'],['Homo sapiens (human)'],"['Glyoxalase, putative (UniProt:A0A0H3GF18)']",,A0A0H3GF18,IEDB
+"['Brucella canis ATCC 23365 (Brucella canis str. ATCC 23365)', 'Brucella canis (Brucella melitensis bv. Canis)']",['Homo sapiens (human)'],['Elongation factor G (UniProt:A9M5Q3)'],,A9M5Q3,IEDB
+"['Brucella canis ATCC 23365 (Brucella canis str. ATCC 23365)', 'Brucella canis (Brucella melitensis bv. Canis)']",['Homo sapiens (human)'],['Multidrug-efflux transporter (UniProt:A9M8C1)'],,A9M8C1,IEDB
+"['Brucella canis ATCC 23365 (Brucella canis str. ATCC 23365)', 'Brucella canis (Brucella melitensis bv. Canis)']",['Homo sapiens (human)'],"['Para-aminobenzoate synthase, component I (UniProt:A9MDJ7)']",,A9MDJ7,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex (UniProt:F8WJX2)'],,F8WJX2,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],"['Glutamate-1-semialdehyde 2,1-aminomutase (UniProt:F8WJX4)']",,F8WJX4,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Outer membrane lipoprotein omp10 (UniProt:P0A3N8)'],,P0A3N8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Outer membrane lipoprotein omp19 (UniProt:P0A3P1)'],,P0A3P1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Peptidoglycan-associated lipoprotein (UniProt:P0A3S7)'],,P0A3S7,IEDB
+"['Brucella melitensis', 'Brucella melitensis biovar Melitensis (Brucella melitensis bv. Melitensis)', 'Brucella melitensis M5-90 (Brucella melitensis str. M5-90)']","['Bos taurus (bovine)', 'Canis lupus familiaris (dogs)', 'Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus (mouse)', 'Ovis aries (domestic sheep)', 'Ruminant']",['26 kDa periplasmic immunogenic protein (UniProt:P0A3U8)'],,P0A3U8,IEDB
+['Brucella suis (Brucella melitensis bv. Suis)'],['Homo sapiens (human)'],['Ribonuclease HII (UniProt:P0A4E0)'],,P0A4E0,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Sec translocon accessory complex subunit YajC (UniProt:P0A4Q1)'],,P0A4Q1,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Sensor kinase CckA (UniProt:P0DOA0)'],,P0DOA0,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Bacterioferritin (UniProt:P49944)'],,P49944,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],"['6,7-dimethyl-8-ribityllumazine synthase 2 (UniProt:P61712)']",,P61712,IEDB
+['Brucella suis (Brucella melitensis bv. Suis)'],['Homo sapiens (human)'],['Aspartate/glutamate leucyltransferase (UniProt:P63647)'],,P63647,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['dITP/XTP pyrophosphatase (UniProt:P64305)'],,P64305,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Sec-independent protein translocase protein TatA (UniProt:P66887)'],,P66887,IEDB
+['Brucella ovis (Brucella melitensis bv. Ovis)'],['Homo sapiens (human)'],['Chaperone protein DnaJ (UniProt:Q05980)'],,Q05980,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']",['Homo sapiens (human)'],['Helix-turn-helix motif:Cupin domain (UniProt:Q2YIL1)'],,Q2YIL1,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],"['Haloacid dehalogenase/epoxide hydrolase:Haloacid dehalogenase-like hydrolase:HAD-superfamily hydrolase, subfamily IA, variant (UniProt:Q2YIM2)']",,Q2YIM2,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Anthranilate synthase component I and chorismate binding protein (UniProt:Q2YIP5)'],,Q2YIP5,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Homospermidine synthase (UniProt:Q2YIP7)'],,Q2YIP7,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Flagellar hook protein FlgE (UniProt:Q2YJF9)'],,Q2YJF9,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Short-chain dehydrogenase/reductase SDR:Glucose/ribitol dehydrogenase (UniProt:Q2YJV5)'],,Q2YJV5,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Ribonucleoside-diphosphate reductase subunit beta (UniProt:Q2YJZ4)'],,Q2YJZ4,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],"['Homo sapiens (human)', 'Mus musculus HLA-B44 Tg']",['Glyoxalase/Bleomycin resistance protein/dioxygenase domain (UniProt:Q2YKA8)'],,Q2YKA8,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']",['Homo sapiens (human)'],"['Glutamine synthetase, catalytic domain (UniProt:Q2YKY7)']",,Q2YKY7,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Thiolase (UniProt:Q2YLD5)'],,Q2YLD5,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['2-oxoglutarate dehydrogenase E1 component (UniProt:Q2YLS2)'],,Q2YLS2,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Peptidase M15A C-terminal domain-containing protein (UniProt:Q2YM71)'],,Q2YM71,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Single-stranded-DNA-specific exonuclease RecJ (UniProt:Q2YM77)'],,Q2YM77,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']","['Homo sapiens (human)', 'Mus musculus BALB/c']","[""Pyridoxine/pyridoxamine 5'-phosphate oxidase (UniProt:Q2YMD1)""]",,Q2YMD1,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['ATP/GTP-binding site motif A (P-loop) (UniProt:Q2YMR9)'],,Q2YMR9,IEDB
+"['Brucella abortus 2308', 'Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']",['Homo sapiens (human)'],['TPR repeat (UniProt:Q2YMU8)'],,Q2YMU8,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus bv. 1 str. 9-941 (Brucella abortus biovar 1 str. 9-941)']",['Homo sapiens (human)'],['AMP nucleosidase (UniProt:Q2YMW4)'],,Q2YMW4,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']","['Homo sapiens (human)', 'Mus musculus BALB/c']",['Probable periplasmic serine endoprotease DegP-like (UniProt:Q2YMX6)'],,Q2YMX6,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Biotin carboxyl carrier protein of acetyl-CoA carboxylase (UniProt:Q2YNP2)'],,Q2YNP2,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],"['Binding-protein-dependent transport systems inner membrane component:NADH-plastoquinone oxidoreductase, chain 5 (UniProt:Q2YNV9)']",,Q2YNV9,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['dITP/XTP pyrophosphatase (UniProt:Q2YP32)'],,Q2YP32,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']",['Homo sapiens (human)'],"['Gliadin, alpha/beta:ATP-binding region, ATPase-like:Bacterial sensor protein, C-terminal:Histidine kinase (UniProt:Q2YPK4)']",,Q2YPK4,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],"['Transglycosylase, putative (UniProt:Q2YPN1)']",,Q2YPN1,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['UvrABC system protein A (UniProt:Q2YPX5)'],,Q2YPX5,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']","['Homo sapiens (human)', 'Mus musculus BALB/c']",['DNA gyrase subunit A (UniProt:Q2YPY2)'],,Q2YPY2,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Glutamate--tRNA ligase 1 (UniProt:Q2YQ56)'],,Q2YQ56,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']","['Homo sapiens (human)', 'Mus musculus BALB/c']",['Cobyric acid synthase (UniProt:Q2YQK2)'],,Q2YQK2,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Phosphate-specific transport system accessory protein PhoU (UniProt:Q2YQT7)'],,Q2YQT7,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Aldehyde dehydrogenase (UniProt:Q2YR27)'],,Q2YR27,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],"['Glutamyl-tRNA synthetase, class Ic:Aminoacyl-tRNA synthetase, class I (UniProt:Q2YRK6)']",,Q2YRK6,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['ABC transporter (UniProt:Q2YRN0)'],,Q2YRN0,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Carbamoyl phosphate synthase large chain (UniProt:Q2YRN2)'],,Q2YRN2,IEDB
+"['Brucella abortus 2308', 'Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']",['Homo sapiens (human)'],['Outer membrane protein assembly factor BamA (UniProt:Q2YRQ2)'],,Q2YRQ2,IEDB
+['Brucella abortus (Brucella melitensis bv. Abortus)'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q2YRV6)'],,Q2YRV6,IEDB
+"['Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']","['Homo sapiens (human)', 'Mus musculus BALB/c']","['Carboxyl transferase family:Acetyl-CoA carboxylase carboxyl transferase, beta subunit (UniProt:Q2YRW1)']",,Q2YRW1,IEDB
+"['Brucella abortus 2308', 'Brucella abortus (Brucella melitensis bv. Abortus)', 'Brucella abortus S19 (Brucella abortus str. S19)']",['Homo sapiens (human)'],['Polynucleotide adenylyltransferase (UniProt:Q2YS08)'],,Q2YS08,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Probable udp-n-acetyl-d-mannosaminuronic acid transferase (UniProt:Q8YAX1)'],,Q8YAX1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Glutamyl-tRNA reductase (UniProt:Q8YAZ0)'],,Q8YAZ0,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YB52)'],,Q8YB52,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Chaperonin GroEL (UniProt:Q8YB53)'],,Q8YB53,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['Had superfamily protein involved in n-acetyl-glucosamine catabolism (UniProt:Q8YB55)'],,Q8YB55,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['histidine kinase (UniProt:Q8YB85)'],,Q8YB85,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YBI3)'],,Q8YBI3,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YBK7)'],,Q8YBK7,IEDB
+"['Brucella melitensis', 'Brucella melitensis bv. 1 str. 16M']",['Homo sapiens (human)'],['Glycosyl transferase (UniProt:Q8YBP8)'],,Q8YBP8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],"['Transcriptional regulator, arac family (UniProt:Q8YC14)']",,Q8YC14,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Putative binding protein BMEII0691 (UniProt:Q8YC41)'],,Q8YC41,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Transcription-repair-coupling factor (UniProt:Q8YC44)'],,Q8YC44,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['diguanylate cyclase (UniProt:Q8YC78)'],,Q8YC78,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Rhodocoxin reductase (UniProt:Q8YCH1)'],,Q8YCH1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Hypothetical membrane associated protein (UniProt:Q8YCJ6)'],,Q8YCJ6,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Iron-regulated protein frpc (UniProt:Q8YCK9)'],,Q8YCK9,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['enoyl-CoA hydratase (UniProt:Q8YCN1)'],,Q8YCN1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Galactonate dehydratase (UniProt:Q8YD21)'],,Q8YD21,IEDB
+"['Brucella melitensis', 'Brucella melitensis bv. 1 str. 16M']",['Homo sapiens (human)'],['Sugar transporter (UniProt:Q8YD23)'],,Q8YD23,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Phosphoglycolate phosphatase (UniProt:Q8YD50)'],,Q8YD50,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['Gluconate 2-dehydrogenase (UniProt:Q8YD64)'],,Q8YD64,IEDB
+"['Brucella melitensis', 'Brucella melitensis bv. 1 str. 16M']",['Homo sapiens (human)'],['6-oxohexanoate dehydrogenase (UniProt:Q8YDF1)'],,Q8YDF1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Putative peptide import ATP-binding protein BMEII0206 (UniProt:Q8YDH0)'],,Q8YDH0,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YDJ3)'],,Q8YDJ3,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YDK2)'],,Q8YDK2,IEDB
+"['Brucella melitensis', 'Brucella melitensis bv. 1 str. 16M']",['Homo sapiens (human)'],['Flagellar biosynthesis protein FlhA (UniProt:Q8YDK9)'],,Q8YDK9,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['Flagellar hook protein FlgE (UniProt:Q8YDL6)'],,Q8YDL6,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Pentapeptide MXKDX repeat protein (UniProt:Q8YDV1)'],,Q8YDV1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YDX0)'],,Q8YDX0,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Glutamate synthase [nadph] large chain (UniProt:Q8YDY4)'],,Q8YDY4,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Type IV secretion system protein virB5 (UniProt:Q8YDZ3)'],,Q8YDZ3,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Homospermidine synthase (UniProt:Q8YE03)'],,Q8YE03,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Para-aminobenzoate synthase component i (UniProt:Q8YE05)'],,Q8YE05,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Hypothetical membrane associated protein (UniProt:Q8YE08)'],,Q8YE08,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Phosphate-specific transport system accessory protein PhoU (UniProt:Q8YE93)'],,Q8YE93,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['DNA protection during starvation protein (UniProt:Q8YE98)'],,Q8YE98,IEDB
+"['Brucella melitensis', 'Brucella melitensis bv. 1 str. 16M']",['Homo sapiens (human)'],['Acetoacetyl-CoA synthetase (UniProt:Q8YEF7)'],,Q8YEF7,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Membrane-bound lytic murein transglycosylase b (UniProt:Q8YEG7)'],,Q8YEG7,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Cytochrome o ubiquinol oxidase subunit i (UniProt:Q8YEH8)'],,Q8YEH8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Transporter (UniProt:Q8YEI8)'],,Q8YEI8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Acetyltransferase (UniProt:Q8YEQ8)'],,Q8YEQ8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Sensory transduction protein kinase (UniProt:Q8YFD9)'],,Q8YFD9,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],"[""Pyridoxine/pyridoxamine 5'-phosphate oxidase (UniProt:Q8YFK3)""]",,Q8YFK3,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Alkaline phosphatase like protein (UniProt:Q8YFL8)'],,Q8YFL8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Betaine aldehyde dehydrogenase (UniProt:Q8YFY0)'],,Q8YFY0,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['Oxygen-dependent choline dehydrogenase (UniProt:Q8YFY2)'],,Q8YFY2,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['Atpase (UniProt:Q8YFZ2)'],,Q8YFZ2,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Phage host specificity protein (UniProt:Q8YG21)'],,Q8YG21,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Probable periplasmic serine endoprotease DegP-like (UniProt:Q8YG32)'],,Q8YG32,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['GTP pyrophosphokinase rsh (UniProt:Q8YG65)'],,Q8YG65,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['Formate dehydrogenase alpha chain (UniProt:Q8YGB6)'],,Q8YGB6,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['K(+)-insensitive pyrophosphate-energized proton pump (UniProt:Q8YGH4)'],,Q8YGH4,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Succinoglycan biosynthesis protein exoi (UniProt:Q8YGR2)'],,Q8YGR2,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Serine--tRNA ligase (UniProt:Q8YGS6)'],,Q8YGS6,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Lipoprotein nlpd (UniProt:Q8YGS9)'],,Q8YGS9,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Outer membrane protein (UniProt:Q8YGU7)'],,Q8YGU7,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YGX2)'],,Q8YGX2,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['DUF2059 domain-containing protein (UniProt:Q8YH31)'],,Q8YH31,IEDB
+['Brucella melitensis bv. 1 str. Rev.1'],['Homo sapiens (human)'],['Glutamate--tRNA ligase 2 (UniProt:Q8YH36)'],,Q8YH36,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Membrane lipoprotein lipid attachment site containing protein (UniProt:Q8YH42)'],,Q8YH42,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['histidine kinase (UniProt:Q8YH57)'],,Q8YH57,IEDB
+"['Brucella melitensis', 'Brucella melitensis bv. 1 str. 16M']",['Homo sapiens (human)'],['Xaa-pro dipeptidase (UniProt:Q8YH80)'],,Q8YH80,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['DNA gyrase subunit A (UniProt:Q8YHB8)'],,Q8YHB8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Acetyltransferase component of pyruvate dehydrogenase complex (UniProt:Q8YHE5)'],,Q8YHE5,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Pyruvate dehydrogenase E1 component subunit beta (UniProt:Q8YHE6)'],,Q8YHE6,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Outer membrane protein assembly factor BamA (UniProt:Q8YHH0)'],,Q8YHH0,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Membrane protein (UniProt:Q8YHI8)'],,Q8YHI8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['DUF883 domain-containing protein (UniProt:Q8YHJ3)'],,Q8YHJ3,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Propionyl-CoA carboxylase beta chain (UniProt:Q8YHJ7)'],,Q8YHJ7,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Outer membrane protein (UniProt:Q8YHL1)'],,Q8YHL1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Single-stranded-DNA-specific exonuclease RecJ (UniProt:Q8YHR8)'],,Q8YHR8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Peptidase M15A C-terminal domain-containing protein (UniProt:Q8YHS4)'],,Q8YHS4,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Cobyric acid synthase (UniProt:Q8YHV6)'],,Q8YHV6,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Outer membrane protein assembly factor BamD (UniProt:Q8YI58)'],,Q8YI58,IEDB
+['Brucella melitensis bv. 1 str. 16M'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q8YI78)'],,Q8YI78,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Abc transporter ATP-binding protein (UniProt:Q8YIC4)'],,Q8YIC4,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Acyl-CoA hydrolase (UniProt:Q8YIE1)'],,Q8YIE1,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],"['Transcriptional regulator, merr family (UniProt:Q8YIN3)']",,Q8YIN3,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Glutamyl-tRNA synthetase (UniProt:Q8YIR2)'],,Q8YIR2,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['DUF883 domain-containing protein (UniProt:Q8YIS5)'],,Q8YIS5,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Chemotaxis motb protein (UniProt:Q8YIW5)'],,Q8YIW5,IEDB
+"['Brucella melitensis', 'Brucella melitensis bv. 1 str. 16M']",['Homo sapiens (human)'],['Transporter (UniProt:Q8YJ54)'],,Q8YJ54,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Lema protein (UniProt:Q8YJ58)'],,Q8YJ58,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Argininosuccinate lyase (UniProt:Q8YJJ7)'],,Q8YJJ7,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],"['L-sorbosone dehydrogenase, nad(P) dependent (UniProt:Q8YJQ8)']",,Q8YJQ8,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Tol-Pal system protein TolB (UniProt:Q93TG4)'],,Q93TG4,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Aquaporin Z (UniProt:Q9L772)'],,Q9L772,IEDB
+['Brucella melitensis'],['Homo sapiens (human)'],['Type IV secretion system protein virB8 (UniProt:Q9RPX7)'],,Q9RPX7,IEDB
+brucella melitensis,Homo sapiens,LPS,,,literature
+brucella melitensis,Homo sapiens,lipoproteins,,,literature
+brucella melitensis,Homo sapiens,lipoteichoic acid,,,literature
+brucella melitensis,Homo sapiens,flagellin,,,literature
+brucella melitensis,Homo sapiens,lipid A,,,literature
+brucella melitensis,Homo sapiens,VceA,,,literature
+brucella melitensis,Homo sapiens,VceC,,,literature
+brucella melitensis,Homo sapiens,BspA,,,literature
+brucella melitensis,Homo sapiens,BspB,,,literature
+brucella melitensis,Homo sapiens,BspC,,,literature
+brucella melitensis,Homo sapiens,BspE,,,literature
+brucella melitensis,Homo sapiens,BspF,,,literature
+brucella melitensis,Homo sapiens,RicA,,,literature
+brucella melitensis,Homo sapiens,Bab2_0123,,,literature
+brucella melitensis,Homo sapiens,Bab1_2005,,,literature
+brucella melitensis,Homo sapiens,Bab1_1043,,,literature
+brucella melitensis,Homo sapiens,Bab1_1275,,,literature
+brucella melitensis,Homo sapiens,SepA,,,literature
+brucella melitensis,Homo sapiens,BtpB,,,literature
+brucella melitensis,Homo sapiens,Diagnostic antigen,BMEI0536,,literature
+brucella melitensis,Homo sapiens,Exopolysaccharide regulatory protein,BMEI1094,,literature
+brucella melitensis,Homo sapiens,"Lipoprotein, membrane protein, 43-kDa antigen",BMEI1079,,literature
+brucella melitensis,Homo sapiens,"Outer membrane protein, type I secretion system",BMEI1029,,literature
+brucella melitensis,Homo sapiens,17-kDa antigen,BMEI1335,,literature
+brucella melitensis,Homo sapiens,Common antigen,BMEI1515,,literature
+brucella melitensis,Homo sapiens,Integrase/resolvase recombinase,BMEI0147,,literature
+brucella melitensis,Homo sapiens,Trigger factor/immunophilin,BMEI1069,,literature
+brucella melitensis,Homo sapiens,"Acid membrane antigen A, permease",BMEII0806,,literature
+brucella melitensis,Homo sapiens,UDP-N-acetylglucosamine transferase,BMEII31,,literature
+brucella melitensis,Homo sapiens,Oligopeptide ABC uptake transporter,BMEII0734,,literature
+brucella melitensis,Homo sapiens,Oligopeptide ABC uptake transporter,BMEII0735,,literature
+brucella melitensis,Homo sapiens,Transmembrane protein,BMEI0786,,literature
+brucella melitensis,Homo sapiens,plpB,BMEII0338,,literature
+brucella melitensis,Homo sapiens,Heat-resistant agglutinin,BMEII0376,,literature
+brucella melitensis,Homo sapiens,46-kDa surface antigen,BMEII0360,,literature
+brucella melitensis,Homo sapiens,"Flagellar basal-body rod, IgA1 protease",BMEII1088,,literature
+brucella melitensis,Homo sapiens,Outer membrane porin F,BMEII0036,,literature
+brucella melitensis,Homo sapiens,Basic membrane lipoprotein A,BMEII0083,,literature
+brucella melitensis,Homo sapiens,Outer membrane lipoprotein,BMEII0017,,literature
+brucella melitensis,Homo sapiens,Cytosoluble immunogenic,BMEI0826,,literature
+brucella melitensis,Homo sapiens,O-antigen transporter,BMEII1003,,literature
+brucella melitensis,Homo sapiens,"Outer membrane protein, protective surface antigen",BMEI1895,,literature
+brucella melitensis,Homo sapiens,Dihydrolipoamide succinyltransferase,BMEI0141,,literature
+brucella melitensis,Homo sapiens,Tetratricopeptide repeat family protein,BMEI0328,,literature
+brucella melitensis,Homo sapiens,ABC transporter substrate-binding protein,BMEI1954,,literature
+brucella melitensis,Homo sapiens,Periplasmic oligopeptide protein,BMEI1934,,literature
+brucella melitensis,Homo sapiens,"19-kDa periplasmic protein, pathogen-specific membrane antigen",BMEII0885,,literature
+brucella melitensis,Homo sapiens,"Similar to immunogenic 14-kDa BA14K, transmembrane protein",BMEII0679,,literature
+brucella melitensis,Homo sapiens,ABC transporter,BMEII0702,,literature
+brucella melitensis,Homo sapiens,Virulence protein,BMEII0681,,literature
+brucella melitensis,Homo sapiens,L7/L12 ribosomal protein,BMEI0748,,literature
+brucella melitensis,Homo sapiens,catalase,,,literature
+brucella melitensis,Homo sapiens,siderophore ABC transporter substrate-binding protein,,,literature
+brucella melitensis,Homo sapiens,pyridoxamine 5'-phosphate oxidase,,,literature
+brucella melitensis,Homo sapiens,superoxide dismutase,,,literature
+brucella melitensis,Homo sapiens,peptidylprolyl isomerase,,,literature
+brucella melitensis,Homo sapiens,superoxide dismutase family protein,,,literature
+brucella melitensis,Homo sapiens,septation protein A,,,literature
+brucella melitensis,Homo sapiens,binding-protein-dependent transport systems inner membrane component,,,literature
+brucella melitensis,Homo sapiens,4-hydroxy-2-oxoheptanedioate adolase,,,literature
+brucella melitensis,Homo sapiens,S-LPS,,,literature
+brucella melitensis,Homo sapiens,R-LPS,,,literature
+brucella melitensis,Homo sapiens,OMP,,,literature
+brucella melitensis,Homo sapiens,25kDa OMP,,,literature
+brucella melitensis,Homo sapiens,27kDa OMP,,,literature
+brucella melitensis,Homo sapiens,31kDa OMP,,,literature
+brucella melitensis,Homo sapiens,34kDa OMP,,,literature
+brucella melitensis,Homo sapiens,36kDa OMP,,,literature
+brucella melitensis,Homo sapiens,38kDa OMP,,,literature
+brucella melitensis,Homo sapiens,10kDa OMP,,,literature
+brucella melitensis,Homo sapiens,16.5kDa OMP,,,literature
+brucella melitensis,Homo sapiens,19kDa OMP,,,literature
+brucella melitensis,Homo sapiens,89kDa OMP,,,literature
