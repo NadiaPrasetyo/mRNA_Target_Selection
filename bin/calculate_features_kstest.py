@@ -140,13 +140,16 @@ def parse_bcell_dir(directory):
         return results
 
     for subdir in subdirs:
-        files = [f for f in os.listdir(os.path.join(directory, subdir)) if "Bcell_epitope_preds" in f and f.endswith(".fasta")]
-        for file in files:
-            path = os.path.join(directory, file)
-            logging.debug(f"Parsing B-cell file: {file}")
+        subdir_path = os.path.join(directory, subdir)
+        files = [f for f in os.listdir(subdir_path)
+                if "Bcell_epitope_preds" in f and f.endswith(".fasta")]
 
+        for file in files:
+            path = os.path.join(subdir_path, file)  
+            logging.debug(f"Parsing B-cell file: {path}")
+            # parse_file(path)
             try:
-                with open(file) as f:
+                with open(path) as f:
                     peptide_lengths = defaultdict(list)
                     num_peptide = defaultdict(int)
                     lines = f.readlines()
