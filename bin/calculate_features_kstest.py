@@ -1631,18 +1631,20 @@ def plot_auroc_summary(results_df, output_dir, prefix):
     """
     Create a bar plot of AUROC values for all features, categorized and colored.
     AUROCs < 0.5 are adjusted as 1 - AUROC. Excludes data where AUROC is exactly 0.5.
+    Bars are solid for positive t-test results and striped for negative t-test results.
     Args:
         results_df (pd.DataFrame): DataFrame containing feature results with columns:
             - "feature": feature name (e.g., "bcell", "mhci")
             - "subfeature": subfeature name (e.g., "bepipred", "score")
             - "auroc": AUROC value (float)
+            - "t_statistic": t-test statistic (float)
         output_dir (str): Directory to save the AUROC summary plot.
     """
     output_path = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
     try:
         # Drop missing AUROCs and exclude AUROCs exactly 0.5
-        df = results_df.dropna(subset=["auroc"]).copy()
+        df = results_df.dropna(subset=["auroc", "t_statistic"]).copy()
         df = df[df["auroc"] != 0.5]
         # filter for p value <0.05
         df = df[df["p_value"] < 0.05]
@@ -1673,9 +1675,16 @@ def plot_auroc_summary(results_df, output_dir, prefix):
         # Map colors
         colors = df["category"].map(category_palette).fillna("#a6761d")
 
+        # Determine bar patterns: solid if t_statistic >=0, striped if <0
+        hatches = ['' if t >= 0 else '////' for t in df["t_statistic"]]
+
         # Plot
         plt.figure(figsize=(10, max(4, 0.3 * len(df))))
-        bars = plt.barh(df["label"], df["adjusted_auroc"], color=colors)
+        bars = plt.barh(df["label"], df["adjusted_auroc"], color=colors, hatch=None)
+        # Apply hatches
+        for bar, hatch in zip(bars, hatches):
+            bar.set_hatch(hatch)
+
         plt.xlabel("AUROC (adjusted, min = 0.5)")
         plt.title("AUROC Summary (Sorted High to Low)")
         plt.xlim(0.5, 1.0)

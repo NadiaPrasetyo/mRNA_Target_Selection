@@ -161,17 +161,21 @@ categorize_feature <- function(feature, subfeature) {
 }
 
 # -------------------------------
-# Function to plot KS statistics
+# Function to plot KS statistics with t-test directionality
 # -------------------------------
-plot_ks_statistics <- function(ks_df, output_dir) {
+plot_ks_statistics <- function(ks_df, ttest_df, output_dir) {
   if (!"ks_statistic" %in% colnames(ks_df)) stop("Column 'ks_statistic' not found in KS results.")
   
+  # Merge KS results with t-test statistics
   ks_filtered <- ks_df %>%
     filter(p_value < 0.05) %>%
+    left_join(ttest_df %>% select(feature, subfeature, t_statistic), by = c("feature", "subfeature")) %>%
     mutate(
       label = paste(feature, subfeature, sep = " / "),
       label_safe = str_replace_all(label, "/", "-"),
-      category = mapply(categorize_feature, feature, subfeature)
+      category = mapply(categorize_feature, feature, subfeature),
+      # Define bar pattern: solid for t_statistic >=0, striped for <0
+      pattern = ifelse(is.na(t_statistic) | t_statistic >= 0, "solid", "striped")
     ) %>%
     arrange(desc(ks_statistic))
   
@@ -186,17 +190,38 @@ plot_ks_statistics <- function(ks_df, output_dir) {
     "Other" = "#a6761d"
   )
   
-  p <- ggplot(ks_filtered, aes(x = reorder(label_safe, ks_statistic), y = ks_statistic, fill = category)) +
-    geom_col() +
+  # ggpattern package allows striped/solid patterns
+  if (!requireNamespace("ggpattern", quietly = TRUE)) {
+    install.packages("ggpattern")
+  }
+  library(ggpattern)
+  
+  p <- ggplot(ks_filtered, aes(
+    x = reorder(label_safe, ks_statistic),
+    y = ks_statistic,
+    fill = category,
+    pattern = pattern
+  )) +
+    geom_col_pattern(
+      color = "black",
+      pattern_fill = "black",
+      pattern_angle = 45,
+      pattern_density = 0.05,
+      pattern_spacing = 0.05
+    ) +
     geom_text(aes(label = round(ks_statistic, 3)), hjust = -0.1, size = 3.5, color = "black") +
     coord_flip(ylim = c(0, 1)) +
     labs(title = "KS Statistic Summary (p < 0.05)",
          x = "Feature / Subfeature",
          y = "KS Statistic",
-         fill = "Category") +
+         fill = "Category",
+         pattern = "T-test Direction") +
     theme_minimal(base_size = 14) +
     theme(plot.title = element_text(face = "bold")) +
-    scale_fill_manual(values = category_palette)
+    scale_fill_manual(values = category_palette) +
+    scale_pattern_manual(values = c("solid" = "none", "striped" = "stripe"))
+  
+  if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
   
   ggsave(
     filename = file.path(output_dir, "ks_statistics_summary.png"),
