@@ -133,62 +133,57 @@ def parse_bcell_dir(directory):
     results = []
 
     try:
-        files = [f for f in os.listdir(directory) if f.endswith(".csv")]
-        logging.debug(f"Found {len(files)} CSV files in B-cell dir")
+        subdirs = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
+        logging.debug(f"Found {len(subdirs)} subdirectories in B-cell dir")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
 
-    for file in files:
-        method = os.path.basename(file).split("_")[-1].replace(".csv", "").lower()
-        path = os.path.join(directory, file)
-        logging.debug(f"Parsing B-cell file: {file} with method {method}")
+    for subdir in subdirs:
+        files = [f for f in os.listdir(os.path.join(directory, subdir)) if "Predicted_epitopes" in f and f.endswith(".fasta")]
+        for file in files:
+            path = os.path.join(directory, file)
+            logging.debug(f"Parsing B-cell file: {file}")
 
-        try:
-            with open(path) as f:
-                reader = csv.reader(f)
+            try:
+                with open(file) as f:
+                    peptide_lengths = defaultdict(list)
+                    num_peptide = defaultdict(int)
+                    lines = f.readlines()
+                    i = 0
+                    while i < len(lines):
+                        # Look for header line
+                        if lines[i].startswith(">"):
+                            if i + 1 >= len(lines):
+                                logging.warning(f"File {file} does not have enough lines after header at line {i}")
+                                break
+                            header = lines[i].strip()
+                            accession = header.replace(">", "")  # Extract accession from header
+                            sequence = lines[i + 1].strip()
+                            peptide_length = 0
+                            # get peptides from sequence, peptides have capitalized letters but we only want peptides with a minimum of 5 aa
+                            for char in sequence:
+                                if char.isupper():
+                                    peptide_length += 1
+                                else:
+                                    if peptide_length >= 5:
+                                        peptide_lengths[accession].append(peptide_length)
+                                        num_peptide[accession]+=1
 
-                accession = None
-                num_peptides = 0
-                sum_length = 0
-                in_peptide_section = False
+                                    peptide_length = 0
 
-                for line in reader:
-                    if not line:
-                        continue
-
-                    # Capture accession from the input line
-                    if line and line[0].startswith("input:"):
-                        # input:,antigen_9|Q2FVL8|Assimilatory|HE681097.1|tpos:143397-143728
-                        parts = ','.join(line).split('|')
-                        if len(parts) > 3:
-                            accession = f"{parts[1]}_{parts[3]}"
-                            logging.info(f"Bcell accession parsed: {accession}")
+                            i += 2  # Move to next header or end
                         else:
-                            logging.warning(f"No '|' found in input line: {','.join(line)}")
-                            accession = "unknown"
-                        continue
+                            i += 1  # Skip lines until next header
 
-                    # Detect end of peptide section
-                    elif line[0].startswith("Position,Residue,Score,Assignment"):
-                        in_peptide_section = False
-                        break
-
-                    # Parse peptide rows
-                    elif in_peptide_section:
-                        try:
-                            length = int(line[4])
-                            sum_length += length
-                            num_peptides += 1
-                        except Exception as e:
-                            logging.debug(f"Skipping malformed peptide line in {file}: {line} ({e})")
-
-                avg_length = float(sum_length / num_peptides) if num_peptides > 0 else 0
-                results.append({"accession": accession, "feature": "bcell", "subfeature": f"{method}_num_peptides", "value": num_peptides})
-                results.append({"accession": accession, "feature": "bcell", "subfeature": f"{method}_avg_peptide_length", "value": avg_length})
-
-        except Exception as e:
-            logging.error(f"Failed parsing B-cell file {file}: {e}")
+                    for accession in peptide_lengths:
+                        avg_length = float(statistics.mean(peptide_lengths[accession])) if peptide_lengths[accession] else 0
+                        total_peptides = num_peptide[accession] if accession in num_peptide else 0
+                        results.append({"accession": accession, "feature": "bcell", "subfeature": f"num_peptides", "value": total_peptides})
+                        results.append({"accession": accession, "feature": "bcell", "subfeature": f"avg_peptide_length", "value": avg_length})
+            
+            except Exception as e:
+                logging.error(f"Failed parsing B-cell file {file}: {e}")
 
     logging.info(f"Completed B-cell parsing with {len(results)} results")
     return results
@@ -212,60 +207,66 @@ def parse_mhc_dir(directory):
     logging.info(f"Parsing MHC dir {directory} with prefix {prefix}")
     results = []
     try:
-        files = [f for f in os.listdir(directory) if f.endswith(".json")]
-        logging.debug(f"Found {len(files)} JSON files in MHC dir")
+        files = [f for f in os.listdir(directory) if f.endswith("_out")]
+        logging.debug(f"Found {len(files)} out files in MHC dir")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
-    # Define %Rank thresholds for Strong Binders (threshold defined in Reynisson et al, 2020)
-    sb_threshold = 0.5 if prefix == "mhci" else 2.0
 
     for file in files:
         path = os.path.join(directory, file)
         logging.debug(f"Parsing MHC file: {file}")
         try:
-            parts = Path(file).stem.split("_")
-            if len(parts) > 2:
-                accession = f"{parts[2]}_{parts[4]}"
-            else:
-                logging.warning(f"Unexpected filename format: {file}")
-                accession = "unknown"
+            strain = Path(file).stem.split("_")[0]
             with open(path) as f:
-                data = json.load(f)
-                num_peptides = 0  # Initialize peptide count for this file
-                scores = []
-                percentiles = []
-                for result in data.get("results", []):
-                    if result.get("type") == "peptide_table":
-                        cols = result.get("table_columns", [])
-                        table = result.get("table_data", [])
-                        try:
-                            idx_score = cols.index("score")
-                            idx_percentile = cols.index("percentile")
-                        except ValueError as e:
-                            logging.warning(f"Missing expected columns in {file}: {e}")
-                            continue
-                        for i, row in enumerate(table):
-                            try:
-                                percentile = float(row[idx_percentile])
-                                # Filter peptides based on SB thresholds
-                                if percentile < sb_threshold:
-                                    num_peptides += 1
-                                    scores.append(float(row[idx_score]))
-                                    percentiles.append(percentile)
-                            except Exception as e:
-                                logging.debug(f"Skipping row {i} in {file} due to error: {e}")
+                data = f.readlines()
+                num_peptides = defaultdict(int)
+                scores = defaultdict(list)
+                percentiles = defaultdict(list)
+                num_sb = defaultdict(int)
+                num_wb = defaultdict(int)
 
-            # Store aggregated results
-            results.append({"accession": accession, "feature": prefix, "subfeature": "num_peptides", "value": num_peptides})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "mean_score", "value": statistics.mean(scores) if scores else 0})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "median_score", "value": statistics.median(scores) if scores else 0})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "min_score", "value": min(scores) if scores else 0})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "max_score", "value": max(scores) if scores else 0})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "mean_percentile", "value": statistics.mean(percentiles) if percentiles else 0})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "median_percentile", "value": statistics.median(percentiles) if percentiles else 0})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "min_percentile", "value": min(percentiles) if percentiles else 0})
-            results.append({"accession": accession, "feature": prefix, "subfeature": "max_percentile", "value": max(percentiles) if percentiles else 0})
+                for i, line in enumerate(data):
+                    if line.startswith("#") or line.startswith("-") or not line.strip() or "Pos" in line:
+                        continue
+                    # skip all lines without <=
+                    if "<=" not in line:
+                        continue
+
+                    parts = line.split()
+                    if len(parts) < 10:
+                        logging.debug(f"Skipping malformed line {i} in {file}: {line.strip()}")
+                        continue
+                    try:
+                        id = parts[10 if prefix == "mhci" else 7]
+                        accession = f'{id.split("_")[0]}_{strain}'
+                        score = float(parts[11 if prefix == "mhci" else 8])
+                        percentile = float(parts[12 if prefix == "mhci" else 9])
+                        binding_strength = parts[13 if prefix == "mhci" else 11] if len(parts) > (13 if prefix == "mhci" else 11) else "NA"
+
+                        logging.debug(f"Parsed line {i} in {file}: accession={accession}, score={score}, percentile={percentile}, binding_strength={binding_strength}")
+                        num_peptides[accession] += 1
+                        # Filter for Strong Binders only
+                        if "SB" in binding_strength:
+                            num_sb[accession] += 1
+                        elif "WB" in binding_strength:
+                            num_wb[accession] += 1
+
+                        scores[accession].append(score)
+                        percentiles[accession].append(percentile)
+                    except ValueError as e:
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+
+                for accession in num_peptides:
+                    avg_score = float(statistics.mean(scores[accession])) if scores[accession] else 0
+                    avg_percentile = float(statistics.mean(percentiles[accession])) if percentiles[accession] else 0
+                    results.append({"accession": accession, "feature": prefix, "subfeature": "score", "value": avg_score})
+                    results.append({"accession": accession, "feature": prefix, "subfeature": "percentile", "value": avg_percentile})
+                    results.append({"accession": accession, "feature": prefix, "subfeature": "num_peptides", "value": num_peptides[accession]})
+                    results.append({"accession": accession, "feature": prefix, "subfeature": "num_strong_binders", "value": num_sb[accession]})
+                    results.append({"accession": accession, "feature": prefix, "subfeature": "num_weak_binders", "value": num_wb[accession]})
+
+                
         except Exception as e:
             logging.error(f"Failed parsing MHC file {file}: {e}")
     logging.info(f"Completed MHC parsing with {len(results)} results")
