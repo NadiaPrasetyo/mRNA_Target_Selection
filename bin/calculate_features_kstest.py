@@ -245,7 +245,7 @@ def parse_mhc_dir(directory):
                         accession = f'{id.split("_")[0]}_{strain}'
                         score = float(parts[11 if prefix == "mhci" else 8])
                         percentile = float(parts[12 if prefix == "mhci" else 9])
-                        binding_strength = parts[13 if prefix == "mhci" else 11] if len(parts) > (13 if prefix == "mhci" else 11) else "NA"
+                        binding_strength = parts[14 if prefix == "mhci" else 11] if len(parts) > (13 if prefix == "mhci" else 11) else "NA"
 
                         logging.debug(f"Parsed line {i} in {file}: accession={accession}, score={score}, percentile={percentile}, binding_strength={binding_strength}")
                         num_peptides[accession] += 1
