@@ -10,7 +10,9 @@ from scipy.sparse import coo_matrix
 import argparse
 import logging
 from adjustText import adjust_text
-
+from scipy.stats import ks_2samp, ttest_ind
+from sklearn.metrics import roc_auc_score
+import matplotlib.patches as mpatches
 
 # ----------------------
 # Configuration
@@ -36,7 +38,6 @@ def setup_logging(verbose: bool) -> None:
         file_handler.setLevel(level)
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
-
 
 # ----------------------
 # Data loading
@@ -72,7 +73,7 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
 def aggregate_by_accession(df: pd.DataFrame) -> pd.DataFrame:
     """
     Pivot so each accession is a single row, each column is a feature_subfeature.
-    The value is typically the mean or sum across replicates.
+    The value is typically the mean across replicates.
     """
     logging.info("Aggregating data by accession...")
 
@@ -92,10 +93,148 @@ def aggregate_by_accession(df: pd.DataFrame) -> pd.DataFrame:
         df.groupby("accession")["label"]
           .agg(lambda x: x.mode().iat[0])  # pick most common label per accession
     )
-
     return agg_df, label_map
 
+# ----------------------
+# Feature categorization
+# ----------------------
+def categorize_feature(feature, subfeature):
+    """Categorize features for AUROC/KS summary plots."""
+    if feature in ["signalp", "targetp", "deeplocpro", "deeptmhmm"]:
+        return "Subcellular localisation"
+    if feature == "allergenicity":
+        return "Allergenicity"
+    if feature == "ifnepitope2":
+        return "Immunogenicity"
+    if feature in ["cluster_conservation", "rate4site", "rate4site_deeptmhmm", "FEL", "SLAC", "FUBAR"] or subfeature in [
+        "Percent identity / number of strains",
+        "Average Log₁₀ e-value",
+        "Average bit-score / length",
+        "percent_identity/num_strain",
+        "e_value_average",
+        "bit_score_normalized",
+        "rolling_mean",
+        "rolling_median",
+        "rolling_max",
+        "rolling_min",
+        "outside_score_per_site",
+        "per_site_score"
+    ]:
+        return "Conservation Analysis Across Strains"
+    if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred"]:
+        return "Epitope Prediction"
+    if feature in ["dssp", "ProtLearn"]:
+        return "Structure Analysis"
+    return "Other"
 
+# ----------------------
+# KS Test, t-test, and AUROC
+# ----------------------
+def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
+    """Compute KS, t-test, and AUROC for each feature/subfeature."""
+    results = []
+    grouped = df.groupby(["feature", "subfeature"])
+    for (feature, subfeature), group in grouped:
+        pos_vals = group.loc[group["label"] != "random", "value"].values
+        rand_vals = group.loc[group["label"] == "random", "value"].values
+        if len(pos_vals) == 0 or len(rand_vals) == 0:
+            continue
+        ks_stat, ks_p = ks_2samp(pos_vals, rand_vals)
+        t_stat, t_p = ttest_ind(pos_vals, rand_vals, equal_var=False)
+        y_true = np.concatenate([np.ones(len(pos_vals)), np.zeros(len(rand_vals))])
+        y_scores = np.concatenate([pos_vals, rand_vals])
+        try:
+            auroc = roc_auc_score(y_true, y_scores)
+        except ValueError:
+            auroc = np.nan
+        results.append({
+            "feature": feature,
+            "subfeature": subfeature,
+            "ks_statistic": ks_stat,
+            "ks_pvalue": ks_p,
+            "t_statistic": t_stat,
+            "t_pvalue": t_p,
+            "auroc": auroc
+        })
+    return pd.DataFrame(results)
+
+# ----------------------
+# AUROC and KS plots
+# ----------------------
+def plot_auroc_summary(results_df, output_dir, prefix="all"):
+    output_path = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
+    os.makedirs(output_dir, exist_ok=True)
+    df = results_df.dropna(subset=["auroc", "t_pvalue"]).copy()
+    df = df[(df["auroc"] != 0.5) & (df["t_pvalue"] < 0.05)]
+    if df.empty:
+        print("No significant AUROC values to plot.")
+        return
+    df["adjusted_auroc"] = df["auroc"].apply(lambda x: x if x >= 0.5 else 1 - x)
+    df["label"] = df["feature"] + " / " + df["subfeature"]
+    df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
+    df = df.sort_values("adjusted_auroc", ascending=False)
+
+    category_palette = {
+        "Subcellular localisation": "#1b9e77",
+        "Allergenicity": "#d95f02",
+        "Immunogenicity": "#7570b3",
+        "Conservation Analysis Across Strains": "#e7298a",
+        "Epitope Prediction": "#66a61e",
+        "Epitope evaluation": "#e6ab02",
+        "Structure Analysis": "#d010e1",
+        "Other": "#a6761d"
+    }
+
+    colors = df["category"].map(category_palette).fillna("#a6761d")
+    plt.figure(figsize=(10, max(4, 0.3 * len(df))))
+    bars = plt.barh(df["label"], df["adjusted_auroc"], color=colors)
+    for bar in bars:
+        width = bar.get_width()
+        plt.text(width + 0.01, bar.get_y() + bar.get_height() / 2, f"{width:.3f}", va="center")
+    handles = [mpatches.Patch(color=color, label=cat) for cat, color in category_palette.items()]
+    plt.legend(handles=handles, title="Category", loc="lower right", fontsize=10)
+    plt.xlabel("AUROC (adjusted, min=0.5)")
+    plt.title("AUROC Summary (Significant Features)")
+    plt.gca().invert_yaxis()
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+
+def plot_ks_summary(results_df, output_dir, prefix="all"):
+    output_path = os.path.join(output_dir, f"ks_summary_{prefix}.png")
+    os.makedirs(output_dir, exist_ok=True)
+    df = results_df.dropna(subset=["ks_statistic", "ks_pvalue"]).copy()
+    df = df[df["ks_pvalue"] < 0.05]
+    if df.empty:
+        print("No significant KS statistics to plot.")
+        return
+    df["label"] = df["feature"] + " / " + df["subfeature"]
+    df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
+    df = df.sort_values("ks_statistic", ascending=False)
+    category_palette = {
+        "Subcellular localisation": "#1b9e77",
+        "Allergenicity": "#d95f02",
+        "Immunogenicity": "#7570b3",
+        "Conservation Analysis Across Strains": "#e7298a",
+        "Epitope Prediction": "#66a61e",
+        "Epitope evaluation": "#e6ab02",
+        "Structure Analysis": "#d010e1",
+        "Other": "#a6761d"
+    }
+    colors = df["category"].map(category_palette).fillna("#a6761d")
+    plt.figure(figsize=(10, max(4, 0.3 * len(df))))
+    bars = plt.barh(df["label"], df["ks_statistic"], color=colors)
+    for bar in bars:
+        width = bar.get_width()
+        plt.text(width + 0.01, bar.get_y() + bar.get_height() / 2, f"{width:.3f}", va="center")
+    handles = [mpatches.Patch(color=color, label=cat) for cat, color in category_palette.items()]
+    plt.legend(handles=handles, title="Category", loc="lower right", fontsize=10)
+    plt.xlabel("KS Statistic")
+    plt.title("KS Statistics Summary (Significant Features)")
+    plt.gca().invert_yaxis()
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
 
 # ----------------------
 # Plotting utilities
@@ -360,7 +499,7 @@ def plot_covariance_matrix(X_scaled, feature_enc, output_dir: str, max_features=
 # Main analysis
 # ----------------------
 def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
-    logging.info("Starting PCA analysis...")
+    logging.info("Starting PCA + KS/AUROC analysis...")
     os.makedirs(output_dir, exist_ok=True)
 
     # ----------------------
@@ -417,12 +556,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
 
     ipca = IncrementalPCA(n_components=50, batch_size=10000)
     pcs = ipca.fit_transform(X_scaled)
-
-    pca_df = pd.DataFrame(
-        pcs[:, :2],
-        columns=["PC1", "PC2"],
-        index=accession_enc.classes_
-    ).join(meta)
+    pca_df = pd.DataFrame(pcs[:, :2], columns=["PC1", "PC2"], index=accession_enc.classes_).join(meta)
 
     # ----------------------
     # Plots
@@ -433,15 +567,21 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     plot_covariance_matrix(X_scaled, feature_enc, output_dir)
     plot_correlation_matrix(X_scaled, feature_enc, output_dir)
 
-    logging.info(f"✅ Analysis complete. Plots and CSVs saved in {output_dir}")
+    # KS/t-test/AUROC computations
+    results_df = compute_stats(all_data)
+    results_df.to_csv(os.path.join(output_dir, "ks_auroc_results.csv"), index=False)
 
+    # KS and AUROC plots
+    plot_ks_summary(results_df, output_dir)
+    plot_auroc_summary(results_df, output_dir)
 
+    logging.info(f"✅ Analysis complete. All plots and CSVs saved in {output_dir}")
 
 # ----------------------
 # Entry point
 # ----------------------
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run PCA analysis on bacterial raw data.")
+    parser = argparse.ArgumentParser(description="Run PCA and KS/AUROC analysis on bacterial data.")
     parser.add_argument("--base-dir", type=str, default="./results")
     parser.add_argument("--output-dir", type=str, default="./results")
     parser.add_argument("--input-dir", nargs="+", required=True)
