@@ -36,10 +36,10 @@ library(glue)
 # Define paths and parameters
 # -------------------------------
 # List of pathogens to process
-#pathogens <- c("S.aureus", "S.pneumoniae", "S.pyogenes", "C.trachomatis", 
-#               "P.aeruginosa", "H.pylori", "N.gonorrhoeae", "C.burnetii", 
-#               "B.melitensis")
-pathogens <- c("B.melitensis")
+pathogens <- c("S.aureus", "S.pneumoniae", "S.pyogenes", "C.trachomatis", 
+               "P.aeruginosa", "H.pylori", "N.gonorrhoeae", "C.burnetii", 
+               "B.melitensis")
+#pathogens <- c("B.melitensis")
 
 # -------------------------------
 # Run pipeline function
@@ -165,12 +165,12 @@ plot_ks_statistics <- function(ks_df, output_dir) {
       category = mapply(categorize_feature, feature, subfeature),
       t_direction = case_when(
         is.na(t_statistic) ~ "Unknown",
-        t_statistic >= 0 ~ "Positive t",
-        t_statistic < 0 ~ "Negative t"
+        t_statistic >= 0 ~ "SOLID: Positive t",
+        t_statistic < 0 ~ "STRIPED: Negative t"
       ),
       pattern = case_when(
-        t_direction == "Positive t" ~ "solid",
-        t_direction == "Negative t" ~ "striped",
+        t_direction == "SOLID: Positive t" ~ "solid",
+        t_direction == "STRIPED: Negative t" ~ "striped",
         TRUE ~ "none"
       )
     ) %>%
@@ -217,7 +217,7 @@ plot_ks_statistics <- function(ks_df, output_dir) {
     theme_minimal(base_size = 14) +
     theme(plot.title = element_text(face = "bold")) +
     scale_fill_manual(values = category_palette) +
-    scale_pattern_manual(values = c("Positive t" = "none", "Negative t" = "stripe"))
+    scale_pattern_manual(values = c("SOLID: Positive t" = "none", "STRIPED: Negative t" = "stripe"))
   
   if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
   
