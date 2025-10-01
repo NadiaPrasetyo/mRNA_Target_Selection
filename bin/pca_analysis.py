@@ -127,7 +127,7 @@ def plot_scree(ipca, output_dir: str):
     }).to_csv(os.path.join(output_dir, "explained_variance.csv"), index=False)
 
 
-def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=2.5):
+def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=20, scale=2.5):
     """PCA biplot with samples and top feature loadings using manual label placement."""
     plt.figure(figsize=(12, 10))
     
@@ -241,7 +241,7 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=10, scale=
     plt.close()
 
 
-def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=10):
+def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=20):
     """Scatter plot of feature loadings on PC1 vs PC2 with non-overlapping labels."""
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))
