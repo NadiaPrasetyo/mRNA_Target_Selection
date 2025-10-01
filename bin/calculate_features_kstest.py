@@ -396,7 +396,13 @@ def parse_allergenicity_dir(directory):
                 reader = csv.DictReader(csvfile)
                 for i, row in enumerate(reader):
                     try:
-                        accession = row["Subject"].split('|')[1] + "_" + row["Subject"].split('|')[3]
+                        subject = row["Subject"]
+                        if "|" in subject:
+                            accession = subject.split("|")[1] + "_" + subject.split("|")[3]
+                        else:
+                            accession = "unknown"
+                            logging.warning(f"Unknown subject format in row {i} of {file}: {row}")
+                            continue
                         merci_score = float(row["MERCI Score"])
                         blast_score = float(row["BLAST Score"])
                         hybrid_score = float(row["Hybrid Score"])
@@ -736,7 +742,13 @@ def parse_ifnepitope2_dir(directory):
                 reader = csv.DictReader(f)
                 for i, row in enumerate(reader):
                     try:
-                        accession = row["Seq_ID"].split('|')[1] + "_" + row["Seq_ID"].split('|')[3]
+                        id = row["Seq_ID"]
+                        if "|" in id:
+                            accession = id.split("|")[1] + "_" + id.split("|")[3]
+                        else:
+                            accession = "unknown"
+                            logging.warning(f"Unknown Seq_ID format in row {i} of {file}: {row}")
+                            continue
                         ml_score[accession].append(float(row["ML_Score"]))
                         blast_score[accession].append(float(row["BLAST_Score"]))
                         total_score[accession].append(float(row["Total_Score"]))
