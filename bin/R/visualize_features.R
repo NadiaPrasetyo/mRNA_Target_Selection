@@ -36,8 +36,10 @@ library(glue)
 # Define paths and parameters
 # -------------------------------
 # List of pathogens to process
-pathogens <- c("S.aureus", "S.pneumoniae", "S.pyogenes", "C.trachomatis", 
-               "P.aeruginosa", "H.pylori", "N.gonorrhoeae", "C.burnetii")
+#pathogens <- c("S.aureus", "S.pneumoniae", "S.pyogenes", "C.trachomatis", 
+#               "P.aeruginosa", "H.pylori", "N.gonorrhoeae", "C.burnetii", 
+#               "B.melitensis")
+pathogens <- c("B.melitensis")
 
 # -------------------------------
 # Run pipeline function
@@ -161,7 +163,16 @@ plot_ks_statistics <- function(ks_df, output_dir) {
       label = paste(feature, subfeature, sep = " / "),
       label_safe = str_replace_all(label, "/", "-"),
       category = mapply(categorize_feature, feature, subfeature),
-      pattern = ifelse(is.na(t_statistic) | t_statistic >= 0, "solid", "striped")
+      t_direction = case_when(
+        is.na(t_statistic) ~ "Unknown",
+        t_statistic >= 0 ~ "Positive t",
+        t_statistic < 0 ~ "Negative t"
+      ),
+      pattern = case_when(
+        t_direction == "Positive t" ~ "solid",
+        t_direction == "Negative t" ~ "striped",
+        TRUE ~ "none"
+      )
     ) %>%
     arrange(desc(ks_statistic))
   
@@ -176,18 +187,16 @@ plot_ks_statistics <- function(ks_df, output_dir) {
     "Other" = "#a6761d"
   )
   
-  # Load ggpattern for striped bars
   if (!requireNamespace("ggpattern", quietly = TRUE)) {
     install.packages("ggpattern")
   }
   library(ggpattern)
   
-  # Plot with solid vs striped bars
   p <- ggplot(ks_filtered, aes(
     x = reorder(label_safe, ks_statistic),
     y = ks_statistic,
     fill = category,
-    pattern = pattern
+    pattern = t_direction
   )) +
     geom_col_pattern(
       color = "black",
@@ -198,15 +207,17 @@ plot_ks_statistics <- function(ks_df, output_dir) {
     ) +
     geom_text(aes(label = round(ks_statistic, 3)), hjust = -0.1, size = 3.5, color = "black") +
     coord_flip(ylim = c(0, 1)) +
-    labs(title = "KS Statistic Summary (p < 0.05)",
-         x = "Feature / Subfeature",
-         y = "KS Statistic",
-         fill = "Category",
-         pattern = "T-test Direction") +
+    labs(
+      title = "KS Statistic Summary (p < 0.05)",
+      x = "Feature / Subfeature",
+      y = "KS Statistic",
+      fill = "Category",
+      pattern = "T-test Direction"
+    ) +
     theme_minimal(base_size = 14) +
     theme(plot.title = element_text(face = "bold")) +
     scale_fill_manual(values = category_palette) +
-    scale_pattern_manual(values = c("solid" = "none", "striped" = "stripe"))
+    scale_pattern_manual(values = c("Positive t" = "none", "Negative t" = "stripe"))
   
   if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
   
@@ -217,6 +228,7 @@ plot_ks_statistics <- function(ks_df, output_dir) {
     height = max(6, nrow(ks_filtered) * 0.25)
   )
 }
+
 
 
 # -------------------------------
