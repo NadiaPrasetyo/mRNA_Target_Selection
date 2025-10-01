@@ -46,8 +46,9 @@ def setup_logging(verbose=False, log_file=None):
         logger.addHandler(file_handler)
 
 
-def run_command(cmd, description):
-    """Run a command and log outcome."""
+
+def run_command(cmd, description, failed_steps):
+    """Run a command and log outcome, track failures."""
     logging.info(f"🚀 {description}")
     logging.debug(f"Command: {' '.join(cmd)}")
 
@@ -61,9 +62,11 @@ def run_command(cmd, description):
         return True
     except subprocess.CalledProcessError as e:
         logging.error(f"❌ {description} failed (exit {e.returncode})")
+        failed_steps.append(description)
         return False
     except FileNotFoundError:
         logging.error(f"❌ Command not found: {cmd[0]}")
+        failed_steps.append(description)
         return False
     
 def check_dependencies():
@@ -125,7 +128,7 @@ def main():
     
     success_count = 0           # successful sub-commands
     attempted_count = 0         # attempted sub-commands
-    total_steps = len(steps_to_run)  # high-level pipeline steps
+    failed_steps = []      # <<< NEW: Track failed steps
 
 
     prefix = "human" if args.human_negative else "random"
@@ -140,7 +143,7 @@ def main():
                 attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, "IEDB data fetch"):
+                elif run_command(cmd, "IEDB data fetch", failed_steps):
                     success_count += 1
         
         # Step 2: Compile Antigens
@@ -149,7 +152,7 @@ def main():
             attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Compile antigens"):
+            elif run_command(cmd, "Compile antigens", failed_steps):
                 success_count += 1
         
         # Step 3: Fetch UniProt Sequences
@@ -158,7 +161,7 @@ def main():
             attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Fetch UniProt sequences"):
+            elif run_command(cmd, "Fetch UniProt sequences", failed_steps):
                 success_count += 1
 
         # Step 4: Generate Random Sequences
@@ -171,7 +174,7 @@ def main():
                 attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"Generate {prefix} sequences"):
+            elif run_command(cmd, f"Generate {prefix} sequences", failed_steps):
                 success_count += 1
            
         # Step 5: Fetch NCBI Strain Genomes
@@ -184,7 +187,7 @@ def main():
                 attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, "Make bin/fetch_NCBI_strain_genome.sh executable"):
+                elif run_command(cmd, "Make bin/fetch_NCBI_strain_genome.sh executable", failed_steps):
                     success_count += 1
 
                 cmd = ["bash", "bin/fetch_NCBI_strain_genome.sh", "--random", f"{args.pathogen_name}", 
@@ -192,7 +195,7 @@ def main():
                 attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, "Fetch strain genomes"):
+                elif run_command(cmd, "Fetch strain genomes", failed_steps):
                     success_count += 1
         
         # Step 6: Align Antigens with MMseqs2
@@ -203,7 +206,7 @@ def main():
             attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Protein alignment with MMseqs2"):
+            elif run_command(cmd, "Protein alignment with MMseqs2", failed_steps):
                 success_count += 1
             
             # Nucleotide alignment (antigens)
@@ -212,7 +215,7 @@ def main():
             attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Nucleotide alignment with MMseqs2"):
+            elif run_command(cmd, "Nucleotide alignment with MMseqs2", failed_steps):
                 success_count += 1
             
             # Random protein alignment
@@ -221,7 +224,7 @@ def main():
             attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"{prefix} protein alignment with MMseqs2"):
+            elif run_command(cmd, f"{prefix} protein alignment with MMseqs2", failed_steps):
                 success_count += 1
             
             # Random nucleotide alignment
@@ -230,7 +233,7 @@ def main():
             attempted_count += 1
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"{prefix} nucleotide alignment with MMseqs2"):
+            elif run_command(cmd, f"{prefix} nucleotide alignment with MMseqs2", failed_steps):
                 success_count += 1
         
         # Step 7: Fetch PDB Structures
@@ -243,7 +246,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Fetch PDB structures"):
+            elif run_command(cmd, "Fetch PDB structures", failed_steps):
                 success_count += 1
             
             # PDB structures for random sequences
@@ -254,7 +257,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"Fetch PDB structures for {prefix} sequences"):
+            elif run_command(cmd, f"Fetch PDB structures for {prefix} sequences", failed_steps):
                 success_count += 1
             
             # IEDB epitope prediction on PDB structures (non-default tools) - antigens
@@ -267,7 +270,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "IEDB epitope prediction (structure-based tools)"):
+            elif run_command(cmd, "IEDB epitope prediction (structure-based tools)", failed_steps):
                 success_count += 1
             
             # IEDB epitope prediction on random PDB structures (non-default tools)
@@ -279,7 +282,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"IEDB epitope prediction on {prefix} structures (structure-based tools)"):
+            elif run_command(cmd, f"IEDB epitope prediction on {prefix} structures (structure-based tools)", failed_steps):
                 success_count += 1
         
         # Step 8: Fetch Pfam HMMs
@@ -295,7 +298,7 @@ def main():
                 attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, "Fetch Pfam HMMs"):
+                elif run_command(cmd, "Fetch Pfam HMMs", failed_steps):
                     success_count += 1
                 
                 # Pfam analysis for random sequences
@@ -304,7 +307,7 @@ def main():
                 attempted_count += 1
                 if args.dry_run:
                     logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, f"Fetch Pfam HMMs for {prefix} sequences"):
+                elif run_command(cmd, f"Fetch Pfam HMMs for {prefix} sequences", failed_steps):
                     success_count += 1
 
         
@@ -320,7 +323,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Antigen analysis (protein-based)"):
+            elif run_command(cmd, "Antigen analysis (protein-based)", failed_steps):
                 success_count += 1
             
             # Random analysis
@@ -332,7 +335,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"{prefix} sequence analysis (protein-based)"):
+            elif run_command(cmd, f"{prefix} sequence analysis (protein-based)", failed_steps):
                 success_count += 1
             
             # dN/dS analysis on nucleotide alignments (antigens)
@@ -344,7 +347,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "dN/dS analysis"):
+            elif run_command(cmd, "dN/dS analysis", failed_steps):
                 success_count += 1
             
             # dN/dS analysis on random nucleotide alignments
@@ -356,7 +359,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"{prefix} dN/dS analysis"):
+            elif run_command(cmd, f"{prefix} dN/dS analysis", failed_steps):
                 success_count += 1
         
         # Step 10: IEDB Epitope Prediction (default tools)
@@ -371,7 +374,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "IEDB epitope prediction (default tools)"):
+            elif run_command(cmd, "IEDB epitope prediction (default tools)", failed_steps):
                 success_count += 1
             
             # Epitope prediction on random sequences
@@ -383,7 +386,7 @@ def main():
                 cmd.append("--verbose")
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, f"IEDB epitope prediction on {prefix} sequences (default tools)"):
+            elif run_command(cmd, f"IEDB epitope prediction on {prefix} sequences (default tools)", failed_steps):
                 success_count += 1
         
         # Step 11: Feature Analysis and KS Tests (Final step after all others complete)
@@ -400,7 +403,7 @@ def main():
                 cmd.extend(["--verbose", "--write-raw"])
             if args.dry_run:
                 logging.info(f"Would run: {' '.join(cmd)}")
-            elif run_command(cmd, "Feature analysis and statistical tests"):
+            elif run_command(cmd, "Feature analysis and statistical tests", failed_steps):
                 success_count += 1
     
     except KeyboardInterrupt:
@@ -416,15 +419,17 @@ def main():
         logging.info("Dry run completed - no commands were executed")
     else:
         logging.info(
-            f"Pipeline completed: {success_count}/{attempted_count} sub-commands succeeded "
-            f"across {total_steps} pipeline steps"
+            f"Pipeline completed: {success_count}/{attempted_count} sub-commands succeeded"
         )
-        if success_count == attempted_count:
+        if failed_steps:
+            logging.warning("⚠️ Some steps failed:")
+            for step in failed_steps:
+                logging.warning(f"   - {step}")
+            logging.warning("Check pipeline.log for full details.")
+            sys.exit(1)
+        else:
             logging.info("🎉 All steps completed successfully!")
             logging.info(f"Results available in: {base_dir.absolute()}")
-        else:
-            logging.warning("⚠️  Some steps failed. Check logs for details.")
-            sys.exit(1)
 
 
 if __name__ == "__main__":
