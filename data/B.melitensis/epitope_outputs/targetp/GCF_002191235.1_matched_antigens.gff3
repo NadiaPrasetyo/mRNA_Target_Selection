@@ -1,0 +1,11 @@
+##gff-version 3
+antigen_129|Q8YC51||NZ_CP018479.1|tpos:179127-179596	TargetP-2.0	signal_peptide	1	23	0.983665	.	.	.
+antigen_10|P66887|Sec-independent|NZ_CP018478.1|tpos:284981-285052	TargetP-2.0	signal_peptide	1	23	0.993362	.	.	.
+antigen_44|Q8YE08||NZ_CP018479.1|tpos:27258-27894	TargetP-2.0	signal_peptide	1	27	0.978770	.	.	.
+antigen_125|Q8YEE4||NZ_CP018479.1|tpos:173724-174328	TargetP-2.0	signal_peptide	1	23	0.997531	.	.	.
+antigen_39|Q8YDX0||NZ_CP018479.1|tpos:11944-11994	TargetP-2.0	signal_peptide	1	33	0.895220	.	.	.
+antigen_21|Q8YC41|Putative|NZ_CP018479.1|tpos:173719-174332	TargetP-2.0	signal_peptide	1	28	0.996223	.	.	.
+antigen_111|Q8YBT0||NZ_CP018478.1|tpos:233409-233675	TargetP-2.0	signal_peptide	1	17	0.509709	.	.	.
+antigen_1|F8WJX4||NZ_CP018479.1|tpos:130373-130825	TargetP-2.0	transit_peptide	1	29	0.448435	.	.	Note=Mitochondrion
+antigen_124|Q8YEC4|Lipoprotein|NZ_CP018478.1|tpos:687247-687514	TargetP-2.0	signal_peptide	1	30	0.943552	.	.	.
+antigen_48|Q8YEG7||NZ_CP018478.1|tpos:463070-463480	TargetP-2.0	signal_peptide	1	20	0.971069	.	.	.

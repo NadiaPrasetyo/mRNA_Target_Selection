@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,Q8YCH1_AF,A,1,9,MFFLGSRKR,9,0.828,Linear
+2,Q8YCH1_AF,A,16,23,HFKGDRLV,8,0.673,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,Q8YCH1_AF,A:F3, A:L4, A:G5, A:S6, A:R7,5,0.891,Discontinous
+2,Q8YCH1_AF,A:F17, A:K18, A:G19, A:D20,4,0.794,Discontinous
+3,Q8YCH1_AF,A:A64, A:V65, A:V66, A:A67, A:R68,5,0.765,Discontinous
+4,Q8YCH1_AF,A:P47, A:S48, A:E49, A:A50, A:M53,5,0.541,Discontinous
