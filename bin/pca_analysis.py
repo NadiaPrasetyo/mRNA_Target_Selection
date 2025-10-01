@@ -356,7 +356,6 @@ def plot_covariance_matrix(X_scaled, feature_enc, output_dir: str, max_features=
     cov_df.to_csv(os.path.join(output_dir, "covariance_matrix.csv"))
 
 
-
 # ----------------------
 # Main analysis
 # ----------------------
@@ -364,7 +363,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     logging.info("Starting PCA analysis...")
     os.makedirs(output_dir, exist_ok=True)
 
+    # ----------------------
     # Load data
+    # ----------------------
     dfs = [load_bacterium_data(base_dir, b) for b in input_dirs]
     dfs = [df for df in dfs if not df.empty]
     if not dfs:
@@ -374,29 +375,19 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     logging.info(f"Loaded data for {len(input_dirs)} bacteria. Rows: {len(all_data):,}")
 
     # ----------------------
-    # Assign sample IDs
+    # Preprocess
     # ----------------------
-    logging.info("Assigning sample IDs...")
-    label_codes, label_indices = pd.factorize(all_data["label"])
-    counters = np.zeros(len(np.unique(label_codes)), dtype=int)
-    sample_ids = []
-
-    for code in label_codes:
-        sample_ids.append(f"{counters[code]}_{all_data['label'].iloc[len(sample_ids)]}")
-        counters[code] += 1
-
-    all_data["sample_id"] = sample_ids
+    all_data = all_data[all_data["value"].notna() & (all_data["value"] > 0)]
     all_data["feature_subfeature"] = all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
-
 
     # ----------------------
     # Aggregate by accession
     # ----------------------
-    all_data = preprocess_data(all_data)
-
     agg_df, accession_labels = aggregate_by_accession(all_data)
 
+    # ----------------------
     # Encode rows (accessions) and columns (features)
+    # ----------------------
     accession_enc = LabelEncoder()
     feature_enc = LabelEncoder()
 
@@ -410,33 +401,17 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
 
     logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}")
 
+    # ----------------------
     # Metadata for plotting
+    # ----------------------
     meta = pd.DataFrame({
         "accession": accession_enc.classes_,
         "label": [accession_labels[a] for a in accession_enc.classes_]
     }).set_index("accession")
 
-
     # ----------------------
-    # Sparse matrix
-    # ----------------------
-    sample_enc = LabelEncoder()
-    feature_enc = LabelEncoder()
-    row_idx = sample_enc.fit_transform(all_data["sample_id"])
-    col_idx = feature_enc.fit_transform(all_data["feature_subfeature"])
-
-    X_sparse = coo_matrix(
-        (all_data["value"].astype(np.float32), (row_idx, col_idx)),
-        shape=(len(sample_enc.classes_), len(feature_enc.classes_))
-    ).tocsr()
-
-    logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}")
-
-
-    meta = pd.DataFrame({"sample_id": sample_enc.classes_, "label": [s.split("_")[-1] for s in sample_enc.classes_]})
-    meta = meta.set_index("sample_id")
-
     # PCA
+    # ----------------------
     scaler = StandardScaler(with_mean=False)
     X_scaled = scaler.fit_transform(X_sparse)
 
@@ -449,8 +424,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
         index=accession_enc.classes_
     ).join(meta)
 
-
+    # ----------------------
     # Plots
+    # ----------------------
     plot_scree(ipca, output_dir)
     plot_pca_biplot(pca_df, ipca, feature_enc, output_dir)
     plot_loading_scatter(ipca, feature_enc, output_dir)
@@ -458,6 +434,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     plot_correlation_matrix(X_scaled, feature_enc, output_dir)
 
     logging.info(f"✅ Analysis complete. Plots and CSVs saved in {output_dir}")
+
 
 
 # ----------------------
