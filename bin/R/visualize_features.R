@@ -36,10 +36,10 @@ library(glue)
 # Define paths and parameters
 # -------------------------------
 # List of pathogens to process
-pathogens <- c("S.aureus", "S.pneumoniae", "S.pyogenes", "C.trachomatis", 
-               "P.aeruginosa", "H.pylori", "N.gonorrhoeae", "C.burnetii", 
-               "B.melitensis")
-#pathogens <- c("B.melitensis")
+#pathogens <- c("S.aureus", "S.pneumoniae", "S.pyogenes", "C.trachomatis", 
+#               "P.aeruginosa", "H.pylori", "N.gonorrhoeae", "C.burnetii", 
+#               "B.melitensis")
+pathogens <- c("B.melitensis")
 
 # -------------------------------
 # Run pipeline function
