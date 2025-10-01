@@ -65,8 +65,36 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
 
 
 def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
-    """Drop missing values and non-positive values."""
+    """Drop missing and non-positive values."""
     return df.dropna()[df["value"] > 0]
+
+
+def aggregate_by_accession(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Pivot so each accession is a single row, each column is a feature_subfeature.
+    The value is typically the mean or sum across replicates.
+    """
+    logging.info("Aggregating data by accession...")
+
+    # Make a combined feature identifier
+    df = df.copy()
+    df["feature_subfeature"] = df["feature"].astype(str) + "_" + df["subfeature"].astype(str)
+
+    # Aggregate values by accession + feature
+    agg_df = (
+        df.groupby(["accession", "feature_subfeature"], observed=True)["value"]
+          .mean()                       # <-- choose mean or sum as needed
+          .reset_index()
+    )
+
+    # Keep a label for each accession (e.g. majority vote)
+    label_map = (
+        df.groupby("accession")["label"]
+          .agg(lambda x: x.mode().iat[0])  # pick most common label per accession
+    )
+
+    return agg_df, label_map
+
 
 
 # ----------------------
@@ -361,7 +389,33 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     all_data["feature_subfeature"] = all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
 
 
+    # ----------------------
+    # Aggregate by accession
+    # ----------------------
     all_data = preprocess_data(all_data)
+
+    agg_df, accession_labels = aggregate_by_accession(all_data)
+
+    # Encode rows (accessions) and columns (features)
+    accession_enc = LabelEncoder()
+    feature_enc = LabelEncoder()
+
+    row_idx = accession_enc.fit_transform(agg_df["accession"])
+    col_idx = feature_enc.fit_transform(agg_df["feature_subfeature"])
+
+    X_sparse = coo_matrix(
+        (agg_df["value"].astype(np.float32), (row_idx, col_idx)),
+        shape=(len(accession_enc.classes_), len(feature_enc.classes_))
+    ).tocsr()
+
+    logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}")
+
+    # Metadata for plotting
+    meta = pd.DataFrame({
+        "accession": accession_enc.classes_,
+        "label": [accession_labels[a] for a in accession_enc.classes_]
+    }).set_index("accession")
+
 
     # ----------------------
     # Sparse matrix
@@ -388,7 +442,13 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
 
     ipca = IncrementalPCA(n_components=50, batch_size=10000)
     pcs = ipca.fit_transform(X_scaled)
-    pca_df = pd.DataFrame(pcs[:, :2], columns=["PC1", "PC2"], index=sample_enc.classes_).join(meta)
+
+    pca_df = pd.DataFrame(
+        pcs[:, :2],
+        columns=["PC1", "PC2"],
+        index=accession_enc.classes_
+    ).join(meta)
+
 
     # Plots
     plot_scree(ipca, output_dir)
