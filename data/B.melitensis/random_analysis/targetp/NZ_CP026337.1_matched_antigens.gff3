@@ -1,0 +1,4 @@
+##gff-version 3
+antigen_32|Q8YDS2|Leu/Ile/Val-binding|NZ_CP026337.1|tpos:818451-818810	TargetP-2.0	signal_peptide	1	29	0.977265	.	.	.
+antigen_150|Q8YJ23|Leu/Ile/Val-binding|NZ_CP026337.1|tpos:818459-818829	TargetP-2.0	signal_peptide	1	21	0.999933	.	.	.
+antigen_170|Q8YCA7|sn-glycerol-3-phosphate-binding|NZ_CP026337.1|tpos:821057-821489	TargetP-2.0	signal_peptide	1	23	0.766191	.	.	.
