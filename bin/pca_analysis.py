@@ -164,11 +164,15 @@ def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
 def plot_auroc_summary(results_df, output_dir, prefix="all"):
     output_path = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
-    df = results_df.dropna(subset=["auroc", "t_pvalue"]).copy()
+
+    df = results_df.dropna(subset=["auroc", "t_pvalue", "t_statistic"]).copy()
     df = df[(df["auroc"] != 0.5) & (df["t_pvalue"] < 0.05)]
+
     if df.empty:
-        print("No significant AUROC values to plot.")
+        logging.warning("No significant AUROC values to plot.")
         return
+
+    # Adjust AUROCs < 0.5
     df["adjusted_auroc"] = df["auroc"].apply(lambda x: x if x >= 0.5 else 1 - x)
     df["label"] = df["feature"] + " / " + df["subfeature"]
     df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
@@ -186,31 +190,50 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
     }
 
     colors = df["category"].map(category_palette).fillna("#a6761d")
+    hatches = ['' if t >= 0 else '////' for t in df["t_statistic"]]
+
     plt.figure(figsize=(10, max(4, 0.3 * len(df))))
     bars = plt.barh(df["label"], df["adjusted_auroc"], color=colors)
+
+    for bar, hatch in zip(bars, hatches):
+        bar.set_hatch(hatch)
+
     for bar in bars:
         width = bar.get_width()
-        plt.text(width + 0.01, bar.get_y() + bar.get_height() / 2, f"{width:.3f}", va="center")
+        plt.text(width + 0.01, bar.get_y() + bar.get_height()/2, f"{width:.3f}", va="center", fontsize=9)
+
     handles = [mpatches.Patch(color=color, label=cat) for cat, color in category_palette.items()]
-    plt.legend(handles=handles, title="Category", loc="lower right", fontsize=10)
+    handles += [
+        mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
+        mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
+    ]
+
+    plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
     plt.xlabel("AUROC (adjusted, min=0.5)")
     plt.title("AUROC Summary (Significant Features)")
     plt.gca().invert_yaxis()
     plt.tight_layout()
-    plt.savefig(output_path)
+    plt.savefig(output_path, dpi=300)
     plt.close()
+
+    logging.info(f"AUROC summary plot saved to {output_path}")
+
 
 def plot_ks_summary(results_df, output_dir, prefix="all"):
     output_path = os.path.join(output_dir, f"ks_summary_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
-    df = results_df.dropna(subset=["ks_statistic", "ks_pvalue"]).copy()
+
+    df = results_df.dropna(subset=["ks_statistic", "ks_pvalue", "t_statistic"]).copy()
     df = df[df["ks_pvalue"] < 0.05]
+
     if df.empty:
-        print("No significant KS statistics to plot.")
+        logging.warning("No significant KS statistics to plot.")
         return
+
     df["label"] = df["feature"] + " / " + df["subfeature"]
     df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
     df = df.sort_values("ks_statistic", ascending=False)
+
     category_palette = {
         "Subcellular localisation": "#1b9e77",
         "Allergenicity": "#d95f02",
@@ -221,20 +244,36 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         "Structure Analysis": "#d010e1",
         "Other": "#a6761d"
     }
+
     colors = df["category"].map(category_palette).fillna("#a6761d")
+    hatches = ['' if t >= 0 else '////' for t in df["t_statistic"]]
+
     plt.figure(figsize=(10, max(4, 0.3 * len(df))))
     bars = plt.barh(df["label"], df["ks_statistic"], color=colors)
+
+    for bar, hatch in zip(bars, hatches):
+        bar.set_hatch(hatch)
+
     for bar in bars:
         width = bar.get_width()
-        plt.text(width + 0.01, bar.get_y() + bar.get_height() / 2, f"{width:.3f}", va="center")
+        plt.text(width + 0.01, bar.get_y() + bar.get_height()/2, f"{width:.3f}", va="center", fontsize=9)
+
     handles = [mpatches.Patch(color=color, label=cat) for cat, color in category_palette.items()]
-    plt.legend(handles=handles, title="Category", loc="lower right", fontsize=10)
+    handles += [
+        mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
+        mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
+    ]
+
+    plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
     plt.xlabel("KS Statistic")
     plt.title("KS Statistics Summary (Significant Features)")
     plt.gca().invert_yaxis()
     plt.tight_layout()
-    plt.savefig(output_path)
+    plt.savefig(output_path, dpi=300)
     plt.close()
+
+    logging.info(f"KS summary plot saved to {output_path}")
+
 
 # ----------------------
 # Plotting utilities
