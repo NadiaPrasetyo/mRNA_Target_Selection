@@ -45,7 +45,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, run_mixmhc2pred, common, run_dssp, run_protlearn
+from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, run_mixmhc2pred, common, run_dssp, run_protlearn, run_discotope
 import sys
 import logging
 
@@ -57,7 +57,8 @@ tool_runners = {
     "Ellipro": run_ellipro.run,
     "MixMHC2pred": run_mixmhc2pred.run,
     "DSSP": run_dssp.run,
-    "ProtLearn": run_protlearn.run
+    "ProtLearn": run_protlearn.run,
+    "DiscoTope": run_discotope.run
 }
 
 def is_job_completed(tool_type, input_path, base_output_dir):
@@ -95,7 +96,7 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     if tool_type == "DSSP":
         expected_suffix = ".dssp"
 
-    if tool_type == "ProtLearn":
+    if tool_type in ["ProtLearn", "DiscoTope"]:
         expected_suffix = ".csv"
 
     for file in subdir.glob(f"*{expected_suffix}"):
@@ -133,7 +134,7 @@ def run_predictions_parallel(job_list, output_dir, max_threads):
 
 def main():
     """Main function to parse arguments and run epitope predictions."""
-    parser = argparse.ArgumentParser(description="Run epitope predictions using IEDB and related tools. \nMHCI, MHCII, BCell, and MixMHC2Pred takes peptide sequences (FASTA) as input.\nEllipro, DSSP, and ProtLearn takes PDB files as input.")
+    parser = argparse.ArgumentParser(description="Run epitope predictions using IEDB and related tools. \nMHCI, MHCII, BCell, and MixMHC2Pred takes peptide sequences (FASTA) as input.\nEllipro, DSSP, ProtLearn, and DiscoTope takes PDB files as input.")
     parser.add_argument("pathogen_dir", help="Pathogen directory inside data/")
     parser.add_argument("sequence_dir", help="Sequence subdirectory inside pathogen_dir/")
     parser.add_argument("--tool-root", required=True, help="Root directory containing IEDB tools")
@@ -189,10 +190,10 @@ def main():
         selected_tools = set(args.tools)
 
     # Ellipro, DSSP, and Protlearn takes pdb input
-    incompatible_tools = {"Ellipro", "DSSP", "ProtLearn"}
+    incompatible_tools = {"Ellipro", "DSSP", "ProtLearn", "DiscoTope"}
 
     if incompatible_tools & selected_tools and default_tools & selected_tools:
-        logging.error("❌ Ellipro, DSSP, and ProtLearn cannot be run together with MHCI, MHCII, BCell, or MixMHC2pred due to input type differences. Please select compatible tools.")
+        logging.error("❌ Ellipro, DSSP, ProtLearn, and DiscoTope cannot be run together with MHCI, MHCII, BCell, or MixMHC2pred due to input type differences. Please select compatible tools.")
         sys.exit(1)
 
     missing_tools = selected_tools - set(tool_map.keys())
@@ -204,9 +205,9 @@ def main():
         logging.warning("❌ No tools available to run after filtering.")
         sys.exit(1)
 
-    # ONLY Get PDB files if any of Ellipro, DSSP, or ProtLearn is selected
+    # ONLY Get PDB files if any of Ellipro, DSSP, ProtLearn, or DiscoTope is selected
     pdb_files = []
-    if "Ellipro" in final_tools or "DSSP" in final_tools or "ProtLearn" in final_tools:
+    if "Ellipro" in final_tools or "DSSP" in final_tools or "ProtLearn" in final_tools or "DiscoTope" in final_tools:
         pdb_files = common.get_pdb_files(pathogen_path, args.sequence_dir)
         logging.info(f"📂 Found {len(pdb_files)} structure file(s): {[p.name for p in pdb_files]}")
     else:
@@ -235,7 +236,7 @@ def main():
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.split_protein_fasta_to_peptides(fasta_files, temp_fasta_dir)
 
-        elif tool_type == "Ellipro" or tool_type == "DSSP" or tool_type == "ProtLearn":
+        elif tool_type == "Ellipro" or tool_type == "DSSP" or tool_type == "ProtLearn" or tool_type == "DiscoTope":  # These take PDB files
             input_files_tool = pdb_files
 
         else:  # All others use original FASTA

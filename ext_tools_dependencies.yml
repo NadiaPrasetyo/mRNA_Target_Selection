@@ -5,12 +5,16 @@ channels:
   - defaults
   - hcc
   - biocore
+  - pytorch
 dependencies:
   - python=3.10
   - numpy=1.23.5
   - scipy=1.10.1
   - pandas=1.5.3
+  - pytorch==1.11.0
+  - cudatoolkit==11.3.1
   - scikit-learn=1.2.2
+  - pyg
   - joblib=1.2.0
   - mafft
   - ca-certificates
@@ -48,3 +52,6 @@ dependencies:
       - torch==1.12.0
       - typing-extensions==4.3.0
       - zipp==3.8.0
+      - biotite==0.34
+      - xgboost==1.6.1
+      - pygam==0.9.0

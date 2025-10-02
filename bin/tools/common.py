@@ -365,7 +365,8 @@ def check_iedb_tool(base_path):
         "Ellipro": base / "ElliPro.jar",
         "MixMHC2pred": base / "MixMHC2pred-2.0" / "MixMHC2pred_unix",
         "DSSP": base, # just a place holder, it doesn't require a path
-        "ProtLearn": base # just a place holder, it doesn't require a path
+        "ProtLearn": base, # just a place holder, it doesn't require a path
+        "DiscoTope": base / "discotope3_web" / "src" / "predict_webserver.py"
     }
 
     tools = {}
