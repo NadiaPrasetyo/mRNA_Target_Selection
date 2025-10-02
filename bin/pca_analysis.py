@@ -556,7 +556,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     # Preprocess
     # ----------------------
     all_data = all_data[all_data["value"].notna() & (all_data["value"] > 0)]
-    all_data["feature_subfeature"] = all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
+    all_data["feature_subfeature"] = (
+        all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
+    )
 
     # ----------------------
     # Aggregate by accession
@@ -588,14 +590,28 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     }).set_index("accession")
 
     # ----------------------
+    # 🔥 Z-score Normalization (per feature)
+    # ----------------------
+    logging.info("Applying Z-score normalization per feature...")
+    scaler = StandardScaler(with_mean=False)  # works with sparse
+    X_scaled = scaler.fit_transform(X_sparse)  # <-- NEW: normalized features
+
+    # If you want explicit mean=0, std=1 normalization (dense version):
+    # X_dense = X_sparse.toarray()
+    # means = np.mean(X_dense, axis=0)
+    # stds = np.std(X_dense, axis=0, ddof=0)
+    # stds[stds == 0] = 1  # avoid divide by zero
+    # X_scaled = (X_dense - means) / stds
+
+    # ----------------------
     # PCA
     # ----------------------
-    scaler = StandardScaler(with_mean=False)
-    X_scaled = scaler.fit_transform(X_sparse)
-
+    logging.info("Running PCA on normalized data...")
     ipca = IncrementalPCA(n_components=50, batch_size=10000)
     pcs = ipca.fit_transform(X_scaled)
-    pca_df = pd.DataFrame(pcs[:, :2], columns=["PC1", "PC2"], index=accession_enc.classes_).join(meta)
+    pca_df = pd.DataFrame(
+        pcs[:, :2], columns=["PC1", "PC2"], index=accession_enc.classes_
+    ).join(meta)
 
     # ----------------------
     # Plots
@@ -606,7 +622,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     plot_covariance_matrix(X_scaled, feature_enc, output_dir)
     plot_correlation_matrix(X_scaled, feature_enc, output_dir)
 
+    # ----------------------
     # KS/t-test/AUROC computations
+    # ----------------------
     results_df = compute_stats(all_data)
     results_df.to_csv(os.path.join(output_dir, "ks_auroc_results.csv"), index=False)
 
