@@ -3,7 +3,7 @@ import subprocess
 import shutil
 import logging
 from pathlib import Path
-from bin.tools import common
+from tools import common
 
 def run(input_file, tool_path, output_dir):
     """
