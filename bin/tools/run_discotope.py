@@ -43,11 +43,14 @@ def run(input_file, tool_path, output_dir):
         "--out_dir", output_dir
     ]
 
-    print(f"Running DiscoTope:\n{' '.join(cmd)}")
+    logging.info(f"Running DiscoTope on file: {input_file} with struc_type: {struct_type}")
 
     # Execute the command
     try:
-        subprocess.run(cmd, check=True)
-        print(f"✅ DiscoTope finished successfully. Results saved in: {output_dir}")
+        result = subprocess.run(cmd, check=True)
+        logging.debug(f"DiscoTope command output:\n{result.stdout}")
+        logging.debug(f"DiscoTope command error output:\n{result.stderr}")
+
+        logging.info(f"✅ DiscoTope finished successfully. Results saved in: {output_dir}")
     except subprocess.CalledProcessError as e:
         raise RuntimeError(f"❌ DiscoTope failed with error code {e.returncode}") from e

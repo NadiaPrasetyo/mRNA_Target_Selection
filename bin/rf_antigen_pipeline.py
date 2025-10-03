@@ -32,7 +32,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import roc_auc_score, roc_curve, accuracy_score, classification_report
+from sklearn.metrics import roc_auc_score, accuracy_score
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 
