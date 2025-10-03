@@ -38,7 +38,7 @@ def run(input_file, tool_path, output_dir):
         "conda", "run", "-n", common.CONDA_ENV_NAME,
         "python", str(tool_path),
         "--models_dir", str(tool_path.parent.parent/"models"),  # e.g., /base/discotope/models
-        "--cpu_mode",
+        "--cpu_only",
         "--pdb_or_zip_file", str(input_file),
         "--struc_type", struct_type,
         "--out_dir", output_dir
