@@ -18,7 +18,7 @@ def run(input_file, tool_path, output_dir):
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    common.create_conda_env_if_needed()
+    common.create_conda_env_if_needed(common.DISCOTOPE_ENV_NAME, common.DISCOTOPE_ENV_YML)
 
     input_file = Path(input_file)
     output_dir = Path(output_dir)/"discotope"/input_file.stem
@@ -35,7 +35,7 @@ def run(input_file, tool_path, output_dir):
 
     # Build the command
     cmd = [
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.DISCOTOPE_ENV_NAME,
         "python", str(tool_path),
         "--models_dir", str(tool_path.parent.parent/"models"),  # e.g., /base/discotope/models
         "--cpu_only",

@@ -35,7 +35,7 @@ def run(input_fasta: Path, input_tree: Path, output_dir: Path):
         raise RuntimeError("Conda is required but not found.")
 
     # Ensure conda env is ready (assumes this function is defined elsewhere)
-    common.create_conda_env_if_needed()
+    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
 
     input_stem = input_fasta.stem
 
@@ -48,7 +48,7 @@ def run(input_fasta: Path, input_tree: Path, output_dir: Path):
 
     # Command construction
     cmd = [
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
         "rate4site",      # Assuming rate4site is in the conda environment
         "-s", str(input_fasta),
         "-t", str(input_tree),

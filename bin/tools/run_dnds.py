@@ -49,7 +49,7 @@ def run_hyphy(method, alignment, tree, output_dir):
     input_stem = alignment.stem
     output_file = os.path.join(output_dir, f"{input_stem}_{method}_results.json")
     command = [
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
         "hyphy", method.lower(),
         "--alignment", str(alignment),
         "--tree", str(tree),
@@ -68,7 +68,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     Runs MACSE to generate codon-aware alignments,
     builds a tree, then optionally runs HyPhy analysis.
     """
-    common.create_conda_env_if_needed()
+    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
     msa_path = output_dir / "msa"
     msa_path.mkdir(parents=True, exist_ok=True)
     raw_alignment = msa_path / f"{input_fasta.stem}_codon_aligned_raw.fasta"
@@ -76,7 +76,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
 
     # Run MACSE
     subprocess.run([
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
         "macse", "-prog", "alignSequences",
         "-seq", str(input_fasta),
         "-out_NT", str(raw_alignment)
@@ -94,7 +94,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     tree_file = msa_path / f"{input_fasta.stem}.tree"
     with open(tree_file, "w") as tree_out:
         subprocess.run([
-            "conda", "run", "-n", common.CONDA_ENV_NAME,
+            "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
             "fasttree", "-nt", str(alignment_file)
         ], check=True, stdout=tree_out)
 

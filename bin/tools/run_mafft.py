@@ -110,14 +110,14 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, rate4site: bool = 
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    common.create_conda_env_if_needed()
+    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
     # Ensure output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_file = output_dir / (input_fasta.stem + "_aligned.fasta")
 
     command = [
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
         "mafft", "--localpair", "--maxiterate", "1000", #L-INS-i (probably most accurate; recommended for <200 sequences; iterative refinement method incorporating local pairwise alignment information)
         "--reorder", # Output order: aligned.
         "--treeout", # Guide tree is output to the input.tree file

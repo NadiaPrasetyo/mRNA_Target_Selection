@@ -43,7 +43,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3)
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    common.create_conda_env_if_needed()
+    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
 
     input_fasta = Path(input_fasta).resolve()
     output_dir = Path(output_dir).resolve()
@@ -51,7 +51,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3)
     output_file = output_dir / f"{input_fasta.stem}_ifnepitope2.csv"
 
     cmd = [
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
         "ifnepitope2",
         "-i", str(input_fasta),
         "-o", str(output_file),

@@ -44,7 +44,7 @@ def patch_algpred_bugs():
 
     try:
         env_prefix = subprocess.run(
-            ["conda", "run", "-n", common.CONDA_ENV_NAME, "python", "-c", "import sys; print(sys.prefix)"],
+            ["conda", "run", "-n", common.EXT_TOOLS_ENV_NAME, "python", "-c", "import sys; print(sys.prefix)"],
             capture_output=True, check=True, text=True
         ).stdout.strip()
 
@@ -112,7 +112,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    common.create_conda_env_if_needed()
+    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
     patch_algpred_bugs()
 
     input_fasta = Path(input_fasta).resolve()
@@ -121,7 +121,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
     output_file = output_dir / f"{input_fasta.stem}_algpred.csv"
 
     cmd = [
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
         "algpred2",
         "-i", str(input_fasta),
         "-o", str(output_file),

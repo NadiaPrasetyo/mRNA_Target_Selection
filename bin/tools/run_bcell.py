@@ -54,7 +54,7 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
 
-    common.create_conda_env_if_needed()
+    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
 
     # Validate input
     fasta_file = Path(fasta_file)
@@ -66,7 +66,7 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     cmd = [
-        "conda", "run", "-n", common.CONDA_ENV_NAME,
+        "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
         "python", str(tool_path),
         "-i", str(fasta_file),
         "-o", str(output_dir),

@@ -149,16 +149,19 @@ def ensure_writable_dir(path: Path) -> bool:
 
     return True
 
-CONDA_ENV_NAME = "external_tools_env"
-CONDA_ENV_YML = Path("ext_tools_dependencies.yml")
+EXT_TOOLS_ENV_NAME = "external_tools_env"
+EXT_TOOLS_ENV_YML = Path("ext_tools_dependencies.yml")
 
-def create_conda_env_if_needed():
+DISCOTOPE_ENV_NAME = "discotope_tools_env"
+DISCOTOPE_ENV_YML = Path("discotope_tools_dependencies.yml")
+
+def create_conda_env_if_needed(conda_env_name, conda_env_yml):
     """Create Conda environment if it doesn't exist."""
-    logging.info(f"🔍 Checking for Conda environment '{CONDA_ENV_NAME}'...")
+    logging.info(f"🔍 Checking for Conda environment '{conda_env_name}'...")
     result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
-    if CONDA_ENV_NAME not in result.stdout:
+    if conda_env_name not in result.stdout:
         logging.info("📦 Conda environment not found. Creating from YAML...")
-        subprocess.run(["conda", "env", "create", "-f", str(CONDA_ENV_YML)], check=True)
+        subprocess.run(["conda", "env", "create", "-f", str(conda_env_yml)], check=True)
     else:
         logging.info("✅ Conda environment already exists.")
 
