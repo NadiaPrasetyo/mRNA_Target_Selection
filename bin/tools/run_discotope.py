@@ -22,7 +22,7 @@ def run(input_file, tool_path, output_dir):
 
     input_file = Path(input_file)
     output_dir = Path(output_dir)/"discotope"/input_file.stem
-    tool_path = Path(tool_path)  # e.g., /path/to/discotope
+    tool_path = Path(tool_path)  # e.g., /base/discotope/src/predict_webserver.py
 
     # Ensure paths exist
     if not os.path.isfile(input_file):
@@ -37,6 +37,7 @@ def run(input_file, tool_path, output_dir):
     cmd = [
         "conda", "run", "-n", common.CONDA_ENV_NAME,
         "python", str(tool_path),
+        "--models_dir", str(tool_path.parent.parent/"models"),  # e.g., /base/discotope/models
         "--cpu_mode",
         "--pdb_or_zip_file", str(input_file),
         "--struc_type", struct_type,
