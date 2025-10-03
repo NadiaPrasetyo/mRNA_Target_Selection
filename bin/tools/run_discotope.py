@@ -38,7 +38,7 @@ def run(input_file, tool_path, output_dir):
         "conda", "run", "-n", common.CONDA_ENV_NAME,
         "python", str(tool_path),
         "--cpu_mode",
-        "--pdb_or_zip_file", input_file,
+        "--pdb_or_zip_file", str(input_file),
         "--struc_type", struct_type,
         "--out_dir", output_dir
     ]

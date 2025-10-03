@@ -201,15 +201,15 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     labels_per_bacteria = {}
     for bacteria, df in per_bacteria.items():
         try:
-            Xb, lb = preprocess_and_pivot(df)
+            feature_matrix, labels = preprocess_and_pivot(df)
         except Exception as e:
             logging.error(f"Failed to pivot data for {bacteria}: {e}")
             continue
-        if Xb.empty:
+        if feature_matrix.empty:
             logging.warning(f"Pivot produced empty matrix for {bacteria}")
             continue
-        matrices[bacteria] = Xb
-        labels_per_bacteria[bacteria] = lb
+        matrices[bacteria] = feature_matrix
+        labels_per_bacteria[bacteria] = labels
 
     if test_bacterium not in matrices:
         logging.error(f"Test bacterium '{test_bacterium}' not found among loaded matrices. Available: {list(matrices.keys())}")
@@ -239,20 +239,20 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     X_train_list = []
     y_train_list = []
     for bacteria in train_bacts:
-        Xb = align_df(matrices[bacteria])
-        lb = labels_per_bacteria.get(bacteria)
-        if lb is None:
+        feature_matrix = align_df(matrices[bacteria])
+        labels = labels_per_bacteria.get(bacteria)
+        if labels is None:
             logging.warning(f"No labels for bacterium {bacteria}; skipping those samples from training.")
             continue
-        # Align labels index/order to Xb index
-        lb = lb.reindex(Xb.index).fillna(method="ffill")  # best-effort
+        # Align labels index/order to feature_matrix index
+        labels = labels.reindex(feature_matrix.index).fillna(method="ffill")  # best-effort
         try:
-            yb, le_b = make_binary_labels(lb)
+            yb, le_b = make_binary_labels(labels)
         except Exception as e:
             logging.error(f"Failed converting labels for training bacterium {bacteria}: {e}. Skipping.")
             continue
-        X_train_list.append(Xb)
-        y_train_list.append(pd.Series(yb, index=Xb.index))
+        X_train_list.append(feature_matrix)
+        y_train_list.append(pd.Series(yb, index=feature_matrix.index))
 
     if not X_train_list:
         logging.error("No labeled training data available after processing. Exiting.")
