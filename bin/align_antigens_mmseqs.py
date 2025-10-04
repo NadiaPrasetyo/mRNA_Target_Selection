@@ -102,7 +102,7 @@ def run_mmseqs2_and_process(strain_fasta_path, antigen_fasta, results_dir, fetch
         str: The name of the strain (derived from the input FASTA filename).
     """
     strain_fasta = Path(strain_fasta_path)
-    strain_name = strain_fasta.stem.replace("_translated", "")
+    strain_name = strain_fasta.stem.replace("_protein", "")
     raw_result = results_dir / f"{strain_name}_alignment.tsv"
     best_result = results_dir / f"{strain_name}_best_hits.tsv"
     antigen_seqs_out = results_dir / f"{strain_name}_matched_antigens.fasta"
@@ -227,7 +227,7 @@ def extract_best_hits_with_sequences(strain_fasta_path, raw_tsv_path, output_tsv
             header = f"{hit['query']}|{hit['target']}|tpos:{hit['tstart']}-{hit['tend']}"
             fasta_out.write(f">{header}\n{hit['tseq_slice']}\n")
 
-def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq, mode):
+def main(pathogen_dir, pathogen_name, genome_dir, num_threads, output_dir, fetch_qseq, mode):
     """
     Entry point to execute the antigen-to-strain alignment workflow.
     Validates input files and directories, prepares an antigen FASTA file, and runs
@@ -244,13 +244,13 @@ def main(pathogen_dir, pathogen_name, num_threads, output_dir, fetch_qseq, mode)
     base_dir = Path(f"data/{pathogen_dir}")
     pathogen_tag = pathogen_name.replace(" ", "_").lower()
     antigen_csv = base_dir / f"{pathogen_tag}_compiled_proteins.csv"
-    strain_dir = base_dir / "strain_genomes"
+    strain_dir = base_dir / genome_dir
     results_dir = Path(base_dir/output_dir)
     results_dir.mkdir(parents=True, exist_ok=True)
     if mode == "protein":
-        strain_files = list(strain_dir.glob("*_translated.fasta"))
+        strain_files = list(strain_dir.glob("*_protein.fasta"))
     else:  # nucleotide
-        strain_files = [f for f in strain_dir.glob("*.fasta") if not f.name.endswith("_translated.fasta")]
+        strain_files = [f for f in strain_dir.glob("*.fasta") if not f.name.endswith("_protein.fasta")]
         logging.info(f"Running in nucleotide mode. Found {len(strain_files)} files: {strain_files} .")
 
     if not antigen_csv.exists():
@@ -297,6 +297,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("pathogen_directory", help="Directory name under data/")
     parser.add_argument("pathogen_name", help='Prefix used in filenames (e.g., "staphylococcus aureus")')
+    parser.add_argument("--genome_dir", help="Subdirectory under pathogen_directory containing strain genome or proteome FASTA files (default: strain_genomes)", default="strain_genomes")
     parser.add_argument("--threads", type=int, default=4, help="Number of threads (default: 4)")
     parser.add_argument("--mode", choices=["protein", "nucleotide"], default="protein", help="Alignment mode (default: protein)")
     parser.add_argument(
@@ -326,4 +327,4 @@ if __name__ == "__main__":
     if args.output_dir is None:
         args.output_dir = f"mmseqs_results"
 
-    main(args.pathogen_directory, args.pathogen_name, args.threads, args.output_dir, args.fetch_qseq, args.mode)
+    main(args.pathogen_directory, args.pathogen_name, args.genome_dir, args.threads, args.output_dir, args.fetch_qseq, args.mode)
