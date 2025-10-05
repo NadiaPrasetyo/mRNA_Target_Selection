@@ -4,6 +4,7 @@ import shutil
 import logging
 from pathlib import Path
 from tools import common
+import warnings
 
 def run(input_file, tool_path, output_dir):
     """
@@ -14,6 +15,15 @@ def run(input_file, tool_path, output_dir):
     tool_root : Path to the DiscoTope installation directory (where src/predict_webserver.py is located)
     output_dir : Directory to save the prediction results
     """
+    
+    # 🔇 Suppress the noisy pkg_resources deprecation warning from XGBoost
+    warnings.filterwarnings(
+        "ignore",
+        message="pkg_resources is deprecated as an API",
+        category=UserWarning,
+        module="xgboost.compat"
+    )
+
     if not shutil.which("conda"):
         logging.error("❌ Conda is not available in PATH.")
         raise RuntimeError("Conda is required but not found.")
