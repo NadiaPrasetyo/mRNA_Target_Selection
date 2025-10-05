@@ -1,6 +1,5 @@
 import os
 import subprocess
-import shutil
 import logging
 from pathlib import Path
 from tools import common
@@ -23,12 +22,6 @@ def run(input_file, tool_path, output_dir):
         category=UserWarning,
         module="xgboost.compat"
     )
-
-    if not shutil.which("conda"):
-        logging.error("❌ Conda is not available in PATH.")
-        raise RuntimeError("Conda is required but not found.")
-
-    common.create_conda_env_if_needed(common.DISCOTOPE_ENV_NAME, common.DISCOTOPE_ENV_YML)
 
     input_file = Path(input_file)
     output_dir = Path(output_dir)/"discotope"/input_file.stem

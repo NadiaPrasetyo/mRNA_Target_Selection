@@ -45,6 +45,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
+import shutil
 from tools import run_mhci, run_mhcii, run_bcell, run_ellipro, run_mixmhc2pred, common, run_dssp, run_protlearn, run_discotope
 import sys
 import logging
@@ -268,6 +269,21 @@ def main():
         common.cleanup_temp(temp_dirs)
 
         sys.exit(1)
+
+    # checking requirements for environment creation
+    if "DiscoTope" in final_tools:
+        if not shutil.which("conda"):
+            logging.error("❌ Conda is not available in PATH.")
+            raise RuntimeError("Conda is required but not found.")
+
+        common.create_conda_env_if_needed(common.DISCOTOPE_ENV_NAME, common.DISCOTOPE_ENV_YML)
+    
+    if "BCell" in final_tools:
+        if not shutil.which("conda"):
+            logging.error("❌ Conda is not available in PATH.")
+            raise RuntimeError("Conda is required but not found.")
+        common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
+
 
     logging.info(f"\n🚀 Running predictions with {args.threads} threads...")
 

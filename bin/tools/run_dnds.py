@@ -68,7 +68,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     Runs MACSE to generate codon-aware alignments,
     builds a tree, then optionally runs HyPhy analysis.
     """
-    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
     msa_path = output_dir / "msa"
     msa_path.mkdir(parents=True, exist_ok=True)
     raw_alignment = msa_path / f"{input_fasta.stem}_codon_aligned_raw.fasta"

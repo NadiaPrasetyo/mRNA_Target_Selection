@@ -27,7 +27,6 @@ Author: Nadia
 """
 import subprocess
 from pathlib import Path
-import shutil
 from tools import common
 import logging
 
@@ -50,11 +49,6 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
       is already created and contains all dependencies listed in requirements.txt.
     - It uses default prediction mode (vt_pred) and default thresholds.
     """
-    if not shutil.which("conda"):
-        logging.error("❌ Conda is not available in PATH.")
-        raise RuntimeError("Conda is required but not found.")
-
-    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
 
     # Validate input
     fasta_file = Path(fasta_file)

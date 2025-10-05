@@ -28,7 +28,6 @@ Author: Nadia
 import subprocess
 import logging
 from pathlib import Path
-import shutil
 from tools import common
 import py_compile
 
@@ -108,11 +107,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
     - input_fasta: input FASTA file path
     - output_dir: base output directory (tool-specific subdir will be created)
     """
-    if not shutil.which("conda"):
-        logging.error("❌ Conda is not available in PATH.")
-        raise RuntimeError("Conda is required but not found.")
-
-    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
     patch_algpred_bugs()
 
     input_fasta = Path(input_fasta).resolve()

@@ -360,6 +360,14 @@ def main():
                 logging.warning(f"⚠️ Failed to remove empty directory {cluster_input_dir}: {e}")
         return
     
+    # Check the requirements of each tool before running
+    if "Allergenicity" in args.tools or "IFNEPITOPE2" in args.tools or "DNDS" in args.tools or "MAFFT_RATE4SITE" in args.tools or "MAFFT" in args.tools:
+        if not shutil.which("conda"):
+            logging.error("❌ Conda is not available in PATH.")
+            raise RuntimeError("Conda is required but not found.")
+        # Ensure conda env is ready (assumes this function is defined elsewhere)
+        common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
+    
     run_parallel_jobs(jobs, args.threads)
 
 

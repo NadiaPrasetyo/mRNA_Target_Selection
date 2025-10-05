@@ -105,13 +105,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, rate4site: bool = 
         logging.info(f"ℹ️ Input FASTA file {input_fasta.name} contains only one sequence. Alignment is not required. Exiting gracefully.")
         return
 
-
-    if not shutil.which("conda"):
-        logging.error("❌ Conda is not available in PATH.")
-        raise RuntimeError("Conda is required but not found.")
-
-    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
-    # Ensure output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_file = output_dir / (input_fasta.stem + "_aligned.fasta")

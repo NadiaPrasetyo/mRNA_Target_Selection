@@ -25,17 +25,10 @@ Author: Nadia
 import argparse
 import subprocess
 import logging
-import shutil
 from pathlib import Path
 from tools import common
 
 def run(input_fasta: Path, input_tree: Path, output_dir: Path):
-    if not shutil.which("conda"):
-        logging.error("❌ Conda is not available in PATH.")
-        raise RuntimeError("Conda is required but not found.")
-
-    # Ensure conda env is ready (assumes this function is defined elsewhere)
-    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
 
     input_stem = input_fasta.stem
 

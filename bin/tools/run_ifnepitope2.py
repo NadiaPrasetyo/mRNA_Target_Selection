@@ -27,7 +27,6 @@ Author: Nadia
 import logging
 from pathlib import Path
 import subprocess
-import shutil
 from tools import common
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3):
@@ -39,11 +38,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, job_type: int = 3)
         output_dir (Path): Directory where output will be saved.
         job_type (int, optional): IfNePitope2 job type (default: 3).
     """
-    if not shutil.which("conda"):
-        logging.error("❌ Conda is not available in PATH.")
-        raise RuntimeError("Conda is required but not found.")
-
-    common.create_conda_env_if_needed(common.EXT_TOOLS_ENV_NAME, common.EXT_TOOLS_ENV_YML)
 
     input_fasta = Path(input_fasta).resolve()
     output_dir = Path(output_dir).resolve()
