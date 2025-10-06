@@ -210,15 +210,8 @@ def main():
             if args.skip and "genomes" in args.skip and (base_dir / "strain_genomes").exists():
                 logging.info("⏭️  Skipping genome fetch - data already exists")
             else:
-                # chmod the script first
-                cmd = ["chmod", "+x", "bin/fetch_NCBI_strain_genome.sh"]
-                attempted_count += 1
-                if args.dry_run:
-                    logging.info(f"Would run: {' '.join(cmd)}")
-                elif run_command(cmd, "Make bin/fetch_NCBI_strain_genome.sh executable", failed_steps):
-                    success_count += 1
 
-                cmd = ["bash", "bin/fetch_NCBI_strain_genome.sh", "--random", f"{args.pathogen_name}", 
+                cmd = ["python", "bin/fetch_NCBI_strain_genome.py", "--random", f"{args.pathogen_name}", 
                        "--random-num", str(args.random_genomes), "--threads", str(args.threads), args.pathogen_dir]
                 attempted_count += 1
                 if args.dry_run:
