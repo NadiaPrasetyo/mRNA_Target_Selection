@@ -1,0 +1,13 @@
+##gff-version 3
+antigen_30|P65288|Lipase|YP_501455.1|tpos:1-680	TargetP-2.0	signal_peptide	1	32	0.849382	.	.	.
+antigen_38|P66134|Large|YP_500260.1|tpos:1-94	TargetP-2.0	transit_peptide	1	9	0.629427	.	.	Note=Mitochondrion
+antigen_49|Q6GJN0|Uncharacterized|YP_498989.1|tpos:11-272	TargetP-2.0	signal_peptide	1	26	0.997794	.	.	.
+antigen_48|Q936F2|Uncharacterized|YP_498659.1|tpos:1-256	TargetP-2.0	signal_peptide	1	24	0.979354	.	.	.
+antigen_174|Q2FHM8|DNA-directed|YP_499716.1|tpos:1-72	TargetP-2.0	transit_peptide	1	26	0.832733	.	.	Note=Mitochondrion
+antigen_115|Q7A7G0|Uncharacterized|YP_498989.1|tpos:11-272	TargetP-2.0	signal_peptide	1	26	0.997794	.	.	.
+antigen_53|Q2FIK4|Extracellular|YP_499371.1|tpos:1-340	TargetP-2.0	signal_peptide	1	21	0.955296	.	.	.
+antigen_117|Q2G2P8|ADP-dependent|YP_498615.1|tpos:1-233	TargetP-2.0	transit_peptide	1	32	0.883625	.	.	Note=Mitochondrion
+antigen_168|A0A0H3K6Z9|Staphylococcal|YP_498982.1|tpos:1-227	TargetP-2.0	signal_peptide	1	22	0.922498	.	.	.
+antigen_178|Q2YTM3|Serine|YP_500441.1|tpos:1-240	TargetP-2.0	signal_peptide	1	21	0.919011	.	.	.
+antigen_179|Q5HEW2|Serine|YP_500440.1|tpos:1-239	TargetP-2.0	signal_peptide	1	24	0.986965	.	.	.
+antigen_68|Q2FJK1|Uncharacterized|YP_498989.1|tpos:11-266	TargetP-2.0	signal_peptide	1	26	0.997794	.	.	.

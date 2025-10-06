@@ -1,0 +1,347 @@
+{
+ "MLE":{
+   "content":{
+     "0":      [
+[0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0] 
+      ]
+    },
+   "headers":    [
+["alpha", "Synonymous substitution rate at a site"],
+    ["beta", "Non-synonymous substitution rate at a site"],
+    ["alpha=beta", "The rate estimate under the neutral model"],
+    ["LRT", "Likelihood ratio test statistic for beta = alpha, versus beta &neq; alpha"],
+    ["p-value", "Asymptotic p-value for evidence of selection, i.e. beta &neq; alpha"],
+    ["Total branch length", "The total length of branches contributing to inference at this site, and used to scale dN-dS"] 
+    ]
+  },
+ "analysis":{
+   "authors":"Sergei L Kosakovsky Pond and Simon DW Frost",
+   "citation":"Not So Different After All: A Comparison of Methods for Detecting Amino Acid Sites Under Selection (2005). _Mol Biol Evol_ 22 (5): 1208-1222",
+   "contact":"spond@temple.edu",
+   "info":"FEL (Fixed Effects Likelihood)\n    estimates site-wise synonymous (&alpha;) and non-synonymous (&beta;) rates, and\n    uses a likelihood ratio test to determine if beta &neq; alpha at a site.\n    The estimates aggregate information over all branches,\n    so the signal is derived from\n    pervasive diversification or conservation. A subset of branches can be selected\n    for testing as well, in which case an additional (nuisance) parameter will be\n    inferred -- the non-synonymous rate on branches NOT selected for testing.\n    Multiple partitions within a NEXUS file are also supported\n    for recombination - aware analysis. Version 2.5 adds MH support. Version 2.6 adds substitution mapping.\n    ",
+   "requirements":"in-frame codon alignment and a phylogenetic tree",
+   "settings":{
+     "ci":0,
+     "multihit":"None",
+     "pvalue":0.1,
+     "resample":0,
+     "site-filter":{
+       "site-filter":null,
+       "site-save-filter":null
+      },
+     "srv":1
+    },
+   "version":"2.6"
+  },
+ "branch attributes":{
+   "0":{
+     "Q6GEK1_NC_002745_2":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"Q6GEK1|NC_002745.2"
+      },
+     "Q6GEK1_NC_002952_2":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"Q6GEK1|NC_002952.2"
+      },
+     "Q6GEK1_NC_002953_3":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"Q6GEK1|NC_002953.3"
+      },
+     "Q6GEK1_NC_007795_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"Q6GEK1|NC_007795.1"
+      },
+     "Q6GEK1_NC_017338_2":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"Q6GEK1|NC_017338.2"
+      },
+     "Q6GEK1_NC_017763_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"Q6GEK1|NC_017763.1"
+      }
+    },
+   "attributes":{
+     "Global MG94xREV":{
+       "attribute type":"branch length",
+       "display order":1
+      },
+     "Nucleotide GTR":{
+       "attribute type":"branch length",
+       "display order":0
+      },
+     "original name":{
+       "attribute type":"node label",
+       "display order":-1
+      }
+    }
+  },
+ "data partitions":{
+   "0":{
+     "coverage":      [
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60] 
+      ],
+     "name":"fel.filter.default"
+    }
+  },
+ "fits":{
+   "Global MG94xREV":{
+     "AIC-c":490.7054957334606,
+     "Equilibrium frequencies":      [
+[0.01575238731763319],
+      [0.002193293104184833],
+      [0.004008920374663031],
+      [0.01277267651715738],
+      [0.04098406872860988],
+      [0.005706441411789979],
+      [0.01043028366746639],
+      [0.03323155034675292],
+      [0.02920484864841619],
+      [0.004066354632966025],
+      [0.007432518666838945],
+      [0.0236804794725431],
+      [0.04500748591600864],
+      [0.006266644319098021],
+      [0.01145422745535668],
+      [0.03649390069352798],
+      [0.008117521581627728],
+      [0.001130247990291971],
+      [0.002065877190813246],
+      [0.006582016756730756],
+      [0.02111991380728642],
+      [0.002940643877048809],
+      [0.00537493467281498],
+      [0.0171248853707875],
+      [0.01504984510673585],
+      [0.002095474217720873],
+      [0.003830126155949627],
+      [0.01220302670989321],
+      [0.02319326149688022],
+      [0.003229327687221075],
+      [0.005902593473285737],
+      [0.01880604003088992],
+      [0.0107816278547631],
+      [0.001501186426470629],
+      [0.00274388171820857],
+      [0.008742182511161972],
+      [0.02805130219920834],
+      [0.003905739900647177],
+      [0.007138945650247808],
+      [0.02274513707991704],
+      [0.01998908504042642],
+      [0.00278319225486888],
+      [0.005087143216681505],
+      [0.01620796339926954],
+      [0.03080510617471324],
+      [0.004289167450259966],
+      [0.007839777888728366],
+      [0.02497803338074713],
+      [0.003339152651489096],
+      [0.0194456074190458],
+      [0.06239570146955435],
+      [0.008687702949682878],
+      [0.01587945965705674],
+      [0.0505929732974267],
+      [0.006190772600641528],
+      [0.01131554846284055],
+      [0.03605206056062618],
+      [0.06852110447370167],
+      [0.009540577113988785],
+      [0.01743835053570217],
+      [0.05555969926293281] 
+      ],
+     "Log Likelihood":-223.0097246109164,
+     "Rate Distributions":{
+       "non-synonymous/synonymous rate ratio for *test*":        [
+[2.80130459726975e-05, 1] 
+        ]
+      },
+     "display order":1,
+     "estimated parameters":21
+    },
+   "Nucleotide GTR":{
+     "AIC-c":509.368061988645,
+     "Equilibrium frequencies":      [
+[0.2697302697302698],
+      [0.1838161838161838],
+      [0.1698301698301698],
+      [0.3766233766233766] 
+      ],
+     "Log Likelihood":-240.490125177148,
+     "Rate Distributions":{
+       "Substitution rate from nucleotide A to nucleotide C":0.02709908849589411,
+       "Substitution rate from nucleotide A to nucleotide G":1,
+       "Substitution rate from nucleotide A to nucleotide T":0.02709908849589411,
+       "Substitution rate from nucleotide C to nucleotide G":0.1314230119566505,
+       "Substitution rate from nucleotide C to nucleotide T":4.043451329485608e-06,
+       "Substitution rate from nucleotide G to nucleotide T":0.02709908849589411
+      },
+     "display order":0,
+     "estimated parameters":14
+    }
+  },
+ "input":{
+   "file name":"/weka/users/prana47p/mRNA_Target_Selection/data/S.aureus/random_analysis/dnds/msa/Q6GEK1_combined_codon_aligned.fasta",
+   "number of sequences":6,
+   "number of sites":61,
+   "partition count":1,
+   "trees":{
+     "0":"(Q6GEK1_NC_007795_1:1e-10,Q6GEK1_NC_017763_1:1e-10,Q6GEK1_NC_002953_3:1e-10,Q6GEK1_NC_002952_2:1e-10,Q6GEK1_NC_017338_2:1e-10,Q6GEK1_NC_002745_2:3e-09)"
+    }
+  },
+ "runtime":"2.5.83",
+ "substitutions":{
+   "0":{
+     "0":null,
+     "1":null,
+     "10":null,
+     "11":null,
+     "12":null,
+     "13":null,
+     "14":null,
+     "15":null,
+     "16":null,
+     "17":null,
+     "18":null,
+     "19":null,
+     "2":null,
+     "20":null,
+     "21":null,
+     "22":null,
+     "23":null,
+     "24":null,
+     "25":null,
+     "26":null,
+     "27":null,
+     "28":null,
+     "29":null,
+     "3":null,
+     "30":null,
+     "31":null,
+     "32":null,
+     "33":null,
+     "34":null,
+     "35":null,
+     "36":null,
+     "37":null,
+     "38":null,
+     "39":null,
+     "4":null,
+     "40":null,
+     "41":null,
+     "42":null,
+     "43":null,
+     "44":null,
+     "45":null,
+     "46":null,
+     "47":null,
+     "48":null,
+     "49":null,
+     "5":null,
+     "50":null,
+     "51":null,
+     "52":null,
+     "53":null,
+     "54":null,
+     "55":null,
+     "56":null,
+     "57":null,
+     "58":null,
+     "59":null,
+     "6":null,
+     "60":null,
+     "7":null,
+     "8":null,
+     "9":null
+    }
+  },
+ "tested":{
+   "0":{
+     "Q6GEK1_NC_002745_2":"test",
+     "Q6GEK1_NC_002952_2":"test",
+     "Q6GEK1_NC_002953_3":"test",
+     "Q6GEK1_NC_007795_1":"test",
+     "Q6GEK1_NC_017338_2":"test",
+     "Q6GEK1_NC_017763_1":"test"
+    }
+  },
+ "timers":{
+   "FEL analysis":{
+     "order":2,
+     "timer":0
+    },
+   "Model fitting":{
+     "order":1,
+     "timer":1
+    },
+   "Total time":{
+     "order":0,
+     "timer":1
+    }
+  }
+}

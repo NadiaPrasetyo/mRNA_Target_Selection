@@ -8,6 +8,7 @@ data/*/raw_random_features/
 results/*/raw_data/
 notes/to_do_list.md
 data/*/*/*/*/output_interactive_figures.html
+data/*/*/mhci/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

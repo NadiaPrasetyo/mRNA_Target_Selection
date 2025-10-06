@@ -289,7 +289,7 @@ def main():
                 success_count += 1
             
             # IEDB epitope prediction on PDB structures (non-default tools) - antigens
-            nondefault_tools = ["DSSP", "ProtLearn", "Ellipro"]
+            nondefault_tools = ["DSSP", "ProtLearn", "Ellipro", "DiscoTope"]
             cmd = ["python", "bin/IEDB_epitope.py", args.pathogen_dir, "pdb_sequences",
                    "--tool-root", args.tool_root, "--threads", str(args.threads),
                    "--tools"] + nondefault_tools + ["--output-dir", "epitope_outputs"]
