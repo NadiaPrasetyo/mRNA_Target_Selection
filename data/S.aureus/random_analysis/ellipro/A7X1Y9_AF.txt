@@ -1,7 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,A7X1Y9_AF,A,22,29,NKRNNPER,8,0.714,Linear
-2,A7X1Y9_AF,A,33,42,KKYCPRLNKY,10,0.629,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,A7X1Y9_AF,A:N22, A:K23, A:R24, A:N25, A:N26, A:P27, A:E28,7,0.752,Discontinous
-2,A7X1Y9_AF,A:Y35, A:C36, A:P37, A:L39, A:N40, A:K41, A:Y42,7,0.653,Discontinous
