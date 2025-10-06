@@ -45,27 +45,54 @@ def setup_logging(verbose=False, log_file=None):
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
 
+def run_command(cmd, description, failed_steps, success_exit_codes=(0,)):
+    """
+    Run a shell command, log outcome, and track failures.
 
-
-def run_command(cmd, description, failed_steps):
-    """Run a command and log outcome, track failures."""
+    Args:
+        cmd (list[str]): Command and arguments.
+        description (str): Human-readable step description.
+        failed_steps (list[str]): Collector for failed step descriptions.
+        success_exit_codes (tuple[int]): Acceptable exit codes.
+    """
     logging.info(f"🚀 {description}")
-    logging.debug(f"Command: {' '.join(cmd)}")
+    logging.debug(f"Command: {' '.join(shlex.quote(c) for c in cmd)}")
 
     try:
-        result = subprocess.run(cmd, check=True, text=True, capture_output=True)
-        if result.stdout:
-            logging.debug(result.stdout.strip())
-        if result.stderr:
-            logging.debug(result.stderr.strip())
+        result = subprocess.run(
+            cmd,
+            check=False, # handle errors manually
+            text=True,
+            capture_output=True
+        )
+
+        # Log stdout/stderr if present
+        if result.stdout.strip():
+            logging.debug("STDOUT:\n" + result.stdout.strip())
+        if result.stderr.strip():
+            logging.debug("STDERR:\n" + result.stderr.strip())
+
+        # Handle non-zero exit codes
+        if result.returncode not in success_exit_codes:
+            logging.error(f"❌ {description} failed (exit {result.returncode})")
+
+            # Show a small preview of the stderr for quick diagnosis
+            if result.stderr:
+                preview = "\n".join(result.stderr.strip().splitlines()[-10:])
+                logging.error("Last few stderr lines:\n" + preview)
+
+            failed_steps.append(description)
+            return False
+
         logging.info(f"✅ {description} completed")
         return True
-    except subprocess.CalledProcessError as e:
-        logging.error(f"❌ {description} failed (exit {e.returncode})")
-        failed_steps.append(description)
-        return False
+
     except FileNotFoundError:
         logging.error(f"❌ Command not found: {cmd[0]}")
+        failed_steps.append(description)
+        return False
+    except Exception as e:
+        logging.exception(f"❌ Unexpected error running {description}: {e}")
         failed_steps.append(description)
         return False
     
