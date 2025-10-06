@@ -9,6 +9,7 @@ dependencies:
   - pip
   - setuptools>=68
   - wheel
+  - joblib
   - pytorch=1.11
   - cudatoolkit=11.3
   - pip:

@@ -34,7 +34,11 @@ def run(input_file, tool_path, output_dir):
     # Make sure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
-    struct_type = "alphafold"  if input_file.stem.split("_")[1].lower() == "AF" else "solved"
+    parts = input_file.stem.split("_")
+    if len(parts) > 1 and parts[1].lower() == "af":
+        struct_type = "alphafold"
+    else:
+        struct_type = "solved"
 
     # Build the command
     cmd = [

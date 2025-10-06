@@ -6,7 +6,7 @@ Overview:
     - Parses all FASTA files in a specified directory.
     - Extracts UniProt accession numbers from FASTA headers using pattern matching.
     - Searches the RCSB PDB database for related structures using UniProt accession or, if unavailable, by sequence similarity (>90% identity).
-    - Downloads canonical PDB files and, if available, AlphaFold models for matched entries.
+    - Downloads canonical PDB files. If download fails, retrieves AlphaFold models instead.
     - Saves downloaded structures in a specified output directory.
     - Logs progress, warnings, and errors to the console and optionally to a log file.
 
@@ -20,18 +20,18 @@ Arguments:
 Requirements:
     - FASTA files present in the specified sequence directory.
     - Python packages: biopython, requests.
-    - wget command-line tool (for downloading PDB/CIF files).
+    - wget command-line tool (for downloading PDB files).
 
 Usage Example:
     python fetch_PDB_structure.py sars_cov_2 protein_fastas --threads 8 --output-dir pdbs --verbose
 
 Outputs:
     data/<pathogen_dir>/<output-dir>/*.pdb      # Downloaded PDB structures
-    data/<pathogen_dir>/<output-dir>/*.cif.gz   # Downloaded biological assembly files (if PDB unavailable)
-    data/<pathogen_dir>/<output-dir>/*_AF.pdb   # Downloaded AlphaFold models (if available)
+    data/<pathogen_dir>/<output-dir>/*_AF.pdb   # Downloaded AlphaFold models (if PDB unavailable)
 
 Author: Nadia
 """
+
 import re
 import logging
 import argparse
@@ -62,6 +62,7 @@ def setup_logger(verbose: bool, log_file: Path):
 
     logging.basicConfig(level=level, format=log_format, handlers=handlers)
 
+
 def extract_accession(header: str) -> Optional[str]:
     """Extract UniProt accession from FASTA header.
     Args:
@@ -88,6 +89,7 @@ def search_by_uniprot(accession: str) -> List[str]:
     If no entries are found, it returns an empty list.
     """
     logging.info(f"🔍 Searching PDB by UniProt accession: {accession}")
+
     payload = {
         "query": {
             "type": "group",
@@ -129,8 +131,7 @@ def search_by_uniprot(accession: str) -> List[str]:
             logging.warning(f"⚠️ No PDB entries found for UniProt accession: {accession}")
             return []
 
-        ids = [item["identifier"] for item in result_set]
-        return ids
+        return [item["identifier"] for item in result_set]
 
     except Exception as e:
         logging.exception(f"💥 Exception during UniProt search for {accession}: {e}")
@@ -154,36 +155,35 @@ def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
     try:
         response = requests.get(url, timeout=10)
         if response.status_code != 200:
-            logging.warning(f"AlphaFold fetch failed for {accession} (status {response.status_code})")
+            logging.warning(f"⚠️ AlphaFold fetch failed for {accession} (status {response.status_code})")
             return False
 
         predictions = response.json()
         if not predictions:
-            logging.warning(f"No AlphaFold prediction found for {accession}")
+            logging.warning(f"⚠️ No AlphaFold prediction found for {accession}")
             return False
 
-        best_model = predictions[0]
-        pdb_url = best_model.get("pdbUrl")
+        pdb_url = predictions[0].get("pdbUrl")
         if not pdb_url:
-            logging.warning(f"No PDB URL in AlphaFold result for {accession}")
+            logging.warning(f"⚠️ No PDB URL in AlphaFold result for {accession}")
             return False
 
-        filename = f"{accession}_AF.pdb"
-        dest = output_dir / filename
+        dest = output_dir / f"{accession}_AF.pdb"
         logging.info(f"🔗 AlphaFold model found: {pdb_url}")
-        logging.info(f"⬇️  Downloading AlphaFold PDB to: {dest.name}")
+        logging.info(f"⬇️ Downloading AlphaFold PDB to: {dest.name}")
 
         r = requests.get(pdb_url)
         if r.status_code == 200:
             with open(dest, "wb") as f:
                 f.write(r.content)
+            logging.info(f"✅ AlphaFold model downloaded for {accession}")
             return True
         else:
             logging.error(f"⚠️ Failed to download AlphaFold PDB: HTTP {r.status_code}")
             return False
 
     except Exception as e:
-        logging.error(f"AlphaFold error for {accession}: {e}")
+        logging.error(f"💥 AlphaFold error for {accession}: {e}")
         return False
 
 
@@ -238,55 +238,35 @@ def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
     If the canonical PDB file already exists and is non-empty, it skips the download.
     """
     suffix = accession if accession else "NOACCN"
-    filename = f"{pdb_id}_{suffix}.pdb"
-    dest = output_dir / filename
+    dest = output_dir / f"{pdb_id}_{suffix}.pdb"
 
     # Skip if good file already exists
     if dest.exists():
         if dest.stat().st_size > 0:
-            logging.debug(f"{filename} already exists, skipping.")
+            logging.debug(f"{dest.name} already exists, skipping.")
             return
         else:
             logging.warning(f"⚠️ Removing empty file: {dest}")
             dest.unlink()
 
     # Primary download attempt: canonical PDB
-    url_standard = f"https://files.rcsb.org/view/{pdb_id}.pdb"
-    logging.info(f"⬇️  Attempting canonical PDB download for {pdb_id}...")
+    url = f"https://files.rcsb.org/view/{pdb_id}.pdb"
+    logging.info(f"⬇️ Attempting PDB download for {pdb_id}...")
 
     try:
-        subprocess.run(["wget", "-q", "-O", str(dest), url_standard], check=True)
+        subprocess.run(["wget", "-q", "-O", str(dest), url], check=True)
         if dest.stat().st_size > 0:
-            logging.info(f"✅ Downloaded {filename} successfully.")
+            logging.info(f"✅ Downloaded PDB: {dest.name}")
             return
         else:
-            logging.warning(f"⚠️ Canonical PDB file is empty: {dest}. Removing.")
-            dest.unlink()
+            logging.warning(f"⚠️ Empty PDB file for {pdb_id}, removing.")
+            dest.unlink(missing_ok=True)
     except subprocess.CalledProcessError:
         if dest.exists():
             logging.warning(f"⚠️ Removing partial file from failed canonical download: {dest}")
             dest.unlink()
 
         logging.warning(f"⚠️ Canonical PDB download failed for {pdb_id}. Trying biological assembly (.cif.gz)...")
-
-    # Fallback: biological assembly in .cif.gz format
-    cif_url = f"https://files.rcsb.org/download/{pdb_id}.cif.gz"
-    cif_filename = f"{pdb_id}_assembly1_{suffix}.cif.gz"
-    cif_dest = output_dir / cif_filename
-
-    try:
-        subprocess.run(["wget", "-q", "-O", str(cif_dest), cif_url], check=True)
-        if cif_dest.exists() and cif_dest.stat().st_size > 0:
-            logging.info(f"✅ Downloaded biological assembly (.cif.gz) for {pdb_id} as {cif_filename}")
-        else:
-            logging.error(f"⚠️ Biological assembly .cif.gz is empty for {pdb_id}. Removing.")
-            if cif_dest.exists():
-                cif_dest.unlink()
-    except subprocess.CalledProcessError:
-        logging.error(f"⚠️ Failed to download biological assembly (.cif.gz) for {pdb_id}")
-        if cif_dest.exists():
-            cif_dest.unlink()
-
 
 
 def process_fasta_dir(sequence_dir: Path, output_dir: Path, threads: int):
@@ -301,14 +281,11 @@ def process_fasta_dir(sequence_dir: Path, output_dir: Path, threads: int):
     """
     fasta_files = list(sequence_dir.glob("*.fasta"))
     if not fasta_files:
-        logging.warning(f"No FASTA files found in: {sequence_dir}")
+        logging.warning(f"⚠️ No FASTA files found in: {sequence_dir}")
         return
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    all_records = []
-
-    for fasta_file in fasta_files:
-        all_records.extend(list(SeqIO.parse(fasta_file, "fasta")))
+    all_records = [record for fasta in fasta_files for record in SeqIO.parse(fasta, "fasta")]
 
     with ThreadPoolExecutor(max_workers=threads) as executor:
         futures = [executor.submit(process_record, record, output_dir) for record in all_records]
@@ -362,11 +339,12 @@ def process_record(record, output_dir: Path):
             after = set(output_dir.glob("*"))
             if was_new_file_created(before, after):
                 pdb_downloaded = True
+                break
 
         # 💥 Always try AlphaFold if accession exists (brute-force mode)
         alphafold_downloaded = fetch_alphafold_structure(accession, output_dir)
 
-    # 🪂 Fallback to sequence-based search only if neither method yielded results
+    # Fallback: sequence search if no UniProt accession or no hits
     if not pdb_downloaded and not alphafold_downloaded:
         logging.info("🔁 Falling back to sequence-based search...")
         pdb_ids = search_by_sequence(sequence)
@@ -389,10 +367,9 @@ def process_record(record, output_dir: Path):
     elif pdb_downloaded:
         logging.info(f"✅ PDB structure(s) retrieved for: {header} (AlphaFold not found)")
     elif alphafold_downloaded:
-        logging.info(f"✅ AlphaFold model retrieved for: {header} (PDB not found)")
+        logging.info(f"✅ AlphaFold model retrieved for: {header}")
     else:
-        logging.warning(f"❌ All structure retrieval attempts failed for: {header}")
-
+        logging.warning(f"❌ No structure available for: {header}")
 
 def main():
     """Main function to parse arguments and initiate PDB fetching."""
@@ -405,16 +382,15 @@ def main():
     args = parser.parse_args()
 
     pathogen_path = Path("data") / args.pathogen_dir
+    sequence_path = pathogen_path / args.sequence_dir
     output_path = pathogen_path / args.output_dir
-    full_sequence_path = pathogen_path / args.sequence_dir
     log_file = output_path / "fetch_pdb_sequences.log"
 
-
     setup_logger(args.verbose, log_file)
+    logging.info(f"🚀 Starting structure fetch from {sequence_path}")
 
-    logging.info(f"🚀 Starting PDB fetch from {full_sequence_path}")
-    process_fasta_dir(full_sequence_path, output_path, args.threads)
-    logging.info("✅ Finished.")
+    process_fasta_dir(sequence_path, output_path, args.threads)
+    logging.info("✅ Finished fetching structures.")
 
 
 if __name__ == "__main__":

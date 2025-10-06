@@ -161,7 +161,7 @@ def parse_bcell_dir(directory):
                                 logging.warning(f"File {file} does not have enough lines after header at line {i}")
                                 break
                             header = lines[i].strip()
-                            accession = header.replace(">", "")  # Extract accession from header
+                            accession = header.replace(">", "").split("|")[0]  # Extract accession from header
                             sequence = lines[i + 1].strip()
                             peptide_length = 0
                             # get peptides from sequence, peptides have capitalized letters but we only want peptides with a minimum of 5 aa
@@ -220,7 +220,6 @@ def parse_mhc_dir(directory):
         path = os.path.join(directory, file)
         logging.debug(f"Parsing MHC file: {file}")
         try:
-            strain = Path(file).stem.split("_")[0]
             with open(path) as f:
                 data = f.readlines()
                 num_peptides = defaultdict(int)
@@ -242,7 +241,7 @@ def parse_mhc_dir(directory):
                         continue
                     try:
                         id = parts[10 if prefix == "mhci" else 7]
-                        accession = f'{id.split("_")[0]}_{strain}'
+                        accession = f'{id.split("_")[0]}'
                         score = float(parts[11 if prefix == "mhci" else 8])
                         percentile = float(parts[12 if prefix == "mhci" else 9])
                         binding_strength = parts[14 if prefix == "mhci" else 12] if len(parts) > (13 if prefix == "mhci" else 11) else "NA"
@@ -306,7 +305,7 @@ def parse_signalp_dir(directory):
                     if line.startswith("#") or not line.strip():
                         continue
                     parts = line.strip().split('\t')
-                    accession = parts[0].split('|')[1] + "_" + parts[0].split('|')[3]	
+                    accession = parts[0].split('|')[1]	
                     if len(parts) >= 4:
                         try:
                             results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
@@ -350,7 +349,7 @@ def parse_targetp_dir(directory):
                         continue
                     parts = line.strip().split('\t')
                     if len(parts) >= 5:
-                        accession = parts[0].split('|')[1] + "_" + parts[0].split('|')[3]
+                        accession = parts[0].split('|')[1]
                         try:
                             results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_noTP", "value": float(parts[2])})
                             results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_SP", "value": float(parts[3])})
@@ -400,7 +399,7 @@ def parse_allergenicity_dir(directory):
                         parts = subject.split("|")
 
                         if len(parts) >= 4:
-                            accession = parts[1] + "_" + parts[3]
+                            accession = parts[1]
                         else:
                             logging.warning(f"Skipping row {i} in {file} due to malformed Subject: {subject}")
                             continue
@@ -491,19 +490,13 @@ def parse_cluster_dir(directory):
                     if len(parts) < 12:
                         continue
                     query_id = parts[0]
+                    query_accession = f"{query_id.split("|")[1]}_{query_id.split("|")[3]}" if len(query_id.split("|")) >= 4 else query_id
                     member_id = parts[1]
-                    unique_strains.add(member_id) #collect unique strains from ALL the clusters
+                    member_accession = f"{member_id.split("|")[1]}_{member_id.split("|")[3]}" if len(member_id.split("|")) >= 4 else member_id
+                    unique_strains.add(member_accession) #collect unique strains from ALL the clusters
                     try:
                         percent_identity = float(parts[2])
-                        length = int(parts[3])
-                        e_value = float(parts[10])
-                        bit_score = float(parts[11])
-                        clusters[query_id].append(percent_identity)
-                        clusters[query_id].append(bit_score / length)  # Normalize bit score by length
-                        if e_value > 0:
-                            clusters[query_id].append(log(e_value))  # Normalize e-value by log base 10
-                        else:
-                            logging.debug(f"Skipping line {i} in {file} due to non-positive e_value: {e_value}")
+                        clusters[query_accession].append(percent_identity)
                     except ValueError as e:
                         logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
@@ -511,36 +504,32 @@ def parse_cluster_dir(directory):
 
     results = []
 
+    num_cluster = defaultdict(list)
+
     # Step 3: Compute conservation scores and store them as subfeatures
-    for cluster_id, scores in clusters.items():
-        if not scores:
+    for cluster_id, percent_identity in clusters.items():
+        if not percent_identity:
             continue
         try:
-            accession = cluster_id
-            percent_identity_num_strain = sum(scores[0::3]) / len(unique_strains)  #sum of percent identities divided by number of strains
-            avg_bit_score = sum(scores[1::3]) / len(scores[1::3]) # sum of bit scores divided by number of scores
-            avg_log_e_value = sum(scores[2::3]) / len(scores[2::3]) # sum of e-values divided by number of e-values
+            accession = cluster_id.split("_")[0] if "_" in cluster_id else cluster_id
+            num_cluster[accession]+=1
+            percent_identity_num_strain = sum(percent_identity) / len(unique_strains)  #sum of percent identities divided by number of strains
             results.append({
                 "accession": accession,
                 "feature": "cluster_conservation",
                 "subfeature": "percent_identity/num_strain",
                 "value": percent_identity_num_strain
             })
-            results.append({
-                "accession": accession,
-                "feature": "cluster_conservation",
-                "subfeature": "bit_score_normalized",
-                "value": avg_bit_score
-            })
-            results.append({
-                "accession": accession,
-                "feature": "cluster_conservation",
-                "subfeature": "e_value_average",
-                "value": avg_log_e_value
-            })
         except ZeroDivisionError as e:
             logging.debug(f"Skipping cluster {cluster_id} due to division by zero: {e}")
 
+    for accession in num_cluster:
+        results.append({
+            "accession": accession,
+            "feature": "cluster_conservation",
+            "subfeature": "num_clusters",
+            "value": num_cluster[accession]
+        })
     logging.info(f"Completed cluster parsing with {len(results)} results")
     return results
 
@@ -584,7 +573,7 @@ def parse_deeplocpro_dir(directory):
                 ]
                 for i, row in df.iterrows():
                     try:
-                        accession = f"{row['ACC'].split('|')[1]}_{row['ACC'].split('|')[3]}"
+                        accession = f"{row['ACC'].split('|')[1]}"
                     except IndexError:
                         logging.warning(f"Unexpected ACC format: {row['ACC']}")
                         accession = "unknown"
@@ -637,7 +626,11 @@ def parse_ellipro_dir(directory):
         discontinuous_score = []
         # Determine accession from filename
         if "_" in os.path.basename(file):
-            accession = os.path.basename(file).split("_")[0].replace(".txt", "") if os.path.basename(file).split("_")[1] != "AF.txt" else os.path.basename(file).split("_")[1].replace(".txt", "")
+            parts = os.path.basename(file).replace(".txt", "").split("_")
+            if len(parts) > 1 and parts[1] == "AF":
+                accession = parts[0]
+            else:
+                accession = parts[1]
         else:
             accession = os.path.basename(file).replace(".txt", "")
         try:
@@ -748,7 +741,7 @@ def parse_ifnepitope2_dir(directory):
                         parts = seq_id.split("|")
 
                         if len(parts) >= 4:
-                            accession = parts[1] + "_" + parts[3]
+                            accession = parts[1]
                         else:
                             logging.warning(f"Skipping row {i} in {file} due to malformed Seq_ID: {seq_id}")
                             continue
@@ -885,7 +878,7 @@ def parse_deeptmhmm_dir(directory):
                             logging.warning(f"File {file} does not have enough lines after header at line {i}")
                             break
                         header = lines[i].strip()
-                        accession = header.split('|')[1] + "_" + header.split('|')[3]  # Extract accession from header
+                        accession = header.split('|')[1]
                         sequence = lines[i + 1].strip()
                         topology = lines[i + 2].strip()
                         if len(sequence) != len(topology):
@@ -1248,7 +1241,11 @@ def parse_dssp_dir(dssp_dir):
     results = []
     for dssp_file in Path(dssp_dir).glob("*.dssp"):
         if "_" in dssp_file.stem:
-            accession = dssp_file.stem.split("_")[0] if dssp_file.stem.split("_")[1] != "AF" else dssp_file.stem.split("_")[1]
+            parts = dssp_file.stem.split("_")
+            if len(parts) > 1 and parts[1] == "AF":
+                accession = parts[0]
+            else:
+                accession = parts[1]
         else:
             accession = dssp_file.stem
         contents = dssp_file.read_text()
@@ -1449,7 +1446,11 @@ aac_F,0.018957345971563982
     results = []
     for protlearn_file in Path(directory).glob("*.csv"):
         if "_" in protlearn_file.stem:
-            accession = protlearn_file.stem.split("_")[0] if protlearn_file.stem.split("_")[1] != "AF" else protlearn_file.stem.split("_")[1]
+            parts = protlearn_file.stem.split("_")
+            if len(parts) > 1 and parts[1] == "AF":
+                accession = parts[0]
+            else:
+                accession = parts[1]
         with open(protlearn_file, "r") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -1467,6 +1468,9 @@ aac_F,0.018957345971563982
                 except ValueError as e:
                     logging.debug(f"Skipping row due to conversion error: {e}")
     return results
+
+# def parse_discotope_dir(directory):
+#     @TODO
 
 # ----------------------------- Orchestration Functions -----------------------------
 
