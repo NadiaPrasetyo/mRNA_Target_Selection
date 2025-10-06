@@ -22,6 +22,7 @@ import subprocess
 import logging
 from pathlib import Path
 import shutil
+import shlex
 
 def setup_logging(verbose=False, log_file=None):
     """Setup logging configuration."""
