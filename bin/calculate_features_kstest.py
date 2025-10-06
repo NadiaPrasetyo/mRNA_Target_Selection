@@ -1436,14 +1436,35 @@ def parse_protlearn_dir(directory):
     Parse the ProtLearn directory for structural features.
     feature,value
 length,[211.]
-aac_A,0.04739336492890995
-aac_C,0.05687203791469194
-aac_D,0.06635071090047394
-aac_E,0.10900473933649289
-aac_F,0.018957345971563982
+aaindex1_ARGP820101,0.8508080808080807
+aaindex1_BHAR880101,0.4485757575757577
+aaindex1_CHOC750101,144.45252525252525
+aaindex1_DAYM780101,5.821212121212122
+aaindex1_DAYM780201,83.13131313131314
+aaindex1_GRAR740101,0.5552525252525252
+aaindex1_GRAR740102,8.87979797979798
+aaindex1_GRAR740103,79.48989898989899
+aaindex1_JOND750101,1.2093939393939395
+aaindex1_JOND750102,2.1623232323232324
+aaindex1_KYTJ820101,-0.5858585858585857
 
     """
     results = []
+
+    feature_map = {
+        "ARGP820101": "Hydrophobicity index",
+        "JOND750101": "Hydrophobicity",
+        "BHAR880101": "Average flexibility indices",
+        "CHOC750101": "Average volume of buried residue",
+        "DAYM780101": "Amino acid composition",
+        "DAYM780201": "Relative mutability",
+        "GRAR740101": "Composition",
+        "GRAR740102": "Polarity",
+        "GRAR740103": "Volume",
+        "JOND750102": "pK (-COOH)",
+        "KYTJ820101": "Hydropathy index",
+    }
+
     for protlearn_file in Path(directory).glob("*.csv"):
         if "_" in protlearn_file.stem:
             parts = protlearn_file.stem.split("_")
@@ -1455,6 +1476,12 @@ aac_F,0.018957345971563982
             reader = csv.DictReader(f)
             for row in reader:
                 feature = row["feature"]
+                if feature.startswith("aaindex1_"):
+                    feature = feature.replace("aaindex1_", "")
+                    if feature not in feature_map:
+                        logging.debug(f"Skipping unknown feature: {feature}")
+                        continue
+                    feature = feature_map[feature]
                 value = row["value"].strip("[]") if row["value"] is not None else None  # Remove brackets if present
                 try:
                     if value is not None:  # Ensure value is not None before conversion
