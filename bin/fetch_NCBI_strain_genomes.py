@@ -1,19 +1,34 @@
 #!/usr/bin/env python3
 """
-fetch_ncbi_strain_genome.py
+fetch_ncbi_strain_genomes.py
 
-Rewritten from fetch_NCBI_strain_genome.sh
+Rewritten from fetch_NCBI_strain_genome.sh (previously used NCBI Entrez Direct).
 Uses NCBI Datasets v2 API for fetching complete genomes.
 
 Dependencies:
-    pip install requests tqdm biopython seqkit
-    # seqkit still used for fast translation
+    pip install requests tqdm
+
+Features:
+    - Fetch random complete genomes for a given taxon.
+    - Fetch genomes based on a CSV file containing RefSeq IDs.
+    - Automatically downloads and extracts genome FASTA and protein FASTA files.
+    - Handles pagination for large datasets.
 
 Usage:
-    python fetch_ncbi_strain_genome.py --random "Staphylococcus aureus" \
-        --random-num 5 data/staph_aureus
+    Fetch random genomes:
+        python fetch_ncbi_strain_genomes.py --random "Staphylococcus aureus" \
+            --random-num 5 data/staph_aureus
 
-    python fetch_ncbi_strain_genome.py data/staph_aureus strains.csv
+    Fetch genomes from a CSV file:
+        python fetch_ncbi_strain_genomes.py data/staph_aureus strains.csv
+
+Arguments:
+    pathogen_dir: Output directory under the "data/" folder.
+    --csv_file: Optional CSV file with strain names and RefSeq IDs.
+    --threads: Number of threads to use (default: 4).
+    --random: Fetch random genomes for the specified pathogen.
+    --random-num: Number of random genomes to fetch (default: 5).
+    --output-dir: Custom output directory (default: pathogen_dir/strain_genomes).
 """
 
 import argparse

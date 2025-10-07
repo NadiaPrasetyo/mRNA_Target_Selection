@@ -1,3 +1,41 @@
+"""
+pca_analysis.py
+Runner for performing PCA and statistical analysis on bacterial data.
+Overview:
+    - Loads raw data for specified bacteria from CSV files.
+    - Preprocesses and aggregates data by accession.
+    - Encodes features and accessions into sparse matrices for efficient computation.
+    - Performs Z-score normalization and PCA on the data.
+    - Computes statistical tests (KS test, t-test, AUROC) for feature significance.
+    - Generates various plots for PCA results, feature loadings, and statistical summaries.
+    - Saves all results and plots in a structured directory format for downstream analysis.
+Arguments:
+    --base-dir (str): Base directory containing the data for each bacterium (default: "./results").
+    --output-dir (str): Directory where results and plots will be saved (default: "./results").
+    --input-dir (list[str]): List of subdirectories under `base-dir` for each bacterium (required).
+    --verbose: If set, enables verbose logging to console and log file.
+Requirements:
+    - Python packages: argparse, pandas, numpy, matplotlib, seaborn, sklearn, scipy, adjustText.
+    - Input data must be in CSV format with specific columns (e.g., accession, feature, subfeature, value, label).
+    - Ensure that the `adjustText` package is installed for better label placement in plots.
+Outputs:
+    <output_dir>/                                      # Directory containing all results and plots.
+    <output_dir>/scree_plot.png                       # Scree plot showing variance explained by PCA components.
+    <output_dir>/pca_biplot.png                       # PCA biplot with samples and representative feature vectors.
+    <output_dir>/feature_loadings.csv                 # CSV file with PCA feature loadings.
+    <output_dir>/representative_features.csv          # CSV file with representative features for PCA biplot.
+    <output_dir>/ks_auroc_results.csv                 # CSV file with KS test, t-test, and AUROC results.
+    <output_dir>/auroc_summary_all.png                # AUROC summary plot for significant features.
+    <output_dir>/ks_summary_all.png                   # KS statistics summary plot for significant features.
+    <output_dir>/correlation_matrix.png               # Heatmap of feature correlation matrix.
+    <output_dir>/covariance_matrix.png                # Heatmap of feature covariance matrix.
+Notes:
+    - The script assumes that each bacterium's data is stored in a subdirectory under `base-dir`.
+    - Aggregated data and labels are saved as debug CSVs for inspection.
+    - Statistical tests are performed to compare "positive" labels against "random" labels.
+    - Ensure that the input data is properly formatted and contains the required columns.
+Author: Nadia
+"""
 import os
 import glob
 import pandas as pd
@@ -43,7 +81,13 @@ def setup_logging(verbose: bool) -> None:
 # Data loading
 # ----------------------
 def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
-    """Load and concatenate all raw data CSVs for a bacterium."""
+    """Load and concatenate all raw data CSVs for a bacterium.
+    Args:
+        base_dir (str): Base directory containing bacterium subdirectories.
+        bacterium (str): Name of the bacterium (subdirectory name).
+    Returns:
+        pd.DataFrame: Concatenated DataFrame of all raw data for the bacterium.
+    """
     folder = os.path.join(base_dir, bacterium, "raw_data")
     logging.info(f"Loading data for bacterium: {bacterium} from {folder}")
     files = glob.glob(os.path.join(folder, "*_raw_data.csv"))
@@ -116,7 +160,16 @@ def aggregate_by_accession(df: pd.DataFrame, output_prefix: str = "debug") -> tu
 # Feature categorization
 # ----------------------
 def categorize_feature(feature, subfeature):
-    """Categorize features for AUROC/KS summary plots."""
+    """Categorize features for AUROC/KS summary plots.
+    Categories:
+        - Subcellular localisation
+        - Allergenicity
+        - Immunogenicity
+        - Conservation Analysis Across Strains
+        - Epitope Prediction
+        - Structure Analysis
+        - Other
+    """
     if feature in ["signalp", "targetp", "deeplocpro", "deeptmhmm"]:
         return "Subcellular localisation"
     if feature == "allergenicity":
@@ -179,6 +232,16 @@ def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
 # AUROC and KS plots
 # ----------------------
 def plot_auroc_summary(results_df, output_dir, prefix="all"):
+    """
+    Plot AUROC summary for significant features (AUROC != 0.5 and t_pvalue < 0.05).
+    Features with AUROC < 0.5 are adjusted to 1 - AUROC.
+    Features are colored by category and hatched based on t-statistic direction.
+    Args:
+        results_df (pd.DataFrame): DataFrame with KS, t-test, and AUROC results.
+        output_dir (str): Directory to save the plot.
+        prefix (str): Prefix for the output file name.
+        
+    """
     output_path = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
 
@@ -571,7 +634,13 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
 
 
 def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
-    """Plot correlation matrix heatmap with clustering."""
+    """Plot correlation matrix heatmap with clustering.
+    Args:
+        X_scaled: Scaled feature matrix (sparse or dense).
+        feature_enc: Encoder with inverse_transform to get feature names.
+        output_dir: Directory to save the plot and CSV.
+        max_features: Maximum number of features to include (downsample if exceeded).
+    """
     n_features = X_scaled.shape[1]
 
     if n_features > max_features:

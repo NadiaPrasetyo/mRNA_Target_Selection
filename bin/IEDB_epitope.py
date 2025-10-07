@@ -1,28 +1,24 @@
 """
 IEDB_epitope.py
-Command-line tool to run IEDB and related epitope prediction tools (MHCI, MHCII, BCell, Ellipro, MixMHC2pred) on input sequence or structure files for immunoinformatics analysis.
+Command-line tool to run IEDB and related epitope prediction tools (MHCI, MHCII, BCell, Ellipro, MixMHC2pred, DSSP, ProtLearn, DiscoTope) on input sequence or structure files for immunoinformatics analysis.
 
 Overview:
     - Scans a specified pathogen sequence directory for FASTA or PDB files.
-    - Runs selected prediction tools (MHCI, MHCII, BCell, Ellipro, MixMHC2pred) on each input file.
+    - Runs selected prediction tools (MHCI, MHCII, BCell, Ellipro, MixMHC2pred, DSSP, ProtLearn, DiscoTope) on each input file.
     - Supports custom allele panels and peptide length ranges for MHCI and MHCII.
     - Handles input conversion (e.g., FASTA to TXT for BCell, FASTA splitting for MixMHC2pred).
     - Supports parallel execution of jobs for efficient processing.
     - Organizes results into structured output directories and manages temporary files.
     - Skips jobs if results already exist.
+    - Ensures compatibility between tools based on input file types (FASTA vs PDB).
+    - Automatically creates conda environments for tools like DiscoTope and BCell if required.
 
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
     sequence_dir (str): Subdirectory under `pathogen_dir` containing sequence or structure files.
     --tool-root (str, required): Root directory containing IEDB and related tool wrappers/executables.
     --threads (int, optional): Number of parallel threads to use (default: 4).
-    --mhci-peptide-lengths (int int, optional): Min and max peptide lengths for MHCI (default: 8 11).
-    --mhcii-peptide-lengths (int int, optional): Min and max peptide lengths for MHCII (default: 11 25).
-    --tools (list, optional): List of tools to run (choices: MHCI, MHCII, BCell, Ellipro, MixMHC2pred; default: all detected).
-    --mhci-allele-panel (str, optional): Allele panel for MHCI (choices: default, extended, custom; default: default).
-    --mhci-custom-alleles (list, optional): Custom alleles for MHCI if panel is 'custom'.
-    --mhcii-allele-panel (str, optional): Allele panel for MHCII (choices: default, extended, custom; default: default).
-    --mhcii-custom-alleles (list, optional): Custom alleles for MHCII if panel is 'custom'.
+    --tools (list, optional): List of tools to run (choices: MHCI, MHCII, BCell, Ellipro, MixMHC2pred, DSSP, ProtLearn, DiscoTope; default: MHCI, MHCII, BCell, MixMHC2pred).
     --output-dir (str, optional): Output directory for results (default: epitope_outputs).
     --verbose (flag, optional): Enable verbose logging.
 
@@ -30,14 +26,18 @@ Requirements:
     - IEDB and related tool wrappers/executables available under `tool-root`.
     - Input FASTA or PDB files present in the specified sequence directory.
     - Python packages: argparse, pathlib, concurrent.futures, collections, logging.
+    - Conda installed and available in PATH for tools like DiscoTope and BCell.
 
 Usage Example:
-    python IEDB_epitope.py influenza sequences --tool-root /opt/iedb_tools --threads 8 --mhci-peptide-lengths 8 11 --tools MHCI MHCII
+    python IEDB_epitope.py influenza sequences --tool-root /opt/iedb_tools --threads 8 --tools MHCI MHCII DSSP
 
 Outputs:
     data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<TOOL>.json   # Prediction results for MHCI, MHCII, MixMHC2pred
-    data/<pathogen_dir>/<output_dir>/bcell/<input_file>.txt            # Prediction results for BCell
+    data/<pathogen_dir>/<output_dir>/bcell/<input_file>.fasta          # Prediction results for BCell
     data/<pathogen_dir>/<output_dir>/ellipro/<input_file>.txt          # Prediction results for Ellipro
+    data/<pathogen_dir>/<output_dir>/dssp/<input_file>.dssp            # Prediction results for DSSP
+    data/<pathogen_dir>/<output_dir>/protlearn/<input_file>.csv        # Prediction results for ProtLearn
+    data/<pathogen_dir>/<output_dir>/discotope/<input_file>.csv        # Prediction results for DiscoTope
 
 Author: Nadia
 """
@@ -302,4 +302,5 @@ def main():
     logging.info("\n✅ Prediction complete.")
 
 if __name__ == "__main__":
+    """Main entry point for the script."""
     main()

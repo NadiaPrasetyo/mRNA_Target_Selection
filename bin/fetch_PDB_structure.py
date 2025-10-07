@@ -11,6 +11,12 @@ Overview:
     - Saves downloaded structures in a specified output directory.
     - Logs progress, warnings, and errors to the console and optionally to a log file.
 
+Features:
+    - Supports multithreading for faster processing of multiple FASTA records.
+    - Automatically resolves redundancy by preferring PDB structures over AlphaFold models.
+    - Provides detailed logging for debugging and tracking progress.
+    - Handles incomplete or missing data gracefully, ensuring robust execution.
+
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
     sequence_dir (str): Subdirectory within pathogen_dir containing FASTA files.
@@ -31,6 +37,8 @@ Outputs:
         <pdb_id>_<accession>.pdb  (preferred)
         OR
         <accession>_AF.pdb        (if no PDB available)
+    - Log file (if verbose mode is enabled):
+        fetch_pdb_sequences.log
 
 Author: Nadia
 """

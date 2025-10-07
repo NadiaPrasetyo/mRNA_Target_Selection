@@ -102,10 +102,12 @@ def patch_algpred_bugs():
 
 def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 0):
     """
-    Main runner function compatible with pipeline:
-    - tool_path: directory containing tools (unused here but kept for interface consistency)
-    - input_fasta: input FASTA file path
-    - output_dir: base output directory (tool-specific subdir will be created)
+    Main runner function compatible with pipeline
+    Args:
+        tool_path (unused): directory containing tools kept for interface consistency
+        input_fasta: input FASTA file path
+        output_dir: base output directory (tool-specific subdir will be created)
+        batch_size (unused): present for interface compatibility
     """
     patch_algpred_bugs()
 

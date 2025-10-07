@@ -44,6 +44,13 @@ MHCI_EXTENDED = [
 ]
 
 def run(fasta_file, tool_path, output_dir):
+    """
+    Run NetMHCpan-4.2 on a given FASTA file.
+    Args:
+        fasta_file : Path to the input FASTA file containing peptide/protein sequences.
+        tool_path : Path to the NetMHCpan-4.2 executable.
+        output_dir : Directory where output files will be stored. Results are placed in a 'mhci' subfolder.
+    """
     # Default parameters
     rank_threshold = 0.5
     weak_threshold = 2.0

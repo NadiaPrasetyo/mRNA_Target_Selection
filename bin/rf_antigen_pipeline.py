@@ -8,19 +8,22 @@ Each raw CSV is expected to contain at least these columns:
  - feature
  - subfeature
  - value
- - label
+ - label (optional)
 
 Pipeline:
  1) Load and concatenate data per bacterium
  2) Pivot to accession x feature_subfeature matrix (mean of replicates)
- 3) Train RandomForest on all bacteria EXCEPT the test bacterium (default: S.aureus)
- 4) Compute feature importances (feature usefulness)
- 5) Predict probabilities on test bacterium and save CSV sorted by probability (desc)
+ 3) Align feature columns across all bacteria (union of features, fill missing with 0)
+ 4) Train RandomForest on all bacteria EXCEPT the test bacterium (default: S.aureus)
+ 5) Validate on a small hold-out set from the training data
+ 6) Compute feature importances (feature usefulness)
+ 7) Predict probabilities on the test bacterium and save CSV sorted by probability (desc)
 
 Outputs (saved in output_dir):
- - saureus_predictions.csv  (accession, prob_antigen, pred_label, true_label if available)
+ - <test_bacterium>_predictions.csv  (accession, prob_antigen, pred_label, true_label if available)
+ - <test_bacterium>_features_with_probs.csv (full feature matrix with probabilities)
  - feature_importances.csv (feature, importance, rank)
- - model_report.txt        (train/test sizes, AUC if labels exist on test)
+ - model_report.txt        (train/test sizes, accuracy, AUC if labels exist on test)
 """
 
 import os
@@ -40,6 +43,9 @@ from sklearn.model_selection import train_test_split
 # Logging setup
 # ----------------------
 def setup_logging(verbose: bool) -> None:
+    """
+    Setup logging configuration.
+    """
     level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(
         level=level,
@@ -50,7 +56,13 @@ def setup_logging(verbose: bool) -> None:
 # Data loading utils
 # ----------------------
 def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
-    """Load and concatenate all raw data CSVs for a bacterium."""
+    """Load and concatenate all raw data CSVs for a bacterium.
+    Args:
+        base_dir (str): Base directory containing bacterium subdirectories.
+        bacterium (str): Name of the bacterium (subdirectory name).
+    Returns:
+        pd.DataFrame: Concatenated DataFrame of all raw data for the bacterium.
+    """
     folder = os.path.join(base_dir, bacterium, "raw_data")
     logging.info(f"Loading data for bacterium '{bacterium}' from: {folder}")
     files = glob.glob(os.path.join(folder, "*_raw_data.csv"))
@@ -137,6 +149,8 @@ def preprocess_and_pivot(df: pd.DataFrame):
 def make_binary_labels(labels: pd.Series) -> Tuple[np.ndarray, LabelEncoder]:
     """
     Convert labels to binary 0/1.
+    Args:
+      labels (pd.Series): Input labels.
     Heuristic:
       - If labels are numeric and only {0,1}, use directly
       - If any label contains 'antigen'/'positive'/'pos' (case-ins), map those to 1
@@ -198,6 +212,15 @@ def train_rf(X_train: pd.DataFrame, y_train: np.ndarray, n_estimators:int=500, r
 # Main pipeline
 # ----------------------
 def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: str, verbose: bool) -> None:
+    """
+    Main pipeline function.
+    Args:
+        base_dir (str): Base directory containing bacterium subdirectories.
+        output_dir (str): Directory to save outputs.
+        input_dirs (List[str]): List of bacterium names to include.
+        test_bacterium (str): Name of the bacterium to hold out for testing.
+        verbose (bool): Whether to enable verbose logging.
+    """
     setup_logging(verbose)
     os.makedirs(output_dir, exist_ok=True)
 
@@ -383,6 +406,7 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
 # CLI
 # ----------------------
 if __name__ == "__main__":
+    """ Main entry point """
     parser = argparse.ArgumentParser(description="Random Forest antigenicity pipeline")
     parser.add_argument("--base-dir", type=str, default="./results", help="Base directory containing <bacterium>/raw_data/*_raw_data.csv")
     parser.add_argument("--output-dir", type=str, default="./results", help="Directory to save outputs")

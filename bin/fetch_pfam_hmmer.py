@@ -1,4 +1,32 @@
 #!/usr/bin/env python3
+"""
+fetch_pfam_hmmer.py
+Runner for fetching Pfam HMM profiles for proteins listed in an antigen CSV.
+Overview:
+    - Parses a Pfam-A.hmm file to create a mapping of Pfam accessions.
+    - Reads a CSV file containing protein data and extracts Pfam IDs.
+    - Fetches HMM profiles for the specified Pfam IDs using the HMMER tool.
+    - Saves the fetched HMM profiles in a structured directory format for downstream analysis.
+Arguments:
+    pathogen_directory (str): Directory name under the `data/` folder.
+    --pathogen_name (str): Prefix used in filenames (e.g., "staphylococcus_aureus").
+    --input (str): Path to the input CSV file with antigen data (default: <pathogen_directory>/<pathogen_name>_compiled_proteins.csv).
+    --output-dir (str): Directory where Pfam HMM profiles will be saved (default: <pathogen_directory>/pfam_hmms).
+    --pfam_hmm (str): Path to the Pfam-A.hmm file (required).
+Requirements:
+    - Python packages: argparse, csv, os, subprocess, sys, re, tempfile, shutil.
+    - HMMER must be installed and accessible in the system PATH (e.g., `conda install -c bioconda hmmer`).
+    - A valid Pfam-A.hmm file must be provided.
+Outputs:
+    <output_dir>/                                      # Directory containing fetched HMM profiles.
+    <output_dir>/<uniprot_id>_<pfam_id>.hmm            # Individual HMM files for each Pfam ID.
+Notes:
+    - The script ensures that the Pfam-A.hmm file is indexed before fetching profiles.
+    - Logs warnings for missing or invalid Pfam IDs in the input CSV file.
+    - Temporary files are used to store intermediate data and are automatically cleaned up.
+    - Ensure that the HMMER tool is installed and accessible before running the script.
+Author: Nadia
+"""
 import argparse
 import csv
 import os
@@ -19,6 +47,10 @@ def check_hmmer_installed():
 def load_pfam_accession_map(hmmfile):
     """
     Parse Pfam-A.hmm and create a mapping {PFxxxxx: PFxxxxx.yy}.
+    Args:
+        hmmfile (str): Path to the Pfam-A.hmm file.
+    Returns:
+        dict: Mapping of base Pfam accessions to full accessions.
     """
     accession_map = {}
     with open(hmmfile, "r") as f:
@@ -117,4 +149,5 @@ def main():
 
 
 if __name__ == "__main__":
+    """Main entry point for the script."""
     main()

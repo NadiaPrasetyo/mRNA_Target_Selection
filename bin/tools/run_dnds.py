@@ -1,3 +1,32 @@
+"""
+run_dnds.py
+Runner for MACSE and HyPhy analysis pipeline.
+Overview:
+    - Generates codon-aware alignments using the MACSE tool.
+    - Builds a phylogenetic tree from the codon alignment using FastTree.
+    - Optionally runs HyPhy analysis (FEL, FUBAR, SLAC) on the alignment and tree.
+    - Cleans up temporary files after processing.
+Arguments:
+    tool_path (Path): Path to the directory containing external tools (e.g., /path/to/tools/).
+    input_fasta (Path): Path to the input FASTA file containing nucleotide sequences.
+    output_dir (Path): Directory where results will be saved.
+    run_hyphy_analysis (bool): Whether to run HyPhy analysis after alignment and tree generation (default: True).
+Requirements:
+    - Python packages: subprocess, pathlib, logging, os, Bio.
+    - A Conda environment named 'ext_tools_env' must be created and configured with the required dependencies.
+    - The MACSE, FastTree, and HyPhy tools must be installed and accessible.
+Outputs:
+    <output_dir>/msa/<input_fasta_stem>_codon_aligned_raw.fasta  # Raw codon alignment from MACSE.
+    <output_dir>/msa/<input_fasta_stem>_codon_aligned.fasta      # Cleaned codon alignment for HyPhy.
+    <output_dir>/msa/<input_fasta_stem>.tree                    # Phylogenetic tree in Newick format.
+    <output_dir>/<input_fasta_stem>_<method>_results.json       # HyPhy analysis results (if enabled).
+Notes:
+    - This script ensures that the MACSE alignment is cleaned and compatible with HyPhy.
+    - Logs are generated to provide detailed information about the execution process.
+    - Ensure that the Conda environment is activated and accessible before running the script.
+Author: Nadia
+"""
+
 import subprocess
 import os
 import logging
@@ -67,6 +96,11 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, run_hyphy_analysis
     """
     Runs MACSE to generate codon-aware alignments,
     builds a tree, then optionally runs HyPhy analysis.
+    Args:
+        tool_path (unused): Path to the directory containing external tools kept for interface consistency
+        input_fasta: Path to the input FASTA file containing nucleotide sequences
+        output_dir: Directory where results will be saved
+        run_hyphy_analysis: Whether to run HyPhy analysis after alignment and tree generation (default: True)
     """
     msa_path = output_dir / "msa"
     msa_path.mkdir(parents=True, exist_ok=True)

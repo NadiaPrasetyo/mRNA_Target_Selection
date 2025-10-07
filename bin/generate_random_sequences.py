@@ -6,13 +6,15 @@ Command-line tool to fetch random reviewed UniProt protein entries for a given o
 Overview:
     - Loads known antigen protein names and their sequence length bounds from a compiled CSV file.
     - Queries the UniProt API to randomly sample reviewed protein entries matching the organism and sequence criteria.
-    - Excludes any protein names that match known antigens.
+    - Excludes any protein names that match known antigens or have already been processed.
     - Parses UniProt entries using a shared parsing function.
+    - Optionally trims human protein sequences to match antigen length bounds.
     - Saves the parsed protein information to a new CSV file for further analysis.
 
 Arguments:
     pathogen_directory (str): Subdirectory under `data/` containing pathogen data.
     pathogen_name (str): Full organism name (used for querying UniProt and naming output files).
+    --human (optional): If specified, fetches and processes human proteins instead of pathogen proteins.
 
 Requirements:
     - Compiled antigen protein CSV file present in the pathogen data directory.
@@ -20,9 +22,11 @@ Requirements:
 
 Usage Example:
     python generate_random_sequences.py s_aureus "Staphylococcus aureus"
+    python generate_random_sequences.py human "Homo sapiens" --human
 
 Outputs:
     data/<pathogen_directory>/random_compiled_proteins.csv   # Randomly sampled non-antigen protein entries
+    data/<pathogen_directory>/human_compiled_proteins.csv    # Trimmed human protein entries (if --human is used)
 
 Author: Nadia
 """
@@ -38,7 +42,10 @@ from bin.fetch_sequences_Uniprot import parse_uniprot_response, fetch_refseq_nuc
 
 
 def get_antigen_protein_names(antigen_file):
-    """Extract antigen protein names from the CSV file."""
+    """Extract antigen protein names from the CSV file.
+    Args:
+        antigen_file (str): Path to the CSV file containing antigen data.
+    """
     names = set()
     with open(antigen_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -50,7 +57,12 @@ def get_antigen_protein_names(antigen_file):
 
 
 def get_antigen_length_bounds(antigen_file):
-    """Calculate the minimum and maximum lengths of antigen sequences from the CSV file."""
+    """Calculate the minimum and maximum lengths of antigen sequences from the CSV file.
+    Args:
+        antigen_file (str): Path to the CSV file containing antigen data.
+    Returns:
+        tuple: (min_length, max_length) of antigen sequences, or (None, None) if no valid sequences found.
+    """
     lengths = []
     with open(antigen_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -87,7 +99,12 @@ def trim_human_proteins_to_length(protein_data, min_length, max_length):
     return protein_data
 
 def get_entry_name(entry):
-    """Extract a usable protein name from UniProt entry."""
+    """Extract a usable protein name from UniProt entry.
+    Args:
+        entry (dict): UniProt entry as returned by the API.
+    Returns:
+        str: Protein name in lowercase, or primary accession if no name found.
+    """
     protein_desc = entry.get("proteinDescription", {})
 
     # Recommended name
@@ -108,6 +125,13 @@ def get_entry_name(entry):
 
 # Extract next link from headers
 def get_next_link(headers):
+    """
+    Extract the 'next' link from the response headers for pagination.
+    Args:
+        headers (dict): Response headers from the UniProt API.
+    Returns:
+        str or None: URL for the next page of results, or None if not present.
+    """
     link_header = headers.get("link")
     if not link_header:
         return None
@@ -122,6 +146,14 @@ def fetch_random_uniprot_protein_entries(n=200, organism="Staphylococcus aureus"
     """
     Fetch random reviewed UniProt protein entries for a given organism, excluding known antigens.
     Uses the new UniProt REST API (https://rest.uniprot.org/uniprotkb/search).
+    Args:
+        n (int): Number of random protein entries to fetch.
+        organism (str): Organism name for the UniProt query.
+        antigen_names (set): Set of antigen protein names to exclude.
+        min_len (int or None): Minimum sequence length to filter proteins (inclusive).
+        max_len (int or None): Maximum sequence length to filter proteins (inclusive).
+    Returns:
+        dict: JSON response from UniProt API containing the sampled protein entries.
     """
     headers = {"Accept": "application/json"}
     query_parts = [f'organism_name:"{organism}"', "reviewed:true"]
@@ -194,7 +226,12 @@ def fetch_random_uniprot_protein_entries(n=200, organism="Staphylococcus aureus"
 
 
 def main(pathogen, organism, include_human=False):
-    """Main function to generate non-antigen protein candidates."""
+    """Main function to generate non-antigen protein candidates.
+    Args:
+        pathogen (str): Directory name under data/ for the pathogen.
+        organism (str): Full organism name (e.g., "Staphylococcus aureus").
+        include_human (bool): If True, fetch human proteins instead of pathogen proteins.
+    """
     organism_tag = organism.lower().replace(" ", "_")
     pathogen_dir = os.path.join("data", pathogen)
     antigens_file = os.path.join(pathogen_dir, f"{organism_tag}_compiled_proteins.csv")
@@ -248,6 +285,7 @@ def main(pathogen, organism, include_human=False):
 
 
 if __name__ == "__main__":
+    """Main entry point for the script."""
     parser = argparse.ArgumentParser(
         description="Fetch random UniProt protein entries for a given organism, excluding known antigens.",
         usage="python generate_random_sequences.py <pathogen_directory> <pathogen_name>"

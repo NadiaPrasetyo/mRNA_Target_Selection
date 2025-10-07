@@ -1,3 +1,39 @@
+"""
+Feature Extraction for Protein Sequences.
+Overview:
+    - Extracts a comprehensive set of features from a given protein sequence using the protlearn library.
+    - Supports multiple feature extraction methods, including aaindex1 and others defined in FEATURE_FUNCTIONS.
+    - Handles exceptions gracefully to ensure robust feature extraction.
+
+Arguments:
+    seq (str): A protein sequence represented as a string of amino acid characters.
+
+Process:
+    - Iterates through all feature extraction functions defined in FEATURE_FUNCTIONS.
+    - For the "aaindex1" feature, filters the extracted indices to include only a predefined set of indices.
+    - For other features, extracts all available descriptors and their corresponding values.
+    - Handles cases where the feature extraction function returns either a tuple (array, descriptors) or a single output.
+
+Error Handling:
+    - If a feature extraction function raises an exception, attempts to process the output in an alternative way.
+    - If the alternative processing also fails, records the error message for the corresponding feature.
+
+Outputs:
+    - A dictionary where keys are feature names (or feature_name_descriptor for detailed features) and values are the extracted feature values.
+    - For features that encounter errors, the value will be an error message string.
+
+Requirements:
+    - Python packages: protlearn.
+    - FEATURE_FUNCTIONS must be a dictionary mapping feature names to their corresponding extraction functions.
+    - The "aaindex1" feature requires a predefined set of indices to filter the extracted descriptors.
+
+Notes:
+    - This function is designed to handle protein sequences only.
+    - Ensure that the FEATURE_qFUNCTIONS dictionary is properly configured before calling this function.
+    - Logs or additional debugging information can be added to enhance traceability during execution.
+
+Author: Nadia
+"""
 import os
 import csv
 import logging
@@ -19,6 +55,8 @@ def extract_sequence(file_path):
     """
     Extract amino acid sequence (1-letter) from a PDB or CIF file.
     Skips invalid/unsupported/compressed files instead of crashing.
+    Args:
+        file_path (str or Path): Path to the input PDB or CIF file.
     """
     file_path_str = str(file_path).lower()
 
@@ -58,6 +96,8 @@ def extract_sequence_loose(file_path):
     """
     Fallback: extract sequence by scanning ATOM records directly.
     Only uses CA atoms to avoid duplicates.
+    Args:
+        file_path (str or Path): Path to the input PDB or CIF file.
     """
     seq = []
     try:
@@ -74,7 +114,12 @@ def extract_sequence_loose(file_path):
     return "".join(seq) if seq else None
 
 def extract_all_features(seq):
-    """Run all protlearn feature extractors on a protein sequence."""
+    """Run all protlearn feature extractors on a protein sequence.
+    Args:
+        seq (str): Protein sequence as a string of amino acid characters.
+    Returns:
+        dict: Mapping of feature names to their extracted values.
+    """
     features = {}
     for name, func in FEATURE_FUNCTIONS.items():
         try:
@@ -110,7 +155,14 @@ def extract_all_features(seq):
     return features
 
 def run(input_file, tool_root, output_dir):
-    """Main entry point: extract features from PDB or CIF and write to CSV."""
+    """Main entry point: extract features from PDB or CIF and write to CSV.\
+    Args:
+        input_file : Path to the input PDB or CIF file.
+        tool_root (unused): Path to the directory containing external tools kept for interface consistency.
+        output_dir : Directory where output files will be saved. Results are placed in a 'protlearn' subfolder.
+    Returns:
+        Path to the output CSV file containing extracted features.
+    """
     output_dir = os.path.join(output_dir, "protlearn")
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, f"{input_file.stem}.csv")

@@ -1,37 +1,38 @@
 """
 calculate_features_kstest.py
-Command-line tool to extract immunological and sequence features from epitope and random protein sets, and compare their distributions using KS-test and AUROC.
+Command-line tool to extract immunological, structural, and sequence features from epitope and random protein sets, and compare their distributions using KS-test, t-test, and AUROC.
 
 Overview:
-    - Extracts features (B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, DeeplocPro, Ellipro, IFNepitope2, MixMHC2Pred, DeepTMHMM, Rate4Site, Rate4Site_Mafft_DeepTMHMM) from epitope (positive) and random sets.
+    - Extracts features from epitope (positive) and random/human sets, including:
+        - B-cell, MHC I/II, SignalP, TargetP, allergenicity, cluster conservation, DeeplocPro, Ellipro, IFNepitope2, MixMHC2Pred, DeepTMHMM, Rate4Site, Rate4Site_Mafft_DeepTMHMM, DSSP, dN/dS, ProtLearn.
     - Aggregates and structures feature data for statistical comparison.
-    - Performs Kolmogorov-Smirnov (KS) tests and computes AUROC for each feature/subfeature between positive and random sets.
+    - Performs Kolmogorov-Smirnov (KS) tests, t-tests, and computes AUROC for each feature/subfeature between positive and random/human sets.
     - Optionally writes raw feature data to disk for further analysis.
-    - Generates ROC curve plots and an AUROC summary bar plot.
+    - Generates ROC curve plots, an AUROC summary bar plot, and detailed statistical results.
 
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
     --threads (int, optional): Number of parallel workers for feature extraction (default: 1).
     --verbose (flag, optional): If set, enables verbose logging to file.
     --write-raw (flag, optional): If set, writes raw feature data to disk (can be large).
+    --raw-output-dir (str, optional): Directory to save raw feature data. Default: results/<pathogen_dir>/raw_data.
+    --human (flag, optional): If set, uses human negative set instead of random.
 
 Requirements:
     - Feature output files in expected formats under:
         data/<pathogen_dir>/epitope_outputs/
-        data/<pathogen_dir>/random_analysis/
-        data/<pathogen_dir>/evaluation_outputs/
-        data/<pathogen_dir>/random_evaluation/
-    - Python packages: pandas, scipy, scikit-learn, matplotlib, os, csv, json, argparse.
+        data/<pathogen_dir>/random_analysis/ or data/<pathogen_dir>/human_analysis/
+    - Python packages: pandas, scipy, scikit-learn, matplotlib, os, csv, json, argparse, Bio.
 
 Usage Example:
     python calculate_features_kstest.py sars_cov_2 --threads 4 --verbose --write-raw
 
 Outputs:
-    results/<pathogen_dir>/ks_test_results.csv      # KS statistics, p-values, and AUROC for each feature
-    results/<pathogen_dir>/raw_data/                # (optional) Raw feature CSVs for positive and random sets
-    results/<pathogen_dir>/roc_plots/               # ROC curve plots for each feature/subfeature
-    results/<pathogen_dir>/auroc_summary.png        # AUROC summary bar plot
-    data/<pathogen_dir>/ks_test.log                 # (optional) Verbose log file
+    results/<pathogen_dir>/ks_test_results_random.csv or ks_test_results_human.csv  # KS statistics, t-test results, p-values, and AUROC for each feature
+    results/<pathogen_dir>/raw_data/                                               # (optional) Raw feature CSVs for positive and random/human sets
+    results/<pathogen_dir>/roc_plots/                                              # ROC curve plots for each feature/subfeature
+    results/<pathogen_dir>/auroc_summary_random.png or auroc_summary_human.png     # AUROC summary bar plot
+    results/<pathogen_dir>/ks_test.log                                             # (optional) Verbose log file
 
 Author: Nadia
 """
@@ -1279,6 +1280,15 @@ def parse_dnds_dir(directory):
     """
     Parse the DNDS directory for structural features.
     Handles FEL, SLAC, and FUBAR result files.
+    Args:
+        directory (str): Path to the directory containing dN/dS JSON files.
+    Returns:
+        List of dictionaries, where each dictionary represents a dN/dS feature.
+    Each dictionary contains:
+        - "accession": accession identifier
+        - "feature": "FEL", "SLAC", or "FUBAR"
+        - "subfeature": specific subfeature name (e.g., "mean_alpha", "mean_beta", etc.)
+        - "value": numerical value for the feature
     """
 
     def safe_div(n, d):
@@ -1434,20 +1444,15 @@ def parse_dnds_dir(directory):
 def parse_protlearn_dir(directory):
     """
     Parse the ProtLearn directory for structural features.
-    feature,value
-length,[211.]
-aaindex1_ARGP820101,0.8508080808080807
-aaindex1_BHAR880101,0.4485757575757577
-aaindex1_CHOC750101,144.45252525252525
-aaindex1_DAYM780101,5.821212121212122
-aaindex1_DAYM780201,83.13131313131314
-aaindex1_GRAR740101,0.5552525252525252
-aaindex1_GRAR740102,8.87979797979798
-aaindex1_GRAR740103,79.48989898989899
-aaindex1_JOND750101,1.2093939393939395
-aaindex1_JOND750102,2.1623232323232324
-aaindex1_KYTJ820101,-0.5858585858585857
-
+    Args:
+        directory (str): Path to the directory containing ProtLearn CSV files.
+    Returns:
+        List of dictionaries, where each dictionary represents a ProtLearn feature.
+    Each dictionary contains:
+        - "accession": accession identifier
+        - "feature": "ProtLearn"
+        - "subfeature": specific subfeature name (e.g., "Hydrophobicity index", "Hydrophobicity", etc.)
+        - "value": numerical value for the feature
     """
     results = []
 
@@ -1503,18 +1508,18 @@ aaindex1_KYTJ820101,-0.5858585858585857
 
 def extract_all_features(base_dir, threads=1):
     """
-    Extract all features from the specified base and evaluation directories using multiple threads.
+    Extract all features from the specified base directory using multiple threads.
     Args:
         base_dir (str): Path to the base directory containing epitope outputs.
-        eval_dir (str): Path to the evaluation directory containing random analysis outputs.
         threads (int): Number of threads to use for parallel parsing.
     Returns:
         List of dictionaries, where each dictionary represents a feature.
     Each dictionary contains:
-        - "feature": feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "popcov", "deeplocpro", "ellipro",
-        "ifnepitope2", "mixmhc2pred",  "deeptmhmm", "rate4site", "rate4site_mafft_deeptmhmm")
-        - "subfeature": specific subfeature name (e.g., "bepipred", "score", "prob_signalp", etc.)
-        - "value": numerical value for the feature
+        - "accession": Accession identifier for the sequence.
+        - "feature": Feature type (e.g., "bcell", "mhci", "mhcii", "signalp", "targetp", "allergenicity", "cluster", "deeplocpro", "ellipro",
+          "ifnepitope2", "mixmhc2pred", "deeptmhmm", "rate4site", "rate4site_mafft_deeptmhmm", "dnds", "protlearn", "dssp").
+        - "subfeature": Specific subfeature name (e.g., "bepipred", "score", "prob_signalp", etc.).
+        - "value": Numerical value for the feature.
     """
     logging.info(f"Extracting features from base_dir: {base_dir} using {threads} threads")
     parsers = {
