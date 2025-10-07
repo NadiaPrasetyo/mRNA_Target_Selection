@@ -1,8 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,A7X5C8_AF,A,27,31,CENPK,5,0.632,Linear
-2,A7X5C8_AF,A,11,14,CEKC,4,0.534,Linear
-3,A7X5C8_AF,A,3,9,VRPSVKP,7,0.517,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,A7X5C8_AF,A:C11, A:E12, A:K13, A:C27, A:E28, A:N29, A:P30, A:K31, A:K33,9,0.595,Discontinous
-2,A7X5C8_AF,A:V3, A:R4, A:P5, A:S6, A:V7, A:K8, A:P9, A:G37,8,0.537,Discontinous

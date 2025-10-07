@@ -1,0 +1,96 @@
+HEADER    CELL ADHESION/BLOOD CLOTTING            23-DEC-10   3AT0
+TITLE     STRUCTURAL AND BIOCHEMICAL CHARACTERIZATION OF CLFB:LIGAND
+TITLE    2 INTERACTIONS
+COMPND    MOL_ID: 1;
+COMPND   2 MOLECULE: CLUMPING FACTOR B;
+COMPND   3 CHAIN: A;
+COMPND   4 FRAGMENT: N2 N3 DOMAIN (UNP RESIDUES 212-541);
+COMPND   5 SYNONYM: FIBRINOGEN RECEPTOR B, FIBRINOGEN-BINDING PROTEIN B;
+COMPND   6 ENGINEERED: YES;
+COMPND   7 MUTATION: YES;
+COMPND   8 MOL_ID: 2;
+COMPND   9 MOLECULE: C-TERMINAL ALPHA CHAIN PEPTIDE;
+COMPND  10 CHAIN: B;
+COMPND  11 SYNONYM: 16-MER FROM FIBRINOGEN ALPHA CHAIN, FIBRINOPEPTIDE A;
+COMPND  12 ENGINEERED: YES
+SOURCE    MOL_ID: 1;
+SOURCE   2 ORGANISM_SCIENTIFIC: STAPHYLOCOCCUS AUREUS;
+SOURCE   3 ORGANISM_TAXID: 158879;
+SOURCE   4 STRAIN: N315;
+SOURCE   5 GENE: CLFB, SA2423;
+SOURCE   6 EXPRESSION_SYSTEM: ESCHERICHIA COLI;
+SOURCE   7 EXPRESSION_SYSTEM_TAXID: 562;
+SOURCE   8 MOL_ID: 2;
+SOURCE   9 SYNTHETIC: YES;
+SOURCE  10 ORGANISM_SCIENTIFIC: HOMO SAPIENS;
+SOURCE  11 ORGANISM_COMMON: HUMAN;
+SOURCE  12 ORGANISM_TAXID: 9606;
+SOURCE  13 OTHER_DETAILS: THE PEPTIDE WAS CHEMICALLY SYNTHESIZED.
+ATOM      1  N   TRP B 335      -3.939  32.087  -0.233  1.00100.00           N  
+ATOM      2  CA  TRP B 335      -4.220  30.850   0.546  1.00100.00           C  
+ATOM      3  C   TRP B 335      -5.716  30.599   0.789  1.00100.00           C  
+ATOM      4  O   TRP B 335      -6.057  29.820   1.671  1.00100.00           O  
+ATOM      5  N   ASN B 336      -6.631  31.209   0.018  1.00100.00           N  
+ATOM      6  CA  ASN B 336      -8.034  31.287   0.488  1.00100.00           C  
+ATOM      7  C   ASN B 336      -9.154  31.860  -0.447  1.00100.00           C  
+ATOM      8  O   ASN B 336     -10.044  32.597   0.029  1.00100.00           O  
+ATOM      9  CB  ASN B 336      -8.044  32.143   1.768  1.00100.00           C  
+ATOM     10  CG  ASN B 336      -7.925  33.631   1.443  1.00100.00           C  
+ATOM     11  OD1 ASN B 336      -6.953  34.066   0.807  1.00100.00           O  
+ATOM     12  ND2 ASN B 336      -8.955  34.404   1.802  1.00100.00           N  
+ATOM     13  N   SER B 337      -9.160  31.559  -1.741  1.00100.00           N  
+ATOM     14  CA  SER B 337     -10.425  31.753  -2.487  1.00100.00           C  
+ATOM     15  C   SER B 337     -11.123  30.398  -2.575  1.00100.00           C  
+ATOM     16  O   SER B 337     -10.579  29.416  -2.116  1.00100.00           O  
+ATOM     17  CB  SER B 337     -10.168  32.404  -3.828  1.00100.00           C  
+ATOM     18  OG  SER B 337      -9.283  33.506  -3.635  1.00100.00           O  
+ATOM     19  N   GLY B 338     -12.330  30.311  -3.100  1.00100.00           N  
+ATOM     20  CA  GLY B 338     -13.042  29.043  -2.918  1.00100.00           C  
+ATOM     21  C   GLY B 338     -14.016  28.514  -3.950  1.00100.00           C  
+ATOM     22  O   GLY B 338     -14.602  29.258  -4.714  1.00100.00           O  
+ATOM     23  N   SER B 339     -14.238  27.206  -3.902  1.00100.00           N  
+ATOM     24  CA  SER B 339     -15.052  26.489  -4.878  1.00100.00           C  
+ATOM     25  C   SER B 339     -15.792  25.370  -4.142  1.00100.00           C  
+ATOM     26  O   SER B 339     -15.184  24.646  -3.345  1.00100.00           O  
+ATOM     27  CB  SER B 339     -14.115  25.911  -5.952  1.00100.00           C  
+ATOM     28  OG  SER B 339     -14.765  25.415  -7.115  1.00100.00           O  
+ATOM     29  N   SER B 340     -17.100  25.211  -4.394  1.00100.00           N  
+ATOM     30  CA  SER B 340     -17.824  24.079  -3.777  1.00100.00           C  
+ATOM     31  C   SER B 340     -18.716  23.218  -4.696  1.00100.00           C  
+ATOM     32  O   SER B 340     -19.322  23.693  -5.672  1.00100.00           O  
+ATOM     33  CB  SER B 340     -18.578  24.508  -2.511  1.00100.00           C  
+ATOM     34  OG  SER B 340     -19.700  25.307  -2.851  1.00100.00           O  
+ATOM     35  N   GLY B 341     -18.772  21.930  -4.351  1.00100.00           N  
+ATOM     36  CA  GLY B 341     -19.589  20.969  -5.071  1.00100.00           C  
+ATOM     37  C   GLY B 341     -20.852  20.570  -4.319  1.00100.00           C  
+ATOM     38  O   GLY B 341     -21.079  20.959  -3.160  1.00100.00           O  
+ATOM     39  N   THR B 342     -21.670  19.780  -4.995  1.00100.00           N  
+ATOM     40  CA  THR B 342     -22.965  19.346  -4.469  1.00100.00           C  
+ATOM     41  C   THR B 342     -23.423  18.040  -5.144  1.00100.00           C  
+ATOM     42  O   THR B 342     -23.309  17.867  -6.352  1.00100.00           O  
+ATOM     43  CB  THR B 342     -24.058  20.444  -4.622  1.00100.00           C  
+ATOM     44  OG1 THR B 342     -25.281  20.006  -4.014  1.00100.00           O  
+ATOM     45  CG2 THR B 342     -24.284  20.781  -6.093  1.00100.00           C  
+ATOM     46  N   GLY B 343     -23.924  17.126  -4.339  1.00100.00           N  
+ATOM     47  CA  GLY B 343     -24.401  15.877  -4.850  1.00100.00           C  
+ATOM     48  C   GLY B 343     -25.466  15.313  -3.946  1.00100.00           C  
+ATOM     49  O   GLY B 343     -25.803  15.909  -2.905  1.00100.00           O  
+ATOM     50  N   SER B 344     -25.991  14.159  -4.353  1.00100.00           N  
+ATOM     51  CA  SER B 344     -27.024  13.520  -3.585  1.00100.00           C  
+ATOM     52  C   SER B 344     -26.624  12.166  -3.007  1.00100.00           C  
+ATOM     53  O   SER B 344     -25.884  11.387  -3.598  1.00100.00           O  
+ATOM     54  CB  SER B 344     -28.355  13.451  -4.341  1.00100.00           C  
+ATOM     55  OG  SER B 344     -29.378  12.944  -3.498  1.00100.00           O  
+ATOM     56  N   THR B 345     -27.178  11.935  -1.827  1.00100.00           N  
+ATOM     57  CA  THR B 345     -26.965  10.777  -1.009  1.00100.00           C  
+ATOM     58  C   THR B 345     -28.197   9.831  -1.139  1.00100.00           C  
+ATOM     59  O   THR B 345     -28.212   8.725  -0.589  1.00100.00           O  
+ATOM     60  CB  THR B 345     -26.598  11.286   0.452  1.00100.00           C  
+ATOM     61  OG1 THR B 345     -25.176  11.163   0.640  1.00100.00           O  
+ATOM     62  CG2 THR B 345     -27.398  10.603   1.602  1.00100.00           C  
+ATOM     63  N   GLY B 346     -29.206  10.259  -1.903  1.00100.00           N  
+ATOM     64  CA  GLY B 346     -30.415   9.444  -2.116  1.00100.00           C  
+ATOM     65  C   GLY B 346     -31.122   9.000  -0.837  1.00100.00           C  
+ATOM     66  O   GLY B 346     -32.123   9.596  -0.430  1.00100.00           O  
+TER      67      GLY B 346                                                       
+END   

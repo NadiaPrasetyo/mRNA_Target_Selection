@@ -1,0 +1,156 @@
+HEADER    CELL ADHESION/STRUCTURAL PROTEIN        28-NOV-05   2F6A
+TITLE     COLLAGEN ADHESIN AND COLLAGEN COMPLEX STRUCTURE
+COMPND    MOL_ID: 1;
+COMPND   2 MOLECULE: COLLAGEN ADHESIN;
+COMPND   3 CHAIN: A, B, C, D;
+COMPND   4 FRAGMENT: EXTRACELLULAR DOMAIN;
+COMPND   5 ENGINEERED: YES;
+COMPND   6 MOL_ID: 2;
+COMPND   7 MOLECULE: COLLAGEN;
+COMPND   8 CHAIN: E, F, G, H, I, J;
+COMPND   9 ENGINEERED: YES
+SOURCE    MOL_ID: 1;
+SOURCE   2 ORGANISM_SCIENTIFIC: STAPHYLOCOCCUS AUREUS;
+SOURCE   3 ORGANISM_TAXID: 1280;
+SOURCE   4 GENE: CNA;
+SOURCE   5 EXPRESSION_SYSTEM: ESCHERICHIA COLI;
+SOURCE   6 EXPRESSION_SYSTEM_TAXID: 562;
+SOURCE   7 EXPRESSION_SYSTEM_VECTOR_TYPE: PLASMID;
+SOURCE   8 EXPRESSION_SYSTEM_VECTOR: PET;
+SOURCE   9 MOL_ID: 2;
+SOURCE  10 SYNTHETIC: YES;
+SOURCE  11 OTHER_DETAILS: CHEMICALLY SYNTHESIZED COLLAGEN LIKE PEPTIDE
+ATOM      1  N   GLY I   1     -51.222  25.645  11.410  1.00100.00           N  
+ATOM      2  CA  GLY I   1     -52.119  25.855  10.238  1.00100.00           C  
+ATOM      3  C   GLY I   1     -51.379  26.397   9.027  1.00100.00           C  
+ATOM      4  O   GLY I   1     -50.887  25.618   8.207  1.00100.00           O  
+ATOM      5  N   PRO I   2     -51.302  27.738   8.905  1.00100.00           N  
+ATOM      6  CA  PRO I   2     -50.613  28.407   7.796  1.00100.00           C  
+ATOM      7  C   PRO I   2     -49.107  28.115   7.763  1.00100.00           C  
+ATOM      8  O   PRO I   2     -48.490  27.971   8.821  1.00100.00           O  
+ATOM      9  CB  PRO I   2     -50.863  29.896   8.074  1.00100.00           C  
+ATOM     10  CG  PRO I   2     -52.036  29.931   8.990  1.00100.00           C  
+ATOM     11  CD  PRO I   2     -51.897  28.712   9.836  1.00100.00           C  
+ATOM     12  N   GLY I   4     -44.850  28.198   7.119  1.00100.00           N  
+ATOM     13  CA  GLY I   4     -43.774  28.986   7.714  1.00100.00           C  
+ATOM     14  C   GLY I   4     -42.601  29.173   6.766  1.00100.00           C  
+ATOM     15  O   GLY I   4     -41.992  28.190   6.337  1.00100.00           O  
+ATOM     16  N   PRO I   5     -42.284  30.438   6.423  1.00100.00           N  
+ATOM     17  CA  PRO I   5     -41.152  30.782   5.557  1.00100.00           C  
+ATOM     18  C   PRO I   5     -39.801  30.411   6.179  1.00100.00           C  
+ATOM     19  O   PRO I   5     -39.646  30.503   7.399  1.00100.00           O  
+ATOM     20  CB  PRO I   5     -41.266  32.307   5.415  1.00100.00           C  
+ATOM     21  CG  PRO I   5     -42.672  32.630   5.785  1.00100.00           C  
+ATOM     22  CD  PRO I   5     -43.026  31.641   6.842  1.00100.00           C  
+ATOM     23  N   GLY I   7     -35.609  30.630   6.990  1.00100.00           N  
+ATOM     24  CA  GLY I   7     -34.707  31.704   7.402  1.00100.00           C  
+ATOM     25  C   GLY I   7     -33.663  32.076   6.362  1.00100.00           C  
+ATOM     26  O   GLY I   7     -33.668  31.534   5.253  1.00100.00           O  
+ATOM     27  N   PRO I   8     -32.760  33.014   6.711  1.00100.00           N  
+ATOM     28  CA  PRO I   8     -31.688  33.454   5.817  1.00100.00           C  
+ATOM     29  C   PRO I   8     -30.597  32.392   5.663  1.00100.00           C  
+ATOM     30  O   PRO I   8     -30.353  31.631   6.603  1.00100.00           O  
+ATOM     31  CB  PRO I   8     -31.120  34.695   6.524  1.00100.00           C  
+ATOM     32  CG  PRO I   8     -32.089  35.023   7.622  1.00100.00           C  
+ATOM     33  CD  PRO I   8     -32.713  33.727   7.998  1.00100.00           C  
+ATOM     34  N   GLY I  10     -27.000  30.469   5.527  1.00100.00           N  
+ATOM     35  CA  GLY I  10     -25.878  30.486   6.463  1.00100.00           C  
+ATOM     36  C   GLY I  10     -24.623  31.150   5.922  1.00100.00           C  
+ATOM     37  O   GLY I  10     -24.548  31.461   4.730  1.00100.00           O  
+ATOM     38  N   PRO I  11     -23.626  31.378   6.799  1.00100.00           N  
+ATOM     39  CA  PRO I  11     -22.355  31.986   6.400  1.00100.00           C  
+ATOM     40  C   PRO I  11     -21.507  31.041   5.544  1.00100.00           C  
+ATOM     41  O   PRO I  11     -21.652  29.821   5.662  1.00100.00           O  
+ATOM     42  CB  PRO I  11     -21.663  32.255   7.739  1.00100.00           C  
+ATOM     43  CG  PRO I  11     -22.236  31.254   8.671  1.00100.00           C  
+ATOM     44  CD  PRO I  11     -23.659  31.069   8.242  1.00100.00           C  
+ATOM     45  N   GLY I  13     -18.597  28.649   4.291  1.00100.00           N  
+ATOM     46  CA  GLY I  13     -17.868  27.644   5.063  1.00100.00           C  
+ATOM     47  C   GLY I  13     -16.381  27.904   5.235  1.00100.00           C  
+ATOM     48  O   GLY I  13     -15.888  28.974   4.869  1.00100.00           O  
+ATOM     49  N   PRO I  14     -15.653  26.921   5.800  1.00100.00           N  
+ATOM     50  CA  PRO I  14     -14.218  27.057   6.042  1.00100.00           C  
+ATOM     51  C   PRO I  14     -13.395  26.935   4.760  1.00100.00           C  
+ATOM     52  O   PRO I  14     -13.926  26.561   3.711  1.00100.00           O  
+ATOM     53  CB  PRO I  14     -13.902  25.887   6.990  1.00100.00           C  
+ATOM     54  CG  PRO I  14     -15.229  25.282   7.365  1.00100.00           C  
+ATOM     55  CD  PRO I  14     -16.153  25.612   6.249  1.00100.00           C  
+ATOM     56  N   ARG I  15     -12.108  27.255   4.858  1.00100.00           N  
+ATOM     57  CA  ARG I  15     -11.189  27.167   3.727  1.00100.00           C  
+ATOM     58  C   ARG I  15     -10.787  25.717   3.479  1.00100.00           C  
+ATOM     59  O   ARG I  15     -10.568  24.955   4.425  1.00100.00           O  
+ATOM     60  CB  ARG I  15      -9.949  28.030   3.976  1.00100.00           C  
+ATOM     61  CG  ARG I  15     -10.261  29.498   4.237  1.00100.00           C  
+ATOM     62  CD  ARG I  15      -9.027  30.283   4.639  1.00100.00           C  
+ATOM     63  NE  ARG I  15      -9.370  31.648   5.038  1.00100.00           N  
+ATOM     64  CZ  ARG I  15      -8.491  32.569   5.427  1.00100.00           C  
+ATOM     65  NH1 ARG I  15      -7.194  32.288   5.478  1.00100.00           N  
+ATOM     66  NH2 ARG I  15      -8.912  33.779   5.769  1.00100.00           N  
+ATOM     67  N   GLY I  16     -10.696  25.344   2.204  1.00100.00           N  
+ATOM     68  CA  GLY I  16     -10.317  23.988   1.808  1.00100.00           C  
+ATOM     69  C   GLY I  16      -8.895  23.633   2.201  1.00100.00           C  
+ATOM     70  O   GLY I  16      -8.062  24.519   2.414  1.00100.00           O  
+ATOM     71  N   ARG I  17      -8.622  22.333   2.299  1.00100.00           N  
+ATOM     72  CA  ARG I  17      -7.299  21.835   2.680  1.00100.00           C  
+ATOM     73  C   ARG I  17      -6.227  22.234   1.669  1.00100.00           C  
+ATOM     74  O   ARG I  17      -6.502  22.344   0.471  1.00100.00           O  
+ATOM     75  CB  ARG I  17      -7.319  20.313   2.851  1.00100.00           C  
+ATOM     76  CG  ARG I  17      -8.064  19.827   4.086  1.00100.00           C  
+ATOM     77  CD  ARG I  17      -7.827  18.344   4.322  1.00100.00           C  
+ATOM     78  NE  ARG I  17      -8.568  17.847   5.480  1.00100.00           N  
+ATOM     79  CZ  ARG I  17      -8.463  16.615   5.975  1.00100.00           C  
+ATOM     80  NH1 ARG I  17      -7.641  15.732   5.421  1.00100.00           N  
+ATOM     81  NH2 ARG I  17      -9.184  16.266   7.031  1.00100.00           N  
+ATOM     82  N   THR I  18      -5.011  22.453   2.168  1.00100.00           N  
+ATOM     83  CA  THR I  18      -3.869  22.834   1.337  1.00100.00           C  
+ATOM     84  C   THR I  18      -3.601  21.765   0.279  1.00100.00           C  
+ATOM     85  O   THR I  18      -3.638  20.566   0.572  1.00100.00           O  
+ATOM     86  CB  THR I  18      -2.596  23.063   2.189  1.00100.00           C  
+ATOM     87  OG1 THR I  18      -2.934  23.786   3.380  1.00100.00           O  
+ATOM     88  CG2 THR I  18      -1.548  23.851   1.407  1.00100.00           C  
+ATOM     89  N   GLY I  19      -3.337  22.212  -0.946  1.00100.00           N  
+ATOM     90  CA  GLY I  19      -3.155  21.319  -2.087  1.00100.00           C  
+ATOM     91  C   GLY I  19      -1.947  20.400  -2.015  1.00100.00           C  
+ATOM     92  O   GLY I  19      -1.114  20.534  -1.115  1.00100.00           O  
+ATOM     93  N   PRO I  20      -1.850  19.451  -2.967  1.00100.00           N  
+ATOM     94  CA  PRO I  20      -0.729  18.513  -3.059  1.00100.00           C  
+ATOM     95  C   PRO I  20       0.598  19.223  -3.340  1.00100.00           C  
+ATOM     96  O   PRO I  20       0.598  20.284  -3.969  1.00100.00           O  
+ATOM     97  CB  PRO I  20      -1.110  17.628  -4.253  1.00100.00           C  
+ATOM     98  CG  PRO I  20      -2.580  17.797  -4.412  1.00100.00           C  
+ATOM     99  CD  PRO I  20      -2.843  19.212  -4.028  1.00100.00           C  
+ATOM    100  N   GLY I  22       4.185  20.094  -5.116  1.00100.00           N  
+ATOM    101  CA  GLY I  22       4.578  20.152  -6.524  1.00100.00           C  
+ATOM    102  C   GLY I  22       5.525  19.054  -6.980  1.00100.00           C  
+ATOM    103  O   GLY I  22       6.015  18.274  -6.160  1.00100.00           O  
+ATOM    104  N   PRO I  23       5.787  18.983  -8.301  1.00100.00           N  
+ATOM    105  CA  PRO I  23       6.686  17.970  -8.856  1.00100.00           C  
+ATOM    106  C   PRO I  23       8.159  18.262  -8.546  1.00100.00           C  
+ATOM    107  O   PRO I  23       8.584  19.414  -8.649  1.00100.00           O  
+ATOM    108  CB  PRO I  23       6.422  18.051 -10.362  1.00100.00           C  
+ATOM    109  CG  PRO I  23       5.950  19.440 -10.593  1.00100.00           C  
+ATOM    110  CD  PRO I  23       5.231  19.866  -9.345  1.00100.00           C  
+ATOM    111  N   GLY I  25      12.069  19.027  -8.167  1.00100.00           N  
+ATOM    112  CA  GLY I  25      12.847  20.018  -8.911  1.00100.00           C  
+ATOM    113  C   GLY I  25      13.881  19.456  -9.875  1.00100.00           C  
+ATOM    114  O   GLY I  25      14.026  18.236  -9.994  1.00100.00           O  
+ATOM    115  N   PRO I  26      14.608  20.349 -10.575  1.00100.00           N  
+ATOM    116  CA  PRO I  26      15.630  19.950 -11.545  1.00100.00           C  
+ATOM    117  C   PRO I  26      16.913  19.452 -10.873  1.00100.00           C  
+ATOM    118  O   PRO I  26      17.167  19.797  -9.717  1.00100.00           O  
+ATOM    119  CB  PRO I  26      15.899  21.246 -12.315  1.00100.00           C  
+ATOM    120  CG  PRO I  26      15.599  22.327 -11.346  1.00100.00           C  
+ATOM    121  CD  PRO I  26      14.485  21.817 -10.476  1.00100.00           C  
+ATOM    122  N   GLY I  28      20.803  19.263  -9.802  1.00100.00           N  
+ATOM    123  CA  GLY I  28      21.723  20.334  -9.430  1.00100.00           C  
+ATOM    124  C   GLY I  28      22.929  20.487 -10.339  1.00100.00           C  
+ATOM    125  O   GLY I  28      23.189  19.623 -11.180  1.00100.00           O  
+ATOM    126  N   PRO I  29      23.670  21.601 -10.185  1.00100.00           N  
+ATOM    127  CA  PRO I  29      24.903  21.822 -10.935  1.00100.00           C  
+ATOM    128  C   PRO I  29      26.069  21.034 -10.333  1.00100.00           C  
+ATOM    129  O   PRO I  29      26.388  21.219  -9.156  1.00100.00           O  
+ATOM    130  CB  PRO I  29      25.144  23.336 -10.794  1.00100.00           C  
+ATOM    131  CG  PRO I  29      23.956  23.884 -10.035  1.00100.00           C  
+ATOM    132  CD  PRO I  29      23.371  22.735  -9.295  1.00100.00           C  
+TER     133      PRO I  29                                                       
+END   

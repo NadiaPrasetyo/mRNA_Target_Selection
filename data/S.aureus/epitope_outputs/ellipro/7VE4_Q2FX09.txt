@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,7VE4_Q2FX09,A,203,209,FQHNLIQ,7,0.676,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,7VE4_Q2FX09,A:A142, A:E143, A:E146,3,0.892,Discontinous
+2,7VE4_Q2FX09,A:S170, A:A171, A:H173,3,0.863,Discontinous
+3,7VE4_Q2FX09,A:I174, A:T175, A:I176, A:K177, A:K180,5,0.718,Discontinous
+4,7VE4_Q2FX09,A:V192, A:Q193, A:D194, A:T196, A:Q197, A:I200, A:Q204,7,0.672,Discontinous
+5,7VE4_Q2FX09,A:F203, A:L207, A:I208, A:Q209,4,0.647,Discontinous
+6,7VE4_Q2FX09,A:Y163, A:Q166, A:E167,3,0.613,Discontinous

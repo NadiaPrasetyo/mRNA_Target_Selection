@@ -1,0 +1,217 @@
+HEADER    ISOMERASE                               13-MAY-20   6Z1A
+TITLE     TERNARY COMPLEX OF STAPHYLOCOCCUS AUREUS DNA GYRASE WITH AMK12 AND DNA
+COMPND    MOL_ID: 1;
+COMPND   2 MOLECULE: DNA GYRASE SUBUNIT B,DNA GYRASE SUBUNIT A;
+COMPND   3 CHAIN: B, D;
+COMPND   4 EC: 5.6.2.2,5.6.2.2;
+COMPND   5 ENGINEERED: YES;
+COMPND   6 MUTATION: YES;
+COMPND   7 OTHER_DETAILS: FUSION OF FRAGMENTS TAKEN FROM C-TERMINAL DOMAIN OF
+COMPND   8 GYRB (RESIDUES 410-543 AND 580-644) TO N-TERMINAL DOMAIN OF GYRA
+COMPND   9 (RESIDUES 2-491). FOR THE GYRB COMPONENT, DELETION OF RESIDUES 544-
+COMPND  10 579 REMOVES A GREEK KEY MOTIF. THE DELETED SEQUENCE IS REPLACED BY 2
+COMPND  11 RESIDUES: TG. FOR THE GYRA COMPONENT, THE SEQUENCE NUMBERING IS
+COMPND  12 ADVANCED BY 1000 IN THE COORDINATE FILE.,FUSION OF FRAGMENTS TAKEN
+COMPND  13 FROM C-TERMINAL DOMAIN OF GYRB (RESIDUES 410-543 AND 580-644) TO N-
+COMPND  14 TERMINAL DOMAIN OF GYRA (RESIDUES 2-491). FOR THE GYRB COMPONENT,
+COMPND  15 DELETION OF RESIDUES 544-579 REMOVES A GREEK KEY MOTIF. THE DELETED
+COMPND  16 SEQUENCE IS REPLACED BY 2 RESIDUES: TG. FOR THE GYRA COMPONENT, THE
+COMPND  17 SEQUENCE NUMBERING IS ADVANCED BY 1000 IN THE COORDINATE FILE.,FUSION
+COMPND  18 OF FRAGMENTS TAKEN FROM C-TERMINAL DOMAIN OF GYRB (RESIDUES 410-543
+COMPND  19 AND 580-644) TO N-TERMINAL DOMAIN OF GYRA (RESIDUES 2-491). FOR THE
+COMPND  20 GYRB COMPONENT, DELETION OF RESIDUES 544-579 REMOVES A GREEK KEY
+COMPND  21 MOTIF. THE DELETED SEQUENCE IS REPLACED BY 2 RESIDUES: TG. FOR THE
+COMPND  22 GYRA COMPONENT, THE SEQUENCE NUMBERING IS ADVANCED BY 1000 IN THE
+COMPND  23 COORDINATE FILE.,FUSION OF FRAGMENTS TAKEN FROM C-TERMINAL DOMAIN OF
+COMPND  24 GYRB (RESIDUES 410-543 AND 580-644) TO N-TERMINAL DOMAIN OF GYRA
+COMPND  25 (RESIDUES 2-491). FOR THE GYRB COMPONENT, DELETION OF RESIDUES 544-
+COMPND  26 579 REMOVES A GREEK KEY MOTIF. THE DELETED SEQUENCE IS REPLACED BY 2
+COMPND  27 RESIDUES: TG. FOR THE GYRA COMPONENT, THE SEQUENCE NUMBERING IS
+COMPND  28 ADVANCED BY 1000 IN THE COORDINATE FILE.;
+COMPND  29 MOL_ID: 2;
+COMPND  30 MOLECULE: DNA (5'-D(*AP*GP*CP*CP*GP*TP*AP*G)-3');
+COMPND  31 CHAIN: E, F;
+COMPND  32 ENGINEERED: YES;
+COMPND  33 MOL_ID: 3;
+COMPND  34 MOLECULE: DNA (5'-D(P*GP*TP*AP*CP*CP*TP*AP*CP*GP*GP*CP*T)-3');
+COMPND  35 CHAIN: G, H;
+COMPND  36 ENGINEERED: YES
+SOURCE    MOL_ID: 1;
+SOURCE   2 ORGANISM_SCIENTIFIC: STAPHYLOCOCCUS AUREUS;
+SOURCE   3 ORGANISM_TAXID: 1280;
+SOURCE   4 GENE: GYRB, GYRA;
+SOURCE   5 EXPRESSION_SYSTEM: ESCHERICHIA COLI BL21(DE3);
+SOURCE   6 EXPRESSION_SYSTEM_TAXID: 469008;
+SOURCE   7 MOL_ID: 2;
+SOURCE   8 SYNTHETIC: YES;
+SOURCE   9 ORGANISM_SCIENTIFIC: STAPHYLOCOCCUS AUREUS SUBSP. AUREUS N315;
+SOURCE  10 ORGANISM_TAXID: 158879;
+SOURCE  11 MOL_ID: 3;
+SOURCE  12 SYNTHETIC: YES;
+SOURCE  13 ORGANISM_SCIENTIFIC: STAPHYLOCOCCUS AUREUS SUBSP. AUREUS N315;
+SOURCE  14 ORGANISM_TAXID: 158879
+ATOM      1  O5'  DA E   1      32.058  61.349  38.925  1.00100.00           O  
+ATOM      2  C5'  DA E   1      31.731  62.511  38.144  1.00100.00           C  
+ATOM      3  C4'  DA E   1      30.934  62.120  36.922  1.00100.00           C  
+ATOM      4  O4'  DA E   1      31.730  61.282  36.040  1.00100.00           O  
+ATOM      5  C3'  DA E   1      29.647  61.338  37.186  1.00100.00           C  
+ATOM      6  O3'  DA E   1      28.698  61.765  36.199  1.00100.00           O  
+ATOM      7  C2'  DA E   1      30.086  59.894  37.004  1.00100.00           C  
+ATOM      8  C1'  DA E   1      31.058  60.034  35.839  1.00100.00           C  
+ATOM      9  N9   DA E   1      32.075  58.999  35.639  1.00100.00           N  
+ATOM     10  C8   DA E   1      32.253  58.194  34.537  1.00100.00           C  
+ATOM     11  N7   DA E   1      33.293  57.400  34.624  1.00100.00           N  
+ATOM     12  C5   DA E   1      33.838  57.702  35.864  1.00100.00           C  
+ATOM     13  C6   DA E   1      34.963  57.212  36.547  1.00100.00           C  
+ATOM     14  N6   DA E   1      35.757  56.259  36.066  1.00100.00           N  
+ATOM     15  N1   DA E   1      35.249  57.746  37.755  1.00100.00           N  
+ATOM     16  C2   DA E   1      34.435  58.683  38.249  1.00100.00           C  
+ATOM     17  N3   DA E   1      33.335  59.215  37.710  1.00100.00           N  
+ATOM     18  C4   DA E   1      33.103  58.693  36.495  1.00100.00           C  
+ATOM     19  P    DG E   2      27.141  61.335  36.293  1.00100.00           P  
+ATOM     20  OP1  DG E   2      26.372  62.097  35.238  1.00100.00           O  
+ATOM     21  OP2  DG E   2      26.768  61.403  37.708  1.00100.00           O  
+ATOM     22  O5'  DG E   2      27.150  59.803  35.871  1.00100.00           O  
+ATOM     23  C5'  DG E   2      27.495  59.402  34.523  1.00100.00           C  
+ATOM     24  C4'  DG E   2      27.648  57.899  34.443  1.00100.00           C  
+ATOM     25  O4'  DG E   2      28.776  57.444  35.225  1.00100.00           O  
+ATOM     26  C3'  DG E   2      26.456  57.084  34.948  1.00100.00           C  
+ATOM     27  O3'  DG E   2      26.432  55.915  34.141  1.00100.00           O  
+ATOM     28  C2'  DG E   2      26.852  56.686  36.359  1.00100.00           C  
+ATOM     29  C1'  DG E   2      28.334  56.445  36.144  1.00100.00           C  
+ATOM     30  N9   DG E   2      29.186  56.522  37.313  1.00100.00           N  
+ATOM     31  C8   DG E   2      28.973  57.209  38.483  1.00100.00           C  
+ATOM     32  N7   DG E   2      29.956  57.085  39.333  1.00100.00           N  
+ATOM     33  C5   DG E   2      30.883  56.289  38.674  1.00100.00           C  
+ATOM     34  C6   DG E   2      32.174  55.846  39.079  1.00100.00           C  
+ATOM     35  O6   DG E   2      32.769  56.072  40.142  1.00100.00           O  
+ATOM     36  N1   DG E   2      32.786  55.074  38.092  1.00100.00           N  
+ATOM     37  C2   DG E   2      32.227  54.771  36.867  1.00100.00           C  
+ATOM     38  N2   DG E   2      32.955  53.995  36.057  1.00100.00           N  
+ATOM     39  N3   DG E   2      31.044  55.214  36.463  1.00100.00           N  
+ATOM     40  C4   DG E   2      30.435  55.964  37.410  1.00100.00           C  
+ATOM     41  P    DC E   3      25.075  55.443  33.511  1.00100.00           P  
+ATOM     42  OP1  DC E   3      24.934  56.174  32.231  1.00100.00           O  
+ATOM     43  OP2  DC E   3      24.030  55.513  34.579  1.00100.00           O  
+ATOM     44  O5'  DC E   3      25.321  53.877  33.358  1.00100.00           O  
+ATOM     45  C5'  DC E   3      26.189  53.394  32.332  1.00100.00           C  
+ATOM     46  C4'  DC E   3      27.127  52.358  32.898  1.00100.00           C  
+ATOM     47  O4'  DC E   3      27.872  52.935  33.973  1.00100.00           O  
+ATOM     48  C3'  DC E   3      26.465  51.135  33.516  1.00100.00           C  
+ATOM     49  O3'  DC E   3      26.406  50.071  32.579  1.00100.00           O  
+ATOM     50  C2'  DC E   3      27.490  50.661  34.519  1.00100.00           C  
+ATOM     51  C1'  DC E   3      28.420  51.854  34.703  1.00100.00           C  
+ATOM     52  N1   DC E   3      28.541  52.281  36.096  1.00100.00           N  
+ATOM     53  C2   DC E   3      29.752  52.044  36.745  1.00100.00           C  
+ATOM     54  O2   DC E   3      30.663  51.467  36.116  1.00100.00           O  
+ATOM     55  N3   DC E   3      29.908  52.466  38.027  1.00100.00           N  
+ATOM     56  C4   DC E   3      28.891  53.065  38.660  1.00100.00           C  
+ATOM     57  N4   DC E   3      29.075  53.440  39.917  1.00100.00           N  
+ATOM     58  C5   DC E   3      27.636  53.293  38.025  1.00100.00           C  
+ATOM     59  C6   DC E   3      27.509  52.898  36.751  1.00100.00           C  
+ATOM     60  P    DC E   4      25.131  49.121  32.523  1.00100.00           P  
+ATOM     61  OP1  DC E   4      24.795  48.955  31.048  1.00100.00           O  
+ATOM     62  OP2  DC E   4      24.125  49.551  33.573  1.00100.00           O  
+ATOM     63  O5'  DC E   4      25.658  47.748  33.139  1.00100.00           O  
+ATOM     64  C5'  DC E   4      26.682  46.980  32.471  1.00100.00           C  
+ATOM     65  C4'  DC E   4      27.550  46.326  33.520  1.00100.00           C  
+ATOM     66  O4'  DC E   4      28.090  47.346  34.391  1.00100.00           O  
+ATOM     67  C3'  DC E   4      26.782  45.376  34.435  1.00100.00           C  
+ATOM     68  O3'  DC E   4      26.715  44.059  33.861  1.00100.00           O  
+ATOM     69  C2'  DC E   4      27.557  45.453  35.736  1.00100.00           C  
+ATOM     70  C1'  DC E   4      28.325  46.782  35.667  1.00100.00           C  
+ATOM     71  N1   DC E   4      27.986  47.791  36.700  1.00100.00           N  
+ATOM     72  C2   DC E   4      29.018  48.240  37.525  1.00100.00           C  
+ATOM     73  O2   DC E   4      30.159  47.803  37.336  1.00100.00           O  
+ATOM     74  N3   DC E   4      28.750  49.149  38.489  1.00100.00           N  
+ATOM     75  C4   DC E   4      27.501  49.591  38.658  1.00100.00           C  
+ATOM     76  N4   DC E   4      27.281  50.488  39.621  1.00100.00           N  
+ATOM     77  C5   DC E   4      26.427  49.156  37.824  1.00100.00           C  
+ATOM     78  C6   DC E   4      26.711  48.253  36.875  1.00100.00           C  
+ATOM     79  P    DG E   5      25.324  43.252  33.864  1.00100.00           P  
+ATOM     80  OP1  DG E   5      25.416  42.055  32.977  1.00100.00           O  
+ATOM     81  OP2  DG E   5      24.230  44.228  33.692  1.00100.00           O  
+ATOM     82  O5'  DG E   5      25.200  42.765  35.365  1.00100.00           O  
+ATOM     83  C5'  DG E   5      26.234  42.006  35.985  1.00100.00           C  
+ATOM     84  C4'  DG E   5      25.817  41.727  37.406  1.00100.00           C  
+ATOM     85  O4'  DG E   5      25.827  42.969  38.165  1.00100.00           O  
+ATOM     86  C3'  DG E   5      24.390  41.185  37.528  1.00100.00           C  
+ATOM     87  O3'  DG E   5      24.180  40.413  38.698  1.00100.00           O  
+ATOM     88  C2'  DG E   5      23.583  42.427  37.866  1.00100.00           C  
+ATOM     89  C1'  DG E   5      24.568  43.100  38.799  1.00100.00           C  
+ATOM     90  N9   DG E   5      24.362  44.507  39.047  1.00100.00           N  
+ATOM     91  C8   DG E   5      23.971  45.476  38.152  1.00100.00           C  
+ATOM     92  N7   DG E   5      24.021  46.681  38.649  1.00100.00           N  
+ATOM     93  C5   DG E   5      24.473  46.495  39.950  1.00100.00           C  
+ATOM     94  C6   DG E   5      24.689  47.429  40.989  1.00100.00           C  
+ATOM     95  O6   DG E   5      24.548  48.654  40.962  1.00100.00           O  
+ATOM     96  N1   DG E   5      25.157  46.809  42.148  1.00100.00           N  
+ATOM     97  C2   DG E   5      25.345  45.456  42.299  1.00100.00           C  
+ATOM     98  N2   DG E   5      25.782  45.052  43.492  1.00100.00           N  
+ATOM     99  N3   DG E   5      25.143  44.574  41.339  1.00100.00           N  
+ATOM    100  C4   DG E   5      24.709  45.158  40.201  1.00100.00           C  
+ATOM    101  P    DT E   6      24.088  38.870  38.631  1.00100.00           P  
+ATOM    102  OP1  DT E   6      25.446  38.406  38.434  1.00100.00           O  
+ATOM    103  OP2  DT E   6      22.977  38.470  37.784  1.00100.00           O  
+ATOM    104  O5'  DT E   6      23.741  38.549  40.137  1.00100.00           O  
+ATOM    105  C5'  DT E   6      22.568  39.092  40.667  1.00100.00           C  
+ATOM    106  C4'  DT E   6      22.726  39.180  42.158  1.00100.00           C  
+ATOM    107  O4'  DT E   6      23.216  40.500  42.495  1.00100.00           O  
+ATOM    108  C3'  DT E   6      21.410  39.006  42.925  1.00100.00           C  
+ATOM    109  O3'  DT E   6      21.693  38.455  44.210  1.00100.00           O  
+ATOM    110  C2'  DT E   6      20.923  40.436  43.051  1.00100.00           C  
+ATOM    111  C1'  DT E   6      22.231  41.192  43.248  1.00100.00           C  
+ATOM    112  N1   DT E   6      22.177  42.603  42.784  1.00100.00           N  
+ATOM    113  C2   DT E   6      22.581  43.560  43.677  1.00100.00           C  
+ATOM    114  O2   DT E   6      23.012  43.294  44.789  1.00100.00           O  
+ATOM    115  N3   DT E   6      22.429  44.848  43.240  1.00100.00           N  
+ATOM    116  C4   DT E   6      21.915  45.264  42.025  1.00100.00           C  
+ATOM    117  O4   DT E   6      21.861  46.465  41.759  1.00100.00           O  
+ATOM    118  C5   DT E   6      21.537  44.206  41.124  1.00100.00           C  
+ATOM    119  C7   DT E   6      20.984  44.562  39.782  1.00100.00           C  
+ATOM    120  C6   DT E   6      21.652  42.946  41.554  1.00100.00           C  
+ATOM    121  P    DA E   7      20.550  37.837  45.101  1.00100.00           P  
+ATOM    122  OP1  DA E   7      21.135  36.676  45.780  1.00100.00           O  
+ATOM    123  OP2  DA E   7      19.303  37.703  44.309  1.00100.00           O  
+ATOM    124  O5'  DA E   7      20.411  38.940  46.237  1.00100.00           O  
+ATOM    125  C5'  DA E   7      19.252  39.781  46.400  1.00100.00           C  
+ATOM    126  C4'  DA E   7      19.621  40.910  47.337  1.00100.00           C  
+ATOM    127  O4'  DA E   7      20.503  41.826  46.660  1.00100.00           O  
+ATOM    128  C3'  DA E   7      18.474  41.789  47.813  1.00100.00           C  
+ATOM    129  O3'  DA E   7      17.812  41.194  48.933  1.00100.00           O  
+ATOM    130  C2'  DA E   7      19.215  43.045  48.222  1.00100.00           C  
+ATOM    131  C1'  DA E   7      20.245  43.151  47.121  1.00100.00           C  
+ATOM    132  N9   DA E   7      19.832  43.958  45.977  1.00100.00           N  
+ATOM    133  C8   DA E   7      19.367  43.601  44.734  1.00100.00           C  
+ATOM    134  N7   DA E   7      19.102  44.623  43.957  1.00100.00           N  
+ATOM    135  C5   DA E   7      19.399  45.726  44.748  1.00100.00           C  
+ATOM    136  C6   DA E   7      19.371  47.113  44.499  1.00100.00           C  
+ATOM    137  N6   DA E   7      18.997  47.648  43.341  1.00100.00           N  
+ATOM    138  N1   DA E   7      19.748  47.942  45.501  1.00100.00           N  
+ATOM    139  C2   DA E   7      20.130  47.407  46.661  1.00100.00           C  
+ATOM    140  N3   DA E   7      20.238  46.123  47.000  1.00100.00           N  
+ATOM    141  C4   DA E   7      19.865  45.328  45.986  1.00100.00           C  
+ATOM    142  P    DG E   8      16.296  41.454  49.226  1.00100.00           P  
+ATOM    143  OP1  DG E   8      15.924  40.453  50.254  1.00100.00           O  
+ATOM    144  OP2  DG E   8      15.510  41.492  47.932  1.00100.00           O  
+ATOM    145  O5'  DG E   8      16.289  42.920  49.849  1.00100.00           O  
+ATOM    146  C5'  DG E   8      16.889  43.157  51.120  1.00100.00           C  
+ATOM    147  C4'  DG E   8      16.656  44.578  51.568  1.00100.00           C  
+ATOM    148  O4'  DG E   8      17.187  45.511  50.602  1.00100.00           O  
+ATOM    149  C3'  DG E   8      15.192  44.975  51.769  1.00100.00           C  
+ATOM    150  O3'  DG E   8      15.115  45.931  52.852  1.00100.00           O  
+ATOM    151  C2'  DG E   8      14.852  45.632  50.453  1.00100.00           C  
+ATOM    152  C1'  DG E   8      16.144  46.355  50.164  1.00100.00           C  
+ATOM    153  N9   DG E   8      16.290  46.563  48.740  1.00100.00           N  
+ATOM    154  C8   DG E   8      16.314  45.605  47.759  1.00100.00           C  
+ATOM    155  N7   DG E   8      16.391  46.108  46.559  1.00100.00           N  
+ATOM    156  C5   DG E   8      16.363  47.476  46.759  1.00100.00           C  
+ATOM    157  C6   DG E   8      16.356  48.530  45.826  1.00100.00           C  
+ATOM    158  O6   DG E   8      16.383  48.457  44.596  1.00100.00           O  
+ATOM    159  N1   DG E   8      16.321  49.772  46.454  1.00100.00           N  
+ATOM    160  C2   DG E   8      16.281  49.966  47.819  1.00100.00           C  
+ATOM    161  N2   DG E   8      16.262  51.244  48.248  1.00100.00           N  
+ATOM    162  N3   DG E   8      16.274  48.981  48.700  1.00100.00           N  
+ATOM    163  C4   DG E   8      16.321  47.773  48.103  1.00100.00           C  
+TER     164       DG E   8                                                       
+END   

@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,1DTC_P0A0M1,A,21,26,NKFTKK,6,0.75,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,1DTC_P0A0M1,A:N21, A:K22, A:F23, A:T24, A:K25, A:K26,6,0.75,Discontinous
+2,1DTC_P0A0M1,A:M1, A:A2, A:Q3, A:I5,4,0.692,Discontinous

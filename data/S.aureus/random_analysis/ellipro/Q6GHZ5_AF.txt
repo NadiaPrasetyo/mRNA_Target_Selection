@@ -1,8 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,Q6GHZ5_AF,A,10,21,HNRDEVIVRENT,12,0.744,Linear
-2,Q6GHZ5_AF,A,57,66,DYEKENSEHF,10,0.66,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,Q6GHZ5_AF,A:N11, A:R12, A:D13, A:E14, A:V15, A:I16, A:V17, A:R18, A:E19, A:N20, A:T21, A:N42, A:F43,13,0.712,Discontinous
-2,Q6GHZ5_AF,A:E52, A:G53, A:A54, A:D57, A:Y58, A:K60, A:E61, A:N62, A:S63, A:E64, A:H65, A:F66,12,0.711,Discontinous
-3,Q6GHZ5_AF,A:Q29, A:T30, A:E32, A:Q33, A:R36, A:I70, A:A71, A:K72,8,0.686,Discontinous
