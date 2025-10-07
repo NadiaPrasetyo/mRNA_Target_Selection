@@ -320,14 +320,36 @@ def plot_scree(ipca, output_dir: str):
     }).to_csv(os.path.join(output_dir, "explained_variance.csv"), index=False)
 
 
-def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=5, scale=2.5):
-    """PCA biplot with samples and top feature loadings using manual label placement."""
-    plt.figure(figsize=(12, 10))
+
+def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, scale=2.5, n_directions=12):
+    """
+    PCA biplot with samples and representative feature vectors.
+    Instead of labeling all features, we choose one representative
+    per direction (with the largest vector length).
     
-    # Create a custom palette where 'random' is red and others use viridis
+    Also exports a CSV of all feature loadings.
+    
+    Parameters
+    ----------
+    pca_df : pd.DataFrame
+        DataFrame containing PC1, PC2, and sample labels.
+    ipca : fitted PCA object (e.g., sklearn.decomposition.PCA)
+    feature_enc : encoder with inverse_transform to retrieve feature names
+    output_dir : str
+        Directory to save plot and CSV
+    scale : float
+        Base scaling factor for arrows
+    n_directions : int
+        Number of angular sectors to partition the unit circle.
+        One representative feature is selected from each sector.
+    """
+    plt.figure(figsize=(12, 10))
+
+    # =========================
+    # Color palette for samples
+    # =========================
     unique_labels = pca_df['label'].unique()
     if 'random' in unique_labels:
-        # Create custom palette: random=red, others=viridis
         n_other_labels = len(unique_labels) - 1
         other_colors = sns.color_palette("viridis", n_other_labels)
         
@@ -341,49 +363,95 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=5, scale=2
                 other_idx += 1
     else:
         custom_palette = "viridis"
+
+    scatter = sns.scatterplot(
+        data=pca_df, x="PC1", y="PC2", hue="label",
+        s=60, alpha=0.7, palette=custom_palette
+    )
     
-    # Create scatter plot with samples using custom palette
-    scatter = sns.scatterplot(data=pca_df, x="PC1", y="PC2", hue="label", 
-                             s=60, alpha=0.7, palette=custom_palette)
-    
-    # Store legend handles and labels
     handles, labels = scatter.get_legend_handles_labels()
-    
-    # Loadings
+
+    # =========================
+    # Feature loadings
+    # =========================
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))
 
-    # Top features by vector length
+    # Compute direction (angle) and distance (norm) for each feature
     norms = np.linalg.norm(loadings, axis=1)
-    top_idx = np.argsort(norms)[-top_n:]
-    
-    # Calculate dynamic scaling based on data range
+    angles = np.arctan2(loadings[:, 1], loadings[:, 0])  # radians [-pi, pi]
+
+    # Normalize angles to [0, 2π)
+    angles = (angles + 2 * np.pi) % (2 * np.pi)
+
+    # DataFrame for all features
+    loadings_df = pd.DataFrame({
+        "feature": feature_names,
+        "PC1_loading": loadings[:, 0],
+        "PC2_loading": loadings[:, 1],
+        "angle_rad": angles,
+        "distance_from_origin": norms
+    })
+
+    # =========================
+    # Select representatives by direction
+    # =========================
+    sector_edges = np.linspace(0, 2 * np.pi, n_directions + 1)
+    representatives = []
+
+    for i in range(n_directions):
+        start, end = sector_edges[i], sector_edges[i + 1]
+        in_sector = loadings_df[(loadings_df['angle_rad'] >= start) &
+                                (loadings_df['angle_rad'] < end)]
+        if not in_sector.empty:
+            # pick feature with max distance in this direction
+            rep = in_sector.loc[in_sector['distance_from_origin'].idxmax()]
+            representatives.append(rep)
+
+    rep_df = pd.DataFrame(representatives)
+
+    # =========================
+    # Dynamic scaling
+    # =========================
     x_range = pca_df["PC1"].max() - pca_df["PC1"].min()
     y_range = pca_df["PC2"].max() - pca_df["PC2"].min()
     avg_range = (x_range + y_range) / 2
-    dynamic_scale = scale * (avg_range / 5)  # Adjust scale based on data range
+    dynamic_scale = scale * (avg_range / 5)
 
     texts = []
-    
-    # Plot feature vectors and labels
-    for i in top_idx:
-        x, y = loadings[i, 0] * dynamic_scale, loadings[i, 1] * dynamic_scale
+
+    # =========================
+    # Plot representative vectors
+    # =========================
+    for _, row in rep_df.iterrows():
+        x, y = row["PC1_loading"] * dynamic_scale, row["PC2_loading"] * dynamic_scale
         
-        # Draw arrow using plt.arrow instead of FancyArrowPatch
-        plt.arrow(0, 0, x, y, color='red', alpha=0.7, 
-                  head_width=0.03*dynamic_scale, 
-                  length_includes_head=True, 
-                  linewidth=1.5,
-                  overhang=0.3)  # Added overhang to improve arrow appearance
+        # Draw arrow
+        plt.arrow(
+            0, 0, x, y, color='red', alpha=0.7,
+            head_width=0.03 * dynamic_scale,
+            length_includes_head=True,
+            linewidth=1.5,
+            overhang=0.3
+        )
         
-        # Add text label with initial positioning
-        text = plt.text(x * 1.15, y * 1.15, feature_names[i], fontsize=10, 
-                        color="darkred", weight='bold',
-                        bbox=dict(boxstyle="round,pad=0.3", facecolor="white", 
-                                 alpha=0.9, edgecolor="red", linewidth=0.5))
+        # Add text label
+        text = plt.text(
+            x * 1.1, y * 1.1, row["feature"],
+            fontsize=9, color="darkred", weight='bold',
+            bbox=dict(
+                boxstyle="round,pad=0.3",
+                facecolor="white",
+                alpha=0.85,
+                edgecolor="red",
+                linewidth=0.5
+            )
+        )
         texts.append(text)
 
-    # Adjust labels if adjust_text is available
+    # =========================
+    # Adjust labels
+    # =========================
     try:
         adjust_text(
             texts,
@@ -392,46 +460,52 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=5, scale=2
             expand_text=(1.3, 1.6),
             force_points=(0.5, 0.8),
             force_text=(0.8, 1.2),
-            va='center',
-            ha='center',
+            va='center', ha='center',
             only_move={'points':'xy', 'text':'xy', 'objects':'xy'},
             avoid_points=True,
             avoid_text=True,
-            lim=100  # Increase iteration limit for better convergence
+            lim=150
         )
     except ImportError:
-        # Fallback: manual label placement if adjust_text is not available
-        print("adjustText package not available, using manual label placement")
-        for text in texts:
-            # Simple manual adjustment to reduce overlaps
-            pos = text.get_position()
-            text.set_position((pos[0] + 0.02, pos[1] + 0.02))
+        print("adjustText not available, using basic label placement")
 
-    # Add center lines
+    # =========================
+    # Axes and formatting
+    # =========================
     plt.axhline(0, color='black', linewidth=0.8, linestyle='--', alpha=0.7)
     plt.axvline(0, color='black', linewidth=0.8, linestyle='--', alpha=0.7)
-    
-    # Add labels and title
+
     plt.xlabel(f"PC1 ({ipca.explained_variance_ratio_[0]*100:.1f}%)", fontsize=12)
     plt.ylabel(f"PC2 ({ipca.explained_variance_ratio_[1]*100:.1f}%)", fontsize=12)
-    plt.title("PCA Biplot (Top Features)", fontsize=14, pad=20)
-    
-    # Add grid for better readability
+    plt.title(f"PCA Biplot (Representative Features by Direction, {n_directions} sectors)", fontsize=14, pad=20)
+
     plt.grid(True, linestyle='--', alpha=0.3)
-    
-    # Add legend using the stored handles and labels
-    plt.legend(handles=handles, labels=labels, 
-               title="Label",
-               loc='upper left',
-               bbox_to_anchor=(1.05, 1),
-               borderaxespad=0.)
-    
+
+    plt.legend(
+        handles=handles, labels=labels,
+        title="Label",
+        loc='upper left',
+        bbox_to_anchor=(1.05, 1),
+        borderaxespad=0.
+    )
+
     plt.tight_layout()
-    
-    # Ensure output directory exists
+
+    # =========================
+    # Save outputs
+    # =========================
     os.makedirs(output_dir, exist_ok=True)
     plt.savefig(os.path.join(output_dir, "pca_biplot.png"), dpi=300, bbox_inches='tight')
     plt.close()
+
+    # Save all loadings and representatives
+    loadings_df.to_csv(os.path.join(output_dir, "feature_loadings.csv"), index=False)
+    rep_df.to_csv(os.path.join(output_dir, "representative_features.csv"), index=False)
+
+    print(f"Saved PCA biplot to {os.path.join(output_dir, 'pca_biplot.png')}")
+    print(f"Saved full loadings to {os.path.join(output_dir, 'feature_loadings.csv')}")
+    print(f"Saved representative features to {os.path.join(output_dir, 'representative_features.csv')}")
+
 
 
 def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
