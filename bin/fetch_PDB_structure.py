@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 fetch_PDB_structure.py
 Command-line tool to fetch related PDB and AlphaFold structures for protein FASTA files using UniProt accession or sequence similarity.
@@ -26,8 +27,10 @@ Usage Example:
     python fetch_PDB_structure.py sars_cov_2 protein_fastas --threads 8 --output-dir pdbs --verbose
 
 Outputs:
-    data/<pathogen_dir>/<output-dir>/*.pdb      # Downloaded PDB structures
-    data/<pathogen_dir>/<output-dir>/*_AF.pdb   # Downloaded AlphaFold models (if PDB unavailable)
+    - Exactly ONE structure file per accession:
+        <pdb_id>_<accession>.pdb  (preferred)
+        OR
+        <accession>_AF.pdb        (if no PDB available)
 
 Author: Nadia
 """
@@ -46,6 +49,7 @@ from Bio import SeqIO
 SEARCH_API_URL = "https://search.rcsb.org/rcsbsearch/v2/query"
 
 
+# ------------------- Logging ------------------- #
 def setup_logger(verbose: bool, log_file: Path):
     """Set up logging configuration.
     Args:        
@@ -63,6 +67,7 @@ def setup_logger(verbose: bool, log_file: Path):
     logging.basicConfig(level=level, format=log_format, handlers=handlers)
 
 
+# ------------------- Accession Extraction ------------------- #
 def extract_accession(header: str) -> Optional[str]:
     """Extract UniProt accession from FASTA header.
     Args:
@@ -78,6 +83,8 @@ def extract_accession(header: str) -> Optional[str]:
         return match.group("accession")
     return None
 
+
+# ------------------- RCSB Search ------------------- #
 def search_by_uniprot(accession: str) -> List[str]:
     """Search PDB entries by UniProt accession.
     Args:
@@ -95,46 +102,33 @@ def search_by_uniprot(accession: str) -> List[str]:
             "type": "group",
             "logical_operator": "and",
             "nodes": [
-                {
-                    "type": "terminal",
-                    "service": "text",
-                    "parameters": {
-                        "operator": "exact_match",
-                        "value": accession,
-                        "attribute": "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_accession"
-                    }
-                },
-                {
-                    "type": "terminal",
-                    "service": "text",
-                    "parameters": {
-                        "operator": "exact_match",
-                        "value": "UniProt",
-                        "attribute": "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_name"
-                    }
-                }
+                {"type": "terminal",
+                 "service": "text",
+                 "parameters": {
+                     "operator": "exact_match",
+                     "value": accession,
+                     "attribute": "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_accession"}},
+                {"type": "terminal",
+                 "service": "text",
+                 "parameters": {
+                     "operator": "exact_match",
+                     "value": "UniProt",
+                     "attribute": "rcsb_polymer_entity_container_identifiers.reference_sequence_identifiers.database_name"}}
             ]
         },
         "return_type": "entry"
     }
 
     try:
-        response = requests.post(SEARCH_API_URL, json=payload)
-        if response.status_code != 200:
-            logging.error(f"⚠️ UniProt search failed for {accession} - Status code: {response.status_code}")
-            return []
-
-        data = response.json()
-        result_set = data.get("result_set", [])
-
-        if not result_set:
-            logging.warning(f"⚠️ No PDB entries found for UniProt accession: {accession}")
-            return []
-
-        return [item["identifier"] for item in result_set]
-
+        r = requests.post(SEARCH_API_URL, json=payload, timeout=20)
+        r.raise_for_status()
+        data = r.json()
+        hits = [x["identifier"] for x in data.get("result_set", [])]
+        if not hits:
+            logging.warning(f"⚠️ No PDB entries found for {accession}")
+        return hits
     except Exception as e:
-        logging.exception(f"💥 Exception during UniProt search for {accession}: {e}")
+        logging.error(f"💥 UniProt search failed for {accession}: {e}")
         return []
 
 
@@ -149,42 +143,37 @@ def fetch_alphafold_structure(accession: str, output_dir: Path) -> bool:
     If a model is found, it downloads the PDB file and saves it in the specified output directory.
     If the model is not found or an error occurs, it logs a warning and returns False.
     """
+    af_path = output_dir / f"{accession}_AF.pdb"
+    if af_path.exists() and af_path.stat().st_size > 0:
+        logging.debug(f"✅ AlphaFold already exists: {af_path.name}")
+        return af_path
+    
     url = f"https://alphafold.ebi.ac.uk/api/prediction/{accession}"
-    logging.info(f"🧠 Attempting AlphaFold fetch for: {accession}")
+    logging.info(f"🧠 Fetching AlphaFold for {accession}...")
 
     try:
-        response = requests.get(url, timeout=10)
-        if response.status_code != 200:
-            logging.warning(f"⚠️ AlphaFold fetch failed for {accession} (status {response.status_code})")
-            return False
-
-        predictions = response.json()
-        if not predictions:
+        r = requests.get(url, timeout=30)
+        if r.status_code != 200:
+            logging.warning(f"⚠️ AlphaFold fetch failed (status {r.status_code})")
+            return None
+        preds = r.json()
+        if not preds or "pdbUrl" not in preds[0]:
             logging.warning(f"⚠️ No AlphaFold prediction found for {accession}")
-            return False
+            return None
 
-        pdb_url = predictions[0].get("pdbUrl")
-        if not pdb_url:
-            logging.warning(f"⚠️ No PDB URL in AlphaFold result for {accession}")
-            return False
-
-        dest = output_dir / f"{accession}_AF.pdb"
-        logging.info(f"🔗 AlphaFold model found: {pdb_url}")
-        logging.info(f"⬇️ Downloading AlphaFold PDB to: {dest.name}")
-
-        r = requests.get(pdb_url)
-        if r.status_code == 200:
-            with open(dest, "wb") as f:
-                f.write(r.content)
-            logging.info(f"✅ AlphaFold model downloaded for {accession}")
-            return True
+        pdb_url = preds[0]["pdbUrl"]
+        r_pdb = requests.get(pdb_url, timeout=30)
+        if r_pdb.status_code == 200:
+            with open(af_path, "wb") as f:
+                f.write(r_pdb.content)
+            logging.info(f"✅ AlphaFold model downloaded: {af_path.name}")
+            return af_path
         else:
-            logging.error(f"⚠️ Failed to download AlphaFold PDB: HTTP {r.status_code}")
-            return False
-
+            logging.error(f"⚠️ Failed to download AlphaFold PDB: HTTP {r_pdb.status_code}")
+            return None
     except Exception as e:
         logging.error(f"💥 AlphaFold error for {accession}: {e}")
-        return False
+        return None
 
 
 def search_by_sequence(sequence: str) -> List[str]:
@@ -198,6 +187,7 @@ def search_by_sequence(sequence: str) -> List[str]:
     If the search is successful, it returns a list of PDB IDs that match the sequence.
     If the search fails or no results are found, it logs an error and returns an empty list.
     """
+    logging.info("🔎 Performing sequence-based PDB search...")
     payload = {
         "query": {
             "type": "terminal",
@@ -217,15 +207,17 @@ def search_by_sequence(sequence: str) -> List[str]:
         }
     }
 
-    response = requests.post(SEARCH_API_URL, json=payload)
-    if response.status_code != 200:
-        logging.error(f"Failed sequence search: {response.status_code}")
+    try:
+        r = requests.post(SEARCH_API_URL, json=payload, timeout=30)
+        r.raise_for_status()
+        return [x["identifier"] for x in r.json().get("result_set", [])]
+    except Exception as e:
+        logging.error(f"💥 Sequence search failed {r.status_code}: {e} ")
         return []
 
-    data = response.json()
-    return [item["identifier"] for item in data.get("result_set", [])]
 
-def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
+# ------------------- Downloaders ------------------- #
+def download_pdb(pdb_id: str, output_dir: Path, accession: str) -> Optional[Path]:
     """Download PDB file for a given PDB ID using wget.
     Args:
         pdb_id (str): PDB ID to download.
@@ -236,20 +228,13 @@ def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
     The function first attempts to download the canonical PDB file.
     If that fails, it tries to download the biological assembly in .cif.gz format.
     If the canonical PDB file already exists and is non-empty, it skips the download.
-    """
-    suffix = accession if accession else "NOACCN"
-    dest = output_dir / f"{pdb_id}_{suffix}.pdb"
+    """    
+    dest = output_dir / f"{pdb_id}_{accession}.pdb"
 
-    # Skip if good file already exists
-    if dest.exists():
-        if dest.stat().st_size > 0:
-            logging.debug(f"{dest.name} already exists, skipping.")
-            return
-        else:
-            logging.warning(f"⚠️ Removing empty file: {dest}")
-            dest.unlink()
+    if dest.exists() and dest.stat().st_size > 0:
+        logging.debug(f"✅ PDB already exists: {dest.name}")
+        return dest
 
-    # Primary download attempt: canonical PDB
     url = f"https://files.rcsb.org/view/{pdb_id}.pdb"
     logging.info(f"⬇️ Attempting PDB download for {pdb_id}...")
 
@@ -257,16 +242,19 @@ def download_pdb(pdb_id: str, output_dir: Path, accession: Optional[str]):
         subprocess.run(["wget", "-q", "-O", str(dest), url], check=True)
         if dest.stat().st_size > 0:
             logging.info(f"✅ Downloaded PDB: {dest.name}")
-            return
+            return dest
         else:
             logging.warning(f"⚠️ Empty PDB file for {pdb_id}, removing.")
             dest.unlink(missing_ok=True)
+            return None
     except subprocess.CalledProcessError:
+        logging.warning(f"⚠️ Failed to download canonical PDB: {pdb_id}")
         if dest.exists():
-            logging.warning(f"⚠️ Removing partial file from failed canonical download: {dest}")
+            logging.debug(f"Removing incomplete file: {dest.name}")
             dest.unlink()
+        return None
 
-        logging.warning(f"⚠️ Canonical PDB download failed for {pdb_id}. Trying biological assembly (.cif.gz)...")
+
 
 
 def process_fasta_dir(sequence_dir: Path, output_dir: Path, threads: int):
@@ -281,35 +269,21 @@ def process_fasta_dir(sequence_dir: Path, output_dir: Path, threads: int):
     """
     fasta_files = list(sequence_dir.glob("*.fasta"))
     if not fasta_files:
-        logging.warning(f"⚠️ No FASTA files found in: {sequence_dir}")
+        logging.warning(f"⚠️ No FASTA files found in {sequence_dir}")
         return
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    all_records = [record for fasta in fasta_files for record in SeqIO.parse(fasta, "fasta")]
+    records = [rec for f in fasta_files for rec in SeqIO.parse(f, "fasta")]
 
-    with ThreadPoolExecutor(max_workers=threads) as executor:
-        futures = [executor.submit(process_record, record, output_dir) for record in all_records]
-
-        for future in as_completed(futures):
+    with ThreadPoolExecutor(max_workers=threads) as pool:
+        futures = [pool.submit(process_record, rec, output_dir) for rec in records]
+        for fut in as_completed(futures):
             try:
-                future.result()
+                fut.result()
             except Exception as e:
-                logging.error(f"❌ Error during record processing: {e}")
+                logging.error(f"❌ Error processing record: {e}")
 
-def was_new_file_created(before: set, after: set) -> bool:
-    """Check if any new file was created in the output directory.
-    Args:
-        before (set): Set of files before the operation.
-        after (set): Set of files after the operation.
-    Returns:
-        bool: True if a new file was created, False otherwise.
-    This function compares the sets of files before and after an operation.
-    It returns True if any new file was created (i.e., if the size of the after set is greater than the before set).
-    If no new files were created, it returns False.
-    """
-    return any(f.stat().st_size > 0 for f in after - before)
-
-
+# ------------------- Core Processing ------------------- #
 def process_record(record, output_dir: Path):
     """Process a single FASTA record to fetch PDB and AlphaFold structures.
     Args:
@@ -321,56 +295,47 @@ def process_record(record, output_dir: Path):
     It logs the progress and results of the operations.
     """
     header = record.description
-    sequence = str(record.seq)
-    logging.info(f"🧬 Processing: {header}")
+    seq = str(record.seq)
+    logging.info(f"\n🧬 Processing: {header}")
 
     accession = extract_accession(header)
-    logging.info(f"🔍 Extracted UniProt accession: {accession if accession else 'None'}")
-    pdb_ids = []
-    pdb_downloaded = False
-    alphafold_downloaded = False
+    if not accession:
+        logging.warning(f"⚠️ No accession found in: {header}")
+        return
 
-    if accession:
-        pdb_ids = search_by_uniprot(accession)
+    logging.info(f"🔑 Accession: {accession}")
 
-        for pdb_id in pdb_ids:
-            before = set(output_dir.glob("*"))
-            download_pdb(pdb_id, output_dir, accession)
-            after = set(output_dir.glob("*"))
-            if was_new_file_created(before, after):
-                pdb_downloaded = True
-                break
+    # Step 1: Try PDB via accession
+    pdb_file = None
+    hits = search_by_uniprot(accession)
+    if hits:
+        pdb_file = download_pdb(hits[0], output_dir, accession)
 
-        # 💥 Always try AlphaFold if accession exists (brute-force mode)
-        alphafold_downloaded = fetch_alphafold_structure(accession, output_dir)
+    # Step 2: Always fetch AlphaFold
+    af_file = fetch_alphafold_structure(accession, output_dir)
 
-    # Fallback: sequence search if no UniProt accession or no hits
-    if not pdb_downloaded and not alphafold_downloaded:
-        logging.info("🔁 Falling back to sequence-based search...")
-        pdb_ids = search_by_sequence(sequence)
+    # Step 3: Resolve redundancy
+    if pdb_file and af_file:
+        logging.info(f"🗑️ Removing AlphaFold for {accession} (PDB available)")
+        af_file.unlink(missing_ok=True)
 
-        for pdb_id in pdb_ids:
-            before = set(output_dir.glob("*"))
-            download_pdb(pdb_id, output_dir, accession)
-            after = set(output_dir.glob("*"))
-            if was_new_file_created(before, after):
-                pdb_downloaded = True
+    # Step 4: Fallback to sequence if neither structure found
+    if not pdb_file and not af_file:
+        logging.info(f"🔁 Falling back to sequence-based search for {accession}")
+        seq_hits = search_by_sequence(seq)
+        if seq_hits:
+            pdb_file = download_pdb(seq_hits[0], output_dir, accession)
 
-    # 🧾 Final logging
-    if pdb_downloaded and alphafold_downloaded:
-        logging.info(f"✅ PDB and AlphaFold models retrieved for: {header}")
-        # delete the AlphaFold file if PDB was downloaded
-        af_file = output_dir / f"{accession}_AF.pdb"
-        if af_file.exists():
-            logging.info(f"🗑️ Deleting AlphaFold file: {af_file.name} (PDB found)")
-            af_file.unlink()
-    elif pdb_downloaded:
-        logging.info(f"✅ PDB structure(s) retrieved for: {header} (AlphaFold not found)")
-    elif alphafold_downloaded:
-        logging.info(f"✅ AlphaFold model retrieved for: {header}")
+    # Step 5: Final reporting
+    if pdb_file:
+        logging.info(f"✅ Final structure for {accession}: {pdb_file.name}")
+    elif af_file:
+        logging.info(f"✅ Final structure for {accession}: {af_file.name}")
     else:
-        logging.warning(f"❌ No structure available for: {header}")
+        logging.warning(f"❌ No structure found for {accession}")
 
+
+# ------------------- CLI ------------------- #
 def main():
     """Main function to parse arguments and initiate PDB fetching."""
     parser = argparse.ArgumentParser(description="Fetch all related PDB entries from FASTA files using RCSB Web API. usage: python fetch_PDB_structure.py <pathogen_dir> <sequence_dir>")
@@ -382,14 +347,15 @@ def main():
     args = parser.parse_args()
 
     pathogen_path = Path("data") / args.pathogen_dir
-    sequence_path = pathogen_path / args.sequence_dir
-    output_path = pathogen_path / args.output_dir
-    log_file = output_path / "fetch_pdb_sequences.log"
+    seq_path = pathogen_path / args.sequence_dir
+    out_path = pathogen_path / args.output_dir
+    log_file = out_path / "fetch_pdb_sequences.log"
 
     setup_logger(args.verbose, log_file)
-    logging.info(f"🚀 Starting structure fetch from {sequence_path}")
+    logging.info(f"🚀 Starting structure fetch from {seq_path}")
 
-    process_fasta_dir(sequence_path, output_path, args.threads)
+    process_fasta_dir(seq_path, out_path, args.threads)
+
     logging.info("✅ Finished fetching structures.")
 
 
