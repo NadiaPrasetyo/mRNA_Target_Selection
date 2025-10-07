@@ -505,7 +505,7 @@ def parse_cluster_dir(directory):
 
     results = []
 
-    num_cluster = defaultdict(list)
+    num_cluster = defaultdict(int)
 
     # Step 3: Compute conservation scores and store them as subfeatures
     for cluster_id, percent_identity in clusters.items():
