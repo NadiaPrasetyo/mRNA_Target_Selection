@@ -166,10 +166,8 @@ def create_conda_env_if_needed(conda_env_name, conda_env_yml):
         if conda_env_name == DISCOTOPE_ENV_NAME and conda_env_yml == DISCOTOPE_ENV_YML:
             logging.info("📦 Installing PyG packages for Discotope...")
             subprocess.run([
-                "conda", "install", "-n", conda_env_name, "-c", "pyg",
-                "pytorch-scatter=2.0.9",
-                "pytorch-cluster=1.6.0",
-                "pytorch-sparse=0.6.15"
+                "conda", "install", "-n", conda_env_name, "-c", "pyg", "-c", "conda-forge",
+                "pyg"
             ], check=True)
     else:
         logging.info("✅ Conda environment already exists.")
