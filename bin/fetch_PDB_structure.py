@@ -122,6 +122,7 @@ def search_by_uniprot(accession: str) -> List[str]:
     try:
         r = requests.post(SEARCH_API_URL, json=payload, timeout=20)
         r.raise_for_status()
+        logging.info(f"Response text {r.status_code}: {r.text[:200]}")  # first 200 chars
         data = r.json()
         hits = [x["identifier"] for x in data.get("result_set", [])]
         if not hits:
