@@ -70,29 +70,47 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     return df.dropna()[df["value"] > 0]
 
 
-def aggregate_by_accession(df: pd.DataFrame) -> pd.DataFrame:
+def aggregate_by_accession(df: pd.DataFrame, output_prefix: str = "debug") -> tuple[pd.DataFrame, pd.Series]:
     """
     Pivot so each accession is a single row, each column is a feature_subfeature.
     The value is typically the mean across replicates.
+
+    Only includes accessions with more than 4 characters.
+    Also writes debug CSVs for the aggregated data and labels.
     """
     logging.info("Aggregating data by accession...")
 
-    # Make a combined feature identifier
     df = df.copy()
+
+    # Filter accessions with more than 4 characters
+    df = df[df["accession"].astype(str).str.len() > 4]
+    if df.empty:
+        logging.warning("No accessions with more than 4 characters found.")
+        return pd.DataFrame(), pd.Series(dtype=object)
+
+    # Make a combined feature identifier
     df["feature_subfeature"] = df["feature"].astype(str) + "_" + df["subfeature"].astype(str)
 
     # Aggregate values by accession + feature
     agg_df = (
         df.groupby(["accession", "feature_subfeature"], observed=True)["value"]
-          .mean()                       # <-- choose mean or sum as needed
+          .mean()
           .reset_index()
     )
 
     # Keep a label for each accession (e.g. majority vote)
     label_map = (
         df.groupby("accession")["label"]
-          .agg(lambda x: x.mode().iat[0])  # pick most common label per accession
+          .agg(lambda x: x.mode().iat[0])
     )
+
+    # Write debug CSVs
+    agg_df.to_csv(f"results/{output_prefix}_aggregated.csv", index=False)
+    label_map.to_csv(f"results/{output_prefix}_labels.csv", header=True)
+
+    logging.info(f"Aggregated data written to results/{output_prefix}_aggregated.csv")
+    logging.info(f"Label map written to results/{output_prefix}_labels.csv")
+
     return agg_df, label_map
 
 # ----------------------
