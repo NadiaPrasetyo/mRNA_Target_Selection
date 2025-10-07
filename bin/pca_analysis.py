@@ -20,7 +20,7 @@ import matplotlib.patches as mpatches
 def setup_logging(verbose: bool) -> None:
     """Configure logging to console and optionally file."""
     log_file = "pca_analysis.log" if verbose else None
-    level = logging.DEBUG if verbose else logging.INFO
+    level = logging.INFO
     format_str = "%(asctime)s - %(levelname)s - %(message)s"
 
     logger = logging.getLogger()
@@ -49,7 +49,6 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
     files = glob.glob(os.path.join(folder, "*_raw_data.csv"))
     dfs = []
     for f in files:
-        logging.debug(f"Reading file: {f}")
         df = pd.read_csv(f)
         df["bacterium"] = bacterium
         dfs.append(df)
@@ -202,7 +201,6 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
         "Immunogenicity": "#7570b3",
         "Conservation Analysis Across Strains": "#e7298a",
         "Epitope Prediction": "#66a61e",
-        "Epitope evaluation": "#e6ab02",
         "Structure Analysis": "#d010e1",
         "Other": "#a6761d"
     }
@@ -258,7 +256,6 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         "Immunogenicity": "#7570b3",
         "Conservation Analysis Across Strains": "#e7298a",
         "Epitope Prediction": "#66a61e",
-        "Epitope evaluation": "#e6ab02",
         "Structure Analysis": "#d010e1",
         "Other": "#a6761d"
     }
@@ -323,7 +320,7 @@ def plot_scree(ipca, output_dir: str):
     }).to_csv(os.path.join(output_dir, "explained_variance.csv"), index=False)
 
 
-def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=20, scale=2.5):
+def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=5, scale=2.5):
     """PCA biplot with samples and top feature loadings using manual label placement."""
     plt.figure(figsize=(12, 10))
     
@@ -437,7 +434,7 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, top_n=20, scale=
     plt.close()
 
 
-def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=20):
+def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
     """Scatter plot of feature loadings on PC1 vs PC2 with non-overlapping labels."""
     loadings = ipca.components_[:2].T
     feature_names = feature_enc.inverse_transform(np.arange(loadings.shape[0]))

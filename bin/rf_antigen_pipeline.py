@@ -77,7 +77,7 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
 # ----------------------
 # Preprocess & pivot
 # ----------------------
-def preprocess_and_pivot(df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[pd.Series]]:
+def preprocess_and_pivot(df: pd.DataFrame):
     """
     Build feature matrix:
       - feature_subfeature = feature_subfeature
