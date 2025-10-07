@@ -1,0 +1,4 @@
+[2025-10-08 09:52:35,812] Single-chain mode set, will predict PDBs as single chains
+[2025-10-08 09:52:35,813] Single PDB file input (Q5HGH0_AF), extracting single chains to data/S.aureus/random_analysis/discotope/Q5HGH0_AF/input_chains
+[2025-10-08 09:52:35,844] Found 1 extracted single chains in data/S.aureus/random_analysis/discotope/Q5HGH0_AF/input_chains
+[2025-10-08 09:53:37,884] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/S.aureus/random_analysis/discotope/Q5HGH0_AF/output

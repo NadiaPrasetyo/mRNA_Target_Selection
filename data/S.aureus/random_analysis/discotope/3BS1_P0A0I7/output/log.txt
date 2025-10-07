@@ -1,0 +1,8 @@
+[2025-10-08 10:59:22,955] Single-chain mode set, will predict PDBs as single chains
+[2025-10-08 10:59:22,956] Single PDB file input (3BS1_P0A0I7), extracting single chains to data/S.aureus/random_analysis/discotope/3BS1_P0A0I7/input_chains
+[2025-10-08 10:59:22,987] Found 3 extracted single chains in data/S.aureus/random_analysis/discotope/3BS1_P0A0I7/input_chains
+[2025-10-08 10:59:25,695] Note: Skipping 3BS1_P0A0I7_C, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-08 10:59:41,823] Note: Skipping 3BS1_P0A0I7_B, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-08 10:59:54,394] Predicted 1 / 3 PDB files extracted from 1 input PDBs, saved to data/S.aureus/random_analysis/discotope/3BS1_P0A0I7/output
+[2025-10-08 10:59:54,394] Note: Excluded predicting 2 PDB chain(s) (see log file):
+3BS1_P0A0I7_C, 3BS1_P0A0I7_B

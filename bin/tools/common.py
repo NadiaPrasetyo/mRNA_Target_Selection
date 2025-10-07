@@ -159,19 +159,25 @@ def create_conda_env_if_needed(conda_env_name, conda_env_yml):
     """Create Conda environment if it doesn't exist."""
     logging.info(f"🔍 Checking for Conda environment '{conda_env_name}'...")
     result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
+
     if conda_env_name not in result.stdout:
         logging.info("📦 Environment not found. Creating from YAML...")
         subprocess.run(["conda", "env", "create", "-f", str(conda_env_yml)], check=True)
 
-        if conda_env_name == DISCOTOPE_ENV_NAME and conda_env_yml == DISCOTOPE_ENV_YML:
-            logging.info("📦 Installing PyG packages for Discotope...")
+        # If this is the discotope environment, install PyG packages afterwards
+        if conda_env_name == "discotope_tools_env":
+            logging.info("📦 Installing PyTorch Geometric packages...")
             subprocess.run([
-                "conda", "install", "-n", conda_env_name, "-c", "pyg", "-c", "conda-forge",
-                "pyg"
+                "conda", "run", "-n", conda_env_name, "pip", "install",
+                "torch-scatter==2.0.9",
+                "torch-sparse==0.6.15",
+                "torch-geometric==2.1.0.post1",
+                "fair-esm==0.5.0"
             ], check=True)
+
+        logging.info("✅ Conda environment created successfully.")
     else:
         logging.info("✅ Conda environment already exists.")
-
 
 def get_pdb_files(pathogen_path, sequence_dir):
     """
