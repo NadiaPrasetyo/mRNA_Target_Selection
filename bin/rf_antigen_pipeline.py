@@ -77,41 +77,58 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
 # ----------------------
 # Preprocess & pivot
 # ----------------------
-def preprocess_and_pivot(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
+def preprocess_and_pivot(df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[pd.Series]]:
     """
     Build feature matrix:
       - feature_subfeature = feature_subfeature
       - pivot so each accession is a row, each column is a feature_subfeature (mean)
+
     Returns (X_df, labels_series) where:
       - X_df.index = accession
       - labels_series.index = accession (if label present), dtype object
+
+    Filters out accessions with <=4 characters.
+    Writes intermediate CSVs for debugging.
     """
     required_cols = {"accession", "feature", "subfeature", "value"}
-    if not required_cols.issubset(set(df.columns)):
-        raise ValueError(f"Input dataframe missing required cols: {required_cols - set(df.columns)}")
+    missing_cols = required_cols - set(df.columns)
+    if missing_cols:
+        raise ValueError(f"Input dataframe missing required cols: {missing_cols}")
+
     df = df.copy()
-    # Compose feature id
+
+    # Filter accessions with more than 4 characters
+    df = df[df["accession"].astype(str).str.len() > 4]
+    if df.empty:
+        logging.warning("No accessions with more than 4 characters found.")
+        return pd.DataFrame(), pd.Series(dtype=object)
+
+    # Compose feature ID
     df["feature_subfeature"] = df["feature"].astype(str) + "_" + df["subfeature"].astype(str)
-    # Keep only positive numeric values if possible
+
+    # Ensure numeric values
     df["value"] = pd.to_numeric(df["value"], errors="coerce")
     df = df[df["value"].notna()]
+
     # Aggregate mean across replicates
     agg = (
         df.groupby(["accession", "feature_subfeature"], observed=True)["value"]
           .mean()
           .reset_index()
     )
-    # Pivot
+    # Pivot to wide format
     X = agg.pivot(index="accession", columns="feature_subfeature", values="value")
-    # Fill missing with 0 (absent signal). You can change to median/imputer if desired.
-    X = X.fillna(0.0)
+    X = X.fillna(0.0)  # missing features -> 0
     # Labels (if present)
     labels = None
     if "label" in df.columns:
-        # choose majority label per accession
-        labels = (df.groupby("accession", observed=True)["label"]
-                    .agg(lambda x: x.mode().iat[0] if not x.mode().empty else x.iloc[0]))
-        labels = labels.loc[X.index]  # align to X rows
+        labels = (
+            df.groupby("accession", observed=True)["label"]
+              .agg(lambda x: x.mode().iat[0] if not x.mode().empty else x.iloc[0])
+        )
+        # Align labels to pivoted X
+        labels = labels.loc[X.index]
+
     return X, labels
 
 # ----------------------

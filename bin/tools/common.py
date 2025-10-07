@@ -176,11 +176,13 @@ def create_conda_env_if_needed(conda_env_name, conda_env_yml):
 def get_pdb_files(pathogen_path, sequence_dir):
     """
     Get a list of structure files (.pdb, .cif, .cif.gz) from the given sequence directory inside the pathogen path.
+    Filters files to include only those with an underscore ("_") in their name.
+
     Args:
         pathogen_path (Path): Base path to the pathogen.
         sequence_dir (str): Subdirectory under pathogen_path where structure files are located.
     Returns:
-        list[Path]: List of structure file paths.
+        list[Path]: List of filtered structure file paths.
     """
     search_path = pathogen_path / sequence_dir
     extensions = ["*.pdb", "*.cif", "*.cif.gz"]
@@ -189,7 +191,10 @@ def get_pdb_files(pathogen_path, sequence_dir):
     for ext in extensions:
         structure_files.extend(search_path.glob(ext))
 
-    return structure_files
+    # Filter files to include only those with an underscore in their name
+    filtered_files = [file for file in structure_files if "_" in file.name]
+
+    return filtered_files
 
 
 def get_fasta_files(base_path: Path, sequence_subdir: str):
