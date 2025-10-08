@@ -522,7 +522,7 @@ def parse_cluster_dir(directory):
             percent_identity_num_strain = sum(percent_identity) / len(unique_strains)  #sum of percent identities divided by number of strains
             results.append({
                 "accession": accession,
-                "feature": "cluster_conservation",
+                "feature": "cluster",
                 "subfeature": "percent_identity/num_strain",
                 "value": percent_identity_num_strain
             })
@@ -532,7 +532,7 @@ def parse_cluster_dir(directory):
     for accession in num_cluster:
         results.append({
             "accession": accession,
-            "feature": "cluster_conservation",
+            "feature": "cluster",
             "subfeature": "num_clusters",
             "value": num_cluster[accession]
         })

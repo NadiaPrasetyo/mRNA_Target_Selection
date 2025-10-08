@@ -108,11 +108,6 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
     return out
 
 
-def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
-    """Drop missing and non-positive values."""
-    return df.dropna()[df["value"] > 0]
-
-
 def aggregate_by_accession(df: pd.DataFrame, output_prefix: str = "debug") -> tuple[pd.DataFrame, pd.Series]:
     """
     Pivot so each accession is a single row, each column is a feature_subfeature.
@@ -644,13 +639,7 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
 
 
 def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
-    """Plot Spearman correlation matrix heatmap with clustering.
-    Args:
-        X_scaled: Scaled feature matrix (sparse or dense).
-        feature_enc: Encoder with inverse_transform to get feature names.
-        output_dir: Directory to save the plot and CSV.
-        max_features: Maximum number of features to include (downsample if exceeded).
-    """
+    """Plot Spearman correlation matrix heatmap with clustering (labels only on right)."""
     n_features = X_scaled.shape[1]
 
     # ----------------------
@@ -676,19 +665,34 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     # Spearman correlation
     # ----------------------
     logging.info("Computing Spearman correlation matrix...")
-    # spearmanr returns a tuple (correlation matrix, p-value matrix)
     corr_matrix, _ = spearmanr(X_dense, axis=0)
 
-    # Ensure corr_matrix is square
     if corr_matrix.ndim == 1:
         corr_matrix = np.expand_dims(corr_matrix, axis=0)
 
     corr_df = pd.DataFrame(corr_matrix, index=feature_names, columns=feature_names)
 
+    nan_cols = corr_df.columns[corr_df.isna().all()]
+    if len(nan_cols) > 0:
+        logging.warning(f"These features have constant values and no Spearman correlation: {list(nan_cols)}")
+
     # ----------------------
     # Clustered heatmap
     # ----------------------
-    sns.clustermap(corr_df, cmap="coolwarm", center=0, figsize=(14, 12))
+    g = sns.clustermap(corr_df, cmap="coolwarm", center=0, figsize=(14, 12))
+
+    # ✅ Keep labels only on the right
+    g.ax_heatmap.tick_params(
+        left=True,      # keep left ticks
+        labelleft=False, # remove left labels
+        bottom=False,    # remove bottom ticks
+        labelbottom=False, # remove bottom labels
+        right=True,      # keep right ticks
+        labelright=True, # keep right labels
+        top=False,       # remove top ticks
+        labeltop=False   # remove top labels
+    )
+
     plt.savefig(os.path.join(output_dir, "correlation_matrix_spearman.png"), dpi=300)
     plt.close()
 
@@ -700,7 +704,7 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
 
 
 def plot_covariance_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
-    """Plot covariance matrix heatmap (optionally subset to top variable features)."""
+    """Plot covariance matrix heatmap (labels only on right)."""
     n_features = X_scaled.shape[1]
 
     if n_features > max_features:
@@ -716,15 +720,33 @@ def plot_covariance_matrix(X_scaled, feature_enc, output_dir: str, max_features=
     cov_matrix = np.cov(X_dense, rowvar=False)
 
     cov_df = pd.DataFrame(cov_matrix, index=feature_names, columns=feature_names)
+
     plt.figure(figsize=(12, 10))
-    sns.heatmap(cov_df, cmap="coolwarm", center=0)
+    ax = sns.heatmap(cov_df, cmap="coolwarm", center=0,
+                     xticklabels=True, yticklabels=True)
+
+    # ✅ Keep labels only on the right
+    ax.tick_params(
+        left=True,
+        labelleft=False,
+        bottom=False,
+        labelbottom=False,
+        right=True,
+        labelright=True,
+        top=False,
+        labeltop=False
+    )
+
     plt.title("Feature Covariance Matrix")
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "covariance_matrix.png"), dpi=300)
     plt.close()
 
-    # Save values
+    # ----------------------
+    # Save covariance values
+    # ----------------------
     cov_df.to_csv(os.path.join(output_dir, "covariance_matrix.csv"))
+
 
 
 # ----------------------
@@ -744,11 +766,12 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
         return
     all_data = pd.concat(dfs, ignore_index=True)
     logging.info(f"Loaded data for {len(input_dirs)} bacteria. Rows: {len(all_data):,}")
+    logging.info(f"{all_data['feature'].nunique()} features detected: \n{all_data['feature'].unique()}")
 
     # ----------------------
     # Preprocess
     # ----------------------
-    all_data = all_data[all_data["value"].notna() & (all_data["value"] > 0)]
+    all_data = all_data[all_data["value"].notna()]
     all_data["feature_subfeature"] = (
         all_data["feature"].astype(str) + "_" + all_data["subfeature"].astype(str)
     )
@@ -757,6 +780,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     # Aggregate by accession
     # ----------------------
     agg_df, accession_labels = aggregate_by_accession(all_data)
+
+    logging.info(f"Aggregated data shape: {agg_df.shape}")
+    logging.info(f"Unique features: {agg_df['feature_subfeature'].nunique():,}")
 
     # ----------------------
     # Encode rows (accessions) and columns (features)
@@ -773,6 +799,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     ).tocsr()
 
     logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}")
+    logging.info(f"X_sparse unique features: {len(feature_enc.classes_):,}")
 
     # ----------------------
     # Metadata for plotting
@@ -788,6 +815,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     logging.info("Applying Z-score normalization per feature...")
     scaler = StandardScaler(with_mean=False)  # works with sparse
     X_scaled = scaler.fit_transform(X_sparse)  # <-- NEW: normalized features
+
+    logging.info(f"X_scaled shape after scaling: {X_scaled.shape}, nnz={X_scaled.nnz:,}")
+    logging.info(f"X_scaled features: {len(feature_enc.classes_):,}")
 
     # If you want explicit mean=0, std=1 normalization (dense version):
     # X_dense = X_sparse.toarray()
