@@ -213,7 +213,7 @@ def parse_mhc_dir(directory):
         files = [f for f in os.listdir(directory) if "matched_antigens" in f.lower()]
         logging.info(f"Found {len(files)} out files in {prefix} dir")
     except Exception as e:
-        logging.error(f"{prefix.upper()}: Failed listing directory {directory}: {e}")
+        logging.error(f"{prefix}: Failed listing directory {directory}: {e}")
         return results
 
     for file in files:
@@ -236,7 +236,7 @@ def parse_mhc_dir(directory):
 
                     parts = line.split()
                     if len(parts) < 10:
-                        logging.debug(f"{prefix.upper()}: Skipping malformed line {i} in {file}: {line.strip()}")
+                        logging.debug(f"{prefix}: Skipping malformed line {i} in {file}: {line.strip()}")
                         continue
                     try:
                         id = parts[10 if prefix == "mhci" else 7]
@@ -253,7 +253,7 @@ def parse_mhc_dir(directory):
                         scores[accession].append(score)
                         percentiles[accession].append(percentile)
                     except ValueError as e:
-                        logging.debug(f"{prefix.upper()}: Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"{prefix}: Skipping line {i} in {file} due to conversion error: {e}")
 
                 for accession in num_peptides:
                     avg_score = float(statistics.mean(scores[accession])) if scores[accession] else 0
@@ -266,8 +266,8 @@ def parse_mhc_dir(directory):
 
                 
         except Exception as e:
-            logging.error(f"{prefix.upper()}: Failed parsing MHC file {file}: {e}")
-    logging.info(f"{prefix.upper()}: Completed MHC parsing with {len(results)} results")
+            logging.error(f"{prefix}: Failed parsing MHC file {file}: {e}")
+    logging.info(f"{prefix}: Completed MHC parsing with {len(results)} results")
     return results
 
 def parse_signalp_dir(directory):
@@ -565,13 +565,13 @@ def parse_deeplocpro_dir(directory):
         try:
             
                 df = pd.read_csv(path)
-                # Assume columns: ...,"Cell wall/surface","Extracellular","Cytoplasmic","Cytoplasmic membrane","Outer membrane","Periplasmic"
+                # , ACC, Localization, Cell wall & surface, Extracellular, Cytoplasmic, Cytoplasmic Membrane, Outer Membrane, Periplasmic
                 prob_cols = [
-                    ("cell_wall_surface", "Cell wall/surface"),
+                    ("cell_wall_surface", "Cell wall & surface"),
                     ("extracellular", "Extracellular"),
                     ("cytoplasmic", "Cytoplasmic"),
-                    ("cytoplasmic_membrane", "Cytoplasmic membrane"),
-                    ("outer_membrane", "Outer membrane"),
+                    ("cytoplasmic_membrane", "Cytoplasmic Membrane"),
+                    ("outer_membrane", "Outer Membrane"),
                     ("periplasmic", "Periplasmic"),
                 ]
                 for i, row in df.iterrows():
@@ -1093,7 +1093,6 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
             if res != '-':
                 ref_pos += 1
                 mapping[ref_pos] = i
-        logging.debug(f"RATE4SITE_DEEPTMHMM: Reference map created for {accession}: {len(mapping)} positions")
         return mapping
 
     def get_strain_sequence_from_alignment(alignment, strain):
@@ -1134,7 +1133,6 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 logging.warning(f"RATE4SITE_DEEPTMHMM: Missing MAFFT file: {mafft_file}")
                 continue
 
-            logging.info(f"RATE4SITE_DEEPTMHMM: Processing rate4site accession: {accession}")
             scores = parse_rate4site_out(rate4site_file)
             if not scores:
                 logging.warning(f"RATE4SITE_DEEPTMHMM: No scores found in {rate4site_file}")
