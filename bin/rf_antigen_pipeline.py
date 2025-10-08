@@ -316,7 +316,7 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     # 4) Train Random Forest
     rf = train_rf(X_tr_imputed, y_tr)
 
-    # Validate
+        # Validate
     val_probs = rf.predict_proba(X_val_imputed)[:, 1]
     val_preds = (val_probs >= 0.5).astype(int)
     val_auc = None
@@ -327,12 +327,21 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     val_acc = accuracy_score(y_val, val_preds)
     logging.info(f"Validation ACC: {val_acc:.4f} AUC: {val_auc if val_auc is None else val_auc:.4f}")
 
+    # Compute class splits
+    def class_split(y: np.ndarray) -> Tuple[int, int]:
+        pos = int((y == 1).sum())
+        neg = int((y == 0).sum())
+        return pos, neg
+
+    train_pos, train_neg = class_split(y_tr)
+    val_pos, val_neg = class_split(y_val)
+
     # Save model report
     report_path = os.path.join(output_dir, "model_report.txt")
     with open(report_path, "w") as fh:
         fh.write(f"Training bacteria: {train_bacts}\n")
-        fh.write(f"Training samples: {X_tr.shape[0]}\n")
-        fh.write(f"Validation samples: {X_val.shape[0]}\n")
+        fh.write(f"Training samples: {X_tr.shape[0]} (pos={train_pos}, neg={train_neg})\n")   ### ADDED
+        fh.write(f"Validation samples: {X_val.shape[0]} (pos={val_pos}, neg={val_neg})\n")   ### ADDED
         fh.write(f"Validation accuracy: {val_acc:.4f}\n")
         fh.write(f"Validation AUC: {val_auc}\n")
 
@@ -385,17 +394,21 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     X_test_export.to_csv(os.path.join(output_dir, f"{test_bacterium.replace('.','_')}_features_with_probs.csv"))
     logging.info("Saved test features with probabilities.")
 
-    # If test labels exist compute metrics
+        # If test labels exist compute metrics
     if y_test is not None:
         try:
             test_auc = roc_auc_score(y_test, test_probs)
         except Exception:
             test_auc = None
         test_acc = accuracy_score(y_test, test_preds)
+
+        # Positive/negative counts for test set
+        test_pos, test_neg = class_split(y_test)
+
         logging.info(f"Test ACC: {test_acc:.4f} AUC: {test_auc}")
         with open(report_path, "a") as fh:
             fh.write(f"Test bacterium: {test_bacterium}\n")
-            fh.write(f"Test samples: {X_test_imputed.shape[0]}\n")
+            fh.write(f"Test samples: {X_test_imputed.shape[0]} (pos={test_pos}, neg={test_neg})\n") 
             fh.write(f"Test accuracy: {test_acc:.4f}\n")
             fh.write(f"Test AUC: {test_auc}\n")
 
