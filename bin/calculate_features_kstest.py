@@ -491,9 +491,11 @@ def parse_cluster_dir(directory):
                     if len(parts) < 12:
                         continue
                     query_id = parts[0]
-                    query_accession = f"{query_id.split("|")[1]}_{query_id.split("|")[3]}" if len(query_id.split("|")) >= 4 else query_id
+                    query_accession = f"{query_id.split('|')[1]}_{query_id.split('|')[3]}" if len(query_id.split('|')) >= 4 else query_id
+                    logging.info(f"query id: {query_id}, query accession: {query_accession}")
                     member_id = parts[1]
-                    member_accession = f"{member_id.split("|")[1]}_{member_id.split("|")[3]}" if len(member_id.split("|")) >= 4 else member_id
+                    member_accession = f"{member_id.split('|')[1]}_{member_id.split('|')[3]}" if len(member_id.split('|')) >= 4 else member_id
+                    logging.info(f"member id: {member_id}, member accession: {member_accession}")
                     unique_strains.add(member_accession) #collect unique strains from ALL the clusters
                     try:
                         percent_identity = float(parts[2])
@@ -513,7 +515,7 @@ def parse_cluster_dir(directory):
             continue
         try:
             accession = cluster_id.split("_")[0] if "_" in cluster_id else cluster_id
-            logging.info(f"Processing cluster {cluster_id} for accession {accession} with {len(percent_identity)} members")
+            logging.info(f"unique strains: {unique_strains}")
             num_cluster[accession]+=1
             percent_identity_num_strain = sum(percent_identity) / len(unique_strains)  #sum of percent identities divided by number of strains
             results.append({
@@ -526,7 +528,6 @@ def parse_cluster_dir(directory):
             logging.debug(f"Skipping cluster {cluster_id} due to division by zero: {e}")
 
     for accession in num_cluster:
-        logging.info(f"Accession {accession} has {num_cluster[accession]} clusters")
         results.append({
             "accession": accession,
             "feature": "cluster_conservation",
