@@ -491,12 +491,22 @@ def parse_cluster_dir(directory):
                     if len(parts) < 12:
                         continue
                     query_id = parts[0]
-                    query_accession = f"{query_id.split('|')[1]}_{query_id.split('|')[3]}" if len(query_id.split('|')) >= 4 else query_id
-                    logging.info(f"query id: {query_id}, query accession: {query_accession}")
+                    if len(query_id.split('|'))>=4:  #skip all the AF sequences
+                        query_accession = f"{query_id.split('|')[1]}_{query_id.split('|')[3]}"
+                    else:
+                        query_accession = query_id
+                        logging.info(f"query id: {query_id}, query accession: {query_accession}")
+
                     member_id = parts[1]
-                    member_accession = f"{member_id.split('|')[1]}_{member_id.split('|')[3]}" if len(member_id.split('|')) >= 4 else member_id
-                    logging.info(f"member id: {member_id}, member accession: {member_accession}")
-                    unique_strains.add(member_accession) #collect unique strains from ALL the clusters
+                    if len(member_id.split('|'))>=4: 
+                        member_accession = f"{member_id.split('|')[1]}_{member_id.split('|')[3]}"
+                        strain = {member_id.split('|')[3]}
+                    else:
+                        member_accession = member_id
+                        strain = {"unknown"}
+                        logging.info(f"member id: {member_id}, member accession: {member_accession}, strain: {strain}")
+                    logging.info(f"member id: {member_id}, member accession: {member_accession}, strain: {strain}")
+                    unique_strains.add(strain) #collect unique strains from ALL the clusters
                     try:
                         percent_identity = float(parts[2])
                         clusters[query_accession].append(percent_identity)
