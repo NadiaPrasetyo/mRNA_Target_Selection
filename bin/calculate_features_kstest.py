@@ -135,9 +135,9 @@ def parse_bcell_dir(directory):
 
     try:
         subdirs = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
-        logging.debug(f"Found {len(subdirs)} subdirectories in B-cell dir")
+        logging.info(f"Found {len(subdirs)} subdirectories in B-cell dir")
     except Exception as e:
-        logging.error(f"Failed listing directory {directory}: {e}")
+        logging.error(f"BCELL: Failed listing directory {directory}: {e}")
         return results
 
     for subdir in subdirs:
@@ -158,7 +158,7 @@ def parse_bcell_dir(directory):
                         # Look for header line
                         if lines[i].startswith(">"):
                             if i + 1 >= len(lines):
-                                logging.warning(f"File {file} does not have enough lines after header at line {i}")
+                                logging.warning(f"BCELL: File {file} does not have enough lines after header at line {i}")
                                 break
                             header = lines[i].strip()
                             accession = header.replace(">", "").split("|")[0]  # Extract accession from header
@@ -186,9 +186,9 @@ def parse_bcell_dir(directory):
                         results.append({"accession": accession, "feature": "bcell", "subfeature": f"avg_peptide_length", "value": avg_length})
             
             except Exception as e:
-                logging.error(f"Failed parsing B-cell file {file}: {e}")
+                logging.error(f"BCELL: Failed parsing B-cell file {file}: {e}")
 
-    logging.info(f"Completed B-cell parsing with {len(results)} results")
+    logging.info(f"BCELL: Completed B-cell parsing with {len(results)} results")
     return results
 
 def parse_mhc_dir(directory):
@@ -211,9 +211,9 @@ def parse_mhc_dir(directory):
     results = []
     try:
         files = [f for f in os.listdir(directory) if "matched_antigens" in f.lower()]
-        logging.debug(f"Found {len(files)} out files in MHC dir")
+        logging.info(f"Found {len(files)} out files in {prefix} dir")
     except Exception as e:
-        logging.error(f"Failed listing directory {directory}: {e}")
+        logging.error(f"{prefix.upper()}: Failed listing directory {directory}: {e}")
         return results
 
     for file in files:
@@ -236,7 +236,7 @@ def parse_mhc_dir(directory):
 
                     parts = line.split()
                     if len(parts) < 10:
-                        logging.debug(f"Skipping malformed line {i} in {file}: {line.strip()}")
+                        logging.debug(f"{prefix.upper()}: Skipping malformed line {i} in {file}: {line.strip()}")
                         continue
                     try:
                         id = parts[10 if prefix == "mhci" else 7]
@@ -253,7 +253,7 @@ def parse_mhc_dir(directory):
                         scores[accession].append(score)
                         percentiles[accession].append(percentile)
                     except ValueError as e:
-                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"{prefix.upper()}: Skipping line {i} in {file} due to conversion error: {e}")
 
                 for accession in num_peptides:
                     avg_score = float(statistics.mean(scores[accession])) if scores[accession] else 0
@@ -266,8 +266,8 @@ def parse_mhc_dir(directory):
 
                 
         except Exception as e:
-            logging.error(f"Failed parsing MHC file {file}: {e}")
-    logging.info(f"Completed MHC parsing with {len(results)} results")
+            logging.error(f"{prefix.upper()}: Failed parsing MHC file {file}: {e}")
+    logging.info(f"{prefix.upper()}: Completed MHC parsing with {len(results)} results")
     return results
 
 def parse_signalp_dir(directory):
@@ -289,12 +289,13 @@ def parse_signalp_dir(directory):
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".txt")]
     except Exception as e:
-        logging.error(f"Failed listing directory {directory}: {e}")
+        logging.error(f"SIGNALP: Failed listing directory {directory}: {e}")
         return results
+
+    logging.info(f"Found {len(files)} SignalP files")
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing SignalP file: {file}")
         try:
             with open(path) as f:
                 for i, line in enumerate(f):
@@ -307,10 +308,10 @@ def parse_signalp_dir(directory):
                             results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
                             results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_other", "value": float(parts[3])})
                         except Exception as e:
-                            logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                            logging.debug(f"SIGNALP: Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
-            logging.error(f"Failed parsing SignalP file {file}: {e}")
-    logging.info(f"Completed SignalP parsing with {len(results)} results")
+            logging.error(f"SIGNALP: Failed parsing SignalP file {file}: {e}")
+    logging.info(f"SIGNALP: Completed SignalP parsing with {len(results)} results")
     return results
 
 def parse_targetp_dir(directory):
@@ -332,12 +333,12 @@ def parse_targetp_dir(directory):
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".txt")]
     except Exception as e:
-        logging.error(f"Failed listing directory {directory}: {e}")
+        logging.error(f"TARGETP: Failed listing directory {directory}: {e}")
         return results
+    logging.info(f"Found {len(files)} TargetP files")
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing TargetP file: {file}")
         try:
             with open(path) as f:
                 for i, line in enumerate(f):
@@ -351,10 +352,10 @@ def parse_targetp_dir(directory):
                             results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_SP", "value": float(parts[3])})
                             results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_mTP", "value": float(parts[4])})
                         except Exception as e:
-                            logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                            logging.debug(f"TARGETP: Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
-            logging.error(f"Failed parsing TargetP file {file}: {e}")
-    logging.info(f"Completed TargetP parsing with {len(results)} results")
+            logging.error(f"TARGETP: Failed parsing TargetP file {file}: {e}")
+    logging.info(f"TARGETP: Completed TargetP parsing with {len(results)} results")
     return results
 
 def parse_allergenicity_dir(directory):
@@ -385,7 +386,6 @@ def parse_allergenicity_dir(directory):
     # Step 2: Parse each CSV file
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing allergenicity file {file}")
         try:
             with open(path, newline='') as csvfile:
                 reader = csv.DictReader(csvfile)
@@ -397,7 +397,7 @@ def parse_allergenicity_dir(directory):
                         if len(parts) >= 4:
                             accession = parts[1]
                         else:
-                            logging.warning(f"Skipping row {i} in {file} due to malformed Subject: {subject}")
+                            logging.warning(f"ALGPRED: Skipping row {i} in {file} due to malformed Subject: {subject}")
                             continue
 
                         merci_score = float(row["MERCI Score"])
@@ -425,11 +425,11 @@ def parse_allergenicity_dir(directory):
                             }
                         ])
                     except (ValueError, KeyError) as e:
-                        logging.debug(f"Skipping malformed row {i} in {file}: {e}")
+                        logging.debug(f"ALGPRED: Skipping malformed row {i} in {file}: {e}")
         except Exception as e:
-            logging.error(f"Failed parsing allergenicity file {file}: {e}")
+            logging.error(f"ALGPRED: Failed parsing allergenicity file {file}: {e}")
 
-    logging.info(f"Completed allergenicity parsing with {len(results)} results")
+    logging.info(f"ALGPRED: Completed allergenicity parsing with {len(results)} results")
     return results
 
 def parse_cluster_dir(directory):
@@ -478,7 +478,6 @@ def parse_cluster_dir(directory):
     # Step 2: Parse each cluster file
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing cluster file {file}")
         try:
             with open(path) as f:
                 for i, line in enumerate(f):
@@ -490,24 +489,21 @@ def parse_cluster_dir(directory):
                         query_accession = f"{query_id.split('|')[1]}_{query_id.split('|')[3]}"
                     else:
                         query_accession = query_id.replace('|', '_')
-                        logging.debug(f"query id: {query_id}, query accession: {query_accession}")
 
                     member_id = parts[1]
                     if len(member_id.split('|'))>=4: 
                         member_accession = f"{member_id.split('|')[1]}_{member_id.split('|')[3]}"
-                        strain = member_id.split('|')[3]
                     else:
                         member_accession = member_id.replace('|', '_')
-                        strain = "unknown"
-                        logging.debug(f"member id: {member_id}, member accession: {member_accession}, strain: {strain}")
+                    strain = member_accession.split('_')[1] if "_" in member_accession else "unknown"
                     unique_strains.add(strain) #collect unique strains from ALL the clusters
                     try:
                         percent_identity = float(parts[2])
                         clusters[query_accession].append(percent_identity)
                     except ValueError as e:
-                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"CLUSTER: Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
-            logging.error(f"Failed parsing cluster file {file}: {e}")
+            logging.error(f"CLUSTER: Failed parsing cluster file {file}: {e}")
 
     results = []
 
@@ -519,7 +515,6 @@ def parse_cluster_dir(directory):
             continue
         try:
             accession = cluster_id.split("_")[0] if "_" in cluster_id else cluster_id
-            logging.info(f"unique strains: {unique_strains}")
             num_cluster[accession]+=1
             percent_identity_num_strain = sum(percent_identity) / len(unique_strains)  #sum of percent identities divided by number of strains
             results.append({
@@ -529,7 +524,7 @@ def parse_cluster_dir(directory):
                 "value": percent_identity_num_strain
             })
         except ZeroDivisionError as e:
-            logging.debug(f"Skipping cluster {cluster_id} due to division by zero: {e}")
+            logging.debug(f"CLUSTER: Skipping cluster {cluster_id} due to division by zero: {e}")
 
     for accession in num_cluster:
         results.append({
@@ -538,7 +533,7 @@ def parse_cluster_dir(directory):
             "subfeature": "num_clusters",
             "value": num_cluster[accession]
         })
-    logging.info(f"Completed cluster parsing with {len(results)} results")
+    logging.info(f"CLUSTER: Completed cluster parsing with {len(results)} results")
     return results
 
 
@@ -560,13 +555,13 @@ def parse_deeplocpro_dir(directory):
     results = []
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".csv")]
+        logging.info(f"Found {len(files)} DeeplocPro files")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing DeeplocPro file: {file}")
         try:
             
                 df = pd.read_csv(path)
@@ -583,7 +578,7 @@ def parse_deeplocpro_dir(directory):
                     try:
                         accession = f"{row['ACC'].split('|')[1]}"
                     except IndexError:
-                        logging.warning(f"Unexpected ACC format: {row['ACC']}")
+                        logging.warning(f"DEEPLOCPRO: Unexpected ACC format: {row['ACC']}")
                         accession = "unknown"
 
                     for loc, col in prob_cols:
@@ -596,12 +591,12 @@ def parse_deeplocpro_dir(directory):
                                 "value": prob
                             })
                         except ValueError:
-                            logging.debug(f"Invalid probability value in column {col} for row {i}")
+                            logging.debug(f"DEEPLOCPRO: Invalid probability value in column {col} for row {i}")
                         except KeyError:
-                            logging.debug(f"Missing column {col} in row {i}")
+                            logging.debug(f"DEEPLOCPRO: Missing column {col} in row {i} in file {file}")
         except Exception as e:
-            logging.error(f"Failed parsing DeeplocPro file {file}: {e}")
-    logging.info(f"Completed DeeplocPro parsing with {len(results)} results")
+            logging.error(f"DEEPLOCPRO: Failed parsing DeeplocPro file {file}: {e}")
+    logging.info(f"DEEPLOCPRO: Completed parsing with {len(results)} results")
     return results
 
 
@@ -623,13 +618,13 @@ def parse_ellipro_dir(directory):
     results = []
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+        logging.info(f"Found {len(files)} Ellipro files")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
     
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing Ellipro file: {file}")
         linear_score = []
         discontinuous_score = []
         # Determine accession from filename
@@ -655,7 +650,7 @@ def parse_ellipro_dir(directory):
                         # Take the second-to-last field as the score
                         linear_score.append(float(parts[-2]))
                     except ValueError as e:
-                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"ELLIPRO: Skipping line {i} in {file} due to conversion error: {e}")
 
                 # Parse discontinuous epitopes
                 for i, line in enumerate(lines):
@@ -667,7 +662,7 @@ def parse_ellipro_dir(directory):
                     try:
                         discontinuous_score.append(float(parts[-2]))  # Take the second-to-last field as the score
                     except ValueError as e:
-                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"ELLIPRO: Skipping line {i} in {file} due to conversion error: {e}")
             # Store results
             results.append({
                 "accession": accession,
@@ -706,9 +701,9 @@ def parse_ellipro_dir(directory):
                 "value": len(discontinuous_score)
             })
         except Exception as e:
-            logging.error(f"Failed parsing Ellipro file {file}: {e}")
+            logging.error(f"ELLIPRO: Failed parsing Ellipro file {file}: {e}")
 
-    logging.info(f"Completed Ellipro parsing with {len(results)} results")
+    logging.info(f"ELLIPRO: Completed parsing with {len(results)} results")
     return results
 
 
@@ -730,13 +725,13 @@ def parse_ifnepitope2_dir(directory):
     results = []
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".csv")]
+        logging.info(f"Found {len(files)} IFNepitope2 files")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing IFNepitope2 file: {file}")
         ml_score = defaultdict(list)
         blast_score = defaultdict(list)
         total_score = defaultdict(list)
@@ -751,7 +746,7 @@ def parse_ifnepitope2_dir(directory):
                         if len(parts) >= 4:
                             accession = parts[1]
                         else:
-                            logging.warning(f"Skipping row {i} in {file} due to malformed Seq_ID: {seq_id}")
+                            logging.warning(f"IFNEPITOPE: Skipping row {i} in {file} due to malformed Seq_ID: {seq_id}")
                             continue
 
                         ml_score[accession].append(float(row["ML_Score"]))
@@ -759,7 +754,7 @@ def parse_ifnepitope2_dir(directory):
                         total_score[accession].append(float(row["Total_Score"]))
                         
                     except ValueError as e:
-                        logging.debug(f"Skipping row {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"IFNEPITOPE: Skipping row {i} in {file} due to conversion error: {e}")
 
             for accession in ml_score:
                 results.append({
@@ -799,8 +794,8 @@ def parse_ifnepitope2_dir(directory):
                     "value": statistics.median(total_score[accession]) if total_score[accession] else 0
                 })
         except Exception as e:
-            logging.error(f"Failed parsing IFNepitope2 file {file}: {e}")
-    logging.info(f"Completed IFNepitope2 parsing with {len(results)} results")
+            logging.error(f"IFNEPITOPE: Failed parsing IFNepitope2 file {file}: {e}")
+    logging.info(f"IFNEPITOPE: Completed parsing with {len(results)} results")
     return results
 
 
@@ -822,13 +817,13 @@ def parse_mixmhc2pred_dir(directory):
     results = []
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+        logging.info(f"Found {len(files)} MixMHC2Pred files")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing MixMHC2Pred file: {file}")
         try:
             with open(path) as f:
                 for i, line in enumerate(f):
@@ -845,10 +840,10 @@ def parse_mixmhc2pred_dir(directory):
                             "value": float(rank_best)
                         })
                     except ValueError as e:
-                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"MIXMHC2PRED: Skipping line {i} in {file} due to conversion error: {e}")
         except Exception as e:
-            logging.error(f"Failed parsing MixMHC2Pred file {file}: {e}")
-    logging.info(f"Completed MixMHC2Pred parsing with {len(results)} results")
+            logging.error(f"MIXMHC2PRED: Failed parsing MixMHC2Pred file {file}: {e}")
+    logging.info(f"MIXMHC2PRED: Completed parsing with {len(results)} results")
     return results
 
 def parse_deeptmhmm_dir(directory):
@@ -869,12 +864,12 @@ def parse_deeptmhmm_dir(directory):
     results = []
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".3line")]
+        logging.info(f"Found {len(files)} Deeptmhmm files")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing Deeptmhmm file: {file}")
         try:
             with open(path) as f:
                 lines = f.readlines()
@@ -883,14 +878,14 @@ def parse_deeptmhmm_dir(directory):
                     # Look for header line
                     if lines[i].startswith(">"):
                         if i + 2 >= len(lines):
-                            logging.warning(f"File {file} does not have enough lines after header at line {i}")
+                            logging.warning(f"DEEPTMHMM: File {file} does not have enough lines after header at line {i}")
                             break
                         header = lines[i].strip()
                         accession = header.split('|')[1]
                         sequence = lines[i + 1].strip()
                         topology = lines[i + 2].strip()
                         if len(sequence) != len(topology):
-                            logging.warning(f"Sequence and topology lengths do not match in {file} at header {lines[i].strip()}")
+                            logging.warning(f"DEEPTMHMM: Sequence and topology lengths do not match in {file} at header {lines[i].strip()}")
                         # Calculate proportion of outside residues
                         outside_count = sum(1 for char in topology if char == 'O')
                         total_count = len(sequence)
@@ -908,8 +903,8 @@ def parse_deeptmhmm_dir(directory):
                     else:
                         i += 1  # Skip lines until next header
         except Exception as e:
-            logging.error(f"Failed parsing Deeptmhmm file {file}: {e}")
-    logging.info(f"Completed Deeptmhmm parsing with {len(results)} results")
+            logging.error(f"DEEPTMHMM: Failed parsing Deeptmhmm file {file}: {e}")
+    logging.info(f"DEEPTMHMM: Completed Deeptmhmm parsing with {len(results)} results")
     return results
 
 def parse_rate4site_dir(directory):
@@ -930,13 +925,13 @@ def parse_rate4site_dir(directory):
     results = []
     try:
         files = [f for f in os.listdir(directory) if f.endswith(".out")]
+        logging.info(f"Found {len(files)} Rate4Site files")
     except Exception as e:
         logging.error(f"Failed listing directory {directory}: {e}")
         return results
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing Rate4Site file: {file}")
         accession = os.path.basename(file).split("_")[0] if "_" in os.path.basename(file) else os.path.basename(file).replace(".out", "")
         try:
             scores = []
@@ -951,7 +946,7 @@ def parse_rate4site_dir(directory):
                         score = float(parts[2])
                         scores.append(score)
                     except ValueError as e:
-                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"RATE4SITE: Skipping line {i} in {file} due to conversion error: {e}")
 
             results.append({
                 "accession": accession,
@@ -1004,8 +999,8 @@ def parse_rate4site_dir(directory):
             #             "value": min(window)
             #         })
         except Exception as e:
-            logging.error(f"Failed parsing Rate4Site file {file}: {e}")
-    logging.info(f"Completed Rate4Site parsing with {len(results)} results")
+            logging.error(f"RATE4SITE: Failed parsing Rate4Site file {file}: {e}")
+    logging.info(f"RATE4SITE: Completed parsing with {len(results)} results")
     return results
 
 
@@ -1046,7 +1041,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 if len(parts) >= 4:
                     pos, aa, score, msa_data = parts
                     scores.append((int(pos), aa, float(score)))
-        logging.debug(f"Parsed {len(scores)} scores from {filepath}")
+        logging.debug(f"RATE4SITE_DEEPTMHMM: Parsed {len(scores)} scores from {filepath}")
         return scores
 
     def load_all_deeptmhmm_topologies(deeptmhmm_dir):
@@ -1068,16 +1063,16 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                             topology = lines[i + 2]
                             fields = header.lstrip(">").split("|")
                             if len(fields) < 4:
-                                logging.warning(f"Unexpected header format: {header}")
+                                logging.warning(f"RATE4SITE_DEEPTMHMM: Unexpected header format: {header}")
                                 continue
                             antigen_accession = fields[1]
                             strain = fields[3]
                             topologies.setdefault(strain, {})[antigen_accession] = topology
                         except IndexError:
-                            logging.warning(f"Malformed 3-line record in {path} at lines {i}-{i+2}")
+                            logging.warning(f"RATE4SITE_DEEPTMHMM: Malformed 3-line record in {path} at lines {i}-{i+2}")
             except Exception:
-                logging.exception(f"Error reading {path}")
-        logging.info(f"Loaded topologies for {len(topologies)} strains from {deeptmhmm_dir}")
+                logging.exception(f"RATE4SITE_DEEPTMHMM: Error reading {path}")
+        logging.info(f"RATE4SITE_DEEPTMHMM: Loaded topologies for {len(topologies)} strains from {deeptmhmm_dir}")
         return topologies
 
     def get_reference_sequence_index_map(alignment, accession):
@@ -1090,7 +1085,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 ref_seq = record.seq
                 break
         if ref_seq is None:
-            raise ValueError(f"Reference sequence {accession} not found in alignment.")
+            raise ValueError(f"RATE4SITE_DEEPTMHMM: Reference sequence {accession} not found in alignment.")
 
         mapping = {}
         ref_pos = 0
@@ -1098,7 +1093,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
             if res != '-':
                 ref_pos += 1
                 mapping[ref_pos] = i
-        logging.debug(f"Reference map created for {accession}: {len(mapping)} positions")
+        logging.debug(f"RATE4SITE_DEEPTMHMM: Reference map created for {accession}: {len(mapping)} positions")
         return mapping
 
     def get_strain_sequence_from_alignment(alignment, strain):
@@ -1136,13 +1131,13 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
             mafft_file = os.path.join(mafft_dir, f"{accession}_combined_aligned.fasta")
 
             if not os.path.exists(mafft_file):
-                logging.warning(f"Missing MAFFT file: {mafft_file}")
+                logging.warning(f"RATE4SITE_DEEPTMHMM: Missing MAFFT file: {mafft_file}")
                 continue
 
-            logging.info(f"Processing rate4site accession: {accession}")
+            logging.info(f"RATE4SITE_DEEPTMHMM: Processing rate4site accession: {accession}")
             scores = parse_rate4site_out(rate4site_file)
             if not scores:
-                logging.warning(f"No scores found in {rate4site_file}")
+                logging.warning(f"RATE4SITE_DEEPTMHMM: No scores found in {rate4site_file}")
                 continue
 
             alignment = AlignIO.read(mafft_file, "fasta")
@@ -1154,7 +1149,7 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 topology = antigen_map[accession]
                 strain_seq = get_strain_sequence_from_alignment(alignment, strain)
                 if strain_seq is None:
-                    logging.debug(f"Strain {strain} not in alignment for {accession}")
+                    logging.debug(f"RATE4SITE_DEEPTMHMM: Strain {strain} not in alignment for {accession}")
                     continue
 
                 topo_by_pos = map_topology_to_alignment(strain_seq, topology)
@@ -1234,19 +1229,27 @@ def parse_rate4site_mafft_deeptmhmm_dir(rate4site_dir, mafft_dir, deeptmhmm_dir)
                 #     ])
 
         except Exception as e:
-            logging.exception(f"Error processing {rate4site_file}: {str(e)}")
+            logging.exception(f"RATE4SITE_DEEPTMHMM: Error processing {rate4site_file}: {str(e)}")
 
-    logging.info(f"Total features returned: {len(results)}")
+    logging.info(f"RATE4SITE_DEEPTMHMM: Total features returned: {len(results)}")
     return results
 
 def parse_dssp_dir(dssp_dir):
     """
     Parse the DSSP directory for structural features.
     data/S.pyogenes/epitope_outputs/dssp/1I5K_P49054.dssp
-    --E------------EE----EEE-----------------HHH-------E--------EEEE------EEEE---E----E------------EE----EE--------------HHH-HHH-------E--------EEEE------EEEE---E-----HHHHHHHHHHHHHHHHHHHHH-----HHHHHHHHHHHHHHHHHHHHH-  1I5K_P49054.pdb
-
+    Args:
+        dssp_dir (str): Path to the directory containing DSSP files.
+    Returns:
+        List of dictionaries, where each dictionary represents a DSSP feature.
+    Each dictionary contains:
+        - "accession": accession identifier
+        - "feature": "dssp"
+        - "subfeature": specific subfeature name (e.g., "percent_helix", "percent_sheet", "percent_loop")
+        - "value": numerical value for the feature
     """
     results = []
+    logging.info(f"Parsing DSSP dir {dssp_dir}")
     for dssp_file in Path(dssp_dir).glob("*.dssp"):
         if "_" in dssp_file.stem:
             parts = dssp_file.stem.split("_")
@@ -1279,6 +1282,7 @@ def parse_dssp_dir(dssp_dir):
             "subfeature": "percent_loop",
             "value": percent_loop
         })
+    logging.info(f"DSSP: Completed parsing with {len(results)} results")
 
     return results
 
@@ -1297,6 +1301,7 @@ def parse_dnds_dir(directory):
         - "subfeature": specific subfeature name (e.g., "mean_alpha", "mean_beta", etc.)
         - "value": numerical value for the feature
     """
+    logging.info(f"Parsing dN/dS dir {directory}")
 
     def safe_div(n, d):
         """Safely divide n / d, return 0 if invalid or denominator <= 0."""
@@ -1312,7 +1317,7 @@ def parse_dnds_dir(directory):
         try:
             # Skip empty files quickly
             if dnds_file.stat().st_size == 0:
-                logging.warning(f"Skipping empty JSON file: {dnds_file}")
+                logging.warning(f"DNDS: Skipping empty JSON file: {dnds_file}")
                 continue
             accession = dnds_file.stem.split("_")[0] if "_" in dnds_file.stem else dnds_file.stem
             type = dnds_file.stem.split("_")[-2]  # Extract method type (FEL, SLAC, FUBAR)
@@ -1320,12 +1325,12 @@ def parse_dnds_dir(directory):
                 try:
                     data = json.load(f)
                 except json.JSONDecodeError:
-                    logging.warning(f"Skipping invalid JSON file: {dnds_file}")
+                    logging.warning(f"DNDS: Skipping invalid JSON file: {dnds_file}")
                     continue
 
             content = data.get("MLE", {}).get("content", {}).get("0")
             if not content:
-                logging.warning(f"Missing or invalid content in {dnds_file}")
+                logging.warning(f"DNDS: Missing or invalid content in {dnds_file}")
                 continue
 
             match type:
@@ -1363,7 +1368,7 @@ def parse_dnds_dir(directory):
                 case "SLAC":
                     content = content.get("by-site", {}).get("AVERAGED", [])
                     if not content:
-                        logging.warning(f"Missing or invalid SLAC content in {dnds_file}")
+                        logging.warning(f"DNDS: Missing or invalid SLAC content in {dnds_file}")
                         continue
 
                     sum_n, sum_s, sum_dn, sum_ds, count = 0, 0, 0, 0, 0
@@ -1439,11 +1444,11 @@ def parse_dnds_dir(directory):
                     })
 
                 case _:
-                    logging.warning(f"Unknown dN/dS type: {type}")
+                    logging.warning(f"DNDS: Unknown dN/dS type: {type}")
                     continue
 
         except Exception as e:
-            logging.error(f"Failed parsing {dnds_file}: {e}", exc_info=True)
+            logging.error(f"DNDS: Failed parsing {dnds_file}: {e}", exc_info=True)
             continue
 
     return results
@@ -1476,6 +1481,7 @@ def parse_protlearn_dir(directory):
         "JOND750102": "pK (-COOH)",
         "KYTJ820101": "Hydropathy index",
     }
+    logging.info(f"Parsing ProtLearn dir {directory}")
 
     for protlearn_file in Path(directory).glob("*.csv"):
         if "_" in protlearn_file.stem:
@@ -1491,7 +1497,7 @@ def parse_protlearn_dir(directory):
                 if feature.startswith("aaindex1_"):
                     feature = feature.replace("aaindex1_", "")
                     if feature not in feature_map:
-                        logging.debug(f"Skipping unknown feature: {feature}")
+                        logging.debug(f"PROTLEARN: Skipping unknown feature: {feature}")
                         continue
                     feature = feature_map[feature]
                 value = row["value"].strip("[]") if row["value"] is not None else None  # Remove brackets if present
@@ -1505,7 +1511,7 @@ def parse_protlearn_dir(directory):
                         "value": value
                     })
                 except ValueError as e:
-                    logging.debug(f"Skipping row due to conversion error: {e}")
+                    logging.debug(f"PROTLEARN: Skipping row due to conversion error: {e}")
     return results
 
 # def parse_discotope_dir(directory):
@@ -1610,7 +1616,6 @@ def plot_roc_curve(pos_vals, rand_vals, feature, subfeature, output_dir):
     If any error occurs during plotting, it will log the error but not raise an exception.
     """
     output_dir = os.path.join(output_dir, "roc_plots")
-    logging.info(f"Plotting ROC curve for {feature}/{subfeature} in {output_dir}")
     try:
         y_true = [1] * len(pos_vals) + [0] * len(rand_vals)
         y_scores = pos_vals + rand_vals
@@ -1847,7 +1852,6 @@ def write_features_by_feature(features, label, output_dir):
         label (str): Label for the features (e.g., "positive", "random or human").
         output_dir (str): Directory to write the feature files to.
     """
-    logging.info(f"Writing features to disk for label {label} in {output_dir}")
     os.makedirs(output_dir, exist_ok=True)
 
     # Group features by "feature" field
@@ -1949,12 +1953,7 @@ def main(pathogen_dir, threads, verbose=False, write_raw=False, human_negative=F
     logger.info(f"Extracting random features from {rand_dir}")
     rand_features = extract_all_features(rand_dir, threads)
 
-    logger.info("Estimating memory usage of extracted features")
-    logger.info(f"Positive features: {sizeof_fmt(sys.getsizeof(pos_features))}")
-    logger.info(f"{prefix} features: {sizeof_fmt(sys.getsizeof(rand_features))}")
     output_dir = os.path.join("results", pathogen_dir)
-
-
 
     if raw_out_dir is None:
         raw_out_dir = os.path.join("results", pathogen_dir, "raw_data")
