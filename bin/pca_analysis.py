@@ -48,7 +48,7 @@ from scipy.sparse import coo_matrix
 import argparse
 import logging
 from adjustText import adjust_text
-from scipy.stats import ks_2samp, ttest_ind
+from scipy.stats import ks_2samp, ttest_ind, spearmanr
 from sklearn.metrics import roc_auc_score
 import matplotlib.patches as mpatches
 
