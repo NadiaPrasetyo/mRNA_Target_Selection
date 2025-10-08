@@ -210,15 +210,14 @@ def parse_mhc_dir(directory):
     logging.info(f"Parsing MHC dir {directory} with prefix {prefix}")
     results = []
     try:
-        files = [f for f in os.listdir(directory) if "matched_antigens" in f.lower()]
-        logging.info(f"Found {len(files)} out files in {prefix} dir")
+        files = [f for f in os.listdir(directory) if "matched_antigens" in f.lower() and not f.endswith(".xls")]
+        logging.debug(f"Found {len(files)} out files in MHC dir")
     except Exception as e:
-        logging.error(f"{prefix}: Failed listing directory {directory}: {e}")
+        logging.error(f"Failed listing directory {directory}: {e}")
         return results
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"{prefix}:Parsing MHC file {file}")
         try:
             with open(path) as f:
                 data = f.readlines()
@@ -234,11 +233,10 @@ def parse_mhc_dir(directory):
                     # skip all lines without <=
                     if "<=" not in line:
                         continue
-                    logging.debug(f"{prefix}: Processing line {i} in {file}")
 
                     parts = line.split()
                     if len(parts) < 10:
-                        logging.debug(f"{prefix}: Skipping malformed line {i} in {file}: {line.strip()}")
+                        logging.debug(f"Skipping malformed line {i} in {file}: {line.strip()}")
                         continue
                     try:
                         id = parts[10 if prefix == "mhci" else 7]
@@ -246,6 +244,9 @@ def parse_mhc_dir(directory):
                         score = float(parts[11 if prefix == "mhci" else 8])
                         percentile = float(parts[12 if prefix == "mhci" else 9])
                         binding_strength = parts[14 if prefix == "mhci" else 12] if len(parts) > (13 if prefix == "mhci" else 11) else "NA"
+
+                        logging.debug(f"Parsed line {i} in {file}: accession={accession}, score={score}, percentile={percentile}, binding_strength={binding_strength}")
+                        num_peptides[accession] += 1
                         # Filter for Strong Binders only
                         if "SB" in binding_strength:
                             num_sb[accession] += 1
@@ -255,10 +256,9 @@ def parse_mhc_dir(directory):
                         scores[accession].append(score)
                         percentiles[accession].append(percentile)
                     except ValueError as e:
-                        logging.debug(f"{prefix}: Skipping line {i} in {file} due to conversion error: {e}")
+                        logging.debug(f"Skipping line {i} in {file} due to conversion error: {e}")
 
                 for accession in num_peptides:
-                    logging.debug(f"{prefix}: Accession {accession} has {num_peptides[accession]} peptides")
                     avg_score = float(statistics.mean(scores[accession])) if scores[accession] else 0
                     avg_percentile = float(statistics.mean(percentiles[accession])) if percentiles[accession] else 0
                     results.append({"accession": accession, "feature": prefix, "subfeature": "score", "value": avg_score})
@@ -269,9 +269,10 @@ def parse_mhc_dir(directory):
 
                 
         except Exception as e:
-            logging.error(f"{prefix}: Failed parsing MHC file {file}: {e}")
-    logging.info(f"{prefix}: Completed MHC parsing with {len(results)} results")
+            logging.error(f"Failed parsing MHC file {file}: {e}")
+    logging.info(f"Completed MHC parsing with {len(results)} results")
     return results
+
 
 def parse_signalp_dir(directory):
     """
