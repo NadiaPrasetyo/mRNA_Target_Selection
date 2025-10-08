@@ -513,6 +513,7 @@ def parse_cluster_dir(directory):
             continue
         try:
             accession = cluster_id.split("_")[0] if "_" in cluster_id else cluster_id
+            logging.info(f"Processing cluster {cluster_id} for accession {accession} with {len(percent_identity)} members")
             num_cluster[accession]+=1
             percent_identity_num_strain = sum(percent_identity) / len(unique_strains)  #sum of percent identities divided by number of strains
             results.append({
@@ -525,6 +526,7 @@ def parse_cluster_dir(directory):
             logging.debug(f"Skipping cluster {cluster_id} due to division by zero: {e}")
 
     for accession in num_cluster:
+        logging.info(f"Accession {accession} has {num_cluster[accession]} clusters")
         results.append({
             "accession": accession,
             "feature": "cluster_conservation",
