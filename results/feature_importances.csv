@@ -1,72 +1,75 @@
 feature,importance,rank
-cluster_conservation_percent_identity/num_strain,0.4632385583404469,1
-deeptmhmm_proportion_outside,0.026022816357716368,2
-deeplocpro_prob_cytoplasmic,0.024989132747887183,3
-allergenicity_hybrid_score,0.017188416339042976,4
-FUBAR_mean_beta,0.016917323694112796,5
-FEL_mean_beta,0.016292473717168816,6
-FUBAR_mean_prob_neg,0.016056097301158433,7
-FUBAR_mean_prob_pos,0.01576946121558138,8
-FEL_mean_lrt,0.015752638068926326,9
-FUBAR_mean_alpha,0.01564701617973576,10
-targetp_prob_SP,0.015419504721643214,11
-FEL_mean_alpha,0.01409138530805317,12
-signalp_prob_signalp,0.01268102653294721,13
-bcell_num_peptides,0.01233345497568215,14
-cluster_conservation_num_clusters,0.011297525320552641,15
-bcell_avg_peptide_length,0.011261147331769384,16
-dssp_percent_sheet,0.011251234067777349,17
-targetp_prob_noTP,0.010639397060140556,18
-signalp_prob_other,0.009714884257670866,19
-SLAC_mean_s,0.009386123689100297,20
-dssp_percent_helix,0.009324248281705312,21
-ProtLearn_length,0.00878517697313721,22
-targetp_prob_mTP,0.008378982242627368,23
-SLAC_mean_n,0.00802174352122022,24
-dssp_percent_loop,0.007851211686362377,25
-ellipro_num_discontinuous_epitopes,0.0074839468087531036,26
-SLAC_mean_dN/dS,0.007468793348909991,27
-ellipro_num_linear_epitopes,0.007354552384401461,28
-deeplocpro_prob_extracellular,0.007052584312925716,29
-mhcii_score,0.006890519087000164,30
-mhcii_percentile,0.006869368147913198,31
-mhci_percentile,0.006844365850601935,32
-ellipro_mean_discontinuous_score,0.006826060390632892,33
-ellipro_mean_linear_score,0.006748982392317455,34
-ProtLearn_Volume,0.006452548905273881,35
-mhcii_num_strong_binders,0.006206474833196095,36
-ifnepitope2_mean_total_score,0.006196664448203299,37
-mhcii_num_weak_binders,0.006148466694338237,38
-mhci_score,0.006106469475875887,39
-ifnepitope2_mean_ml_score,0.006041193971966549,40
-ProtLearn_Average volume of buried residue,0.0059160416496267364,41
-rate4site_min_per_site_score,0.005892678269667039,42
-mhcii_num_peptides,0.00588471381074722,43
-mhci_num_weak_binders,0.005830547288052962,44
-rate4site_deeptmhmm_nan,0.005772701289844274,45
-ellipro_med_linear_score,0.00569399434788722,46
-rate4site_median_per_site_score,0.005598534042940865,47
-ellipro_med_discontinuous_score,0.005537043832511897,48
-mhci_num_peptides,0.005535603970160226,49
-mhci_num_strong_binders,0.0055348823232565444,50
-rate4site_deeptmhmm_mean_outside_scores,0.005317506626882062,51
-rate4site_deeptmhmm_min_outside_scores,0.005293497313299909,52
-deeplocpro_prob_periplasmic,0.005238560328855723,53
-allergenicity_blast_score,0.005095507244596854,54
-rate4site_mean_per_site_score,0.005091269677163307,55
-ProtLearn_Relative mutability,0.004915930363743968,56
-ifnepitope2_med_ml_score,0.004847969067135444,57
-ifnepitope2_med_total_score,0.0044896227838264555,58
-rate4site_deeptmhmm_max_outside_scores,0.004404227346197381,59
-rate4site_max_per_site_score,0.00415803180877901,60
-allergenicity_merci_score,0.0017153113554477625,61
-ProtLearn_Amino acid composition,0.0009537015478668231,62
-ProtLearn_Hydrophobicity index,0.0008045414595483165,63
-ProtLearn_Polarity,0.0007509958465176352,64
-ProtLearn_Hydrophobicity,0.00026259412910895286,65
-ProtLearn_Hydropathy index,0.0002545679248674715,66
-ProtLearn_pK (-COOH),0.0002074533669920082,67
-ProtLearn_Average flexibility indices,0.0,68
-ProtLearn_Composition,0.0,69
-ifnepitope2_mean_blast_score,0.0,70
-ifnepitope2_med_blast_score,0.0,71
+deeplocpro_prob_cytoplasmic,0.052466208954136354,1
+deeptmhmm_proportion_outside,0.04705686456304665,2
+FUBAR_mean_alpha,0.03031988725371982,3
+FUBAR_mean_beta,0.0300415008624865,4
+allergenicity_hybrid_score,0.029689077360269846,5
+FUBAR_mean_prob_pos,0.029615880038118193,6
+FEL_mean_beta,0.02925360263584005,7
+FUBAR_mean_prob_neg,0.028770755653139374,8
+FEL_mean_lrt,0.02815454630123131,9
+targetp_prob_SP,0.0254293904367277,10
+FEL_mean_alpha,0.025328440407356226,11
+signalp_prob_signalp,0.023869556162756017,12
+bcell_num_peptides,0.02280243700830354,13
+bcell_avg_peptide_length,0.019308417123413437,14
+dssp_percent_sheet,0.018930665863281446,15
+signalp_prob_other,0.018799610361711735,16
+targetp_prob_noTP,0.017806999314945428,17
+SLAC_mean_s,0.016410054015382924,18
+ProtLearn_length,0.015931004603245983,19
+dssp_percent_helix,0.015747511836416456,20
+deeplocpro_prob_extracellular,0.015399696352104815,21
+SLAC_mean_n,0.014608153277844434,22
+SLAC_mean_dN/dS,0.014156952405222668,23
+targetp_prob_mTP,0.013572666142726219,24
+mhci_percentile,0.013501451636643843,25
+deeplocpro_prob_cytoplasmic_membrane,0.013435122853824255,26
+ellipro_mean_discontinuous_score,0.013005473239909677,27
+dssp_percent_loop,0.012929851707983171,28
+ellipro_mean_linear_score,0.012857061742510471,29
+rate4site_deeptmhmm_nan,0.012285975153092236,30
+ellipro_num_discontinuous_epitopes,0.012242305333156388,31
+mhcii_num_peptides,0.01222365767529815,32
+deeplocpro_prob_cell_wall_surface,0.011996937142208154,33
+mhci_score,0.011667216218579596,34
+ellipro_num_linear_epitopes,0.01160178050641271,35
+mhcii_score,0.01143664964090175,36
+mhcii_num_strong_binders,0.011248822411955147,37
+ifnepitope2_mean_ml_score,0.01116835167481534,38
+rate4site_median_per_site_score,0.011095036281236766,39
+ifnepitope2_mean_total_score,0.01108285218528277,40
+cluster_conservation_percent_identity/num_strain,0.011058775531016383,41
+mhcii_num_weak_binders,0.010965867681834272,42
+mhcii_percentile,0.010903750168561268,43
+mhci_num_peptides,0.010815198873503427,44
+ellipro_med_linear_score,0.01070761572612395,45
+mhci_num_weak_binders,0.010581839331523044,46
+ellipro_med_discontinuous_score,0.010413704905774389,47
+ProtLearn_Volume,0.010343707389461396,48
+rate4site_deeptmhmm_mean_outside_scores,0.010021171357627789,49
+rate4site_deeptmhmm_min_outside_scores,0.009936041828484624,50
+allergenicity_blast_score,0.009897559205780046,51
+mhci_num_strong_binders,0.009834753393113141,52
+ProtLearn_Average volume of buried residue,0.009441882231079935,53
+rate4site_mean_per_site_score,0.009396021152265267,54
+rate4site_min_per_site_score,0.009333408635073797,55
+ProtLearn_Relative mutability,0.008621852995889521,56
+ifnepitope2_med_total_score,0.00852360020197381,57
+ifnepitope2_med_ml_score,0.00846142640027205,58
+rate4site_max_per_site_score,0.008228516648253477,59
+deeplocpro_prob_periplasmic,0.007797797634144348,60
+rate4site_deeptmhmm_max_outside_scores,0.007621123626849983,61
+deeplocpro_prob_outer_membrane,0.007505045847372677,62
+cluster_conservation_num_clusters,0.004291464772602935,63
+allergenicity_merci_score,0.002871153784387788,64
+ProtLearn_Amino acid composition,0.0018895526111505421,65
+ProtLearn_Polarity,0.0012599744039115109,66
+ProtLearn_Hydrophobicity index,0.0011276321746054954,67
+ProtLearn_Hydropathy index,0.0003266731483711935,68
+ProtLearn_Hydrophobicity,0.00031095263956221105,69
+ProtLearn_pK (-COOH),0.0002635113621922337,70
+ProtLearn_Average flexibility indices,0.0,71
+ProtLearn_Composition,0.0,72
+ifnepitope2_mean_blast_score,0.0,73
+ifnepitope2_med_blast_score,0.0,74
