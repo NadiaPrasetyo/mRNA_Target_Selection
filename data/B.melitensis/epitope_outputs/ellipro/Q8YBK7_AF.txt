@@ -1,7 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,Q8YBK7_AF,A,13,22,MWFCWFGRLS,10,0.721,Linear
-2,Q8YBK7_AF,A,44,57,HSADYGYSMPWVQL,14,0.699,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,Q8YBK7_AF,A:C16, A:G19, A:R20, A:L21, A:S22, A:L25,6,0.711,Discontinous
-2,Q8YBK7_AF,A:S45, A:A46, A:D47, A:G49, A:Y50, A:S51, A:M52, A:P53, A:W54, A:V55, A:Q56,11,0.702,Discontinous

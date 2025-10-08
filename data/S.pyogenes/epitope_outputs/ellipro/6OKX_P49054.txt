@@ -1,7 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,6OKX_P49054,A,46,52,EDKLADY,7,0.665,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,6OKX_P49054,A:S30, A:E31, A:R32, A:H33,4,0.764,Discontinous
-2,6OKX_P49054,A:G1, A:S2, A:V3, A:E4, A:K5, A:L6, A:T7, A:A8, A:D9, A:E11, A:L12,11,0.729,Discontinous
-3,6OKX_P49054,A:E46, A:D47, A:K48, A:L49, A:A50, A:D51, A:Y52,7,0.665,Discontinous

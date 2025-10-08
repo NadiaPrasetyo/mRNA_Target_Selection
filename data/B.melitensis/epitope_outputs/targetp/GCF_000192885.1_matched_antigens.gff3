@@ -1,8 +1,0 @@
-##gff-version 3
-antigen_39|Q8YDX0||NC_017247.1|tpos:11943-11993	TargetP-2.0	signal_peptide	1	33	0.895220	.	.	.
-antigen_44|Q8YE08||NC_017247.1|tpos:27290-27926	TargetP-2.0	signal_peptide	1	27	0.978770	.	.	.
-antigen_1|F8WJX4||NC_017247.1|tpos:130432-130884	TargetP-2.0	transit_peptide	1	29	0.448435	.	.	Note=Mitochondrion
-antigen_136|D3XDZ5||NC_017246.1|tpos:230220-230429	TargetP-2.0	signal_peptide	1	20	0.999279	.	.	.
-antigen_65|Q8YGS9||NC_017246.1|tpos:286843-287269	TargetP-2.0	signal_peptide	1	31	0.592345	.	.	.
-antigen_5|P0A3U8|26|NC_017246.1|tpos:471302-471551	TargetP-2.0	signal_peptide	1	28	0.975205	.	.	.
-antigen_124|Q8YEC4|Lipoprotein|NC_017246.1|tpos:688193-688460	TargetP-2.0	signal_peptide	1	30	0.943552	.	.	.

@@ -5,7 +5,7 @@ Command-line tool to fetch protein sequence and metadata from UniProt based on a
 Overview:
     - Loads antigen records (antigen names, gene names, UniProt IDs) from a compiled CSV file.
     - Queries the UniProt API to retrieve full protein information for each antigen.
-    - Fetches RefSeq nucleotide sequences for matching proteins, if available.
+    - Fetches RefSeq nucleotide or protein sequences for matching entries, if available.
     - Parses and standardizes protein metadata including sequence, organism, domains, and features.
     - Compiles and saves the protein data into a new CSV file for downstream analysis.
 
@@ -16,6 +16,7 @@ Arguments:
                     `data/<pathogen>/<organism>_compiled_proteins.csv`.
     --input (str): Optional input CSV file path with antigen data. Defaults to
                    `data/<pathogen>/<organism>_compiled_antigens.csv`.
+    --fasta (bool): If specified, outputs protein data in FASTA format instead of CSV.
 
 Requirements:
     - Input CSV file with antigen data present in the specified pathogen directory.
@@ -25,13 +26,13 @@ Usage Example:
     python fetch_sequences_Uniprot.py sars_cov_2 "SARS-CoV-2" --output proteins.csv --input antigens.csv
 
 Outputs:
-    - A CSV file containing compiled protein metadata for the specified organism, including:
+    - A CSV file (or FASTA file if --fasta is specified) containing compiled protein metadata for the specified organism, including:
         - UniProt accession
         - Protein name
         - Protein sequence
         - Organism name
         - Pfam domains
-        - RefSeq nucleotide sequences (if available)
+        - RefSeq nucleotide or protein sequences (if available)
 
 Author: Nadia
 """

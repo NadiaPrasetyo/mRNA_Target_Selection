@@ -1,8 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,C1CTP8_AF,A,36,41,RKGRKV,6,0.723,Linear
-2,C1CTP8_AF,A,1,10,MKRTYQPSKL,10,0.675,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,C1CTP8_AF,A:K37, A:G38, A:R39,3,0.788,Discontinous
-2,C1CTP8_AF,A:S23, A:T24, A:K25, A:N26, A:R28, A:R29,6,0.636,Discontinous
-3,C1CTP8_AF,A:Y5, A:Q6, A:P7, A:S8, A:L10, A:R14,6,0.557,Discontinous

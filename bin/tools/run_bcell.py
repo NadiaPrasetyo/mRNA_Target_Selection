@@ -3,25 +3,27 @@ run_bcell.py
 Runner for B-cell epitope prediction tools.
 
 Overview:
-    - Applies B-cell epitope prediction algorithms (currently Bepipred) to a given FASTA file.
-    - Automatically patches deprecated imports and code in third-party tool dependencies for compatibility.
-    - Parses and saves prediction results as CSV files for downstream analysis.
-    - Optionally generates and saves plots for each prediction method.
+    - Applies the BepiPred-3.0 B-cell epitope prediction algorithm to a given FASTA file.
+    - Uses a Conda environment ('external_tools_env') to ensure all dependencies are met.
+    - Saves prediction results in a structured directory format for downstream analysis.
 
 Arguments:
     fasta_file (Path): Path to the input FASTA file containing protein sequence(s).
-    tool_path (str): Path to the main B-cell prediction tool script (e.g., bcell.py).
-    output_dir (Path): Directory where results and plots will be saved.
-    plot (bool, optional): Whether to generate and save plots for each method (default: True).
+    tool_path (str): Path to the BepiPred-3.0 CLI script (e.g., bepipred3_CLI.py).
+    output_dir (Path): Directory where prediction results will be saved.
 
 Requirements:
-    - Python packages: subprocess, pathlib, csv.
-    - The B-cell prediction tool and its dependencies must be installed and accessible.
-    - The script will attempt to patch deprecated code in 'configure.py' and 'src/util.py' if needed.
+    - Python packages: subprocess, pathlib, logging.
+    - A Conda environment named 'external_tools_env' must be created and configured with the required dependencies.
+    - The BepiPred-3.0 tool must be installed and accessible.
 
 Outputs:
-    <output_dir>/bcell/<fasta_file_stem>_<method>.csv   # Prediction results for each method
-    <output_dir>/bcell/plots/                           # Plots (if enabled)
+    <output_dir>/bcell/<fasta_file_stem>/               # Directory containing prediction results.
+
+Notes:
+    - This script uses the default prediction mode ('vt_pred') and thresholds provided by BepiPred-3.0.
+    - Logs are generated to provide detailed information about the execution process.
+    - Ensure that the Conda environment is activated and accessible before running the script.
 
 Author: Nadia
 """
@@ -34,17 +36,12 @@ def run(fasta_file: Path, tool_path: str, output_dir: Path):
     """
     Run BepiPred-3.0 predictor on a given FASTA file using the specified conda environment.
 
-    Parameters
-    ----------
-    fasta_file : Path
-        Path to input FASTA file containing protein sequence(s).
-    tool_path : str
-        Path to the BepiPred-3.0 installation directory (must contain bepipred3_CLI.py).
-    output_dir : Path
-        Path to the output directory where prediction results will be stored.
+    Args:
+        fasta_file : Path to input FASTA file containing protein sequence(s).
+        tool_path : Path to the BepiPred-3.0 installation directory (must contain bepipred3_CLI.py).
+        output_dir : Path to the output directory where prediction results will be stored.
 
-    Notes
-    -----
+    Notes:
     - This script assumes that a Conda environment named 'external_tools_env'
       is already created and contains all dependencies listed in requirements.txt.
     - It uses default prediction mode (vt_pred) and default thresholds.

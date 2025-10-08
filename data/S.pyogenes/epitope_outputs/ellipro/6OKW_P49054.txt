@@ -1,7 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,6OKW_P49054,A,49,52,LADY,4,0.813,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,6OKW_P49054,A:E26, A:R27, A:K29, A:S30, A:E31, A:R32, A:H33, A:D34,8,0.825,Discontinous
-2,6OKW_P49054,A:L49, A:A50, A:D51, A:Y52,4,0.813,Discontinous
-3,6OKW_P49054,A:L15, A:N17, A:E18, A:R19, A:H20,5,0.731,Discontinous

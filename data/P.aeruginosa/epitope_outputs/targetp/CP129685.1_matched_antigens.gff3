@@ -1,8 +1,0 @@
-##gff-version 3
-antigen_91|A0A023WGH4|OprD|CP129685.1|tpos:642324-642680	TargetP-2.0	transit_peptide	1	29	0.591069	.	.	Note=Mitochondrion
-antigen_101|A0A0F6RVG0|Multidrug|CP129685.1|tpos:1145219-1145674	TargetP-2.0	signal_peptide	1	18	0.946976	.	.	.
-antigen_89|A0A0H2ZCB8|Glucose/carbohydrate|CP129685.1|tpos:1830124-1830521	TargetP-2.0	signal_peptide	1	18	0.995400	.	.	.
-antigen_75|A0A0H2Z8K0|Alkaline|CP129685.1|tpos:516036-516516	TargetP-2.0	signal_peptide	1	24	0.926945	.	.	.
-antigen_103|A0A073A194|Multidrug|CP129685.1|tpos:1145207-1145678	TargetP-2.0	signal_peptide	1	26	0.964373	.	.	.
-antigen_84|A0A0H2ZFZ5|Type|CP129685.1|tpos:1867844-1868645	TargetP-2.0	signal_peptide	1	22	0.998198	.	.	.
-antigen_102|A0A072ZF12|AdeC/adeK/oprM|CP129685.1|tpos:1881843-1882308	TargetP-2.0	signal_peptide	1	24	0.930552	.	.	.

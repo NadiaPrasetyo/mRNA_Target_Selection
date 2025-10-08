@@ -8,19 +8,22 @@ Each raw CSV is expected to contain at least these columns:
  - feature
  - subfeature
  - value
- - label
+ - label (optional)
 
 Pipeline:
  1) Load and concatenate data per bacterium
  2) Pivot to accession x feature_subfeature matrix (mean of replicates)
- 3) Train RandomForest on all bacteria EXCEPT the test bacterium (default: S.aureus)
- 4) Compute feature importances (feature usefulness)
- 5) Predict probabilities on test bacterium and save CSV sorted by probability (desc)
+ 3) Align feature columns across all bacteria (union of features, fill missing with 0)
+ 4) Train RandomForest on all bacteria EXCEPT the test bacterium (default: S.aureus)
+ 5) Validate on a small hold-out set from the training data
+ 6) Compute feature importances (feature usefulness)
+ 7) Predict probabilities on the test bacterium and save CSV sorted by probability (desc)
 
 Outputs (saved in output_dir):
- - saureus_predictions.csv  (accession, prob_antigen, pred_label, true_label if available)
+ - <test_bacterium>_predictions.csv  (accession, prob_antigen, pred_label, true_label if available)
+ - <test_bacterium>_features_with_probs.csv (full feature matrix with probabilities)
  - feature_importances.csv (feature, importance, rank)
- - model_report.txt        (train/test sizes, AUC if labels exist on test)
+ - model_report.txt        (train/test sizes, accuracy, AUC if labels exist on test)
 """
 
 import os
@@ -40,6 +43,9 @@ from sklearn.model_selection import train_test_split
 # Logging setup
 # ----------------------
 def setup_logging(verbose: bool) -> None:
+    """
+    Setup logging configuration.
+    """
     level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(
         level=level,
@@ -50,7 +56,13 @@ def setup_logging(verbose: bool) -> None:
 # Data loading utils
 # ----------------------
 def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
-    """Load and concatenate all raw data CSVs for a bacterium."""
+    """Load and concatenate all raw data CSVs for a bacterium.
+    Args:
+        base_dir (str): Base directory containing bacterium subdirectories.
+        bacterium (str): Name of the bacterium (subdirectory name).
+    Returns:
+        pd.DataFrame: Concatenated DataFrame of all raw data for the bacterium.
+    """
     folder = os.path.join(base_dir, bacterium, "raw_data")
     logging.info(f"Loading data for bacterium '{bacterium}' from: {folder}")
     files = glob.glob(os.path.join(folder, "*_raw_data.csv"))
@@ -77,7 +89,7 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
 # ----------------------
 # Preprocess & pivot
 # ----------------------
-def preprocess_and_pivot(df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[pd.Series]]:
+def preprocess_and_pivot(df: pd.DataFrame):
     """
     Build feature matrix:
       - feature_subfeature = feature_subfeature
@@ -137,6 +149,8 @@ def preprocess_and_pivot(df: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[pd.Se
 def make_binary_labels(labels: pd.Series) -> Tuple[np.ndarray, LabelEncoder]:
     """
     Convert labels to binary 0/1.
+    Args:
+      labels (pd.Series): Input labels.
     Heuristic:
       - If labels are numeric and only {0,1}, use directly
       - If any label contains 'antigen'/'positive'/'pos' (case-ins), map those to 1
@@ -198,6 +212,15 @@ def train_rf(X_train: pd.DataFrame, y_train: np.ndarray, n_estimators:int=500, r
 # Main pipeline
 # ----------------------
 def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: str, verbose: bool) -> None:
+    """
+    Main pipeline function.
+    Args:
+        base_dir (str): Base directory containing bacterium subdirectories.
+        output_dir (str): Directory to save outputs.
+        input_dirs (List[str]): List of bacterium names to include.
+        test_bacterium (str): Name of the bacterium to hold out for testing.
+        verbose (bool): Whether to enable verbose logging.
+    """
     setup_logging(verbose)
     os.makedirs(output_dir, exist_ok=True)
 
@@ -293,7 +316,7 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     # 4) Train Random Forest
     rf = train_rf(X_tr_imputed, y_tr)
 
-    # Validate
+        # Validate
     val_probs = rf.predict_proba(X_val_imputed)[:, 1]
     val_preds = (val_probs >= 0.5).astype(int)
     val_auc = None
@@ -304,12 +327,21 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     val_acc = accuracy_score(y_val, val_preds)
     logging.info(f"Validation ACC: {val_acc:.4f} AUC: {val_auc if val_auc is None else val_auc:.4f}")
 
+    # Compute class splits
+    def class_split(y: np.ndarray) -> Tuple[int, int]:
+        pos = int((y == 1).sum())
+        neg = int((y == 0).sum())
+        return pos, neg
+
+    train_pos, train_neg = class_split(y_tr)
+    val_pos, val_neg = class_split(y_val)
+
     # Save model report
     report_path = os.path.join(output_dir, "model_report.txt")
     with open(report_path, "w") as fh:
         fh.write(f"Training bacteria: {train_bacts}\n")
-        fh.write(f"Training samples: {X_tr.shape[0]}\n")
-        fh.write(f"Validation samples: {X_val.shape[0]}\n")
+        fh.write(f"Training samples: {X_tr.shape[0]} (pos={train_pos}, neg={train_neg})\n")   ### ADDED
+        fh.write(f"Validation samples: {X_val.shape[0]} (pos={val_pos}, neg={val_neg})\n")   ### ADDED
         fh.write(f"Validation accuracy: {val_acc:.4f}\n")
         fh.write(f"Validation AUC: {val_auc}\n")
 
@@ -362,17 +394,21 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     X_test_export.to_csv(os.path.join(output_dir, f"{test_bacterium.replace('.','_')}_features_with_probs.csv"))
     logging.info("Saved test features with probabilities.")
 
-    # If test labels exist compute metrics
+        # If test labels exist compute metrics
     if y_test is not None:
         try:
             test_auc = roc_auc_score(y_test, test_probs)
         except Exception:
             test_auc = None
         test_acc = accuracy_score(y_test, test_preds)
+
+        # Positive/negative counts for test set
+        test_pos, test_neg = class_split(y_test)
+
         logging.info(f"Test ACC: {test_acc:.4f} AUC: {test_auc}")
         with open(report_path, "a") as fh:
             fh.write(f"Test bacterium: {test_bacterium}\n")
-            fh.write(f"Test samples: {X_test_imputed.shape[0]}\n")
+            fh.write(f"Test samples: {X_test_imputed.shape[0]} (pos={test_pos}, neg={test_neg})\n") 
             fh.write(f"Test accuracy: {test_acc:.4f}\n")
             fh.write(f"Test AUC: {test_auc}\n")
 
@@ -383,6 +419,7 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
 # CLI
 # ----------------------
 if __name__ == "__main__":
+    """ Main entry point """
     parser = argparse.ArgumentParser(description="Random Forest antigenicity pipeline")
     parser.add_argument("--base-dir", type=str, default="./results", help="Base directory containing <bacterium>/raw_data/*_raw_data.csv")
     parser.add_argument("--output-dir", type=str, default="./results", help="Directory to save outputs")

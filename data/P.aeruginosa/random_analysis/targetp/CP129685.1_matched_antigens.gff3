@@ -1,9 +1,0 @@
-##gff-version 3
-antigen_63|P72131|HTH-type|CP129685.1|tpos:1166476-1166763	TargetP-2.0	transit_peptide	1	24	0.959010	.	.	Note=Mitochondrion
-antigen_4|Q51371|Mannuronan|CP129685.1|tpos:1629518-1630060	TargetP-2.0	signal_peptide	1	35	0.935055	.	.	.
-antigen_77|Q9I3N0|Cytochrome|CP129685.1|tpos:711453-711607	TargetP-2.0	signal_peptide	1	20	0.999766	.	.	.
-antigen_102|B7UV86|Potassium-transporting|CP129685.1|tpos:767933-768115	TargetP-2.0	signal_peptide	1	22	0.871544	.	.	.
-antigen_103|P50601|Tol-Pal|CP129685.1|tpos:582887-583317	TargetP-2.0	signal_peptide	1	20	0.999751	.	.	.
-antigen_36|O86422|UDP-glucose|CP129685.1|tpos:932203-932655	TargetP-2.0	signal_peptide	1	20	0.861026	.	.	.
-antigen_184|Q02KC0|Potassium-transporting|CP129685.1|tpos:767933-768115	TargetP-2.0	signal_peptide	1	22	0.871544	.	.	.
-antigen_37|Q02R18|Alginate|CP129685.1|tpos:1630540-1630906	TargetP-2.0	signal_peptide	1	27	0.973270	.	.	.

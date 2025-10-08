@@ -42,6 +42,13 @@ MHCII_DEFAULT = [
 
 
 def run(fasta_file, tool_path, output_dir):
+    """
+    Run NetMHCIIpan-4.3 on a given FASTA file.
+    Args:
+        fasta_file : Path to the input FASTA file containing peptide/protein sequences.
+        tool_path : Path to the NetMHCIIpan-4.3 executable.
+        output_dir : Directory where output files will be stored. Results are placed in a 'mhcii' subfolder.
+    """
     # Default parameters
     rank_threshold = 1.0
     weak_threshold = 5.0

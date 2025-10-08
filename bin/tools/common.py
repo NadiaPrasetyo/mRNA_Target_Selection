@@ -3,19 +3,22 @@ common.py
 Common utility functions and constants for mRNA Target Selection pipeline.
 
 This module provides shared utilities for directory management, file handling, tool validation,
-allele panel selection, and FASTA/JSON conversion used throughout the mRNA Target Selection workflow.
+FASTA/JSON conversion, and peptide generation used throughout the mRNA Target Selection workflow.
 
 General Functionality:
     - Ensures output and temporary directories exist and are writable.
     - Locates and validates external tool executables (SignalP, TargetP, TMHMM, IEDB tools, etc.).
-    - Provides allele panel presets and selection logic for MHC-I and MHC-II.
-    - Converts FASTA files to text and JSON formats for downstream processing.
-    - Cleans up temporary directories and files.
-    - Includes helper functions for parsing and preparing input/output files.
+    - Provides helper functions for parsing and preparing input/output files.
     - Groups sequences from multiple FASTA files by accession code and merges them.
+    - Renames FASTA headers to include only accession codes and strain information.
     - Splits protein FASTA files into peptide FASTA files using a sliding window.
-    - Contains unit tests for key parsing and conversion functions.
-
+    - Converts FASTA files to text format for downstream processing.
+    - Validates peptide sequences based on length and amino acid composition.
+    - Prepares output directories for selected tools and cleans up temporary directories.
+    - Checks and creates Conda environments for external tools if needed.
+    - Retrieves structure files and FASTA files from specified directories.
+    - Detects and validates selected antigen tools and IEDB tools.
+    - Includes unit tests for key parsing, conversion, and validation functions.
 
 Author: Nadia
 """
@@ -156,7 +159,14 @@ DISCOTOPE_ENV_NAME = "discotope_tools_env"
 DISCOTOPE_ENV_YML = Path("discotope_tools_dependencies.yml")
 
 def create_conda_env_if_needed(conda_env_name, conda_env_yml):
-    """Create Conda environment if it doesn't exist."""
+    """
+    Create Conda environment if it doesn't exist.
+    Args:
+        conda_env_name (str): Name of the Conda environment.
+        conda_env_yml (Path): Path to the Conda environment YAML file.
+    Returns:
+        None
+    """
     logging.info(f"🔍 Checking for Conda environment '{conda_env_name}'...")
     result = subprocess.run(["conda", "env", "list"], capture_output=True, text=True)
 

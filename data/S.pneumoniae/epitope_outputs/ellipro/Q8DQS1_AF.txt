@@ -1,6 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,Q8DQS1_AF,A,1,5,MRKEF,5,0.748,Linear
-2,Q8DQS1_AF,A,22,27,RDYNRK,6,0.648,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,Q8DQS1_AF,A:D23, A:Y24, A:N25,3,0.617,Discontinous

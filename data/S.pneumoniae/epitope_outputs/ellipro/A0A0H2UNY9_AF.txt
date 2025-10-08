@@ -1,6 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,A0A0H2UNY9_AF,A,1,4,MRKE,4,0.778,Linear
-2,A0A0H2UNY9_AF,A,23,27,DYNRK,5,0.763,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,A0A0H2UNY9_AF,A:R22, A:D23, A:Y24,3,0.568,Discontinous

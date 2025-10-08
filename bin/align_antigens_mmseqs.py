@@ -1,28 +1,31 @@
 """
 align_antigens_mmseqs.py
 
-Command-line tool to align antigen protein sequences against translated strain genome sequences using MMseqs2.
+Command-line tool to align antigen sequences against strain genome sequences using MMseqs2.
 
 Overview:
     - Converts a compiled antigen CSV file to FASTA format.
-    - Aligns antigens to each strain's translated genome using MMseqs2.
+    - Aligns antigens to each strain's genome or proteome using MMseqs2.
     - Extracts the best alignment hits for each antigen.
     - Saves results as TSV (all alignments, best hits) and FASTA (matched antigen regions).
 
 Arguments:
     pathogen_directory (str): Subdirectory under `data/` containing pathogen data.
     pathogen_name (str): Scientific name of the pathogen (used to infer antigen file names).
+    --genome-dir (str, optional): Subdirectory under pathogen_directory containing strain genome or proteome FASTA files (default: strain_genomes).
     --threads (int, optional): Number of parallel workers (default: 4).
+    --mode (str, optional): Alignment mode, either "protein" or "nucleotide" (default: protein).
     --output-dir (str, optional): Output subdirectory (default: mmseqs_results).
     --fetch-qseq (flag, optional): If set, includes query sequences in MMseqs2 output.
+    --verbose (flag, optional): Enables verbose logging to console and file.
 
 Requirements:
     - MMseqs2 installed and available in PATH.
-    - Antigen CSV file with columns: uniprot_accession, protein_name, sequence.
-    - Translated strain genome FASTA files named *_translated.fasta.
+    - Antigen CSV file with columns: uniprot_accession, protein_name, sequence (and nucleotide_sequence if in nucleotide mode).
+    - Strain genome or proteome FASTA files named appropriately.
 
 Usage Example:
-    python align_antigens_mmseqs.py sars_cov_2 "SARS-CoV-2" --threads 8 --fetch-qseq
+    python align_antigens_mmseqs.py sars_cov_2 "SARS-CoV-2" --threads 8 --fetch-qseq --mode protein
 
 Outputs:
     <output_dir>/<strain>_alignment.tsv         # Raw MMseqs2 alignments

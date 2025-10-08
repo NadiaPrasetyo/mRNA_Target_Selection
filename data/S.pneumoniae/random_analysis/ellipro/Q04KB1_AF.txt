@@ -1,8 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,Q04KB1_AF,A,58,70,KVMQEDGTESDFE,13,0.774,Linear
-2,Q04KB1_AF,A,22,33,ENGEIALEDAIT,12,0.699,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,Q04KB1_AF,A:K58, A:V59, A:M60, A:Q61, A:E62, A:D63, A:G64, A:T65, A:E66, A:S67, A:D68, A:F69,12,0.757,Discontinous
-2,Q04KB1_AF,A:M1, A:S2, A:K3, A:Q4, A:K5, A:K6, A:E8, A:E9,8,0.73,Discontinous
-3,Q04KB1_AF,A:E22, A:N23, A:G24, A:E25, A:I26, A:A27, A:L28, A:E29, A:D30, A:A31, A:I32, A:T33, A:Q36,13,0.688,Discontinous

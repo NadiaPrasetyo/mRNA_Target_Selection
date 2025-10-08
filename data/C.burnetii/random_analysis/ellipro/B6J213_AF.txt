@@ -1,9 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,B6J213_AF,A,15,28,GNNVSHANKKTNRR,14,0.766,Linear
-2,B6J213_AF,A,35,46,KRRFWLPDEKRF,12,0.629,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,B6J213_AF,A:E77, A:S78, A:K79,3,0.92,Discontinous
-2,B6J213_AF,A:G15, A:N16, A:N17, A:V18, A:S19, A:H20, A:A21, A:N22, A:K23, A:K24, A:T25, A:N26,12,0.814,Discontinous
-3,B6J213_AF,A:R37, A:W39, A:P41, A:D42, A:E43, A:R45, A:F46,7,0.68,Discontinous
-4,B6J213_AF,A:K61, A:L62, A:G63,3,0.624,Discontinous

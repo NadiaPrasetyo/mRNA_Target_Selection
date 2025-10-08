@@ -1,18 +1,48 @@
 #!/usr/bin/env python3
 """
 run_whole_pipeline.py
+Master pipeline script for the mRNA target selection workflow.
 
-Master pipeline script to run the complete mRNA target selection workflow.
+Overview:
+    - Orchestrates the entire pipeline from IEDB data fetching to final analysis.
+    - Supports modular execution of pipeline steps, including skipping or running specific steps.
+    - Handles random sequence generation and processing for statistical comparisons.
+    - Tracks and logs progress, including detailed error reporting for failed steps.
+    - Supports dry-run mode to preview commands without execution.
 
-This script orchestrates the entire pipeline from IEDB data fetching through final analysis,
-running all tools in the correct order with appropriate dependencies, including random sequence
-generation and processing for statistical comparison.
+Arguments:
+    -pd, --pathogen_dir (str): Subdirectory under `data/` for pathogen data (e.g., sars_cov_2).
+    -n, --pathogen_name (str): Full pathogen name (e.g., "SARS-CoV-2").
+    -tr, --tool-root (str): Root directory containing tool executables (required for IEDB and analysis tools).
+    -t, --threads (int): Number of threads to use (default: 4).
+    -r, --random-genomes (int): Number of random genomes to fetch (default: 5).
+    --pfam-hmm (str): Path to Pfam-A.hmm file (required for Pfam analysis).
+    --skip (list): Steps to skip (choices: iedb, compile, uniprot, random, genomes, align, pdb, pfam, analysis, epitopes, features).
+    --steps (list): Steps to run (choices: iedb, compile, uniprot, random, genomes, align, pdb, pfam, analysis, epitopes, features).
+    --verbose: Enable verbose logging for debugging.
+    --dry-run: Show commands without executing them.
+    --human-negative: Use human sequences instead of random sequences as a negative set.
 
-Usage:
-    python run_whole_pipeline.py <pathogen_dir> <pathogen_name> [options]
+Requirements:
+    - External tools: mmseqs, wget, and others as required by specific steps.
+    - Python packages: argparse, pathlib, subprocess, logging, shutil.
+    - Input data: Pathogen directory and associated files for the pipeline.
+
+Outputs:
+    data/<pathogen_dir>/pipeline.log: Log file for the pipeline execution.
+    data/<pathogen_dir>/<step>/<output_files>: Step-specific output files organized by step.
+
+Features:
+    - Modular execution: Run all or specific steps, with options to skip steps.
+    - Dry-run mode for previewing commands without execution.
+    - Automatic dependency checks for required tools.
+    - Detailed logging of progress, including stdout/stderr for each command.
+    - Tracks and reports failed steps for easier debugging.
 
 Example:
-    python run_whole_pipeline.py sars_cov_2 "SARS-CoV-2" --tool-root /opt/bio_tools --threads 8
+    python run_whole_pipeline.py -pd sars_cov_2 -n "SARS-CoV-2" -tr /opt/bio_tools --threads 8 --verbose
+
+Author: Nadia
 """
 
 import argparse
@@ -112,6 +142,7 @@ def check_dependencies():
     return True
 
 def main():
+    """Main function to run the complete pipeline."""
     parser = argparse.ArgumentParser(
         description="Run the complete mRNA target selection pipeline",
         formatter_class=argparse.RawDescriptionHelpFormatter

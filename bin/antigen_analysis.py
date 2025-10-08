@@ -4,17 +4,18 @@ Runner for the antigen analysis pipeline.
 
 Overview:
     - Scans a specified pathogen sequence directory for FASTA files.
-    - Runs selected prediction tools (SignalP, TargetP, Cluster, AlgPred, DeepLocPro, IfNePitope2, DeepTMHMM, MAFFT, MAFFT_RATE4SITE) on each FASTA file.
+    - Runs selected prediction tools (SignalP, TargetP, Cluster, AlgPred, DeepLocPro, IfNePitope2, DeepTMHMM, MAFFT, MAFFT_RATE4SITE, DNDS) on each FASTA file.
     - Supports parallel execution for efficient processing, with serial execution for tools requiring it (e.g., AlgPred, IfNePitope2, DeepTMHMM).
     - Organizes results into structured output directories.
     - Cleans up intermediate and temporary files after processing.
+    - Checks if jobs are already completed to avoid redundant processing.
 
 Arguments:
     pathogen_dir (str): Subdirectory under `data/` containing pathogen data.
     sequence_dir (str): Subdirectory under `pathogen_dir` containing FASTA files.
     --tool-root (str): Root directory containing tool wrappers and executables (required for SignalP, TargetP, DeepLocPro).
     --threads (int): Number of parallel threads to use (default: 4).
-    --tools (list): List of tools to run (choices: SIGNALP, TARGETP, CLUSTER, ALGPRED, DEEPLOC, IFNEPITOPE2, DEEPTMHMM, MAFFT, MAFFT_RATE4SITE; default: all).
+    --tools (list): List of tools to run (choices: SIGNALP, TARGETP, CLUSTER, ALGPRED, DEEPLOC, IFNEPITOPE2, DEEPTMHMM, MAFFT, MAFFT_RATE4SITE, DNDS; default: all except MAFFT and DNDS).
     --batch-size (int): Batch size for SignalP/TargetP (default: 10000).
     --output-dir (str): Output directory for results (default: epitope_outputs).
     --verbose: Enable verbose output for debugging.
@@ -24,6 +25,7 @@ Requirements:
     - Tool wrappers and executables for all selected tools available under `tool-root` as needed.
     - Input FASTA files present in the specified sequence directory.
     - Python packages: argparse, pathlib, concurrent.futures, logging, shutil.
+    - Conda environment for tools like AlgPred, IfNePitope2, DNDS, and MAFFT_RATE4SITE.
 
 Outputs:
     data/<pathogen_dir>/<output_dir>/<tool>/<input_file>_<tool>.out   # Prediction results for each tool and input
@@ -35,6 +37,13 @@ Outputs:
     data/<pathogen_dir>/<output_dir>/mafft_rate4site/<input_file>.fasta # MAFFT_RATE4SITE alignment
     data/<pathogen_dir>/<output_dir>/mafft_rate4site/<input_file>.tree  # MAFFT_RATE4SITE tree
     data/<pathogen_dir>/<output_dir>/mafft_rate4site/rate4site_results/ # Rate4Site results directory
+    data/<pathogen_dir>/<output_dir>/dnds/<input_file>_results.json   # DNDS results
+
+Features:
+    - Parallel and serial job execution for optimal performance.
+    - Automatic cleanup of intermediate files to save disk space.
+    - Skips already processed jobs based on existing output files.
+    - Logs detailed progress and errors for debugging.
 
 Author: Nadia
 """

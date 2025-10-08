@@ -1,8 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,C1CIB5_AF,A,9,21,TKSPIGRIPSQRK,13,0.635,Linear
-2,C1CIB5_AF,A,28,33,LGKLNS,6,0.6,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,C1CIB5_AF,A:M1, A:A2, A:Q3, A:E38, A:D39, A:N40, A:A41, A:A42, A:R44, A:E58, A:V59, A:N60,12,0.739,Discontinous
-2,C1CIB5_AF,A:T9, A:K10, A:S11, A:P12, A:I13, A:G14, A:R15, A:I16, A:P17, A:S18, A:R20, A:K21, A:L53,13,0.623,Discontinous
-3,C1CIB5_AF,A:L28, A:G29, A:K30, A:L31, A:N32, A:S33,6,0.6,Discontinous

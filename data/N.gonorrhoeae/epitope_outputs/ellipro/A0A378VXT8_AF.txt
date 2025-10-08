@@ -1,7 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,A0A378VXT8_AF,A,24,29,VMPATS,6,0.695,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,A0A378VXT8_AF,A:T23, A:V24, A:M25, A:P26, A:A27, A:T28, A:S29,7,0.616,Discontinous
-2,A0A378VXT8_AF,A:K8, A:I9, A:G10, A:G11, A:L12, A:G13,6,0.517,Discontinous
-3,A0A378VXT8_AF,A:Q2, A:D17, A:I18,3,0.506,Discontinous

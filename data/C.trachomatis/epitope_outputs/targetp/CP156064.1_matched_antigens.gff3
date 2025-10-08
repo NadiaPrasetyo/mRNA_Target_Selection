@@ -1,8 +1,0 @@
-##gff-version 3
-antigen_54|Q9S529|Metal-binding|CP156064.1|tpos:25279-25604	TargetP-2.0	signal_peptide	1	30	0.918159	.	.	.
-antigen_122|A0A0H2X3D0|Periplasmic|CP156064.1|tpos:306502-306998	TargetP-2.0	signal_peptide	1	21	0.964682	.	.	.
-antigen_58|O84418|Probable|CP156064.1|tpos:150358-152111	TargetP-2.0	signal_peptide	1	22	0.995520	.	.	.
-antigen_60|A4ZW48|PmpE|CP156064.1|tpos:149422-150281	TargetP-2.0	transit_peptide	1	57	0.495403	.	.	Note=Mitochondrion
-antigen_25|O84623|Uncharacterized|CP156064.1|tpos:221638-221903	TargetP-2.0	transit_peptide	1	32	0.624938	.	.	Note=Mitochondrion
-antigen_50|P18584|Probable|CP156064.1|tpos:306502-306998	TargetP-2.0	signal_peptide	1	21	0.964682	.	.	.
-antigen_62|O84879|Probable|CP156064.1|tpos:149377-150266	TargetP-2.0	signal_peptide	1	16	0.974858	.	.	.

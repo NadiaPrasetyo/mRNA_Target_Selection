@@ -1,9 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,B4RL58_AF,A,30,35,CKSNPR,6,0.634,Linear
-2,B4RL58_AF,A,12,17,QRHRDC,6,0.524,Linear
-3,B4RL58_AF,A,3,9,VLSSLKT,7,0.523,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,B4RL58_AF,A:R21, A:G24, A:K25,3,0.748,Discontinous
-2,B4RL58_AF,A:K8, A:T9, A:Q12, A:R13,4,0.634,Discontinous
-3,B4RL58_AF,A:H14, A:R15, A:D16, A:C17, A:C30, A:K31, A:S32, A:N33, A:P34, A:K37,10,0.524,Discontinous
