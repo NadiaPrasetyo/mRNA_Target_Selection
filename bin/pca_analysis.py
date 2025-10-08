@@ -666,20 +666,24 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     # ----------------------
     logging.info("Computing Spearman correlation matrix...")
     corr_matrix, _ = spearmanr(X_dense, axis=0)
-
-    if corr_matrix.ndim == 1:
-        corr_matrix = np.expand_dims(corr_matrix, axis=0)
-
     corr_df = pd.DataFrame(corr_matrix, index=feature_names, columns=feature_names)
-
+    
+    # Identify and report problematic columns
     nan_cols = corr_df.columns[corr_df.isna().all()]
     if len(nan_cols) > 0:
-        logging.warning(f"These features have constant values and no Spearman correlation: {list(nan_cols)}")
+	    logging.warning(
+		f"These features have constant values and no Spearman correlation: {list(nan_cols)}"
+	    )
+    # EITHER drop them:
+    corr_df = corr_df.drop(index=nan_cols, columns=nan_cols)
+
+    # OR (alternative) keep them but fill NaNs:
+    # corr_df = corr_df.fillna(0)
 
     # ----------------------
     # Clustered heatmap
     # ----------------------
-    g = sns.clustermap(corr_df, cmap="coolwarm", center=0, figsize=(14, 12))
+    g = sns.clustermap(corr_df, cmap="coolwarm", center=0, figsize=(21, 18))
 
     # ✅ Keep labels only on the right
     g.ax_heatmap.tick_params(
@@ -690,10 +694,11 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
         right=True,      # keep right ticks
         labelright=True, # keep right labels
         top=False,       # remove top ticks
-        labeltop=False   # remove top labels
+        labeltop=False,   # remove top labels
+        labelsize=10
     )
 
-    plt.savefig(os.path.join(output_dir, "correlation_matrix_spearman.png"), dpi=300)
+    plt.savefig(os.path.join(output_dir, "correlation_matrix_spearman.png"), dpi=600, bbox_inches="tight")
     plt.close()
 
     # ----------------------
