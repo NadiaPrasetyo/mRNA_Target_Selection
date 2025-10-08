@@ -245,7 +245,6 @@ def parse_mhc_dir(directory):
                         percentile = float(parts[12 if prefix == "mhci" else 9])
                         binding_strength = parts[14 if prefix == "mhci" else 12] if len(parts) > (13 if prefix == "mhci" else 11) else "NA"
 
-                        logging.debug(f"Parsed line {i} in {file}: accession={accession}, score={score}, percentile={percentile}, binding_strength={binding_strength}")
                         num_peptides[accession] += 1
                         # Filter for Strong Binders only
                         if "SB" in binding_strength:
