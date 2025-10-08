@@ -146,8 +146,7 @@ def parse_bcell_dir(directory):
                 if "Bcell_epitope_preds" in f and f.endswith(".fasta")]
 
         for file in files:
-            path = os.path.join(subdir_path, file)  
-            logging.debug(f"Parsing B-cell file: {path}")
+            path = os.path.join(subdir_path, file)
             # parse_file(path)
             try:
                 with open(path) as f:
@@ -219,7 +218,6 @@ def parse_mhc_dir(directory):
 
     for file in files:
         path = os.path.join(directory, file)
-        logging.debug(f"Parsing MHC file: {file}")
         try:
             with open(path) as f:
                 data = f.readlines()
@@ -246,9 +244,6 @@ def parse_mhc_dir(directory):
                         score = float(parts[11 if prefix == "mhci" else 8])
                         percentile = float(parts[12 if prefix == "mhci" else 9])
                         binding_strength = parts[14 if prefix == "mhci" else 12] if len(parts) > (13 if prefix == "mhci" else 11) else "NA"
-
-                        logging.debug(f"Parsed line {i} in {file}: accession={accession}, score={score}, percentile={percentile}, binding_strength={binding_strength}")
-                        num_peptides[accession] += 1
                         # Filter for Strong Binders only
                         if "SB" in binding_strength:
                             num_sb[accession] += 1
@@ -494,18 +489,17 @@ def parse_cluster_dir(directory):
                     if len(query_id.split('|'))>=4:  #skip all the AF sequences
                         query_accession = f"{query_id.split('|')[1]}_{query_id.split('|')[3]}"
                     else:
-                        query_accession = query_id
-                        logging.info(f"query id: {query_id}, query accession: {query_accession}")
+                        query_accession = query_id.replace('|', '_')
+                        logging.debug(f"query id: {query_id}, query accession: {query_accession}")
 
                     member_id = parts[1]
                     if len(member_id.split('|'))>=4: 
                         member_accession = f"{member_id.split('|')[1]}_{member_id.split('|')[3]}"
-                        strain = {member_id.split('|')[3]}
+                        strain = member_id.split('|')[3]
                     else:
-                        member_accession = member_id
-                        strain = {"unknown"}
-                        logging.info(f"member id: {member_id}, member accession: {member_accession}, strain: {strain}")
-                    logging.info(f"member id: {member_id}, member accession: {member_accession}, strain: {strain}")
+                        member_accession = member_id.replace('|', '_')
+                        strain = "unknown"
+                        logging.debug(f"member id: {member_id}, member accession: {member_accession}, strain: {strain}")
                     unique_strains.add(strain) #collect unique strains from ALL the clusters
                     try:
                         percent_identity = float(parts[2])
