@@ -218,6 +218,7 @@ def parse_mhc_dir(directory):
 
     for file in files:
         path = os.path.join(directory, file)
+        logging.debug(f"{prefix}:Parsing MHC file {file}")
         try:
             with open(path) as f:
                 data = f.readlines()
@@ -233,6 +234,7 @@ def parse_mhc_dir(directory):
                     # skip all lines without <=
                     if "<=" not in line:
                         continue
+                    logging.debug(f"{prefix}: Processing line {i} in {file}")
 
                     parts = line.split()
                     if len(parts) < 10:
@@ -256,6 +258,7 @@ def parse_mhc_dir(directory):
                         logging.debug(f"{prefix}: Skipping line {i} in {file} due to conversion error: {e}")
 
                 for accession in num_peptides:
+                    logging.debug(f"{prefix}: Accession {accession} has {num_peptides[accession]} peptides")
                     avg_score = float(statistics.mean(scores[accession])) if scores[accession] else 0
                     avg_percentile = float(statistics.mean(percentiles[accession])) if percentiles[accession] else 0
                     results.append({"accession": accession, "feature": prefix, "subfeature": "score", "value": avg_score})
