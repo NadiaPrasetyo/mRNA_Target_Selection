@@ -1,0 +1,21 @@
+##gff-version 3
+antigen_36|A0A0E7XNV3|Pneumococcal|WP_000672604.1|tpos:1-1019	TargetP-2.0	signal_peptide	1	24	0.816236	.	.	.
+antigen_37|A0A5C5EC23|Pneumococcal|WP_000700371.1|tpos:1-315	TargetP-2.0	signal_peptide	1	21	0.725001	.	.	.
+antigen_38|A0A6G2D4Q2|Pneumococcal|WP_000700371.1|tpos:1-315	TargetP-2.0	signal_peptide	1	21	0.725001	.	.	.
+antigen_47|Q8DQ24|Foldase|WP_000727935.1|tpos:1-313	TargetP-2.0	signal_peptide	1	21	0.992317	.	.	.
+antigen_62|O05168|PCPC|WP_000698049.1|tpos:1-291	TargetP-2.0	signal_peptide	1	27	0.996557	.	.	.
+antigen_28|A0A0H2ZRA8|Cell|WP_000750092.1|tpos:1-2138	TargetP-2.0	signal_peptide	1	27	0.963421	.	.	.
+antigen_46|A0A0T8T3N8|Endo-beta-N-acetylglucosaminidase|WP_076750293.1|tpos:20-633	TargetP-2.0	signal_peptide	1	23	0.999625	.	.	.
+antigen_61|Q9KGY9|Choline|WP_000771052.1|tpos:1-282	TargetP-2.0	signal_peptide	1	27	0.997187	.	.	.
+antigen_52|P0A4G3|Manganese|WP_000733056.1|tpos:1-309	TargetP-2.0	signal_peptide	1	23	0.998904	.	.	.
+antigen_55|A0A0B7LWN8|Oligopeptide-binding|WP_000742234.1|tpos:1-659	TargetP-2.0	signal_peptide	1	21	0.999563	.	.	.
+antigen_34|A0A098ZLB0|ABC|WP_000724037.1|tpos:1-501	TargetP-2.0	signal_peptide	1	19	0.993226	.	.	.
+antigen_35|A0A064C4V0|Adhesion|WP_000744532.1|tpos:1-305	TargetP-2.0	signal_peptide	1	21	0.998481	.	.	.
+antigen_25|A0A0S2VEM8|CbpG|WP_000771052.1|tpos:221-300	TargetP-2.0	transit_peptide	1	23	0.437321	.	.	Note=Mitochondrion
+antigen_11|Q8DQ08|Pneumococcal|WP_061390492.1|tpos:1-839	TargetP-2.0	signal_peptide	1	21	0.769671	.	.	.
+antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|WP_000698588.1|tpos:1-448	TargetP-2.0	signal_peptide	1	40	0.784809	.	.	.
+antigen_8|Q8DPK5|ABC|WP_000726258.1|tpos:1-721	TargetP-2.0	signal_peptide	1	23	0.999257	.	.	.
+antigen_10|Q8DQ07|Pneumococcal|WP_000672604.1|tpos:1-1019	TargetP-2.0	signal_peptide	1	24	0.816236	.	.	.
+antigen_24|A0A064BZ27|Choline|WP_000728282.1|tpos:1-624	TargetP-2.0	signal_peptide	1	25	0.996306	.	.	.
+antigen_53|A0A4J2EQE8|exo-alpha-sialidase|WP_001042140.1|tpos:1-697	TargetP-2.0	signal_peptide	1	29	0.932166	.	.	.
+antigen_39|A0A0B7KUM4|Pneumococcal|WP_000700439.1|tpos:1-816	TargetP-2.0	signal_peptide	1	21	0.585795	.	.	.

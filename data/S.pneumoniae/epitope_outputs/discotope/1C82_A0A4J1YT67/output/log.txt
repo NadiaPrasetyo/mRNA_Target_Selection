@@ -1,0 +1,8 @@
+[2025-10-10 11:46:13,221] Single-chain mode set, will predict PDBs as single chains
+[2025-10-10 11:46:13,222] Single PDB file input (1C82_A0A4J1YT67), extracting single chains to data/S.pneumoniae/epitope_outputs/discotope/1C82_A0A4J1YT67/input_chains
+[2025-10-10 11:46:13,350] Found 3 extracted single chains in data/S.pneumoniae/epitope_outputs/discotope/1C82_A0A4J1YT67/input_chains
+[2025-10-10 11:46:15,737] Note: Skipping 1C82_A0A4J1YT67_B, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-10 11:46:44,136] Note: Skipping 1C82_A0A4J1YT67_C, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-10 11:46:46,185] Predicted 1 / 3 PDB files extracted from 1 input PDBs, saved to data/S.pneumoniae/epitope_outputs/discotope/1C82_A0A4J1YT67/output
+[2025-10-10 11:46:46,185] Note: Excluded predicting 2 PDB chain(s) (see log file):
+1C82_A0A4J1YT67_B, 1C82_A0A4J1YT67_C

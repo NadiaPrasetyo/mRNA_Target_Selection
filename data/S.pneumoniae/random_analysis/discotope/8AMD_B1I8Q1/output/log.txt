@@ -1,0 +1,7 @@
+[2025-10-09 13:09:46,868] Single-chain mode set, will predict PDBs as single chains
+[2025-10-09 13:09:46,869] Single PDB file input (8AMD_B1I8Q1), extracting single chains to data/S.pneumoniae/random_analysis/discotope/8AMD_B1I8Q1/input_chains
+[2025-10-09 13:09:48,314] Found 5 extracted single chains in data/S.pneumoniae/random_analysis/discotope/8AMD_B1I8Q1/input_chains
+[2025-10-09 13:13:14,446] Note: Skipping 8AMD_B1I8Q1_D, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-09 13:13:16,732] Predicted 4 / 5 PDB files extracted from 1 input PDBs, saved to data/S.pneumoniae/random_analysis/discotope/8AMD_B1I8Q1/output
+[2025-10-09 13:13:16,732] Note: Excluded predicting 1 PDB chain(s) (see log file):
+8AMD_B1I8Q1_D

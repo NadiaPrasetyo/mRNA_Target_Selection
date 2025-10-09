@@ -1,0 +1,22 @@
+##gff-version 3
+antigen_8|Q8DPK5|ABC|XZV73348.1|tpos:1-721	TargetP-2.0	signal_peptide	1	23	0.999263	.	.	.
+antigen_11|Q8DQ08|Pneumococcal|XZV71740.1|tpos:1-821	TargetP-2.0	signal_peptide	1	21	0.705224	.	.	.
+antigen_35|A0A064C4V0|Adhesion|XZV71741.1|tpos:1-305	TargetP-2.0	signal_peptide	1	21	0.998481	.	.	.
+antigen_37|A0A5C5EC23|Pneumococcal|XZV71740.1|tpos:1-315	TargetP-2.0	signal_peptide	1	21	0.705224	.	.	.
+antigen_38|A0A6G2D4Q2|Pneumococcal|XZV71740.1|tpos:1-315	TargetP-2.0	signal_peptide	1	21	0.705224	.	.	.
+antigen_55|A0A0B7LWN8|Oligopeptide-binding|XZV72229.1|tpos:1-659	TargetP-2.0	signal_peptide	1	21	0.999563	.	.	.
+antigen_34|A0A098ZLB0|ABC|XZV72484.1|tpos:1-501	TargetP-2.0	signal_peptide	1	19	0.993299	.	.	.
+antigen_10|Q8DQ07|Pneumococcal|XZV73402.1|tpos:1-1039	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.
+antigen_24|A0A064BZ27|Choline|XZV71803.1|tpos:1-626	TargetP-2.0	signal_peptide	1	25	0.996163	.	.	.
+antigen_52|P0A4G3|Manganese|XZV72025.1|tpos:1-309	TargetP-2.0	signal_peptide	1	23	0.998904	.	.	.
+antigen_36|A0A0E7XNV3|Pneumococcal|XZV73402.1|tpos:1-1039	TargetP-2.0	signal_peptide	1	24	0.811143	.	.	.
+antigen_17|Q8DRI0|Surface|XZV72839.1|tpos:74-108	TargetP-2.0	signal_peptide	1	25	0.568022	.	.	.
+antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|XZV72510.1|tpos:1-448	TargetP-2.0	signal_peptide	1	40	0.677988	.	.	.
+antigen_28|A0A0H2ZRA8|Cell|XZV73042.1|tpos:1-2144	TargetP-2.0	signal_peptide	1	27	0.963156	.	.	.
+antigen_39|A0A0B7KUM4|Pneumococcal|XZV73401.1|tpos:1-861	TargetP-2.0	signal_peptide	1	21	0.600592	.	.	.
+antigen_53|A0A4J2EQE8|exo-alpha-sialidase|XZV72056.1|tpos:1-697	TargetP-2.0	signal_peptide	1	29	0.944436	.	.	.
+antigen_61|Q9KGY9|Choline|XZV72839.1|tpos:63-109	TargetP-2.0	transit_peptide	1	21	0.700745	.	.	Note=Mitochondrion
+antigen_46|A0A0T8T3N8|Endo-beta-N-acetylglucosaminidase|XZV71773.1|tpos:20-633	TargetP-2.0	signal_peptide	1	23	0.999621	.	.	.
+antigen_47|Q8DQ24|Foldase|XZV71757.1|tpos:1-313	TargetP-2.0	signal_peptide	1	21	0.992317	.	.	.
+antigen_62|O05168|PCPC|XZV72839.1|tpos:63-109	TargetP-2.0	transit_peptide	1	21	0.700745	.	.	Note=Mitochondrion
+antigen_57|A0A4N5NE36|Surface|XZV72839.1|tpos:74-109	TargetP-2.0	signal_peptide	1	25	0.541127	.	.	.

@@ -1,0 +1,4 @@
+[2025-10-09 13:06:47,066] Single-chain mode set, will predict PDBs as single chains
+[2025-10-09 13:06:47,067] Single PDB file input (4K47_B2ISI0), extracting single chains to data/S.pneumoniae/random_analysis/discotope/4K47_B2ISI0/input_chains
+[2025-10-09 13:06:47,222] Found 1 extracted single chains in data/S.pneumoniae/random_analysis/discotope/4K47_B2ISI0/input_chains
+[2025-10-09 13:08:52,411] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/S.pneumoniae/random_analysis/discotope/4K47_B2ISI0/output

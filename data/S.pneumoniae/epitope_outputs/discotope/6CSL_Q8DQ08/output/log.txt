@@ -1,0 +1,4 @@
+[2025-10-09 12:49:49,676] Single-chain mode set, will predict PDBs as single chains
+[2025-10-09 12:49:49,677] Single PDB file input (6CSL_Q8DQ08), extracting single chains to data/S.pneumoniae/epitope_outputs/discotope/6CSL_Q8DQ08/input_chains
+[2025-10-09 12:49:49,783] Found 1 extracted single chains in data/S.pneumoniae/epitope_outputs/discotope/6CSL_Q8DQ08/input_chains
+[2025-10-09 12:51:02,533] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/S.pneumoniae/epitope_outputs/discotope/6CSL_Q8DQ08/output

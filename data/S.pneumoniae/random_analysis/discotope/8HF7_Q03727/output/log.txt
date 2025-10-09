@@ -1,0 +1,6 @@
+[2025-10-09 12:55:24,462] Single-chain mode set, will predict PDBs as single chains
+[2025-10-09 12:55:24,463] Single PDB file input (8HF7_Q03727), extracting single chains to data/S.pneumoniae/random_analysis/discotope/8HF7_Q03727/input_chains
+[2025-10-09 12:55:25,177] Found 4 extracted single chains in data/S.pneumoniae/random_analysis/discotope/8HF7_Q03727/input_chains
+[2025-10-09 13:02:41,301] Unknown residues found for pdb_id 8HF7_Q03727_C: ['UNK']
+[2025-10-09 13:02:44,039] Unknown residues found for pdb_id 8HF7_Q03727_D: ['UNK']
+[2025-10-09 13:03:02,479] Predicted 4 / 4 PDB files extracted from 1 input PDBs, saved to data/S.pneumoniae/random_analysis/discotope/8HF7_Q03727/output

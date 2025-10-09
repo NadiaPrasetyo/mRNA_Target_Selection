@@ -1,0 +1,5 @@
+[2025-10-10 11:38:32,518] Single-chain mode set, will predict PDBs as single chains
+[2025-10-10 11:38:32,519] Single PDB file input (1W9R_Q8DRI0), extracting single chains to data/S.pneumoniae/epitope_outputs/discotope/1W9R_Q8DRI0/input_chains
+[2025-10-10 11:38:33,092] Found 1 extracted single chains in data/S.pneumoniae/epitope_outputs/discotope/1W9R_Q8DRI0/input_chains
+[2025-10-10 11:38:35,373] Note: Skipping 1W9R_Q8DRI0_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-10 11:38:35,382] Error: No PDB files were valid. Please check input PDBs.

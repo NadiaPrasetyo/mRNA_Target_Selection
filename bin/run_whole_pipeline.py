@@ -242,7 +242,7 @@ def main():
                 logging.info("⏭️  Skipping genome fetch - data already exists")
             else:
 
-                cmd = ["python", "bin/fetch_NCBI_strain_genome.py", "--random", f"{args.pathogen_name}", 
+                cmd = ["python", "bin/fetch_NCBI_strain_genomes.py", "--random", f"{args.pathogen_name}", 
                        "--random-num", str(args.random_genomes), "--threads", str(args.threads), args.pathogen_dir]
                 attempted_count += 1
                 if args.dry_run:
