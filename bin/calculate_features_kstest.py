@@ -1515,8 +1515,136 @@ def parse_protlearn_dir(directory):
                     logging.debug(f"PROTLEARN: Skipping row due to conversion error: {e}")
     return results
 
-# def parse_discotope_dir(directory):
-#     @TODO
+def parse_discotope_dir(directory):
+    """
+    Parse the Discotope directory for structural features.
+    Args:
+        directory (str): Path to the directory containing Discotope CSV files.
+    Returns:
+        List of dictionaries, where each dictionary represents a Discotope feature.
+    Each dictionary contains:
+        - "accession": accession identifier
+        - "feature": "Discotope"
+        - "subfeature": specific subfeature name (e.g., "discotope_score", "contact_number", etc.)
+        - "value": numerical value for the feature
+
+data/S.aureus/epitope_outputs/discotope/2F68_A0AAE2ZXQ7/output/2F68_A0AAE2ZXQ7_X_discotope3.csv
+pdb,chain,res_id,residue,DiscoTope-3.0_score,calibrated_score,epitope,rsa,pLDDTs,length,alphafold_struc_flag
+2F68_A0AAE2ZXQ7_X,X,27,H,0.11627,-0.23692,False,0.82628,100,300,0
+2F68_A0AAE2ZXQ7_X,X,28,G,0.16620,0.21425,False,0.85907,100,300,0
+    """
+    results = []
+    logging.info(f"Parsing Discotope dir {directory}")
+    discotope_score = defaultdict(list)
+    callibrated_score = defaultdict(list)
+    rsa = defaultdict(list)
+    num_peptides = defaultdict(int)
+
+    for discotope_file in Path(directory).glob("*/output/*_discotope3.csv"):
+        if "_" in discotope_file.stem:
+            parts = discotope_file.stem.split("_")
+            if len(parts) > 1 and parts[1] == "AF":
+                accession = parts[0]
+            else:
+                accession = parts[1]
+        with open(discotope_file, "r") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                try:
+                    if row["epitope"].strip() == "True":
+                        discotope_score[accession].append(float(row["DiscoTope-3.0_score"]))
+                        callibrated_score[accession].append(float(row["calibrated_score"]))
+                        rsa[accession].append(float(row["rsa"]))
+                        num_peptides[accession] += 1
+                    else:
+                        continue
+                except ValueError as e:
+                    logging.debug(f"DISCOTOPE: Skipping row due to conversion error: {e}")
+        
+    for accession in discotope_score:
+        if num_peptides[accession] == 0:
+            continue
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "mean_discotope_score",
+            "value": statistics.mean(discotope_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "median_discotope_score",
+            "value": statistics.median(discotope_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "max_discotope_score",
+            "value": max(discotope_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "min_discotope_score",
+            "value": min(discotope_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "mean_calibrated_score",
+            "value": statistics.mean(callibrated_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "median_calibrated_score",
+            "value": statistics.median(callibrated_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "max_calibrated_score",
+            "value": max(callibrated_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "min_calibrated_score",
+            "value": min(callibrated_score[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "mean_rsa",
+            "value": statistics.mean(rsa[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "median_rsa",
+            "value": statistics.median(rsa[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "max_rsa",
+            "value": max(rsa[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "min_rsa",
+            "value": min(rsa[accession])
+        })
+        results.append({
+            "accession": accession,
+            "feature": "discotope",
+            "subfeature": "num_epitope_peptides",
+            "value": num_peptides[accession]
+        })
+    logging.info(f"DISCOTOPE: Completed parsing with {len(results)} results")
+    return results
+    
 
 # ----------------------------- Orchestration Functions -----------------------------
 
@@ -1557,7 +1685,8 @@ def extract_all_features(base_dir, threads=1):
         ),
         "dnds": lambda: parse_dnds_dir(os.path.join(base_dir, "dnds")),
         "protlearn": lambda: parse_protlearn_dir(os.path.join(base_dir, "protlearn")),
-        "dssp": lambda: parse_dssp_dir(os.path.join(base_dir, "dssp"))
+        "dssp": lambda: parse_dssp_dir(os.path.join(base_dir, "dssp")),
+        "discotope": lambda: parse_discotope_dir(os.path.join(base_dir, "discotope")),
     }
 
     results = []
@@ -1685,7 +1814,7 @@ def categorize_feature(feature, subfeature):
     ]:
         return "Conservation Analysis Across Strains"
     # Epitope Prediction
-    if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred"]:
+    if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred", "discotope"]:
         return "Epitope Prediction"
     # Epitope evaluation
     if feature in ["dssp", "ProtLearn"]:
