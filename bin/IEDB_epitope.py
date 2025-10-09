@@ -97,8 +97,16 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     if tool_type == "DSSP":
         expected_suffix = ".dssp"
 
-    if tool_type in ["ProtLearn", "DiscoTope"]:
+    if tool_type in ["ProtLearn"]:
         expected_suffix = ".csv"
+
+    if tool_type in ["DiscoTope"]:
+        expected_suffix = ".csv"
+        # data/S.aureus/epitope_outputs/discotope/2F68_A0AAE2ZXQ7/output/2F68_A0AAE2ZXQ7_X_discotope3.csv
+        subdir = subdir / base_name / "output"
+        if not subdir.exists():
+            logging.warning(f"❌ Output directory for {tool_type} does not exist: {subdir}")
+            return False
 
     for file in subdir.glob(f"*{expected_suffix}"):
         if base_name in file.stem:
