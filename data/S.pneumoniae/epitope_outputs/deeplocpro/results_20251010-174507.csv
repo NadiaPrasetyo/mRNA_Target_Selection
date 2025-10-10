@@ -1,0 +1,67 @@
+,ACC,Localization,Cell wall & surface,Extracellular,Cytoplasmic,Cytoplasmic Membrane,Outer Membrane,Periplasmic
+0,antigen_5|Q8DN05|Choline|WP_000240828.1|tpos:51-128,Extracellular,0.2253,0.7712,0.0034,0.0001,0.0000,0.0000
+1,antigen_7|Q8DPI5|Homologous|WP_000837609.1|tpos:1-292,Cytoplasmic Membrane,0.0000,0.0009,0.0000,0.9991,0.0000,0.0000
+2,antigen_28|A0A0H2ZRA8|Cell|WP_000750083.1|tpos:1-2144,Extracellular,0.4524,0.5374,0.0033,0.0069,0.0000,0.0000
+3,antigen_8|Q8DPK5|ABC|WP_000726252.1|tpos:1-721,Cytoplasmic Membrane,0.0000,0.0004,0.0000,0.9996,0.0000,0.0000
+4,antigen_26|A0AAP5J8I6|LPXTG-anchored|WP_000515210.1|tpos:1-2233,Cell wall & surface,0.7360,0.2484,0.0043,0.0112,0.0000,0.0000
+5,antigen_57|A0A4N5NE36|Surface|WP_000240828.1|tpos:1-129,Cell wall & surface,0.5103,0.4779,0.0069,0.0049,0.0000,0.0000
+6,antigen_58|B1N654|CbpA|WP_444810730.1|tpos:1-163,Extracellular,0.3358,0.6275,0.0314,0.0053,0.0000,0.0000
+7,antigen_59|Q8DRN0|Amphipathic|WP_001093068.1|tpos:1-76,Extracellular,0.0000,1.0000,0.0000,0.0000,0.0000,0.0000
+8,antigen_61|Q9KGY9|Choline|WP_000771144.1|tpos:1-332,Extracellular,0.1889,0.8087,0.0000,0.0023,0.0000,0.0000
+9,antigen_30|A0AAP5J5G2|ZmpA/ZmpB/ZmpC|WP_000417128.1|tpos:942-1413,Extracellular,0.0625,0.8767,0.0130,0.0478,0.0000,0.0000
+10,antigen_6|Q8DNS0|Serine/threonine-protein|WP_000614540.1|tpos:1-659,Cytoplasmic Membrane,0.0002,0.0042,0.0000,0.9956,0.0000,0.0000
+11,antigen_34|A0A098ZLB0|ABC|WP_054380490.1|tpos:1-501,Cytoplasmic Membrane,0.0153,0.0152,0.0011,0.9685,0.0000,0.0000
+12,antigen_25|A0A0S2VEM8|CbpG|WP_000771083.1|tpos:225-340,Extracellular,0.0589,0.9411,0.0000,0.0000,0.0000,0.0000
+13,antigen_13|Q8DQN7|Histidine|WP_000831078.1|tpos:1-563,Cytoplasmic Membrane,0.0000,0.0015,0.0000,0.9985,0.0000,0.0000
+14,antigen_12|Q8DQN5|Zinc|WP_000472971.1|tpos:1-1821,Cell wall & surface,0.8742,0.1128,0.0003,0.0127,0.0000,0.0000
+15,antigen_14|Q8DQS1|A|WP_198523890.1|tpos:1-27,Cytoplasmic,0.0001,0.2723,0.7258,0.0018,0.0000,0.0000
+16,antigen_56|Q2XU26|Thiol-activated|WP_001284359.1|tpos:1-471,Extracellular,0.0010,0.9933,0.0032,0.0025,0.0000,0.0000
+17,antigen_60|A0A4J1ZDL7|Beta-galactosidase|WP_000196572.1|tpos:1-595,Cytoplasmic,0.0002,0.0077,0.9915,0.0005,0.0000,0.0000
+18,antigen_41|Q8DQ36|Rqc2|WP_000006694.1|tpos:1-551,Cytoplasmic,0.1006,0.1559,0.7409,0.0025,0.0000,0.0000
+19,antigen_0|P0A336|Chaperonin|WP_000031583.1|tpos:1-540,Cytoplasmic,0.0009,0.0393,0.9587,0.0011,0.0000,0.0000
+20,antigen_37|A0A5C5EC23|Pneumococcal|WP_061845346.1|tpos:1-315,Cell wall & surface,0.4965,0.2258,0.1855,0.0922,0.0000,0.0000
+21,antigen_38|A0A6G2D4Q2|Pneumococcal|WP_061845346.1|tpos:1-315,Cell wall & surface,0.4965,0.2258,0.1855,0.0922,0.0000,0.0000
+22,antigen_39|A0A0B7KUM4|Pneumococcal|WP_054385325.1|tpos:1-832,Cell wall & surface,0.5538,0.0476,0.2486,0.1501,0.0000,0.0000
+23,antigen_32|A0A0T8ZSI6|YSIRK-type|WP_000657776.1|tpos:1-77,Extracellular,0.0977,0.8960,0.0002,0.0061,0.0000,0.0000
+24,antigen_19|Q8DRM6|Phosphoribosylformylglycinamide|WP_000361214.1|tpos:1-1241,Cytoplasmic,0.0018,0.0506,0.9442,0.0034,0.0000,0.0000
+25,antigen_11|Q8DQ08|Pneumococcal|WP_061845346.1|tpos:1-848,Cell wall & surface,0.6786,0.0095,0.1019,0.2101,0.0000,0.0000
+26,antigen_17|Q8DRI0|Surface|WP_444810730.1|tpos:583-723,Extracellular,0.4100,0.5885,0.0013,0.0003,0.0000,0.0000
+27,antigen_33|A0A0H2UR96|Glycosyltransferase|WP_000446975.1|tpos:3-278,Cytoplasmic,0.0038,0.0967,0.6301,0.2693,0.0000,0.0000
+28,antigen_35|A0A064C4V0|Adhesion|WP_000744531.1|tpos:1-305,Cytoplasmic Membrane,0.0012,0.0386,0.0001,0.9601,0.0000,0.0000
+29,antigen_44|A0A4J1YT67|Hyaluronate|WP_001193717.1|tpos:956-1067,Cell wall & surface,0.6307,0.0043,0.0002,0.3649,0.0000,0.0000
+30,antigen_45|A0AAQ2W2I1|Superoxide|WP_000974746.1|tpos:1-201,Cytoplasmic,0.0003,0.0492,0.9501,0.0004,0.0000,0.0000
+31,antigen_47|Q8DQ24|Foldase|WP_000727935.1|tpos:1-313,Cytoplasmic Membrane,0.0014,0.0527,0.0000,0.9458,0.0000,0.0000
+32,antigen_21|A0A0H2ZNF5|D-alanyl-lipoteichoic|WP_000813667.1|tpos:1-43,Cytoplasmic Membrane,0.0000,0.0020,0.0003,0.9977,0.0000,0.0000
+33,antigen_22|A0A064C0M1|PspC|WP_001085044.1|tpos:1-90,Cytoplasmic Membrane,0.0000,0.0146,0.0001,0.9853,0.0000,0.0000
+34,antigen_18|Q8DRK2|Gram-positive|WP_223080576.1|tpos:1-1009,Cell wall & surface,0.9463,0.0376,0.0004,0.0156,0.0000,0.0000
+35,antigen_16|Q8DQZ1|6-phospho-beta-galactosidase|WP_000429418.1|tpos:1-470,Cytoplasmic,0.0010,0.1057,0.8929,0.0004,0.0000,0.0000
+36,antigen_64|Q9F2F1|Bacteriocin-like|WP_000358815.1|tpos:1-35,Extracellular,0.0000,1.0000,0.0000,0.0000,0.0000,0.0000
+37,antigen_65|A0A060RC98|Pneumococcal|WP_444810730.1|tpos:1-189,Extracellular,0.2822,0.6613,0.0438,0.0127,0.0000,0.0000
+38,antigen_66|A0A062WSP2|Elongation|WP_001040724.1|tpos:1-398,Cytoplasmic,0.0000,0.0042,0.9946,0.0012,0.0000,0.0000
+39,antigen_67|A0A0H2UNY9|Pep27|WP_198523890.1|tpos:1-27,Cytoplasmic,0.0001,0.2723,0.7258,0.0018,0.0000,0.0000
+40,antigen_1|Q59947|Immunoglobulin|WP_000417128.1|tpos:1-1840,Cell wall & surface,0.7899,0.2051,0.0002,0.0048,0.0000,0.0000
+41,antigen_52|P0A4G3|Manganese|WP_000733056.1|tpos:1-309,Cytoplasmic Membrane,0.0009,0.0566,0.0000,0.9424,0.0000,0.0000
+42,antigen_53|A0A4J2EQE8|exo-alpha-sialidase|WP_001042179.1|tpos:1-697,Extracellular,0.0022,0.9978,0.0000,0.0000,0.0000,0.0000
+43,antigen_10|Q8DQ07|Pneumococcal|WP_000672586.1|tpos:1-1039,Cell wall & surface,0.7136,0.2093,0.0133,0.0638,0.0000,0.0000
+44,antigen_24|A0A064BZ27|Choline|WP_000728263.1|tpos:1-626,Extracellular,0.2981,0.6895,0.0017,0.0107,0.0000,0.0000
+45,antigen_29|A0AA86X9D8|IgA1|WP_000417128.1|tpos:596-1840,Extracellular,0.1071,0.8910,0.0005,0.0015,0.0000,0.0000
+46,antigen_40|A0A6G2D0Z1|Fibronectin-binding|WP_223080576.1|tpos:1-499,Cell wall & surface,0.5303,0.4582,0.0021,0.0094,0.0000,0.0000
+47,antigen_42|Q97QS2|Enolase|WP_000022813.1|tpos:1-434,Cytoplasmic,0.0003,0.0109,0.9882,0.0006,0.0000,0.0000
+48,antigen_46|A0A0T8T3N8|Endo-beta-N-acetylglucosaminidase|WP_078136224.1|tpos:20-677,Extracellular,0.2427,0.7491,0.0053,0.0028,0.0000,0.0000
+49,antigen_54|A0A0T8BMK3|N-acetylneuraminate|WP_001281510.1|tpos:1-305,Cytoplasmic,0.0000,0.0143,0.9845,0.0011,0.0000,0.0000
+50,antigen_55|A0A0B7LWN8|Oligopeptide-binding|WP_000742233.1|tpos:1-659,Cytoplasmic Membrane,0.0662,0.1144,0.0001,0.8193,0.0000,0.0000
+51,antigen_2|Q7ZAK5|Pneumolysin|WP_001284359.1|tpos:1-471,Extracellular,0.0010,0.9933,0.0032,0.0025,0.0000,0.0000
+52,antigen_3|Q8CZ44|Immunity|WP_000276501.1|tpos:1-68,Cytoplasmic Membrane,0.0000,0.0226,0.0008,0.9765,0.0000,0.0000
+53,antigen_4|Q8DMZ4|N-acetylmuramoyl-L-alanine|WP_000698585.1|tpos:1-448,Extracellular,0.0010,0.9990,0.0000,0.0000,0.0000,0.0000
+54,antigen_62|O05168|PCPC|WP_000771144.1|tpos:1-332,Extracellular,0.1889,0.8087,0.0000,0.0023,0.0000,0.0000
+55,antigen_63|A0A0H2ZP79|BlpS|WP_000682124.1|tpos:1-112,Cytoplasmic,0.0001,0.0068,0.9719,0.0213,0.0000,0.0000
+56,antigen_31|A0A064C176|Zinc|WP_000472971.1|tpos:1-1821,Cell wall & surface,0.8742,0.1128,0.0003,0.0127,0.0000,0.0000
+57,antigen_9|Q8DPU6|Uncharacterized|WP_000743330.1|tpos:1-229,Cytoplasmic,0.0000,0.0027,0.9970,0.0002,0.0000,0.0000
+58,antigen_27|A0AAP5JAE8|LPXTG-anchored|WP_000679955.1|tpos:1-1312,Cell wall & surface,0.7786,0.2181,0.0025,0.0008,0.0000,0.0000
+59,antigen_15|Q8DQY9|Trk|WP_001814392.1|tpos:1-479,Cytoplasmic Membrane,0.0000,0.0003,0.0000,0.9997,0.0000,0.0000
+60,antigen_23|A0A6I3UXD9|Choline|WP_000698585.1|tpos:283-448,Extracellular,0.0097,0.9903,0.0000,0.0000,0.0000,0.0000
+61,antigen_36|A0A0E7XNV3|Pneumococcal|WP_000672586.1|tpos:1-1039,Cell wall & surface,0.7136,0.2093,0.0133,0.0638,0.0000,0.0000
+62,antigen_48|A0A0B7M798|Surface|WP_000054787.1|tpos:1615-1652,Extracellular,0.0001,0.8359,0.1292,0.0348,0.0000,0.0000
+63,antigen_49|A0A822QE61|NADH|WP_000036792.1|tpos:1-459,Cytoplasmic,0.0002,0.0299,0.9422,0.0276,0.0000,0.0000
+64,antigen_50|A0A062WSR0|Manganese|WP_000559784.1|tpos:1-282,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9999,0.0000,0.0000
+65,antigen_51|Q8DNW8|ABC|WP_000619143.1|tpos:1-240,Cytoplasmic Membrane,0.0001,0.0069,0.1965,0.7965,0.0000,0.0000

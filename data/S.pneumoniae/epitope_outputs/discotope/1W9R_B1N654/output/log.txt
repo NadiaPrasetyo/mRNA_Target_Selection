@@ -1,5 +1,5 @@
-[2025-10-09 12:51:29,660] Single-chain mode set, will predict PDBs as single chains
-[2025-10-09 12:51:29,661] Single PDB file input (1W9R_B1N654), extracting single chains to data/S.pneumoniae/epitope_outputs/discotope/1W9R_B1N654/input_chains
-[2025-10-09 12:51:34,258] Found 1 extracted single chains in data/S.pneumoniae/epitope_outputs/discotope/1W9R_B1N654/input_chains
-[2025-10-09 12:51:51,322] Note: Skipping 1W9R_B1N654_A, ESM-IF1 unable to extract valid amino-acid backbone
-[2025-10-09 12:51:51,326] Error: No PDB files were valid. Please check input PDBs.
+[2025-10-10 15:05:23,057] Single-chain mode set, will predict PDBs as single chains
+[2025-10-10 15:05:23,058] Single PDB file input (1W9R_B1N654), extracting single chains to data/S.pneumoniae/epitope_outputs/discotope/1W9R_B1N654/input_chains
+[2025-10-10 15:05:23,732] Found 1 extracted single chains in data/S.pneumoniae/epitope_outputs/discotope/1W9R_B1N654/input_chains
+[2025-10-10 15:05:26,762] Note: Skipping 1W9R_B1N654_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-10 15:05:26,772] Error: No PDB files were valid. Please check input PDBs.
