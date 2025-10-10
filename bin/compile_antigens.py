@@ -125,7 +125,7 @@ def load_literature_antigens(file_path, source_organism):
 
     df_out["source_organism"] = source_organism
     df_out["host_organisms"] = "Homo sapiens"
-    df_out["Uniprot_ID"] = None
+    df_out["Uniprot_ID"] = df["Uniprot_ID"] if "Uniprot_ID" in df.columns else None
     df_out["source"] = "literature"
     return df_out[["source_organism", "host_organisms", "antigen_name", "gene_name", "Uniprot_ID", "source"]]
 
