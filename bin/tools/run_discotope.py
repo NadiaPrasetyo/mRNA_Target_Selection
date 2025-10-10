@@ -77,11 +77,20 @@ def run(input_file, tool_path, output_dir):
     logging.info(f"Running DiscoTope on file: {input_file} with struc_type: {struct_type}")
 
     # Execute the command
+        # Execute the command
     try:
-        result = subprocess.run(cmd, check=True)
-        logging.debug(f"DiscoTope command output:\n{result.stdout}")
-        logging.debug(f"DiscoTope command error output:\n{result.stderr}")
-
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
         logging.info(f"✅ DiscoTope finished successfully. Results saved in: {output_dir}")
+
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(f"❌ DiscoTope failed with error code {e.returncode}") from e
+        # Capture stderr for diagnosis
+        err_msg = e.stderr if hasattr(e, "stderr") and e.stderr else str(e)
+        logging.warning(f"⚠️ DiscoTope failed on {input_file.name} (exit code {e.returncode}). Skipping.\nDetails:\n{err_msg}")
+
+        # Mark the output directory as failed for traceability
+        fail_marker = Path(output_dir) / "FAILED.txt"
+        with open(fail_marker, "w") as f:
+            f.write(f"DiscoTope failed on {input_file}\nError code: {e.returncode}\n\n{err_msg}")
+
+        # Do NOT raise the error — just skip
+        return None
