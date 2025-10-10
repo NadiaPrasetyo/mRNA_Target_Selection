@@ -33,6 +33,7 @@ import logging
 from typing import List, Tuple
 import pandas as pd
 import numpy as np
+import requests
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import roc_auc_score, accuracy_score
@@ -207,6 +208,44 @@ def train_rf(X_train: pd.DataFrame, y_train: np.ndarray, n_estimators:int=500, r
     rf = RandomForestClassifier(n_estimators=n_estimators, n_jobs=-1, random_state=random_state, class_weight='balanced')
     rf.fit(X_train, y_train)
     return rf
+
+# ----------------------
+# Accession to Name mapping (optional)
+# ----------------------
+def load_accession_name_fetch(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Load mapping of accession to name from the dataframe if 'name' column exists.
+    Args:
+        df (pd.DataFrame): DataFrame containing at least 'accession' and optionally 'name'.
+    Returns:
+        pd.DataFrame: DataFrame with columns ['accession', 'name'].
+    """
+    base_url = "https://rest.uniprot.org/uniprotkb/search"
+    params = {
+         "query": query,
+         "fields": "protein_name",
+         "format": "json",
+         "size": 1  # only fetch the top hit
+     }
+    for accession in df["accession"].unique():
+        # get the name from uniprot
+       query = f"accession:{accession}"
+       try:
+              response = requests.get(base_url, params=params)
+              response.raise_for_status()
+              data = response.json()
+              if data.get("results"):
+                for entry in data.get("results", []):
+                    name = entry.get("proteinDescription", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
+                    df.loc[df["accession"] == accession, "name"] = name
+                    logging.debug(f"Fetched name for accession {accession}: {name}")
+                else:
+                    logging.warning(f"No results found for accession {accession}")
+       except Exception as e:
+           logging.warning(f"Failed to fetch name for accession {accession}: {e}")
+
+    return df[["accession", "name"]].drop_duplicates().set_index("accession")
+
 
 # ----------------------
 # Main pipeline
