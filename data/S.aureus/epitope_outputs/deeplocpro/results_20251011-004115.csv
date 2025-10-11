@@ -1,0 +1,91 @@
+,ACC,Localization,Cell wall & surface,Extracellular,Cytoplasmic,Cytoplasmic Membrane,Outer Membrane,Periplasmic
+0,antigen_45|Q2G122|5-methyltetrahydropteroyltriglutamate--homocysteine|WP_000207619.1|tpos:1-742,Cytoplasmic,0.0037,0.0957,0.8776,0.0230,0.0000,0.0000
+1,antigen_33|Q2FZB1|Staphylococcal/Streptococcal|WP_000739541.1|tpos:1-241,Extracellular,0.0004,0.9993,0.0000,0.0003,0.0000,0.0000
+2,antigen_35|Q2FZK7|Bifunctional|WP_001074541.1|tpos:1-1250,Extracellular,0.1060,0.8936,0.0000,0.0004,0.0000,0.0000
+3,antigen_63|Q2G2Q0|DNA|WP_000819084.1|tpos:1-887,Cytoplasmic,0.0004,0.0258,0.9683,0.0055,0.0000,0.0000
+4,antigen_64|Q2G2W1|Quinolone|WP_000213883.1|tpos:1-643,Cytoplasmic Membrane,0.0000,0.0000,0.0000,0.9999,0.0000,0.0000
+5,antigen_79|Q2FJ77|Serine-aspartate|WP_000610231.1|tpos:1-1141,Cell wall & surface,0.8986,0.1003,0.0001,0.0010,0.0000,0.0000
+6,antigen_80|A0A6M8B1R6|Staphylococcal|WP_029644402.1|tpos:6-254,Extracellular,0.0014,0.9945,0.0023,0.0018,0.0000,0.0000
+7,antigen_82|A0A0H3KEE1|Staphylococcal|WP_000784042.1|tpos:1-356,Extracellular,0.0403,0.9583,0.0003,0.0011,0.0000,0.0000
+8,antigen_83|Q2G1S6|Staphylococcal|WP_000781345.1|tpos:1-234,Extracellular,0.0295,0.9686,0.0000,0.0019,0.0000,0.0000
+9,antigen_84|A0A0H3KAV8|Staphylococcal|WP_000767929.1|tpos:1-232,Extracellular,0.0316,0.9644,0.0001,0.0039,0.0000,0.0000
+10,antigen_27|Q2FXX5|Enterotoxin|WP_029644402.1|tpos:21-254,Extracellular,0.0001,0.8186,0.1804,0.0009,0.0000,0.0000
+11,antigen_17|Q2FWS0|Phi|WP_078055706.1|tpos:1-82,Cytoplasmic,0.0010,0.0402,0.9448,0.0140,0.0000,0.0000
+12,antigen_18|Q2FWV3|Staphylokinase|WP_000920038.1|tpos:1-163,Extracellular,0.0500,0.7928,0.0002,0.1571,0.0000,0.0000
+13,antigen_20|Q2FWW7|ABC|WP_000991301.1|tpos:1-298,Cytoplasmic Membrane,0.0003,0.0019,0.2782,0.7196,0.0000,0.0000
+14,antigen_31|Q2FZ49|Chromosome|WP_000262712.1|tpos:1-1188,Cytoplasmic,0.0019,0.0011,0.9898,0.0072,0.0000,0.0000
+15,antigen_92|O54462|Superantigen-like|WP_000669009.1|tpos:113-205,Extracellular,0.0007,0.4046,0.2692,0.3255,0.0000,0.0000
+16,antigen_15|Q2FWN4|Chaperonin|WP_000240642.1|tpos:1-538,Cytoplasmic,0.0009,0.0143,0.9830,0.0017,0.0000,0.0000
+17,antigen_16|Q2FWP0|Uncharacterized|WP_000595401.1|tpos:1-338,Extracellular,0.0001,0.9998,0.0000,0.0000,0.0000,0.0000
+18,antigen_25|Q2FXJ6|Serine|WP_001279338.1|tpos:1-424,Cytoplasmic Membrane,0.0045,0.0252,0.0002,0.9702,0.0000,0.0000
+19,antigen_26|Q2FXN2|Amino|WP_000818525.1|tpos:1-453,Cytoplasmic Membrane,0.0000,0.0008,0.0000,0.9992,0.0000,0.0000
+20,antigen_85|A0A2S1FUJ3|Superantigen-like|WP_000769837.1|tpos:1-231,Extracellular,0.0663,0.9322,0.0001,0.0014,0.0000,0.0000
+21,antigen_88|A0A0H2DUF0|Staphylococcal|WP_000702263.1|tpos:1-116,Extracellular,0.0071,0.9928,0.0000,0.0001,0.0000,0.0000
+22,antigen_89|A0A0H3K703|Myeloperoxidase|WP_000669524.1|tpos:1-102,Extracellular,0.1282,0.8709,0.0001,0.0008,0.0000,0.0000
+23,antigen_49|Q2G1F5|Solute-binding|WP_000720804.1|tpos:1-591,Cytoplasmic Membrane,0.0259,0.2830,0.0005,0.6907,0.0000,0.0000
+24,antigen_50|Q2G1K8|Capsular|WP_000446299.1|tpos:1-222,Cytoplasmic Membrane,0.0001,0.0009,0.0000,0.9991,0.0000,0.0000
+25,antigen_30|Q2FYV4|Homoserine|WP_000735859.1|tpos:1-426,Cytoplasmic,0.0013,0.0057,0.9873,0.0057,0.0000,0.0000
+26,antigen_32|Q2FZ93|Phospho-N-acetylmuramoyl-pentapeptide-transferase|WP_000578469.1|tpos:1-321,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9999,0.0000,0.0000
+27,antigen_34|Q2FZF0|Iron-regulated|WP_001041585.1|tpos:1-645,Cell wall & surface,0.8806,0.0536,0.0001,0.0657,0.0000,0.0000
+28,antigen_36|Q2G010|Thermonuclease|WP_001793574.1|tpos:1-228,Extracellular,0.0001,0.5189,0.0001,0.4810,0.0000,0.0000
+29,antigen_37|Q2G015|Clumping|WP_001056174.1|tpos:1-928,Cell wall & surface,0.9138,0.0846,0.0000,0.0016,0.0000,0.0000
+30,antigen_47|Q2G168|Putative|WP_000477939.1|tpos:1-349,Cytoplasmic Membrane,0.0000,0.0002,0.0000,0.9998,0.0000,0.0000
+31,antigen_56|Q2G282|Peroxide-responsive|WP_000110011.1|tpos:1-148,Cytoplasmic,0.0003,0.1025,0.8939,0.0034,0.0000,0.0000
+32,antigen_58|Q2G2D5|6-phospho-beta-galactosidase|WP_000169224.1|tpos:1-470,Cytoplasmic,0.0003,0.0508,0.9486,0.0002,0.0000,0.0000
+33,antigen_9|Q2FVL8|Assimilatory|WP_001118725.1|tpos:1-801,Cytoplasmic,0.0014,0.0491,0.8769,0.0726,0.0000,0.0000
+34,antigen_52|Q2G1N0|Staphyloferrin|WP_000610051.1|tpos:1-418,Cytoplasmic Membrane,0.0000,0.0021,0.0001,0.9977,0.0000,0.0000
+35,antigen_54|Q2G1U1|Rqc2|WP_000312786.1|tpos:1-565,Cytoplasmic,0.0228,0.0402,0.9294,0.0076,0.0000,0.0000
+36,antigen_76|L7UY00|Immunoglobulin|WP_000728751.1|tpos:332-418,Cell wall & surface,0.5648,0.4192,0.0147,0.0014,0.0000,0.0000
+37,antigen_77|Q5HDD7|Immunoglobulin-binding|WP_000792571.1|tpos:1-437,Extracellular,0.0621,0.9367,0.0000,0.0012,0.0000,0.0000
+38,antigen_71|Q2FWC7|Type|WP_000862727.1|tpos:1-267,Cytoplasmic,0.0003,0.0028,0.9953,0.0016,0.0000,0.0000
+39,antigen_74|A0A6A9GWB2|Fibrinogen-binding|WP_000791580.1|tpos:1-165,Extracellular,0.1707,0.8289,0.0000,0.0004,0.0000,0.0000
+40,antigen_75|P0A0M1|Delta-hemolysin|WP_000046023.1|tpos:1-26,Extracellular,0.0000,0.9993,0.0000,0.0006,0.0000,0.0000
+41,antigen_86|A0A2S1FUJ1|Superantigen-like|WP_000769141.1|tpos:1-230,Extracellular,0.0023,0.9975,0.0000,0.0002,0.0000,0.0000
+42,antigen_90|Q6G7Z1|Staphylokinase|WP_000920038.1|tpos:1-163,Extracellular,0.0500,0.7928,0.0002,0.1571,0.0000,0.0000
+43,antigen_40|Q2G091|ABC|WP_000525108.1|tpos:1-627,Cytoplasmic,0.0012,0.0029,0.9332,0.0627,0.0000,0.0000
+44,antigen_46|Q2G155|Lipase|WP_000943814.1|tpos:1-690,Extracellular,0.0015,0.9979,0.0003,0.0002,0.0000,0.0000
+45,antigen_48|Q2G1E2|Membrane|WP_001008722.1|tpos:1-459,Cytoplasmic Membrane,0.0000,0.0008,0.0000,0.9992,0.0000,0.0000
+46,antigen_78|A0AB72WB37|Serine-aspartate|WP_000934439.1|tpos:1-1365,Cell wall & surface,0.8591,0.1404,0.0000,0.0005,0.0000,0.0000
+47,antigen_81|A0A0H3KAV3|Staphylococcal|WP_000669009.1|tpos:1-226,Extracellular,0.0150,0.9820,0.0000,0.0030,0.0000,0.0000
+48,antigen_42|Q2G0B3|ABC|WP_000737051.1|tpos:1-543,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9999,0.0000,0.0000
+49,antigen_93|E2FYX5|von|WP_000791730.1|tpos:1-508,Extracellular,0.0557,0.9286,0.0124,0.0034,0.0000,0.0000
+50,antigen_7|Q2FVK2|Gamma-hemolysin|WP_000916709.1|tpos:1-315,Extracellular,0.0001,0.9998,0.0000,0.0000,0.0000,0.0000
+51,antigen_24|Q2FXB0|Leucotoxin|WP_000473596.1|tpos:6-311,Extracellular,0.0004,0.9992,0.0001,0.0004,0.0000,0.0000
+52,antigen_57|Q2G2B2|Surface|WP_398570717.1|tpos:1-452,Cell wall & surface,0.9764,0.0011,0.0001,0.0225,0.0000,0.0000
+53,antigen_61|Q2G2G6|DUF4064|WP_000145499.1|tpos:1-339,Cytoplasmic Membrane,0.0001,0.0332,0.0000,0.9667,0.0000,0.0000
+54,antigen_67|A8QKE6|Neutral|WP_001225025.1|tpos:1-509,Extracellular,0.0091,0.9907,0.0000,0.0002,0.0000,0.0000
+55,antigen_72|A0A5P9NYM0|Etracellular|WP_001792928.1|tpos:1-71,Extracellular,0.0018,0.9981,0.0000,0.0001,0.0000,0.0000
+56,antigen_73|Q2G107|Enterotoxin-like|WP_000473942.1|tpos:1-203,Extracellular,0.0015,0.9982,0.0000,0.0003,0.0000,0.0000
+57,antigen_6|Q2FVI5|Bcr/CflA|WP_001192075.1|tpos:1-403,Cytoplasmic Membrane,0.0000,0.0008,0.0000,0.9992,0.0000,0.0000
+58,antigen_21|Q2FX09|Response|WP_000153535.1|tpos:1-209,Cytoplasmic,0.0001,0.0111,0.9872,0.0016,0.0000,0.0000
+59,antigen_23|Q2FX68|Phi|WP_000429552.1|tpos:6-635,Extracellular,0.0233,0.6614,0.2819,0.0334,0.0000,0.0000
+60,antigen_69|Q2UXD0|Clumping|WP_001056174.1|tpos:142-533,Extracellular,0.0507,0.9490,0.0000,0.0003,0.0000,0.0000
+61,antigen_70|A0AAE2ZXQ7|Collagen|WP_001039419.1|tpos:1-703,Cell wall & surface,0.6913,0.1404,0.1336,0.0347,0.0000,0.0000
+62,antigen_5|Q2FVH8|Membrane|WP_000483052.1|tpos:1-609,Cytoplasmic Membrane,0.0000,0.0002,0.0000,0.9998,0.0000,0.0000
+63,antigen_65|Q2G2Y0|Staphylococcal|WP_000769837.1|tpos:1-231,Extracellular,0.0663,0.9322,0.0001,0.0014,0.0000,0.0000
+64,antigen_8|Q2FVK3|Gamma-hemolysin|WP_000594519.1|tpos:1-309,Extracellular,0.0004,0.9993,0.0001,0.0002,0.0000,0.0000
+65,antigen_10|Q2FVV4|CAAX|WP_000426696.1|tpos:1-245,Cytoplasmic Membrane,0.0000,0.0008,0.0001,0.9991,0.0000,0.0000
+66,antigen_11|Q2FVX4|Molybdenum|WP_000782736.1|tpos:1-260,Cytoplasmic Membrane,0.0098,0.1854,0.0000,0.8048,0.0000,0.0000
+67,antigen_19|Q2FWW3|Aminotransferase|WP_001068523.1|tpos:1-428,Cytoplasmic,0.0004,0.0097,0.9886,0.0012,0.0000,0.0000
+68,antigen_38|Q2G034|DUF4887|WP_000070829.1|tpos:1-209,Cytoplasmic Membrane,0.0017,0.2988,0.0000,0.6995,0.0000,0.0000
+69,antigen_39|Q2G080|EamA|WP_001068497.1|tpos:45-288,Cytoplasmic Membrane,0.0000,0.0000,0.0000,1.0000,0.0000,0.0000
+70,antigen_87|A0A0H3K7M3|Superantigen-like|WP_001063559.1|tpos:1-241,Extracellular,0.0004,0.9995,0.0000,0.0001,0.0000,0.0000
+71,antigen_91|A0A0B6XP77|Segregation|WP_000273371.1|tpos:1-243,Cytoplasmic,0.0017,0.0031,0.9207,0.0745,0.0000,0.0000
+72,antigen_12|Q2FWC1|Pyrimidine-nucleoside|WP_001242310.1|tpos:1-433,Cytoplasmic,0.0001,0.0025,0.9971,0.0004,0.0000,0.0000
+73,antigen_13|Q2FWC4|Peptidase|WP_001291500.1|tpos:1-394,Cytoplasmic,0.0001,0.0021,0.9963,0.0015,0.0000,0.0000
+74,antigen_14|Q2FWD6|Putative|WP_001206105.1|tpos:1-475,Cytoplasmic,0.0002,0.0114,0.9865,0.0019,0.0000,0.0000
+75,antigen_3|Q2FV70|SSD|WP_001051422.1|tpos:8-829,Cytoplasmic Membrane,0.0000,0.0002,0.0000,0.9997,0.0000,0.0000
+76,antigen_4|Q2FV72|Ferrous|WP_000432897.1|tpos:1-664,Cytoplasmic Membrane,0.0000,0.0005,0.0001,0.9994,0.0000,0.0000
+77,antigen_28|Q2FY60|6-phosphogluconate|WP_000193707.1|tpos:1-468,Cytoplasmic,0.0027,0.2895,0.6976,0.0102,0.0000,0.0000
+78,antigen_41|Q2G0A2|Quinolone|WP_001041277.1|tpos:1-388,Cytoplasmic Membrane,0.0000,0.0010,0.0000,0.9990,0.0000,0.0000
+79,antigen_43|Q2G0N9|Large|WP_001273087.1|tpos:1-166,Cytoplasmic,0.0080,0.4256,0.5084,0.0580,0.0000,0.0000
+80,antigen_44|Q2G0V8|Phosphatidic|WP_000565820.1|tpos:1-224,Cytoplasmic Membrane,0.0000,0.0008,0.0000,0.9991,0.0000,0.0000
+81,antigen_60|Q2G2G3|Divalent|WP_001060842.1|tpos:1-450,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9999,0.0000,0.0000
+82,antigen_62|Q2G2K9|M50|WP_001108547.1|tpos:1-250,Cytoplasmic Membrane,0.0000,0.0036,0.0006,0.9958,0.0000,0.0000
+83,antigen_55|Q2G1X0|Alpha-hemolysin|WP_000857485.1|tpos:1-319,Extracellular,0.0001,0.9998,0.0000,0.0001,0.0000,0.0000
+84,antigen_59|Q2G2D8|ABC|WP_000737654.1|tpos:1-309,Cytoplasmic Membrane,0.0010,0.0014,0.0000,0.9976,0.0000,0.0000
+85,antigen_1|Q2FUX4|Neutral|WP_001225025.1|tpos:12-509,Extracellular,0.0074,0.9924,0.0000,0.0002,0.0000,0.0000
+86,antigen_0|P14738|Fibronectin-binding|WP_000794648.1|tpos:1-1015,Cell wall & surface,0.9790,0.0209,0.0000,0.0000,0.0000,0.0000
+87,antigen_66|A0AAE8TKC7|5'-nucleotidase|WP_000645781.1|tpos:1-772,Cell wall & surface,0.6899,0.1940,0.0007,0.1153,0.0000,0.0000
+88,antigen_29|Q2FYP2|ABC|WP_000942300.1|tpos:1-533,Cytoplasmic,0.0006,0.0612,0.9200,0.0182,0.0000,0.0000
+89,antigen_2|Q2FUY2|Clumping|WP_000745818.1|tpos:1-905,Cell wall & surface,0.9026,0.0933,0.0001,0.0041,0.0000,0.0000
