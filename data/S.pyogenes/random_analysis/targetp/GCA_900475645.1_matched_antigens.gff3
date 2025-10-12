@@ -1,0 +1,3 @@
+##gff-version 3
+antigen_61|P0C0I6|Exotoxin|SQG54441.1|tpos:1-236	TargetP-2.0	signal_peptide	1	32	0.893108	.	.	.
+antigen_193|Q1JN21|GTPase|SQG54073.1|tpos:1-298	TargetP-2.0	transit_peptide	1	32	0.602233	.	.	Note=Mitochondrion

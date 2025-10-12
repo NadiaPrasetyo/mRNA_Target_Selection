@@ -1,0 +1,805 @@
+##gff-version 3
+# antigen_69|P63548|Adenine|SQG54378.1|tpos:1-172 Length: 172
+# antigen_69|P63548|Adenine|SQG54378.1|tpos:1-172 Number of predicted TMRs: 0
+antigen_69|P63548|Adenine|SQG54378.1|tpos:1-172	inside	1	172				
+//
+# antigen_51|P67255|UPF0122|SQG54590.1|tpos:1-113 Length: 113
+# antigen_51|P67255|UPF0122|SQG54590.1|tpos:1-113 Number of predicted TMRs: 0
+antigen_51|P67255|UPF0122|SQG54590.1|tpos:1-113	inside	1	113				
+//
+# antigen_52|Q1JJ57|Large|SQG53015.1|tpos:1-114 Length: 114
+# antigen_52|Q1JJ57|Large|SQG53015.1|tpos:1-114 Number of predicted TMRs: 0
+antigen_52|Q1JJ57|Large|SQG53015.1|tpos:1-114	inside	1	114				
+//
+# antigen_53|Q99ZU3|UvrABC|SQG54488.1|tpos:1-598 Length: 598
+# antigen_53|Q99ZU3|UvrABC|SQG54488.1|tpos:1-598 Number of predicted TMRs: 0
+antigen_53|Q99ZU3|UvrABC|SQG54488.1|tpos:1-598	inside	1	598				
+//
+# antigen_94|Q5XCB7|tRNA|SQG54491.1|tpos:1-458 Length: 458
+# antigen_94|Q5XCB7|tRNA|SQG54491.1|tpos:1-458 Number of predicted TMRs: 0
+antigen_94|Q5XCB7|tRNA|SQG54491.1|tpos:1-458	inside	1	458				
+//
+# antigen_14|P0DB44|Cell|SQG54898.1|tpos:1-108 Length: 108
+# antigen_14|P0DB44|Cell|SQG54898.1|tpos:1-108 Number of predicted TMRs: 0
+antigen_14|P0DB44|Cell|SQG54898.1|tpos:1-108	inside	1	108				
+//
+# antigen_15|Q1J8Y8|Small|SQG53056.1|tpos:1-127 Length: 127
+# antigen_15|Q1J8Y8|Small|SQG53056.1|tpos:1-127 Number of predicted TMRs: 0
+antigen_15|Q1J8Y8|Small|SQG53056.1|tpos:1-127	inside	1	127				
+//
+# antigen_16|Q48RU8|Translation|SQG54956.1|tpos:1-953 Length: 953
+# antigen_16|Q48RU8|Translation|SQG54956.1|tpos:1-953 Number of predicted TMRs: 0
+antigen_16|Q48RU8|Translation|SQG54956.1|tpos:1-953	inside	1	953				
+//
+# antigen_9|P0DF45|Ribosomal|SQG53899.1|tpos:1-237 Length: 237
+# antigen_9|P0DF45|Ribosomal|SQG53899.1|tpos:1-237 Number of predicted TMRs: 0
+antigen_9|P0DF45|Ribosomal|SQG53899.1|tpos:1-237	inside	1	237				
+//
+# antigen_11|P0DG21|tRNA|SQG54311.1|tpos:1-239 Length: 239
+# antigen_11|P0DG21|tRNA|SQG54311.1|tpos:1-239 Number of predicted TMRs: 0
+antigen_11|P0DG21|tRNA|SQG54311.1|tpos:1-239	inside	1	239				
+//
+# antigen_189|B5XK72|Endoribonuclease|SQG54071.1|tpos:1-165 Length: 165
+# antigen_189|B5XK72|Endoribonuclease|SQG54071.1|tpos:1-165 Number of predicted TMRs: 0
+antigen_189|B5XK72|Endoribonuclease|SQG54071.1|tpos:1-165	inside	1	165				
+//
+# antigen_190|P64065|GTPase|SQG53921.1|tpos:1-436 Length: 436
+# antigen_190|P64065|GTPase|SQG53921.1|tpos:1-436 Number of predicted TMRs: 0
+antigen_190|P64065|GTPase|SQG53921.1|tpos:1-436	inside	1	436				
+//
+# antigen_124|Q1JK54|Xaa-Pro|SQG55119.1|tpos:1-760 Length: 760
+# antigen_124|Q1JK54|Xaa-Pro|SQG55119.1|tpos:1-760 Number of predicted TMRs: 0
+antigen_124|Q1JK54|Xaa-Pro|SQG55119.1|tpos:1-760	outside	1	760				
+//
+# antigen_148|Q1J7G2|ATP|SQG54235.1|tpos:1-178 Length: 178
+# antigen_148|Q1J7G2|ATP|SQG54235.1|tpos:1-178 Number of predicted TMRs: 0
+antigen_148|Q1J7G2|ATP|SQG54235.1|tpos:1-178	inside	1	178				
+//
+# antigen_4|Q1J492|Holliday|SQG55324.1|tpos:1-198 Length: 198
+# antigen_4|Q1J492|Holliday|SQG55324.1|tpos:1-198 Number of predicted TMRs: 0
+antigen_4|Q1J492|Holliday|SQG55324.1|tpos:1-198	inside	1	198				
+//
+# antigen_183|P0DG17|Uncharacterized|SQG54866.1|tpos:1-451 Length: 451
+# antigen_183|P0DG17|Uncharacterized|SQG54866.1|tpos:1-451 Number of predicted TMRs: 0
+antigen_183|P0DG17|Uncharacterized|SQG54866.1|tpos:1-451	inside	1	451				
+//
+# antigen_111|Q1JIB1|Protein|SQG54036.1|tpos:1-162 Length: 162
+# antigen_111|Q1JIB1|Protein|SQG54036.1|tpos:1-162 Number of predicted TMRs: 0
+antigen_111|Q1JIB1|Protein|SQG54036.1|tpos:1-162	inside	1	162				
+//
+# antigen_112|B5XJ51|Large|SQG53036.1|tpos:1-178 Length: 178
+# antigen_112|B5XJ51|Large|SQG53036.1|tpos:1-178 Number of predicted TMRs: 0
+antigen_112|B5XJ51|Large|SQG53036.1|tpos:1-178	inside	1	178				
+//
+# antigen_151|P0DB58|dITP/XTP|SQG53952.1|tpos:1-328 Length: 328
+# antigen_151|P0DB58|dITP/XTP|SQG53952.1|tpos:1-328 Number of predicted TMRs: 0
+antigen_151|P0DB58|dITP/XTP|SQG53952.1|tpos:1-328	inside	1	328				
+//
+# antigen_45|Q8NZZ1|UPF0398|SQG54899.1|tpos:1-171 Length: 171
+# antigen_45|Q8NZZ1|UPF0398|SQG54899.1|tpos:1-171 Number of predicted TMRs: 0
+antigen_45|Q8NZZ1|UPF0398|SQG54899.1|tpos:1-171	inside	1	171				
+//
+# antigen_46|Q48V07|Protein|SQG54036.1|tpos:1-162 Length: 162
+# antigen_46|Q48V07|Protein|SQG54036.1|tpos:1-162 Number of predicted TMRs: 0
+antigen_46|Q48V07|Protein|SQG54036.1|tpos:1-162	inside	1	162				
+//
+# antigen_65|Q1JFK8|Ribosomal|SQG54914.1|tpos:22-337 Length: 316
+# antigen_65|Q1JFK8|Ribosomal|SQG54914.1|tpos:22-337 Number of predicted TMRs: 0
+antigen_65|Q1JFK8|Ribosomal|SQG54914.1|tpos:22-337	inside	1	316				
+//
+# antigen_66|B5XMF0|Shikimate|SQG54851.1|tpos:1-292 Length: 292
+# antigen_66|B5XMF0|Shikimate|SQG54851.1|tpos:1-292 Number of predicted TMRs: 0
+antigen_66|B5XMF0|Shikimate|SQG54851.1|tpos:1-292	inside	1	292				
+//
+# antigen_67|Q8NZG7|tRNA|SQG55132.1|tpos:1-342 Length: 342
+# antigen_67|Q8NZG7|tRNA|SQG55132.1|tpos:1-342 Number of predicted TMRs: 0
+antigen_67|Q8NZG7|tRNA|SQG55132.1|tpos:1-342	inside	1	342				
+//
+# antigen_175|P0DB81|Isopentenyl-diphosphate|SQG54335.1|tpos:1-329 Length: 329
+# antigen_175|P0DB81|Isopentenyl-diphosphate|SQG54335.1|tpos:1-329 Number of predicted TMRs: 0
+antigen_175|P0DB81|Isopentenyl-diphosphate|SQG54335.1|tpos:1-329	inside	1	329				
+//
+# antigen_194|Q99ZV8|Elongation|SQG54476.1|tpos:1-610 Length: 610
+# antigen_194|Q99ZV8|Elongation|SQG54476.1|tpos:1-610 Number of predicted TMRs: 0
+antigen_194|Q99ZV8|Elongation|SQG54476.1|tpos:1-610	inside	1	610				
+//
+# antigen_119|Q8P1F2|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Length: 330
+# antigen_119|Q8P1F2|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Number of predicted TMRs: 0
+antigen_119|Q8P1F2|Ferredoxin--NADP|SQG54312.1|tpos:1-330	inside	1	330				
+//
+# antigen_122|Q8P0H4|Uncharacterized|SQG54707.1|tpos:1-451 Length: 451
+# antigen_122|Q8P0H4|Uncharacterized|SQG54707.1|tpos:1-451 Number of predicted TMRs: 0
+antigen_122|Q8P0H4|Uncharacterized|SQG54707.1|tpos:1-451	inside	1	451				
+//
+# antigen_184|P0DE91|Small|SQG53017.1|tpos:1-217 Length: 217
+# antigen_184|P0DE91|Small|SQG53017.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_184|P0DE91|Small|SQG53017.1|tpos:1-217	inside	1	217				
+//
+# antigen_178|P65245|Ribose-phosphate|SQG52920.1|tpos:1-320 Length: 320
+# antigen_178|P65245|Ribose-phosphate|SQG52920.1|tpos:1-320 Number of predicted TMRs: 0
+antigen_178|P65245|Ribose-phosphate|SQG52920.1|tpos:1-320	inside	1	320				
+//
+# antigen_149|P0DA05|ATP|SQG54238.1|tpos:1-468 Length: 468
+# antigen_149|P0DA05|ATP|SQG54238.1|tpos:1-468 Number of predicted TMRs: 0
+antigen_149|P0DA05|ATP|SQG54238.1|tpos:1-468	inside	1	468				
+//
+# antigen_150|Q99Y58|Xaa-Pro|SQG55119.1|tpos:1-760 Length: 760
+# antigen_150|Q99Y58|Xaa-Pro|SQG55119.1|tpos:1-760 Number of predicted TMRs: 0
+antigen_150|Q99Y58|Xaa-Pro|SQG55119.1|tpos:1-760	outside	1	760				
+//
+# antigen_113|P60452|Large|SQG53002.1|tpos:1-208 Length: 208
+# antigen_113|P60452|Large|SQG53002.1|tpos:1-208 Number of predicted TMRs: 0
+antigen_113|P60452|Large|SQG53002.1|tpos:1-208	inside	1	208				
+//
+# antigen_114|P0DC28|Protein-ADP-ribose|SQG54604.1|tpos:1-270 Length: 270
+# antigen_114|P0DC28|Protein-ADP-ribose|SQG54604.1|tpos:1-270 Number of predicted TMRs: 0
+antigen_114|P0DC28|Protein-ADP-ribose|SQG54604.1|tpos:1-270	inside	1	270				
+//
+# antigen_116|Q8P0Y8|Tyrosine|SQG54587.1|tpos:1-356 Length: 356
+# antigen_116|Q8P0Y8|Tyrosine|SQG54587.1|tpos:1-356 Number of predicted TMRs: 0
+antigen_116|Q8P0Y8|Tyrosine|SQG54587.1|tpos:1-356	inside	1	356				
+//
+# antigen_185|Q5XAY0|Arginine|SQG54827.1|tpos:1-157 Length: 157
+# antigen_185|Q5XAY0|Arginine|SQG54827.1|tpos:1-157 Number of predicted TMRs: 0
+antigen_185|Q5XAY0|Arginine|SQG54827.1|tpos:1-157	inside	1	157				
+//
+# antigen_186|Q48VX9|DNA|SQG52925.1|tpos:1-251 Length: 251
+# antigen_186|Q48VX9|DNA|SQG52925.1|tpos:1-251 Number of predicted TMRs: 0
+antigen_186|Q48VX9|DNA|SQG52925.1|tpos:1-251	inside	1	251				
+//
+# antigen_187|Q48VY9|Bifunctional|SQG52960.1|tpos:1-515 Length: 515
+# antigen_187|Q48VY9|Bifunctional|SQG52960.1|tpos:1-515 Number of predicted TMRs: 0
+antigen_187|Q48VY9|Bifunctional|SQG52960.1|tpos:1-515	inside	1	515				
+//
+# antigen_80|A2RFZ5|Pyrrolidone-carboxylate|SQG54094.1|tpos:1-215 Length: 215
+# antigen_80|A2RFZ5|Pyrrolidone-carboxylate|SQG54094.1|tpos:1-215 Number of predicted TMRs: 0
+antigen_80|A2RFZ5|Pyrrolidone-carboxylate|SQG54094.1|tpos:1-215	inside	1	215				
+//
+# antigen_0|P69882|Adenylate|SQG53048.1|tpos:1-212 Length: 212
+# antigen_0|P69882|Adenylate|SQG53048.1|tpos:1-212 Number of predicted TMRs: 0
+antigen_0|P69882|Adenylate|SQG53048.1|tpos:1-212	inside	1	212				
+//
+# antigen_152|A2RGJ5|D-aminoacyl-tRNA|SQG55214.1|tpos:1-147 Length: 147
+# antigen_152|A2RGJ5|D-aminoacyl-tRNA|SQG55214.1|tpos:1-147 Number of predicted TMRs: 0
+antigen_152|A2RGJ5|D-aminoacyl-tRNA|SQG55214.1|tpos:1-147	inside	1	147				
+//
+# antigen_153|Q48RY7|Gamma-glutamyl|SQG54917.1|tpos:1-416 Length: 416
+# antigen_153|Q48RY7|Gamma-glutamyl|SQG54917.1|tpos:1-416 Number of predicted TMRs: 0
+antigen_153|Q48RY7|Gamma-glutamyl|SQG54917.1|tpos:1-416	inside	1	416				
+//
+# antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404 Length: 404
+# antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404 Number of predicted TMRs: 8
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	inside	1	16				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	17	31				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	outside	32	42				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	43	63				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	inside	64	78				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	79	100				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	outside	101	141				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	142	158				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	inside	159	178				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	179	199				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	outside	200	211				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	212	232				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	inside	233	321				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	322	351				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	outside	352	361				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	TMhelix	362	382				
+antigen_156|Q5XDS5|Serine/threonine|SQG53888.1|tpos:1-404	inside	383	404				
+//
+# antigen_176|P0DG49|Methionine--tRNA|SQG54034.1|tpos:1-665 Length: 665
+# antigen_176|P0DG49|Methionine--tRNA|SQG54034.1|tpos:1-665 Number of predicted TMRs: 0
+antigen_176|P0DG49|Methionine--tRNA|SQG54034.1|tpos:1-665	inside	1	665				
+//
+# antigen_125|P0DG83|Nucleoid-associated|SQG55122.1|tpos:1-99 Length: 99
+# antigen_125|P0DG83|Nucleoid-associated|SQG55122.1|tpos:1-99 Number of predicted TMRs: 0
+antigen_125|P0DG83|Nucleoid-associated|SQG55122.1|tpos:1-99	inside	1	99				
+//
+# antigen_126|P0DB00|Beta-ketoacyl-[acyl-carrier-protein]|SQG55042.1|tpos:1-324 Length: 324
+# antigen_126|P0DB00|Beta-ketoacyl-[acyl-carrier-protein]|SQG55042.1|tpos:1-324 Number of predicted TMRs: 0
+antigen_126|P0DB00|Beta-ketoacyl-[acyl-carrier-protein]|SQG55042.1|tpos:1-324	inside	1	324				
+//
+# antigen_127|A2RG72|ATP-dependent|SQG53998.1|tpos:1-196 Length: 196
+# antigen_127|A2RG72|ATP-dependent|SQG53998.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_127|A2RG72|ATP-dependent|SQG53998.1|tpos:1-196	inside	1	196				
+//
+# antigen_170|Q48UD0|UDP-N-acetylglucosamine|SQG54241.1|tpos:1-423 Length: 423
+# antigen_170|Q48UD0|UDP-N-acetylglucosamine|SQG54241.1|tpos:1-423 Number of predicted TMRs: 0
+antigen_170|Q48UD0|UDP-N-acetylglucosamine|SQG54241.1|tpos:1-423	inside	1	423				
+//
+# antigen_171|P0DF23|Ribonuclease|SQG54375.1|tpos:1-309 Length: 309
+# antigen_171|P0DF23|Ribonuclease|SQG54375.1|tpos:1-309 Number of predicted TMRs: 0
+antigen_171|P0DF23|Ribonuclease|SQG54375.1|tpos:1-309	inside	1	309				
+//
+# antigen_42|Q9A1F2|Probable|SQG53863.1|tpos:1-210 Length: 210
+# antigen_42|Q9A1F2|Probable|SQG53863.1|tpos:1-210 Number of predicted TMRs: 0
+antigen_42|Q9A1F2|Probable|SQG53863.1|tpos:1-210	inside	1	210				
+//
+# antigen_43|A2RD32|Probable|SQG54923.1|tpos:1-214 Length: 214
+# antigen_43|A2RD32|Probable|SQG54923.1|tpos:1-214 Number of predicted TMRs: 0
+antigen_43|A2RD32|Probable|SQG54923.1|tpos:1-214	inside	1	214				
+//
+# antigen_44|Q1J776|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Length: 330
+# antigen_44|Q1J776|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Number of predicted TMRs: 0
+antigen_44|Q1J776|Ferredoxin--NADP|SQG54312.1|tpos:1-330	inside	1	330				
+//
+# antigen_82|Q48SZ3|D-alanine--D-alanyl|SQG54679.1|tpos:1-512 Length: 512
+# antigen_82|Q48SZ3|D-alanine--D-alanyl|SQG54679.1|tpos:1-512 Number of predicted TMRs: 0
+antigen_82|Q48SZ3|D-alanine--D-alanyl|SQG54679.1|tpos:1-512	inside	1	512				
+//
+# antigen_117|Q99Y13|Galactose-6-phosphate|SQG55174.1|tpos:1-171 Length: 171
+# antigen_117|Q99Y13|Galactose-6-phosphate|SQG55174.1|tpos:1-171 Number of predicted TMRs: 0
+antigen_117|Q99Y13|Galactose-6-phosphate|SQG55174.1|tpos:1-171	inside	1	171				
+//
+# antigen_118|P0DE54|Large|SQG53005.1|tpos:1-207 Length: 207
+# antigen_118|P0DE54|Large|SQG53005.1|tpos:1-207 Number of predicted TMRs: 0
+antigen_118|P0DE54|Large|SQG53005.1|tpos:1-207	inside	1	207				
+//
+# antigen_2|Q1J6Q6|Spermidine/putrescine|SQG54521.1|tpos:1-384 Length: 384
+# antigen_2|Q1J6Q6|Spermidine/putrescine|SQG54521.1|tpos:1-384 Number of predicted TMRs: 0
+antigen_2|Q1J6Q6|Spermidine/putrescine|SQG54521.1|tpos:1-384	inside	1	384				
+//
+# antigen_143|P0DG78|Putative|SQG54200.1|tpos:1-325 Length: 325
+# antigen_143|P0DG78|Putative|SQG54200.1|tpos:1-325 Number of predicted TMRs: 0
+antigen_143|P0DG78|Putative|SQG54200.1|tpos:1-325	inside	1	325				
+//
+# antigen_146|Q1JKN7|S-ribosylhomocysteine|SQG54895.1|tpos:1-160 Length: 160
+# antigen_146|Q1JKN7|S-ribosylhomocysteine|SQG54895.1|tpos:1-160 Number of predicted TMRs: 0
+antigen_146|Q1JKN7|S-ribosylhomocysteine|SQG54895.1|tpos:1-160	inside	1	160				
+//
+# antigen_195|B5XK49|Bifunctional|SQG54049.1|tpos:1-460 Length: 460
+# antigen_195|B5XK49|Bifunctional|SQG54049.1|tpos:1-460 Number of predicted TMRs: 0
+antigen_195|B5XK49|Bifunctional|SQG54049.1|tpos:1-460	inside	1	460				
+//
+# antigen_33|P65522|Putative|SQG53537.1|tpos:1-234 Length: 234
+# antigen_33|P65522|Putative|SQG53537.1|tpos:1-234 Number of predicted TMRs: 0
+antigen_33|P65522|Putative|SQG53537.1|tpos:1-234	inside	1	234				
+//
+# antigen_34|P66322|Large|SQG55354.1|tpos:1-150 Length: 150
+# antigen_34|P66322|Large|SQG55354.1|tpos:1-150 Number of predicted TMRs: 0
+antigen_34|P66322|Large|SQG55354.1|tpos:1-150	inside	1	150				
+//
+# antigen_35|Q1J6M7|GMP|SQG54549.1|tpos:1-327 Length: 327
+# antigen_35|Q1J6M7|GMP|SQG54549.1|tpos:1-327 Number of predicted TMRs: 0
+antigen_35|Q1J6M7|GMP|SQG54549.1|tpos:1-327	inside	1	327				
+//
+# antigen_77|P0DD80|Ribosome-binding|SQG54955.1|tpos:1-116 Length: 116
+# antigen_77|P0DD80|Ribosome-binding|SQG54955.1|tpos:1-116 Number of predicted TMRs: 0
+antigen_77|P0DD80|Ribosome-binding|SQG54955.1|tpos:1-116	inside	1	116				
+//
+# antigen_78|Q1JE33|DNA-directed|SQG53057.1|tpos:1-312 Length: 312
+# antigen_78|Q1JE33|DNA-directed|SQG53057.1|tpos:1-312 Number of predicted TMRs: 0
+antigen_78|Q1JE33|DNA-directed|SQG53057.1|tpos:1-312	inside	1	312				
+//
+# antigen_87|Q8NZ20|Aspartate--tRNA|SQG55334.1|tpos:1-582 Length: 582
+# antigen_87|Q8NZ20|Aspartate--tRNA|SQG55334.1|tpos:1-582 Number of predicted TMRs: 0
+antigen_87|Q8NZ20|Aspartate--tRNA|SQG55334.1|tpos:1-582	inside	1	582				
+//
+# antigen_167|B5XL39|Adenine|SQG54378.1|tpos:1-172 Length: 172
+# antigen_167|B5XL39|Adenine|SQG54378.1|tpos:1-172 Number of predicted TMRs: 0
+antigen_167|B5XL39|Adenine|SQG54378.1|tpos:1-172	inside	1	172				
+//
+# antigen_104|Q9A206|Peptidyl-tRNA|SQG52853.1|tpos:1-189 Length: 189
+# antigen_104|Q9A206|Peptidyl-tRNA|SQG52853.1|tpos:1-189 Number of predicted TMRs: 0
+antigen_104|Q9A206|Peptidyl-tRNA|SQG52853.1|tpos:1-189	inside	1	189				
+//
+# antigen_106|Q5XCB9|Putative|SQG54489.1|tpos:1-200 Length: 200
+# antigen_106|Q5XCB9|Putative|SQG54489.1|tpos:1-200 Number of predicted TMRs: 0
+antigen_106|Q5XCB9|Putative|SQG54489.1|tpos:1-200	inside	1	200				
+//
+# antigen_107|Q1JP12|Large|SQG53015.1|tpos:1-114 Length: 114
+# antigen_107|Q1JP12|Large|SQG53015.1|tpos:1-114 Number of predicted TMRs: 0
+antigen_107|Q1JP12|Large|SQG53015.1|tpos:1-114	inside	1	114				
+//
+# antigen_140|Q1J6G8|UPF0122|SQG54590.1|tpos:1-113 Length: 113
+# antigen_140|Q1J6G8|UPF0122|SQG54590.1|tpos:1-113 Number of predicted TMRs: 0
+antigen_140|Q1J6G8|UPF0122|SQG54590.1|tpos:1-113	inside	1	113				
+//
+# antigen_141|Q5XEK9|DNA|SQG52925.1|tpos:1-251 Length: 251
+# antigen_141|Q5XEK9|DNA|SQG52925.1|tpos:1-251 Number of predicted TMRs: 0
+antigen_141|Q5XEK9|DNA|SQG52925.1|tpos:1-251	inside	1	251				
+//
+# antigen_144|P0DE27|Large|SQG53028.1|tpos:1-101 Length: 101
+# antigen_144|P0DE27|Large|SQG53028.1|tpos:1-101 Number of predicted TMRs: 0
+antigen_144|P0DE27|Large|SQG53028.1|tpos:1-101	inside	1	101				
+//
+# antigen_145|Q48U40|CCA-adding|SQG54325.1|tpos:1-402 Length: 402
+# antigen_145|Q48U40|CCA-adding|SQG54325.1|tpos:1-402 Number of predicted TMRs: 0
+antigen_145|Q48U40|CCA-adding|SQG54325.1|tpos:1-402	inside	1	402				
+//
+# antigen_177|P0CZ71|Arginine|SQG55328.1|tpos:1-145 Length: 145
+# antigen_177|P0CZ71|Arginine|SQG55328.1|tpos:1-145 Number of predicted TMRs: 0
+antigen_177|P0CZ71|Arginine|SQG55328.1|tpos:1-145	inside	1	145				
+//
+# antigen_173|P0C0H6|Inosine-5'-monophosphate|SQG55376.1|tpos:1-493 Length: 493
+# antigen_173|P0C0H6|Inosine-5'-monophosphate|SQG55376.1|tpos:1-493 Number of predicted TMRs: 0
+antigen_173|P0C0H6|Inosine-5'-monophosphate|SQG55376.1|tpos:1-493	inside	1	493				
+//
+# antigen_174|Q5XCK7|Orotate|SQG54355.1|tpos:1-209 Length: 209
+# antigen_174|Q5XCK7|Orotate|SQG54355.1|tpos:1-209 Number of predicted TMRs: 0
+antigen_174|Q5XCK7|Orotate|SQG54355.1|tpos:1-209	inside	1	209				
+//
+# antigen_1|Q8P109|Ribonuclease|SQG54575.1|tpos:1-263 Length: 263
+# antigen_1|Q8P109|Ribonuclease|SQG54575.1|tpos:1-263 Number of predicted TMRs: 0
+antigen_1|Q8P109|Ribonuclease|SQG54575.1|tpos:1-263	inside	1	263				
+//
+# antigen_13|B5XKP9|ATP|SQG54236.1|tpos:1-502 Length: 502
+# antigen_13|B5XKP9|ATP|SQG54236.1|tpos:1-502 Number of predicted TMRs: 0
+antigen_13|B5XKP9|ATP|SQG54236.1|tpos:1-502	inside	1	502				
+//
+# antigen_17|Q8P0X5|Formate--tetrahydrofolate|SQG54601.1|tpos:1-556 Length: 556
+# antigen_17|Q8P0X5|Formate--tetrahydrofolate|SQG54601.1|tpos:1-556 Number of predicted TMRs: 0
+antigen_17|Q8P0X5|Formate--tetrahydrofolate|SQG54601.1|tpos:1-556	inside	1	556				
+//
+# antigen_135|Q8P2A7|Replication|SQG54012.1|tpos:1-107 Length: 107
+# antigen_135|Q8P2A7|Replication|SQG54012.1|tpos:1-107 Number of predicted TMRs: 0
+antigen_135|Q8P2A7|Replication|SQG54012.1|tpos:1-107	inside	1	107				
+//
+# antigen_136|Q1JKZ0|Cell|SQG54798.1|tpos:1-218 Length: 218
+# antigen_136|Q1JKZ0|Cell|SQG54798.1|tpos:1-218 Number of predicted TMRs: 0
+antigen_136|Q1JKZ0|Cell|SQG54798.1|tpos:1-218	inside	1	218				
+//
+# antigen_57|P0DC65|NH(3)-dependent|SQG54903.1|tpos:1-274 Length: 274
+# antigen_57|P0DC65|NH(3)-dependent|SQG54903.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_57|P0DC65|NH(3)-dependent|SQG54903.1|tpos:1-274	inside	1	274				
+//
+# antigen_58|Q5XA26|tRNA|SQG55132.1|tpos:1-342 Length: 342
+# antigen_58|Q5XA26|tRNA|SQG55132.1|tpos:1-342 Number of predicted TMRs: 0
+antigen_58|Q5XA26|tRNA|SQG55132.1|tpos:1-342	inside	1	342				
+//
+# antigen_59|A2RGF2|Tagatose-6-phosphate|SQG55173.1|tpos:1-309 Length: 309
+# antigen_59|A2RGF2|Tagatose-6-phosphate|SQG55173.1|tpos:1-309 Number of predicted TMRs: 0
+antigen_59|A2RGF2|Tagatose-6-phosphate|SQG55173.1|tpos:1-309	inside	1	309				
+//
+# antigen_163|P0DC12|Tagatose-6-phosphate|SQG55173.1|tpos:1-309 Length: 309
+# antigen_163|P0DC12|Tagatose-6-phosphate|SQG55173.1|tpos:1-309 Number of predicted TMRs: 0
+antigen_163|P0DC12|Tagatose-6-phosphate|SQG55173.1|tpos:1-309	inside	1	309				
+//
+# antigen_30|Q1JJZ6|Galactose-6-phosphate|SQG55174.1|tpos:1-171 Length: 171
+# antigen_30|Q1JJZ6|Galactose-6-phosphate|SQG55174.1|tpos:1-171 Number of predicted TMRs: 0
+antigen_30|Q1JJZ6|Galactose-6-phosphate|SQG55174.1|tpos:1-171	inside	1	171				
+//
+# antigen_31|P0DC23|Elongation|SQG54476.1|tpos:1-610 Length: 610
+# antigen_31|P0DC23|Elongation|SQG54476.1|tpos:1-610 Number of predicted TMRs: 0
+antigen_31|P0DC23|Elongation|SQG54476.1|tpos:1-610	inside	1	610				
+//
+# antigen_63|P0DD15|Probable|SQG53982.1|tpos:1-311 Length: 311
+# antigen_63|P0DD15|Probable|SQG53982.1|tpos:1-311 Number of predicted TMRs: 0
+antigen_63|P0DD15|Probable|SQG53982.1|tpos:1-311	inside	1	311				
+//
+# antigen_64|A2RD01|Translation|SQG54956.1|tpos:1-953 Length: 953
+# antigen_64|A2RD01|Translation|SQG54956.1|tpos:1-953 Number of predicted TMRs: 0
+antigen_64|A2RD01|Translation|SQG54956.1|tpos:1-953	inside	1	953				
+//
+# antigen_38|A2RD12|Galactose-6-phosphate|SQG54945.1|tpos:1-138 Length: 138
+# antigen_38|A2RD12|Galactose-6-phosphate|SQG54945.1|tpos:1-138 Number of predicted TMRs: 0
+antigen_38|A2RD12|Galactose-6-phosphate|SQG54945.1|tpos:1-138	inside	1	138				
+//
+# antigen_155|Q5X9K2|Formimidoylglutamase|SQG55299.1|tpos:1-328 Length: 328
+# antigen_155|Q5X9K2|Formimidoylglutamase|SQG55299.1|tpos:1-328 Number of predicted TMRs: 0
+antigen_155|Q5X9K2|Formimidoylglutamase|SQG55299.1|tpos:1-328	inside	1	328				
+//
+# antigen_160|Q1JHA5|Uracil-DNA|SQG54359.1|tpos:1-217 Length: 217
+# antigen_160|Q1JHA5|Uracil-DNA|SQG54359.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_160|Q1JHA5|Uracil-DNA|SQG54359.1|tpos:1-217	inside	1	217				
+//
+# antigen_128|B5XJ57|Adenylate|SQG53048.1|tpos:1-212 Length: 212
+# antigen_128|B5XJ57|Adenylate|SQG53048.1|tpos:1-212 Number of predicted TMRs: 0
+antigen_128|B5XJ57|Adenylate|SQG53048.1|tpos:1-212	inside	1	212				
+//
+# antigen_129|A2RCI0|Small|SQG53793.1|tpos:1-137 Length: 137
+# antigen_129|A2RCI0|Small|SQG53793.1|tpos:1-137 Number of predicted TMRs: 0
+antigen_129|A2RCI0|Small|SQG53793.1|tpos:1-137	inside	1	137				
+//
+# antigen_131|Q1JDK8|Small|SQG53793.1|tpos:1-125 Length: 125
+# antigen_131|Q1JDK8|Small|SQG53793.1|tpos:1-125 Number of predicted TMRs: 0
+antigen_131|Q1JDK8|Small|SQG53793.1|tpos:1-125	inside	1	125				
+//
+# antigen_133|A2RG55|Protein|SQG54036.1|tpos:1-162 Length: 162
+# antigen_133|A2RG55|Protein|SQG54036.1|tpos:1-162 Number of predicted TMRs: 0
+antigen_133|A2RG55|Protein|SQG54036.1|tpos:1-162	inside	1	162				
+//
+# antigen_28|P65783|NAD|SQG54542.1|tpos:1-278 Length: 278
+# antigen_28|P65783|NAD|SQG54542.1|tpos:1-278 Number of predicted TMRs: 0
+antigen_28|P65783|NAD|SQG54542.1|tpos:1-278	inside	1	278				
+//
+# antigen_29|Q1JJ89|DNA|SQG52925.1|tpos:1-251 Length: 251
+# antigen_29|Q1JJ89|DNA|SQG52925.1|tpos:1-251 Number of predicted TMRs: 0
+antigen_29|Q1JJ89|DNA|SQG52925.1|tpos:1-251	inside	1	251				
+//
+# antigen_137|Q1JJJ7|Formimidoylglutamase|SQG55299.1|tpos:1-328 Length: 328
+# antigen_137|Q1JJJ7|Formimidoylglutamase|SQG55299.1|tpos:1-328 Number of predicted TMRs: 0
+antigen_137|Q1JJJ7|Formimidoylglutamase|SQG55299.1|tpos:1-328	inside	1	328				
+//
+# antigen_179|P0CZ88|Glutamate|SQG53949.1|tpos:1-264 Length: 264
+# antigen_179|P0CZ88|Glutamate|SQG53949.1|tpos:1-264 Number of predicted TMRs: 0
+antigen_179|P0CZ88|Glutamate|SQG53949.1|tpos:1-264	inside	1	264				
+//
+# antigen_180|A2RCY1|Serine--tRNA|SQG55031.1|tpos:1-425 Length: 425
+# antigen_180|A2RCY1|Serine--tRNA|SQG55031.1|tpos:1-425 Number of predicted TMRs: 0
+antigen_180|A2RCY1|Serine--tRNA|SQG55031.1|tpos:1-425	inside	1	425				
+//
+# antigen_181|Q5XCC0|UvrABC|SQG54488.1|tpos:1-598 Length: 598
+# antigen_181|Q5XCC0|UvrABC|SQG54488.1|tpos:1-598 Number of predicted TMRs: 0
+antigen_181|Q5XCC0|UvrABC|SQG54488.1|tpos:1-598	inside	1	598				
+//
+# antigen_5|Q5XD71|HPr|SQG54150.1|tpos:1-310 Length: 310
+# antigen_5|Q5XD71|HPr|SQG54150.1|tpos:1-310 Number of predicted TMRs: 0
+antigen_5|Q5XD71|HPr|SQG54150.1|tpos:1-310	inside	1	310				
+//
+# antigen_7|B5XKQ2|ATP|SQG54239.1|tpos:1-138 Length: 138
+# antigen_7|B5XKQ2|ATP|SQG54239.1|tpos:1-138 Number of predicted TMRs: 0
+antigen_7|B5XKQ2|ATP|SQG54239.1|tpos:1-138	inside	1	138				
+//
+# antigen_8|A2RDN0|Exodeoxyribonuclease|SQG54785.1|tpos:1-446 Length: 446
+# antigen_8|A2RDN0|Exodeoxyribonuclease|SQG54785.1|tpos:1-446 Number of predicted TMRs: 0
+antigen_8|A2RDN0|Exodeoxyribonuclease|SQG54785.1|tpos:1-446	inside	1	446				
+//
+# antigen_68|Q5XC82|NAD|SQG54542.1|tpos:1-278 Length: 278
+# antigen_68|Q5XC82|NAD|SQG54542.1|tpos:1-278 Number of predicted TMRs: 0
+antigen_68|Q5XC82|NAD|SQG54542.1|tpos:1-278	inside	1	278				
+//
+# antigen_61|P0C0I6|Exotoxin|SQG54441.1|tpos:1-236 Length: 236
+# antigen_61|P0C0I6|Exotoxin|SQG54441.1|tpos:1-236 Number of predicted TMRs: 0
+antigen_61|P0C0I6|Exotoxin|SQG54441.1|tpos:1-236	signal	1	32				
+antigen_61|P0C0I6|Exotoxin|SQG54441.1|tpos:1-236	outside	33	236				
+//
+# antigen_62|Q1JA49|Holo-[acyl-carrier-protein]|SQG55078.1|tpos:1-118 Length: 118
+# antigen_62|Q1JA49|Holo-[acyl-carrier-protein]|SQG55078.1|tpos:1-118 Number of predicted TMRs: 0
+antigen_62|Q1JA49|Holo-[acyl-carrier-protein]|SQG55078.1|tpos:1-118	inside	1	118				
+//
+# antigen_162|Q8P0G7|UDP-N-acetylglucosamine|SQG54716.1|tpos:1-419 Length: 419
+# antigen_162|Q8P0G7|UDP-N-acetylglucosamine|SQG54716.1|tpos:1-419 Number of predicted TMRs: 0
+antigen_162|Q8P0G7|UDP-N-acetylglucosamine|SQG54716.1|tpos:1-419	outside	1	419				
+//
+# antigen_166|P0DF10|Probable|SQG54812.1|tpos:1-359 Length: 359
+# antigen_166|P0DF10|Probable|SQG54812.1|tpos:1-359 Number of predicted TMRs: 0
+antigen_166|P0DF10|Probable|SQG54812.1|tpos:1-359	inside	1	359				
+//
+# antigen_158|Q8NZY8|NH(3)-dependent|SQG54903.1|tpos:1-274 Length: 274
+# antigen_158|Q8NZY8|NH(3)-dependent|SQG54903.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_158|Q8NZY8|NH(3)-dependent|SQG54903.1|tpos:1-274	inside	1	274				
+//
+# antigen_159|P67372|DegV|SQG54778.1|tpos:1-279 Length: 279
+# antigen_159|P67372|DegV|SQG54778.1|tpos:1-279 Number of predicted TMRs: 0
+antigen_159|P67372|DegV|SQG54778.1|tpos:1-279	inside	1	279				
+//
+# antigen_161|Q1J4K0|Ribosomal|SQG55221.1|tpos:1-317 Length: 317
+# antigen_161|Q1J4K0|Ribosomal|SQG55221.1|tpos:1-317 Number of predicted TMRs: 0
+antigen_161|Q1J4K0|Ribosomal|SQG55221.1|tpos:1-317	inside	1	317				
+//
+# antigen_168|Q1JHF5|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Length: 330
+# antigen_168|Q1JHF5|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Number of predicted TMRs: 0
+antigen_168|Q1JHF5|Ferredoxin--NADP|SQG54312.1|tpos:1-330	inside	1	330				
+//
+# antigen_188|P0DD86|DNA|SQG52925.1|tpos:1-251 Length: 251
+# antigen_188|P0DD86|DNA|SQG52925.1|tpos:1-251 Number of predicted TMRs: 0
+antigen_188|P0DD86|DNA|SQG52925.1|tpos:1-251	inside	1	251				
+//
+# antigen_108|Q1J8D8|Ribosomal|SQG53899.1|tpos:1-237 Length: 237
+# antigen_108|Q1J8D8|Ribosomal|SQG53899.1|tpos:1-237 Number of predicted TMRs: 0
+antigen_108|Q1J8D8|Ribosomal|SQG53899.1|tpos:1-237	inside	1	237				
+//
+# antigen_123|A2RCV8|Aspartyl/glutamyl-tRNA(Asn/Gln)|SQG55053.1|tpos:1-479 Length: 479
+# antigen_123|A2RCV8|Aspartyl/glutamyl-tRNA(Asn/Gln)|SQG55053.1|tpos:1-479 Number of predicted TMRs: 0
+antigen_123|A2RCV8|Aspartyl/glutamyl-tRNA(Asn/Gln)|SQG55053.1|tpos:1-479	inside	1	479				
+//
+# antigen_12|Q1JFM4|UPF0398|SQG54899.1|tpos:1-171 Length: 171
+# antigen_12|Q1JFM4|UPF0398|SQG54899.1|tpos:1-171 Number of predicted TMRs: 0
+antigen_12|Q1JFM4|UPF0398|SQG54899.1|tpos:1-171	inside	1	171				
+//
+# antigen_19|B5XKU0|Large|SQG54277.1|tpos:1-119 Length: 119
+# antigen_19|B5XKU0|Large|SQG54277.1|tpos:1-119 Number of predicted TMRs: 0
+antigen_19|B5XKU0|Large|SQG54277.1|tpos:1-119	inside	1	119				
+//
+# antigen_20|Q1JDW9|V-type|SQG53277.1|tpos:1-471 Length: 471
+# antigen_20|Q1JDW9|V-type|SQG53277.1|tpos:1-471 Number of predicted TMRs: 0
+antigen_20|Q1JDW9|V-type|SQG53277.1|tpos:1-471	inside	1	471				
+//
+# antigen_22|Q8P1C8|Probable|SQG54343.1|tpos:1-199 Length: 199
+# antigen_22|Q8P1C8|Probable|SQG54343.1|tpos:1-199 Number of predicted TMRs: 0
+antigen_22|Q8P1C8|Probable|SQG54343.1|tpos:1-199	inside	1	199				
+//
+# antigen_164|P60420|UPF0298|SQG54000.1|tpos:1-91 Length: 91
+# antigen_164|P60420|UPF0298|SQG54000.1|tpos:1-91 Number of predicted TMRs: 0
+antigen_164|P60420|UPF0298|SQG54000.1|tpos:1-91	inside	1	91				
+//
+# antigen_165|Q1JKA0|Alanine|SQG55077.1|tpos:1-366 Length: 366
+# antigen_165|Q1JKA0|Alanine|SQG55077.1|tpos:1-366 Number of predicted TMRs: 0
+antigen_165|Q1JKA0|Alanine|SQG55077.1|tpos:1-366	inside	1	366				
+//
+# antigen_169|A2RF47|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Length: 330
+# antigen_169|A2RF47|Ferredoxin--NADP|SQG54312.1|tpos:1-330 Number of predicted TMRs: 0
+antigen_169|A2RF47|Ferredoxin--NADP|SQG54312.1|tpos:1-330	inside	1	330				
+//
+# antigen_50|Q48TU0|Elongation|SQG54476.1|tpos:1-610 Length: 610
+# antigen_50|Q48TU0|Elongation|SQG54476.1|tpos:1-610 Number of predicted TMRs: 0
+antigen_50|Q48TU0|Elongation|SQG54476.1|tpos:1-610	inside	1	610				
+//
+# antigen_6|P0DA16|Glycerol|SQG54928.1|tpos:1-508 Length: 508
+# antigen_6|P0DA16|Glycerol|SQG54928.1|tpos:1-508 Number of predicted TMRs: 0
+antigen_6|P0DA16|Glycerol|SQG54928.1|tpos:1-508	inside	1	508				
+//
+# antigen_10|Q48S05|Holliday|SQG54900.1|tpos:1-202 Length: 202
+# antigen_10|Q48S05|Holliday|SQG54900.1|tpos:1-202 Number of predicted TMRs: 0
+antigen_10|Q48S05|Holliday|SQG54900.1|tpos:1-202	inside	1	202				
+//
+# antigen_105|P0DC93|2-dehydropantoate|SQG54314.1|tpos:1-307 Length: 307
+# antigen_105|P0DC93|2-dehydropantoate|SQG54314.1|tpos:1-307 Number of predicted TMRs: 0
+antigen_105|P0DC93|2-dehydropantoate|SQG54314.1|tpos:1-307	inside	1	307				
+//
+# antigen_109|Q1JBD1|UvrABC|SQG54681.1|tpos:1-663 Length: 663
+# antigen_109|Q1JBD1|UvrABC|SQG54681.1|tpos:1-663 Number of predicted TMRs: 0
+antigen_109|Q1JBD1|UvrABC|SQG54681.1|tpos:1-663	inside	1	663				
+//
+# antigen_182|Q1J708|tRNA|SQG54372.1|tpos:1-299 Length: 299
+# antigen_182|Q1J708|tRNA|SQG54372.1|tpos:1-299 Number of predicted TMRs: 0
+antigen_182|Q1J708|tRNA|SQG54372.1|tpos:1-299	inside	1	299				
+//
+# antigen_79|P0DG47|Lysine--tRNA|SQG54158.1|tpos:1-497 Length: 497
+# antigen_79|P0DG47|Lysine--tRNA|SQG54158.1|tpos:1-497 Number of predicted TMRs: 0
+antigen_79|P0DG47|Lysine--tRNA|SQG54158.1|tpos:1-497	inside	1	497				
+//
+# antigen_91|Q1JLY8|Elongation|SQG54476.1|tpos:1-610 Length: 610
+# antigen_91|Q1JLY8|Elongation|SQG54476.1|tpos:1-610 Number of predicted TMRs: 0
+antigen_91|Q1JLY8|Elongation|SQG54476.1|tpos:1-610	inside	1	610				
+//
+# antigen_93|P0DC38|Peptide|SQG54065.1|tpos:1-169 Length: 169
+# antigen_93|P0DC38|Peptide|SQG54065.1|tpos:1-169 Number of predicted TMRs: 0
+antigen_93|P0DC38|Peptide|SQG54065.1|tpos:1-169	inside	1	169				
+//
+# antigen_130|P66852|Single-stranded|SQG55097.1|tpos:1-163 Length: 163
+# antigen_130|P66852|Single-stranded|SQG55097.1|tpos:1-163 Number of predicted TMRs: 0
+antigen_130|P66852|Single-stranded|SQG55097.1|tpos:1-163	inside	1	163				
+//
+# antigen_86|Q5X9I0|Protein|SQG55321.1|tpos:1-378 Length: 378
+# antigen_86|Q5X9I0|Protein|SQG55321.1|tpos:1-378 Number of predicted TMRs: 0
+antigen_86|Q5X9I0|Protein|SQG55321.1|tpos:1-378	inside	1	378				
+//
+# antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298 Length: 298
+# antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298 Number of predicted TMRs: 4
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	inside	1	13				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	TMhelix	14	35				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	outside	36	39				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	TMhelix	40	59				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	inside	60	160				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	TMhelix	161	177				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	outside	178	196				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	TMhelix	197	213				
+antigen_73|Q48V70|Protease|SQG53904.1|tpos:1-298	inside	214	298				
+//
+# antigen_26|P69948|Elongation|SQG53798.1|tpos:1-692 Length: 692
+# antigen_26|P69948|Elongation|SQG53798.1|tpos:1-692 Number of predicted TMRs: 0
+antigen_26|P69948|Elongation|SQG53798.1|tpos:1-692	inside	1	692				
+//
+# antigen_83|Q8P003|Methionyl-tRNA|SQG54883.1|tpos:1-311 Length: 311
+# antigen_83|Q8P003|Methionyl-tRNA|SQG54883.1|tpos:1-311 Number of predicted TMRs: 0
+antigen_83|Q8P003|Methionyl-tRNA|SQG54883.1|tpos:1-311	inside	1	311				
+//
+# antigen_115|Q1JE69|Holliday|SQG52982.1|tpos:1-332 Length: 332
+# antigen_115|Q1JE69|Holliday|SQG52982.1|tpos:1-332 Number of predicted TMRs: 0
+antigen_115|Q1JE69|Holliday|SQG52982.1|tpos:1-332	inside	1	332				
+//
+# antigen_27|Q48UD2|ATP|SQG54239.1|tpos:1-138 Length: 138
+# antigen_27|Q48UD2|ATP|SQG54239.1|tpos:1-138 Number of predicted TMRs: 0
+antigen_27|Q48UD2|ATP|SQG54239.1|tpos:1-138	inside	1	138				
+//
+# antigen_81|P0DA37|ATP-dependent|SQG54342.1|tpos:1-409 Length: 409
+# antigen_81|P0DA37|ATP-dependent|SQG54342.1|tpos:1-409 Number of predicted TMRs: 0
+antigen_81|P0DA37|ATP-dependent|SQG54342.1|tpos:1-409	inside	1	409				
+//
+# antigen_88|Q48SL4|Cell|SQG54798.1|tpos:1-218 Length: 218
+# antigen_88|Q48SL4|Cell|SQG54798.1|tpos:1-218 Number of predicted TMRs: 0
+antigen_88|Q48SL4|Cell|SQG54798.1|tpos:1-218	inside	1	218				
+//
+# antigen_89|Q5XCS5|Large|SQG54291.1|tpos:4-97 Length: 94
+# antigen_89|Q5XCS5|Large|SQG54291.1|tpos:4-97 Number of predicted TMRs: 0
+antigen_89|Q5XCS5|Large|SQG54291.1|tpos:4-97	inside	1	94				
+//
+# antigen_90|P0DD83|Protein|SQG55321.1|tpos:1-378 Length: 378
+# antigen_90|P0DD83|Protein|SQG55321.1|tpos:1-378 Number of predicted TMRs: 0
+antigen_90|P0DD83|Protein|SQG55321.1|tpos:1-378	inside	1	378				
+//
+# antigen_92|Q1JID3|UPF0298|SQG54000.1|tpos:1-91 Length: 91
+# antigen_92|Q1JID3|UPF0298|SQG54000.1|tpos:1-91 Number of predicted TMRs: 0
+antigen_92|Q1JID3|UPF0298|SQG54000.1|tpos:1-91	inside	1	91				
+//
+# antigen_110|Q5XDX3|Small|SQG53580.1|tpos:1-290 Length: 290
+# antigen_110|Q5XDX3|Small|SQG53580.1|tpos:1-290 Number of predicted TMRs: 0
+antigen_110|Q5XDX3|Small|SQG53580.1|tpos:1-290	inside	1	290				
+//
+# antigen_47|B5XK66|Peptide|SQG54065.1|tpos:1-169 Length: 169
+# antigen_47|B5XK66|Peptide|SQG54065.1|tpos:1-169 Number of predicted TMRs: 0
+antigen_47|B5XK66|Peptide|SQG54065.1|tpos:1-169	inside	1	169				
+//
+# antigen_48|Q1JFK0|Probable|SQG54923.1|tpos:1-214 Length: 214
+# antigen_48|Q1JFK0|Probable|SQG54923.1|tpos:1-214 Number of predicted TMRs: 0
+antigen_48|Q1JFK0|Probable|SQG54923.1|tpos:1-214	inside	1	214				
+//
+# antigen_49|Q1J777|tRNA|SQG54311.1|tpos:1-239 Length: 239
+# antigen_49|Q1J777|tRNA|SQG54311.1|tpos:1-239 Number of predicted TMRs: 0
+antigen_49|Q1J777|tRNA|SQG54311.1|tpos:1-239	inside	1	239				
+//
+# antigen_72|P0DC10|Galactose-6-phosphate|SQG55174.1|tpos:1-171 Length: 171
+# antigen_72|P0DC10|Galactose-6-phosphate|SQG55174.1|tpos:1-171 Number of predicted TMRs: 0
+antigen_72|P0DC10|Galactose-6-phosphate|SQG55174.1|tpos:1-171	inside	1	171				
+//
+# antigen_95|Q5XAZ0|Phosphopantetheine|SQG54817.1|tpos:1-163 Length: 163
+# antigen_95|Q5XAZ0|Phosphopantetheine|SQG54817.1|tpos:1-163 Number of predicted TMRs: 0
+antigen_95|Q5XAZ0|Phosphopantetheine|SQG54817.1|tpos:1-163	inside	1	163				
+//
+# antigen_96|P0DE90|Small|SQG53017.1|tpos:1-217 Length: 217
+# antigen_96|P0DE90|Small|SQG53017.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_96|P0DE90|Small|SQG53017.1|tpos:1-217	inside	1	217				
+//
+# antigen_139|Q1J736|Phosphopentomutase|SQG54347.1|tpos:1-403 Length: 403
+# antigen_139|Q1J736|Phosphopentomutase|SQG54347.1|tpos:1-403 Number of predicted TMRs: 0
+antigen_139|Q1J736|Phosphopentomutase|SQG54347.1|tpos:1-403	inside	1	403				
+//
+# antigen_54|B5XHV2|Ribosome-binding|SQG54955.1|tpos:1-115 Length: 115
+# antigen_54|B5XHV2|Ribosome-binding|SQG54955.1|tpos:1-115 Number of predicted TMRs: 0
+antigen_54|B5XHV2|Ribosome-binding|SQG54955.1|tpos:1-115	inside	1	115				
+//
+# antigen_55|Q5XA61|Small|SQG55098.1|tpos:1-96 Length: 96
+# antigen_55|Q5XA61|Small|SQG55098.1|tpos:1-96 Number of predicted TMRs: 0
+antigen_55|Q5XA61|Small|SQG55098.1|tpos:1-96	inside	1	96				
+//
+# antigen_84|P0DG67|Thymidylate|SQG54339.1|tpos:1-279 Length: 279
+# antigen_84|P0DG67|Thymidylate|SQG54339.1|tpos:1-279 Number of predicted TMRs: 0
+antigen_84|P0DG67|Thymidylate|SQG54339.1|tpos:1-279	inside	1	279				
+//
+# antigen_85|P0DB23|Glycerol-3-phosphate|SQG53471.1|tpos:1-338 Length: 338
+# antigen_85|P0DB23|Glycerol-3-phosphate|SQG53471.1|tpos:1-338 Number of predicted TMRs: 0
+antigen_85|P0DB23|Glycerol-3-phosphate|SQG53471.1|tpos:1-338	inside	1	338				
+//
+# antigen_154|Q5XD18|Putative|SQG54200.1|tpos:1-325 Length: 325
+# antigen_154|Q5XD18|Putative|SQG54200.1|tpos:1-325 Number of predicted TMRs: 0
+antigen_154|Q5XD18|Putative|SQG54200.1|tpos:1-325	inside	1	325				
+//
+# antigen_138|Q1J592|Acetyl-coenzyme|SQG55033.1|tpos:1-288 Length: 288
+# antigen_138|Q1J592|Acetyl-coenzyme|SQG55033.1|tpos:1-288 Number of predicted TMRs: 0
+antigen_138|Q1J592|Acetyl-coenzyme|SQG55033.1|tpos:1-288	inside	1	288				
+//
+# antigen_142|Q1JD58|Ribosome-recycling|SQG54063.1|tpos:1-185 Length: 185
+# antigen_142|Q1JD58|Ribosome-recycling|SQG54063.1|tpos:1-185 Number of predicted TMRs: 0
+antigen_142|Q1JD58|Ribosome-recycling|SQG54063.1|tpos:1-185	inside	1	185				
+//
+# antigen_23|Q5XCA4|Spermidine/putrescine|SQG54521.1|tpos:1-384 Length: 384
+# antigen_23|Q5XCA4|Spermidine/putrescine|SQG54521.1|tpos:1-384 Number of predicted TMRs: 0
+antigen_23|Q5XCA4|Spermidine/putrescine|SQG54521.1|tpos:1-384	inside	1	384				
+//
+# antigen_24|Q7CMS1|Galactose-6-phosphate|SQG55175.1|tpos:1-142 Length: 142
+# antigen_24|Q7CMS1|Galactose-6-phosphate|SQG55175.1|tpos:1-142 Number of predicted TMRs: 0
+antigen_24|Q7CMS1|Galactose-6-phosphate|SQG55175.1|tpos:1-142	inside	1	142				
+//
+# antigen_25|B5XMM1|Probable|SQG54923.1|tpos:1-214 Length: 214
+# antigen_25|B5XMM1|Probable|SQG54923.1|tpos:1-214 Number of predicted TMRs: 0
+antigen_25|B5XMM1|Probable|SQG54923.1|tpos:1-214	inside	1	214				
+//
+# antigen_70|B5XM46|S-adenosylmethionine:tRNA|SQG54750.1|tpos:1-342 Length: 342
+# antigen_70|B5XM46|S-adenosylmethionine:tRNA|SQG54750.1|tpos:1-342 Number of predicted TMRs: 0
+antigen_70|B5XM46|S-adenosylmethionine:tRNA|SQG54750.1|tpos:1-342	inside	1	342				
+//
+# antigen_21|Q9A0I1|Phenylalanine--tRNA|SQG54244.1|tpos:12-358 Length: 347
+# antigen_21|Q9A0I1|Phenylalanine--tRNA|SQG54244.1|tpos:12-358 Number of predicted TMRs: 0
+antigen_21|Q9A0I1|Phenylalanine--tRNA|SQG54244.1|tpos:12-358	inside	1	347				
+//
+# antigen_157|P67575|Asparagine--tRNA|SQG54198.1|tpos:1-448 Length: 448
+# antigen_157|P67575|Asparagine--tRNA|SQG54198.1|tpos:1-448 Number of predicted TMRs: 0
+antigen_157|P67575|Asparagine--tRNA|SQG54198.1|tpos:1-448	inside	1	448				
+//
+# antigen_39|Q5XDM4|ATP-dependent|SQG53998.1|tpos:1-196 Length: 196
+# antigen_39|Q5XDM4|ATP-dependent|SQG53998.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_39|Q5XDM4|ATP-dependent|SQG53998.1|tpos:1-196	inside	1	196				
+//
+# antigen_40|Q48VU3|Small|SQG53017.1|tpos:1-217 Length: 217
+# antigen_40|Q48VU3|Small|SQG53017.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_40|Q48VU3|Small|SQG53017.1|tpos:1-217	inside	1	217				
+//
+# antigen_41|A2REG0|Ribonuclease|SQG54575.1|tpos:1-263 Length: 263
+# antigen_41|A2REG0|Ribonuclease|SQG54575.1|tpos:1-263 Number of predicted TMRs: 0
+antigen_41|A2REG0|Ribonuclease|SQG54575.1|tpos:1-263	inside	1	263				
+//
+# antigen_196|Q1JKD4|Heat-inducible|SQG55048.1|tpos:1-344 Length: 344
+# antigen_196|Q1JKD4|Heat-inducible|SQG55048.1|tpos:1-344 Number of predicted TMRs: 0
+antigen_196|Q1JKD4|Heat-inducible|SQG55048.1|tpos:1-344	inside	1	344				
+//
+# antigen_101|Q1JB44|Shikimate|SQG54709.1|tpos:1-163 Length: 163
+# antigen_101|Q1JB44|Shikimate|SQG54709.1|tpos:1-163 Number of predicted TMRs: 0
+antigen_101|Q1JB44|Shikimate|SQG54709.1|tpos:1-163	inside	1	163				
+//
+# antigen_102|A2RFS6|HPr|SQG54150.1|tpos:1-310 Length: 310
+# antigen_102|A2RFS6|HPr|SQG54150.1|tpos:1-310 Number of predicted TMRs: 0
+antigen_102|A2RFS6|HPr|SQG54150.1|tpos:1-310	inside	1	310				
+//
+# antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298 Length: 298
+# antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298 Number of predicted TMRs: 4
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	inside	1	13				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	TMhelix	14	35				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	outside	36	39				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	TMhelix	40	59				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	inside	60	160				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	TMhelix	161	177				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	outside	178	196				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	TMhelix	197	213				
+antigen_103|Q9A1D5|Protease|SQG53904.1|tpos:1-298	inside	214	298				
+//
+# antigen_132|Q5XEC0|Large|SQG53036.1|tpos:1-178 Length: 178
+# antigen_132|Q5XEC0|Large|SQG53036.1|tpos:1-178 Number of predicted TMRs: 0
+antigen_132|Q5XEC0|Large|SQG53036.1|tpos:1-178	inside	1	178				
+//
+# antigen_97|A2RF70|Large|SQG54289.1|tpos:1-104 Length: 104
+# antigen_97|A2RF70|Large|SQG54289.1|tpos:1-104 Number of predicted TMRs: 0
+antigen_97|A2RF70|Large|SQG54289.1|tpos:1-104	inside	1	104				
+//
+# antigen_98|Q5X9J1|UPF0246|SQG55309.1|tpos:1-243 Length: 243
+# antigen_98|Q5X9J1|UPF0246|SQG55309.1|tpos:1-243 Number of predicted TMRs: 0
+antigen_98|Q5X9J1|UPF0246|SQG55309.1|tpos:1-243	inside	1	243				
+//
+# antigen_99|Q1JDD0|Segregation|SQG53962.1|tpos:1-183 Length: 183
+# antigen_99|Q1JDD0|Segregation|SQG53962.1|tpos:1-183 Number of predicted TMRs: 0
+antigen_99|Q1JDD0|Segregation|SQG53962.1|tpos:1-183	inside	1	183				
+//
+# antigen_100|Q48V44|Segregation|SQG53962.1|tpos:1-183 Length: 183
+# antigen_100|Q48V44|Segregation|SQG53962.1|tpos:1-183 Number of predicted TMRs: 0
+antigen_100|Q48V44|Segregation|SQG53962.1|tpos:1-183	inside	1	183				
+//
+# antigen_120|Q5X9I4|UPF0473|SQG55317.1|tpos:1-101 Length: 101
+# antigen_120|Q5X9I4|UPF0473|SQG55317.1|tpos:1-101 Number of predicted TMRs: 0
+antigen_120|Q5X9I4|UPF0473|SQG55317.1|tpos:1-101	inside	1	101				
+//
+# antigen_60|Q48QT6|DNA|SQG55327.1|tpos:1-851 Length: 851
+# antigen_60|Q48QT6|DNA|SQG55327.1|tpos:1-851 Number of predicted TMRs: 0
+antigen_60|Q48QT6|DNA|SQG55327.1|tpos:1-851	inside	1	851				
+//
+# antigen_18|Q1J8A8|Segregation|SQG53962.1|tpos:1-183 Length: 183
+# antigen_18|Q1J8A8|Segregation|SQG53962.1|tpos:1-183 Number of predicted TMRs: 0
+antigen_18|Q1J8A8|Segregation|SQG53962.1|tpos:1-183	inside	1	183				
+//
+# antigen_36|P0DG70|UTP--glucose-1-phosphate|SQG55372.1|tpos:1-304 Length: 304
+# antigen_36|P0DG70|UTP--glucose-1-phosphate|SQG55372.1|tpos:1-304 Number of predicted TMRs: 0
+antigen_36|P0DG70|UTP--glucose-1-phosphate|SQG55372.1|tpos:1-304	inside	1	304				
+//
+# antigen_37|P0CZ51|Holo-[acyl-carrier-protein]|SQG55078.1|tpos:1-118 Length: 118
+# antigen_37|P0CZ51|Holo-[acyl-carrier-protein]|SQG55078.1|tpos:1-118 Number of predicted TMRs: 0
+antigen_37|P0CZ51|Holo-[acyl-carrier-protein]|SQG55078.1|tpos:1-118	inside	1	118				
+//
+# antigen_56|Q99YG1|Translation|SQG54956.1|tpos:1-953 Length: 953
+# antigen_56|Q99YG1|Translation|SQG54956.1|tpos:1-953 Number of predicted TMRs: 0
+antigen_56|Q99YG1|Translation|SQG54956.1|tpos:1-953	inside	1	953				
+//
+# antigen_147|P66021|Peptide|SQG54764.1|tpos:1-514 Length: 514
+# antigen_147|P66021|Peptide|SQG54764.1|tpos:1-514 Number of predicted TMRs: 0
+antigen_147|P66021|Peptide|SQG54764.1|tpos:1-514	inside	1	514				
+//
+# antigen_191|Q8P1D1|Thymidylate|SQG54339.1|tpos:1-279 Length: 279
+# antigen_191|Q8P1D1|Thymidylate|SQG54339.1|tpos:1-279 Number of predicted TMRs: 0
+antigen_191|Q8P1D1|Thymidylate|SQG54339.1|tpos:1-279	inside	1	279				
+//
+# antigen_192|P0DE64|Small|SQG53056.1|tpos:1-127 Length: 127
+# antigen_192|P0DE64|Small|SQG53056.1|tpos:1-127 Number of predicted TMRs: 0
+antigen_192|P0DE64|Small|SQG53056.1|tpos:1-127	inside	1	127				
+//
+# antigen_193|Q1JN21|GTPase|SQG54073.1|tpos:1-298 Length: 298
+# antigen_193|Q1JN21|GTPase|SQG54073.1|tpos:1-298 Number of predicted TMRs: 0
+antigen_193|Q1JN21|GTPase|SQG54073.1|tpos:1-298	inside	1	298				
+//
+# antigen_74|P0DE67|Small|SQG53793.1|tpos:1-137 Length: 137
+# antigen_74|P0DE67|Small|SQG53793.1|tpos:1-137 Number of predicted TMRs: 0
+antigen_74|P0DE67|Small|SQG53793.1|tpos:1-137	inside	1	137				
+//
+# antigen_75|Q1J7A2|Large|SQG54289.1|tpos:1-104 Length: 104
+# antigen_75|Q1J7A2|Large|SQG54289.1|tpos:1-104 Number of predicted TMRs: 0
+antigen_75|Q1J7A2|Large|SQG54289.1|tpos:1-104	inside	1	104				
+//
+# antigen_76|Q1JHP3|DNA|SQG54230.1|tpos:1-652 Length: 652
+# antigen_76|Q1JHP3|DNA|SQG54230.1|tpos:1-652 Number of predicted TMRs: 0
+antigen_76|Q1JHP3|DNA|SQG54230.1|tpos:1-652	inside	1	652				
+//
+# antigen_134|P0DG00|tRNA(Ile)-lysidine|SQG52881.1|tpos:1-428 Length: 428
+# antigen_134|P0DG00|tRNA(Ile)-lysidine|SQG52881.1|tpos:1-428 Number of predicted TMRs: 0
+antigen_134|P0DG00|tRNA(Ile)-lysidine|SQG52881.1|tpos:1-428	inside	1	428				
+//
+# antigen_172|Q48VD6|Putative|SQG53537.1|tpos:1-234 Length: 234
+# antigen_172|Q48VD6|Putative|SQG53537.1|tpos:1-234 Number of predicted TMRs: 0
+antigen_172|Q48VD6|Putative|SQG53537.1|tpos:1-234	inside	1	234				

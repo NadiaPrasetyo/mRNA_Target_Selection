@@ -1,0 +1,4 @@
+[2025-10-12 00:01:21,227] Single-chain mode set, will predict PDBs as single chains
+[2025-10-12 00:01:21,229] Single PDB file input (3ZLB_P68897), extracting single chains to data/S.pyogenes/epitope_outputs/discotope/3ZLB_P68897/input_chains
+[2025-10-12 00:01:21,512] Found 1 extracted single chains in data/S.pyogenes/epitope_outputs/discotope/3ZLB_P68897/input_chains
+[2025-10-12 00:04:30,109] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/S.pyogenes/epitope_outputs/discotope/3ZLB_P68897/output

@@ -1,0 +1,5 @@
+[2025-10-12 00:01:47,973] Single-chain mode set, will predict PDBs as single chains
+[2025-10-12 00:01:47,974] Single PDB file input (2JTC_P0C0J1), extracting single chains to data/S.pyogenes/epitope_outputs/discotope/2JTC_P0C0J1/input_chains
+[2025-10-12 00:01:57,334] Found 1 extracted single chains in data/S.pyogenes/epitope_outputs/discotope/2JTC_P0C0J1/input_chains
+[2025-10-12 00:02:19,397] Note: Skipping 2JTC_P0C0J1_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-12 00:02:19,433] Error: No PDB files were valid. Please check input PDBs.

@@ -1,0 +1,4 @@
+[2025-10-12 00:32:43,727] Single-chain mode set, will predict PDBs as single chains
+[2025-10-12 00:32:43,729] Single PDB file input (1YXY_P65522), extracting single chains to data/S.pyogenes/random_analysis/discotope/1YXY_P65522/input_chains
+[2025-10-12 00:32:44,028] Found 2 extracted single chains in data/S.pyogenes/random_analysis/discotope/1YXY_P65522/input_chains
+[2025-10-12 00:37:13,034] Predicted 2 / 2 PDB files extracted from 1 input PDBs, saved to data/S.pyogenes/random_analysis/discotope/1YXY_P65522/output
