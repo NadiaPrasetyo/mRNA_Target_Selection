@@ -20,7 +20,6 @@ Requirements:
 
 Outputs:
     <output_dir>/results*         # Result files from DeepLocPro.
-    <output_dir>/plots/*          # Plot images and non-results files.
 
 Author: Nadia
 
@@ -43,10 +42,8 @@ def run(tool_path: str, input_file: str, output_dir: str, group: str):
     working_dir = Path(tool_path).resolve()
     input_file = Path(input_file).resolve()
     output_dir = Path(output_dir).resolve()
-    plots_dir = output_dir / "plots"
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    plots_dir.mkdir(parents=True, exist_ok=True)
     logging.info(f"Running DeepLocPro in {working_dir} for {input_file.name} with group: {group}")
 
     try:
@@ -54,7 +51,6 @@ def run(tool_path: str, input_file: str, output_dir: str, group: str):
             "deeplocpro",
             "-f", str(input_file),
             "-o", "output",
-            "-p",
             "-d", "cpu",
             "-g", group
         ]
@@ -70,13 +66,9 @@ def run(tool_path: str, input_file: str, output_dir: str, group: str):
             raise FileNotFoundError("❌ No output directory created by DeepLocPro.")
 
         for f in bio_output_dir.iterdir():
-            # Send plots and non-results-prefixed files to plots_dir
-            if f.suffix.lower() in {".png", ".jpg", ".svg"} or not f.name.startswith("results"):
-                shutil.move(str(f), plots_dir / f.name)
-            else:
                 shutil.move(str(f), output_dir / f.name)
 
-        print(f"✅ DeepLocPro completed for {input_file.name}")
+        print(f"✅ DeepLocPro completed for {input_file.name}, output saved in {output_dir}")
 
     except Exception as e:
         logging.error(f"❌ DeepLocPro failed on {input_file.name}: {e}")
