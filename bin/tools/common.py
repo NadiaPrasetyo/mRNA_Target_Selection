@@ -407,6 +407,35 @@ def check_iedb_tool(base_path):
             tools[key] = str(path)
     return tools
 
+def remove_invalid_aa(fasta_file: Path) -> Path:
+    """
+    Remove invalid amino acid characters from the given sequence.
+
+    Args:
+        seq (str): Protein sequence to validate.
+    Allowed character lower and uppercase amino acids:
+    {'D', 'R', 'W', 'P', 'G', 'T', 'S', 'C', 'H', 'I', 'Y', 'A', 'Q', 'V', 'N', 'E', 'L', 'M', 'F', 'K'}
+
+    Returns:
+        fasta_file (Path): Path to the cleaned FASTA file.
+    """
+    valid_aa = set("ACDEFGHIKLMNPQRSTVWY")
+    cleaned_fasta = fasta_file.parent / (fasta_file.stem + "_cleaned.fasta")
+
+    with open(fasta_file, "r") as in_f, open(cleaned_fasta, "w") as out_f:
+        # split entries into pairs of header and sequence
+        lines = in_f.readlines()
+        for i in range(0, len(lines), 2):
+            header = lines[i].strip()
+            seq = lines[i + 1].strip()
+            if seq and all(aa in valid_aa for aa in seq):
+                out_f.write(f"{header}\n{seq}\n")
+            else:
+                invalid_aa = set(seq) - valid_aa
+                logging.warning(f"Skipping invalid amino acids found in sequence for {header}: invalid aa = {invalid_aa}")
+                continue
+
+    return cleaned_fasta
 
 def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
     """
@@ -418,9 +447,10 @@ def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
         list: List of Path objects for the created text files.
     """
     temp_txt_dir.mkdir(parents=True, exist_ok=True)
+    cleaned_fasta_files = [remove_invalid_aa(fasta_file) for fasta_file in fasta_files]
     txt_files = []
-    for fasta_file in fasta_files:
-        txt_file = temp_txt_dir / (fasta_file.stem + ".txt")
+    for fasta_file in cleaned_fasta_files:
+        txt_file = temp_txt_dir / (fasta_file.stem.replace("_cleaned", "") + ".txt")
         txt_file.write_text(fasta_file.read_text())
         txt_files.append(txt_file)
     return txt_files
