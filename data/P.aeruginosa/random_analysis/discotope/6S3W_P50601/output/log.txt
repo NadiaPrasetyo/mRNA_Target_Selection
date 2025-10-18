@@ -1,0 +1,6 @@
+[2025-10-14 03:43:35,501] Single-chain mode set, will predict PDBs as single chains
+[2025-10-14 03:43:35,517] Single PDB file input (6S3W_P50601), extracting single chains to data/P.aeruginosa/random_analysis/discotope/6S3W_P50601/input_chains
+[2025-10-14 03:43:43,447] Found 2 extracted single chains in data/P.aeruginosa/random_analysis/discotope/6S3W_P50601/input_chains
+[2025-10-14 03:44:17,572] Note: Skipping 6S3W_P50601_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:44:17,584] Note: Skipping 6S3W_P50601_B, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:44:17,621] Error: No PDB files were valid. Please check input PDBs.

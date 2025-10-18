@@ -1,0 +1,4 @@
+[2025-10-14 03:24:13,546] Single-chain mode set, will predict PDBs as single chains
+[2025-10-14 03:24:13,555] Single PDB file input (2X27_A0A072ZF41), extracting single chains to data/P.aeruginosa/epitope_outputs/discotope/2X27_A0A072ZF41/input_chains
+[2025-10-14 03:24:13,877] Found 1 extracted single chains in data/P.aeruginosa/epitope_outputs/discotope/2X27_A0A072ZF41/input_chains
+[2025-10-14 03:27:33,166] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/P.aeruginosa/epitope_outputs/discotope/2X27_A0A072ZF41/output
