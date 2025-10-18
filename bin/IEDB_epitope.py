@@ -238,6 +238,11 @@ def main():
             temp_fasta_dir.mkdir(parents=True, exist_ok=True)
             input_files_tool = common.rename_fasta_headers(fasta_files=fasta_files, tmp_fasta_dir=temp_fasta_dir)
 
+            if tool_type == "BCell":
+                input_files_tool = [
+                    common.remove_invalid_aa(fasta_file, temp_fasta_dir) for fasta_file in input_files_tool
+                ]
+
         elif tool_type == "MixMHC2pred":
             alleles = run_mixmhc2pred.MHCII_DEFAULT
 

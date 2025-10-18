@@ -420,11 +420,10 @@ def remove_invalid_aa(fasta_file: Path) -> Path:
         fasta_file (Path): Path to the cleaned FASTA file.
     """
     valid_aa = set("ACDEFGHIKLMNPQRSTVWY")
-    cleaned_fasta = fasta_file.parent / (fasta_file.stem + "_cleaned.fasta")
-
-    with open(fasta_file, "r") as in_f, open(cleaned_fasta, "w") as out_f:
-        # split entries into pairs of header and sequence
+    with open(fasta_file, "r") as in_f:
         lines = in_f.readlines()
+
+    with open(fasta_file, "w") as out_f:
         for i in range(0, len(lines), 2):
             header = lines[i].strip()
             seq = lines[i + 1].strip()
