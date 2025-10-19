@@ -1,0 +1,4 @@
+pdb,chain,res_id,residue,DiscoTope-3.0_score,calibrated_score,epitope,rsa,pLDDTs,length,alphafold_struc_flag
+7QYR_A6VDX3_N,N,13,E,0.51950,0.27399,False,1.11587,100,3,0
+7QYR_A6VDX3_N,N,14,E,0.59576,0.61313,False,0.83620,100,3,0
+7QYR_A6VDX3_N,N,15,E,0.55965,0.45255,False,0.80619,100,3,0

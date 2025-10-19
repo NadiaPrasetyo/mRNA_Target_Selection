@@ -1,0 +1,17 @@
+[2025-10-14 03:37:36,224] Single-chain mode set, will predict PDBs as single chains
+[2025-10-14 03:37:36,237] Single PDB file input (5UZ9_Q02MM1), extracting single chains to data/P.aeruginosa/random_analysis/discotope/5UZ9_Q02MM1/input_chains
+[2025-10-14 03:37:59,651] Found 13 extracted single chains in data/P.aeruginosa/random_analysis/discotope/5UZ9_Q02MM1/input_chains
+[2025-10-14 03:38:32,607] Note: Skipping 5UZ9_Q02MM1_E, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,628] Note: Skipping 5UZ9_Q02MM1_G, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,661] Note: Skipping 5UZ9_Q02MM1_F, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,678] Note: Skipping 5UZ9_Q02MM1_B, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,694] Note: Skipping 5UZ9_Q02MM1_K, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,723] Note: Skipping 5UZ9_Q02MM1_H, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,748] Note: Skipping 5UZ9_Q02MM1_C, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,768] Note: Skipping 5UZ9_Q02MM1_J, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,785] Note: Skipping 5UZ9_Q02MM1_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,801] Note: Skipping 5UZ9_Q02MM1_I, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,821] Note: Skipping 5UZ9_Q02MM1_M, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,833] Note: Skipping 5UZ9_Q02MM1_L, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,858] Note: Skipping 5UZ9_Q02MM1_D, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 03:38:32,862] Error: No PDB files were valid. Please check input PDBs.

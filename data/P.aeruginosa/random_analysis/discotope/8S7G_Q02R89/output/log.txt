@@ -1,0 +1,7 @@
+[2025-10-14 03:48:59,404] Single-chain mode set, will predict PDBs as single chains
+[2025-10-14 03:48:59,409] Single PDB file input (8S7G_Q02R89), extracting single chains to data/P.aeruginosa/random_analysis/discotope/8S7G_Q02R89/input_chains
+[2025-10-14 03:49:06,020] Found 14 extracted single chains in data/P.aeruginosa/random_analysis/discotope/8S7G_Q02R89/input_chains
+[2025-10-14 04:08:57,096] Note: Skipping 8S7G_Q02R89_T, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-14 04:32:20,490] Predicted 13 / 14 PDB files extracted from 1 input PDBs, saved to data/P.aeruginosa/random_analysis/discotope/8S7G_Q02R89/output
+[2025-10-14 04:32:20,490] Note: Excluded predicting 1 PDB chain(s) (see log file):
+8S7G_Q02R89_T

@@ -1,0 +1,18 @@
+##gff-version 3
+antigen_18|Q01269|Cyclohexadienyl|WP_017149258.1|tpos:1-268	TargetP-2.0	signal_peptide	1	25	0.992890	.	.	.
+antigen_77|Q9I3N0|Cytochrome|WP_003087150.1|tpos:1-155	TargetP-2.0	signal_peptide	1	20	0.999766	.	.	.
+antigen_135|Q9I589|Chitin-binding|WP_003120756.1|tpos:1-389	TargetP-2.0	signal_peptide	1	25	0.999876	.	.	.
+antigen_13|Q9HTX3|Probable|WP_003096289.1|tpos:1-332	TargetP-2.0	signal_peptide	1	21	0.999502	.	.	.
+antigen_21|Q9I3M9|Cytochrome|WP_003083145.1|tpos:1-407	TargetP-2.0	signal_peptide	1	26	0.659293	.	.	.
+antigen_102|B7UV86|Potassium-transporting|WP_014603073.1|tpos:1-183	TargetP-2.0	signal_peptide	1	22	0.859945	.	.	.
+antigen_103|P50601|Tol-Pal|WP_003086128.1|tpos:1-432	TargetP-2.0	signal_peptide	1	21	0.999731	.	.	.
+antigen_93|P00282|Azurin|WP_003095591.1|tpos:1-148	TargetP-2.0	signal_peptide	1	20	0.999696	.	.	.
+antigen_36|O86422|UDP-glucose|WP_003120202.1|tpos:1-453	TargetP-2.0	signal_peptide	1	20	0.856212	.	.	.
+antigen_73|Q9I4F8|Two-component|WP_003082438.1|tpos:1-448	TargetP-2.0	signal_peptide	1	33	0.661018	.	.	.
+antigen_4|Q51371|Mannuronan|WP_040145413.1|tpos:1-543	TargetP-2.0	signal_peptide	1	35	0.935055	.	.	.
+antigen_118|Q9HU18|C4-dicarboxylate-binding|WP_003105525.1|tpos:1-331	TargetP-2.0	signal_peptide	1	23	0.986810	.	.	.
+antigen_184|Q02KC0|Potassium-transporting|WP_014603073.1|tpos:1-183	TargetP-2.0	signal_peptide	1	22	0.859945	.	.	.
+antigen_197|Q01709|Regulatory|WP_004351166.1|tpos:618-712	TargetP-2.0	signal_peptide	1	17	0.938290	.	.	.
+antigen_37|Q02R18|Alginate|WP_003092108.1|tpos:1-367	TargetP-2.0	signal_peptide	1	27	0.973270	.	.	.
+antigen_40|Q9I4L6|Outer-membrane|WP_427197123.1|tpos:1-168	TargetP-2.0	signal_peptide	1	26	0.996734	.	.	.
+antigen_54|Q9HU05|Monofunctional|WP_003118024.1|tpos:1-185	TargetP-2.0	signal_peptide	1	23	0.989305	.	.	.

@@ -1,0 +1,5 @@
+[2025-10-14 04:33:12,670] Single-chain mode set, will predict PDBs as single chains
+[2025-10-14 04:33:12,679] Single PDB file input (6Y88_P20577), extracting single chains to data/P.aeruginosa/random_analysis/discotope/6Y88_P20577/input_chains
+[2025-10-14 04:33:19,657] Found 8 extracted single chains in data/P.aeruginosa/random_analysis/discotope/6Y88_P20577/input_chains
+[2025-10-14 04:54:40,827] Unknown residues found for pdb_id 6Y88_P20577_G: ['UNK']
+[2025-10-14 04:55:06,318] Predicted 8 / 8 PDB files extracted from 1 input PDBs, saved to data/P.aeruginosa/random_analysis/discotope/6Y88_P20577/output

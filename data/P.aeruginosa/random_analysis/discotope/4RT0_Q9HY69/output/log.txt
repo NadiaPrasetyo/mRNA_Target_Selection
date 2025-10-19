@@ -1,0 +1,4 @@
+[2025-10-14 03:37:33,487] Single-chain mode set, will predict PDBs as single chains
+[2025-10-14 03:37:33,501] Single PDB file input (4RT0_Q9HY69), extracting single chains to data/P.aeruginosa/random_analysis/discotope/4RT0_Q9HY69/input_chains
+[2025-10-14 03:37:34,092] Found 3 extracted single chains in data/P.aeruginosa/random_analysis/discotope/4RT0_Q9HY69/input_chains
+[2025-10-14 03:43:03,247] Predicted 3 / 3 PDB files extracted from 1 input PDBs, saved to data/P.aeruginosa/random_analysis/discotope/4RT0_Q9HY69/output
