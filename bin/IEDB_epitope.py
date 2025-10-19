@@ -240,7 +240,7 @@ def main():
 
             if tool_type == "BCell":
                 input_files_tool = [
-                    common.remove_invalid_aa(fasta_file, temp_fasta_dir) for fasta_file in input_files_tool
+                    common.remove_invalid_aa(fasta_file) for fasta_file in input_files_tool
                 ]
 
         elif tool_type == "MixMHC2pred":

@@ -1,0 +1,4 @@
+[2025-10-13 11:23:25,296] Single-chain mode set, will predict PDBs as single chains
+[2025-10-13 11:23:25,299] Single PDB file input (6MRN_Q3KKG9), extracting single chains to data/C.trachomatis/random_analysis/discotope/6MRN_Q3KKG9/input_chains
+[2025-10-13 11:23:25,341] Found 1 extracted single chains in data/C.trachomatis/random_analysis/discotope/6MRN_Q3KKG9/input_chains
+[2025-10-13 11:23:54,019] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/C.trachomatis/random_analysis/discotope/6MRN_Q3KKG9/output

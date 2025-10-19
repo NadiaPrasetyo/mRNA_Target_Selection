@@ -1,0 +1,4 @@
+[2025-10-13 11:26:47,863] Single-chain mode set, will predict PDBs as single chains
+[2025-10-13 11:26:47,866] Single PDB file input (7KM2_O84222), extracting single chains to data/C.trachomatis/random_analysis/discotope/7KM2_O84222/input_chains
+[2025-10-13 11:26:48,215] Found 12 extracted single chains in data/C.trachomatis/random_analysis/discotope/7KM2_O84222/input_chains
+[2025-10-13 11:30:08,674] Predicted 12 / 12 PDB files extracted from 1 input PDBs, saved to data/C.trachomatis/random_analysis/discotope/7KM2_O84222/output

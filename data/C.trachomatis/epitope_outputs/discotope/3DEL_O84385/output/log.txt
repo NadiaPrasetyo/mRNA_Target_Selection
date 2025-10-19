@@ -1,0 +1,4 @@
+[2025-10-13 11:09:32,149] Single-chain mode set, will predict PDBs as single chains
+[2025-10-13 11:09:32,152] Single PDB file input (3DEL_O84385), extracting single chains to data/C.trachomatis/epitope_outputs/discotope/3DEL_O84385/input_chains
+[2025-10-13 11:09:32,527] Found 4 extracted single chains in data/C.trachomatis/epitope_outputs/discotope/3DEL_O84385/input_chains
+[2025-10-13 11:12:48,206] Predicted 4 / 4 PDB files extracted from 1 input PDBs, saved to data/C.trachomatis/epitope_outputs/discotope/3DEL_O84385/output

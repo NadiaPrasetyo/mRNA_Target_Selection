@@ -1,0 +1,410 @@
+{
+ "MLE":{
+   "content":{
+     "0":      [
+[0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0.001282498488975178, 3150.800881319843, 1691.456372615246, 1.181099487777059, 0.2771322753966851, 0.4891071793713646],
+      [0.001926056496491826, 4299.534531617999, 1804.860124572892, 1.410166189392392, 0.2350288068806466, 0.5218993874047139],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0.3664252046584118, 1295.963550798986, 897.9872195281721, 0.8159721005075262, 0.3663604672510147, 0.2596649864376167],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [3.715485711962786, 4251.402438288553, 1523.23828040016, 1.212181317246351, 0.2709005475498312, 0.4404646734607092],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0],
+      [0, 0, 0, 0, 1, 0] 
+      ]
+    },
+   "headers":    [
+["alpha", "Synonymous substitution rate at a site"],
+    ["beta", "Non-synonymous substitution rate at a site"],
+    ["alpha=beta", "The rate estimate under the neutral model"],
+    ["LRT", "Likelihood ratio test statistic for beta = alpha, versus beta &neq; alpha"],
+    ["p-value", "Asymptotic p-value for evidence of selection, i.e. beta &neq; alpha"],
+    ["Total branch length", "The total length of branches contributing to inference at this site, and used to scale dN-dS"] 
+    ]
+  },
+ "analysis":{
+   "authors":"Sergei L Kosakovsky Pond and Simon DW Frost",
+   "citation":"Not So Different After All: A Comparison of Methods for Detecting Amino Acid Sites Under Selection (2005). _Mol Biol Evol_ 22 (5): 1208-1222",
+   "contact":"spond@temple.edu",
+   "info":"FEL (Fixed Effects Likelihood)\n    estimates site-wise synonymous (&alpha;) and non-synonymous (&beta;) rates, and\n    uses a likelihood ratio test to determine if beta &neq; alpha at a site.\n    The estimates aggregate information over all branches,\n    so the signal is derived from\n    pervasive diversification or conservation. A subset of branches can be selected\n    for testing as well, in which case an additional (nuisance) parameter will be\n    inferred -- the non-synonymous rate on branches NOT selected for testing.\n    Multiple partitions within a NEXUS file are also supported\n    for recombination - aware analysis. Version 2.5 adds MH support. Version 2.6 adds substitution mapping.\n    ",
+   "requirements":"in-frame codon alignment and a phylogenetic tree",
+   "settings":{
+     "ci":0,
+     "multihit":"None",
+     "pvalue":0.1,
+     "resample":0,
+     "site-filter":{
+       "site-filter":null,
+       "site-save-filter":null
+      },
+     "srv":1
+    },
+   "version":"2.6"
+  },
+ "branch attributes":{
+   "0":{
+     "Node5":{
+       "Global MG94xREV":0.01635067813231161,
+       "Nucleotide GTR":0.01627775201969425
+      },
+     "O84323_CP017738_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"O84323|CP017738.1"
+      },
+     "O84323_CP042702_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"O84323|CP042702.1"
+      },
+     "O84323_FM872308_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"O84323|FM872308.1"
+      },
+     "O84323_NC_020945_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"O84323|NC_020945.1"
+      },
+     "O84323_NZ_CP042761_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"O84323|NZ_CP042761.1"
+      },
+     "O84323_NZ_CP166126_1":{
+       "Global MG94xREV":0,
+       "Nucleotide GTR":1e-06,
+       "original name":"O84323|NZ_CP166126.1"
+      }
+    },
+   "attributes":{
+     "Global MG94xREV":{
+       "attribute type":"branch length",
+       "display order":1
+      },
+     "Nucleotide GTR":{
+       "attribute type":"branch length",
+       "display order":0
+      },
+     "original name":{
+       "attribute type":"node label",
+       "display order":-1
+      }
+    }
+  },
+ "data partitions":{
+   "0":{
+     "coverage":      [
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83] 
+      ],
+     "name":"fel.filter.default"
+    }
+  },
+ "fits":{
+   "Global MG94xREV":{
+     "AIC-c":722.9184898708737,
+     "Equilibrium frequencies":      [
+[0.04994442393921913],
+      [0.04064271315826571],
+      [0.02468280684259083],
+      [0.04592269575258218],
+      [0.01362699343887561],
+      [0.01108908546467158],
+      [0.006734534515932152],
+      [0.01252969249334989],
+      [0.01590924924700005],
+      [0.01294629115146196],
+      [0.007862437789896657],
+      [0.01462817177971846],
+      [0.03766084845876055],
+      [0.03064684584347313],
+      [0.01861219681233958],
+      [0.0346282437386904],
+      [0.03303246739041281],
+      [0.02688046014290066],
+      [0.01632482563266676],
+      [0.03037255874195466],
+      [0.009012682115361399],
+      [0.007334149142395569],
+      [0.004454116680930456],
+      [0.008286944288358756],
+      [0.01052213071066798],
+      [0.008562476179681075],
+      [0.005200094413341856],
+      [0.009674845942420967],
+      [0.0249083010772781],
+      [0.02026934852978829],
+      [0.01230981830956252],
+      [0.022902583348996],
+      [0.01288577580810572],
+      [0.01048591311470332],
+      [0.006368220718202078],
+      [0.01184816072144038],
+      [0.003515795529158006],
+      [0.002861009457003176],
+      [0.00173752533515773],
+      [0.003232689371095708],
+      [0.004104622756718544],
+      [0.003340172779392154],
+      [0.002028526964072749],
+      [0.003774101834977695],
+      [0.00971658519023494],
+      [0.00790695644513115],
+      [0.004801989421522146],
+      [0.008934166224206157],
+      [0.03877857896401063],
+      [0.04381638786138889],
+      [0.01300197255664814],
+      [0.01058046923825937],
+      [0.006425645785382751],
+      [0.01195500083510845],
+      [0.0123524916201599],
+      [0.00750181621728472],
+      [0.01395723046957946],
+      [0.03593348160893309],
+      [0.02924118591470768],
+      [0.01775852268942903],
+      [0.0330399714944403] 
+      ],
+     "Log Likelihood":-338.4072698834618,
+     "Rate Distributions":{
+       "non-synonymous/synonymous rate ratio for *test*":        [
+[90.69971992422788, 1] 
+        ]
+      },
+     "display order":1,
+     "estimated parameters":22
+    },
+   "Nucleotide GTR":{
+     "AIC-c":731.4725241537706,
+     "Equilibrium frequencies":      [
+[0.3473895582329317],
+      [0.2168674698795181],
+      [0.1244979919678715],
+      [0.3112449799196787] 
+      ],
+     "Log Likelihood":-350.5758342693986,
+     "Rate Distributions":{
+       "Substitution rate from nucleotide A to nucleotide C":0,
+       "Substitution rate from nucleotide A to nucleotide G":1,
+       "Substitution rate from nucleotide A to nucleotide T":0,
+       "Substitution rate from nucleotide C to nucleotide G":0,
+       "Substitution rate from nucleotide C to nucleotide T":1.294968204872192,
+       "Substitution rate from nucleotide G to nucleotide T":1.121657940472923
+      },
+     "display order":0,
+     "estimated parameters":15
+    }
+  },
+ "input":{
+   "file name":"/projects/health_sciences/bms/biochemistry/gardner_group/nadia/mRNA_Target_Selection/data/C.trachomatis/epitope_outputs/dnds/msa/O84323_combined_codon_aligned.fasta",
+   "number of sequences":6,
+   "number of sites":84,
+   "partition count":1,
+   "trees":{
+     "0":"(O84323_CP017738_1:1e-10,O84323_NZ_CP166126_1:1e-10,O84323_FM872308_1:1e-10,(O84323_NZ_CP042761_1:1e-10,O84323_CP042702_1:1e-10,O84323_NC_020945_1:1e-10)Node5:0.008133385999999999)"
+    }
+  },
+ "runtime":"2.5.83",
+ "substitutions":{
+   "0":{
+     "0":null,
+     "1":null,
+     "10":{
+       "Node5":"CTA",
+       "root":"CGA"
+      },
+     "11":null,
+     "12":null,
+     "13":null,
+     "14":null,
+     "15":null,
+     "16":null,
+     "17":null,
+     "18":null,
+     "19":null,
+     "2":null,
+     "20":null,
+     "21":null,
+     "22":null,
+     "23":null,
+     "24":null,
+     "25":null,
+     "26":null,
+     "27":null,
+     "28":null,
+     "29":null,
+     "3":null,
+     "30":null,
+     "31":null,
+     "32":null,
+     "33":null,
+     "34":null,
+     "35":null,
+     "36":null,
+     "37":null,
+     "38":null,
+     "39":null,
+     "4":null,
+     "40":null,
+     "41":null,
+     "42":null,
+     "43":null,
+     "44":null,
+     "45":null,
+     "46":null,
+     "47":null,
+     "48":null,
+     "49":null,
+     "5":null,
+     "50":null,
+     "51":null,
+     "52":null,
+     "53":null,
+     "54":null,
+     "55":null,
+     "56":null,
+     "57":null,
+     "58":null,
+     "59":{
+       "Node5":"GCT",
+       "root":"GTT"
+      },
+     "6":null,
+     "60":null,
+     "61":null,
+     "62":null,
+     "63":null,
+     "64":null,
+     "65":null,
+     "66":null,
+     "67":null,
+     "68":{
+       "Node5":"TGC",
+       "root":"TAC"
+      },
+     "69":null,
+     "7":null,
+     "70":null,
+     "71":null,
+     "72":null,
+     "73":null,
+     "74":null,
+     "75":null,
+     "76":null,
+     "77":null,
+     "78":null,
+     "79":null,
+     "8":null,
+     "80":null,
+     "81":null,
+     "82":null,
+     "83":null,
+     "9":{
+       "Node5":"CAC",
+       "root":"TAC"
+      }
+    }
+  },
+ "tested":{
+   "0":{
+     "Node5":"test",
+     "O84323_CP017738_1":"test",
+     "O84323_CP042702_1":"test",
+     "O84323_FM872308_1":"test",
+     "O84323_NC_020945_1":"test",
+     "O84323_NZ_CP042761_1":"test",
+     "O84323_NZ_CP166126_1":"test"
+    }
+  },
+ "timers":{
+   "FEL analysis":{
+     "order":2,
+     "timer":3
+    },
+   "Model fitting":{
+     "order":1,
+     "timer":91
+    },
+   "Total time":{
+     "order":0,
+     "timer":95
+    }
+  }
+}

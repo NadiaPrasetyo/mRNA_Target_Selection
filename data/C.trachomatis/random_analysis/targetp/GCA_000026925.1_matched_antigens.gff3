@@ -1,0 +1,14 @@
+##gff-version 3
+antigen_62|P08780|Major|CAX11140.1|tpos:1-394	TargetP-2.0	signal_peptide	1	22	0.999827	.	.	.
+antigen_129|O84253|Membrane|CAX10700.1|tpos:1-787	TargetP-2.0	signal_peptide	1	26	0.862573	.	.	.
+antigen_121|P0DJI2|Large|CAX10898.1|tpos:7-553	TargetP-2.0	signal_peptide	1	22	0.904712	.	.	.
+antigen_3|B0B8U0|Glycerol-3-phosphate|CAX11173.1|tpos:1-334	TargetP-2.0	signal_peptide	1	18	0.480270	.	.	.
+antigen_94|B0B897|Large|CAX10980.1|tpos:1-111	TargetP-2.0	transit_peptide	1	27	0.607235	.	.	Note=Mitochondrion
+antigen_170|B0B816|Small|CAX10899.1|tpos:1-88	TargetP-2.0	signal_peptide	1	19	0.999984	.	.	.
+antigen_82|O84719|Glycerol-3-phosphate|CAX11173.1|tpos:1-334	TargetP-2.0	signal_peptide	1	18	0.480270	.	.	.
+antigen_57|P13467|Major|CAX11140.1|tpos:1-394	TargetP-2.0	signal_peptide	1	22	0.999827	.	.	.
+antigen_109|O84420|Putative|CAX10868.1|tpos:1-276	TargetP-2.0	signal_peptide	1	18	0.999959	.	.	.
+antigen_118|P17451|Major|CAX11140.1|tpos:1-394	TargetP-2.0	signal_peptide	1	22	0.999827	.	.	.
+antigen_5|B0B8X5|Alanine--tRNA|CAX11208.1|tpos:1-875	TargetP-2.0	transit_peptide	1	14	0.597617	.	.	Note=Mitochondrion
+antigen_15|O84075|Putative|CAX10519.1|tpos:1-619	TargetP-2.0	signal_peptide	1	27	0.608322	.	.	.
+antigen_19|P23421|Major|CAX11140.1|tpos:1-394	TargetP-2.0	signal_peptide	1	22	0.999827	.	.	.

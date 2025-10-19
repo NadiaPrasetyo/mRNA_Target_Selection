@@ -434,7 +434,7 @@ def remove_invalid_aa(fasta_file: Path) -> Path:
                 logging.warning(f"Skipping invalid amino acids found in sequence for {header}: invalid aa = {invalid_aa}")
                 continue
 
-    return cleaned_fasta
+    return fasta_file
 
 def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
     """

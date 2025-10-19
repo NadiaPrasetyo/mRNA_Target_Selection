@@ -1,0 +1,14 @@
+##gff-version 3
+antigen_129|O84253|Membrane|ATW13629.1|tpos:1-785	TargetP-2.0	signal_peptide	1	24	0.901571	.	.	.
+antigen_121|P0DJI2|Large|ATW14273.1|tpos:1-547	TargetP-2.0	signal_peptide	1	22	0.904712	.	.	.
+antigen_170|B0B816|Small|ATW13814.1|tpos:1-88	TargetP-2.0	signal_peptide	1	19	0.999984	.	.	.
+antigen_15|O84075|Putative|ATW13471.1|tpos:1-619	TargetP-2.0	signal_peptide	1	27	0.608322	.	.	.
+antigen_19|P23421|Major|ATW14044.1|tpos:1-397	TargetP-2.0	signal_peptide	1	22	0.999839	.	.	.
+antigen_62|P08780|Major|ATW14044.1|tpos:1-397	TargetP-2.0	signal_peptide	1	22	0.999839	.	.	.
+antigen_109|O84420|Putative|ATW13786.1|tpos:1-276	TargetP-2.0	signal_peptide	1	18	0.999959	.	.	.
+antigen_94|B0B897|Large|ATW13891.1|tpos:1-111	TargetP-2.0	transit_peptide	1	27	0.563655	.	.	Note=Mitochondrion
+antigen_118|P17451|Major|ATW14044.1|tpos:1-397	TargetP-2.0	signal_peptide	1	22	0.999839	.	.	.
+antigen_57|P13467|Major|ATW14044.1|tpos:1-397	TargetP-2.0	signal_peptide	1	22	0.999839	.	.	.
+antigen_82|O84719|Glycerol-3-phosphate|ATW14077.1|tpos:1-334	TargetP-2.0	signal_peptide	1	22	0.620300	.	.	.
+antigen_3|B0B8U0|Glycerol-3-phosphate|ATW14077.1|tpos:1-334	TargetP-2.0	signal_peptide	1	22	0.620300	.	.	.
+antigen_5|B0B8X5|Alanine--tRNA|ATW14295.1|tpos:1-875	TargetP-2.0	transit_peptide	1	14	0.599633	.	.	Note=Mitochondrion

@@ -1,0 +1,4 @@
+[2025-10-13 11:12:58,584] Single-chain mode set, will predict PDBs as single chains
+[2025-10-13 11:12:58,589] Single PDB file input (6E6A_Q9F7L2), extracting single chains to data/C.trachomatis/epitope_outputs/discotope/6E6A_Q9F7L2/input_chains
+[2025-10-13 11:12:58,777] Found 2 extracted single chains in data/C.trachomatis/epitope_outputs/discotope/6E6A_Q9F7L2/input_chains
+[2025-10-13 11:14:21,216] Predicted 2 / 2 PDB files extracted from 1 input PDBs, saved to data/C.trachomatis/epitope_outputs/discotope/6E6A_Q9F7L2/output

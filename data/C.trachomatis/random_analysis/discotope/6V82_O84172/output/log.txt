@@ -1,0 +1,8 @@
+[2025-10-13 11:27:44,819] Single-chain mode set, will predict PDBs as single chains
+[2025-10-13 11:27:44,824] Single PDB file input (6V82_O84172), extracting single chains to data/C.trachomatis/random_analysis/discotope/6V82_O84172/input_chains
+[2025-10-13 11:27:45,021] Found 4 extracted single chains in data/C.trachomatis/random_analysis/discotope/6V82_O84172/input_chains
+[2025-10-13 11:27:51,244] Note: Skipping 6V82_O84172_C, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-13 11:29:03,952] Note: Skipping 6V82_O84172_D, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-13 11:29:11,295] Predicted 2 / 4 PDB files extracted from 1 input PDBs, saved to data/C.trachomatis/random_analysis/discotope/6V82_O84172/output
+[2025-10-13 11:29:11,295] Note: Excluded predicting 2 PDB chain(s) (see log file):
+6V82_O84172_C, 6V82_O84172_D
