@@ -1,0 +1,8 @@
+##gff-version 3
+antigen_142|Q9ZJX2|Protein-export|WRE83852.1|tpos:1-199	TargetP-2.0	signal_peptide	1	27	0.606433	.	.	.
+antigen_167|Q09068|Acid-activated|WRE84206.1|tpos:1-195	TargetP-2.0	signal_peptide	1	19	0.686051	.	.	.
+antigen_179|O25474|Outer-membrane|WRE84640.1|tpos:1-184	TargetP-2.0	signal_peptide	1	19	0.998859	.	.	.
+antigen_65|Q1CS87|Phosphopentomutase|WRE83783.1|tpos:1-412	TargetP-2.0	signal_peptide	1	17	0.727854	.	.	.
+antigen_66|O25028|Flagellar|WRE84361.1|tpos:1-342	TargetP-2.0	signal_peptide	1	19	0.997037	.	.	.
+antigen_125|Q9ZMK8|Peptide|WRE84343.1|tpos:1-359	TargetP-2.0	signal_peptide	1	22	0.984046	.	.	.
+antigen_148|O25088|Sec-independent|WRE84427.1|tpos:1-79	TargetP-2.0	signal_peptide	1	32	0.960037	.	.	.

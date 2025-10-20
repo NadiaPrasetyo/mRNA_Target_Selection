@@ -1,0 +1,6 @@
+##gff-version 3
+antigen_16|A0A060PRJ6|Outer|XNZ29140.1|tpos:1-385	TargetP-2.0	signal_peptide	1	21	0.996035	.	.	.
+antigen_19|A0A060CUG4|Cag|XNZ29287.1|tpos:1-440	TargetP-2.0	signal_peptide	1	25	0.989514	.	.	.
+antigen_21|A0A060PT92|LPP20|XNZ28949.1|tpos:1-175	TargetP-2.0	signal_peptide	1	22	0.723548	.	.	.
+antigen_28|Q7X2K0|SabA|XNZ28817.1|tpos:1-88	TargetP-2.0	signal_peptide	1	18	0.999680	.	.	.
+antigen_2|O25249|Plasminogen-binding|XNZ29403.1|tpos:1-449	TargetP-2.0	signal_peptide	1	19	0.994504	.	.	.

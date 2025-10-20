@@ -1,0 +1,12 @@
+##gff-version 3
+antigen_60|B6JN65|Fluoride-specific|WRF38198.1|tpos:1-130	TargetP-2.0	signal_peptide	1	15	0.505445	.	.	.
+antigen_94|O25595|Alanine|WRF37991.1|tpos:1-377	TargetP-2.0	transit_peptide	1	19	0.763009	.	.	Note=Mitochondrion
+antigen_148|O25088|Sec-independent|WRF38822.1|tpos:1-79	TargetP-2.0	signal_peptide	1	32	0.960313	.	.	.
+antigen_21|B2UVC1|Phosphatidylserine|WRF38549.1|tpos:1-267	TargetP-2.0	transit_peptide	1	12	0.493399	.	.	Note=Mitochondrion
+antigen_142|Q9ZJX2|Protein-export|WRF38227.1|tpos:1-200	TargetP-2.0	signal_peptide	1	27	0.642774	.	.	.
+antigen_179|O25474|Outer-membrane|WRF39025.1|tpos:1-184	TargetP-2.0	signal_peptide	1	19	0.999505	.	.	.
+antigen_65|Q1CS87|Phosphopentomutase|WRF38160.1|tpos:1-413	TargetP-2.0	signal_peptide	1	17	0.677215	.	.	.
+antigen_125|Q9ZMK8|Peptide|WRF38736.1|tpos:1-359	TargetP-2.0	signal_peptide	1	22	0.980765	.	.	.
+antigen_182|Q48248|CDP-diacylglycerol|WRF38948.1|tpos:1-243	TargetP-2.0	signal_peptide	1	21	0.997467	.	.	.
+antigen_66|O25028|Flagellar|WRF38756.1|tpos:1-342	TargetP-2.0	signal_peptide	1	19	0.998328	.	.	.
+antigen_167|Q09068|Acid-activated|WRF38576.1|tpos:1-195	TargetP-2.0	signal_peptide	1	19	0.687069	.	.	.

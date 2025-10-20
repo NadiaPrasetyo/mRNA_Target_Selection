@@ -1,0 +1,9 @@
+##gff-version 3
+antigen_94|O25595|Alanine|WP_245099785.1|tpos:1-377	TargetP-2.0	transit_peptide	1	19	0.754550	.	.	Note=Mitochondrion
+antigen_179|O25474|Outer-membrane|WP_245099968.1|tpos:1-184	TargetP-2.0	signal_peptide	1	19	0.999486	.	.	.
+antigen_66|O25028|Flagellar|WP_245098839.1|tpos:1-342	TargetP-2.0	signal_peptide	1	19	0.998813	.	.	.
+antigen_125|Q9ZMK8|Peptide|WP_220906391.1|tpos:1-359	TargetP-2.0	signal_peptide	1	22	0.980774	.	.	.
+antigen_167|Q09068|Acid-activated|WP_000901257.1|tpos:1-195	TargetP-2.0	signal_peptide	1	19	0.687069	.	.	.
+antigen_142|Q9ZJX2|Protein-export|WP_245099517.1|tpos:1-199	TargetP-2.0	signal_peptide	1	27	0.549238	.	.	.
+antigen_148|O25088|Sec-independent|WP_000508577.1|tpos:1-79	TargetP-2.0	signal_peptide	1	32	0.958669	.	.	.
+antigen_65|Q1CS87|Phosphopentomutase|WP_245099580.1|tpos:1-412	TargetP-2.0	signal_peptide	1	17	0.682018	.	.	.

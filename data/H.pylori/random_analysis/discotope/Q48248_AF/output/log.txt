@@ -1,0 +1,4 @@
+[2025-10-19 20:00:25,861] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 20:00:25,886] Single PDB file input (Q48248_AF), extracting single chains to data/H.pylori/random_analysis/discotope/Q48248_AF/input_chains
+[2025-10-19 20:00:26,268] Found 1 extracted single chains in data/H.pylori/random_analysis/discotope/Q48248_AF/input_chains
+[2025-10-19 20:05:02,929] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/H.pylori/random_analysis/discotope/Q48248_AF/output

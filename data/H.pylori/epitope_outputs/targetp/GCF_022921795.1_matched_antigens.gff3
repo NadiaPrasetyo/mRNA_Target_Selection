@@ -1,0 +1,8 @@
+##gff-version 3
+antigen_28|Q7X2K0|SabA|WP_245099584.1|tpos:5-61	TargetP-2.0	signal_peptide	1	17	0.999871	.	.	.
+antigen_16|A0A060PRJ6|Outer|WP_245099584.1|tpos:1-388	TargetP-2.0	signal_peptide	1	21	0.990577	.	.	.
+antigen_14|A0A1Q9J9W6|Outer|WP_021302586.1|tpos:1-304	TargetP-2.0	signal_peptide	1	17	0.983684	.	.	.
+antigen_2|O25249|Plasminogen-binding|WP_245098486.1|tpos:1-437	TargetP-2.0	signal_peptide	1	18	0.994228	.	.	.
+antigen_30|Q9ZHT1|Vacuolating|WP_245099839.1|tpos:1-1301	TargetP-2.0	signal_peptide	1	33	0.952197	.	.	.
+antigen_21|A0A060PT92|LPP20|WP_000795976.1|tpos:1-175	TargetP-2.0	signal_peptide	1	22	0.723548	.	.	.
+antigen_19|A0A060CUG4|Cag|WP_245099602.1|tpos:1-461	TargetP-2.0	signal_peptide	1	25	0.987965	.	.	.

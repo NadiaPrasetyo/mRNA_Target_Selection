@@ -1,0 +1,4 @@
+[2025-10-19 18:57:01,592] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 18:57:01,621] Single PDB file input (Q9ZKM7_AF), extracting single chains to data/H.pylori/random_analysis/discotope/Q9ZKM7_AF/input_chains
+[2025-10-19 18:57:02,270] Found 1 extracted single chains in data/H.pylori/random_analysis/discotope/Q9ZKM7_AF/input_chains
+[2025-10-19 19:03:31,789] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/H.pylori/random_analysis/discotope/Q9ZKM7_AF/output
