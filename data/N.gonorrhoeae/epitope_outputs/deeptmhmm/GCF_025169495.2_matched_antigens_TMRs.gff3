@@ -1,0 +1,890 @@
+##gff-version 3
+# antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594 Length: 1594
+# antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594 Number of predicted TMRs: 12
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	signal	1	27				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	28	1347				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1348	1357				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1358	1370				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1371	1381				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1382	1386				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1387	1396				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1397	1410				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1411	1420				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1421	1425				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1426	1435				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1436	1453				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1454	1462				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1463	1470				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1471	1479				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1480	1503				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1504	1511				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1512	1521				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1522	1531				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1532	1550				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1551	1561				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1562	1565				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1566	1575				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1576	1581				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1582	1592				
+antigen_4|Q5F9W2|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1593	1594				
+//
+# antigen_12|E0WDG1||WP_003705684.1|tpos:1-225 Length: 225
+# antigen_12|E0WDG1||WP_003705684.1|tpos:1-225 Number of predicted TMRs: 0
+antigen_12|E0WDG1||WP_003705684.1|tpos:1-225	signal	1	20				
+antigen_12|E0WDG1||WP_003705684.1|tpos:1-225	outside	21	225				
+//
+# antigen_13|B0B796|Transferrin-binding|WP_229940826.1|tpos:21-713 Length: 693
+# antigen_13|B0B796|Transferrin-binding|WP_229940826.1|tpos:21-713 Number of predicted TMRs: 0
+antigen_13|B0B796|Transferrin-binding|WP_229940826.1|tpos:21-713	outside	1	693				
+//
+# antigen_25|A0A378VZL0||WP_003699543.1|tpos:154-202 Length: 49
+# antigen_25|A0A378VZL0||WP_003699543.1|tpos:154-202 Number of predicted TMRs: 0
+antigen_25|A0A378VZL0||WP_003699543.1|tpos:154-202	signal	1	21				
+antigen_25|A0A378VZL0||WP_003699543.1|tpos:154-202	outside	22	49				
+//
+# antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792 Length: 792
+# antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792 Number of predicted TMRs: 16
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	signal	1	21				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	22	424				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	425	430				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	431	439				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	440	444				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	445	455				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	456	462				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	463	467				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	468	473				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	474	485				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	486	490				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	491	510				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	511	517				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	518	526				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	527	534				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	535	569				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	570	576				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	577	592				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	593	602				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	603	608				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	609	615				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	616	626				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	627	636				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	637	684				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	685	693				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	694	707				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	708	716				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	717	749				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	750	757				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	758	764				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	765	772				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	outside	773	782				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	Beta sheet	783	788				
+antigen_26|P95359|Outer|WP_003700563.1|tpos:1-792	periplasm	789	792				
+//
+# antigen_6|Q5FAH2|Carbamoyl|WP_003699430.1|tpos:1-1071 Length: 1071
+# antigen_6|Q5FAH2|Carbamoyl|WP_003699430.1|tpos:1-1071 Number of predicted TMRs: 0
+antigen_6|Q5FAH2|Carbamoyl|WP_003699430.1|tpos:1-1071	inside	1	1071				
+//
+# antigen_2|Q5F875|Dihydrolipoyllysine-residue|WP_003699869.1|tpos:1-389 Length: 389
+# antigen_2|Q5F875|Dihydrolipoyllysine-residue|WP_003699869.1|tpos:1-389 Number of predicted TMRs: 0
+antigen_2|Q5F875|Dihydrolipoyllysine-residue|WP_003699869.1|tpos:1-389	inside	1	389				
+//
+# antigen_3|Q5F8Y0|DNA|WP_003692988.1|tpos:1-916 Length: 916
+# antigen_3|Q5F8Y0|DNA|WP_003692988.1|tpos:1-916 Number of predicted TMRs: 0
+antigen_3|Q5F8Y0|DNA|WP_003692988.1|tpos:1-916	inside	1	916				
+//
+# antigen_32|Q5F9H8||WP_003687855.1|tpos:1-107 Length: 107
+# antigen_32|Q5F9H8||WP_003687855.1|tpos:1-107 Number of predicted TMRs: 0
+antigen_32|Q5F9H8||WP_003687855.1|tpos:1-107	signal	1	19				
+antigen_32|Q5F9H8||WP_003687855.1|tpos:1-107	outside	20	107				
+//
+# antigen_34|Q5F8S0||WP_003691259.1|tpos:1-122 Length: 122
+# antigen_34|Q5F8S0||WP_003691259.1|tpos:1-122 Number of predicted TMRs: 0
+antigen_34|Q5F8S0||WP_003691259.1|tpos:1-122	signal	1	16				
+antigen_34|Q5F8S0||WP_003691259.1|tpos:1-122	outside	17	122				
+//
+# antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468 Length: 1064
+# antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468 Number of predicted TMRs: 12
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	signal	1	10				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	periplasm	11	816				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	817	825				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	outside	826	840				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	841	849				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	periplasm	850	855				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	856	865				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	outside	866	878				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	879	889				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	periplasm	890	893				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	894	905				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	outside	906	921				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	922	930				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	periplasm	931	938				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	939	947				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	outside	948	970				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	971	979				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	periplasm	980	990				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	991	1001				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	outside	1002	1020				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	1021	1031				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	periplasm	1032	1035				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	1036	1046				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	outside	1047	1051				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	Beta sheet	1052	1062				
+antigen_82|B4RRB6||WP_010951407.1|tpos:405-1468	periplasm	1063	1064				
+//
+# antigen_15|Q9Z4N2|Transferrin-binding|WP_229940826.1|tpos:7-672 Length: 666
+# antigen_15|Q9Z4N2|Transferrin-binding|WP_229940826.1|tpos:7-672 Number of predicted TMRs: 0
+antigen_15|Q9Z4N2|Transferrin-binding|WP_229940826.1|tpos:7-672	signal	1	14				
+antigen_15|Q9Z4N2|Transferrin-binding|WP_229940826.1|tpos:7-672	outside	15	666				
+//
+# antigen_19|Q3B9W3||WP_003698280.1|tpos:1-378 Length: 378
+# antigen_19|Q3B9W3||WP_003698280.1|tpos:1-378 Number of predicted TMRs: 0
+antigen_19|Q3B9W3||WP_003698280.1|tpos:1-378	signal	1	20				
+antigen_19|Q3B9W3||WP_003698280.1|tpos:1-378	outside	21	378				
+//
+# antigen_23|E0WDF8|Peptidyl-prolyl|WP_003697530.1|tpos:1-272 Length: 272
+# antigen_23|E0WDF8|Peptidyl-prolyl|WP_003697530.1|tpos:1-272 Number of predicted TMRs: 0
+antigen_23|E0WDF8|Peptidyl-prolyl|WP_003697530.1|tpos:1-272	signal	1	20				
+antigen_23|E0WDF8|Peptidyl-prolyl|WP_003697530.1|tpos:1-272	outside	21	272				
+//
+# antigen_24|Q51006||WP_003693770.1|tpos:1-467 Length: 467
+# antigen_24|Q51006||WP_003693770.1|tpos:1-467 Number of predicted TMRs: 0
+antigen_24|Q51006||WP_003693770.1|tpos:1-467	signal	1	20				
+antigen_24|Q51006||WP_003693770.1|tpos:1-467	outside	21	467				
+//
+# antigen_55|P14930|Peptide|WP_003694393.1|tpos:1-522 Length: 522
+# antigen_55|P14930|Peptide|WP_003694393.1|tpos:1-522 Number of predicted TMRs: 1
+antigen_55|P14930|Peptide|WP_003694393.1|tpos:1-522	signal	1	21				
+antigen_55|P14930|Peptide|WP_003694393.1|tpos:1-522	outside	22	343				
+antigen_55|P14930|Peptide|WP_003694393.1|tpos:1-522	TMhelix	344	353				
+antigen_55|P14930|Peptide|WP_003694393.1|tpos:1-522	inside	354	522				
+//
+# antigen_57|Q5F676|DD-carboxypeptidase/endopeptidase|WP_003689841.1|tpos:1-430 Length: 430
+# antigen_57|Q5F676|DD-carboxypeptidase/endopeptidase|WP_003689841.1|tpos:1-430 Number of predicted TMRs: 0
+antigen_57|Q5F676|DD-carboxypeptidase/endopeptidase|WP_003689841.1|tpos:1-430	signal	1	31				
+antigen_57|Q5F676|DD-carboxypeptidase/endopeptidase|WP_003689841.1|tpos:1-430	outside	32	430				
+//
+# antigen_60|A0A378VZD7|DNA|WP_003687706.1|tpos:167-454 Length: 288
+# antigen_60|A0A378VZD7|DNA|WP_003687706.1|tpos:167-454 Number of predicted TMRs: 0
+antigen_60|A0A378VZD7|DNA|WP_003687706.1|tpos:167-454	inside	1	288				
+//
+# antigen_68|Q51007||WP_003693766.1|tpos:1-271 Length: 271
+# antigen_68|Q51007||WP_003693766.1|tpos:1-271 Number of predicted TMRs: 0
+antigen_68|Q51007||WP_003693766.1|tpos:1-271	signal	1	24				
+antigen_68|Q51007||WP_003693766.1|tpos:1-271	outside	25	271				
+//
+# antigen_11|Q9S369||WP_003695151.1|tpos:1-262 Length: 262
+# antigen_11|Q9S369||WP_003695151.1|tpos:1-262 Number of predicted TMRs: 10
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	signal	1	19				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	periplasm	20	29				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	30	41				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	outside	42	52				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	53	62				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	periplasm	63	68				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	69	78				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	outside	79	102				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	103	112				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	periplasm	113	121				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	122	133				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	outside	134	148				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	149	159				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	periplasm	160	166				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	167	178				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	outside	179	201				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	202	211				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	periplasm	212	218				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	219	229				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	outside	230	249				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	Beta sheet	250	260				
+antigen_11|Q9S369||WP_003695151.1|tpos:1-262	periplasm	261	262				
+//
+# antigen_40|Q5F665||WP_003694209.1|tpos:1-151 Length: 151
+# antigen_40|Q5F665||WP_003694209.1|tpos:1-151 Number of predicted TMRs: 0
+antigen_40|Q5F665||WP_003694209.1|tpos:1-151	inside	1	151				
+//
+# antigen_41|Q5F576||WP_010356036.1|tpos:1-91 Length: 91
+# antigen_41|Q5F576||WP_010356036.1|tpos:1-91 Number of predicted TMRs: 0
+antigen_41|Q5F576||WP_010356036.1|tpos:1-91	signal	1	18				
+antigen_41|Q5F576||WP_010356036.1|tpos:1-91	outside	19	91				
+//
+# antigen_44|Q50965||WP_010357027.1|tpos:1-505 Length: 505
+# antigen_44|Q50965||WP_010357027.1|tpos:1-505 Number of predicted TMRs: 12
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	inside	1	8				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	9	29				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	outside	30	56				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	57	78				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	inside	79	86				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	87	99				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	outside	100	117				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	118	138				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	inside	139	172				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	173	188				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	outside	189	220				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	221	239				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	inside	240	266				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	267	294				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	outside	295	308				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	309	333				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	inside	334	339				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	340	367				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	outside	368	378				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	379	394				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	inside	395	434				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	435	448				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	outside	449	480				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	TMhelix	481	499				
+antigen_44|Q50965||WP_010357027.1|tpos:1-505	inside	500	505				
+//
+# antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713 Length: 713
+# antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713 Number of predicted TMRs: 22
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	signal	1	22				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	23	162				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	163	171				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	172	177				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	178	186				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	187	189				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	190	197				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	198	228				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	229	236				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	237	241				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	242	249				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	250	288				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	289	295				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	296	302				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	303	309				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	310	341				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	342	348				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	349	354				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	355	361				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	362	413				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	414	421				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	422	426				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	427	434				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	435	452				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	453	460				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	461	466				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	467	474				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	475	506				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	507	514				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	515	519				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	520	526				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	527	559				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	560	566				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	567	570				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	571	578				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	579	606				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	607	614				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	615	619				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	620	627				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	628	658				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	659	667				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	668	670				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	671	680				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	outside	681	704				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	Beta sheet	705	712				
+antigen_16|Q9S6B9||WP_003692375.1|tpos:1-713	periplasm	713	713				
+//
+# antigen_8|O33372||WP_263071070.1|tpos:1-30 Length: 30
+# antigen_8|O33372||WP_263071070.1|tpos:1-30 Number of predicted TMRs: 0
+antigen_8|O33372||WP_263071070.1|tpos:1-30	signal	1	23				
+antigen_8|O33372||WP_263071070.1|tpos:1-30	outside	24	30				
+//
+# antigen_14|Q50952||WP_003692697.1|tpos:1-943 Length: 943
+# antigen_14|Q50952||WP_003692697.1|tpos:1-943 Number of predicted TMRs: 22
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	signal	1	24				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	25	191				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	192	198				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	199	205				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	206	212				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	213	219				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	220	226				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	227	345				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	346	352				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	353	360				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	361	366				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	367	443				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	444	450				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	451	462				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	463	469				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	470	517				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	518	524				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	525	534				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	535	541				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	542	609				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	610	617				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	618	622				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	623	630				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	631	652				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	653	660				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	661	664				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	665	672				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	673	709				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	710	716				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	717	719				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	720	726				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	727	770				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	771	776				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	777	789				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	790	795				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	796	824				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	825	830				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	831	837				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	838	843				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	844	875				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	876	882				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	883	887				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	888	895				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	outside	896	934				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	Beta sheet	935	942				
+antigen_14|Q50952||WP_003692697.1|tpos:1-943	periplasm	943	943				
+//
+# antigen_17|Q9X4L8||WP_229940838.1|tpos:1-323 Length: 323
+# antigen_17|Q9X4L8||WP_229940838.1|tpos:1-323 Number of predicted TMRs: 0
+antigen_17|Q9X4L8||WP_229940838.1|tpos:1-323	signal	1	17				
+antigen_17|Q9X4L8||WP_229940838.1|tpos:1-323	outside	18	323				
+//
+# antigen_18|Q02219|Copper-containing|WP_003700168.1|tpos:1-392 Length: 392
+# antigen_18|Q02219|Copper-containing|WP_003700168.1|tpos:1-392 Number of predicted TMRs: 0
+antigen_18|Q02219|Copper-containing|WP_003700168.1|tpos:1-392	signal	1	18				
+antigen_18|Q02219|Copper-containing|WP_003700168.1|tpos:1-392	outside	19	392				
+//
+# antigen_20|C6ZG64||WP_003699523.1|tpos:2-175 Length: 174
+# antigen_20|C6ZG64||WP_003699523.1|tpos:2-175 Number of predicted TMRs: 8
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	signal	1	18				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	periplasm	19	24				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	25	37				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	outside	38	40				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	41	53				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	periplasm	54	58				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	59	71				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	outside	72	77				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	78	89				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	periplasm	90	98				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	99	111				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	outside	112	119				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	120	134				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	periplasm	135	142				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	143	155				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	outside	156	158				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	Beta sheet	159	172				
+antigen_20|C6ZG64||WP_003699523.1|tpos:2-175	periplasm	173	174				
+//
+# antigen_53|A0A1D3EZB0|Catalase|WP_003689973.1|tpos:1-504 Length: 504
+# antigen_53|A0A1D3EZB0|Catalase|WP_003689973.1|tpos:1-504 Number of predicted TMRs: 0
+antigen_53|A0A1D3EZB0|Catalase|WP_003689973.1|tpos:1-504	inside	1	504				
+//
+# antigen_56|A0A077KAX9||WP_003692786.1|tpos:4-64 Length: 61
+# antigen_56|A0A077KAX9||WP_003692786.1|tpos:4-64 Number of predicted TMRs: 0
+antigen_56|A0A077KAX9||WP_003692786.1|tpos:4-64	inside	1	61				
+//
+# antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191 Length: 191
+# antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191 Number of predicted TMRs: 5
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	outside	1	5				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	TMhelix	6	22				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	inside	23	27				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	TMhelix	28	42				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	outside	43	45				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	TMhelix	46	63				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	inside	64	75				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	TMhelix	76	92				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	outside	93	114				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	TMhelix	115	132				
+antigen_58|Q4PZE8||WP_003689031.1|tpos:1-191	inside	133	191				
+//
+# antigen_42|A8RU91||WP_003700302.1|tpos:228-296 Length: 69
+# antigen_42|A8RU91||WP_003700302.1|tpos:228-296 Number of predicted TMRs: 0
+antigen_42|A8RU91||WP_003700302.1|tpos:228-296	inside	1	69				
+//
+# antigen_43|Q50966|Fe(3+)|WP_003692653.1|tpos:1-352 Length: 352
+# antigen_43|Q50966|Fe(3+)|WP_003692653.1|tpos:1-352 Number of predicted TMRs: 0
+antigen_43|Q50966|Fe(3+)|WP_003692653.1|tpos:1-352	inside	1	352				
+//
+# antigen_45|Q50964||WP_003687545.1|tpos:1-331 Length: 331
+# antigen_45|Q50964||WP_003687545.1|tpos:1-331 Number of predicted TMRs: 0
+antigen_45|Q50964||WP_003687545.1|tpos:1-331	signal	1	22				
+antigen_45|Q50964||WP_003687545.1|tpos:1-331	outside	23	331				
+//
+# antigen_49|A0A378VW91||WP_003693736.1|tpos:219-277 Length: 59
+# antigen_49|A0A378VW91||WP_003693736.1|tpos:219-277 Number of predicted TMRs: 0
+antigen_49|A0A378VW91||WP_003693736.1|tpos:219-277	outside	1	59				
+//
+# antigen_0|Q5F5U2|Large|WP_003690068.1|tpos:1-177 Length: 177
+# antigen_0|Q5F5U2|Large|WP_003690068.1|tpos:1-177 Number of predicted TMRs: 0
+antigen_0|Q5F5U2|Large|WP_003690068.1|tpos:1-177	inside	1	177				
+//
+# antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915 Length: 915
+# antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915 Number of predicted TMRs: 22
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	signal	1	24				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	25	189				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	190	196				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	197	203				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	204	210				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	211	217				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	218	224				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	225	310				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	311	317				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	318	326				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	327	332				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	333	406				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	407	413				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	414	424				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	425	431				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	432	478				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	479	485				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	486	495				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	496	502				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	503	582				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	583	590				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	591	595				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	596	603				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	604	625				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	626	633				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	634	637				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	638	645				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	646	678				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	679	685				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	686	688				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	689	695				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	696	736				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	737	742				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	743	755				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	756	761				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	762	791				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	792	797				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	798	804				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	805	810				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	811	847				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	848	854				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	855	859				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	860	867				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	868	906				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	907	914				
+antigen_1|Q5F6Q4|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	915	915				
+//
+# antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644 Length: 644
+# antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644 Number of predicted TMRs: 4
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	inside	1	269				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	TMhelix	270	290				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	outside	291	518				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	TMhelix	519	539				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	inside	540	571				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	TMhelix	572	594				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	outside	595	606				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	TMhelix	607	627				
+antigen_84|Q5MK06|Macrolide|WP_003697391.1|tpos:1-644	inside	628	644				
+//
+# antigen_61|A0A378VYF7||WP_003690895.1|tpos:64-149 Length: 86
+# antigen_61|A0A378VYF7||WP_003690895.1|tpos:64-149 Number of predicted TMRs: 0
+antigen_61|A0A378VYF7||WP_003690895.1|tpos:64-149	outside	1	86				
+//
+# antigen_63|B0LVE7||WP_229940837.1|tpos:14-133 Length: 120
+# antigen_63|B0LVE7||WP_229940837.1|tpos:14-133 Number of predicted TMRs: 0
+antigen_63|B0LVE7||WP_229940837.1|tpos:14-133	outside	1	120				
+//
+# antigen_47|A0A378VW04|Biopolymer|WP_003695658.1|tpos:1-145 Length: 145
+# antigen_47|A0A378VW04|Biopolymer|WP_003695658.1|tpos:1-145 Number of predicted TMRs: 2
+antigen_47|A0A378VW04|Biopolymer|WP_003695658.1|tpos:1-145	outside	1	13				
+antigen_47|A0A378VW04|Biopolymer|WP_003695658.1|tpos:1-145	TMhelix	14	34				
+antigen_47|A0A378VW04|Biopolymer|WP_003695658.1|tpos:1-145	inside	35	125				
+antigen_47|A0A378VW04|Biopolymer|WP_003695658.1|tpos:1-145	TMhelix	126	141				
+antigen_47|A0A378VW04|Biopolymer|WP_003695658.1|tpos:1-145	outside	142	145				
+//
+# antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507 Length: 507
+# antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507 Number of predicted TMRs: 14
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	1	13				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	14	36				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	outside	37	51				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	52	72				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	73	77				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	78	97				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	outside	98	102				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	103	120				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	121	135				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	136	156				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	outside	157	167				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	168	185				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	186	201				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	202	219				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	outside	220	232				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	233	250				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	251	268				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	269	291				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	outside	292	306				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	307	327				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	328	333				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	334	347				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	outside	348	361				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	362	380				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	381	395				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	396	416				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	outside	417	477				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	TMhelix	478	495				
+antigen_50|Q9RQ29|Fatty|WP_025456133.1|tpos:1-507	inside	496	507				
+//
+# antigen_54|P72074|N-acetyllactosaminide|WP_003698280.1|tpos:1-371 Length: 371
+# antigen_54|P72074|N-acetyllactosaminide|WP_003698280.1|tpos:1-371 Number of predicted TMRs: 0
+antigen_54|P72074|N-acetyllactosaminide|WP_003698280.1|tpos:1-371	signal	1	20				
+antigen_54|P72074|N-acetyllactosaminide|WP_003698280.1|tpos:1-371	outside	21	371				
+//
+# antigen_76|A0A2U9I6P4|50S|WP_003690068.1|tpos:13-150 Length: 138
+# antigen_76|A0A2U9I6P4|50S|WP_003690068.1|tpos:13-150 Number of predicted TMRs: 0
+antigen_76|A0A2U9I6P4|50S|WP_003690068.1|tpos:13-150	inside	1	138				
+//
+# antigen_81|A0AB74ECY7|6,7-dimethyl-8-ribityllumazine|WP_003687601.1|tpos:1-158 Length: 158
+# antigen_81|A0AB74ECY7|6,7-dimethyl-8-ribityllumazine|WP_003687601.1|tpos:1-158 Number of predicted TMRs: 0
+antigen_81|A0AB74ECY7|6,7-dimethyl-8-ribityllumazine|WP_003687601.1|tpos:1-158	inside	1	158				
+//
+# antigen_69|A0A379B108|Lipid-A-disaccharide|WP_003689999.1|tpos:14-374 Length: 361
+# antigen_69|A0A379B108|Lipid-A-disaccharide|WP_003689999.1|tpos:14-374 Number of predicted TMRs: 0
+antigen_69|A0A379B108|Lipid-A-disaccharide|WP_003689999.1|tpos:14-374	inside	1	361				
+//
+# antigen_75|A0A379B0S6|50S|WP_229940833.1|tpos:96-179 Length: 84
+# antigen_75|A0A379B0S6|50S|WP_229940833.1|tpos:96-179 Number of predicted TMRs: 0
+antigen_75|A0A379B0S6|50S|WP_229940833.1|tpos:96-179	inside	1	84				
+//
+# antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234 Length: 119
+# antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234 Number of predicted TMRs: 4
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	signal	1	10				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	periplasm	11	13				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	Beta sheet	14	23				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	outside	24	70				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	Beta sheet	71	83				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	periplasm	84	86				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	Beta sheet	87	95				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	outside	96	110				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	Beta sheet	111	118				
+antigen_65|A0A378W2W5||WP_229940805.1|tpos:116-234	periplasm	119	119				
+//
+# antigen_67|Q9RQ30|Fatty|WP_012503946.1|tpos:1-384 Length: 384
+# antigen_67|Q9RQ30|Fatty|WP_012503946.1|tpos:1-384 Number of predicted TMRs: 1
+antigen_67|Q9RQ30|Fatty|WP_012503946.1|tpos:1-384	inside	1	20				
+antigen_67|Q9RQ30|Fatty|WP_012503946.1|tpos:1-384	TMhelix	21	41				
+antigen_67|Q9RQ30|Fatty|WP_012503946.1|tpos:1-384	outside	42	384				
+//
+# antigen_46|A0A1D3FCT2||WP_003693740.1|tpos:1-144 Length: 144
+# antigen_46|A0A1D3FCT2||WP_003693740.1|tpos:1-144 Number of predicted TMRs: 1
+antigen_46|A0A1D3FCT2||WP_003693740.1|tpos:1-144	inside	1	24				
+antigen_46|A0A1D3FCT2||WP_003693740.1|tpos:1-144	TMhelix	25	37				
+antigen_46|A0A1D3FCT2||WP_003693740.1|tpos:1-144	outside	38	144				
+//
+# antigen_36|Q5F848|Lipoprotein|WP_003693315.1|tpos:24-398 Length: 375
+# antigen_36|Q5F848|Lipoprotein|WP_003693315.1|tpos:24-398 Number of predicted TMRs: 0
+antigen_36|Q5F848|Lipoprotein|WP_003693315.1|tpos:24-398	signal	1	18				
+antigen_36|Q5F848|Lipoprotein|WP_003693315.1|tpos:24-398	outside	19	375				
+//
+# antigen_7|Q6W764||WP_010358244.1|tpos:1-508 Length: 508
+# antigen_7|Q6W764||WP_010358244.1|tpos:1-508 Number of predicted TMRs: 0
+antigen_7|Q6W764||WP_010358244.1|tpos:1-508	signal	1	16				
+antigen_7|Q6W764||WP_010358244.1|tpos:1-508	outside	17	508				
+//
+# antigen_9|A0A088NJH2||WP_003696681.1|tpos:1-253 Length: 253
+# antigen_9|A0A088NJH2||WP_003696681.1|tpos:1-253 Number of predicted TMRs: 0
+antigen_9|A0A088NJH2||WP_003696681.1|tpos:1-253	signal	1	24				
+antigen_9|A0A088NJH2||WP_003696681.1|tpos:1-253	outside	25	253				
+//
+# antigen_5|Q5FAG7||WP_229940834.1|tpos:1-986 Length: 986
+# antigen_5|Q5FAG7||WP_229940834.1|tpos:1-986 Number of predicted TMRs: 0
+antigen_5|Q5FAG7||WP_229940834.1|tpos:1-986	outside	1	986				
+//
+# antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344 Length: 344
+# antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344 Number of predicted TMRs: 16
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	signal	1	19				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	20	24				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	25	33				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	34	49				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	50	62				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	63	75				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	76	80				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	81	94				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	95	99				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	100	105				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	106	113				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	114	142				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	143	155				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	156	161				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	162	169				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	170	178				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	179	186				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	187	191				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	192	198				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	199	227				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	228	235				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	236	240				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	241	249				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	250	266				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	267	274				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	275	279				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	280	287				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	288	303				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	304	310				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	311	317				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	318	326				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	outside	327	333				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	Beta sheet	334	340				
+antigen_10|Q5XKW2||WP_229930416.1|tpos:1-344	periplasm	341	344				
+//
+# antigen_21|Q8L2T6||WP_025456551.1|tpos:1-351 Length: 351
+# antigen_21|Q8L2T6||WP_025456551.1|tpos:1-351 Number of predicted TMRs: 0
+antigen_21|Q8L2T6||WP_025456551.1|tpos:1-351	inside	1	351				
+//
+# antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594 Length: 1594
+# antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594 Number of predicted TMRs: 12
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	signal	1	27				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	28	1347				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1348	1357				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1358	1370				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1371	1381				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1382	1386				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1387	1396				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1397	1410				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1411	1420				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1421	1425				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1426	1435				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1436	1453				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1454	1462				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1463	1470				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1471	1479				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1480	1503				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1504	1511				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1512	1521				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1522	1531				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1532	1550				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1551	1561				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1562	1565				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1566	1575				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	outside	1576	1581				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	Beta sheet	1582	1592				
+antigen_22|P09790|IgA-specific|WP_003699543.1|tpos:1-1594	periplasm	1593	1594				
+//
+# antigen_28|A0A378W121|Outer-membrane|WP_025456175.1|tpos:1-156 Length: 156
+# antigen_28|A0A378W121|Outer-membrane|WP_025456175.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_28|A0A378W121|Outer-membrane|WP_025456175.1|tpos:1-156	signal	1	15				
+antigen_28|A0A378W121|Outer-membrane|WP_025456175.1|tpos:1-156	outside	16	156				
+//
+# antigen_30|A0AAQ1IME3|LPS-assembly|WP_003692715.1|tpos:1-159 Length: 159
+# antigen_30|A0AAQ1IME3|LPS-assembly|WP_003692715.1|tpos:1-159 Number of predicted TMRs: 0
+antigen_30|A0AAQ1IME3|LPS-assembly|WP_003692715.1|tpos:1-159	signal	1	15				
+antigen_30|A0AAQ1IME3|LPS-assembly|WP_003692715.1|tpos:1-159	outside	16	159				
+//
+# antigen_31|Q9X6P2|Adhesin|WP_003697752.1|tpos:1-320 Length: 320
+# antigen_31|Q9X6P2|Adhesin|WP_003697752.1|tpos:1-320 Number of predicted TMRs: 0
+antigen_31|Q9X6P2|Adhesin|WP_003697752.1|tpos:1-320	signal	1	18				
+antigen_31|Q9X6P2|Adhesin|WP_003697752.1|tpos:1-320	outside	19	320				
+//
+# antigen_79|A0A379B0L0||WP_003694346.1|tpos:117-164 Length: 48
+# antigen_79|A0A379B0L0||WP_003694346.1|tpos:117-164 Number of predicted TMRs: 0
+antigen_79|A0A379B0L0||WP_003694346.1|tpos:117-164	inside	1	48				
+//
+# antigen_80|A0AB74ETB9|Ribosomal|WP_003692488.1|tpos:1-295 Length: 295
+# antigen_80|A0AB74ETB9|Ribosomal|WP_003692488.1|tpos:1-295 Number of predicted TMRs: 0
+antigen_80|A0AB74ETB9|Ribosomal|WP_003692488.1|tpos:1-295	inside	1	295				
+//
+# antigen_83|Q5MK07||WP_003700274.1|tpos:1-392 Length: 392
+# antigen_83|Q5MK07||WP_003700274.1|tpos:1-392 Number of predicted TMRs: 0
+antigen_83|Q5MK07||WP_003700274.1|tpos:1-392	signal	1	26				
+antigen_83|Q5MK07||WP_003700274.1|tpos:1-392	outside	27	392				
+//
+# antigen_85|Q9F7Y5||WP_002214937.1|tpos:1-21 Length: 21
+# antigen_85|Q9F7Y5||WP_002214937.1|tpos:1-21 Number of predicted TMRs: 1
+antigen_85|Q9F7Y5||WP_002214937.1|tpos:1-21	inside	1	9				
+antigen_85|Q9F7Y5||WP_002214937.1|tpos:1-21	TMhelix	10	19				
+antigen_85|Q9F7Y5||WP_002214937.1|tpos:1-21	outside	20	21				
+//
+# antigen_86|A0AB74ER28|Succinyl-diaminopimelate|WP_003691026.1|tpos:1-381 Length: 381
+# antigen_86|A0AB74ER28|Succinyl-diaminopimelate|WP_003691026.1|tpos:1-381 Number of predicted TMRs: 0
+antigen_86|A0AB74ER28|Succinyl-diaminopimelate|WP_003691026.1|tpos:1-381	inside	1	381				
+//
+# antigen_59|Q4PR64||WP_229930416.1|tpos:1-348 Length: 348
+# antigen_59|Q4PR64||WP_229930416.1|tpos:1-348 Number of predicted TMRs: 16
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	signal	1	19				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	20	24				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	25	33				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	34	49				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	50	62				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	63	75				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	76	80				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	81	94				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	95	99				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	100	105				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	106	113				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	114	142				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	143	155				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	156	161				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	162	169				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	170	178				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	179	186				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	187	191				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	192	198				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	199	227				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	228	235				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	236	240				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	241	249				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	250	266				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	267	274				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	275	279				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	280	287				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	288	302				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	303	311				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	312	317				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	318	326				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	outside	327	339				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	Beta sheet	340	346				
+antigen_59|Q4PR64||WP_229930416.1|tpos:1-348	periplasm	347	348				
+//
+# antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915 Length: 915
+# antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915 Number of predicted TMRs: 22
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	signal	1	24				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	25	189				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	190	196				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	197	203				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	204	210				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	211	217				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	218	224				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	225	310				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	311	317				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	318	326				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	327	332				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	333	406				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	407	413				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	414	424				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	425	431				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	432	478				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	479	485				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	486	495				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	496	502				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	503	582				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	583	590				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	591	595				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	596	603				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	604	625				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	626	633				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	634	637				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	638	645				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	646	678				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	679	685				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	686	688				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	689	695				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	696	736				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	737	742				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	743	755				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	756	761				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	762	791				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	792	797				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	798	804				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	805	810				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	811	847				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	848	854				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	855	859				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	860	867				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	outside	868	906				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	Beta sheet	907	914				
+antigen_62|Q01996|Transferrin-binding|WP_003700302.1|tpos:1-915	periplasm	915	915				
+//
+# antigen_66|Q06758|Probable|WP_003689749.1|tpos:1-268 Length: 268
+# antigen_66|Q06758|Probable|WP_003689749.1|tpos:1-268 Number of predicted TMRs: 0
+antigen_66|Q06758|Probable|WP_003689749.1|tpos:1-268	signal	1	20				
+antigen_66|Q06758|Probable|WP_003689749.1|tpos:1-268	outside	21	268				
+//
+# antigen_70|A0A378W0B8||WP_017146691.1|tpos:239-285 Length: 47
+# antigen_70|A0A378W0B8||WP_017146691.1|tpos:239-285 Number of predicted TMRs: 0
+antigen_70|A0A378W0B8||WP_017146691.1|tpos:239-285	outside	1	47				
+//
+# antigen_71|A0A379B0E4||WP_003690110.1|tpos:1-32 Length: 32
+# antigen_71|A0A379B0E4||WP_003690110.1|tpos:1-32 Number of predicted TMRs: 0
+antigen_71|A0A379B0E4||WP_003690110.1|tpos:1-32	inside	1	32				
+//
+# antigen_72|B4RQY1|Large|WP_003690083.1|tpos:1-277 Length: 277
+# antigen_72|B4RQY1|Large|WP_003690083.1|tpos:1-277 Number of predicted TMRs: 0
+antigen_72|B4RQY1|Large|WP_003690083.1|tpos:1-277	inside	1	277				
+//
+# antigen_73|Q5F5S7|Large|WP_002215400.1|tpos:1-214 Length: 214
+# antigen_73|Q5F5S7|Large|WP_002215400.1|tpos:1-214 Number of predicted TMRs: 0
+antigen_73|Q5F5S7|Large|WP_002215400.1|tpos:1-214	inside	1	214				
+//
+# antigen_74|A0A379B243||WP_003690088.1|tpos:105-144 Length: 40
+# antigen_74|A0A379B243||WP_003690088.1|tpos:105-144 Number of predicted TMRs: 0
+antigen_74|A0A379B243||WP_003690088.1|tpos:105-144	inside	1	40				
+//
+# antigen_77|A0A379B1C6|50S|WP_003690106.1|tpos:61-110 Length: 50
+# antigen_77|A0A379B1C6|50S|WP_003690106.1|tpos:61-110 Number of predicted TMRs: 0
+antigen_77|A0A379B1C6|50S|WP_003690106.1|tpos:61-110	inside	1	50				
+//
+# antigen_78|A0A378VXT8||WP_002232586.1|tpos:1-22 Length: 22
+# antigen_78|A0A378VXT8||WP_002232586.1|tpos:1-22 Number of predicted TMRs: 0
+antigen_78|A0A378VXT8||WP_002232586.1|tpos:1-22	signal	1	21				
+antigen_78|A0A378VXT8||WP_002232586.1|tpos:1-22	outside	22	22				
+//
+# antigen_27|A0AA44ZGW8|Outer|WP_003689992.1|tpos:1-125 Length: 125
+# antigen_27|A0AA44ZGW8|Outer|WP_003689992.1|tpos:1-125 Number of predicted TMRs: 0
+antigen_27|A0AA44ZGW8|Outer|WP_003689992.1|tpos:1-125	signal	1	17				
+antigen_27|A0AA44ZGW8|Outer|WP_003689992.1|tpos:1-125	outside	18	125				
+//
+# antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667 Length: 657
+# antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667 Number of predicted TMRs: 20
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	signal	1	14				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	15	250				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	251	255				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	256	261				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	262	266				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	267	275				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	276	282				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	283	287				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	288	296				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	297	303				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	304	310				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	311	321				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	322	330				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	331	337				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	338	344				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	345	365				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	366	375				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	376	383				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	384	390				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	391	410				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	411	417				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	418	423				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	424	430				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	431	447				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	448	455				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	456	461				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	462	468				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	469	491				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	492	499				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	500	515				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	516	522				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	523	565				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	566	572				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	573	583				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	584	591				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	592	614				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	615	621				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	622	627				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	628	634				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	outside	635	645				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	Beta sheet	646	651				
+antigen_29|A0A379B184|LPS-assembly|WP_003698952.1|tpos:11-667	periplasm	652	657				
+//
+# antigen_33|O87406|Ancillary|WP_003690875.1|tpos:1-209 Length: 209
+# antigen_33|O87406|Ancillary|WP_003690875.1|tpos:1-209 Number of predicted TMRs: 1
+antigen_33|O87406|Ancillary|WP_003690875.1|tpos:1-209	inside	1	20				
+antigen_33|O87406|Ancillary|WP_003690875.1|tpos:1-209	TMhelix	21	41				
+antigen_33|O87406|Ancillary|WP_003690875.1|tpos:1-209	outside	42	209				
+//
+# antigen_35|Q5F8J5||WP_003688638.1|tpos:1-144 Length: 144
+# antigen_35|Q5F8J5||WP_003688638.1|tpos:1-144 Number of predicted TMRs: 1
+antigen_35|Q5F8J5||WP_003688638.1|tpos:1-144	inside	1	28				
+antigen_35|Q5F8J5||WP_003688638.1|tpos:1-144	TMhelix	29	44				
+antigen_35|Q5F8J5||WP_003688638.1|tpos:1-144	outside	45	144				
+//
+# antigen_37|Q5F7X2||WP_017146854.1|tpos:1-114 Length: 114
+# antigen_37|Q5F7X2||WP_017146854.1|tpos:1-114 Number of predicted TMRs: 0
+antigen_37|Q5F7X2||WP_017146854.1|tpos:1-114	signal	1	16				
+antigen_37|Q5F7X2||WP_017146854.1|tpos:1-114	outside	17	114				
+//
+# antigen_38|Q5F7G3|Copper|WP_003689657.1|tpos:1-157 Length: 157
+# antigen_38|Q5F7G3|Copper|WP_003689657.1|tpos:1-157 Number of predicted TMRs: 0
+antigen_38|Q5F7G3|Copper|WP_003689657.1|tpos:1-157	signal	1	19				
+antigen_38|Q5F7G3|Copper|WP_003689657.1|tpos:1-157	outside	20	157				
+//
+# antigen_39|Q5F7C7|Type|WP_025455765.1|tpos:1-162 Length: 162
+# antigen_39|Q5F7C7|Type|WP_025455765.1|tpos:1-162 Number of predicted TMRs: 0
+antigen_39|Q5F7C7|Type|WP_025455765.1|tpos:1-162	signal	1	16				
+antigen_39|Q5F7C7|Type|WP_025455765.1|tpos:1-162	outside	17	162				

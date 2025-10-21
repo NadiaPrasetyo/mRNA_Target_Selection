@@ -1,0 +1,14 @@
+##gff-version 3
+antigen_188|P04174|Dihydrofolate|XCC06858.1|tpos:1-160	TargetP-2.0	signal_peptide	1	21	0.777499	.	.	.
+antigen_115|Q5F8G9|ADP-dependent|XCC06514.1|tpos:1-296	TargetP-2.0	transit_peptide	1	29	0.646417	.	.	Note=Mitochondrion
+antigen_116|Q5F8J4|Homoserine|XCC06493.1|tpos:1-435	TargetP-2.0	signal_peptide	1	19	0.481415	.	.	.
+antigen_67|Q04882|Opacity|XCC06617.1|tpos:1-271	TargetP-2.0	signal_peptide	1	33	0.987215	.	.	.
+antigen_164|Q5F6H4|Adhesin|XCC05158.1|tpos:1-313	TargetP-2.0	signal_peptide	1	25	0.998203	.	.	.
+antigen_178|Q5FA29|Outer-membrane|XCC06011.1|tpos:1-207	TargetP-2.0	signal_peptide	1	23	0.996247	.	.	.
+antigen_162|P43505|Membrane|XCC05134.1|tpos:1-412	TargetP-2.0	signal_peptide	1	31	0.896416	.	.	.
+antigen_185|Q5F8J0|Type|XCC06497.1|tpos:1-170	TargetP-2.0	signal_peptide	1	23	0.997586	.	.	.
+antigen_144|B4RJ69|Glutamyl-Q|XCC05322.1|tpos:1-295	TargetP-2.0	signal_peptide	1	29	0.923783	.	.	.
+antigen_166|Q5F569|UDP-3-O-acyl-N-acetylglucosamine|XCC05751.1|tpos:1-307	TargetP-2.0	transit_peptide	1	24	0.773703	.	.	Note=Mitochondrion
+antigen_63|P35819|Type|XCC05918.1|tpos:1-720	TargetP-2.0	signal_peptide	1	24	0.966777	.	.	.
+antigen_135|P07211|Outer|XCC06649.1|tpos:1-183	TargetP-2.0	signal_peptide	1	18	0.999955	.	.	.
+antigen_108|B4RR07|D-amino|XCC05523.1|tpos:1-419	TargetP-2.0	signal_peptide	1	15	0.868353	.	.	.

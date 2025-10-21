@@ -1,0 +1,14 @@
+[2025-10-19 19:01:28,332] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 19:01:28,336] Single PDB file input (1FIU_P31032), extracting single chains to data/N.gonorrhoeae/random_analysis/discotope/1FIU_P31032/input_chains
+[2025-10-19 19:01:31,472] Found 12 extracted single chains in data/N.gonorrhoeae/random_analysis/discotope/1FIU_P31032/input_chains
+[2025-10-19 19:05:31,932] Note: Skipping 1FIU_P31032_H, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:05:31,949] Note: Skipping 1FIU_P31032_J, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:08:52,210] Note: Skipping 1FIU_P31032_K, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:08:52,223] Note: Skipping 1FIU_P31032_G, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:08:52,241] Note: Skipping 1FIU_P31032_L, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:12:22,290] Note: Skipping 1FIU_P31032_I, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:15:33,589] Note: Skipping 1FIU_P31032_F, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:15:33,601] Note: Skipping 1FIU_P31032_E, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 19:16:15,051] Predicted 4 / 12 PDB files extracted from 1 input PDBs, saved to data/N.gonorrhoeae/random_analysis/discotope/1FIU_P31032/output
+[2025-10-19 19:16:15,051] Note: Excluded predicting 8 PDB chain(s) (see log file):
+1FIU_P31032_E, 1FIU_P31032_L, 1FIU_P31032_J, 1FIU_P31032_H, 1FIU_P31032_I, 1FIU_P31032_K, 1FIU_P31032_F, 1FIU_P31032_G
