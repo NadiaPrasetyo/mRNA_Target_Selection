@@ -1,0 +1,31 @@
+,ACC,Localization,Cell wall & surface,Extracellular,Cytoplasmic,Cytoplasmic Membrane,Outer Membrane,Periplasmic
+0,antigen_10|O25658|7-alpha-hydroxysteroid|XNZ28432.1|tpos:1-262,Cytoplasmic,0.0014,0.0049,0.4749,0.1397,0.3661,0.0131
+1,antigen_13|P56130|Putative|XNZ28560.1|tpos:1-418,Cytoplasmic,0.0001,0.0002,0.8754,0.0005,0.1232,0.0005
+2,antigen_25|P0A0R3|Co-chaperonin|XNZ28815.1|tpos:1-118,Cytoplasmic,0.0000,0.0001,0.6155,0.0000,0.3829,0.0014
+3,antigen_5|O25537|Lipid-A-disaccharide|XNZ29676.1|tpos:1-360,Cytoplasmic,0.0001,0.0017,0.7871,0.1094,0.1007,0.0010
+4,antigen_14|A0A1Q9J9W6|Outer|XNZ28612.1|tpos:308-479,Outer Membrane,0.0001,0.0328,0.0004,0.2286,0.7371,0.0010
+5,antigen_16|A0A060PRJ6|Outer|XNZ29140.1|tpos:1-385,Extracellular,0.0006,0.9632,0.0000,0.0001,0.0219,0.0141
+6,antigen_23|Q70NT5|Heat|XNZ28816.1|tpos:94-273,Cytoplasmic,0.0012,0.0039,0.9358,0.0120,0.0463,0.0008
+7,antigen_24|J0IQC3|Outer|XNZ28817.1|tpos:37-667,Extracellular,0.0122,0.8081,0.0004,0.0419,0.1260,0.0114
+8,antigen_11|O25794|tRNA(Ile)-lysidine/2-thiocytidine|XNZ29133.1|tpos:1-253,Cytoplasmic,0.0006,0.0011,0.7565,0.0275,0.2050,0.0093
+9,antigen_19|A0A060CUG4|Cag|XNZ29287.1|tpos:1-440,Extracellular,0.0007,0.6462,0.0007,0.0036,0.3439,0.0050
+10,antigen_18|A0A238GVV7|KatA|XNZ29682.1|tpos:1-291,Outer Membrane,0.0001,0.0809,0.0019,0.0109,0.6845,0.2217
+11,antigen_21|A0A060PT92|LPP20|XNZ28949.1|tpos:1-175,Outer Membrane,0.0000,0.0000,0.0000,0.0022,0.9974,0.0004
+12,antigen_30|Q9ZHT1|Vacuolating|XNZ29474.1|tpos:2818-3188,Outer Membrane,0.0000,0.0001,0.0000,0.0268,0.9730,0.0000
+13,antigen_20|P43313|DNA|XNZ28599.1|tpos:1-144,Cytoplasmic,0.0001,0.0023,0.8101,0.0002,0.1795,0.0078
+14,antigen_1|O25233|Potassium|XNZ29387.1|tpos:1-378,Cytoplasmic Membrane,0.0000,0.0000,0.0001,0.9985,0.0013,0.0000
+15,antigen_8|O25606|Conserved|XNZ29320.1|tpos:1-218,Cytoplasmic,0.0001,0.0006,0.8373,0.0008,0.1610,0.0002
+16,antigen_6|O25571|Outer|XNZ29367.1|tpos:1-530,Outer Membrane,0.0003,0.1356,0.0000,0.0587,0.7995,0.0059
+17,antigen_26|Q6DT22|Adhesin|XNZ28817.1|tpos:146-334,Extracellular,0.0012,0.8972,0.0024,0.0001,0.0463,0.0529
+18,antigen_27|Q9AI97|BabB|XNZ28804.1|tpos:167-332,Extracellular,0.0001,0.8712,0.0022,0.0003,0.1235,0.0026
+19,antigen_28|Q7X2K0|SabA|XNZ28817.1|tpos:1-88,Extracellular,0.0004,0.5993,0.0000,0.0000,0.3999,0.0004
+20,antigen_7|O25578|Uncharacterized|XNZ29363.1|tpos:1-229,Cytoplasmic Membrane,0.0002,0.0566,0.0001,0.8651,0.0780,0.0001
+21,antigen_12|P56105|DNA|XNZ28936.1|tpos:1-897,Cytoplasmic,0.0000,0.0003,0.9778,0.0001,0.0218,0.0000
+22,antigen_17|A0A238GT21|Outer|XNZ28817.1|tpos:37-368,Extracellular,0.0013,0.9735,0.0001,0.0082,0.0075,0.0094
+23,antigen_0|O25204|Competence|XNZ28810.1|tpos:1-87,Cytoplasmic Membrane,0.0000,0.0012,0.0008,0.9888,0.0091,0.0000
+24,antigen_22|G1UIZ3|Neutrophil-activating|XNZ28599.1|tpos:1-144,Cytoplasmic,0.0001,0.0023,0.8101,0.0002,0.1795,0.0078
+25,antigen_29|Q75X90|Cag|XNZ28977.1|tpos:17-287,Cytoplasmic,0.0000,0.0011,0.6773,0.1545,0.1670,0.0001
+26,antigen_3|O25522|Conserved|XNZ29665.1|tpos:1-226,Cytoplasmic Membrane,0.0000,0.0005,0.0001,0.9968,0.0025,0.0000
+27,antigen_4|O25532|Urease|XNZ29670.1|tpos:1-253,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9937,0.0059,0.0003
+28,antigen_2|O25249|Plasminogen-binding|XNZ29403.1|tpos:1-449,Outer Membrane,0.0038,0.0118,0.0197,0.1533,0.7701,0.0413
+29,antigen_15|A0A219MBY0|DupA|XNZ28809.1|tpos:177-787,Outer Membrane,0.0000,0.0978,0.3199,0.0128,0.5687,0.0007

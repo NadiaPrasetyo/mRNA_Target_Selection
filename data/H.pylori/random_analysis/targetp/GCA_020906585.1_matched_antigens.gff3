@@ -1,0 +1,9 @@
+##gff-version 3
+antigen_179|O25474|Outer-membrane|UFG19511.1|tpos:1-184	TargetP-2.0	signal_peptide	1	19	0.999499	.	.	.
+antigen_125|Q9ZMK8|Peptide|UFG20424.1|tpos:1-359	TargetP-2.0	signal_peptide	1	22	0.992862	.	.	.
+antigen_66|O25028|Flagellar|UFG20443.1|tpos:1-342	TargetP-2.0	signal_peptide	1	19	0.998696	.	.	.
+antigen_60|B6JN65|Fluoride-specific|UFG19862.1|tpos:1-130	TargetP-2.0	signal_peptide	1	15	0.514025	.	.	.
+antigen_167|Q09068|Acid-activated|UFG20259.1|tpos:1-195	TargetP-2.0	signal_peptide	1	19	0.687069	.	.	.
+antigen_65|Q1CS87|Phosphopentomutase|UFG19822.1|tpos:1-413	TargetP-2.0	signal_peptide	1	17	0.671090	.	.	.
+antigen_142|Q9ZJX2|Protein-export|UFG19890.1|tpos:1-199	TargetP-2.0	signal_peptide	1	27	0.602252	.	.	.
+antigen_148|O25088|Sec-independent|UFG20510.1|tpos:1-79	TargetP-2.0	signal_peptide	1	32	0.960037	.	.	.

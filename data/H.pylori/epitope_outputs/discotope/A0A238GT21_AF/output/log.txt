@@ -1,0 +1,4 @@
+[2025-10-19 17:23:13,566] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 17:23:13,570] Single PDB file input (A0A238GT21_AF), extracting single chains to data/H.pylori/epitope_outputs/discotope/A0A238GT21_AF/input_chains
+[2025-10-19 17:23:13,818] Found 1 extracted single chains in data/H.pylori/epitope_outputs/discotope/A0A238GT21_AF/input_chains
+[2025-10-19 17:25:25,556] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/H.pylori/epitope_outputs/discotope/A0A238GT21_AF/output

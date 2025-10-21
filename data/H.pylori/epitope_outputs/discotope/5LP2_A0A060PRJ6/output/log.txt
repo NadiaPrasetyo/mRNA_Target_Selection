@@ -1,0 +1,4 @@
+[2025-10-19 17:23:12,590] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 17:23:12,597] Single PDB file input (5LP2_A0A060PRJ6), extracting single chains to data/H.pylori/epitope_outputs/discotope/5LP2_A0A060PRJ6/input_chains
+[2025-10-19 17:23:13,677] Found 4 extracted single chains in data/H.pylori/epitope_outputs/discotope/5LP2_A0A060PRJ6/input_chains
+[2025-10-19 17:37:59,613] Predicted 4 / 4 PDB files extracted from 1 input PDBs, saved to data/H.pylori/epitope_outputs/discotope/5LP2_A0A060PRJ6/output
