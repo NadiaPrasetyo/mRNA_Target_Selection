@@ -1,0 +1,13 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,Q83D70_AF,A,1,5,MNEPL,5,0.941,Linear
+2,Q83D70_AF,A,60,68,LGHVTPESS,9,0.722,Linear
+3,Q83D70_AF,A,15,20,RRGMLE,6,0.707,Linear
+4,Q83D70_AF,A,79,82,QLSS,4,0.707,Linear
+5,Q83D70_AF,A,30,39,EEKFRSLTKN,10,0.545,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,Q83D70_AF,A:M1, A:N2, A:E3, A:P4, A:L5, A:K8, A:K9,7,0.869,Discontinous
+2,Q83D70_AF,A:G17, A:M18, A:L19, A:E20, A:I23, A:R27,6,0.72,Discontinous
+3,Q83D70_AF,A:L80, A:S81, A:S82,3,0.707,Discontinous
+4,Q83D70_AF,A:D57, A:L60, A:G61, A:H62, A:V63, A:T64, A:P65, A:E66, A:S67, A:S68, A:K71, A:K72,12,0.677,Discontinous
+5,Q83D70_AF,A:K32, A:S35, A:L36, A:T37, A:K38, A:N39,6,0.551,Discontinous

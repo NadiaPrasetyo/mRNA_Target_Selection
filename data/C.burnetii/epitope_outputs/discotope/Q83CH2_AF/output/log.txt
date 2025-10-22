@@ -1,0 +1,4 @@
+[2025-10-21 12:49:11,844] Single-chain mode set, will predict PDBs as single chains
+[2025-10-21 12:49:11,856] Single PDB file input (Q83CH2_AF), extracting single chains to data/C.burnetii/epitope_outputs/discotope/Q83CH2_AF/input_chains
+[2025-10-21 12:49:12,015] Found 1 extracted single chains in data/C.burnetii/epitope_outputs/discotope/Q83CH2_AF/input_chains
+[2025-10-21 12:51:48,167] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/C.burnetii/epitope_outputs/discotope/Q83CH2_AF/output

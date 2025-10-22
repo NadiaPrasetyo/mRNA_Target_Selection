@@ -1,0 +1,22 @@
+##gff-version 3
+antigen_103|Q83F92||ACJ19199.1|tpos:1-616	TargetP-2.0	signal_peptide	1	23	0.999130	.	.	.
+antigen_11|Q83A39||ACJ19306.1|tpos:1-165	TargetP-2.0	signal_peptide	1	21	0.999685	.	.	.
+antigen_12|Q83A45||ACJ19299.1|tpos:1-212	TargetP-2.0	signal_peptide	1	29	0.995771	.	.	.
+antigen_64|Q83D52||ACJ18449.1|tpos:1-312	TargetP-2.0	signal_peptide	1	19	0.990503	.	.	.
+antigen_4|P51752|Peptidyl-prolyl|ACJ18679.1|tpos:1-230	TargetP-2.0	signal_peptide	1	21	0.998973	.	.	.
+antigen_0|H7C7D7||ACJ17479.1|tpos:1-252	TargetP-2.0	signal_peptide	1	21	0.995837	.	.	.
+antigen_147|Q83EI5||ACJ18951.1|tpos:1-221	TargetP-2.0	signal_peptide	1	24	0.556714	.	.	.
+antigen_114|Q83D11||ACJ18411.1|tpos:1-129	TargetP-2.0	signal_peptide	1	29	0.605616	.	.	.
+antigen_58|Q83CH2|Sec|ACJ18247.1|tpos:1-116	TargetP-2.0	signal_peptide	1	19	0.487726	.	.	.
+antigen_59|Q83CH8||ACJ18253.1|tpos:1-184	TargetP-2.0	signal_peptide	1	25	0.997469	.	.	.
+antigen_54|Q83CA7||ACJ18185.1|tpos:1-197	TargetP-2.0	signal_peptide	1	19	0.946612	.	.	.
+antigen_55|Q83CG1||ACJ18238.1|tpos:1-233	TargetP-2.0	signal_peptide	1	26	0.923225	.	.	.
+antigen_63|Q83CY3|phospholipase|ACJ18385.1|tpos:1-176	TargetP-2.0	signal_peptide	1	20	0.998133	.	.	.
+antigen_101|Q83F57|Cell|ACJ19170.1|tpos:1-305	TargetP-2.0	signal_peptide	1	29	0.992142	.	.	.
+antigen_92|Q83EL2||ACJ18975.1|tpos:1-231	TargetP-2.0	signal_peptide	1	22	0.997795	.	.	.
+antigen_117|Q83D46||ACJ18442.1|tpos:1-110	TargetP-2.0	signal_peptide	1	18	0.994151	.	.	.
+antigen_27|Q83AW0||ACJ17600.1|tpos:1-153	TargetP-2.0	signal_peptide	1	24	0.999113	.	.	.
+antigen_50|Q83C69|Uncharacterized|ACJ18149.1|tpos:1-248	TargetP-2.0	signal_peptide	1	23	0.949031	.	.	.
+antigen_99|Q83F42|Lipoprotein|ACJ19152.1|tpos:1-267	TargetP-2.0	signal_peptide	1	21	0.960813	.	.	.
+antigen_81|Q83DT1||ACJ18697.1|tpos:1-165	TargetP-2.0	signal_peptide	1	21	0.917063	.	.	.
+antigen_22|Q83AL4||ACJ17685.1|tpos:8-224	TargetP-2.0	signal_peptide	1	20	0.997487	.	.	.
