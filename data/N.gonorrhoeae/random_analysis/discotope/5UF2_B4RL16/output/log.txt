@@ -1,0 +1,4 @@
+[2025-10-19 19:33:45,416] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 19:33:45,434] Single PDB file input (5UF2_B4RL16), extracting single chains to data/N.gonorrhoeae/random_analysis/discotope/5UF2_B4RL16/input_chains
+[2025-10-19 19:33:46,016] Found 1 extracted single chains in data/N.gonorrhoeae/random_analysis/discotope/5UF2_B4RL16/input_chains
+[2025-10-19 19:37:49,610] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/N.gonorrhoeae/random_analysis/discotope/5UF2_B4RL16/output

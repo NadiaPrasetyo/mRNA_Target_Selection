@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A378W0B8_AF,A,20,24,GDRAQ,5,0.74,Linear
+2,A0A378W0B8_AF,A,4,10,TRYGGEE,7,0.696,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A378W0B8_AF,A:G20, A:D21, A:R22, A:A23, A:Q24,5,0.74,Discontinous
+2,A0A378W0B8_AF,A:D45, A:K46, A:Q47,3,0.738,Discontinous
+3,A0A378W0B8_AF,A:I34, A:G35, A:E36, A:K37, A:V38, A:H39,6,0.667,Discontinous
+4,A0A378W0B8_AF,A:D3, A:T4, A:R5, A:Y6, A:G7, A:G8, A:E9, A:E10,8,0.665,Discontinous

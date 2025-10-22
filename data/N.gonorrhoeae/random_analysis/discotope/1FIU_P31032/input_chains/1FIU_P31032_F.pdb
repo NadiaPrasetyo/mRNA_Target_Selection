@@ -1,0 +1,110 @@
+HEADER    HYDROLASE/DNA                           07-AUG-00   1FIU
+TITLE     TETRAMERIC RESTRICTION ENDONUCLEASE NGOMIV IN COMPLEX WITH CLEAVED DNA
+COMPND    MOL_ID: 1;
+COMPND   2 MOLECULE: DNA (5'-D(*TP*GP*CP*G)-3');
+COMPND   3 CHAIN: E, F, G, H;
+COMPND   4 ENGINEERED: YES;
+COMPND   5 MOL_ID: 2;
+COMPND   6 MOLECULE: DNA (5'-D(P*CP*CP*GP*GP*CP*GP*C)-3');
+COMPND   7 CHAIN: I, J, K, L;
+COMPND   8 ENGINEERED: YES;
+COMPND   9 MOL_ID: 3;
+COMPND  10 MOLECULE: TYPE II RESTRICTION ENZYME NGOMI;
+COMPND  11 CHAIN: A, B, C, D;
+COMPND  12 SYNONYM: NGOMIV RESTRICTION ENDONUCLEASE, ENDONUCLEASE NGOMI,
+COMPND  13 R.NGOMI;
+COMPND  14 EC: 3.1.21.4;
+COMPND  15 ENGINEERED: YES
+SOURCE    MOL_ID: 1;
+SOURCE   2 SYNTHETIC: YES;
+SOURCE   3 MOL_ID: 2;
+SOURCE   4 SYNTHETIC: YES;
+SOURCE   5 MOL_ID: 3;
+SOURCE   6 ORGANISM_SCIENTIFIC: NEISSERIA GONORRHOEAE;
+SOURCE   7 ORGANISM_TAXID: 485;
+SOURCE   8 EXPRESSION_SYSTEM: ESCHERICHIA COLI;
+SOURCE   9 EXPRESSION_SYSTEM_TAXID: 562;
+SOURCE  10 EXPRESSION_SYSTEM_VECTOR_TYPE: PLASMID;
+SOURCE  11 EXPRESSION_SYSTEM_PLASMID: PET15B
+ATOM      1  O5'  DT F   1      37.400  78.146 108.281  1.00100.00           O  
+ATOM      2  C5'  DT F   1      37.410  77.162 107.235  1.00100.00           C  
+ATOM      3  C4'  DT F   1      38.380  76.025 107.473  1.00100.00           C  
+ATOM      4  O4'  DT F   1      39.689  76.561 107.787  1.00100.00           O  
+ATOM      5  C3'  DT F   1      38.011  75.102 108.639  1.00100.00           C  
+ATOM      6  O3'  DT F   1      38.340  73.744 108.329  1.00100.00           O  
+ATOM      7  C2'  DT F   1      38.903  75.586 109.765  1.00100.00           C  
+ATOM      8  C1'  DT F   1      40.150  75.995 109.008  1.00100.00           C  
+ATOM      9  N1   DT F   1      40.959  77.000 109.715  1.00100.00           N  
+ATOM     10  C2   DT F   1      42.252  76.668 110.042  1.00100.00           C  
+ATOM     11  O2   DT F   1      42.752  75.589 109.764  1.00100.00           O  
+ATOM     12  N3   DT F   1      42.944  77.643 110.714  1.00100.00           N  
+ATOM     13  C4   DT F   1      42.486  78.896 111.073  1.00100.00           C  
+ATOM     14  O4   DT F   1      43.230  79.669 111.669  1.00100.00           O  
+ATOM     15  C5   DT F   1      41.116  79.179 110.695  1.00100.00           C  
+ATOM     16  C7   DT F   1      40.527  80.512 111.045  1.00100.00           C  
+ATOM     17  C6   DT F   1      40.431  78.231 110.040  1.00100.00           C  
+ATOM     18  P    DG F   2      37.792  72.555 109.271  1.00100.00           P  
+ATOM     19  OP1  DG F   2      37.595  71.380 108.388  1.00100.00           O  
+ATOM     20  OP2  DG F   2      36.652  73.063 110.093  1.00100.00           O  
+ATOM     21  O5'  DG F   2      39.013  72.242 110.251  1.00100.00           O  
+ATOM     22  C5'  DG F   2      40.288  71.912 109.716  1.00100.00           C  
+ATOM     23  C4'  DG F   2      41.362  72.079 110.765  1.00100.00           C  
+ATOM     24  O4'  DG F   2      41.367  73.417 111.314  1.00100.00           O  
+ATOM     25  C3'  DG F   2      41.276  71.156 111.971  1.00100.00           C  
+ATOM     26  O3'  DG F   2      42.621  70.914 112.357  1.00100.00           O  
+ATOM     27  C2'  DG F   2      40.588  72.012 113.021  1.00100.00           C  
+ATOM     28  C1'  DG F   2      41.208  73.361 112.731  1.00100.00           C  
+ATOM     29  N9   DG F   2      40.432  74.535 113.113  1.00100.00           N  
+ATOM     30  C8   DG F   2      39.089  74.759 112.931  1.00100.00           C  
+ATOM     31  N7   DG F   2      38.732  75.985 113.209  1.00100.00           N  
+ATOM     32  C5   DG F   2      39.912  76.588 113.637  1.00100.00           C  
+ATOM     33  C6   DG F   2      40.170  77.923 114.027  1.00100.00           C  
+ATOM     34  O6   DG F   2      39.393  78.887 114.043  1.00100.00           O  
+ATOM     35  N1   DG F   2      41.500  78.089 114.407  1.00100.00           N  
+ATOM     36  C2   DG F   2      42.456  77.107 114.394  1.00100.00           C  
+ATOM     37  N2   DG F   2      43.677  77.446 114.807  1.00100.00           N  
+ATOM     38  N3   DG F   2      42.231  75.869 114.001  1.00100.00           N  
+ATOM     39  C4   DG F   2      40.949  75.684 113.635  1.00100.00           C  
+ATOM     40  P    DC F   3      42.981  69.614 113.195  1.00100.00           P  
+ATOM     41  OP1  DC F   3      44.011  68.848 112.436  1.00100.00           O  
+ATOM     42  OP2  DC F   3      41.710  68.956 113.596  1.00100.00           O  
+ATOM     43  O5'  DC F   3      43.679  70.224 114.476  1.00100.00           O  
+ATOM     44  C5'  DC F   3      44.751  71.144 114.336  1.00100.00           C  
+ATOM     45  C4'  DC F   3      44.990  71.819 115.659  1.00100.00           C  
+ATOM     46  O4'  DC F   3      44.017  72.864 115.885  1.00100.00           O  
+ATOM     47  C3'  DC F   3      44.795  70.837 116.810  1.00100.00           C  
+ATOM     48  O3'  DC F   3      45.720  71.167 117.818  1.00100.00           O  
+ATOM     49  C2'  DC F   3      43.394  71.137 117.305  1.00100.00           C  
+ATOM     50  C1'  DC F   3      43.380  72.627 117.134  1.00100.00           C  
+ATOM     51  N1   DC F   3      42.063  73.266 117.089  1.00100.00           N  
+ATOM     52  C2   DC F   3      42.019  74.622 117.306  1.00100.00           C  
+ATOM     53  O2   DC F   3      43.083  75.209 117.547  1.00100.00           O  
+ATOM     54  N3   DC F   3      40.833  75.270 117.246  1.00100.00           N  
+ATOM     55  C4   DC F   3      39.720  74.594 116.983  1.00100.00           C  
+ATOM     56  N4   DC F   3      38.574  75.282 116.921  1.00100.00           N  
+ATOM     57  C5   DC F   3      39.731  73.182 116.769  1.00100.00           C  
+ATOM     58  C6   DC F   3      40.921  72.562 116.832  1.00100.00           C  
+ATOM     59  P    DG F   4      47.056  70.321 117.942  1.00100.00           P  
+ATOM     60  OP1  DG F   4      47.735  70.347 116.626  1.00100.00           O  
+ATOM     61  OP2  DG F   4      46.708  69.003 118.569  1.00100.00           O  
+ATOM     62  O5'  DG F   4      47.913  71.181 118.978  1.00100.00           O  
+ATOM     63  C5'  DG F   4      48.514  72.427 118.578  1.00100.00           C  
+ATOM     64  C4'  DG F   4      48.460  73.431 119.706  1.00100.00           C  
+ATOM     65  O4'  DG F   4      47.086  73.827 119.945  1.00100.00           O  
+ATOM     66  C3'  DG F   4      48.991  72.951 121.054  1.00100.00           C  
+ATOM     67  O3'  DG F   4      49.429  74.145 121.699  1.00100.00           O  
+ATOM     68  C2'  DG F   4      47.728  72.508 121.773  1.00100.00           C  
+ATOM     69  C1'  DG F   4      46.707  73.517 121.288  1.00100.00           C  
+ATOM     70  N9   DG F   4      45.344  73.013 121.212  1.00100.00           N  
+ATOM     71  C8   DG F   4      44.948  71.702 121.096  1.00100.00           C  
+ATOM     72  N7   DG F   4      43.668  71.573 120.910  1.00100.00           N  
+ATOM     73  C5   DG F   4      43.189  72.878 120.919  1.00100.00           C  
+ATOM     74  C6   DG F   4      41.876  73.374 120.730  1.00100.00           C  
+ATOM     75  O6   DG F   4      40.847  72.748 120.457  1.00100.00           O  
+ATOM     76  N1   DG F   4      41.830  74.760 120.865  1.00100.00           N  
+ATOM     77  C2   DG F   4      42.917  75.564 121.126  1.00100.00           C  
+ATOM     78  N2   DG F   4      42.666  76.885 121.253  1.00100.00           N  
+ATOM     79  N3   DG F   4      44.154  75.116 121.265  1.00100.00           N  
+ATOM     80  C4   DG F   4      44.211  73.772 121.155  1.00100.00           C  
+TER      81       DG F   4                                                       
+END   

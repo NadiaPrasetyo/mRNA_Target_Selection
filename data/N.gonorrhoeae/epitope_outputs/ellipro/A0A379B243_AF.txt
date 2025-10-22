@@ -1,0 +1,8 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A379B243_AF,A,44,49,WSKCCL,6,0.721,Linear
+2,A0A379B243_AF,A,22,33,IEALTAETPKTK,12,0.617,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A379B243_AF,A:S45, A:K46, A:C47, A:C48, A:L49,5,0.739,Discontinous
+2,A0A379B243_AF,A:Y2, A:A4, A:G5, A:M6, A:A7, A:T8,6,0.663,Discontinous
+3,A0A379B243_AF,A:I22, A:E23, A:A24, A:L25, A:T26, A:A27, A:E28, A:T29, A:P30, A:K31,10,0.6,Discontinous
