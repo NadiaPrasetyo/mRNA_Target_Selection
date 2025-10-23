@@ -1,0 +1,4 @@
+[2025-10-21 17:06:32,321] Single-chain mode set, will predict PDBs as single chains
+[2025-10-21 17:06:32,350] Single PDB file input (P47846_AF), extracting single chains to data/C.burnetii/epitope_outputs/discotope/P47846_AF/input_chains
+[2025-10-21 17:06:33,335] Found 1 extracted single chains in data/C.burnetii/epitope_outputs/discotope/P47846_AF/input_chains
+[2025-10-21 17:12:39,390] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/C.burnetii/epitope_outputs/discotope/P47846_AF/output

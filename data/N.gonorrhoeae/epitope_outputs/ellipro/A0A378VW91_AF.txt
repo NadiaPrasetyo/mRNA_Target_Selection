@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A378VW91_AF,A,1,7,MENDEQG,7,0.719,Linear
+2,A0A378VW91_AF,A,45,57,NGHFQANAWTEFK,13,0.603,Linear
+3,A0A378VW91_AF,A,16,22,SPGGHVE,7,0.587,Linear
+4,A0A378VW91_AF,A,25,34,KVVKSSGFSR,10,0.576,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A378VW91_AF,A:S16, A:P17, A:G18, A:G19, A:H20, A:Q49, A:A50, A:N51, A:A52, A:W53,10,0.717,Discontinous
+2,A0A378VW91_AF,A:N3, A:D4, A:Q6, A:G7, A:L62, A:N63,6,0.635,Discontinous
+3,A0A378VW91_AF,A:M8, A:V27, A:K28, A:S29, A:S30, A:G31, A:F32,7,0.535,Discontinous

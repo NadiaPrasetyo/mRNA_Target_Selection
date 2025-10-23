@@ -1,0 +1,4 @@
+[2025-10-22 14:24:18,390] Single-chain mode set, will predict PDBs as single chains
+[2025-10-22 14:24:18,415] Single PDB file input (C0RIA3_AF), extracting single chains to data/B.melitensis/random_analysis/discotope/C0RIA3_AF/input_chains
+[2025-10-22 14:24:18,625] Found 1 extracted single chains in data/B.melitensis/random_analysis/discotope/C0RIA3_AF/input_chains
+[2025-10-22 14:27:25,789] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/B.melitensis/random_analysis/discotope/C0RIA3_AF/output

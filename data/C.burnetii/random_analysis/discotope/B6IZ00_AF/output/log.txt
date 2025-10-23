@@ -1,0 +1,4 @@
+[2025-10-21 18:14:01,842] Single-chain mode set, will predict PDBs as single chains
+[2025-10-21 18:14:01,852] Single PDB file input (B6IZ00_AF), extracting single chains to data/C.burnetii/random_analysis/discotope/B6IZ00_AF/input_chains
+[2025-10-21 18:14:02,394] Found 1 extracted single chains in data/C.burnetii/random_analysis/discotope/B6IZ00_AF/input_chains
+[2025-10-21 18:18:11,505] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/C.burnetii/random_analysis/discotope/B6IZ00_AF/output

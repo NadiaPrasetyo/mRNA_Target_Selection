@@ -1,0 +1,6 @@
+[2025-10-19 20:30:17,255] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 20:30:17,275] Single PDB file input (2KXO_P58152), extracting single chains to data/N.gonorrhoeae/random_analysis/discotope/2KXO_P58152/input_chains
+[2025-10-19 20:30:24,367] Found 2 extracted single chains in data/N.gonorrhoeae/random_analysis/discotope/2KXO_P58152/input_chains
+[2025-10-19 20:30:55,878] Note: Skipping 2KXO_P58152_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 20:30:55,894] Note: Skipping 2KXO_P58152_B, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 20:30:55,965] Error: No PDB files were valid. Please check input PDBs.

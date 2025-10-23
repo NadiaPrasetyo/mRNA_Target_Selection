@@ -1,0 +1,8 @@
+[2025-10-19 20:11:29,719] Single-chain mode set, will predict PDBs as single chains
+[2025-10-19 20:11:29,724] Single PDB file input (2BSQ_Q5F881), extracting single chains to data/N.gonorrhoeae/random_analysis/discotope/2BSQ_Q5F881/input_chains
+[2025-10-19 20:11:32,106] Found 10 extracted single chains in data/N.gonorrhoeae/random_analysis/discotope/2BSQ_Q5F881/input_chains
+[2025-10-19 20:13:26,508] Note: Skipping 2BSQ_Q5F881_I, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 20:20:08,052] Note: Skipping 2BSQ_Q5F881_J, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-19 20:26:09,834] Predicted 8 / 10 PDB files extracted from 1 input PDBs, saved to data/N.gonorrhoeae/random_analysis/discotope/2BSQ_Q5F881/output
+[2025-10-19 20:26:09,834] Note: Excluded predicting 2 PDB chain(s) (see log file):
+2BSQ_Q5F881_I, 2BSQ_Q5F881_J

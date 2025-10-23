@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,Q9F7Y5_AF,A,1,5,MTDNR,5,0.705,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,Q9F7Y5_AF,A:I18, A:L19, A:S20, A:V21,4,0.69,Discontinous
+2,Q9F7Y5_AF,A:T2, A:D3, A:N4, A:R5,4,0.643,Discontinous
+3,Q9F7Y5_AF,A:T8, A:L9, A:V10,3,0.524,Discontinous

@@ -1,0 +1,4 @@
+[2025-10-22 13:40:30,331] Single-chain mode set, will predict PDBs as single chains
+[2025-10-22 13:40:30,333] Single PDB file input (3U0I_A0AB36PVA1), extracting single chains to data/B.melitensis/epitope_outputs/discotope/3U0I_A0AB36PVA1/input_chains
+[2025-10-22 13:40:30,571] Found 1 extracted single chains in data/B.melitensis/epitope_outputs/discotope/3U0I_A0AB36PVA1/input_chains
+[2025-10-22 13:43:05,528] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/B.melitensis/epitope_outputs/discotope/3U0I_A0AB36PVA1/output

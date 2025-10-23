@@ -1,0 +1,842 @@
+##gff-version 3
+# antigen_13|Q83A52||AZV74684.1|tpos:1-443 Length: 443
+# antigen_13|Q83A52||AZV74684.1|tpos:1-443 Number of predicted TMRs: 12
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	inside	1	24				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	25	45				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	outside	46	58				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	59	79				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	inside	80	91				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	92	109				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	outside	110	120				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	121	134				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	inside	135	158				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	159	179				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	outside	180	194				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	195	209				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	inside	210	248				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	249	262				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	outside	263	279				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	280	300				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	inside	301	307				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	308	328				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	outside	329	334				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	335	352				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	inside	353	370				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	371	389				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	outside	390	400				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	TMhelix	401	420				
+antigen_13|Q83A52||AZV74684.1|tpos:1-443	inside	421	443				
+//
+# antigen_96|Q83EX8||AZV74469.1|tpos:1-452 Length: 452
+# antigen_96|Q83EX8||AZV74469.1|tpos:1-452 Number of predicted TMRs: 0
+antigen_96|Q83EX8||AZV74469.1|tpos:1-452	signal	1	58				
+antigen_96|Q83EX8||AZV74469.1|tpos:1-452	outside	59	452				
+//
+# antigen_56|Q83CG9|Transcription-repair-coupling|AZV76031.1|tpos:1-1157 Length: 1157
+# antigen_56|Q83CG9|Transcription-repair-coupling|AZV76031.1|tpos:1-1157 Number of predicted TMRs: 0
+antigen_56|Q83CG9|Transcription-repair-coupling|AZV76031.1|tpos:1-1157	inside	1	1157				
+//
+# antigen_123|Q83B22|Endonuclease|AZV75021.1|tpos:1-218 Length: 218
+# antigen_123|Q83B22|Endonuclease|AZV75021.1|tpos:1-218 Number of predicted TMRs: 0
+antigen_123|Q83B22|Endonuclease|AZV75021.1|tpos:1-218	inside	1	218				
+//
+# antigen_124|Q83DG0||AZV75698.1|tpos:1-283 Length: 283
+# antigen_124|Q83DG0||AZV75698.1|tpos:1-283 Number of predicted TMRs: 0
+antigen_124|Q83DG0||AZV75698.1|tpos:1-283	inside	1	283				
+//
+# antigen_90|Q83EF6|Phosphate|AZV75309.1|tpos:1-248 Length: 248
+# antigen_90|Q83EF6|Phosphate|AZV75309.1|tpos:1-248 Number of predicted TMRs: 0
+antigen_90|Q83EF6|Phosphate|AZV75309.1|tpos:1-248	inside	1	248				
+//
+# antigen_12|Q83A45||AZV74690.1|tpos:1-212 Length: 212
+# antigen_12|Q83A45||AZV74690.1|tpos:1-212 Number of predicted TMRs: 0
+antigen_12|Q83A45||AZV74690.1|tpos:1-212	signal	1	26				
+antigen_12|Q83A45||AZV74690.1|tpos:1-212	outside	27	212				
+//
+# antigen_67|Q83DA1||AZV75756.1|tpos:1-494 Length: 494
+# antigen_67|Q83DA1||AZV75756.1|tpos:1-494 Number of predicted TMRs: 11
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	inside	1	6				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	7	16				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	outside	17	86				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	87	104				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	inside	105	109				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	110	123				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	outside	124	141				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	142	152				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	inside	153	160				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	161	174				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	outside	175	180				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	181	194				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	inside	195	198				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	199	212				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	outside	213	280				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	281	290				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	inside	291	300				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	301	316				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	outside	317	337				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	338	347				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	inside	348	352				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	TMhelix	353	368				
+antigen_67|Q83DA1||AZV75756.1|tpos:1-494	outside	369	494				
+//
+# antigen_134|Q83CP4|RNA|AZV75676.1|tpos:1-184 Length: 184
+# antigen_134|Q83CP4|RNA|AZV75676.1|tpos:1-184 Number of predicted TMRs: 0
+antigen_134|Q83CP4|RNA|AZV75676.1|tpos:1-184	inside	1	184				
+//
+# antigen_135|A0A0M4PLT0|Large|AZV74432.1|tpos:1-126 Length: 126
+# antigen_135|A0A0M4PLT0|Large|AZV74432.1|tpos:1-126 Number of predicted TMRs: 0
+antigen_135|A0A0M4PLT0|Large|AZV74432.1|tpos:1-126	inside	1	126				
+//
+# antigen_74|Q83DH8||AZV75960.1|tpos:1-1022 Length: 1022
+# antigen_74|Q83DH8||AZV75960.1|tpos:1-1022 Number of predicted TMRs: 12
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	inside	1	12				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	13	28				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	outside	29	336				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	337	350				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	inside	351	358				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	359	375				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	outside	376	387				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	388	403				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	inside	404	433				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	434	449				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	outside	450	462				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	463	481				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	inside	482	525				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	526	543				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	outside	544	846				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	847	863				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	inside	864	871				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	872	889				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	outside	890	901				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	902	916				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	inside	917	947				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	948	962				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	outside	963	976				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	TMhelix	977	992				
+antigen_74|Q83DH8||AZV75960.1|tpos:1-1022	inside	993	1022				
+//
+# antigen_72|Q83DG3||AZV75695.1|tpos:1-156 Length: 156
+# antigen_72|Q83DG3||AZV75695.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_72|Q83DG3||AZV75695.1|tpos:1-156	inside	1	156				
+//
+# antigen_73|Q83DH7||AZV75959.1|tpos:1-348 Length: 348
+# antigen_73|Q83DH7||AZV75959.1|tpos:1-348 Number of predicted TMRs: 1
+antigen_73|Q83DH7||AZV75959.1|tpos:1-348	inside	1	6				
+antigen_73|Q83DH7||AZV75959.1|tpos:1-348	TMhelix	7	24				
+antigen_73|Q83DH7||AZV75959.1|tpos:1-348	outside	25	348				
+//
+# antigen_108|Q93N39||AZV75636.1|tpos:1-258 Length: 258
+# antigen_108|Q93N39||AZV75636.1|tpos:1-258 Number of predicted TMRs: 0
+antigen_108|Q93N39||AZV75636.1|tpos:1-258	inside	1	258				
+//
+# antigen_119|Q83CL6||AZV75994.1|tpos:1-274 Length: 274
+# antigen_119|Q83CL6||AZV75994.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_119|Q83CL6||AZV75994.1|tpos:1-274	inside	1	274				
+//
+# antigen_125|Q83CV0|Bifunctional|AZV75904.1|tpos:1-323 Length: 323
+# antigen_125|Q83CV0|Bifunctional|AZV75904.1|tpos:1-323 Number of predicted TMRs: 0
+antigen_125|Q83CV0|Bifunctional|AZV75904.1|tpos:1-323	inside	1	323				
+//
+# antigen_5|P59650|Deoxyhypusine|AZV75646.1|tpos:2-353 Length: 352
+# antigen_5|P59650|Deoxyhypusine|AZV75646.1|tpos:2-353 Number of predicted TMRs: 0
+antigen_5|P59650|Deoxyhypusine|AZV75646.1|tpos:2-353	inside	1	352				
+//
+# antigen_104|Q9ZH99|Isocitrate|AZV75545.1|tpos:1-427 Length: 427
+# antigen_104|Q9ZH99|Isocitrate|AZV75545.1|tpos:1-427 Number of predicted TMRs: 0
+antigen_104|Q9ZH99|Isocitrate|AZV75545.1|tpos:1-427	inside	1	427				
+//
+# antigen_8|Q820B6||AZV74474.1|tpos:1-246 Length: 246
+# antigen_8|Q820B6||AZV74474.1|tpos:1-246 Number of predicted TMRs: 0
+antigen_8|Q820B6||AZV74474.1|tpos:1-246	inside	1	246				
+//
+# antigen_21|Q83AI2|Cell|AZV74822.1|tpos:1-217 Length: 217
+# antigen_21|Q83AI2|Cell|AZV74822.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_21|Q83AI2|Cell|AZV74822.1|tpos:1-217	inside	1	217				
+//
+# antigen_22|Q83AL4||AZV74855.1|tpos:1-217 Length: 217
+# antigen_22|Q83AL4||AZV74855.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_22|Q83AL4||AZV74855.1|tpos:1-217	signal	1	20				
+antigen_22|Q83AL4||AZV74855.1|tpos:1-217	outside	21	217				
+//
+# antigen_40|Q83BS3||AZV76275.1|tpos:1-181 Length: 181
+# antigen_40|Q83BS3||AZV76275.1|tpos:1-181 Number of predicted TMRs: 4
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	inside	1	21				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	TMhelix	22	42				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	outside	43	53				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	TMhelix	54	69				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	inside	70	72				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	TMhelix	73	92				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	outside	93	100				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	TMhelix	101	121				
+antigen_40|Q83BS3||AZV76275.1|tpos:1-181	inside	122	181				
+//
+# antigen_41|Q83BT6|Uncharacterized|AZV76263.1|tpos:23-238 Length: 216
+# antigen_41|Q83BT6|Uncharacterized|AZV76263.1|tpos:23-238 Number of predicted TMRs: 0
+antigen_41|Q83BT6|Uncharacterized|AZV76263.1|tpos:23-238	inside	1	216				
+//
+# antigen_20|Q83AF7|ATP|AZV74782.1|tpos:1-515 Length: 515
+# antigen_20|Q83AF7|ATP|AZV74782.1|tpos:1-515 Number of predicted TMRs: 0
+antigen_20|Q83AF7|ATP|AZV74782.1|tpos:1-515	inside	1	515				
+//
+# antigen_42|Q83BU7|Dihydrolipoyllysine-residue|AZV76246.1|tpos:1-402 Length: 402
+# antigen_42|Q83BU7|Dihydrolipoyllysine-residue|AZV76246.1|tpos:1-402 Number of predicted TMRs: 0
+antigen_42|Q83BU7|Dihydrolipoyllysine-residue|AZV76246.1|tpos:1-402	inside	1	402				
+//
+# antigen_43|Q83BV5|Ditrans,polycis-undecaprenyl-diphosphate|AZV76229.1|tpos:1-237 Length: 237
+# antigen_43|Q83BV5|Ditrans,polycis-undecaprenyl-diphosphate|AZV76229.1|tpos:1-237 Number of predicted TMRs: 0
+antigen_43|Q83BV5|Ditrans,polycis-undecaprenyl-diphosphate|AZV76229.1|tpos:1-237	inside	1	237				
+//
+# antigen_54|Q83CA7||AZV75527.1|tpos:1-197 Length: 197
+# antigen_54|Q83CA7||AZV75527.1|tpos:1-197 Number of predicted TMRs: 0
+antigen_54|Q83CA7||AZV75527.1|tpos:1-197	signal	1	18				
+antigen_54|Q83CA7||AZV75527.1|tpos:1-197	outside	19	197				
+//
+# antigen_55|Q83CG1||AZV76039.1|tpos:1-233 Length: 233
+# antigen_55|Q83CG1||AZV76039.1|tpos:1-233 Number of predicted TMRs: 0
+antigen_55|Q83CG1||AZV76039.1|tpos:1-233	signal	1	25				
+antigen_55|Q83CG1||AZV76039.1|tpos:1-233	outside	26	233				
+//
+# antigen_75|Q83DJ3|Trigger|AZV75975.1|tpos:1-442 Length: 442
+# antigen_75|Q83DJ3|Trigger|AZV75975.1|tpos:1-442 Number of predicted TMRs: 0
+antigen_75|Q83DJ3|Trigger|AZV75975.1|tpos:1-442	inside	1	442				
+//
+# antigen_25|Q83AN0||AZV74866.1|tpos:1-149 Length: 149
+# antigen_25|Q83AN0||AZV74866.1|tpos:1-149 Number of predicted TMRs: 4
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	inside	1	14				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	TMhelix	15	35				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	outside	36	41				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	TMhelix	42	59				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	inside	60	75				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	TMhelix	76	97				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	outside	98	108				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	TMhelix	109	127				
+antigen_25|Q83AN0||AZV74866.1|tpos:1-149	inside	128	149				
+//
+# antigen_26|Q83AP6||AZV74888.1|tpos:1-459 Length: 459
+# antigen_26|Q83AP6||AZV74888.1|tpos:1-459 Number of predicted TMRs: 0
+antigen_26|Q83AP6||AZV74888.1|tpos:1-459	inside	1	459				
+//
+# antigen_101|Q83F57|Cell|AZV74550.1|tpos:1-305 Length: 305
+# antigen_101|Q83F57|Cell|AZV74550.1|tpos:1-305 Number of predicted TMRs: 0
+antigen_101|Q83F57|Cell|AZV74550.1|tpos:1-305	signal	1	29				
+antigen_101|Q83F57|Cell|AZV74550.1|tpos:1-305	outside	30	305				
+//
+# antigen_102|Q83F71||AZV74562.1|tpos:1-263 Length: 263
+# antigen_102|Q83F71||AZV74562.1|tpos:1-263 Number of predicted TMRs: 4
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	inside	1	17				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	TMhelix	18	37				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	outside	38	60				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	TMhelix	61	80				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	inside	81	148				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	TMhelix	149	167				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	outside	168	191				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	TMhelix	192	207				
+antigen_102|Q83F71||AZV74562.1|tpos:1-263	inside	208	263				
+//
+# antigen_39|Q83BP6||AZV75262.1|tpos:1-674 Length: 674
+# antigen_39|Q83BP6||AZV75262.1|tpos:1-674 Number of predicted TMRs: 0
+antigen_39|Q83BP6||AZV75262.1|tpos:1-674	inside	1	674				
+//
+# antigen_83|Q83DY1|Leucine--tRNA|AZV76115.1|tpos:1-820 Length: 820
+# antigen_83|Q83DY1|Leucine--tRNA|AZV76115.1|tpos:1-820 Number of predicted TMRs: 0
+antigen_83|Q83DY1|Leucine--tRNA|AZV76115.1|tpos:1-820	inside	1	820				
+//
+# antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409 Length: 409
+# antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409 Number of predicted TMRs: 12
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	inside	1	23				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	24	35				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	outside	36	61				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	62	73				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	inside	74	89				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	90	107				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	outside	108	120				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	121	130				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	inside	131	150				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	151	160				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	outside	161	178				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	179	196				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	inside	197	227				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	228	243				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	outside	244	263				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	264	280				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	inside	281	293				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	294	314				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	outside	315	321				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	322	337				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	inside	338	357				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	358	374				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	outside	375	386				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	TMhelix	387	401				
+antigen_19|Q83AD7|Bcr/CflA|AZV74600.1|tpos:1-409	inside	402	409				
+//
+# antigen_92|Q83EL2||AZV76312.1|tpos:1-231 Length: 231
+# antigen_92|Q83EL2||AZV76312.1|tpos:1-231 Number of predicted TMRs: 8
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	signal	1	25				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	periplasm	26	38				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	39	47				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	outside	48	79				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	80	87				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	periplasm	88	92				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	93	100				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	outside	101	126				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	127	136				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	periplasm	137	142				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	143	150				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	outside	151	178				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	179	187				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	periplasm	188	193				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	194	202				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	outside	203	220				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	Beta sheet	221	229				
+antigen_92|Q83EL2||AZV76312.1|tpos:1-231	periplasm	230	231				
+//
+# antigen_47|Q83C21||AZV75431.1|tpos:1-214 Length: 214
+# antigen_47|Q83C21||AZV75431.1|tpos:1-214 Number of predicted TMRs: 0
+antigen_47|Q83C21||AZV75431.1|tpos:1-214	inside	1	214				
+//
+# antigen_48|Q83C50|Carbamoyl|AZV75459.1|tpos:1-1073 Length: 1073
+# antigen_48|Q83C50|Carbamoyl|AZV75459.1|tpos:1-1073 Number of predicted TMRs: 0
+antigen_48|Q83C50|Carbamoyl|AZV75459.1|tpos:1-1073	inside	1	1073				
+//
+# antigen_1|H7C7E4||AZV75618.1|tpos:1-1112 Length: 1112
+# antigen_1|H7C7E4||AZV75618.1|tpos:1-1112 Number of predicted TMRs: 0
+antigen_1|H7C7E4||AZV75618.1|tpos:1-1112	inside	1	1112				
+//
+# antigen_89|Q83EE1|DNA-3-methyladenine|AZV75322.1|tpos:1-212 Length: 212
+# antigen_89|Q83EE1|DNA-3-methyladenine|AZV75322.1|tpos:1-212 Number of predicted TMRs: 0
+antigen_89|Q83EE1|DNA-3-methyladenine|AZV75322.1|tpos:1-212	inside	1	212				
+//
+# antigen_11|Q83A39||AZV74699.1|tpos:1-165 Length: 165
+# antigen_11|Q83A39||AZV74699.1|tpos:1-165 Number of predicted TMRs: 0
+antigen_11|Q83A39||AZV74699.1|tpos:1-165	signal	1	23				
+antigen_11|Q83A39||AZV74699.1|tpos:1-165	outside	24	165				
+//
+# antigen_144|Q83DD7|[Ribosomal|AZV75721.1|tpos:1-145 Length: 145
+# antigen_144|Q83DD7|[Ribosomal|AZV75721.1|tpos:1-145 Number of predicted TMRs: 0
+antigen_144|Q83DD7|[Ribosomal|AZV75721.1|tpos:1-145	inside	1	145				
+//
+# antigen_145|Q83AQ5||AZV76368.1|tpos:1-114 Length: 114
+# antigen_145|Q83AQ5||AZV76368.1|tpos:1-114 Number of predicted TMRs: 0
+antigen_145|Q83AQ5||AZV76368.1|tpos:1-114	inside	1	114				
+//
+# antigen_15|Q83A58||AZV74679.1|tpos:1-300 Length: 300
+# antigen_15|Q83A58||AZV74679.1|tpos:1-300 Number of predicted TMRs: 0
+antigen_15|Q83A58||AZV74679.1|tpos:1-300	inside	1	300				
+//
+# antigen_16|Q83A93|YqaJ|AZV74644.1|tpos:1-365 Length: 365
+# antigen_16|Q83A93|YqaJ|AZV74644.1|tpos:1-365 Number of predicted TMRs: 0
+antigen_16|Q83A93|YqaJ|AZV74644.1|tpos:1-365	inside	1	365				
+//
+# antigen_35|Q83BF4||AZV75162.1|tpos:1-567 Length: 567
+# antigen_35|Q83BF4||AZV75162.1|tpos:1-567 Number of predicted TMRs: 8
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	inside	1	49				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	50	67				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	outside	68	75				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	76	91				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	inside	92	238				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	239	252				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	outside	253	275				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	276	286				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	inside	287	327				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	328	343				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	outside	344	383				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	384	399				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	inside	400	463				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	464	486				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	outside	487	495				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	TMhelix	496	511				
+antigen_35|Q83BF4||AZV75162.1|tpos:1-567	inside	512	567				
+//
+# antigen_111|A9KBP9|Succinate|AZV76249.1|tpos:1-587 Length: 587
+# antigen_111|A9KBP9|Succinate|AZV76249.1|tpos:1-587 Number of predicted TMRs: 0
+antigen_111|A9KBP9|Succinate|AZV76249.1|tpos:1-587	inside	1	587				
+//
+# antigen_24|Q83AM7|3-hydroxyisobutyryl-CoA|AZV74863.1|tpos:1-379 Length: 379
+# antigen_24|Q83AM7|3-hydroxyisobutyryl-CoA|AZV74863.1|tpos:1-379 Number of predicted TMRs: 0
+antigen_24|Q83AM7|3-hydroxyisobutyryl-CoA|AZV74863.1|tpos:1-379	inside	1	379				
+//
+# antigen_147|Q83EI5||AZV76284.1|tpos:1-221 Length: 221
+# antigen_147|Q83EI5||AZV76284.1|tpos:1-221 Number of predicted TMRs: 0
+antigen_147|Q83EI5||AZV76284.1|tpos:1-221	signal	1	24				
+antigen_147|Q83EI5||AZV76284.1|tpos:1-221	outside	25	221				
+//
+# antigen_120|Q83DG2||AZV75696.1|tpos:1-82 Length: 82
+# antigen_120|Q83DG2||AZV75696.1|tpos:1-82 Number of predicted TMRs: 2
+antigen_120|Q83DG2||AZV75696.1|tpos:1-82	inside	1	36				
+antigen_120|Q83DG2||AZV75696.1|tpos:1-82	TMhelix	37	46				
+antigen_120|Q83DG2||AZV75696.1|tpos:1-82	outside	47	47				
+antigen_120|Q83DG2||AZV75696.1|tpos:1-82	TMhelix	48	61				
+antigen_120|Q83DG2||AZV75696.1|tpos:1-82	inside	62	82				
+//
+# antigen_121|Q83DD8||AZV75720.1|tpos:1-137 Length: 137
+# antigen_121|Q83DD8||AZV75720.1|tpos:1-137 Number of predicted TMRs: 0
+antigen_121|Q83DD8||AZV75720.1|tpos:1-137	inside	1	137				
+//
+# antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252 Length: 252
+# antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252 Number of predicted TMRs: 8
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	signal	1	23				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	periplasm	24	36				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	37	45				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	outside	46	77				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	78	88				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	periplasm	89	94				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	95	102				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	outside	103	130				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	131	139				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	periplasm	140	145				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	146	154				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	outside	155	178				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	179	187				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	periplasm	188	192				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	193	202				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	outside	203	237				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	Beta sheet	238	250				
+antigen_91|Q83EK8|Outer|AZV76309.1|tpos:1-252	periplasm	251	252				
+//
+# antigen_71|Q83DF6|Putative|AZV75702.1|tpos:1-338 Length: 338
+# antigen_71|Q83DF6|Putative|AZV75702.1|tpos:1-338 Number of predicted TMRs: 0
+antigen_71|Q83DF6|Putative|AZV75702.1|tpos:1-338	inside	1	338				
+//
+# antigen_137|Q83CY8|Putative|AZV75866.1|tpos:24-174 Length: 151
+# antigen_137|Q83CY8|Putative|AZV75866.1|tpos:24-174 Number of predicted TMRs: 0
+antigen_137|Q83CY8|Putative|AZV75866.1|tpos:24-174	outside	1	151				
+//
+# antigen_2|P0C8S3|Large|AZV74432.1|tpos:1-126 Length: 126
+# antigen_2|P0C8S3|Large|AZV74432.1|tpos:1-126 Number of predicted TMRs: 0
+antigen_2|P0C8S3|Large|AZV74432.1|tpos:1-126	inside	1	126				
+//
+# antigen_3|P19421|Chaperonin|AZV74998.1|tpos:1-552 Length: 552
+# antigen_3|P19421|Chaperonin|AZV74998.1|tpos:1-552 Number of predicted TMRs: 0
+antigen_3|P19421|Chaperonin|AZV74998.1|tpos:1-552	inside	1	552				
+//
+# antigen_31|Q83B41||AZV75041.1|tpos:1-144 Length: 144
+# antigen_31|Q83B41||AZV75041.1|tpos:1-144 Number of predicted TMRs: 0
+antigen_31|Q83B41||AZV75041.1|tpos:1-144	inside	1	144				
+//
+# antigen_32|Q83B70||AZV75068.1|tpos:1-372 Length: 372
+# antigen_32|Q83B70||AZV75068.1|tpos:1-372 Number of predicted TMRs: 0
+antigen_32|Q83B70||AZV75068.1|tpos:1-372	inside	1	372				
+//
+# antigen_88|Q83ED8|GTPase|AZV75327.1|tpos:1-339 Length: 339
+# antigen_88|Q83ED8|GTPase|AZV75327.1|tpos:1-339 Number of predicted TMRs: 0
+antigen_88|Q83ED8|GTPase|AZV75327.1|tpos:1-339	inside	1	339				
+//
+# antigen_139|Q83E81||AZV76220.1|tpos:1-184 Length: 184
+# antigen_139|Q83E81||AZV76220.1|tpos:1-184 Number of predicted TMRs: 0
+antigen_139|Q83E81||AZV76220.1|tpos:1-184	inside	1	184				
+//
+# antigen_140|H7C7F5||AZV75994.1|tpos:5-245 Length: 241
+# antigen_140|H7C7F5||AZV75994.1|tpos:5-245 Number of predicted TMRs: 0
+antigen_140|H7C7F5||AZV75994.1|tpos:5-245	inside	1	241				
+//
+# antigen_33|Q83B74||AZV75084.1|tpos:1-398 Length: 398
+# antigen_33|Q83B74||AZV75084.1|tpos:1-398 Number of predicted TMRs: 0
+antigen_33|Q83B74||AZV75084.1|tpos:1-398	inside	1	398				
+//
+# antigen_34|Q83B91||AZV75100.1|tpos:1-1003 Length: 1003
+# antigen_34|Q83B91||AZV75100.1|tpos:1-1003 Number of predicted TMRs: 0
+antigen_34|Q83B91||AZV75100.1|tpos:1-1003	inside	1	1003				
+//
+# antigen_10|Q83A33||AZV74707.1|tpos:1-348 Length: 348
+# antigen_10|Q83A33||AZV74707.1|tpos:1-348 Number of predicted TMRs: 0
+antigen_10|Q83A33||AZV74707.1|tpos:1-348	inside	1	348				
+//
+# antigen_44|Q83BY5|ATP-dependent|AZV75393.1|tpos:1-647 Length: 647
+# antigen_44|Q83BY5|ATP-dependent|AZV75393.1|tpos:1-647 Number of predicted TMRs: 2
+antigen_44|Q83BY5|ATP-dependent|AZV75393.1|tpos:1-647	inside	1	7				
+antigen_44|Q83BY5|ATP-dependent|AZV75393.1|tpos:1-647	TMhelix	8	26				
+antigen_44|Q83BY5|ATP-dependent|AZV75393.1|tpos:1-647	outside	27	101				
+antigen_44|Q83BY5|ATP-dependent|AZV75393.1|tpos:1-647	TMhelix	102	122				
+antigen_44|Q83BY5|ATP-dependent|AZV75393.1|tpos:1-647	inside	123	647				
+//
+# antigen_14|Q83A56|DNA|AZV74680.1|tpos:1-723 Length: 723
+# antigen_14|Q83A56|DNA|AZV74680.1|tpos:1-723 Number of predicted TMRs: 0
+antigen_14|Q83A56|DNA|AZV74680.1|tpos:1-723	inside	1	723				
+//
+# antigen_87|Q83E44||AZV76186.1|tpos:1-235 Length: 235
+# antigen_87|Q83E44||AZV76186.1|tpos:1-235 Number of predicted TMRs: 0
+antigen_87|Q83E44||AZV76186.1|tpos:1-235	inside	1	235				
+//
+# antigen_68|Q83DA5||AZV75752.1|tpos:1-601 Length: 601
+# antigen_68|Q83DA5||AZV75752.1|tpos:1-601 Number of predicted TMRs: 6
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	inside	1	21				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	TMhelix	22	42				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	outside	43	80				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	TMhelix	81	101				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	inside	102	153				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	TMhelix	154	174				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	outside	175	177				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	TMhelix	178	197				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	inside	198	257				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	TMhelix	258	280				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	outside	281	295				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	TMhelix	296	317				
+antigen_68|Q83DA5||AZV75752.1|tpos:1-601	inside	318	601				
+//
+# antigen_86|Q83E37|3-oxoacyl-[acyl-carrier-protein]|AZV76175.1|tpos:1-414 Length: 414
+# antigen_86|Q83E37|3-oxoacyl-[acyl-carrier-protein]|AZV76175.1|tpos:1-414 Number of predicted TMRs: 0
+antigen_86|Q83E37|3-oxoacyl-[acyl-carrier-protein]|AZV76175.1|tpos:1-414	inside	1	414				
+//
+# antigen_58|Q83CH2|Sec|AZV76026.1|tpos:1-116 Length: 116
+# antigen_58|Q83CH2|Sec|AZV76026.1|tpos:1-116 Number of predicted TMRs: 1
+antigen_58|Q83CH2|Sec|AZV76026.1|tpos:1-116	signal	1	14				
+antigen_58|Q83CH2|Sec|AZV76026.1|tpos:1-116	outside	15	26				
+antigen_58|Q83CH2|Sec|AZV76026.1|tpos:1-116	TMhelix	27	46				
+antigen_58|Q83CH2|Sec|AZV76026.1|tpos:1-116	inside	47	116				
+//
+# antigen_59|Q83CH8||AZV76021.1|tpos:1-184 Length: 184
+# antigen_59|Q83CH8||AZV76021.1|tpos:1-184 Number of predicted TMRs: 0
+antigen_59|Q83CH8||AZV76021.1|tpos:1-184	signal	1	25				
+antigen_59|Q83CH8||AZV76021.1|tpos:1-184	outside	26	184				
+//
+# antigen_136|Q83CZ8|Uncharacterized|AZV75853.1|tpos:1-113 Length: 113
+# antigen_136|Q83CZ8|Uncharacterized|AZV75853.1|tpos:1-113 Number of predicted TMRs: 0
+antigen_136|Q83CZ8|Uncharacterized|AZV75853.1|tpos:1-113	signal	1	23				
+antigen_136|Q83CZ8|Uncharacterized|AZV75853.1|tpos:1-113	outside	24	113				
+//
+# antigen_98|Q83EZ2||AZV74484.1|tpos:1-192 Length: 192
+# antigen_98|Q83EZ2||AZV74484.1|tpos:1-192 Number of predicted TMRs: 2
+antigen_98|Q83EZ2||AZV74484.1|tpos:1-192	inside	1	74				
+antigen_98|Q83EZ2||AZV74484.1|tpos:1-192	TMhelix	75	90				
+antigen_98|Q83EZ2||AZV74484.1|tpos:1-192	outside	91	91				
+antigen_98|Q83EZ2||AZV74484.1|tpos:1-192	TMhelix	92	109				
+antigen_98|Q83EZ2||AZV74484.1|tpos:1-192	inside	110	192				
+//
+# antigen_117|Q83D46||AZV75811.1|tpos:1-110 Length: 110
+# antigen_117|Q83D46||AZV75811.1|tpos:1-110 Number of predicted TMRs: 0
+antigen_117|Q83D46||AZV75811.1|tpos:1-110	signal	1	18				
+antigen_117|Q83D46||AZV75811.1|tpos:1-110	outside	19	110				
+//
+# antigen_61|Q83CN2|DUF924|AZV75663.1|tpos:1-198 Length: 198
+# antigen_61|Q83CN2|DUF924|AZV75663.1|tpos:1-198 Number of predicted TMRs: 0
+antigen_61|Q83CN2|DUF924|AZV75663.1|tpos:1-198	inside	1	198				
+//
+# antigen_76|Q83DK8||AZV75649.1|tpos:1-94 Length: 94
+# antigen_76|Q83DK8||AZV75649.1|tpos:1-94 Number of predicted TMRs: 0
+antigen_76|Q83DK8||AZV75649.1|tpos:1-94	inside	1	94				
+//
+# antigen_52|Q83C94||AZV75511.1|tpos:1-428 Length: 428
+# antigen_52|Q83C94||AZV75511.1|tpos:1-428 Number of predicted TMRs: 0
+antigen_52|Q83C94||AZV75511.1|tpos:1-428	inside	1	428				
+//
+# antigen_18|Q83AA5|DNA|AZV74631.1|tpos:1-765 Length: 765
+# antigen_18|Q83AA5|DNA|AZV74631.1|tpos:1-765 Number of predicted TMRs: 0
+antigen_18|Q83AA5|DNA|AZV74631.1|tpos:1-765	inside	1	765				
+//
+# antigen_4|P51752|Peptidyl-prolyl|AZV75571.1|tpos:1-230 Length: 230
+# antigen_4|P51752|Peptidyl-prolyl|AZV75571.1|tpos:1-230 Number of predicted TMRs: 0
+antigen_4|P51752|Peptidyl-prolyl|AZV75571.1|tpos:1-230	signal	1	21				
+antigen_4|P51752|Peptidyl-prolyl|AZV75571.1|tpos:1-230	outside	22	230				
+//
+# antigen_127|Q83AD5|RNA|AZV74602.1|tpos:1-147 Length: 147
+# antigen_127|Q83AD5|RNA|AZV74602.1|tpos:1-147 Number of predicted TMRs: 0
+antigen_127|Q83AD5|RNA|AZV74602.1|tpos:1-147	inside	1	147				
+//
+# antigen_128|Q83A87||AZV74649.1|tpos:1-476 Length: 476
+# antigen_128|Q83A87||AZV74649.1|tpos:1-476 Number of predicted TMRs: 12
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	inside	1	17				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	18	38				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	outside	39	44				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	45	65				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	inside	66	90				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	91	120				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	outside	121	128				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	129	150				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	inside	151	153				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	154	178				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	outside	179	203				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	204	221				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	inside	222	237				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	238	258				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	outside	259	290				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	291	311				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	inside	312	337				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	338	358				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	outside	359	364				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	365	385				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	inside	386	409				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	410	431				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	outside	432	444				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	TMhelix	445	464				
+antigen_128|Q83A87||AZV74649.1|tpos:1-476	inside	465	476				
+//
+# antigen_94|Q83ES6|Elongation|AZV74423.1|tpos:1-397 Length: 397
+# antigen_94|Q83ES6|Elongation|AZV74423.1|tpos:1-397 Number of predicted TMRs: 0
+antigen_94|Q83ES6|Elongation|AZV74423.1|tpos:1-397	inside	1	397				
+//
+# antigen_114|Q83D11||AZV75841.1|tpos:1-129 Length: 129
+# antigen_114|Q83D11||AZV75841.1|tpos:1-129 Number of predicted TMRs: 1
+antigen_114|Q83D11||AZV75841.1|tpos:1-129	signal	1	12				
+antigen_114|Q83D11||AZV75841.1|tpos:1-129	outside	13	13				
+antigen_114|Q83D11||AZV75841.1|tpos:1-129	TMhelix	14	23				
+antigen_114|Q83D11||AZV75841.1|tpos:1-129	inside	24	129				
+//
+# antigen_115|Q83AG0|ATP|AZV74785.1|tpos:1-100 Length: 100
+# antigen_115|Q83AG0|ATP|AZV74785.1|tpos:1-100 Number of predicted TMRs: 2
+antigen_115|Q83AG0|ATP|AZV74785.1|tpos:1-100	outside	1	15				
+antigen_115|Q83AG0|ATP|AZV74785.1|tpos:1-100	TMhelix	16	38				
+antigen_115|Q83AG0|ATP|AZV74785.1|tpos:1-100	inside	39	54				
+antigen_115|Q83AG0|ATP|AZV74785.1|tpos:1-100	TMhelix	55	81				
+antigen_115|Q83AG0|ATP|AZV74785.1|tpos:1-100	outside	82	100				
+//
+# antigen_0|H7C7D7||AZV74817.1|tpos:1-252 Length: 252
+# antigen_0|H7C7D7||AZV74817.1|tpos:1-252 Number of predicted TMRs: 0
+antigen_0|H7C7D7||AZV74817.1|tpos:1-252	signal	1	21				
+antigen_0|H7C7D7||AZV74817.1|tpos:1-252	outside	22	252				
+//
+# antigen_53|Q83C98|DNA|AZV75516.1|tpos:1-1110 Length: 1110
+# antigen_53|Q83C98|DNA|AZV75516.1|tpos:1-1110 Number of predicted TMRs: 0
+antigen_53|Q83C98|DNA|AZV75516.1|tpos:1-1110	inside	1	1110				
+//
+# antigen_97|Q83EY1||AZV74472.1|tpos:1-526 Length: 526
+# antigen_97|Q83EY1||AZV74472.1|tpos:1-526 Number of predicted TMRs: 6
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	outside	1	19				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	TMhelix	20	46				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	inside	47	54				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	TMhelix	55	78				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	outside	79	81				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	TMhelix	82	98				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	inside	99	137				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	TMhelix	138	158				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	outside	159	180				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	TMhelix	181	202				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	inside	203	218				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	TMhelix	219	240				
+antigen_97|Q83EY1||AZV74472.1|tpos:1-526	outside	241	526				
+//
+# antigen_143|Q83A05||AZV75994.1|tpos:13-246 Length: 234
+# antigen_143|Q83A05||AZV75994.1|tpos:13-246 Number of predicted TMRs: 0
+antigen_143|Q83A05||AZV75994.1|tpos:13-246	inside	1	234				
+//
+# antigen_45|Q83BY8||AZV75396.1|tpos:1-579 Length: 579
+# antigen_45|Q83BY8||AZV75396.1|tpos:1-579 Number of predicted TMRs: 0
+antigen_45|Q83BY8||AZV75396.1|tpos:1-579	inside	1	579				
+//
+# antigen_95|Q83EV3|Glutamate--tRNA|AZV74453.1|tpos:5-473 Length: 469
+# antigen_95|Q83EV3|Glutamate--tRNA|AZV74453.1|tpos:5-473 Number of predicted TMRs: 0
+antigen_95|Q83EV3|Glutamate--tRNA|AZV74453.1|tpos:5-473	inside	1	469				
+//
+# antigen_99|Q83F42|Lipoprotein|AZV74532.1|tpos:1-267 Length: 267
+# antigen_99|Q83F42|Lipoprotein|AZV74532.1|tpos:1-267 Number of predicted TMRs: 0
+antigen_99|Q83F42|Lipoprotein|AZV74532.1|tpos:1-267	signal	1	20				
+antigen_99|Q83F42|Lipoprotein|AZV74532.1|tpos:1-267	outside	21	267				
+//
+# antigen_100|Q83F50||AZV74540.1|tpos:1-159 Length: 159
+# antigen_100|Q83F50||AZV74540.1|tpos:1-159 Number of predicted TMRs: 0
+antigen_100|Q83F50||AZV74540.1|tpos:1-159	inside	1	159				
+//
+# antigen_103|Q83F92||AZV74581.1|tpos:1-616 Length: 616
+# antigen_103|Q83F92||AZV74581.1|tpos:1-616 Number of predicted TMRs: 0
+antigen_103|Q83F92||AZV74581.1|tpos:1-616	signal	1	23				
+antigen_103|Q83F92||AZV74581.1|tpos:1-616	outside	24	616				
+//
+# antigen_126|Q83EF7|histidine|AZV75308.1|tpos:1-252 Length: 252
+# antigen_126|Q83EF7|histidine|AZV75308.1|tpos:1-252 Number of predicted TMRs: 0
+antigen_126|Q83EF7|histidine|AZV75308.1|tpos:1-252	inside	1	252				
+//
+# antigen_66|Q83D89||AZV75769.1|tpos:1-297 Length: 297
+# antigen_66|Q83D89||AZV75769.1|tpos:1-297 Number of predicted TMRs: 7
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	inside	1	18				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	TMhelix	19	39				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	outside	40	56				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	TMhelix	57	76				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	inside	77	130				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	TMhelix	131	151				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	outside	152	161				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	TMhelix	162	182				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	inside	183	215				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	TMhelix	216	237				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	outside	238	250				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	TMhelix	251	264				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	inside	265	270				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	TMhelix	271	283				
+antigen_66|Q83D89||AZV75769.1|tpos:1-297	outside	284	297				
+//
+# antigen_133|Q83ED4|Riboflavin|AZV75331.1|tpos:1-345 Length: 345
+# antigen_133|Q83ED4|Riboflavin|AZV75331.1|tpos:1-345 Number of predicted TMRs: 0
+antigen_133|Q83ED4|Riboflavin|AZV75331.1|tpos:1-345	inside	1	345				
+//
+# antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248 Length: 248
+# antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248 Number of predicted TMRs: 8
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	signal	1	23				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	periplasm	24	38				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	39	47				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	outside	48	79				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	80	88				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	periplasm	89	93				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	94	101				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	outside	102	134				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	135	142				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	periplasm	143	149				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	150	159				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	outside	160	198				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	199	207				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	periplasm	208	212				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	213	222				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	outside	223	237				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	Beta sheet	238	246				
+antigen_50|Q83C69|Uncharacterized|AZV75484.1|tpos:1-248	periplasm	247	248				
+//
+# antigen_51|Q83C79||AZV76387.1|tpos:1-203 Length: 203
+# antigen_51|Q83C79||AZV76387.1|tpos:1-203 Number of predicted TMRs: 1
+antigen_51|Q83C79||AZV76387.1|tpos:1-203	inside	1	121				
+antigen_51|Q83C79||AZV76387.1|tpos:1-203	TMhelix	122	142				
+antigen_51|Q83C79||AZV76387.1|tpos:1-203	outside	143	203				
+//
+# antigen_37|Q83BG5|F-box|AZV75174.1|tpos:1-188 Length: 188
+# antigen_37|Q83BG5|F-box|AZV75174.1|tpos:1-188 Number of predicted TMRs: 0
+antigen_37|Q83BG5|F-box|AZV75174.1|tpos:1-188	inside	1	188				
+//
+# antigen_38|Q83BJ5||AZV75837.1|tpos:22-207 Length: 186
+# antigen_38|Q83BJ5||AZV75837.1|tpos:22-207 Number of predicted TMRs: 0
+antigen_38|Q83BJ5||AZV75837.1|tpos:22-207	inside	1	186				
+//
+# antigen_62|Q83CP8|Segregation|AZV75953.1|tpos:10-275 Length: 266
+# antigen_62|Q83CP8|Segregation|AZV75953.1|tpos:10-275 Number of predicted TMRs: 0
+antigen_62|Q83CP8|Segregation|AZV75953.1|tpos:10-275	inside	1	266				
+//
+# antigen_70|Q83DF0||AZV75710.1|tpos:1-1612 Length: 1612
+# antigen_70|Q83DF0||AZV75710.1|tpos:1-1612 Number of predicted TMRs: 0
+antigen_70|Q83DF0||AZV75710.1|tpos:1-1612	inside	1	1612				
+//
+# antigen_30|Q83B06|Aminomethyltransferase|AZV75000.1|tpos:29-391 Length: 363
+# antigen_30|Q83B06|Aminomethyltransferase|AZV75000.1|tpos:29-391 Number of predicted TMRs: 0
+antigen_30|Q83B06|Aminomethyltransferase|AZV75000.1|tpos:29-391	inside	1	363				
+//
+# antigen_84|Q83DZ3||AZV76128.1|tpos:1-215 Length: 215
+# antigen_84|Q83DZ3||AZV76128.1|tpos:1-215 Number of predicted TMRs: 1
+antigen_84|Q83DZ3||AZV76128.1|tpos:1-215	outside	1	25				
+antigen_84|Q83DZ3||AZV76128.1|tpos:1-215	TMhelix	26	44				
+antigen_84|Q83DZ3||AZV76128.1|tpos:1-215	inside	45	215				
+//
+# antigen_85|Q83E03||AZV76137.1|tpos:1-398 Length: 398
+# antigen_85|Q83E03||AZV76137.1|tpos:1-398 Number of predicted TMRs: 0
+antigen_85|Q83E03||AZV76137.1|tpos:1-398	inside	1	398				
+//
+# antigen_60|Q83CM3|Ribonuclease|AZV75988.1|tpos:1-749 Length: 749
+# antigen_60|Q83CM3|Ribonuclease|AZV75988.1|tpos:1-749 Number of predicted TMRs: 0
+antigen_60|Q83CM3|Ribonuclease|AZV75988.1|tpos:1-749	inside	1	749				
+//
+# antigen_116|Q83DT3|mevalonate|AZV76072.1|tpos:1-340 Length: 340
+# antigen_116|Q83DT3|mevalonate|AZV76072.1|tpos:1-340 Number of predicted TMRs: 0
+antigen_116|Q83DT3|mevalonate|AZV76072.1|tpos:1-340	inside	1	340				
+//
+# antigen_36|Q83BF6|Vitamin|AZV75165.1|tpos:1-941 Length: 941
+# antigen_36|Q83BF6|Vitamin|AZV75165.1|tpos:1-941 Number of predicted TMRs: 0
+antigen_36|Q83BF6|Vitamin|AZV75165.1|tpos:1-941	inside	1	941				
+//
+# antigen_109|A0A7G6J4B0||AZV75091.1|tpos:89-198 Length: 110
+# antigen_109|A0A7G6J4B0||AZV75091.1|tpos:89-198 Number of predicted TMRs: 0
+antigen_109|A0A7G6J4B0||AZV75091.1|tpos:89-198	outside	1	110				
+//
+# antigen_110|A9KFJ2||AZV75757.1|tpos:1-366 Length: 366
+# antigen_110|A9KFJ2||AZV75757.1|tpos:1-366 Number of predicted TMRs: 0
+antigen_110|A9KFJ2||AZV75757.1|tpos:1-366	inside	1	366				
+//
+# antigen_7|Q81ZP4||AZV75600.1|tpos:1-381 Length: 381
+# antigen_7|Q81ZP4||AZV75600.1|tpos:1-381 Number of predicted TMRs: 0
+antigen_7|Q81ZP4||AZV75600.1|tpos:1-381	inside	1	381				
+//
+# antigen_79|Q83DP9|GTP|AZV75586.1|tpos:20-406 Length: 387
+# antigen_79|Q83DP9|GTP|AZV75586.1|tpos:20-406 Number of predicted TMRs: 0
+antigen_79|Q83DP9|GTP|AZV75586.1|tpos:20-406	inside	1	387				
+//
+# antigen_118|Q83AL8||AZV74859.1|tpos:1-180 Length: 180
+# antigen_118|Q83AL8||AZV74859.1|tpos:1-180 Number of predicted TMRs: 2
+antigen_118|Q83AL8||AZV74859.1|tpos:1-180	inside	1	29				
+antigen_118|Q83AL8||AZV74859.1|tpos:1-180	TMhelix	30	48				
+antigen_118|Q83AL8||AZV74859.1|tpos:1-180	outside	49	70				
+antigen_118|Q83AL8||AZV74859.1|tpos:1-180	TMhelix	71	87				
+antigen_118|Q83AL8||AZV74859.1|tpos:1-180	inside	88	180				
+//
+# antigen_112|Q83CK0||AZV76001.1|tpos:1-105 Length: 105
+# antigen_112|Q83CK0||AZV76001.1|tpos:1-105 Number of predicted TMRs: 2
+antigen_112|Q83CK0||AZV76001.1|tpos:1-105	inside	1	35				
+antigen_112|Q83CK0||AZV76001.1|tpos:1-105	TMhelix	36	56				
+antigen_112|Q83CK0||AZV76001.1|tpos:1-105	outside	57	57				
+antigen_112|Q83CK0||AZV76001.1|tpos:1-105	TMhelix	58	76				
+antigen_112|Q83CK0||AZV76001.1|tpos:1-105	inside	77	105				
+//
+# antigen_113|Q83CD6||AZV76059.1|tpos:1-242 Length: 242
+# antigen_113|Q83CD6||AZV76059.1|tpos:1-242 Number of predicted TMRs: 0
+antigen_113|Q83CD6||AZV76059.1|tpos:1-242	inside	1	242				
+//
+# antigen_46|Q83BZ5|Inosine-5'-monophosphate|AZV75403.1|tpos:1-489 Length: 489
+# antigen_46|Q83BZ5|Inosine-5'-monophosphate|AZV75403.1|tpos:1-489 Number of predicted TMRs: 0
+antigen_46|Q83BZ5|Inosine-5'-monophosphate|AZV75403.1|tpos:1-489	inside	1	489				
+//
+# antigen_129|Q83DH3||AZV75684.1|tpos:1-124 Length: 124
+# antigen_129|Q83DH3||AZV75684.1|tpos:1-124 Number of predicted TMRs: 0
+antigen_129|Q83DH3||AZV75684.1|tpos:1-124	inside	1	124				
+//
+# antigen_130|Q83CJ4|Transposase|AZV76007.1|tpos:1-60 Length: 60
+# antigen_130|Q83CJ4|Transposase|AZV76007.1|tpos:1-60 Number of predicted TMRs: 0
+antigen_130|Q83CJ4|Transposase|AZV76007.1|tpos:1-60	inside	1	60				
+//
+# antigen_131|Q83FD2||AZV74734.1|tpos:1-62 Length: 62
+# antigen_131|Q83FD2||AZV74734.1|tpos:1-62 Number of predicted TMRs: 0
+antigen_131|Q83FD2||AZV74734.1|tpos:1-62	inside	1	62				
+//
+# antigen_132|Q83F51|nicotinate-nucleotide|AZV74543.1|tpos:1-274 Length: 274
+# antigen_132|Q83F51|nicotinate-nucleotide|AZV74543.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_132|Q83F51|nicotinate-nucleotide|AZV74543.1|tpos:1-274	inside	1	274				
+//
+# antigen_78|Q83DN5||AZV75598.1|tpos:1-38 Length: 38
+# antigen_78|Q83DN5||AZV75598.1|tpos:1-38 Number of predicted TMRs: 0
+antigen_78|Q83DN5||AZV75598.1|tpos:1-38	inside	1	38				
+//
+# antigen_93|Q83EN6||AZV74382.1|tpos:1-275 Length: 275
+# antigen_93|Q83EN6||AZV74382.1|tpos:1-275 Number of predicted TMRs: 0
+antigen_93|Q83EN6||AZV74382.1|tpos:1-275	inside	1	275				
+//
+# antigen_69|Q83DE4||AZV75714.1|tpos:1-464 Length: 464
+# antigen_69|Q83DE4||AZV75714.1|tpos:1-464 Number of predicted TMRs: 0
+antigen_69|Q83DE4||AZV75714.1|tpos:1-464	inside	1	464				
+//
+# antigen_64|Q83D52||AZV75804.1|tpos:1-312 Length: 312
+# antigen_64|Q83D52||AZV75804.1|tpos:1-312 Number of predicted TMRs: 1
+antigen_64|Q83D52||AZV75804.1|tpos:1-312	signal	1	19				
+antigen_64|Q83D52||AZV75804.1|tpos:1-312	outside	20	209				
+antigen_64|Q83D52||AZV75804.1|tpos:1-312	TMhelix	210	230				
+antigen_64|Q83D52||AZV75804.1|tpos:1-312	inside	231	312				
+//
+# antigen_65|Q83D57||AZV75800.1|tpos:1-384 Length: 384
+# antigen_65|Q83D57||AZV75800.1|tpos:1-384 Number of predicted TMRs: 0
+antigen_65|Q83D57||AZV75800.1|tpos:1-384	inside	1	384				
+//
+# antigen_28|Q83AX3|Uncharacterized|AZV74963.1|tpos:1-198 Length: 198
+# antigen_28|Q83AX3|Uncharacterized|AZV74963.1|tpos:1-198 Number of predicted TMRs: 0
+antigen_28|Q83AX3|Uncharacterized|AZV74963.1|tpos:1-198	inside	1	198				
+//
+# antigen_17|Q83A99||AZV74639.1|tpos:1-395 Length: 395
+# antigen_17|Q83A99||AZV74639.1|tpos:1-395 Number of predicted TMRs: 0
+antigen_17|Q83A99||AZV74639.1|tpos:1-395	inside	1	395				
+//
+# antigen_122|P47846|Glutamyl-tRNA|AZV74599.1|tpos:1-413 Length: 413
+# antigen_122|P47846|Glutamyl-tRNA|AZV74599.1|tpos:1-413 Number of predicted TMRs: 0
+antigen_122|P47846|Glutamyl-tRNA|AZV74599.1|tpos:1-413	inside	1	413				
+//
+# antigen_107|B6J161|Lipid-A-disaccharide|AZV75560.1|tpos:1-376 Length: 376
+# antigen_107|B6J161|Lipid-A-disaccharide|AZV75560.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_107|B6J161|Lipid-A-disaccharide|AZV75560.1|tpos:1-376	inside	1	376				
+//
+# antigen_80|Q83DR4|Ferritin|AZV75573.1|tpos:1-99 Length: 99
+# antigen_80|Q83DR4|Ferritin|AZV75573.1|tpos:1-99 Number of predicted TMRs: 0
+antigen_80|Q83DR4|Ferritin|AZV75573.1|tpos:1-99	inside	1	99				
+//
+# antigen_81|Q83DT1||AZV76069.1|tpos:1-165 Length: 165
+# antigen_81|Q83DT1||AZV76069.1|tpos:1-165 Number of predicted TMRs: 0
+antigen_81|Q83DT1||AZV76069.1|tpos:1-165	signal	1	23				
+antigen_81|Q83DT1||AZV76069.1|tpos:1-165	outside	24	165				
+//
+# antigen_82|Q83DV3||AZV76088.1|tpos:1-132 Length: 132
+# antigen_82|Q83DV3||AZV76088.1|tpos:1-132 Number of predicted TMRs: 0
+antigen_82|Q83DV3||AZV76088.1|tpos:1-132	inside	1	132				
+//
+# antigen_49|Q83C63|Lipoyl|AZV75479.1|tpos:1-315 Length: 315
+# antigen_49|Q83C63|Lipoyl|AZV75479.1|tpos:1-315 Number of predicted TMRs: 0
+antigen_49|Q83C63|Lipoyl|AZV75479.1|tpos:1-315	inside	1	315				
+//
+# antigen_9|Q83A25|Transcription|AZV74714.1|tpos:1-418 Length: 418
+# antigen_9|Q83A25|Transcription|AZV74714.1|tpos:1-418 Number of predicted TMRs: 0
+antigen_9|Q83A25|Transcription|AZV74714.1|tpos:1-418	inside	1	418				
