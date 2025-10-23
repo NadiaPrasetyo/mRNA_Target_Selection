@@ -1,0 +1,4 @@
+[2025-10-21 17:59:30,820] Single-chain mode set, will predict PDBs as single chains
+[2025-10-21 17:59:30,823] Single PDB file input (3ROI_Q83E11), extracting single chains to data/C.burnetii/random_analysis/discotope/3ROI_Q83E11/input_chains
+[2025-10-21 17:59:33,412] Found 2 extracted single chains in data/C.burnetii/random_analysis/discotope/3ROI_Q83E11/input_chains
+[2025-10-21 18:10:08,082] Predicted 2 / 2 PDB files extracted from 1 input PDBs, saved to data/C.burnetii/random_analysis/discotope/3ROI_Q83E11/output

@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,B6J255_AF,A,61,65,ERNNE,5,0.84,Linear
+2,B6J255_AF,A,30,41,MQKGGGEAPRPH,12,0.737,Linear
+3,B6J255_AF,A,1,13,MNVNDLRNKTKAE,13,0.578,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,B6J255_AF,A:K32, A:G33, A:G34, A:G35, A:E36, A:A37, A:P38, A:R39, A:P40, A:H41,10,0.762,Discontinous
+2,B6J255_AF,A:G58, A:E61, A:R62, A:N63, A:N64,5,0.748,Discontinous
+3,B6J255_AF,A:M1, A:N2, A:V3, A:N4, A:D5, A:R7,6,0.644,Discontinous
+4,B6J255_AF,A:K9, A:T10, A:A12, A:E13,4,0.562,Discontinous

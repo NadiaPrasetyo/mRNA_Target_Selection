@@ -1,0 +1,8 @@
+##gff-version 3
+antigen_183|Q83D09|UPF0422|AZV75843.1|tpos:19-483	TargetP-2.0	signal_peptide	1	19	0.976941	.	.	.
+antigen_21|Q83F59|Tol-Pal|AZV74552.1|tpos:4-440	TargetP-2.0	signal_peptide	1	23	0.995658	.	.	.
+antigen_143|Q83AC6|LPS-assembly|AZV74611.1|tpos:1-870	TargetP-2.0	signal_peptide	1	25	0.980987	.	.	.
+antigen_32|B6J9C8|Outer-membrane|AZV74896.1|tpos:1-210	TargetP-2.0	signal_peptide	1	32	0.612666	.	.	.
+antigen_69|B6J5W6|Thiazole|AZV76286.1|tpos:1-259	TargetP-2.0	transit_peptide	1	26	0.624816	.	.	Note=Mitochondrion
+antigen_191|Q83D83|Tetraacyldisaccharide|AZV75777.1|tpos:1-325	TargetP-2.0	transit_peptide	1	37	0.812053	.	.	Note=Mitochondrion
+antigen_180|Q83BB2|Uncharacterized|AZV75117.1|tpos:1-181	TargetP-2.0	signal_peptide	1	19	0.999711	.	.	.
