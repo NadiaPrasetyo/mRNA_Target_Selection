@@ -1,0 +1,5 @@
+[2025-10-22 14:15:14,584] Single-chain mode set, will predict PDBs as single chains
+[2025-10-22 14:15:14,593] Single PDB file input (2N57_C0RHG7), extracting single chains to data/B.melitensis/random_analysis/discotope/2N57_C0RHG7/input_chains
+[2025-10-22 14:15:17,049] Found 1 extracted single chains in data/B.melitensis/random_analysis/discotope/2N57_C0RHG7/input_chains
+[2025-10-22 14:15:46,029] Note: Skipping 2N57_C0RHG7_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-22 14:15:46,180] Error: No PDB files were valid. Please check input PDBs.

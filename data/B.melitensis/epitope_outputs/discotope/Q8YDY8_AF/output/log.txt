@@ -1,0 +1,4 @@
+[2025-10-22 13:46:18,700] Single-chain mode set, will predict PDBs as single chains
+[2025-10-22 13:46:18,706] Single PDB file input (Q8YDY8_AF), extracting single chains to data/B.melitensis/epitope_outputs/discotope/Q8YDY8_AF/input_chains
+[2025-10-22 13:46:18,908] Found 1 extracted single chains in data/B.melitensis/epitope_outputs/discotope/Q8YDY8_AF/input_chains
+[2025-10-22 13:49:23,758] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/B.melitensis/epitope_outputs/discotope/Q8YDY8_AF/output

@@ -1,0 +1,15 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,C0RGN1_AF,A,86,98,DLWLQRQTDRARL,13,0.712,Linear
+2,C0RGN1_AF,A,120,126,FTAGHYG,7,0.694,Linear
+3,C0RGN1_AF,A,108,113,LPRRWP,6,0.688,Linear
+4,C0RGN1_AF,A,27,32,MLKGFR,6,0.661,Linear
+5,C0RGN1_AF,A,40,43,TRLG,4,0.647,Linear
+6,C0RGN1_AF,A,63,67,RASFE,5,0.595,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,C0RGN1_AF,A:T2, A:D3, A:L4, A:E6, A:K7, A:K8, A:R9,7,0.925,Discontinous
+2,C0RGN1_AF,A:R50, A:G52, A:D53, A:D86, A:L87, A:L89, A:Q90, A:R91, A:Q92, A:T93, A:D94, A:R95, A:A96, A:R97, A:L98,15,0.726,Discontinous
+3,C0RGN1_AF,A:A64, A:S65, A:F66, A:E67, A:F71, A:L108, A:P109, A:R110, A:R111, A:K114,10,0.694,Discontinous
+4,C0RGN1_AF,A:F24, A:M27, A:L28, A:K29, A:G30, A:F31, A:R51,7,0.669,Discontinous
+5,C0RGN1_AF,A:T40, A:R41, A:L42, A:G43,4,0.647,Discontinous
+6,C0RGN1_AF,A:T74, A:P75, A:Q76, A:R79, A:F120, A:T121, A:A122, A:G123, A:H124, A:Y125,10,0.644,Discontinous
