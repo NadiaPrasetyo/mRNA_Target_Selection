@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,O83262_AF,A,1,6,MAKRTA,6,0.801,Linear
+2,O83262_AF,A,28,47,RRNVQEKLELRKYCPFERRR,20,0.611,Linear
+3,O83262_AF,A,15,19,TGCKR,5,0.582,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,O83262_AF,A:M1, A:A2, A:K3,3,0.958,Discontinous
+2,O83262_AF,A:N30, A:V31, A:Q32, A:E33,4,0.763,Discontinous
+3,O83262_AF,A:T15, A:G16, A:C17, A:K18, A:R19, A:Y40, A:C41, A:P42, A:F43, A:E44, A:R46,11,0.604,Discontinous

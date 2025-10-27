@@ -1,0 +1,22 @@
+##gff-version 3
+antigen_8|O83168|Uncharacterized|AHN66835.1|tpos:5-64	TargetP-2.0	transit_peptide	1	24	0.532727	.	.	Note=Mitochondrion
+antigen_49|O83463|Uncharacterized|AHN67130.1|tpos:1-196	TargetP-2.0	signal_peptide	1	23	0.980081	.	.	.
+antigen_118|O83253|Uncharacterized|AHN66924.1|tpos:1-34	TargetP-2.0	transit_peptide	1	21	0.453438	.	.	Note=Mitochondrion
+antigen_119|O83142|Probable|AHN66807.1|tpos:1-593	TargetP-2.0	signal_peptide	1	22	0.594177	.	.	.
+antigen_76|O83229|Large|AHN66898.1|tpos:1-122	TargetP-2.0	transit_peptide	1	32	0.550804	.	.	Note=Mitochondrion
+antigen_117|O83170|Uncharacterized|AHN66837.1|tpos:1-376	TargetP-2.0	signal_peptide	1	29	0.823422	.	.	.
+antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292	TargetP-2.0	signal_peptide	1	19	0.981737	.	.	.
+antigen_6|O83806|Tyrosine--tRNA|AHN67488.1|tpos:8-416	TargetP-2.0	transit_peptide	1	27	0.589566	.	.	Note=Mitochondrion
+antigen_50|O83805|Uncharacterized|AHN67487.1|tpos:1-238	TargetP-2.0	signal_peptide	1	19	0.892157	.	.	.
+antigen_63|O83284|Uncharacterized|AHN66959.1|tpos:1-442	TargetP-2.0	signal_peptide	1	31	0.929911	.	.	.
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	TargetP-2.0	signal_peptide	1	21	0.661374	.	.	.
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	TargetP-2.0	signal_peptide	1	19	0.968191	.	.	.
+antigen_187|O83077|Putative|AHN66736.1|tpos:1-316	TargetP-2.0	signal_peptide	1	19	0.989253	.	.	.
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	TargetP-2.0	signal_peptide	1	21	0.926385	.	.	.
+antigen_159|O83185|Uncharacterized|AHN66853.1|tpos:1-155	TargetP-2.0	signal_peptide	1	32	0.731525	.	.	.
+antigen_153|O83774|FAD:protein|AHN67452.1|tpos:1-362	TargetP-2.0	signal_peptide	1	25	0.952628	.	.	.
+antigen_154|O83344|Uncharacterized|AHN67010.1|tpos:1-477	TargetP-2.0	signal_peptide	1	31	0.918199	.	.	.
+antigen_92|P18193|Flagellar|AHN66948.1|tpos:1-350	TargetP-2.0	signal_peptide	1	18	0.999702	.	.	.
+antigen_89|O83767|Uncharacterized|AHN67446.1|tpos:1-296	TargetP-2.0	signal_peptide	1	18	0.752982	.	.	.
+antigen_126|O83936|Uncharacterized|AHN67610.1|tpos:1-38	TargetP-2.0	transit_peptide	1	20	0.517679	.	.	Note=Mitochondrion
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	TargetP-2.0	signal_peptide	1	19	0.948729	.	.	.

@@ -1,0 +1,21 @@
+##gff-version 3
+antigen_50|O83805|Uncharacterized|WP_014342601.1|tpos:1-240	TargetP-2.0	signal_peptide	1	21	0.988274	.	.	.
+antigen_154|O83344|Uncharacterized|WP_014342370.1|tpos:1-477	TargetP-2.0	signal_peptide	1	31	0.918199	.	.	.
+antigen_63|O83284|Uncharacterized|WP_014342343.1|tpos:1-448	TargetP-2.0	signal_peptide	1	37	0.595507	.	.	.
+antigen_95|O83550|Uncharacterized|WP_010881986.1|tpos:1-73	TargetP-2.0	signal_peptide	1	26	0.951255	.	.	.
+antigen_109|O83696|Uncharacterized|WP_014342545.1|tpos:1-181	TargetP-2.0	signal_peptide	1	19	0.974648	.	.	.
+antigen_92|P18193|Flagellar|WP_108738935.1|tpos:1-350	TargetP-2.0	signal_peptide	1	18	0.999714	.	.	.
+antigen_135|O83575|Uncharacterized|WP_014342487.1|tpos:1-678	TargetP-2.0	signal_peptide	1	19	0.981609	.	.	.
+antigen_187|O83077|Putative|WP_010881483.1|tpos:1-316	TargetP-2.0	signal_peptide	1	19	0.989253	.	.	.
+antigen_97|O83390|Uncharacterized|WP_010881823.1|tpos:1-69	TargetP-2.0	signal_peptide	1	19	0.993218	.	.	.
+antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|WP_010882376.1|tpos:1-540	TargetP-2.0	signal_peptide	1	21	0.812611	.	.	.
+antigen_33|O83358|Uncharacterized|WP_010881786.1|tpos:1-162	TargetP-2.0	signal_peptide	1	19	0.948729	.	.	.
+antigen_153|O83774|FAD:protein|WP_108738970.1|tpos:1-362	TargetP-2.0	signal_peptide	1	25	0.951371	.	.	.
+antigen_188|O83496|Uncharacterized|WP_252507750.1|tpos:1-374	TargetP-2.0	signal_peptide	1	21	0.926385	.	.	.
+antigen_76|O83229|Large|WP_010881646.1|tpos:1-122	TargetP-2.0	transit_peptide	1	32	0.550804	.	.	Note=Mitochondrion
+antigen_117|O83170|Uncharacterized|WP_172841373.1|tpos:1-409	TargetP-2.0	transit_peptide	1	40	0.432337	.	.	Note=Mitochondrion
+antigen_119|O83142|Probable|WP_010881553.1|tpos:1-593	TargetP-2.0	signal_peptide	1	22	0.594177	.	.	.
+antigen_6|O83806|Tyrosine--tRNA|WP_014342602.1|tpos:1-409	TargetP-2.0	transit_peptide	1	27	0.589566	.	.	Note=Mitochondrion
+antigen_49|O83463|Uncharacterized|WP_010881897.1|tpos:1-196	TargetP-2.0	signal_peptide	1	23	0.980081	.	.	.
+antigen_158|O83770|Uncharacterized|WP_010882236.1|tpos:1-81	TargetP-2.0	signal_peptide	1	21	0.948162	.	.	.
+antigen_159|O83185|Uncharacterized|WP_010881597.1|tpos:1-155	TargetP-2.0	signal_peptide	1	32	0.731525	.	.	.

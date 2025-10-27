@@ -1,0 +1,1039 @@
+##gff-version 3
+# antigen_111|O83103|Uncharacterized|WGK74485.1|tpos:1-191 Length: 191
+# antigen_111|O83103|Uncharacterized|WGK74485.1|tpos:1-191 Number of predicted TMRs: 0
+antigen_111|O83103|Uncharacterized|WGK74485.1|tpos:1-191	inside	1	191				
+//
+# antigen_112|O83388|tRNA(Ile)-lysidine|WGK74768.1|tpos:1-477 Length: 477
+# antigen_112|O83388|tRNA(Ile)-lysidine|WGK74768.1|tpos:1-477 Number of predicted TMRs: 0
+antigen_112|O83388|tRNA(Ile)-lysidine|WGK74768.1|tpos:1-477	inside	1	477				
+//
+# antigen_130|O66075|Large|WGK74664.1|tpos:1-67 Length: 67
+# antigen_130|O66075|Large|WGK74664.1|tpos:1-67 Number of predicted TMRs: 0
+antigen_130|O66075|Large|WGK74664.1|tpos:1-67	inside	1	67				
+//
+# antigen_131|B2S321|V-type|WGK74818.1|tpos:27-197 Length: 171
+# antigen_131|B2S321|V-type|WGK74818.1|tpos:27-197 Number of predicted TMRs: 0
+antigen_131|B2S321|V-type|WGK74818.1|tpos:27-197	inside	1	171				
+//
+# antigen_132|O83225|Small|WGK74605.1|tpos:1-247 Length: 247
+# antigen_132|O83225|Small|WGK74605.1|tpos:1-247 Number of predicted TMRs: 0
+antigen_132|O83225|Small|WGK74605.1|tpos:1-247	inside	1	247				
+//
+# antigen_133|O83776|Methionine--tRNA|WGK75170.1|tpos:1-811 Length: 811
+# antigen_133|O83776|Methionine--tRNA|WGK75170.1|tpos:1-811 Number of predicted TMRs: 0
+antigen_133|O83776|Methionine--tRNA|WGK75170.1|tpos:1-811	inside	1	811				
+//
+# antigen_87|O83671|Uncharacterized|WGK75043.1|tpos:1-251 Length: 251
+# antigen_87|O83671|Uncharacterized|WGK75043.1|tpos:1-251 Number of predicted TMRs: 0
+antigen_87|O83671|Uncharacterized|WGK75043.1|tpos:1-251	inside	1	251				
+//
+# antigen_89|O83767|Uncharacterized|WGK75160.1|tpos:1-296 Length: 296
+# antigen_89|O83767|Uncharacterized|WGK75160.1|tpos:1-296 Number of predicted TMRs: 0
+antigen_89|O83767|Uncharacterized|WGK75160.1|tpos:1-296	signal	1	21				
+antigen_89|O83767|Uncharacterized|WGK75160.1|tpos:1-296	outside	22	296				
+//
+# antigen_91|B2S2J8|Small|WGK74659.1|tpos:1-95 Length: 95
+# antigen_91|B2S2J8|Small|WGK74659.1|tpos:1-95 Number of predicted TMRs: 0
+antigen_91|B2S2J8|Small|WGK74659.1|tpos:1-95	inside	1	95				
+//
+# antigen_107|O83066|Uncharacterized|WGK74444.1|tpos:1-722 Length: 722
+# antigen_107|O83066|Uncharacterized|WGK74444.1|tpos:1-722 Number of predicted TMRs: 0
+antigen_107|O83066|Uncharacterized|WGK74444.1|tpos:1-722	inside	1	722				
+//
+# antigen_169|O83272|Small|WGK74653.1|tpos:1-156 Length: 156
+# antigen_169|O83272|Small|WGK74653.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_169|O83272|Small|WGK74653.1|tpos:1-156	inside	1	156				
+//
+# antigen_170|O83085|Putative|WGK74466.1|tpos:1-299 Length: 299
+# antigen_170|O83085|Putative|WGK74466.1|tpos:1-299 Number of predicted TMRs: 0
+antigen_170|O83085|Putative|WGK74466.1|tpos:1-299	inside	1	299				
+//
+# antigen_195|O83456|DNA|WGK74835.1|tpos:1-573 Length: 573
+# antigen_195|O83456|DNA|WGK74835.1|tpos:1-573 Number of predicted TMRs: 0
+antigen_195|O83456|DNA|WGK74835.1|tpos:1-573	inside	1	573				
+//
+# antigen_196|O83223|Small|WGK74603.1|tpos:1-95 Length: 95
+# antigen_196|O83223|Small|WGK74603.1|tpos:1-95 Number of predicted TMRs: 0
+antigen_196|O83223|Small|WGK74603.1|tpos:1-95	inside	1	95				
+//
+# antigen_92|P18193|Flagellar|WGK74658.1|tpos:1-350 Length: 350
+# antigen_92|P18193|Flagellar|WGK74658.1|tpos:1-350 Number of predicted TMRs: 0
+antigen_92|P18193|Flagellar|WGK74658.1|tpos:1-350	signal	1	20				
+antigen_92|P18193|Flagellar|WGK74658.1|tpos:1-350	outside	21	350				
+//
+# antigen_96|O83650|Lysine--tRNA|WGK75023.1|tpos:1-528 Length: 528
+# antigen_96|O83650|Lysine--tRNA|WGK75023.1|tpos:1-528 Number of predicted TMRs: 0
+antigen_96|O83650|Lysine--tRNA|WGK75023.1|tpos:1-528	inside	1	528				
+//
+# antigen_136|O83808|Uncharacterized|WGK75205.1|tpos:1-274 Length: 274
+# antigen_136|O83808|Uncharacterized|WGK75205.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_136|O83808|Uncharacterized|WGK75205.1|tpos:1-274	inside	1	274				
+//
+# antigen_137|O83348|DNA|WGK74724.1|tpos:1-900 Length: 900
+# antigen_137|O83348|DNA|WGK74724.1|tpos:1-900 Number of predicted TMRs: 0
+antigen_137|O83348|DNA|WGK74724.1|tpos:1-900	inside	1	900				
+//
+# antigen_31|O83945|Probable|WGK75341.1|tpos:1-340 Length: 340
+# antigen_31|O83945|Probable|WGK75341.1|tpos:1-340 Number of predicted TMRs: 0
+antigen_31|O83945|Probable|WGK75341.1|tpos:1-340	inside	1	340				
+//
+# antigen_32|O83539|V-type|WGK74915.1|tpos:1-209 Length: 209
+# antigen_32|O83539|V-type|WGK74915.1|tpos:1-209 Number of predicted TMRs: 0
+antigen_32|O83539|V-type|WGK74915.1|tpos:1-209	inside	1	209				
+//
+# antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162 Length: 162
+# antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162 Number of predicted TMRs: 3
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	signal	1	19				
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	outside	20	51				
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	TMhelix	52	61				
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	inside	62	62				
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	TMhelix	63	72				
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	outside	73	103				
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	TMhelix	104	124				
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	inside	125	162				
+//
+# antigen_82|O83278|DNA-binding|WGK74660.1|tpos:1-105 Length: 105
+# antigen_82|O83278|DNA-binding|WGK74660.1|tpos:1-105 Number of predicted TMRs: 0
+antigen_82|O83278|DNA-binding|WGK74660.1|tpos:1-105	inside	1	105				
+//
+# antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|WGK74780.1|tpos:1-459 Length: 459
+# antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|WGK74780.1|tpos:1-459 Number of predicted TMRs: 0
+antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|WGK74780.1|tpos:1-459	inside	1	459				
+//
+# antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|WGK74584.1|tpos:1-269 Length: 269
+# antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|WGK74584.1|tpos:1-269 Number of predicted TMRs: 0
+antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|WGK74584.1|tpos:1-269	inside	1	269				
+//
+# antigen_0|O83679|Glutamate--tRNA|WGK75051.1|tpos:1-537 Length: 537
+# antigen_0|O83679|Glutamate--tRNA|WGK75051.1|tpos:1-537 Number of predicted TMRs: 0
+antigen_0|O83679|Glutamate--tRNA|WGK75051.1|tpos:1-537	inside	1	537				
+//
+# antigen_45|O83230|Large|WGK74610.1|tpos:1-103 Length: 103
+# antigen_45|O83230|Large|WGK74610.1|tpos:1-103 Number of predicted TMRs: 0
+antigen_45|O83230|Large|WGK74610.1|tpos:1-103	inside	1	103				
+//
+# antigen_46|B2S369|Probable|WGK74866.1|tpos:1-245 Length: 245
+# antigen_46|B2S369|Probable|WGK74866.1|tpos:1-245 Number of predicted TMRs: 0
+antigen_46|B2S369|Probable|WGK74866.1|tpos:1-245	inside	1	245				
+//
+# antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228 Length: 228
+# antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228 Number of predicted TMRs: 4
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	inside	1	18				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	TMhelix	19	34				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	outside	35	40				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	TMhelix	41	54				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	inside	55	67				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	TMhelix	68	81				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	outside	82	104				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	TMhelix	105	119				
+antigen_47|O83254|Uncharacterized|WGK74636.1|tpos:1-228	inside	120	228				
+//
+# antigen_48|O83870|Uncharacterized|WGK75264.1|tpos:1-797 Length: 797
+# antigen_48|O83870|Uncharacterized|WGK75264.1|tpos:1-797 Number of predicted TMRs: 0
+antigen_48|O83870|Uncharacterized|WGK75264.1|tpos:1-797	inside	1	797				
+//
+# antigen_121|O83258|Replication|WGK74640.1|tpos:1-657 Length: 657
+# antigen_121|O83258|Replication|WGK74640.1|tpos:1-657 Number of predicted TMRs: 0
+antigen_121|O83258|Replication|WGK74640.1|tpos:1-657	inside	1	657				
+//
+# antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235 Length: 48
+# antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235 Number of predicted TMRs: 2
+antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235	signal	1	10				
+antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235	periplasm	11	15				
+antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235	Beta sheet	16	23				
+antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235	outside	24	37				
+antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235	Beta sheet	38	46				
+antigen_61|O83336|Uncharacterized|WGK74999.1|tpos:188-235	periplasm	47	48				
+//
+# antigen_63|O83284|Uncharacterized|WGK74669.1|tpos:1-448 Length: 448
+# antigen_63|O83284|Uncharacterized|WGK74669.1|tpos:1-448 Number of predicted TMRs: 0
+antigen_63|O83284|Uncharacterized|WGK74669.1|tpos:1-448	signal	1	31				
+antigen_63|O83284|Uncharacterized|WGK74669.1|tpos:1-448	outside	32	448				
+//
+# antigen_69|O83822|Translation|WGK75219.1|tpos:1-179 Length: 179
+# antigen_69|O83822|Translation|WGK75219.1|tpos:1-179 Number of predicted TMRs: 0
+antigen_69|O83822|Translation|WGK75219.1|tpos:1-179	inside	1	179				
+//
+# antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|WGK75295.1|tpos:1-540 Length: 540
+# antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|WGK75295.1|tpos:1-540 Number of predicted TMRs: 0
+antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|WGK75295.1|tpos:1-540	inside	1	540				
+//
+# antigen_22|O83861|Translation|WGK75257.1|tpos:1-842 Length: 842
+# antigen_22|O83861|Translation|WGK75257.1|tpos:1-842 Number of predicted TMRs: 0
+antigen_22|O83861|Translation|WGK75257.1|tpos:1-842	inside	1	842				
+//
+# antigen_23|O83975|Peptidyl-tRNA|WGK75372.1|tpos:1-202 Length: 202
+# antigen_23|O83975|Peptidyl-tRNA|WGK75372.1|tpos:1-202 Number of predicted TMRs: 0
+antigen_23|O83975|Peptidyl-tRNA|WGK75372.1|tpos:1-202	inside	1	202				
+//
+# antigen_10|O83195|Proline--tRNA|WGK74576.1|tpos:1-617 Length: 617
+# antigen_10|O83195|Proline--tRNA|WGK74576.1|tpos:1-617 Number of predicted TMRs: 0
+antigen_10|O83195|Proline--tRNA|WGK74576.1|tpos:1-617	inside	1	617				
+//
+# antigen_65|O83097|Replicative|WGK74479.1|tpos:1-438 Length: 438
+# antigen_65|O83097|Replicative|WGK74479.1|tpos:1-438 Number of predicted TMRs: 0
+antigen_65|O83097|Replicative|WGK74479.1|tpos:1-438	inside	1	438				
+//
+# antigen_66|O83714|Bifunctional|WGK75107.1|tpos:1-315 Length: 315
+# antigen_66|O83714|Bifunctional|WGK75107.1|tpos:1-315 Number of predicted TMRs: 0
+antigen_66|O83714|Bifunctional|WGK75107.1|tpos:1-315	inside	1	315				
+//
+# antigen_115|O83264|Transcription|WGK74645.1|tpos:1-185 Length: 185
+# antigen_115|O83264|Transcription|WGK74645.1|tpos:1-185 Number of predicted TMRs: 0
+antigen_115|O83264|Transcription|WGK74645.1|tpos:1-185	inside	1	185				
+//
+# antigen_180|O83672|Uncharacterized|WGK75044.1|tpos:1-97 Length: 97
+# antigen_180|O83672|Uncharacterized|WGK75044.1|tpos:1-97 Number of predicted TMRs: 0
+antigen_180|O83672|Uncharacterized|WGK75044.1|tpos:1-97	inside	1	97				
+//
+# antigen_181|O83590|Lipoprotein-releasing|WGK74967.1|tpos:1-226 Length: 226
+# antigen_181|O83590|Lipoprotein-releasing|WGK74967.1|tpos:1-226 Number of predicted TMRs: 0
+antigen_181|O83590|Lipoprotein-releasing|WGK74967.1|tpos:1-226	inside	1	226				
+//
+# antigen_182|O83435|Uncharacterized|WGK74814.1|tpos:184-256 Length: 73
+# antigen_182|O83435|Uncharacterized|WGK74814.1|tpos:184-256 Number of predicted TMRs: 0
+antigen_182|O83435|Uncharacterized|WGK74814.1|tpos:184-256	inside	1	73				
+//
+# antigen_183|O83585|Peptide|WGK74962.1|tpos:1-368 Length: 368
+# antigen_183|O83585|Peptide|WGK74962.1|tpos:1-368 Number of predicted TMRs: 0
+antigen_183|O83585|Peptide|WGK74962.1|tpos:1-368	inside	1	368				
+//
+# antigen_2|O83608|Uncharacterized|WGK74981.1|tpos:1-218 Length: 218
+# antigen_2|O83608|Uncharacterized|WGK74981.1|tpos:1-218 Number of predicted TMRs: 0
+antigen_2|O83608|Uncharacterized|WGK74981.1|tpos:1-218	inside	1	218				
+//
+# antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|WGK74839.1|tpos:1-404 Length: 404
+# antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|WGK74839.1|tpos:1-404 Number of predicted TMRs: 0
+antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|WGK74839.1|tpos:1-404	inside	1	404				
+//
+# antigen_76|O83229|Large|WGK74609.1|tpos:1-122 Length: 122
+# antigen_76|O83229|Large|WGK74609.1|tpos:1-122 Number of predicted TMRs: 0
+antigen_76|O83229|Large|WGK74609.1|tpos:1-122	inside	1	122				
+//
+# antigen_77|P74935|Gamma-glutamyl|WGK74745.1|tpos:1-428 Length: 428
+# antigen_77|P74935|Gamma-glutamyl|WGK74745.1|tpos:1-428 Number of predicted TMRs: 0
+antigen_77|P74935|Gamma-glutamyl|WGK74745.1|tpos:1-428	inside	1	428				
+//
+# antigen_78|O83797|Uncharacterized|WGK75194.1|tpos:1-61 Length: 61
+# antigen_78|O83797|Uncharacterized|WGK75194.1|tpos:1-61 Number of predicted TMRs: 0
+antigen_78|O83797|Uncharacterized|WGK75194.1|tpos:1-61	inside	1	61				
+//
+# antigen_100|O83668|Fructose-bisphosphate|WGK75040.1|tpos:1-332 Length: 332
+# antigen_100|O83668|Fructose-bisphosphate|WGK75040.1|tpos:1-332 Number of predicted TMRs: 0
+antigen_100|O83668|Fructose-bisphosphate|WGK75040.1|tpos:1-332	inside	1	332				
+//
+# antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139 Length: 139
+# antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139 Number of predicted TMRs: 3
+antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139	inside	1	42				
+antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139	TMhelix	43	61				
+antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139	outside	62	72				
+antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139	TMhelix	73	97				
+antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139	inside	98	110				
+antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139	TMhelix	111	134				
+antigen_101|O83766|Uncharacterized|WGK75159.1|tpos:1-139	outside	135	139				
+//
+# antigen_102|O83228|Small|WGK74608.1|tpos:1-84 Length: 84
+# antigen_102|O83228|Small|WGK74608.1|tpos:1-84 Number of predicted TMRs: 0
+antigen_102|O83228|Small|WGK74608.1|tpos:1-84	inside	1	84				
+//
+# antigen_103|O83845|tRNA|WGK75241.1|tpos:1-135 Length: 135
+# antigen_103|O83845|tRNA|WGK75241.1|tpos:1-135 Number of predicted TMRs: 0
+antigen_103|O83845|tRNA|WGK75241.1|tpos:1-135	inside	1	135				
+//
+# antigen_113|O83625|Ribose-5-phosphate|WGK74996.1|tpos:1-254 Length: 254
+# antigen_113|O83625|Ribose-5-phosphate|WGK74996.1|tpos:1-254 Number of predicted TMRs: 0
+antigen_113|O83625|Ribose-5-phosphate|WGK74996.1|tpos:1-254	inside	1	254				
+//
+# antigen_119|O83142|Probable|WGK74525.1|tpos:1-593 Length: 593
+# antigen_119|O83142|Probable|WGK74525.1|tpos:1-593 Number of predicted TMRs: 0
+antigen_119|O83142|Probable|WGK74525.1|tpos:1-593	signal	1	21				
+antigen_119|O83142|Probable|WGK74525.1|tpos:1-593	outside	22	593				
+//
+# antigen_127|O83786|Acyl|WGK75179.1|tpos:1-78 Length: 78
+# antigen_127|O83786|Acyl|WGK75179.1|tpos:1-78 Number of predicted TMRs: 0
+antigen_127|O83786|Acyl|WGK75179.1|tpos:1-78	inside	1	78				
+//
+# antigen_128|O83649|DNA|WGK75022.1|tpos:1-215 Length: 215
+# antigen_128|O83649|DNA|WGK75022.1|tpos:1-215 Number of predicted TMRs: 0
+antigen_128|O83649|DNA|WGK75022.1|tpos:1-215	inside	1	215				
+//
+# antigen_129|O83489|Acetate|WGK74868.1|tpos:1-448 Length: 448
+# antigen_129|O83489|Acetate|WGK74868.1|tpos:1-448 Number of predicted TMRs: 0
+antigen_129|O83489|Acetate|WGK74868.1|tpos:1-448	inside	1	448				
+//
+# antigen_80|O83969|Recombination|WGK75365.1|tpos:1-201 Length: 201
+# antigen_80|O83969|Recombination|WGK75365.1|tpos:1-201 Number of predicted TMRs: 0
+antigen_80|O83969|Recombination|WGK75365.1|tpos:1-201	inside	1	201				
+//
+# antigen_83|P74931|Flagellar|WGK75093.1|tpos:1-94 Length: 94
+# antigen_83|P74931|Flagellar|WGK75093.1|tpos:1-94 Number of predicted TMRs: 2
+antigen_83|P74931|Flagellar|WGK75093.1|tpos:1-94	outside	1	17				
+antigen_83|P74931|Flagellar|WGK75093.1|tpos:1-94	TMhelix	18	38				
+antigen_83|P74931|Flagellar|WGK75093.1|tpos:1-94	inside	39	55				
+antigen_83|P74931|Flagellar|WGK75093.1|tpos:1-94	TMhelix	56	71				
+antigen_83|P74931|Flagellar|WGK75093.1|tpos:1-94	outside	72	94				
+//
+# antigen_85|O83480|Uncharacterized|WGK74860.1|tpos:1-82 Length: 82
+# antigen_85|O83480|Uncharacterized|WGK74860.1|tpos:1-82 Number of predicted TMRs: 0
+antigen_85|O83480|Uncharacterized|WGK74860.1|tpos:1-82	inside	1	82				
+//
+# antigen_86|O83152|Protein|WGK74535.1|tpos:1-331 Length: 331
+# antigen_86|O83152|Protein|WGK74535.1|tpos:1-331 Number of predicted TMRs: 1
+antigen_86|O83152|Protein|WGK74535.1|tpos:1-331	inside	1	14				
+antigen_86|O83152|Protein|WGK74535.1|tpos:1-331	TMhelix	15	31				
+antigen_86|O83152|Protein|WGK74535.1|tpos:1-331	outside	32	331				
+//
+# antigen_108|O83262|Large|WGK74643.1|tpos:1-56 Length: 56
+# antigen_108|O83262|Large|WGK74643.1|tpos:1-56 Number of predicted TMRs: 0
+antigen_108|O83262|Large|WGK74643.1|tpos:1-56	inside	1	56				
+//
+# antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181 Length: 181
+# antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181 Number of predicted TMRs: 8
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	signal	1	19				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	periplasm	20	23				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	24	33				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	outside	34	50				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	51	64				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	periplasm	65	69				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	70	79				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	outside	80	82				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	83	94				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	periplasm	95	99				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	100	109				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	outside	110	128				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	129	141				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	periplasm	142	148				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	149	159				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	outside	160	166				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	Beta sheet	167	179				
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	periplasm	180	181				
+//
+# antigen_120|O07896|Ribonuclease|WGK75188.1|tpos:1-308 Length: 308
+# antigen_120|O07896|Ribonuclease|WGK75188.1|tpos:1-308 Number of predicted TMRs: 0
+antigen_120|O07896|Ribonuclease|WGK75188.1|tpos:1-308	inside	1	308				
+//
+# antigen_175|O83237|Large|WGK74618.1|tpos:1-153 Length: 153
+# antigen_175|O83237|Large|WGK74618.1|tpos:1-153 Number of predicted TMRs: 0
+antigen_175|O83237|Large|WGK74618.1|tpos:1-153	inside	1	153				
+//
+# antigen_176|O83220|Large|WGK74600.1|tpos:1-216 Length: 216
+# antigen_176|O83220|Large|WGK74600.1|tpos:1-216 Number of predicted TMRs: 0
+antigen_176|O83220|Large|WGK74600.1|tpos:1-216	inside	1	216				
+//
+# antigen_177|O66106|Ribosomal|WGK75307.1|tpos:1-222 Length: 222
+# antigen_177|O66106|Ribosomal|WGK75307.1|tpos:1-222 Number of predicted TMRs: 0
+antigen_177|O66106|Ribosomal|WGK75307.1|tpos:1-222	inside	1	222				
+//
+# antigen_194|O83485|UvrABC|WGK74864.1|tpos:1-691 Length: 691
+# antigen_194|O83485|UvrABC|WGK74864.1|tpos:1-691 Number of predicted TMRs: 0
+antigen_194|O83485|UvrABC|WGK74864.1|tpos:1-691	inside	1	691				
+//
+# antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298 Length: 298
+# antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298 Number of predicted TMRs: 9
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	outside	1	15				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	16	36				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	inside	37	44				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	45	60				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	outside	61	67				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	68	87				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	inside	88	97				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	98	113				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	outside	114	143				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	144	162				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	inside	163	186				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	187	201				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	outside	202	202				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	203	219				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	inside	220	228				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	229	248				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	outside	249	257				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	TMhelix	258	276				
+antigen_72|P96118|Zinc|WGK74580.1|tpos:1-298	inside	277	298				
+//
+# antigen_73|O83505|DNA|WGK74883.1|tpos:1-605 Length: 605
+# antigen_73|O83505|DNA|WGK74883.1|tpos:1-605 Number of predicted TMRs: 0
+antigen_73|O83505|DNA|WGK74883.1|tpos:1-605	inside	1	605				
+//
+# antigen_171|O83369|FKBP-type|WGK74744.1|tpos:1-176 Length: 176
+# antigen_171|O83369|FKBP-type|WGK74744.1|tpos:1-176 Number of predicted TMRs: 0
+antigen_171|O83369|FKBP-type|WGK74744.1|tpos:1-176	inside	1	176				
+//
+# antigen_184|O83546|Uncharacterized|WGK74922.1|tpos:1-70 Length: 70
+# antigen_184|O83546|Uncharacterized|WGK74922.1|tpos:1-70 Number of predicted TMRs: 0
+antigen_184|O83546|Uncharacterized|WGK74922.1|tpos:1-70	inside	1	70				
+//
+# antigen_187|O83077|Putative|WGK74456.1|tpos:1-316 Length: 316
+# antigen_187|O83077|Putative|WGK74456.1|tpos:1-316 Number of predicted TMRs: 0
+antigen_187|O83077|Putative|WGK74456.1|tpos:1-316	signal	1	19				
+antigen_187|O83077|Putative|WGK74456.1|tpos:1-316	outside	20	316				
+//
+# antigen_37|O83537|Elongation|WGK74913.1|tpos:1-187 Length: 187
+# antigen_37|O83537|Elongation|WGK74913.1|tpos:1-187 Number of predicted TMRs: 0
+antigen_37|O83537|Elongation|WGK74913.1|tpos:1-187	inside	1	187				
+//
+# antigen_39|O83792|Uncharacterized|WGK75185.1|tpos:1-221 Length: 221
+# antigen_39|O83792|Uncharacterized|WGK75185.1|tpos:1-221 Number of predicted TMRs: 0
+antigen_39|O83792|Uncharacterized|WGK75185.1|tpos:1-221	inside	1	221				
+//
+# antigen_42|O83100|Small|WGK74482.1|tpos:1-99 Length: 99
+# antigen_42|O83100|Small|WGK74482.1|tpos:1-99 Number of predicted TMRs: 0
+antigen_42|O83100|Small|WGK74482.1|tpos:1-99	inside	1	99				
+//
+# antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345 Length: 345
+# antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345 Number of predicted TMRs: 7
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	inside	1	8				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	TMhelix	9	25				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	outside	26	85				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	TMhelix	86	101				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	inside	102	113				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	TMhelix	114	129				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	outside	130	151				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	TMhelix	152	167				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	inside	168	181				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	TMhelix	182	194				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	outside	195	295				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	TMhelix	296	307				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	inside	308	318				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	TMhelix	319	333				
+antigen_88|O83968|Uncharacterized|WGK75364.1|tpos:1-345	outside	334	345				
+//
+# antigen_90|O83536|Lon|WGK74912.1|tpos:1-881 Length: 881
+# antigen_90|O83536|Lon|WGK74912.1|tpos:1-881 Number of predicted TMRs: 0
+antigen_90|O83536|Lon|WGK74912.1|tpos:1-881	inside	1	881				
+//
+# antigen_141|O83817|UPF0178|WGK75214.1|tpos:1-177 Length: 177
+# antigen_141|O83817|UPF0178|WGK75214.1|tpos:1-177 Number of predicted TMRs: 0
+antigen_141|O83817|UPF0178|WGK75214.1|tpos:1-177	inside	1	177				
+//
+# antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192 Length: 192
+# antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192 Number of predicted TMRs: 6
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	outside	1	7				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	TMhelix	8	17				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	inside	18	41				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	TMhelix	42	57				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	outside	58	67				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	TMhelix	68	81				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	inside	82	100				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	TMhelix	101	113				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	outside	114	121				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	TMhelix	122	142				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	inside	143	157				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	TMhelix	158	173				
+antigen_143|O83183|Uncharacterized|WGK74564.1|tpos:1-192	outside	174	192				
+//
+# antigen_178|O83129|Cysteine--tRNA|WGK74512.1|tpos:1-520 Length: 520
+# antigen_178|O83129|Cysteine--tRNA|WGK74512.1|tpos:1-520 Number of predicted TMRs: 0
+antigen_178|O83129|Cysteine--tRNA|WGK74512.1|tpos:1-520	inside	1	520				
+//
+# antigen_157|O83848|Uncharacterized|WGK75244.1|tpos:1-316 Length: 316
+# antigen_157|O83848|Uncharacterized|WGK75244.1|tpos:1-316 Number of predicted TMRs: 0
+antigen_157|O83848|Uncharacterized|WGK75244.1|tpos:1-316	signal	1	32				
+antigen_157|O83848|Uncharacterized|WGK75244.1|tpos:1-316	outside	33	316				
+//
+# antigen_158|O83770|Uncharacterized|WGK75163.1|tpos:1-81 Length: 81
+# antigen_158|O83770|Uncharacterized|WGK75163.1|tpos:1-81 Number of predicted TMRs: 0
+antigen_158|O83770|Uncharacterized|WGK75163.1|tpos:1-81	inside	1	81				
+//
+# antigen_159|O83185|Uncharacterized|WGK74566.1|tpos:1-155 Length: 155
+# antigen_159|O83185|Uncharacterized|WGK74566.1|tpos:1-155 Number of predicted TMRs: 0
+antigen_159|O83185|Uncharacterized|WGK74566.1|tpos:1-155	signal	1	30				
+antigen_159|O83185|Uncharacterized|WGK74566.1|tpos:1-155	outside	31	155				
+//
+# antigen_116|O83099|Large|WGK74481.1|tpos:1-156 Length: 156
+# antigen_116|O83099|Large|WGK74481.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_116|O83099|Large|WGK74481.1|tpos:1-156	inside	1	156				
+//
+# antigen_117|O83170|Uncharacterized|WGK74552.1|tpos:1-409 Length: 409
+# antigen_117|O83170|Uncharacterized|WGK74552.1|tpos:1-409 Number of predicted TMRs: 0
+antigen_117|O83170|Uncharacterized|WGK74552.1|tpos:1-409	signal	1	29				
+antigen_117|O83170|Uncharacterized|WGK74552.1|tpos:1-409	outside	30	409				
+//
+# antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332 Length: 332
+# antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332 Number of predicted TMRs: 7
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	outside	1	22				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	TMhelix	23	39				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	inside	40	65				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	TMhelix	66	86				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	outside	87	117				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	TMhelix	118	131				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	inside	132	146				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	TMhelix	147	165				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	outside	166	221				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	TMhelix	222	241				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	inside	242	249				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	TMhelix	250	270				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	outside	271	296				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	TMhelix	297	318				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|WGK75221.1|tpos:1-332	inside	319	332				
+//
+# antigen_25|O83952|Uncharacterized|WGK75348.1|tpos:72-127 Length: 56
+# antigen_25|O83952|Uncharacterized|WGK75348.1|tpos:72-127 Number of predicted TMRs: 0
+antigen_25|O83952|Uncharacterized|WGK75348.1|tpos:72-127	inside	1	56				
+//
+# antigen_27|O83219|Large|WGK74599.1|tpos:1-208 Length: 208
+# antigen_27|O83219|Large|WGK74599.1|tpos:1-208 Number of predicted TMRs: 0
+antigen_27|O83219|Large|WGK74599.1|tpos:1-208	inside	1	208				
+//
+# antigen_28|O83857|Small|WGK75253.1|tpos:1-89 Length: 89
+# antigen_28|O83857|Small|WGK75253.1|tpos:1-89 Number of predicted TMRs: 0
+antigen_28|O83857|Small|WGK75253.1|tpos:1-89	inside	1	89				
+//
+# antigen_30|O83724|GTPase|WGK75117.1|tpos:1-376 Length: 376
+# antigen_30|O83724|GTPase|WGK75117.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_30|O83724|GTPase|WGK75117.1|tpos:1-376	inside	1	376				
+//
+# antigen_17|O83859|tRNA|WGK75255.1|tpos:1-366 Length: 366
+# antigen_17|O83859|tRNA|WGK75255.1|tpos:1-366 Number of predicted TMRs: 0
+antigen_17|O83859|tRNA|WGK75255.1|tpos:1-366	inside	1	366				
+//
+# antigen_18|O83530|Crossover|WGK74906.1|tpos:1-196 Length: 196
+# antigen_18|O83530|Crossover|WGK74906.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_18|O83530|Crossover|WGK74906.1|tpos:1-196	inside	1	196				
+//
+# antigen_19|O83324|Probable|WGK74703.1|tpos:1-313 Length: 313
+# antigen_19|O83324|Probable|WGK74703.1|tpos:1-313 Number of predicted TMRs: 9
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	outside	1	14				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	15	28				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	inside	29	33				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	34	54				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	outside	55	59				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	60	80				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	inside	81	88				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	89	102				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	outside	103	144				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	145	160				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	inside	161	191				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	192	212				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	outside	213	226				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	227	236				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	inside	237	240				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	241	253				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	outside	254	268				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	TMhelix	269	284				
+antigen_19|O83324|Probable|WGK74703.1|tpos:1-313	inside	285	313				
+//
+# antigen_197|O83664|Flagellar|WGK75036.1|tpos:1-150 Length: 150
+# antigen_197|O83664|Flagellar|WGK75036.1|tpos:1-150 Number of predicted TMRs: 0
+antigen_197|O83664|Flagellar|WGK75036.1|tpos:1-150	inside	1	150				
+//
+# antigen_198|O83890|TPR|WGK75284.1|tpos:1-809 Length: 809
+# antigen_198|O83890|TPR|WGK75284.1|tpos:1-809 Number of predicted TMRs: 0
+antigen_198|O83890|TPR|WGK75284.1|tpos:1-809	inside	1	809				
+//
+# antigen_62|O83992|Uncharacterized|WGK75391.1|tpos:1-228 Length: 228
+# antigen_62|O83992|Uncharacterized|WGK75391.1|tpos:1-228 Number of predicted TMRs: 0
+antigen_62|O83992|Uncharacterized|WGK75391.1|tpos:1-228	inside	1	228				
+//
+# antigen_64|O83217|Elongation|WGK74597.1|tpos:1-395 Length: 395
+# antigen_64|O83217|Elongation|WGK74597.1|tpos:1-395 Number of predicted TMRs: 0
+antigen_64|O83217|Elongation|WGK74597.1|tpos:1-395	inside	1	395				
+//
+# antigen_167|O83433|Putative|WGK74813.1|tpos:1-397 Length: 397
+# antigen_167|O83433|Putative|WGK74813.1|tpos:1-397 Number of predicted TMRs: 0
+antigen_167|O83433|Putative|WGK74813.1|tpos:1-397	inside	1	397				
+//
+# antigen_16|O83723|Probable|WGK75116.1|tpos:1-204 Length: 204
+# antigen_16|O83723|Probable|WGK75116.1|tpos:1-204 Number of predicted TMRs: 0
+antigen_16|O83723|Probable|WGK75116.1|tpos:1-204	inside	1	204				
+//
+# antigen_53|O83281|Transcription|WGK74663.1|tpos:1-519 Length: 519
+# antigen_53|O83281|Transcription|WGK74663.1|tpos:1-519 Number of predicted TMRs: 0
+antigen_53|O83281|Transcription|WGK74663.1|tpos:1-519	inside	1	519				
+//
+# antigen_55|O83231|Large|WGK74611.1|tpos:1-185 Length: 185
+# antigen_55|O83231|Large|WGK74611.1|tpos:1-185 Number of predicted TMRs: 0
+antigen_55|O83231|Large|WGK74611.1|tpos:1-185	inside	1	185				
+//
+# antigen_138|O83651|Uncharacterized|WGK75024.1|tpos:1-58 Length: 58
+# antigen_138|O83651|Uncharacterized|WGK75024.1|tpos:1-58 Number of predicted TMRs: 0
+antigen_138|O83651|Uncharacterized|WGK75024.1|tpos:1-58	signal	1	17				
+antigen_138|O83651|Uncharacterized|WGK75024.1|tpos:1-58	outside	18	58				
+//
+# antigen_139|O08399|DNA|WGK75367.1|tpos:1-637 Length: 637
+# antigen_139|O08399|DNA|WGK75367.1|tpos:1-637 Number of predicted TMRs: 0
+antigen_139|O08399|DNA|WGK75367.1|tpos:1-637	inside	1	637				
+//
+# antigen_58|O66107|Ribulose-phosphate|WGK75306.1|tpos:1-218 Length: 218
+# antigen_58|O66107|Ribulose-phosphate|WGK75306.1|tpos:1-218 Number of predicted TMRs: 0
+antigen_58|O66107|Ribulose-phosphate|WGK75306.1|tpos:1-218	inside	1	218				
+//
+# antigen_59|O83452|dITP/XTP|WGK74831.1|tpos:1-269 Length: 269
+# antigen_59|O83452|dITP/XTP|WGK74831.1|tpos:1-269 Number of predicted TMRs: 0
+antigen_59|O83452|dITP/XTP|WGK74831.1|tpos:1-269	inside	1	269				
+//
+# antigen_60|O83218|Small|WGK74598.1|tpos:1-102 Length: 102
+# antigen_60|O83218|Small|WGK74598.1|tpos:1-102 Number of predicted TMRs: 0
+antigen_60|O83218|Small|WGK74598.1|tpos:1-102	inside	1	102				
+//
+# antigen_105|O83373|Putative|WGK74749.1|tpos:1-208 Length: 208
+# antigen_105|O83373|Putative|WGK74749.1|tpos:1-208 Number of predicted TMRs: 0
+antigen_105|O83373|Putative|WGK74749.1|tpos:1-208	inside	1	208				
+//
+# antigen_106|O83554|Holliday|WGK74930.1|tpos:1-227 Length: 227
+# antigen_106|O83554|Holliday|WGK74930.1|tpos:1-227 Number of predicted TMRs: 0
+antigen_106|O83554|Holliday|WGK74930.1|tpos:1-227	inside	1	227				
+//
+# antigen_114|O83214|SsrA-binding|WGK74594.1|tpos:1-154 Length: 154
+# antigen_114|O83214|SsrA-binding|WGK74594.1|tpos:1-154 Number of predicted TMRs: 0
+antigen_114|O83214|SsrA-binding|WGK74594.1|tpos:1-154	inside	1	154				
+//
+# antigen_134|O83739|Small|WGK75133.1|tpos:1-69 Length: 69
+# antigen_134|O83739|Small|WGK75133.1|tpos:1-69 Number of predicted TMRs: 0
+antigen_134|O83739|Small|WGK75133.1|tpos:1-69	inside	1	69				
+//
+# antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678 Length: 678
+# antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678 Number of predicted TMRs: 8
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	signal	1	19				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	outside	20	227				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	228	250				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	inside	251	261				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	262	291				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	outside	292	306				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	307	325				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	inside	326	338				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	339	359				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	outside	360	362				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	363	380				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	inside	381	387				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	388	405				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	outside	406	420				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	421	439				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	inside	440	455				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TMhelix	456	475				
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	outside	476	678				
+//
+# antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618 Length: 618
+# antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618 Number of predicted TMRs: 4
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	signal	1	56				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	outside	57	492				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	TMhelix	493	502				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	inside	503	503				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	TMhelix	504	513				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	outside	514	555				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	TMhelix	556	565				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	inside	566	566				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	TMhelix	567	576				
+antigen_4|O83586|Uncharacterized|WGK74963.1|tpos:1-618	outside	577	618				
+//
+# antigen_6|O83806|Tyrosine--tRNA|WGK75203.1|tpos:1-409 Length: 409
+# antigen_6|O83806|Tyrosine--tRNA|WGK75203.1|tpos:1-409 Number of predicted TMRs: 0
+antigen_6|O83806|Tyrosine--tRNA|WGK75203.1|tpos:1-409	inside	1	409				
+//
+# antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271 Length: 271
+# antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271 Number of predicted TMRs: 4
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	signal	1	24				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	outside	25	69				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	TMhelix	70	90				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	inside	91	112				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	TMhelix	113	133				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	outside	134	213				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	TMhelix	214	230				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	inside	231	240				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	TMhelix	241	257				
+antigen_164|P74930|Flagellar|WGK75094.1|tpos:1-271	outside	258	271				
+//
+# antigen_165|O83266|Large|WGK74647.1|tpos:1-226 Length: 226
+# antigen_165|O83266|Large|WGK74647.1|tpos:1-226 Number of predicted TMRs: 0
+antigen_165|O83266|Large|WGK74647.1|tpos:1-226	inside	1	226				
+//
+# antigen_166|O83444|V-type|WGK74823.1|tpos:1-622 Length: 622
+# antigen_166|O83444|V-type|WGK74823.1|tpos:1-622 Number of predicted TMRs: 8
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	inside	1	330				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	331	345				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	outside	346	346				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	347	362				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	inside	363	374				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	375	396				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	outside	397	430				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	431	448				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	inside	449	457				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	458	478				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	outside	479	488				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	489	504				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	inside	505	528				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	529	556				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	outside	557	570				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	TMhelix	571	593				
+antigen_166|O83444|V-type|WGK74823.1|tpos:1-622	inside	594	622				
+//
+# antigen_67|O83785|Large|WGK75178.1|tpos:1-62 Length: 62
+# antigen_67|O83785|Large|WGK75178.1|tpos:1-62 Number of predicted TMRs: 0
+antigen_67|O83785|Large|WGK75178.1|tpos:1-62	inside	1	62				
+//
+# antigen_68|O83425|Protein|WGK74805.1|tpos:1-583 Length: 583
+# antigen_68|O83425|Protein|WGK74805.1|tpos:1-583 Number of predicted TMRs: 6
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	inside	1	7				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	TMhelix	8	25				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	outside	26	415				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	TMhelix	416	434				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	inside	435	435				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	TMhelix	436	459				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	outside	460	467				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	TMhelix	468	483				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	inside	484	509				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	TMhelix	510	530				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	outside	531	538				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	TMhelix	539	558				
+antigen_68|O83425|Protein|WGK74805.1|tpos:1-583	inside	559	583				
+//
+# antigen_71|O07887|Motility|WGK75099.1|tpos:1-238 Length: 238
+# antigen_71|O07887|Motility|WGK75099.1|tpos:1-238 Number of predicted TMRs: 1
+antigen_71|O07887|Motility|WGK75099.1|tpos:1-238	inside	1	21				
+antigen_71|O07887|Motility|WGK75099.1|tpos:1-238	TMhelix	22	37				
+antigen_71|O07887|Motility|WGK75099.1|tpos:1-238	outside	38	238				
+//
+# antigen_110|O83464|Elongation|WGK74843.1|tpos:1-683 Length: 683
+# antigen_110|O83464|Elongation|WGK74843.1|tpos:1-683 Number of predicted TMRs: 0
+antigen_110|O83464|Elongation|WGK74843.1|tpos:1-683	inside	1	683				
+//
+# antigen_145|O83658|Spermidine/putrescine|WGK75031.1|tpos:1-379 Length: 379
+# antigen_145|O83658|Spermidine/putrescine|WGK75031.1|tpos:1-379 Number of predicted TMRs: 0
+antigen_145|O83658|Spermidine/putrescine|WGK75031.1|tpos:1-379	inside	1	379				
+//
+# antigen_146|O83295|Probable|WGK74679.1|tpos:1-324 Length: 324
+# antigen_146|O83295|Probable|WGK74679.1|tpos:1-324 Number of predicted TMRs: 0
+antigen_146|O83295|Probable|WGK74679.1|tpos:1-324	inside	1	324				
+//
+# antigen_156|O83047|Chromosomal|WGK74430.1|tpos:1-464 Length: 464
+# antigen_156|O83047|Chromosomal|WGK74430.1|tpos:1-464 Number of predicted TMRs: 0
+antigen_156|O83047|Chromosomal|WGK74430.1|tpos:1-464	inside	1	464				
+//
+# antigen_5|O83490|6-phosphogluconolactonase|WGK74869.1|tpos:1-212 Length: 212
+# antigen_5|O83490|6-phosphogluconolactonase|WGK74869.1|tpos:1-212 Number of predicted TMRs: 0
+antigen_5|O83490|6-phosphogluconolactonase|WGK74869.1|tpos:1-212	inside	1	212				
+//
+# antigen_11|O83876|RNA-binding|WGK75270.1|tpos:1-80 Length: 80
+# antigen_11|O83876|RNA-binding|WGK75270.1|tpos:1-80 Number of predicted TMRs: 0
+antigen_11|O83876|RNA-binding|WGK75270.1|tpos:1-80	inside	1	80				
+//
+# antigen_12|O83737|Methionyl-tRNA|WGK75131.1|tpos:1-319 Length: 319
+# antigen_12|O83737|Methionyl-tRNA|WGK75131.1|tpos:1-319 Number of predicted TMRs: 0
+antigen_12|O83737|Methionyl-tRNA|WGK75131.1|tpos:1-319	inside	1	319				
+//
+# antigen_35|O83727|Large|WGK75120.1|tpos:1-105 Length: 105
+# antigen_35|O83727|Large|WGK75120.1|tpos:1-105 Number of predicted TMRs: 0
+antigen_35|O83727|Large|WGK75120.1|tpos:1-105	inside	1	105				
+//
+# antigen_36|O83074|Uncharacterized|WGK74453.1|tpos:1-92 Length: 92
+# antigen_36|O83074|Uncharacterized|WGK74453.1|tpos:1-92 Number of predicted TMRs: 0
+antigen_36|O83074|Uncharacterized|WGK74453.1|tpos:1-92	inside	1	92				
+//
+# antigen_38|O83209|Uncharacterized|WGK74590.1|tpos:1-627 Length: 627
+# antigen_38|O83209|Uncharacterized|WGK74590.1|tpos:1-627 Number of predicted TMRs: 0
+antigen_38|O83209|Uncharacterized|WGK74590.1|tpos:1-627	inside	1	627				
+//
+# antigen_40|O83236|Small|WGK74616.1|tpos:1-172 Length: 172
+# antigen_40|O83236|Small|WGK74616.1|tpos:1-172 Number of predicted TMRs: 0
+antigen_40|O83236|Small|WGK74616.1|tpos:1-172	inside	1	172				
+//
+# antigen_94|O83838|Uncharacterized|WGK75233.1|tpos:1-61 Length: 61
+# antigen_94|O83838|Uncharacterized|WGK75233.1|tpos:1-61 Number of predicted TMRs: 0
+antigen_94|O83838|Uncharacterized|WGK75233.1|tpos:1-61	inside	1	61				
+//
+# antigen_95|O83550|Uncharacterized|WGK74926.1|tpos:1-73 Length: 73
+# antigen_95|O83550|Uncharacterized|WGK74926.1|tpos:1-73 Number of predicted TMRs: 0
+antigen_95|O83550|Uncharacterized|WGK74926.1|tpos:1-73	inside	1	73				
+//
+# antigen_98|O83809|Threonine--tRNA|WGK75206.1|tpos:1-592 Length: 592
+# antigen_98|O83809|Threonine--tRNA|WGK75206.1|tpos:1-592 Number of predicted TMRs: 0
+antigen_98|O83809|Threonine--tRNA|WGK75206.1|tpos:1-592	inside	1	592				
+//
+# antigen_185|O83653|Serine--tRNA|WGK75026.1|tpos:1-426 Length: 426
+# antigen_185|O83653|Serine--tRNA|WGK75026.1|tpos:1-426 Number of predicted TMRs: 0
+antigen_185|O83653|Serine--tRNA|WGK75026.1|tpos:1-426	inside	1	426				
+//
+# antigen_41|O83500|Uncharacterized|WGK74878.1|tpos:86-535 Length: 450
+# antigen_41|O83500|Uncharacterized|WGK74878.1|tpos:86-535 Number of predicted TMRs: 0
+antigen_41|O83500|Uncharacterized|WGK74878.1|tpos:86-535	inside	1	450				
+//
+# antigen_44|O83690|Protein|WGK75070.1|tpos:1-407 Length: 407
+# antigen_44|O83690|Protein|WGK75070.1|tpos:1-407 Number of predicted TMRs: 0
+antigen_44|O83690|Protein|WGK75070.1|tpos:1-407	inside	1	407				
+//
+# antigen_49|O83463|Uncharacterized|WGK74842.1|tpos:1-196 Length: 196
+# antigen_49|O83463|Uncharacterized|WGK74842.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_49|O83463|Uncharacterized|WGK74842.1|tpos:1-196	signal	1	21				
+antigen_49|O83463|Uncharacterized|WGK74842.1|tpos:1-196	outside	22	196				
+//
+# antigen_50|O83805|Uncharacterized|WGK75202.1|tpos:1-240 Length: 240
+# antigen_50|O83805|Uncharacterized|WGK75202.1|tpos:1-240 Number of predicted TMRs: 0
+antigen_50|O83805|Uncharacterized|WGK75202.1|tpos:1-240	signal	1	21				
+antigen_50|O83805|Uncharacterized|WGK75202.1|tpos:1-240	outside	22	240				
+//
+# antigen_51|O83593|Uncharacterized|WGK74969.1|tpos:1-469 Length: 469
+# antigen_51|O83593|Uncharacterized|WGK74969.1|tpos:1-469 Number of predicted TMRs: 0
+antigen_51|O83593|Uncharacterized|WGK74969.1|tpos:1-469	inside	1	469				
+//
+# antigen_152|O83977|Co-chaperonin|WGK75374.1|tpos:1-88 Length: 88
+# antigen_152|O83977|Co-chaperonin|WGK75374.1|tpos:1-88 Number of predicted TMRs: 0
+antigen_152|O83977|Co-chaperonin|WGK75374.1|tpos:1-88	inside	1	88				
+//
+# antigen_153|O83774|FAD:protein|WGK75168.1|tpos:1-362 Length: 362
+# antigen_153|O83774|FAD:protein|WGK75168.1|tpos:1-362 Number of predicted TMRs: 0
+antigen_153|O83774|FAD:protein|WGK75168.1|tpos:1-362	signal	1	22				
+antigen_153|O83774|FAD:protein|WGK75168.1|tpos:1-362	outside	23	362				
+//
+# antigen_52|O83802|tRNA|WGK75199.1|tpos:1-244 Length: 244
+# antigen_52|O83802|tRNA|WGK75199.1|tpos:1-244 Number of predicted TMRs: 0
+antigen_52|O83802|tRNA|WGK75199.1|tpos:1-244	inside	1	244				
+//
+# antigen_54|O83241|Small|WGK74622.1|tpos:1-126 Length: 126
+# antigen_54|O83241|Small|WGK74622.1|tpos:1-126 Number of predicted TMRs: 0
+antigen_54|O83241|Small|WGK74622.1|tpos:1-126	inside	1	126				
+//
+# antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|WGK74766.1|tpos:1-291 Length: 291
+# antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|WGK74766.1|tpos:1-291 Number of predicted TMRs: 0
+antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|WGK74766.1|tpos:1-291	inside	1	291				
+//
+# antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128 Length: 128
+# antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128 Number of predicted TMRs: 4
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	outside	1	3				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	TMhelix	4	19				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	inside	20	37				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	TMhelix	38	53				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	outside	54	69				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	TMhelix	70	84				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	inside	85	106				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	TMhelix	107	122				
+antigen_122|O83109|Uncharacterized|WGK74491.1|tpos:1-128	outside	123	128				
+//
+# antigen_123|O83982|Glutamyl-tRNA(Gln)|WGK75380.1|tpos:34-147 Length: 114
+# antigen_123|O83982|Glutamyl-tRNA(Gln)|WGK75380.1|tpos:34-147 Number of predicted TMRs: 0
+antigen_123|O83982|Glutamyl-tRNA(Gln)|WGK75380.1|tpos:34-147	inside	1	114				
+//
+# antigen_172|O83747|Uncharacterized|WGK75139.1|tpos:1-293 Length: 293
+# antigen_172|O83747|Uncharacterized|WGK75139.1|tpos:1-293 Number of predicted TMRs: 0
+antigen_172|O83747|Uncharacterized|WGK75139.1|tpos:1-293	inside	1	293				
+//
+# antigen_174|O83564|Putative|WGK74940.1|tpos:1-403 Length: 403
+# antigen_174|O83564|Putative|WGK74940.1|tpos:1-403 Number of predicted TMRs: 10
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	inside	1	9				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	10	28				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	outside	29	30				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	31	45				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	inside	46	93				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	94	115				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	outside	116	187				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	188	206				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	inside	207	241				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	242	262				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	outside	263	268				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	269	285				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	inside	286	286				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	287	297				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	outside	298	306				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	307	324				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	inside	325	337				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	338	351				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	outside	352	352				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	TMhelix	353	370				
+antigen_174|O83564|Putative|WGK74940.1|tpos:1-403	inside	371	403				
+//
+# antigen_14|O83101|Single-stranded|WGK74483.1|tpos:1-176 Length: 176
+# antigen_14|O83101|Single-stranded|WGK74483.1|tpos:1-176 Number of predicted TMRs: 0
+antigen_14|O83101|Single-stranded|WGK74483.1|tpos:1-176	inside	1	176				
+//
+# antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546 Length: 546
+# antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546 Number of predicted TMRs: 8
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	inside	1	10				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	11	27				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	outside	28	36				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	37	49				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	inside	50	57				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	58	75				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	outside	76	84				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	85	105				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	inside	106	116				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	117	130				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	outside	131	161				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	162	181				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	inside	182	201				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	202	219				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	outside	220	515				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	TMhelix	516	534				
+antigen_15|O83279|Apolipoprotein|WGK74661.1|tpos:1-546	inside	535	546				
+//
+# antigen_179|O83705|Uncharacterized|WGK75083.1|tpos:1-159 Length: 159
+# antigen_179|O83705|Uncharacterized|WGK75083.1|tpos:1-159 Number of predicted TMRs: 2
+antigen_179|O83705|Uncharacterized|WGK75083.1|tpos:1-159	inside	1	55				
+antigen_179|O83705|Uncharacterized|WGK75083.1|tpos:1-159	TMhelix	56	85				
+antigen_179|O83705|Uncharacterized|WGK75083.1|tpos:1-159	outside	86	90				
+antigen_179|O83705|Uncharacterized|WGK75083.1|tpos:1-159	TMhelix	91	109				
+antigen_179|O83705|Uncharacterized|WGK75083.1|tpos:1-159	inside	110	159				
+//
+# antigen_186|O83949|Chaperone|WGK75345.1|tpos:1-639 Length: 639
+# antigen_186|O83949|Chaperone|WGK75345.1|tpos:1-639 Number of predicted TMRs: 0
+antigen_186|O83949|Chaperone|WGK75345.1|tpos:1-639	inside	1	639				
+//
+# antigen_154|O83344|Uncharacterized|WGK74721.1|tpos:1-477 Length: 477
+# antigen_154|O83344|Uncharacterized|WGK74721.1|tpos:1-477 Number of predicted TMRs: 1
+antigen_154|O83344|Uncharacterized|WGK74721.1|tpos:1-477	inside	1	12				
+antigen_154|O83344|Uncharacterized|WGK74721.1|tpos:1-477	TMhelix	13	33				
+antigen_154|O83344|Uncharacterized|WGK74721.1|tpos:1-477	outside	34	477				
+//
+# antigen_199|O83683|Uncharacterized|WGK75055.1|tpos:1-202 Length: 202
+# antigen_199|O83683|Uncharacterized|WGK75055.1|tpos:1-202 Number of predicted TMRs: 0
+antigen_199|O83683|Uncharacterized|WGK75055.1|tpos:1-202	inside	1	202				
+//
+# antigen_34|O83110|Chaperone|WGK74492.1|tpos:1-878 Length: 878
+# antigen_34|O83110|Chaperone|WGK74492.1|tpos:1-878 Number of predicted TMRs: 0
+antigen_34|O83110|Chaperone|WGK74492.1|tpos:1-878	inside	1	878				
+//
+# antigen_20|O83640|Tryptophan--tRNA|WGK75012.1|tpos:1-337 Length: 337
+# antigen_20|O83640|Tryptophan--tRNA|WGK75012.1|tpos:1-337 Number of predicted TMRs: 0
+antigen_20|O83640|Tryptophan--tRNA|WGK75012.1|tpos:1-337	inside	1	337				
+//
+# antigen_21|O83610|1-deoxy-D-xylulose|WGK74983.1|tpos:1-376 Length: 376
+# antigen_21|O83610|1-deoxy-D-xylulose|WGK74983.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_21|O83610|1-deoxy-D-xylulose|WGK74983.1|tpos:1-376	inside	1	376				
+//
+# antigen_57|O83819|Uncharacterized|WGK75216.1|tpos:1-111 Length: 111
+# antigen_57|O83819|Uncharacterized|WGK75216.1|tpos:1-111 Number of predicted TMRs: 0
+antigen_57|O83819|Uncharacterized|WGK75216.1|tpos:1-111	inside	1	111				
+//
+# antigen_43|O83048|Beta|WGK74431.1|tpos:1-371 Length: 371
+# antigen_43|O83048|Beta|WGK74431.1|tpos:1-371 Number of predicted TMRs: 0
+antigen_43|O83048|Beta|WGK74431.1|tpos:1-371	inside	1	371				
+//
+# antigen_3|O83971|Flavin-dependent|WGK75368.1|tpos:1-305 Length: 305
+# antigen_3|O83971|Flavin-dependent|WGK75368.1|tpos:1-305 Number of predicted TMRs: 0
+antigen_3|O83971|Flavin-dependent|WGK75368.1|tpos:1-305	inside	1	305				
+//
+# antigen_74|O83990|Uridine|WGK75389.1|tpos:1-258 Length: 258
+# antigen_74|O83990|Uridine|WGK75389.1|tpos:1-258 Number of predicted TMRs: 0
+antigen_74|O83990|Uridine|WGK75389.1|tpos:1-258	inside	1	258				
+//
+# antigen_75|O83979|Transcription|WGK75376.1|tpos:1-141 Length: 141
+# antigen_75|O83979|Transcription|WGK75376.1|tpos:1-141 Number of predicted TMRs: 0
+antigen_75|O83979|Transcription|WGK75376.1|tpos:1-141	inside	1	141				
+//
+# antigen_99|P96130|ATP-dependent|WGK75065.1|tpos:1-686 Length: 686
+# antigen_99|P96130|ATP-dependent|WGK75065.1|tpos:1-686 Number of predicted TMRs: 0
+antigen_99|P96130|ATP-dependent|WGK75065.1|tpos:1-686	inside	1	686				
+//
+# antigen_124|O83132|Phosphate|WGK74515.1|tpos:1-336 Length: 336
+# antigen_124|O83132|Phosphate|WGK74515.1|tpos:1-336 Number of predicted TMRs: 0
+antigen_124|O83132|Phosphate|WGK74515.1|tpos:1-336	inside	1	336				
+//
+# antigen_125|O83204|Uncharacterized|WGK74587.1|tpos:280-506 Length: 227
+# antigen_125|O83204|Uncharacterized|WGK74587.1|tpos:280-506 Number of predicted TMRs: 0
+antigen_125|O83204|Uncharacterized|WGK74587.1|tpos:280-506	inside	1	227				
+//
+# antigen_190|O83720|Ribosomal|WGK75113.1|tpos:1-111 Length: 111
+# antigen_190|O83720|Ribosomal|WGK75113.1|tpos:1-111 Number of predicted TMRs: 0
+antigen_190|O83720|Ribosomal|WGK75113.1|tpos:1-111	inside	1	111				
+//
+# antigen_191|O83667|Uncharacterized|WGK75039.1|tpos:1-170 Length: 170
+# antigen_191|O83667|Uncharacterized|WGK75039.1|tpos:1-170 Number of predicted TMRs: 0
+antigen_191|O83667|Uncharacterized|WGK75039.1|tpos:1-170	inside	1	170				
+//
+# antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707 Length: 707
+# antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707 Number of predicted TMRs: 8
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	inside	1	11				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	12	30				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	outside	31	33				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	34	56				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	inside	57	63				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	64	83				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	outside	84	114				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	115	134				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	inside	135	200				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	201	221				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	outside	222	238				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	239	259				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	inside	260	281				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	282	297				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	outside	298	302				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	TMhelix	303	317				
+antigen_192|Q56338|Flagellar|WGK75090.1|tpos:1-707	inside	318	707				
+//
+# antigen_13|O83154|UvrABC|WGK74537.1|tpos:1-668 Length: 668
+# antigen_13|O83154|UvrABC|WGK74537.1|tpos:1-668 Number of predicted TMRs: 0
+antigen_13|O83154|UvrABC|WGK74537.1|tpos:1-668	inside	1	668				
+//
+# antigen_160|B2S2F4|Large|WGK74617.1|tpos:1-61 Length: 61
+# antigen_160|B2S2F4|Large|WGK74617.1|tpos:1-61 Number of predicted TMRs: 0
+antigen_160|B2S2F4|Large|WGK74617.1|tpos:1-61	inside	1	61				
+//
+# antigen_161|O83131|Uncharacterized|WGK74514.1|tpos:1-215 Length: 215
+# antigen_161|O83131|Uncharacterized|WGK74514.1|tpos:1-215 Number of predicted TMRs: 1
+antigen_161|O83131|Uncharacterized|WGK74514.1|tpos:1-215	inside	1	109				
+antigen_161|O83131|Uncharacterized|WGK74514.1|tpos:1-215	TMhelix	110	119				
+antigen_161|O83131|Uncharacterized|WGK74514.1|tpos:1-215	outside	120	215				
+//
+# antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376 Length: 376
+# antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376 Number of predicted TMRs: 4
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	inside	1	50				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	TMhelix	51	71				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	outside	72	103				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	TMhelix	104	124				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	inside	125	164				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	TMhelix	165	183				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	outside	184	211				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	TMhelix	212	230				
+antigen_162|O83710|Flagellar|WGK75091.1|tpos:1-376	inside	231	376				
+//
+# antigen_163|O84003|ATP-dependent|WGK75402.1|tpos:1-199 Length: 199
+# antigen_163|O84003|ATP-dependent|WGK75402.1|tpos:1-199 Number of predicted TMRs: 0
+antigen_163|O84003|ATP-dependent|WGK75402.1|tpos:1-199	inside	1	199				
+//
+# antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403 Length: 374
+# antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403 Number of predicted TMRs: 8
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	signal	1	21				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	periplasm	22	216				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	217	224				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	outside	225	248				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	249	257				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	periplasm	258	266				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	267	274				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	outside	275	283				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	284	293				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	periplasm	294	301				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	302	310				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	outside	311	322				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	323	333				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	periplasm	334	338				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	339	348				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	outside	349	361				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	Beta sheet	362	370				
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	periplasm	371	374				
+//
+# antigen_189|O83541|V-type|WGK74917.1|tpos:1-605 Length: 605
+# antigen_189|O83541|V-type|WGK74917.1|tpos:1-605 Number of predicted TMRs: 0
+antigen_189|O83541|V-type|WGK74917.1|tpos:1-605	inside	1	605				
+//
+# antigen_147|O83319|Dephospho-CoA|WGK74698.1|tpos:1-211 Length: 211
+# antigen_147|O83319|Dephospho-CoA|WGK74698.1|tpos:1-211 Number of predicted TMRs: 0
+antigen_147|O83319|Dephospho-CoA|WGK74698.1|tpos:1-211	inside	1	211				
+//
+# antigen_149|O83956|Rubredoxin|WGK75352.1|tpos:1-52 Length: 52
+# antigen_149|O83956|Rubredoxin|WGK75352.1|tpos:1-52 Number of predicted TMRs: 0
+antigen_149|O83956|Rubredoxin|WGK75352.1|tpos:1-52	inside	1	52				
+//
+# antigen_150|O83878|tRNA|WGK75272.1|tpos:1-250 Length: 250
+# antigen_150|O83878|tRNA|WGK75272.1|tpos:1-250 Number of predicted TMRs: 0
+antigen_150|O83878|tRNA|WGK75272.1|tpos:1-250	inside	1	250				
+//
+# antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162 Length: 162
+# antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162 Number of predicted TMRs: 4
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	inside	1	24				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	TMhelix	25	35				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	outside	36	37				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	TMhelix	38	47				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	inside	48	61				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	TMhelix	62	72				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	outside	73	111				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	TMhelix	112	128				
+antigen_24|O83493|Uncharacterized|WGK74872.1|tpos:1-162	inside	129	162				
+//
+# antigen_26|O83058|Uncharacterized|WGK74437.1|tpos:219-410 Length: 192
+# antigen_26|O83058|Uncharacterized|WGK74437.1|tpos:219-410 Number of predicted TMRs: 0
+antigen_26|O83058|Uncharacterized|WGK74437.1|tpos:219-410	inside	1	192				
+//
+# antigen_29|O83052|Uncharacterized|WGK74437.1|tpos:96-301 Length: 206
+# antigen_29|O83052|Uncharacterized|WGK74437.1|tpos:96-301 Number of predicted TMRs: 0
+antigen_29|O83052|Uncharacterized|WGK74437.1|tpos:96-301	inside	1	206				
+//
+# antigen_151|O83442|V-type|WGK74821.1|tpos:1-430 Length: 430
+# antigen_151|O83442|V-type|WGK74821.1|tpos:1-430 Number of predicted TMRs: 0
+antigen_151|O83442|V-type|WGK74821.1|tpos:1-430	inside	1	430				

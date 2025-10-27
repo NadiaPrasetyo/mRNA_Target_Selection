@@ -1,0 +1,1005 @@
+##gff-version 3
+# antigen_149|O83956|Rubredoxin|AHN67633.1|tpos:1-52 Length: 52
+# antigen_149|O83956|Rubredoxin|AHN67633.1|tpos:1-52 Number of predicted TMRs: 0
+antigen_149|O83956|Rubredoxin|AHN67633.1|tpos:1-52	inside	1	52				
+//
+# antigen_18|O83530|Crossover|AHN67188.1|tpos:1-196 Length: 196
+# antigen_18|O83530|Crossover|AHN67188.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_18|O83530|Crossover|AHN67188.1|tpos:1-196	inside	1	196				
+//
+# antigen_19|O83324|Probable|AHN66992.1|tpos:1-313 Length: 313
+# antigen_19|O83324|Probable|AHN66992.1|tpos:1-313 Number of predicted TMRs: 9
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	outside	1	14				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	15	28				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	inside	29	33				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	34	54				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	outside	55	59				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	60	80				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	inside	81	88				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	89	102				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	outside	103	144				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	145	160				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	inside	161	191				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	192	212				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	outside	213	226				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	227	236				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	inside	237	240				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	241	253				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	outside	254	268				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	TMhelix	269	284				
+antigen_19|O83324|Probable|AHN66992.1|tpos:1-313	inside	285	313				
+//
+# antigen_20|O83640|Tryptophan--tRNA|AHN67300.1|tpos:1-337 Length: 337
+# antigen_20|O83640|Tryptophan--tRNA|AHN67300.1|tpos:1-337 Number of predicted TMRs: 0
+antigen_20|O83640|Tryptophan--tRNA|AHN67300.1|tpos:1-337	inside	1	337				
+//
+# antigen_190|O83720|Ribosomal|AHN67396.1|tpos:1-111 Length: 111
+# antigen_190|O83720|Ribosomal|AHN67396.1|tpos:1-111 Number of predicted TMRs: 0
+antigen_190|O83720|Ribosomal|AHN67396.1|tpos:1-111	inside	1	111				
+//
+# antigen_57|O83819|Uncharacterized|AHN67501.1|tpos:1-111 Length: 111
+# antigen_57|O83819|Uncharacterized|AHN67501.1|tpos:1-111 Number of predicted TMRs: 0
+antigen_57|O83819|Uncharacterized|AHN67501.1|tpos:1-111	inside	1	111				
+//
+# antigen_58|O66107|Ribulose-phosphate|AHN67585.1|tpos:1-218 Length: 218
+# antigen_58|O66107|Ribulose-phosphate|AHN67585.1|tpos:1-218 Number of predicted TMRs: 0
+antigen_58|O66107|Ribulose-phosphate|AHN67585.1|tpos:1-218	inside	1	218				
+//
+# antigen_59|O83452|dITP/XTP|AHN67117.1|tpos:1-254 Length: 254
+# antigen_59|O83452|dITP/XTP|AHN67117.1|tpos:1-254 Number of predicted TMRs: 0
+antigen_59|O83452|dITP/XTP|AHN67117.1|tpos:1-254	inside	1	254				
+//
+# antigen_8|O83168|Uncharacterized|AHN66835.1|tpos:5-64 Length: 60
+# antigen_8|O83168|Uncharacterized|AHN66835.1|tpos:5-64 Number of predicted TMRs: 0
+antigen_8|O83168|Uncharacterized|AHN66835.1|tpos:5-64	inside	1	60				
+//
+# antigen_10|O83195|Proline--tRNA|AHN66864.1|tpos:3-619 Length: 617
+# antigen_10|O83195|Proline--tRNA|AHN66864.1|tpos:3-619 Number of predicted TMRs: 0
+antigen_10|O83195|Proline--tRNA|AHN66864.1|tpos:3-619	inside	1	617				
+//
+# antigen_23|O83975|Peptidyl-tRNA|AHN67653.1|tpos:1-202 Length: 202
+# antigen_23|O83975|Peptidyl-tRNA|AHN67653.1|tpos:1-202 Number of predicted TMRs: 0
+antigen_23|O83975|Peptidyl-tRNA|AHN67653.1|tpos:1-202	inside	1	202				
+//
+# antigen_78|O83797|Uncharacterized|AHN67478.1|tpos:1-61 Length: 61
+# antigen_78|O83797|Uncharacterized|AHN67478.1|tpos:1-61 Number of predicted TMRs: 0
+antigen_78|O83797|Uncharacterized|AHN67478.1|tpos:1-61	inside	1	61				
+//
+# antigen_80|O83969|Recombination|AHN67646.1|tpos:1-201 Length: 201
+# antigen_80|O83969|Recombination|AHN67646.1|tpos:1-201 Number of predicted TMRs: 0
+antigen_80|O83969|Recombination|AHN67646.1|tpos:1-201	inside	1	201				
+//
+# antigen_150|O83878|tRNA|AHN67551.1|tpos:1-250 Length: 250
+# antigen_150|O83878|tRNA|AHN67551.1|tpos:1-250 Number of predicted TMRs: 0
+antigen_150|O83878|tRNA|AHN67551.1|tpos:1-250	inside	1	250				
+//
+# antigen_49|O83463|Uncharacterized|AHN67130.1|tpos:1-196 Length: 196
+# antigen_49|O83463|Uncharacterized|AHN67130.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_49|O83463|Uncharacterized|AHN67130.1|tpos:1-196	signal	1	21				
+antigen_49|O83463|Uncharacterized|AHN67130.1|tpos:1-196	outside	22	196				
+//
+# antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|AHN67056.1|tpos:1-291 Length: 291
+# antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|AHN67056.1|tpos:1-291 Number of predicted TMRs: 0
+antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|AHN67056.1|tpos:1-291	inside	1	291				
+//
+# antigen_116|O83099|Large|AHN66763.1|tpos:1-156 Length: 156
+# antigen_116|O83099|Large|AHN66763.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_116|O83099|Large|AHN66763.1|tpos:1-156	inside	1	156				
+//
+# antigen_118|O83253|Uncharacterized|AHN66924.1|tpos:1-34 Length: 34
+# antigen_118|O83253|Uncharacterized|AHN66924.1|tpos:1-34 Number of predicted TMRs: 0
+antigen_118|O83253|Uncharacterized|AHN66924.1|tpos:1-34	signal	1	30				
+antigen_118|O83253|Uncharacterized|AHN66924.1|tpos:1-34	outside	31	34				
+//
+# antigen_119|O83142|Probable|AHN66807.1|tpos:1-593 Length: 593
+# antigen_119|O83142|Probable|AHN66807.1|tpos:1-593 Number of predicted TMRs: 0
+antigen_119|O83142|Probable|AHN66807.1|tpos:1-593	signal	1	21				
+antigen_119|O83142|Probable|AHN66807.1|tpos:1-593	outside	22	593				
+//
+# antigen_177|O66106|Ribosomal|AHN67586.1|tpos:1-222 Length: 222
+# antigen_177|O66106|Ribosomal|AHN67586.1|tpos:1-222 Number of predicted TMRs: 0
+antigen_177|O66106|Ribosomal|AHN67586.1|tpos:1-222	inside	1	222				
+//
+# antigen_16|O83723|Probable|AHN67399.1|tpos:1-204 Length: 204
+# antigen_16|O83723|Probable|AHN67399.1|tpos:1-204 Number of predicted TMRs: 0
+antigen_16|O83723|Probable|AHN67399.1|tpos:1-204	inside	1	204				
+//
+# antigen_17|O83859|tRNA|AHN67538.1|tpos:1-361 Length: 361
+# antigen_17|O83859|tRNA|AHN67538.1|tpos:1-361 Number of predicted TMRs: 0
+antigen_17|O83859|tRNA|AHN67538.1|tpos:1-361	inside	1	361				
+//
+# antigen_44|O83690|Protein|AHN67354.1|tpos:1-407 Length: 407
+# antigen_44|O83690|Protein|AHN67354.1|tpos:1-407 Number of predicted TMRs: 0
+antigen_44|O83690|Protein|AHN67354.1|tpos:1-407	inside	1	407				
+//
+# antigen_45|O83230|Large|AHN66899.1|tpos:1-103 Length: 103
+# antigen_45|O83230|Large|AHN66899.1|tpos:1-103 Number of predicted TMRs: 0
+antigen_45|O83230|Large|AHN66899.1|tpos:1-103	inside	1	103				
+//
+# antigen_46|B2S369|Probable|AHN67152.1|tpos:1-245 Length: 245
+# antigen_46|B2S369|Probable|AHN67152.1|tpos:1-245 Number of predicted TMRs: 0
+antigen_46|B2S369|Probable|AHN67152.1|tpos:1-245	inside	1	245				
+//
+# antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228 Length: 228
+# antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228 Number of predicted TMRs: 4
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	inside	1	18				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	TMhelix	19	34				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	outside	35	38				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	TMhelix	39	54				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	inside	55	67				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	TMhelix	68	81				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	outside	82	104				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	TMhelix	105	119				
+antigen_47|O83254|Uncharacterized|AHN66926.1|tpos:1-228	inside	120	228				
+//
+# antigen_161|O83131|Uncharacterized|AHN66797.1|tpos:1-215 Length: 215
+# antigen_161|O83131|Uncharacterized|AHN66797.1|tpos:1-215 Number of predicted TMRs: 1
+antigen_161|O83131|Uncharacterized|AHN66797.1|tpos:1-215	inside	1	109				
+antigen_161|O83131|Uncharacterized|AHN66797.1|tpos:1-215	TMhelix	110	119				
+antigen_161|O83131|Uncharacterized|AHN66797.1|tpos:1-215	outside	120	215				
+//
+# antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376 Length: 376
+# antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376 Number of predicted TMRs: 4
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	inside	1	50				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	TMhelix	51	68				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	outside	69	103				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	TMhelix	104	124				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	inside	125	164				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	TMhelix	165	183				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	outside	184	211				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	TMhelix	212	230				
+antigen_162|O83710|Flagellar|AHN67374.1|tpos:1-376	inside	231	376				
+//
+# antigen_163|O84003|ATP-dependent|AHN67685.1|tpos:1-199 Length: 199
+# antigen_163|O84003|ATP-dependent|AHN67685.1|tpos:1-199 Number of predicted TMRs: 0
+antigen_163|O84003|ATP-dependent|AHN67685.1|tpos:1-199	inside	1	199				
+//
+# antigen_74|O83990|Uridine|AHN67672.1|tpos:21-278 Length: 258
+# antigen_74|O83990|Uridine|AHN67672.1|tpos:21-278 Number of predicted TMRs: 0
+antigen_74|O83990|Uridine|AHN67672.1|tpos:21-278	inside	1	258				
+//
+# antigen_75|O83979|Transcription|AHN67657.1|tpos:1-141 Length: 141
+# antigen_75|O83979|Transcription|AHN67657.1|tpos:1-141 Number of predicted TMRs: 0
+antigen_75|O83979|Transcription|AHN67657.1|tpos:1-141	inside	1	141				
+//
+# antigen_76|O83229|Large|AHN66898.1|tpos:1-122 Length: 122
+# antigen_76|O83229|Large|AHN66898.1|tpos:1-122 Number of predicted TMRs: 0
+antigen_76|O83229|Large|AHN66898.1|tpos:1-122	inside	1	122				
+//
+# antigen_117|O83170|Uncharacterized|AHN66837.1|tpos:1-376 Length: 376
+# antigen_117|O83170|Uncharacterized|AHN66837.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_117|O83170|Uncharacterized|AHN66837.1|tpos:1-376	signal	1	28				
+antigen_117|O83170|Uncharacterized|AHN66837.1|tpos:1-376	outside	29	376				
+//
+# antigen_120|O07896|Ribonuclease|AHN67471.1|tpos:1-308 Length: 308
+# antigen_120|O07896|Ribonuclease|AHN67471.1|tpos:1-308 Number of predicted TMRs: 0
+antigen_120|O07896|Ribonuclease|AHN67471.1|tpos:1-308	inside	1	308				
+//
+# antigen_165|O83266|Large|AHN66937.1|tpos:1-226 Length: 226
+# antigen_165|O83266|Large|AHN66937.1|tpos:1-226 Number of predicted TMRs: 0
+antigen_165|O83266|Large|AHN66937.1|tpos:1-226	inside	1	226				
+//
+# antigen_134|O83739|Small|AHN67416.1|tpos:1-69 Length: 69
+# antigen_134|O83739|Small|AHN67416.1|tpos:1-69 Number of predicted TMRs: 0
+antigen_134|O83739|Small|AHN67416.1|tpos:1-69	inside	1	69				
+//
+# antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292 Length: 292
+# antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292 Number of predicted TMRs: 2
+antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292	signal	1	19				
+antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292	outside	20	227				
+antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292	TMhelix	228	250				
+antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292	inside	251	261				
+antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292	TMhelix	262	286				
+antigen_135|O83575|Uncharacterized|AHN67236.1|tpos:1-292	outside	287	292				
+//
+# antigen_5|O83490|6-phosphogluconolactonase|AHN67155.1|tpos:1-212 Length: 212
+# antigen_5|O83490|6-phosphogluconolactonase|AHN67155.1|tpos:1-212 Number of predicted TMRs: 0
+antigen_5|O83490|6-phosphogluconolactonase|AHN67155.1|tpos:1-212	inside	1	212				
+//
+# antigen_6|O83806|Tyrosine--tRNA|AHN67488.1|tpos:8-416 Length: 409
+# antigen_6|O83806|Tyrosine--tRNA|AHN67488.1|tpos:8-416 Number of predicted TMRs: 0
+antigen_6|O83806|Tyrosine--tRNA|AHN67488.1|tpos:8-416	inside	1	409				
+//
+# antigen_194|O83485|UvrABC|AHN67151.1|tpos:1-691 Length: 691
+# antigen_194|O83485|UvrABC|AHN67151.1|tpos:1-691 Number of predicted TMRs: 0
+antigen_194|O83485|UvrABC|AHN67151.1|tpos:1-691	inside	1	691				
+//
+# antigen_107|O83066|Uncharacterized|AHN66724.1|tpos:1-681 Length: 681
+# antigen_107|O83066|Uncharacterized|AHN66724.1|tpos:1-681 Number of predicted TMRs: 0
+antigen_107|O83066|Uncharacterized|AHN66724.1|tpos:1-681	inside	1	681				
+//
+# antigen_121|O83258|Replication|AHN66930.1|tpos:1-657 Length: 657
+# antigen_121|O83258|Replication|AHN66930.1|tpos:1-657 Number of predicted TMRs: 0
+antigen_121|O83258|Replication|AHN66930.1|tpos:1-657	inside	1	657				
+//
+# antigen_2|O83608|Uncharacterized|AHN67268.1|tpos:1-217 Length: 217
+# antigen_2|O83608|Uncharacterized|AHN67268.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_2|O83608|Uncharacterized|AHN67268.1|tpos:1-217	inside	1	217				
+//
+# antigen_35|O83727|Large|AHN67403.1|tpos:7-111 Length: 105
+# antigen_35|O83727|Large|AHN67403.1|tpos:7-111 Number of predicted TMRs: 0
+antigen_35|O83727|Large|AHN67403.1|tpos:7-111	inside	1	105				
+//
+# antigen_100|O83668|Fructose-bisphosphate|AHN67325.1|tpos:1-332 Length: 332
+# antigen_100|O83668|Fructose-bisphosphate|AHN67325.1|tpos:1-332 Number of predicted TMRs: 0
+antigen_100|O83668|Fructose-bisphosphate|AHN67325.1|tpos:1-332	inside	1	332				
+//
+# antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121 Length: 121
+# antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121 Number of predicted TMRs: 3
+antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121	inside	1	24				
+antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121	TMhelix	25	42				
+antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121	outside	43	60				
+antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121	TMhelix	61	77				
+antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121	inside	78	93				
+antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121	TMhelix	94	114				
+antigen_101|O83766|Uncharacterized|AHN67445.1|tpos:1-121	outside	115	121				
+//
+# antigen_102|O83228|Small|AHN66897.1|tpos:1-84 Length: 84
+# antigen_102|O83228|Small|AHN66897.1|tpos:1-84 Number of predicted TMRs: 0
+antigen_102|O83228|Small|AHN66897.1|tpos:1-84	inside	1	84				
+//
+# antigen_103|O83845|tRNA|AHN67524.1|tpos:13-147 Length: 135
+# antigen_103|O83845|tRNA|AHN67524.1|tpos:13-147 Number of predicted TMRs: 0
+antigen_103|O83845|tRNA|AHN67524.1|tpos:13-147	inside	1	135				
+//
+# antigen_36|O83074|Uncharacterized|AHN66733.1|tpos:1-92 Length: 92
+# antigen_36|O83074|Uncharacterized|AHN66733.1|tpos:1-92 Number of predicted TMRs: 0
+antigen_36|O83074|Uncharacterized|AHN66733.1|tpos:1-92	inside	1	92				
+//
+# antigen_37|O83537|Elongation|AHN67195.1|tpos:1-187 Length: 187
+# antigen_37|O83537|Elongation|AHN67195.1|tpos:1-187 Number of predicted TMRs: 0
+antigen_37|O83537|Elongation|AHN67195.1|tpos:1-187	inside	1	187				
+//
+# antigen_39|O83792|Uncharacterized|AHN67469.1|tpos:1-221 Length: 221
+# antigen_39|O83792|Uncharacterized|AHN67469.1|tpos:1-221 Number of predicted TMRs: 0
+antigen_39|O83792|Uncharacterized|AHN67469.1|tpos:1-221	inside	1	221				
+//
+# antigen_181|O83590|Lipoprotein-releasing|AHN67253.1|tpos:1-226 Length: 226
+# antigen_181|O83590|Lipoprotein-releasing|AHN67253.1|tpos:1-226 Number of predicted TMRs: 0
+antigen_181|O83590|Lipoprotein-releasing|AHN67253.1|tpos:1-226	inside	1	226				
+//
+# antigen_184|O83546|Uncharacterized|AHN67206.1|tpos:25-94 Length: 70
+# antigen_184|O83546|Uncharacterized|AHN67206.1|tpos:25-94 Number of predicted TMRs: 0
+antigen_184|O83546|Uncharacterized|AHN67206.1|tpos:25-94	inside	1	70				
+//
+# antigen_185|O83653|Serine--tRNA|AHN67313.1|tpos:1-426 Length: 426
+# antigen_185|O83653|Serine--tRNA|AHN67313.1|tpos:1-426 Number of predicted TMRs: 0
+antigen_185|O83653|Serine--tRNA|AHN67313.1|tpos:1-426	inside	1	426				
+//
+# antigen_14|O83101|Single-stranded|AHN66765.1|tpos:1-176 Length: 176
+# antigen_14|O83101|Single-stranded|AHN66765.1|tpos:1-176 Number of predicted TMRs: 0
+antigen_14|O83101|Single-stranded|AHN66765.1|tpos:1-176	inside	1	176				
+//
+# antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546 Length: 546
+# antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546 Number of predicted TMRs: 8
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	inside	1	10				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	11	27				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	outside	28	36				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	37	49				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	inside	50	57				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	58	75				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	outside	76	84				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	85	105				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	inside	106	116				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	117	130				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	outside	131	161				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	162	181				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	inside	182	201				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	202	219				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	outside	220	515				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	TMhelix	516	534				
+antigen_15|O83279|Apolipoprotein|AHN66951.1|tpos:1-546	inside	535	546				
+//
+# antigen_174|O83564|Putative|AHN67225.1|tpos:1-403 Length: 403
+# antigen_174|O83564|Putative|AHN67225.1|tpos:1-403 Number of predicted TMRs: 10
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	inside	1	9				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	10	28				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	outside	29	30				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	31	45				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	inside	46	93				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	94	115				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	outside	116	187				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	188	206				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	inside	207	241				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	242	262				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	outside	263	268				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	269	285				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	inside	286	286				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	287	297				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	outside	298	306				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	307	324				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	inside	325	337				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	338	351				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	outside	352	352				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	TMhelix	353	370				
+antigen_174|O83564|Putative|AHN67225.1|tpos:1-403	inside	371	403				
+//
+# antigen_175|O83237|Large|AHN66907.1|tpos:1-153 Length: 153
+# antigen_175|O83237|Large|AHN66907.1|tpos:1-153 Number of predicted TMRs: 0
+antigen_175|O83237|Large|AHN66907.1|tpos:1-153	inside	1	153				
+//
+# antigen_176|O83220|Large|AHN66889.1|tpos:1-216 Length: 216
+# antigen_176|O83220|Large|AHN66889.1|tpos:1-216 Number of predicted TMRs: 0
+antigen_176|O83220|Large|AHN66889.1|tpos:1-216	inside	1	216				
+//
+# antigen_69|O83822|Translation|AHN67504.1|tpos:1-173 Length: 173
+# antigen_69|O83822|Translation|AHN67504.1|tpos:1-173 Number of predicted TMRs: 0
+antigen_69|O83822|Translation|AHN67504.1|tpos:1-173	inside	1	173				
+//
+# antigen_178|O83129|Cysteine--tRNA|AHN66795.1|tpos:1-520 Length: 520
+# antigen_178|O83129|Cysteine--tRNA|AHN66795.1|tpos:1-520 Number of predicted TMRs: 0
+antigen_178|O83129|Cysteine--tRNA|AHN66795.1|tpos:1-520	inside	1	520				
+//
+# antigen_71|O07887|Motility|AHN67382.1|tpos:3-240 Length: 238
+# antigen_71|O07887|Motility|AHN67382.1|tpos:3-240 Number of predicted TMRs: 1
+antigen_71|O07887|Motility|AHN67382.1|tpos:3-240	inside	1	21				
+antigen_71|O07887|Motility|AHN67382.1|tpos:3-240	TMhelix	22	37				
+antigen_71|O07887|Motility|AHN67382.1|tpos:3-240	outside	38	238				
+//
+# antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298 Length: 298
+# antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298 Number of predicted TMRs: 9
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	outside	1	15				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	16	36				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	inside	37	44				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	45	60				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	outside	61	67				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	68	87				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	inside	88	97				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	98	113				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	outside	114	143				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	144	162				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	inside	163	186				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	187	201				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	outside	202	202				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	203	219				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	inside	220	228				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	229	248				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	outside	249	257				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	TMhelix	258	276				
+antigen_72|P96118|Zinc|AHN66869.1|tpos:1-298	inside	277	298				
+//
+# antigen_73|O83505|DNA|AHN67167.1|tpos:1-605 Length: 605
+# antigen_73|O83505|DNA|AHN67167.1|tpos:1-605 Number of predicted TMRs: 0
+antigen_73|O83505|DNA|AHN67167.1|tpos:1-605	inside	1	605				
+//
+# antigen_11|O83876|RNA-binding|AHN67549.1|tpos:1-77 Length: 77
+# antigen_11|O83876|RNA-binding|AHN67549.1|tpos:1-77 Number of predicted TMRs: 0
+antigen_11|O83876|RNA-binding|AHN67549.1|tpos:1-77	inside	1	77				
+//
+# antigen_170|O83085|Putative|AHN66747.1|tpos:1-299 Length: 299
+# antigen_170|O83085|Putative|AHN66747.1|tpos:1-299 Number of predicted TMRs: 0
+antigen_170|O83085|Putative|AHN66747.1|tpos:1-299	inside	1	299				
+//
+# antigen_179|O83705|Uncharacterized|AHN67367.1|tpos:1-125 Length: 125
+# antigen_179|O83705|Uncharacterized|AHN67367.1|tpos:1-125 Number of predicted TMRs: 2
+antigen_179|O83705|Uncharacterized|AHN67367.1|tpos:1-125	inside	1	24				
+antigen_179|O83705|Uncharacterized|AHN67367.1|tpos:1-125	TMhelix	25	51				
+antigen_179|O83705|Uncharacterized|AHN67367.1|tpos:1-125	outside	52	56				
+antigen_179|O83705|Uncharacterized|AHN67367.1|tpos:1-125	TMhelix	57	75				
+antigen_179|O83705|Uncharacterized|AHN67367.1|tpos:1-125	inside	76	125				
+//
+# antigen_180|O83672|Uncharacterized|AHN67329.1|tpos:1-58 Length: 58
+# antigen_180|O83672|Uncharacterized|AHN67329.1|tpos:1-58 Number of predicted TMRs: 0
+antigen_180|O83672|Uncharacterized|AHN67329.1|tpos:1-58	inside	1	58				
+//
+# antigen_189|O83541|V-type|AHN67200.1|tpos:1-605 Length: 605
+# antigen_189|O83541|V-type|AHN67200.1|tpos:1-605 Number of predicted TMRs: 0
+antigen_189|O83541|V-type|AHN67200.1|tpos:1-605	inside	1	605				
+//
+# antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|AHN67573.1|tpos:10-510 Length: 501
+# antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|AHN67573.1|tpos:10-510 Number of predicted TMRs: 0
+antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|AHN67573.1|tpos:10-510	inside	1	501				
+//
+# antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271 Length: 271
+# antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271 Number of predicted TMRs: 4
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	signal	1	24				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	outside	25	69				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	TMhelix	70	90				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	inside	91	112				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	TMhelix	113	133				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	outside	134	213				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	TMhelix	214	230				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	inside	231	240				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	TMhelix	241	257				
+antigen_164|P74930|Flagellar|AHN67376.1|tpos:1-271	outside	258	271				
+//
+# antigen_166|O83444|V-type|AHN67109.1|tpos:1-622 Length: 622
+# antigen_166|O83444|V-type|AHN67109.1|tpos:1-622 Number of predicted TMRs: 8
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	inside	1	330				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	331	345				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	outside	346	346				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	347	362				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	inside	363	374				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	375	396				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	outside	397	430				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	431	448				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	inside	449	457				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	458	478				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	outside	479	488				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	489	504				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	inside	505	528				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	529	556				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	outside	557	570				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	TMhelix	571	593				
+antigen_166|O83444|V-type|AHN67109.1|tpos:1-622	inside	594	622				
+//
+# antigen_54|O83241|Small|AHN66911.1|tpos:1-126 Length: 126
+# antigen_54|O83241|Small|AHN66911.1|tpos:1-126 Number of predicted TMRs: 0
+antigen_54|O83241|Small|AHN66911.1|tpos:1-126	inside	1	126				
+//
+# antigen_55|O83231|Large|AHN66900.1|tpos:1-185 Length: 185
+# antigen_55|O83231|Large|AHN66900.1|tpos:1-185 Number of predicted TMRs: 0
+antigen_55|O83231|Large|AHN66900.1|tpos:1-185	inside	1	185				
+//
+# antigen_50|O83805|Uncharacterized|AHN67487.1|tpos:1-238 Length: 238
+# antigen_50|O83805|Uncharacterized|AHN67487.1|tpos:1-238 Number of predicted TMRs: 0
+antigen_50|O83805|Uncharacterized|AHN67487.1|tpos:1-238	signal	1	19				
+antigen_50|O83805|Uncharacterized|AHN67487.1|tpos:1-238	outside	20	238				
+//
+# antigen_51|O83593|Uncharacterized|AHN67255.1|tpos:1-469 Length: 469
+# antigen_51|O83593|Uncharacterized|AHN67255.1|tpos:1-469 Number of predicted TMRs: 0
+antigen_51|O83593|Uncharacterized|AHN67255.1|tpos:1-469	inside	1	469				
+//
+# antigen_113|O83625|Ribose-5-phosphate|AHN67285.1|tpos:9-262 Length: 254
+# antigen_113|O83625|Ribose-5-phosphate|AHN67285.1|tpos:9-262 Number of predicted TMRs: 0
+antigen_113|O83625|Ribose-5-phosphate|AHN67285.1|tpos:9-262	inside	1	254				
+//
+# antigen_114|O83214|SsrA-binding|AHN66883.1|tpos:1-154 Length: 154
+# antigen_114|O83214|SsrA-binding|AHN66883.1|tpos:1-154 Number of predicted TMRs: 0
+antigen_114|O83214|SsrA-binding|AHN66883.1|tpos:1-154	inside	1	154				
+//
+# antigen_115|O83264|Transcription|AHN66935.1|tpos:1-185 Length: 185
+# antigen_115|O83264|Transcription|AHN66935.1|tpos:1-185 Number of predicted TMRs: 0
+antigen_115|O83264|Transcription|AHN66935.1|tpos:1-185	inside	1	185				
+//
+# antigen_127|O83786|Acyl|AHN67463.1|tpos:1-78 Length: 78
+# antigen_127|O83786|Acyl|AHN67463.1|tpos:1-78 Number of predicted TMRs: 0
+antigen_127|O83786|Acyl|AHN67463.1|tpos:1-78	inside	1	78				
+//
+# antigen_128|O83649|DNA|AHN67310.1|tpos:1-215 Length: 215
+# antigen_128|O83649|DNA|AHN67310.1|tpos:1-215 Number of predicted TMRs: 0
+antigen_128|O83649|DNA|AHN67310.1|tpos:1-215	inside	1	215				
+//
+# antigen_195|O83456|DNA|AHN67122.1|tpos:1-573 Length: 573
+# antigen_195|O83456|DNA|AHN67122.1|tpos:1-573 Number of predicted TMRs: 0
+antigen_195|O83456|DNA|AHN67122.1|tpos:1-573	inside	1	573				
+//
+# antigen_62|O83992|Uncharacterized|AHN67673.1|tpos:1-228 Length: 228
+# antigen_62|O83992|Uncharacterized|AHN67673.1|tpos:1-228 Number of predicted TMRs: 0
+antigen_62|O83992|Uncharacterized|AHN67673.1|tpos:1-228	inside	1	228				
+//
+# antigen_63|O83284|Uncharacterized|AHN66959.1|tpos:1-442 Length: 442
+# antigen_63|O83284|Uncharacterized|AHN66959.1|tpos:1-442 Number of predicted TMRs: 0
+antigen_63|O83284|Uncharacterized|AHN66959.1|tpos:1-442	signal	1	25				
+antigen_63|O83284|Uncharacterized|AHN66959.1|tpos:1-442	outside	26	442				
+//
+# antigen_3|O83971|Flavin-dependent|AHN67649.1|tpos:1-305 Length: 305
+# antigen_3|O83971|Flavin-dependent|AHN67649.1|tpos:1-305 Number of predicted TMRs: 0
+antigen_3|O83971|Flavin-dependent|AHN67649.1|tpos:1-305	inside	1	305				
+//
+# antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579 Length: 579
+# antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579 Number of predicted TMRs: 4
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	signal	1	21				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	outside	22	457				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	TMhelix	458	467				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	inside	468	468				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	TMhelix	469	478				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	outside	479	516				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	TMhelix	517	526				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	inside	527	527				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	TMhelix	528	537				
+antigen_4|O83586|Uncharacterized|AHN67249.1|tpos:1-579	outside	538	579				
+//
+# antigen_27|O83219|Large|AHN66888.1|tpos:1-208 Length: 208
+# antigen_27|O83219|Large|AHN66888.1|tpos:1-208 Number of predicted TMRs: 0
+antigen_27|O83219|Large|AHN66888.1|tpos:1-208	inside	1	208				
+//
+# antigen_28|O83857|Small|AHN67536.1|tpos:1-89 Length: 89
+# antigen_28|O83857|Small|AHN67536.1|tpos:1-89 Number of predicted TMRs: 0
+antigen_28|O83857|Small|AHN67536.1|tpos:1-89	inside	1	89				
+//
+# antigen_29|O83052|Uncharacterized|AHN66714.1|tpos:53-265 Length: 213
+# antigen_29|O83052|Uncharacterized|AHN66714.1|tpos:53-265 Number of predicted TMRs: 0
+antigen_29|O83052|Uncharacterized|AHN66714.1|tpos:53-265	inside	1	213				
+//
+# antigen_31|O83945|Probable|AHN67621.1|tpos:12-351 Length: 340
+# antigen_31|O83945|Probable|AHN67621.1|tpos:12-351 Number of predicted TMRs: 0
+antigen_31|O83945|Probable|AHN67621.1|tpos:12-351	inside	1	340				
+//
+# antigen_32|O83539|V-type|AHN67198.1|tpos:14-222 Length: 209
+# antigen_32|O83539|V-type|AHN67198.1|tpos:14-222 Number of predicted TMRs: 0
+antigen_32|O83539|V-type|AHN67198.1|tpos:14-222	inside	1	209				
+//
+# antigen_147|O83319|Dephospho-CoA|AHN66987.1|tpos:1-192 Length: 192
+# antigen_147|O83319|Dephospho-CoA|AHN66987.1|tpos:1-192 Number of predicted TMRs: 0
+antigen_147|O83319|Dephospho-CoA|AHN66987.1|tpos:1-192	inside	1	192				
+//
+# antigen_131|B2S321|V-type|AHN67104.1|tpos:27-197 Length: 171
+# antigen_131|B2S321|V-type|AHN67104.1|tpos:27-197 Number of predicted TMRs: 0
+antigen_131|B2S321|V-type|AHN67104.1|tpos:27-197	inside	1	171				
+//
+# antigen_52|O83802|tRNA|AHN67483.1|tpos:1-244 Length: 244
+# antigen_52|O83802|tRNA|AHN67483.1|tpos:1-244 Number of predicted TMRs: 0
+antigen_52|O83802|tRNA|AHN67483.1|tpos:1-244	inside	1	244				
+//
+# antigen_53|O83281|Transcription|AHN66953.1|tpos:1-519 Length: 519
+# antigen_53|O83281|Transcription|AHN66953.1|tpos:1-519 Number of predicted TMRs: 0
+antigen_53|O83281|Transcription|AHN66953.1|tpos:1-519	inside	1	519				
+//
+# antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|AHN66873.1|tpos:1-269 Length: 269
+# antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|AHN66873.1|tpos:1-269 Number of predicted TMRs: 0
+antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|AHN66873.1|tpos:1-269	inside	1	269				
+//
+# antigen_105|O83373|Putative|AHN67038.1|tpos:1-208 Length: 208
+# antigen_105|O83373|Putative|AHN67038.1|tpos:1-208 Number of predicted TMRs: 0
+antigen_105|O83373|Putative|AHN67038.1|tpos:1-208	inside	1	208				
+//
+# antigen_106|O83554|Holliday|AHN67214.1|tpos:1-227 Length: 227
+# antigen_106|O83554|Holliday|AHN67214.1|tpos:1-227 Number of predicted TMRs: 0
+antigen_106|O83554|Holliday|AHN67214.1|tpos:1-227	inside	1	227				
+//
+# antigen_108|O83262|Large|AHN66933.1|tpos:1-56 Length: 56
+# antigen_108|O83262|Large|AHN66933.1|tpos:1-56 Number of predicted TMRs: 0
+antigen_108|O83262|Large|AHN66933.1|tpos:1-56	inside	1	56				
+//
+# antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183 Length: 181
+# antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183 Number of predicted TMRs: 8
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	signal	1	19				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	periplasm	20	23				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	24	33				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	outside	34	50				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	51	64				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	periplasm	65	69				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	70	79				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	outside	80	82				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	83	94				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	periplasm	95	99				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	100	109				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	outside	110	128				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	129	141				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	periplasm	142	148				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	149	159				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	outside	160	166				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	Beta sheet	167	179				
+antigen_109|O83696|Uncharacterized|AHN67360.1|tpos:3-183	periplasm	180	181				
+//
+# antigen_151|O83442|V-type|AHN67107.1|tpos:1-430 Length: 430
+# antigen_151|O83442|V-type|AHN67107.1|tpos:1-430 Number of predicted TMRs: 0
+antigen_151|O83442|V-type|AHN67107.1|tpos:1-430	inside	1	430				
+//
+# antigen_169|O83272|Small|AHN66943.1|tpos:1-156 Length: 156
+# antigen_169|O83272|Small|AHN66943.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_169|O83272|Small|AHN66943.1|tpos:1-156	inside	1	156				
+//
+# antigen_171|O83369|FKBP-type|AHN67032.1|tpos:1-176 Length: 176
+# antigen_171|O83369|FKBP-type|AHN67032.1|tpos:1-176 Number of predicted TMRs: 0
+antigen_171|O83369|FKBP-type|AHN67032.1|tpos:1-176	inside	1	176				
+//
+# antigen_172|O83747|Uncharacterized|AHN67424.1|tpos:1-293 Length: 293
+# antigen_172|O83747|Uncharacterized|AHN67424.1|tpos:1-293 Number of predicted TMRs: 0
+antigen_172|O83747|Uncharacterized|AHN67424.1|tpos:1-293	inside	1	293				
+//
+# antigen_139|O08399|DNA|AHN67648.1|tpos:1-637 Length: 637
+# antigen_139|O08399|DNA|AHN67648.1|tpos:1-637 Number of predicted TMRs: 0
+antigen_139|O08399|DNA|AHN67648.1|tpos:1-637	inside	1	637				
+//
+# antigen_187|O83077|Putative|AHN66736.1|tpos:1-316 Length: 316
+# antigen_187|O83077|Putative|AHN66736.1|tpos:1-316 Number of predicted TMRs: 0
+antigen_187|O83077|Putative|AHN66736.1|tpos:1-316	signal	1	19				
+antigen_187|O83077|Putative|AHN66736.1|tpos:1-316	outside	20	316				
+//
+# antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374 Length: 374
+# antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374 Number of predicted TMRs: 8
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	signal	1	21				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	periplasm	22	216				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	217	224				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	outside	225	248				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	249	257				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	periplasm	258	266				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	267	274				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	outside	275	283				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	284	293				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	periplasm	294	301				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	302	310				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	outside	311	324				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	325	333				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	periplasm	334	338				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	339	348				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	outside	349	361				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	Beta sheet	362	370				
+antigen_188|O83496|Uncharacterized|AHN67160.1|tpos:1-374	periplasm	371	374				
+//
+# antigen_21|O83610|1-deoxy-D-xylulose|AHN67270.1|tpos:1-376 Length: 376
+# antigen_21|O83610|1-deoxy-D-xylulose|AHN67270.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_21|O83610|1-deoxy-D-xylulose|AHN67270.1|tpos:1-376	inside	1	376				
+//
+# antigen_22|O83861|Translation|AHN67540.1|tpos:57-898 Length: 842
+# antigen_22|O83861|Translation|AHN67540.1|tpos:57-898 Number of predicted TMRs: 0
+antigen_22|O83861|Translation|AHN67540.1|tpos:57-898	inside	1	842				
+//
+# antigen_64|O83217|Elongation|AHN66886.1|tpos:1-395 Length: 395
+# antigen_64|O83217|Elongation|AHN66886.1|tpos:1-395 Number of predicted TMRs: 0
+antigen_64|O83217|Elongation|AHN66886.1|tpos:1-395	inside	1	395				
+//
+# antigen_65|O83097|Replicative|AHN66762.1|tpos:1-438 Length: 438
+# antigen_65|O83097|Replicative|AHN66762.1|tpos:1-438 Number of predicted TMRs: 0
+antigen_65|O83097|Replicative|AHN66762.1|tpos:1-438	inside	1	438				
+//
+# antigen_111|O83103|Uncharacterized|AHN66767.1|tpos:1-145 Length: 145
+# antigen_111|O83103|Uncharacterized|AHN66767.1|tpos:1-145 Number of predicted TMRs: 0
+antigen_111|O83103|Uncharacterized|AHN66767.1|tpos:1-145	inside	1	145				
+//
+# antigen_112|O83388|tRNA(Ile)-lysidine|AHN67058.1|tpos:1-477 Length: 477
+# antigen_112|O83388|tRNA(Ile)-lysidine|AHN67058.1|tpos:1-477 Number of predicted TMRs: 0
+antigen_112|O83388|tRNA(Ile)-lysidine|AHN67058.1|tpos:1-477	inside	1	477				
+//
+# antigen_82|O83278|DNA-binding|AHN66950.1|tpos:50-154 Length: 105
+# antigen_82|O83278|DNA-binding|AHN66950.1|tpos:50-154 Number of predicted TMRs: 0
+antigen_82|O83278|DNA-binding|AHN66950.1|tpos:50-154	inside	1	105				
+//
+# antigen_83|P74931|Flagellar|AHN67375.1|tpos:1-93 Length: 93
+# antigen_83|P74931|Flagellar|AHN67375.1|tpos:1-93 Number of predicted TMRs: 2
+antigen_83|P74931|Flagellar|AHN67375.1|tpos:1-93	outside	1	16				
+antigen_83|P74931|Flagellar|AHN67375.1|tpos:1-93	TMhelix	17	37				
+antigen_83|P74931|Flagellar|AHN67375.1|tpos:1-93	inside	38	54				
+antigen_83|P74931|Flagellar|AHN67375.1|tpos:1-93	TMhelix	55	70				
+antigen_83|P74931|Flagellar|AHN67375.1|tpos:1-93	outside	71	93				
+//
+# antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|AHN67069.1|tpos:1-459 Length: 459
+# antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|AHN67069.1|tpos:1-459 Number of predicted TMRs: 0
+antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|AHN67069.1|tpos:1-459	inside	1	459				
+//
+# antigen_129|O83489|Acetate|AHN67154.1|tpos:1-448 Length: 448
+# antigen_129|O83489|Acetate|AHN67154.1|tpos:1-448 Number of predicted TMRs: 0
+antigen_129|O83489|Acetate|AHN67154.1|tpos:1-448	inside	1	448				
+//
+# antigen_130|O66075|Large|AHN66954.1|tpos:1-67 Length: 67
+# antigen_130|O66075|Large|AHN66954.1|tpos:1-67 Number of predicted TMRs: 0
+antigen_130|O66075|Large|AHN66954.1|tpos:1-67	inside	1	67				
+//
+# antigen_199|O83683|Uncharacterized|AHN67340.1|tpos:1-202 Length: 202
+# antigen_199|O83683|Uncharacterized|AHN67340.1|tpos:1-202 Number of predicted TMRs: 0
+antigen_199|O83683|Uncharacterized|AHN67340.1|tpos:1-202	inside	1	202				
+//
+# antigen_159|O83185|Uncharacterized|AHN66853.1|tpos:1-155 Length: 155
+# antigen_159|O83185|Uncharacterized|AHN66853.1|tpos:1-155 Number of predicted TMRs: 0
+antigen_159|O83185|Uncharacterized|AHN66853.1|tpos:1-155	signal	1	30				
+antigen_159|O83185|Uncharacterized|AHN66853.1|tpos:1-155	outside	31	155				
+//
+# antigen_160|B2S2F4|Large|AHN66906.1|tpos:5-65 Length: 61
+# antigen_160|B2S2F4|Large|AHN66906.1|tpos:5-65 Number of predicted TMRs: 0
+antigen_160|B2S2F4|Large|AHN66906.1|tpos:5-65	inside	1	61				
+//
+# antigen_152|O83977|Co-chaperonin|AHN67655.1|tpos:1-88 Length: 88
+# antigen_152|O83977|Co-chaperonin|AHN67655.1|tpos:1-88 Number of predicted TMRs: 0
+antigen_152|O83977|Co-chaperonin|AHN67655.1|tpos:1-88	inside	1	88				
+//
+# antigen_153|O83774|FAD:protein|AHN67452.1|tpos:1-362 Length: 362
+# antigen_153|O83774|FAD:protein|AHN67452.1|tpos:1-362 Number of predicted TMRs: 0
+antigen_153|O83774|FAD:protein|AHN67452.1|tpos:1-362	signal	1	22				
+antigen_153|O83774|FAD:protein|AHN67452.1|tpos:1-362	outside	23	362				
+//
+# antigen_154|O83344|Uncharacterized|AHN67010.1|tpos:1-477 Length: 477
+# antigen_154|O83344|Uncharacterized|AHN67010.1|tpos:1-477 Number of predicted TMRs: 1
+antigen_154|O83344|Uncharacterized|AHN67010.1|tpos:1-477	inside	1	12				
+antigen_154|O83344|Uncharacterized|AHN67010.1|tpos:1-477	TMhelix	13	33				
+antigen_154|O83344|Uncharacterized|AHN67010.1|tpos:1-477	outside	34	477				
+//
+# antigen_91|B2S2J8|Small|AHN66949.1|tpos:1-95 Length: 95
+# antigen_91|B2S2J8|Small|AHN66949.1|tpos:1-95 Number of predicted TMRs: 0
+antigen_91|B2S2J8|Small|AHN66949.1|tpos:1-95	inside	1	95				
+//
+# antigen_92|P18193|Flagellar|AHN66948.1|tpos:1-350 Length: 350
+# antigen_92|P18193|Flagellar|AHN66948.1|tpos:1-350 Number of predicted TMRs: 0
+antigen_92|P18193|Flagellar|AHN66948.1|tpos:1-350	signal	1	20				
+antigen_92|P18193|Flagellar|AHN66948.1|tpos:1-350	outside	21	350				
+//
+# antigen_132|O83225|Small|AHN66894.1|tpos:1-206 Length: 206
+# antigen_132|O83225|Small|AHN66894.1|tpos:1-206 Number of predicted TMRs: 0
+antigen_132|O83225|Small|AHN66894.1|tpos:1-206	inside	1	206				
+//
+# antigen_133|O83776|Methionine--tRNA|AHN67257.1|tpos:51-182 Length: 132
+# antigen_133|O83776|Methionine--tRNA|AHN67257.1|tpos:51-182 Number of predicted TMRs: 0
+antigen_133|O83776|Methionine--tRNA|AHN67257.1|tpos:51-182	inside	1	132				
+//
+# antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345 Length: 345
+# antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345 Number of predicted TMRs: 7
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	inside	1	8				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	TMhelix	9	25				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	outside	26	85				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	TMhelix	86	101				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	inside	102	113				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	TMhelix	114	129				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	outside	130	151				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	TMhelix	152	167				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	inside	168	181				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	TMhelix	182	194				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	outside	195	295				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	TMhelix	296	307				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	inside	308	318				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	TMhelix	319	333				
+antigen_88|O83968|Uncharacterized|AHN67645.1|tpos:1-345	outside	334	345				
+//
+# antigen_89|O83767|Uncharacterized|AHN67446.1|tpos:1-296 Length: 296
+# antigen_89|O83767|Uncharacterized|AHN67446.1|tpos:1-296 Number of predicted TMRs: 0
+antigen_89|O83767|Uncharacterized|AHN67446.1|tpos:1-296	signal	1	21				
+antigen_89|O83767|Uncharacterized|AHN67446.1|tpos:1-296	outside	22	296				
+//
+# antigen_90|O83536|Lon|AHN67194.1|tpos:1-881 Length: 881
+# antigen_90|O83536|Lon|AHN67194.1|tpos:1-881 Number of predicted TMRs: 0
+antigen_90|O83536|Lon|AHN67194.1|tpos:1-881	inside	1	881				
+//
+# antigen_110|O83464|Elongation|AHN67131.1|tpos:16-698 Length: 683
+# antigen_110|O83464|Elongation|AHN67131.1|tpos:16-698 Number of predicted TMRs: 0
+antigen_110|O83464|Elongation|AHN67131.1|tpos:16-698	inside	1	683				
+//
+# antigen_157|O83848|Uncharacterized|AHN67527.1|tpos:4-319 Length: 316
+# antigen_157|O83848|Uncharacterized|AHN67527.1|tpos:4-319 Number of predicted TMRs: 1
+antigen_157|O83848|Uncharacterized|AHN67527.1|tpos:4-319	inside	1	12				
+antigen_157|O83848|Uncharacterized|AHN67527.1|tpos:4-319	TMhelix	13	29				
+antigen_157|O83848|Uncharacterized|AHN67527.1|tpos:4-319	outside	30	316				
+//
+# antigen_136|O83808|Uncharacterized|AHN67490.1|tpos:1-274 Length: 274
+# antigen_136|O83808|Uncharacterized|AHN67490.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_136|O83808|Uncharacterized|AHN67490.1|tpos:1-274	inside	1	274				
+//
+# antigen_137|O83348|DNA|AHN67013.1|tpos:1-900 Length: 900
+# antigen_137|O83348|DNA|AHN67013.1|tpos:1-900 Number of predicted TMRs: 0
+antigen_137|O83348|DNA|AHN67013.1|tpos:1-900	inside	1	900				
+//
+# antigen_141|O83817|UPF0178|AHN67499.1|tpos:20-196 Length: 177
+# antigen_141|O83817|UPF0178|AHN67499.1|tpos:20-196 Number of predicted TMRs: 0
+antigen_141|O83817|UPF0178|AHN67499.1|tpos:20-196	inside	1	177				
+//
+# antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192 Length: 192
+# antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192 Number of predicted TMRs: 6
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	outside	1	7				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	TMhelix	8	17				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	inside	18	41				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	TMhelix	42	57				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	outside	58	67				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	TMhelix	68	81				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	inside	82	100				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	TMhelix	101	113				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	outside	114	121				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	TMhelix	122	142				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	inside	143	157				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	TMhelix	158	173				
+antigen_143|O83183|Uncharacterized|AHN66851.1|tpos:1-192	outside	174	192				
+//
+# antigen_191|O83667|Uncharacterized|AHN67324.1|tpos:1-170 Length: 170
+# antigen_191|O83667|Uncharacterized|AHN67324.1|tpos:1-170 Number of predicted TMRs: 0
+antigen_191|O83667|Uncharacterized|AHN67324.1|tpos:1-170	inside	1	170				
+//
+# antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707 Length: 707
+# antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707 Number of predicted TMRs: 8
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	inside	1	11				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	12	30				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	outside	31	33				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	34	56				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	inside	57	63				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	64	83				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	outside	84	114				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	115	134				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	inside	135	200				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	201	221				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	outside	222	238				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	239	259				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	inside	260	281				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	282	297				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	outside	298	302				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	TMhelix	303	317				
+antigen_192|Q56338|Flagellar|AHN67373.1|tpos:1-707	inside	318	707				
+//
+# antigen_40|O83236|Small|AHN66905.1|tpos:1-172 Length: 172
+# antigen_40|O83236|Small|AHN66905.1|tpos:1-172 Number of predicted TMRs: 0
+antigen_40|O83236|Small|AHN66905.1|tpos:1-172	inside	1	172				
+//
+# antigen_145|O83658|Spermidine/putrescine|AHN67316.1|tpos:1-375 Length: 375
+# antigen_145|O83658|Spermidine/putrescine|AHN67316.1|tpos:1-375 Number of predicted TMRs: 0
+antigen_145|O83658|Spermidine/putrescine|AHN67316.1|tpos:1-375	inside	1	375				
+//
+# antigen_146|O83295|Probable|AHN66968.1|tpos:1-324 Length: 324
+# antigen_146|O83295|Probable|AHN66968.1|tpos:1-324 Number of predicted TMRs: 0
+antigen_146|O83295|Probable|AHN66968.1|tpos:1-324	inside	1	324				
+//
+# antigen_60|O83218|Small|AHN66887.1|tpos:1-102 Length: 102
+# antigen_60|O83218|Small|AHN66887.1|tpos:1-102 Number of predicted TMRs: 0
+antigen_60|O83218|Small|AHN66887.1|tpos:1-102	inside	1	102				
+//
+# antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265 Length: 48
+# antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265 Number of predicted TMRs: 2
+antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265	signal	1	10				
+antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265	periplasm	11	15				
+antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265	Beta sheet	16	23				
+antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265	outside	24	37				
+antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265	Beta sheet	38	46				
+antigen_61|O83336|Uncharacterized|AHN67288.1|tpos:218-265	periplasm	47	48				
+//
+# antigen_38|O83209|Uncharacterized|AHN66879.1|tpos:1-627 Length: 627
+# antigen_38|O83209|Uncharacterized|AHN66879.1|tpos:1-627 Number of predicted TMRs: 0
+antigen_38|O83209|Uncharacterized|AHN66879.1|tpos:1-627	inside	1	627				
+//
+# antigen_42|O83100|Small|AHN66764.1|tpos:1-99 Length: 99
+# antigen_42|O83100|Small|AHN66764.1|tpos:1-99 Number of predicted TMRs: 0
+antigen_42|O83100|Small|AHN66764.1|tpos:1-99	inside	1	99				
+//
+# antigen_43|O83048|Beta|AHN66709.1|tpos:1-371 Length: 371
+# antigen_43|O83048|Beta|AHN66709.1|tpos:1-371 Number of predicted TMRs: 0
+antigen_43|O83048|Beta|AHN66709.1|tpos:1-371	inside	1	371				
+//
+# antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162 Length: 162
+# antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162 Number of predicted TMRs: 4
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	inside	1	24				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	TMhelix	25	35				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	outside	36	37				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	TMhelix	38	47				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	inside	48	61				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	TMhelix	62	72				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	outside	73	111				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	TMhelix	112	128				
+antigen_24|O83493|Uncharacterized|AHN67158.1|tpos:1-162	inside	129	162				
+//
+# antigen_25|O83952|Uncharacterized|AHN67629.1|tpos:108-163 Length: 56
+# antigen_25|O83952|Uncharacterized|AHN67629.1|tpos:108-163 Number of predicted TMRs: 0
+antigen_25|O83952|Uncharacterized|AHN67629.1|tpos:108-163	inside	1	56				
+//
+# antigen_26|O83058|Uncharacterized|AHN66717.1|tpos:219-410 Length: 192
+# antigen_26|O83058|Uncharacterized|AHN66717.1|tpos:219-410 Number of predicted TMRs: 0
+antigen_26|O83058|Uncharacterized|AHN66717.1|tpos:219-410	inside	1	192				
+//
+# antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359 Length: 332
+# antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359 Number of predicted TMRs: 7
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	outside	1	22				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	TMhelix	23	39				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	inside	40	65				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	TMhelix	66	86				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	outside	87	117				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	TMhelix	118	131				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	inside	132	146				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	TMhelix	147	165				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	outside	166	221				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	TMhelix	222	241				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	inside	242	249				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	TMhelix	250	270				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	outside	271	296				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	TMhelix	297	318				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|AHN67506.1|tpos:28-359	inside	319	332				
+//
+# antigen_77|P74935|Gamma-glutamyl|AHN67033.1|tpos:1-428 Length: 428
+# antigen_77|P74935|Gamma-glutamyl|AHN67033.1|tpos:1-428 Number of predicted TMRs: 0
+antigen_77|P74935|Gamma-glutamyl|AHN67033.1|tpos:1-428	inside	1	428				
+//
+# antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|AHN67126.1|tpos:16-385 Length: 370
+# antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|AHN67126.1|tpos:16-385 Number of predicted TMRs: 0
+antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|AHN67126.1|tpos:16-385	inside	1	370				
+//
+# antigen_96|O83650|Lysine--tRNA|AHN67311.1|tpos:1-528 Length: 528
+# antigen_96|O83650|Lysine--tRNA|AHN67311.1|tpos:1-528 Number of predicted TMRs: 0
+antigen_96|O83650|Lysine--tRNA|AHN67311.1|tpos:1-528	inside	1	528				
+//
+# antigen_99|P96130|ATP-dependent|AHN67350.1|tpos:1-686 Length: 686
+# antigen_99|P96130|ATP-dependent|AHN67350.1|tpos:1-686 Number of predicted TMRs: 0
+antigen_99|P96130|ATP-dependent|AHN67350.1|tpos:1-686	inside	1	686				
+//
+# antigen_125|O83204|Uncharacterized|AHN66876.1|tpos:280-506 Length: 227
+# antigen_125|O83204|Uncharacterized|AHN66876.1|tpos:280-506 Number of predicted TMRs: 0
+antigen_125|O83204|Uncharacterized|AHN66876.1|tpos:280-506	inside	1	227				
+//
+# antigen_126|O83936|Uncharacterized|AHN67610.1|tpos:1-38 Length: 38
+# antigen_126|O83936|Uncharacterized|AHN67610.1|tpos:1-38 Number of predicted TMRs: 0
+antigen_126|O83936|Uncharacterized|AHN67610.1|tpos:1-38	signal	1	37				
+antigen_126|O83936|Uncharacterized|AHN67610.1|tpos:1-38	outside	38	38				
+//
+# antigen_30|O83724|GTPase|AHN67400.1|tpos:1-376 Length: 376
+# antigen_30|O83724|GTPase|AHN67400.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_30|O83724|GTPase|AHN67400.1|tpos:1-376	inside	1	376				
+//
+# antigen_167|O83433|Putative|AHN67098.1|tpos:1-397 Length: 397
+# antigen_167|O83433|Putative|AHN67098.1|tpos:1-397 Number of predicted TMRs: 0
+antigen_167|O83433|Putative|AHN67098.1|tpos:1-397	inside	1	397				
+//
+# antigen_0|O83679|Glutamate--tRNA|AHN67336.1|tpos:1-537 Length: 537
+# antigen_0|O83679|Glutamate--tRNA|AHN67336.1|tpos:1-537 Number of predicted TMRs: 0
+antigen_0|O83679|Glutamate--tRNA|AHN67336.1|tpos:1-537	inside	1	537				
+//
+# antigen_98|O83809|Threonine--tRNA|AHN67491.1|tpos:1-582 Length: 582
+# antigen_98|O83809|Threonine--tRNA|AHN67491.1|tpos:1-582 Number of predicted TMRs: 0
+antigen_98|O83809|Threonine--tRNA|AHN67491.1|tpos:1-582	inside	1	582				
+//
+# antigen_12|O83737|Methionyl-tRNA|AHN67414.1|tpos:1-319 Length: 319
+# antigen_12|O83737|Methionyl-tRNA|AHN67414.1|tpos:1-319 Number of predicted TMRs: 0
+antigen_12|O83737|Methionyl-tRNA|AHN67414.1|tpos:1-319	inside	1	319				
+//
+# antigen_13|O83154|UvrABC|AHN66819.1|tpos:1-668 Length: 668
+# antigen_13|O83154|UvrABC|AHN66819.1|tpos:1-668 Number of predicted TMRs: 0
+antigen_13|O83154|UvrABC|AHN66819.1|tpos:1-668	inside	1	668				
+//
+# antigen_86|O83152|Protein|AHN66817.1|tpos:1-331 Length: 331
+# antigen_86|O83152|Protein|AHN66817.1|tpos:1-331 Number of predicted TMRs: 1
+antigen_86|O83152|Protein|AHN66817.1|tpos:1-331	inside	1	14				
+antigen_86|O83152|Protein|AHN66817.1|tpos:1-331	TMhelix	15	31				
+antigen_86|O83152|Protein|AHN66817.1|tpos:1-331	outside	32	331				
+//
+# antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128 Length: 128
+# antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128 Number of predicted TMRs: 4
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	outside	1	3				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	TMhelix	4	19				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	inside	20	37				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	TMhelix	38	53				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	outside	54	69				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	TMhelix	70	84				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	inside	85	106				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	TMhelix	107	122				
+antigen_122|O83109|Uncharacterized|AHN66773.1|tpos:1-128	outside	123	128				
+//
+# antigen_123|O83982|Glutamyl-tRNA(Gln)|AHN67662.1|tpos:34-147 Length: 114
+# antigen_123|O83982|Glutamyl-tRNA(Gln)|AHN67662.1|tpos:34-147 Number of predicted TMRs: 0
+antigen_123|O83982|Glutamyl-tRNA(Gln)|AHN67662.1|tpos:34-147	inside	1	114				
+//
+# antigen_124|O83132|Phosphate|AHN66798.1|tpos:1-336 Length: 336
+# antigen_124|O83132|Phosphate|AHN66798.1|tpos:1-336 Number of predicted TMRs: 0
+antigen_124|O83132|Phosphate|AHN66798.1|tpos:1-336	inside	1	336				
+//
+# antigen_196|O83223|Small|AHN66892.1|tpos:1-95 Length: 95
+# antigen_196|O83223|Small|AHN66892.1|tpos:1-95 Number of predicted TMRs: 0
+antigen_196|O83223|Small|AHN66892.1|tpos:1-95	inside	1	95				
+//
+# antigen_197|O83664|Flagellar|AHN67321.1|tpos:1-150 Length: 150
+# antigen_197|O83664|Flagellar|AHN67321.1|tpos:1-150 Number of predicted TMRs: 0
+antigen_197|O83664|Flagellar|AHN67321.1|tpos:1-150	inside	1	150				
+//
+# antigen_198|O83890|TPR|AHN67563.1|tpos:1-807 Length: 807
+# antigen_198|O83890|TPR|AHN67563.1|tpos:1-807 Number of predicted TMRs: 0
+antigen_198|O83890|TPR|AHN67563.1|tpos:1-807	inside	1	807				
+//
+# antigen_182|O83435|Uncharacterized|AHN67099.1|tpos:184-256 Length: 73
+# antigen_182|O83435|Uncharacterized|AHN67099.1|tpos:184-256 Number of predicted TMRs: 0
+antigen_182|O83435|Uncharacterized|AHN67099.1|tpos:184-256	inside	1	73				
+//
+# antigen_183|O83585|Peptide|AHN67248.1|tpos:1-368 Length: 368
+# antigen_183|O83585|Peptide|AHN67248.1|tpos:1-368 Number of predicted TMRs: 0
+antigen_183|O83585|Peptide|AHN67248.1|tpos:1-368	inside	1	368				
+//
+# antigen_186|O83949|Chaperone|AHN67625.1|tpos:1-639 Length: 639
+# antigen_186|O83949|Chaperone|AHN67625.1|tpos:1-639 Number of predicted TMRs: 0
+antigen_186|O83949|Chaperone|AHN67625.1|tpos:1-639	inside	1	639				
+//
+# antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162 Length: 162
+# antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162 Number of predicted TMRs: 3
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	signal	1	19				
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	outside	20	51				
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	TMhelix	52	61				
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	inside	62	62				
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	TMhelix	63	72				
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	outside	73	103				
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	TMhelix	104	124				
+antigen_33|O83358|Uncharacterized|AHN67021.1|tpos:1-162	inside	125	162				
+//
+# antigen_34|O83110|Chaperone|AHN66774.1|tpos:1-878 Length: 878
+# antigen_34|O83110|Chaperone|AHN66774.1|tpos:1-878 Number of predicted TMRs: 0
+antigen_34|O83110|Chaperone|AHN66774.1|tpos:1-878	inside	1	878				
+//
+# antigen_66|O83714|Bifunctional|AHN67390.1|tpos:27-341 Length: 315
+# antigen_66|O83714|Bifunctional|AHN67390.1|tpos:27-341 Number of predicted TMRs: 0
+antigen_66|O83714|Bifunctional|AHN67390.1|tpos:27-341	inside	1	315				
+//
+# antigen_67|O83785|Large|AHN67462.1|tpos:1-62 Length: 62
+# antigen_67|O83785|Large|AHN67462.1|tpos:1-62 Number of predicted TMRs: 0
+antigen_67|O83785|Large|AHN67462.1|tpos:1-62	inside	1	62				
+//
+# antigen_68|O83425|Protein|AHN67090.1|tpos:1-583 Length: 583
+# antigen_68|O83425|Protein|AHN67090.1|tpos:1-583 Number of predicted TMRs: 6
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	inside	1	7				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	TMhelix	8	25				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	outside	26	415				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	TMhelix	416	434				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	inside	435	435				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	TMhelix	436	459				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	outside	460	467				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	TMhelix	468	483				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	inside	484	509				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	TMhelix	510	530				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	outside	531	538				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	TMhelix	539	558				
+antigen_68|O83425|Protein|AHN67090.1|tpos:1-583	inside	559	583				
