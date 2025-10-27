@@ -1,0 +1,3235 @@
+##gff-version 3
+# WP_001062645.1 Length: 579
+# WP_001062645.1 Number of predicted TMRs: 0
+WP_001062645.1	inside	1	579				
+//
+# WP_001062947.1 Length: 133
+# WP_001062947.1 Number of predicted TMRs: 0
+WP_001062947.1	inside	1	133				
+//
+# WP_001062973.1 Length: 237
+# WP_001062973.1 Number of predicted TMRs: 0
+WP_001062973.1	inside	1	237				
+//
+# WP_001062987.1 Length: 400
+# WP_001062987.1 Number of predicted TMRs: 0
+WP_001062987.1	inside	1	400				
+//
+# WP_001063343.1 Length: 705
+# WP_001063343.1 Number of predicted TMRs: 0
+WP_001063343.1	inside	1	705				
+//
+# WP_001064811.1 Length: 587
+# WP_001064811.1 Number of predicted TMRs: 6
+WP_001064811.1	inside	1	19				
+WP_001064811.1	TMhelix	20	40				
+WP_001064811.1	outside	41	63				
+WP_001064811.1	TMhelix	64	85				
+WP_001064811.1	inside	86	137				
+WP_001064811.1	TMhelix	138	159				
+WP_001064811.1	outside	160	162				
+WP_001064811.1	TMhelix	163	181				
+WP_001064811.1	inside	182	249				
+WP_001064811.1	TMhelix	250	270				
+WP_001064811.1	outside	271	279				
+WP_001064811.1	TMhelix	280	301				
+WP_001064811.1	inside	302	587				
+//
+# WP_001065075.1 Length: 82
+# WP_001065075.1 Number of predicted TMRs: 0
+WP_001065075.1	inside	1	82				
+//
+# WP_001065084.1 Length: 84
+# WP_001065084.1 Number of predicted TMRs: 0
+WP_001065084.1	inside	1	84				
+//
+# WP_001065267.1 Length: 165
+# WP_001065267.1 Number of predicted TMRs: 0
+WP_001065267.1	outside	1	165				
+//
+# WP_001065591.1 Length: 272
+# WP_001065591.1 Number of predicted TMRs: 0
+WP_001065591.1	inside	1	272				
+//
+# WP_001065801.1 Length: 98
+# WP_001065801.1 Number of predicted TMRs: 0
+WP_001065801.1	inside	1	98				
+//
+# WP_001066123.1 Length: 253
+# WP_001066123.1 Number of predicted TMRs: 0
+WP_001066123.1	inside	1	253				
+//
+# WP_001066125.1 Length: 253
+# WP_001066125.1 Number of predicted TMRs: 0
+WP_001066125.1	inside	1	253				
+//
+# WP_001066553.1 Length: 458
+# WP_001066553.1 Number of predicted TMRs: 14
+WP_001066553.1	inside	1	13				
+WP_001066553.1	TMhelix	14	34				
+WP_001066553.1	outside	35	49				
+WP_001066553.1	TMhelix	50	70				
+WP_001066553.1	inside	71	75				
+WP_001066553.1	TMhelix	76	96				
+WP_001066553.1	outside	97	97				
+WP_001066553.1	TMhelix	98	118				
+WP_001066553.1	inside	119	139				
+WP_001066553.1	TMhelix	140	155				
+WP_001066553.1	outside	156	167				
+WP_001066553.1	TMhelix	168	182				
+WP_001066553.1	inside	183	201				
+WP_001066553.1	TMhelix	202	217				
+WP_001066553.1	outside	218	228				
+WP_001066553.1	TMhelix	229	247				
+WP_001066553.1	inside	248	266				
+WP_001066553.1	TMhelix	267	287				
+WP_001066553.1	outside	288	301				
+WP_001066553.1	TMhelix	302	319				
+WP_001066553.1	inside	320	329				
+WP_001066553.1	TMhelix	330	350				
+WP_001066553.1	outside	351	356				
+WP_001066553.1	TMhelix	357	376				
+WP_001066553.1	inside	377	399				
+WP_001066553.1	TMhelix	400	418				
+WP_001066553.1	outside	419	430				
+WP_001066553.1	TMhelix	431	451				
+WP_001066553.1	inside	452	458				
+//
+# WP_001067051.1 Length: 328
+# WP_001067051.1 Number of predicted TMRs: 0
+WP_001067051.1	inside	1	328				
+//
+# WP_001067261.1 Length: 220
+# WP_001067261.1 Number of predicted TMRs: 0
+WP_001067261.1	inside	1	220				
+//
+# WP_001067293.1 Length: 125
+# WP_001067293.1 Number of predicted TMRs: 0
+WP_001067293.1	inside	1	125				
+//
+# WP_001068337.1 Length: 78
+# WP_001068337.1 Number of predicted TMRs: 0
+WP_001068337.1	inside	1	78				
+//
+# WP_001068489.1 Length: 288
+# WP_001068489.1 Number of predicted TMRs: 10
+WP_001068489.1	inside	1	7				
+WP_001068489.1	TMhelix	8	25				
+WP_001068489.1	outside	26	37				
+WP_001068489.1	TMhelix	38	53				
+WP_001068489.1	inside	54	67				
+WP_001068489.1	TMhelix	68	84				
+WP_001068489.1	outside	85	94				
+WP_001068489.1	TMhelix	95	109				
+WP_001068489.1	inside	110	122				
+WP_001068489.1	TMhelix	123	137				
+WP_001068489.1	outside	138	144				
+WP_001068489.1	TMhelix	145	162				
+WP_001068489.1	inside	163	176				
+WP_001068489.1	TMhelix	177	194				
+WP_001068489.1	outside	195	204				
+WP_001068489.1	TMhelix	205	224				
+WP_001068489.1	inside	225	233				
+WP_001068489.1	TMhelix	234	252				
+WP_001068489.1	outside	253	258				
+WP_001068489.1	TMhelix	259	276				
+WP_001068489.1	inside	277	288				
+//
+# WP_001068520.1 Length: 428
+# WP_001068520.1 Number of predicted TMRs: 0
+WP_001068520.1	inside	1	428				
+//
+# WP_001070676.1 Length: 379
+# WP_001070676.1 Number of predicted TMRs: 0
+WP_001070676.1	inside	1	379				
+//
+# WP_001071165.1 Length: 840
+# WP_001071165.1 Number of predicted TMRs: 16
+WP_001071165.1	inside	1	8				
+WP_001071165.1	TMhelix	9	29				
+WP_001071165.1	outside	30	52				
+WP_001071165.1	TMhelix	53	73				
+WP_001071165.1	inside	74	91				
+WP_001071165.1	TMhelix	92	103				
+WP_001071165.1	outside	104	104				
+WP_001071165.1	TMhelix	105	114				
+WP_001071165.1	inside	115	125				
+WP_001071165.1	TMhelix	126	150				
+WP_001071165.1	outside	151	163				
+WP_001071165.1	TMhelix	164	185				
+WP_001071165.1	inside	186	196				
+WP_001071165.1	TMhelix	197	221				
+WP_001071165.1	outside	222	229				
+WP_001071165.1	TMhelix	230	246				
+WP_001071165.1	inside	247	251				
+WP_001071165.1	TMhelix	252	261				
+WP_001071165.1	outside	262	274				
+WP_001071165.1	TMhelix	275	295				
+WP_001071165.1	inside	296	335				
+WP_001071165.1	TMhelix	336	351				
+WP_001071165.1	outside	352	366				
+WP_001071165.1	TMhelix	367	387				
+WP_001071165.1	inside	388	397				
+WP_001071165.1	TMhelix	398	414				
+WP_001071165.1	outside	415	419				
+WP_001071165.1	TMhelix	420	436				
+WP_001071165.1	inside	437	450				
+WP_001071165.1	TMhelix	451	469				
+WP_001071165.1	outside	470	489				
+WP_001071165.1	TMhelix	490	510				
+WP_001071165.1	inside	511	840				
+//
+# WP_001071574.1 Length: 560
+# WP_001071574.1 Number of predicted TMRs: 0
+WP_001071574.1	outside	1	560				
+//
+# WP_001071606.1 Length: 80
+# WP_001071606.1 Number of predicted TMRs: 0
+WP_001071606.1	inside	1	80				
+//
+# WP_001071719.1 Length: 616
+# WP_001071719.1 Number of predicted TMRs: 0
+WP_001071719.1	inside	1	616				
+//
+# WP_001071971.1 Length: 160
+# WP_001071971.1 Number of predicted TMRs: 2
+WP_001071971.1	inside	1	1				
+WP_001071971.1	TMhelix	2	17				
+WP_001071971.1	outside	18	26				
+WP_001071971.1	TMhelix	27	42				
+WP_001071971.1	inside	43	160				
+//
+# WP_001074348.1 Length: 310
+# WP_001074348.1 Number of predicted TMRs: 0
+WP_001074348.1	inside	1	310				
+//
+# WP_001074405.1 Length: 465
+# WP_001074405.1 Number of predicted TMRs: 0
+WP_001074405.1	inside	1	465				
+//
+# WP_001074473.1 Length: 60
+# WP_001074473.1 Number of predicted TMRs: 1
+WP_001074473.1	inside	1	25				
+WP_001074473.1	TMhelix	26	54				
+WP_001074473.1	outside	55	60				
+//
+# WP_001074525.1 Length: 1257
+# WP_001074525.1 Number of predicted TMRs: 0
+WP_001074525.1	signal	1	29				
+WP_001074525.1	outside	30	1257				
+//
+# WP_001074619.1 Length: 230
+# WP_001074619.1 Number of predicted TMRs: 0
+WP_001074619.1	inside	1	230				
+//
+# WP_001074748.1 Length: 396
+# WP_001074748.1 Number of predicted TMRs: 0
+WP_001074748.1	inside	1	396				
+//
+# WP_001075821.1 Length: 392
+# WP_001075821.1 Number of predicted TMRs: 0
+WP_001075821.1	inside	1	392				
+//
+# WP_001076688.1 Length: 358
+# WP_001076688.1 Number of predicted TMRs: 0
+WP_001076688.1	inside	1	358				
+//
+# WP_001077099.1 Length: 175
+# WP_001077099.1 Number of predicted TMRs: 0
+WP_001077099.1	signal	1	36				
+WP_001077099.1	outside	37	175				
+//
+# WP_001077635.1 Length: 180
+# WP_001077635.1 Number of predicted TMRs: 0
+WP_001077635.1	inside	1	180				
+//
+# WP_001077683.1 Length: 211
+# WP_001077683.1 Number of predicted TMRs: 0
+WP_001077683.1	inside	1	211				
+//
+# WP_001077714.1 Length: 437
+# WP_001077714.1 Number of predicted TMRs: 11
+WP_001077714.1	inside	1	13				
+WP_001077714.1	TMhelix	14	29				
+WP_001077714.1	outside	30	51				
+WP_001077714.1	TMhelix	52	72				
+WP_001077714.1	inside	73	82				
+WP_001077714.1	TMhelix	83	100				
+WP_001077714.1	outside	101	127				
+WP_001077714.1	TMhelix	128	137				
+WP_001077714.1	inside	138	200				
+WP_001077714.1	TMhelix	201	218				
+WP_001077714.1	outside	219	229				
+WP_001077714.1	TMhelix	230	245				
+WP_001077714.1	inside	246	304				
+WP_001077714.1	TMhelix	305	314				
+WP_001077714.1	outside	315	315				
+WP_001077714.1	TMhelix	316	326				
+WP_001077714.1	inside	327	381				
+WP_001077714.1	TMhelix	382	392				
+WP_001077714.1	outside	393	393				
+WP_001077714.1	TMhelix	394	403				
+WP_001077714.1	inside	404	413				
+WP_001077714.1	TMhelix	414	434				
+WP_001077714.1	outside	435	437				
+//
+# WP_001078080.1 Length: 347
+# WP_001078080.1 Number of predicted TMRs: 0
+WP_001078080.1	signal	1	26				
+WP_001078080.1	outside	27	347				
+//
+# WP_001078309.1 Length: 103
+# WP_001078309.1 Number of predicted TMRs: 0
+WP_001078309.1	inside	1	103				
+//
+# WP_001078456.1 Length: 336
+# WP_001078456.1 Number of predicted TMRs: 0
+WP_001078456.1	inside	1	336				
+//
+# WP_001080281.1 Length: 218
+# WP_001080281.1 Number of predicted TMRs: 0
+WP_001080281.1	outside	1	218				
+//
+# WP_001080464.1 Length: 139
+# WP_001080464.1 Number of predicted TMRs: 4
+WP_001080464.1	inside	1	12				
+WP_001080464.1	TMhelix	13	26				
+WP_001080464.1	outside	27	60				
+WP_001080464.1	TMhelix	61	81				
+WP_001080464.1	inside	82	88				
+WP_001080464.1	TMhelix	89	105				
+WP_001080464.1	outside	106	106				
+WP_001080464.1	TMhelix	107	119				
+WP_001080464.1	inside	120	139				
+//
+# WP_001080824.1 Length: 179
+# WP_001080824.1 Number of predicted TMRs: 0
+WP_001080824.1	inside	1	179				
+//
+# WP_001081626.1 Length: 142
+# WP_001081626.1 Number of predicted TMRs: 4
+WP_001081626.1	inside	1	10				
+WP_001081626.1	TMhelix	11	31				
+WP_001081626.1	outside	32	35				
+WP_001081626.1	TMhelix	36	56				
+WP_001081626.1	inside	57	71				
+WP_001081626.1	TMhelix	72	91				
+WP_001081626.1	outside	92	116				
+WP_001081626.1	TMhelix	117	135				
+WP_001081626.1	inside	136	142				
+//
+# WP_001081643.1 Length: 655
+# WP_001081643.1 Number of predicted TMRs: 2
+WP_001081643.1	inside	1	9				
+WP_001081643.1	TMhelix	10	30				
+WP_001081643.1	outside	31	33				
+WP_001081643.1	TMhelix	34	54				
+WP_001081643.1	inside	55	655				
+//
+# WP_001081683.1 Length: 273
+# WP_001081683.1 Number of predicted TMRs: 0
+WP_001081683.1	inside	1	273				
+//
+# WP_001083341.1 Length: 220
+# WP_001083341.1 Number of predicted TMRs: 0
+WP_001083341.1	inside	1	220				
+//
+# WP_001083503.1 Length: 456
+# WP_001083503.1 Number of predicted TMRs: 12
+WP_001083503.1	outside	1	6				
+WP_001083503.1	TMhelix	7	24				
+WP_001083503.1	inside	25	29				
+WP_001083503.1	TMhelix	30	44				
+WP_001083503.1	outside	45	67				
+WP_001083503.1	TMhelix	68	77				
+WP_001083503.1	inside	78	105				
+WP_001083503.1	TMhelix	106	117				
+WP_001083503.1	outside	118	119				
+WP_001083503.1	TMhelix	120	129				
+WP_001083503.1	inside	130	150				
+WP_001083503.1	TMhelix	151	163				
+WP_001083503.1	outside	164	181				
+WP_001083503.1	TMhelix	182	202				
+WP_001083503.1	inside	203	256				
+WP_001083503.1	TMhelix	257	272				
+WP_001083503.1	outside	273	278				
+WP_001083503.1	TMhelix	279	291				
+WP_001083503.1	inside	292	309				
+WP_001083503.1	TMhelix	310	320				
+WP_001083503.1	outside	321	396				
+WP_001083503.1	TMhelix	397	414				
+WP_001083503.1	inside	415	431				
+WP_001083503.1	TMhelix	432	451				
+WP_001083503.1	outside	452	456				
+//
+# WP_001083973.1 Length: 238
+# WP_001083973.1 Number of predicted TMRs: 0
+WP_001083973.1	inside	1	238				
+//
+# WP_001084437.1 Length: 394
+# WP_001084437.1 Number of predicted TMRs: 0
+WP_001084437.1	inside	1	394				
+//
+# WP_001085185.1 Length: 154
+# WP_001085185.1 Number of predicted TMRs: 0
+WP_001085185.1	inside	1	154				
+//
+# WP_001085218.1 Length: 454
+# WP_001085218.1 Number of predicted TMRs: 0
+WP_001085218.1	inside	1	454				
+//
+# WP_001085505.1 Length: 505
+# WP_001085505.1 Number of predicted TMRs: 0
+WP_001085505.1	inside	1	505				
+//
+# WP_001085655.1 Length: 89
+# WP_001085655.1 Number of predicted TMRs: 0
+WP_001085655.1	inside	1	89				
+//
+# WP_001085795.1 Length: 140
+# WP_001085795.1 Number of predicted TMRs: 0
+WP_001085795.1	inside	1	140				
+//
+# WP_001086739.1 Length: 220
+# WP_001086739.1 Number of predicted TMRs: 0
+WP_001086739.1	inside	1	220				
+//
+# WP_001088022.1 Length: 117
+# WP_001088022.1 Number of predicted TMRs: 0
+WP_001088022.1	inside	1	117				
+//
+# WP_001088978.1 Length: 548
+# WP_001088978.1 Number of predicted TMRs: 12
+WP_001088978.1	inside	1	18				
+WP_001088978.1	TMhelix	19	32				
+WP_001088978.1	outside	33	49				
+WP_001088978.1	TMhelix	50	66				
+WP_001088978.1	inside	67	97				
+WP_001088978.1	TMhelix	98	113				
+WP_001088978.1	outside	114	141				
+WP_001088978.1	TMhelix	142	153				
+WP_001088978.1	inside	154	196				
+WP_001088978.1	TMhelix	197	214				
+WP_001088978.1	outside	215	234				
+WP_001088978.1	TMhelix	235	251				
+WP_001088978.1	inside	252	258				
+WP_001088978.1	TMhelix	259	277				
+WP_001088978.1	outside	278	321				
+WP_001088978.1	TMhelix	322	337				
+WP_001088978.1	inside	338	354				
+WP_001088978.1	TMhelix	355	370				
+WP_001088978.1	outside	371	407				
+WP_001088978.1	TMhelix	408	428				
+WP_001088978.1	inside	429	442				
+WP_001088978.1	TMhelix	443	459				
+WP_001088978.1	outside	460	476				
+WP_001088978.1	TMhelix	477	490				
+WP_001088978.1	inside	491	548				
+//
+# WP_001089094.1 Length: 393
+# WP_001089094.1 Number of predicted TMRs: 0
+WP_001089094.1	signal	1	36				
+WP_001089094.1	outside	37	393				
+//
+# WP_001089620.1 Length: 383
+# WP_001089620.1 Number of predicted TMRs: 0
+WP_001089620.1	inside	1	383				
+//
+# WP_001091185.1 Length: 302
+# WP_001091185.1 Number of predicted TMRs: 10
+WP_001091185.1	inside	1	8				
+WP_001091185.1	TMhelix	9	24				
+WP_001091185.1	outside	25	38				
+WP_001091185.1	TMhelix	39	55				
+WP_001091185.1	inside	56	76				
+WP_001091185.1	TMhelix	77	97				
+WP_001091185.1	outside	98	105				
+WP_001091185.1	TMhelix	106	124				
+WP_001091185.1	inside	125	133				
+WP_001091185.1	TMhelix	134	149				
+WP_001091185.1	outside	150	155				
+WP_001091185.1	TMhelix	156	171				
+WP_001091185.1	inside	172	182				
+WP_001091185.1	TMhelix	183	199				
+WP_001091185.1	outside	200	215				
+WP_001091185.1	TMhelix	216	233				
+WP_001091185.1	inside	234	242				
+WP_001091185.1	TMhelix	243	263				
+WP_001091185.1	outside	264	271				
+WP_001091185.1	TMhelix	272	291				
+WP_001091185.1	inside	292	302				
+//
+# WP_001091387.1 Length: 285
+# WP_001091387.1 Number of predicted TMRs: 0
+WP_001091387.1	inside	1	285				
+//
+# WP_001092004.1 Length: 119
+# WP_001092004.1 Number of predicted TMRs: 0
+WP_001092004.1	inside	1	119				
+//
+# WP_001092188.1 Length: 168
+# WP_001092188.1 Number of predicted TMRs: 0
+WP_001092188.1	inside	1	168				
+//
+# WP_001092400.1 Length: 186
+# WP_001092400.1 Number of predicted TMRs: 1
+WP_001092400.1	inside	1	9				
+WP_001092400.1	TMhelix	10	30				
+WP_001092400.1	outside	31	186				
+//
+# WP_001093556.1 Length: 146
+# WP_001093556.1 Number of predicted TMRs: 0
+WP_001093556.1	signal	1	20				
+WP_001093556.1	outside	21	146				
+//
+# WP_001093929.1 Length: 46
+# WP_001093929.1 Number of predicted TMRs: 0
+WP_001093929.1	inside	1	46				
+//
+# WP_001094394.1 Length: 134
+# WP_001094394.1 Number of predicted TMRs: 0
+WP_001094394.1	inside	1	134				
+//
+# WP_001095260.1 Length: 136
+# WP_001095260.1 Number of predicted TMRs: 0
+WP_001095260.1	inside	1	136				
+//
+# WP_001095317.1 Length: 255
+# WP_001095317.1 Number of predicted TMRs: 0
+WP_001095317.1	inside	1	255				
+//
+# WP_001096120.1 Length: 353
+# WP_001096120.1 Number of predicted TMRs: 0
+WP_001096120.1	inside	1	353				
+//
+# WP_001096355.1 Length: 116
+# WP_001096355.1 Number of predicted TMRs: 0
+WP_001096355.1	inside	1	116				
+//
+# WP_001096369.1 Length: 585
+# WP_001096369.1 Number of predicted TMRs: 4
+WP_001096369.1	outside	1	4				
+WP_001096369.1	TMhelix	5	25				
+WP_001096369.1	inside	26	37				
+WP_001096369.1	TMhelix	38	53				
+WP_001096369.1	outside	54	104				
+WP_001096369.1	TMhelix	105	119				
+WP_001096369.1	inside	120	308				
+WP_001096369.1	TMhelix	309	324				
+WP_001096369.1	outside	325	585				
+//
+# WP_001096484.1 Length: 319
+# WP_001096484.1 Number of predicted TMRs: 0
+WP_001096484.1	inside	1	319				
+//
+# WP_001096494.1 Length: 237
+# WP_001096494.1 Number of predicted TMRs: 0
+WP_001096494.1	inside	1	237				
+//
+# WP_001096577.1 Length: 59
+# WP_001096577.1 Number of predicted TMRs: 0
+WP_001096577.1	inside	1	59				
+//
+# WP_001096642.1 Length: 327
+# WP_001096642.1 Number of predicted TMRs: 0
+WP_001096642.1	inside	1	327				
+//
+# WP_001097552.1 Length: 71
+# WP_001097552.1 Number of predicted TMRs: 0
+WP_001097552.1	inside	1	71				
+//
+# WP_001100293.1 Length: 450
+# WP_001100293.1 Number of predicted TMRs: 14
+WP_001100293.1	inside	1	13				
+WP_001100293.1	TMhelix	14	32				
+WP_001100293.1	outside	33	48				
+WP_001100293.1	TMhelix	49	69				
+WP_001100293.1	inside	70	75				
+WP_001100293.1	TMhelix	76	95				
+WP_001100293.1	outside	96	98				
+WP_001100293.1	TMhelix	99	121				
+WP_001100293.1	inside	122	137				
+WP_001100293.1	TMhelix	138	158				
+WP_001100293.1	outside	159	165				
+WP_001100293.1	TMhelix	166	182				
+WP_001100293.1	inside	183	195				
+WP_001100293.1	TMhelix	196	216				
+WP_001100293.1	outside	217	219				
+WP_001100293.1	TMhelix	220	237				
+WP_001100293.1	inside	238	255				
+WP_001100293.1	TMhelix	256	277				
+WP_001100293.1	outside	278	291				
+WP_001100293.1	TMhelix	292	310				
+WP_001100293.1	inside	311	319				
+WP_001100293.1	TMhelix	320	339				
+WP_001100293.1	outside	340	345				
+WP_001100293.1	TMhelix	346	363				
+WP_001100293.1	inside	364	381				
+WP_001100293.1	TMhelix	382	405				
+WP_001100293.1	outside	406	421				
+WP_001100293.1	TMhelix	422	442				
+WP_001100293.1	inside	443	450				
+//
+# WP_001100526.1 Length: 313
+# WP_001100526.1 Number of predicted TMRs: 0
+WP_001100526.1	inside	1	313				
+//
+# WP_001100664.1 Length: 412
+# WP_001100664.1 Number of predicted TMRs: 0
+WP_001100664.1	inside	1	412				
+//
+# WP_001100840.1 Length: 458
+# WP_001100840.1 Number of predicted TMRs: 0
+WP_001100840.1	inside	1	458				
+//
+# WP_001101608.1 Length: 367
+# WP_001101608.1 Number of predicted TMRs: 0
+WP_001101608.1	inside	1	367				
+//
+# WP_001103232.1 Length: 264
+# WP_001103232.1 Number of predicted TMRs: 0
+WP_001103232.1	inside	1	264				
+//
+# WP_001103743.1 Length: 272
+# WP_001103743.1 Number of predicted TMRs: 7
+WP_001103743.1	outside	1	4				
+WP_001103743.1	TMhelix	5	25				
+WP_001103743.1	inside	26	37				
+WP_001103743.1	TMhelix	38	56				
+WP_001103743.1	outside	57	85				
+WP_001103743.1	TMhelix	86	103				
+WP_001103743.1	inside	104	132				
+WP_001103743.1	TMhelix	133	153				
+WP_001103743.1	outside	154	161				
+WP_001103743.1	TMhelix	162	179				
+WP_001103743.1	inside	180	211				
+WP_001103743.1	TMhelix	212	234				
+WP_001103743.1	outside	235	239				
+WP_001103743.1	TMhelix	240	259				
+WP_001103743.1	inside	260	272				
+//
+# WP_001104176.1 Length: 262
+# WP_001104176.1 Number of predicted TMRs: 1
+WP_001104176.1	inside	1	7				
+WP_001104176.1	TMhelix	8	24				
+WP_001104176.1	outside	25	262				
+//
+# WP_001104611.1 Length: 312
+# WP_001104611.1 Number of predicted TMRs: 0
+WP_001104611.1	inside	1	312				
+//
+# WP_001105621.1 Length: 94
+# WP_001105621.1 Number of predicted TMRs: 0
+WP_001105621.1	inside	1	94				
+//
+# WP_001105713.1 Length: 189
+# WP_001105713.1 Number of predicted TMRs: 6
+WP_001105713.1	inside	1	34				
+WP_001105713.1	TMhelix	35	52				
+WP_001105713.1	outside	53	57				
+WP_001105713.1	TMhelix	58	69				
+WP_001105713.1	inside	70	81				
+WP_001105713.1	TMhelix	82	99				
+WP_001105713.1	outside	100	107				
+WP_001105713.1	TMhelix	108	122				
+WP_001105713.1	inside	123	142				
+WP_001105713.1	TMhelix	143	159				
+WP_001105713.1	outside	160	165				
+WP_001105713.1	TMhelix	166	181				
+WP_001105713.1	inside	182	189				
+//
+# WP_001106057.1 Length: 224
+# WP_001106057.1 Number of predicted TMRs: 0
+WP_001106057.1	inside	1	224				
+//
+# WP_001106118.1 Length: 496
+# WP_001106118.1 Number of predicted TMRs: 0
+WP_001106118.1	inside	1	496				
+//
+# WP_001106646.1 Length: 189
+# WP_001106646.1 Number of predicted TMRs: 0
+WP_001106646.1	signal	1	27				
+WP_001106646.1	outside	28	189				
+//
+# WP_001106735.1 Length: 490
+# WP_001106735.1 Number of predicted TMRs: 0
+WP_001106735.1	inside	1	490				
+//
+# WP_001107109.1 Length: 480
+# WP_001107109.1 Number of predicted TMRs: 12
+WP_001107109.1	inside	1	112				
+WP_001107109.1	TMhelix	113	133				
+WP_001107109.1	outside	134	158				
+WP_001107109.1	TMhelix	159	176				
+WP_001107109.1	inside	177	186				
+WP_001107109.1	TMhelix	187	197				
+WP_001107109.1	outside	198	233				
+WP_001107109.1	TMhelix	234	249				
+WP_001107109.1	inside	250	263				
+WP_001107109.1	TMhelix	264	285				
+WP_001107109.1	outside	286	307				
+WP_001107109.1	TMhelix	308	317				
+WP_001107109.1	inside	318	318				
+WP_001107109.1	TMhelix	319	328				
+WP_001107109.1	outside	329	345				
+WP_001107109.1	TMhelix	346	366				
+WP_001107109.1	inside	367	377				
+WP_001107109.1	TMhelix	378	387				
+WP_001107109.1	outside	388	388				
+WP_001107109.1	TMhelix	389	398				
+WP_001107109.1	inside	399	405				
+WP_001107109.1	TMhelix	406	421				
+WP_001107109.1	outside	422	448				
+WP_001107109.1	TMhelix	449	469				
+WP_001107109.1	inside	470	480				
+//
+# WP_001107233.1 Length: 160
+# WP_001107233.1 Number of predicted TMRs: 0
+WP_001107233.1	inside	1	160				
+//
+# WP_001108346.1 Length: 423
+# WP_001108346.1 Number of predicted TMRs: 0
+WP_001108346.1	inside	1	423				
+//
+# WP_001108482.1 Length: 263
+# WP_001108482.1 Number of predicted TMRs: 0
+WP_001108482.1	inside	1	263				
+//
+# WP_001108538.1 Length: 250
+# WP_001108538.1 Number of predicted TMRs: 6
+WP_001108538.1	outside	1	17				
+WP_001108538.1	TMhelix	18	29				
+WP_001108538.1	inside	30	103				
+WP_001108538.1	TMhelix	104	120				
+WP_001108538.1	outside	121	127				
+WP_001108538.1	TMhelix	128	143				
+WP_001108538.1	inside	144	148				
+WP_001108538.1	TMhelix	149	165				
+WP_001108538.1	outside	166	183				
+WP_001108538.1	TMhelix	184	193				
+WP_001108538.1	inside	194	223				
+WP_001108538.1	TMhelix	224	243				
+WP_001108538.1	outside	244	250				
+//
+# WP_001108885.1 Length: 208
+# WP_001108885.1 Number of predicted TMRs: 0
+WP_001108885.1	inside	1	208				
+//
+# WP_001109037.1 Length: 565
+# WP_001109037.1 Number of predicted TMRs: 0
+WP_001109037.1	inside	1	565				
+//
+# WP_001109283.1 Length: 318
+# WP_001109283.1 Number of predicted TMRs: 0
+WP_001109283.1	inside	1	318				
+//
+# WP_001109871.1 Length: 230
+# WP_001109871.1 Number of predicted TMRs: 0
+WP_001109871.1	inside	1	230				
+//
+# WP_001109944.1 Length: 400
+# WP_001109944.1 Number of predicted TMRs: 10
+WP_001109944.1	inside	1	18				
+WP_001109944.1	TMhelix	19	37				
+WP_001109944.1	outside	38	49				
+WP_001109944.1	TMhelix	50	70				
+WP_001109944.1	inside	71	77				
+WP_001109944.1	TMhelix	78	96				
+WP_001109944.1	outside	97	123				
+WP_001109944.1	TMhelix	124	137				
+WP_001109944.1	inside	138	152				
+WP_001109944.1	TMhelix	153	173				
+WP_001109944.1	outside	174	175				
+WP_001109944.1	TMhelix	176	192				
+WP_001109944.1	inside	193	199				
+WP_001109944.1	TMhelix	200	220				
+WP_001109944.1	outside	221	297				
+WP_001109944.1	TMhelix	298	316				
+WP_001109944.1	inside	317	328				
+WP_001109944.1	TMhelix	329	350				
+WP_001109944.1	outside	351	368				
+WP_001109944.1	TMhelix	369	381				
+WP_001109944.1	inside	382	400				
+//
+# WP_001110077.1 Length: 452
+# WP_001110077.1 Number of predicted TMRs: 0
+WP_001110077.1	inside	1	452				
+//
+# WP_001110179.1 Length: 128
+# WP_001110179.1 Number of predicted TMRs: 0
+WP_001110179.1	inside	1	128				
+//
+# WP_001112045.1 Length: 379
+# WP_001112045.1 Number of predicted TMRs: 0
+WP_001112045.1	inside	1	379				
+//
+# WP_001113093.1 Length: 223
+# WP_001113093.1 Number of predicted TMRs: 5
+WP_001113093.1	outside	1	6				
+WP_001113093.1	TMhelix	7	32				
+WP_001113093.1	inside	33	41				
+WP_001113093.1	TMhelix	42	53				
+WP_001113093.1	outside	54	87				
+WP_001113093.1	TMhelix	88	104				
+WP_001113093.1	inside	105	143				
+WP_001113093.1	TMhelix	144	158				
+WP_001113093.1	outside	159	192				
+WP_001113093.1	TMhelix	193	214				
+WP_001113093.1	inside	215	223				
+//
+# WP_001113406.1 Length: 253
+# WP_001113406.1 Number of predicted TMRs: 5
+WP_001113406.1	inside	1	119				
+WP_001113406.1	TMhelix	120	138				
+WP_001113406.1	outside	139	144				
+WP_001113406.1	TMhelix	145	162				
+WP_001113406.1	inside	163	167				
+WP_001113406.1	TMhelix	168	188				
+WP_001113406.1	outside	189	200				
+WP_001113406.1	TMhelix	201	217				
+WP_001113406.1	inside	218	231				
+WP_001113406.1	TMhelix	232	252				
+WP_001113406.1	outside	253	253				
+//
+# WP_001114467.1 Length: 290
+# WP_001114467.1 Number of predicted TMRs: 0
+WP_001114467.1	inside	1	290				
+//
+# WP_001115101.1 Length: 438
+# WP_001115101.1 Number of predicted TMRs: 0
+WP_001115101.1	inside	1	438				
+//
+# WP_001115439.1 Length: 422
+# WP_001115439.1 Number of predicted TMRs: 0
+WP_001115439.1	inside	1	422				
+//
+# WP_001117047.1 Length: 138
+# WP_001117047.1 Number of predicted TMRs: 0
+WP_001117047.1	inside	1	138				
+//
+# WP_001117064.1 Length: 205
+# WP_001117064.1 Number of predicted TMRs: 0
+WP_001117064.1	inside	1	205				
+//
+# WP_001117767.1 Length: 315
+# WP_001117767.1 Number of predicted TMRs: 0
+WP_001117767.1	inside	1	315				
+//
+# WP_001118443.1 Length: 72
+# WP_001118443.1 Number of predicted TMRs: 0
+WP_001118443.1	inside	1	72				
+//
+# WP_001118654.1 Length: 744
+# WP_001118654.1 Number of predicted TMRs: 1
+WP_001118654.1	inside	1	12				
+WP_001118654.1	TMhelix	13	33				
+WP_001118654.1	outside	34	744				
+//
+# WP_001118667.1 Length: 102
+# WP_001118667.1 Number of predicted TMRs: 0
+WP_001118667.1	inside	1	102				
+//
+# WP_001118676.1 Length: 242
+# WP_001118676.1 Number of predicted TMRs: 0
+WP_001118676.1	inside	1	242				
+//
+# WP_001118711.1 Length: 801
+# WP_001118711.1 Number of predicted TMRs: 0
+WP_001118711.1	inside	1	801				
+//
+# WP_001118969.1 Length: 91
+# WP_001118969.1 Number of predicted TMRs: 0
+WP_001118969.1	inside	1	91				
+//
+# WP_001119021.1 Length: 379
+# WP_001119021.1 Number of predicted TMRs: 0
+WP_001119021.1	inside	1	379				
+//
+# WP_001120936.1 Length: 106
+# WP_001120936.1 Number of predicted TMRs: 0
+WP_001120936.1	inside	1	106				
+//
+# WP_001121760.1 Length: 434
+# WP_001121760.1 Number of predicted TMRs: 0
+WP_001121760.1	inside	1	434				
+//
+# WP_001123276.1 Length: 61
+# WP_001123276.1 Number of predicted TMRs: 0
+WP_001123276.1	inside	1	61				
+//
+# WP_001123293.1 Length: 104
+# WP_001123293.1 Number of predicted TMRs: 0
+WP_001123293.1	inside	1	104				
+//
+# WP_001123311.1 Length: 137
+# WP_001123311.1 Number of predicted TMRs: 0
+WP_001123311.1	inside	1	137				
+//
+# WP_001124160.1 Length: 87
+# WP_001124160.1 Number of predicted TMRs: 0
+WP_001124160.1	inside	1	87				
+//
+# WP_001124162.1 Length: 120
+# WP_001124162.1 Number of predicted TMRs: 0
+WP_001124162.1	inside	1	120				
+//
+# WP_001124422.1 Length: 272
+# WP_001124422.1 Number of predicted TMRs: 0
+WP_001124422.1	inside	1	272				
+//
+# WP_001124516.1 Length: 438
+# WP_001124516.1 Number of predicted TMRs: 0
+WP_001124516.1	inside	1	438				
+//
+# WP_001124985.1 Length: 150
+# WP_001124985.1 Number of predicted TMRs: 0
+WP_001124985.1	inside	1	150				
+//
+# WP_001125208.1 Length: 228
+# WP_001125208.1 Number of predicted TMRs: 0
+WP_001125208.1	inside	1	228				
+//
+# WP_001125540.1 Length: 66
+# WP_001125540.1 Number of predicted TMRs: 0
+WP_001125540.1	inside	1	66				
+//
+# WP_001125630.1 Length: 619
+# WP_001125630.1 Number of predicted TMRs: 0
+WP_001125630.1	signal	1	27				
+WP_001125630.1	outside	28	619				
+//
+# WP_001126247.1 Length: 1057
+# WP_001126247.1 Number of predicted TMRs: 0
+WP_001126247.1	inside	1	1057				
+//
+# WP_001126602.1 Length: 446
+# WP_001126602.1 Number of predicted TMRs: 0
+WP_001126602.1	inside	1	446				
+//
+# WP_001126664.1 Length: 87
+# WP_001126664.1 Number of predicted TMRs: 0
+WP_001126664.1	inside	1	87				
+//
+# WP_001127173.1 Length: 207
+# WP_001127173.1 Number of predicted TMRs: 0
+WP_001127173.1	inside	1	207				
+//
+# WP_001127689.1 Length: 266
+# WP_001127689.1 Number of predicted TMRs: 6
+WP_001127689.1	inside	1	21				
+WP_001127689.1	TMhelix	22	39				
+WP_001127689.1	outside	40	78				
+WP_001127689.1	TMhelix	79	99				
+WP_001127689.1	inside	100	108				
+WP_001127689.1	TMhelix	109	137				
+WP_001127689.1	outside	138	140				
+WP_001127689.1	TMhelix	141	161				
+WP_001127689.1	inside	162	196				
+WP_001127689.1	TMhelix	197	212				
+WP_001127689.1	outside	213	239				
+WP_001127689.1	TMhelix	240	258				
+WP_001127689.1	inside	259	266				
+//
+# WP_001127960.1 Length: 312
+# WP_001127960.1 Number of predicted TMRs: 0
+WP_001127960.1	inside	1	312				
+//
+# WP_001128433.1 Length: 121
+# WP_001128433.1 Number of predicted TMRs: 0
+WP_001128433.1	inside	1	121				
+//
+# WP_001129473.1 Length: 89
+# WP_001129473.1 Number of predicted TMRs: 0
+WP_001129473.1	inside	1	89				
+//
+# WP_001129744.1 Length: 730
+# WP_001129744.1 Number of predicted TMRs: 0
+WP_001129744.1	inside	1	730				
+//
+# WP_001130051.1 Length: 498
+# WP_001130051.1 Number of predicted TMRs: 0
+WP_001130051.1	inside	1	498				
+//
+# WP_001131841.1 Length: 286
+# WP_001131841.1 Number of predicted TMRs: 0
+WP_001131841.1	inside	1	286				
+//
+# WP_001133024.1 Length: 292
+# WP_001133024.1 Number of predicted TMRs: 0
+WP_001133024.1	inside	1	292				
+//
+# WP_001134193.1 Length: 267
+# WP_001134193.1 Number of predicted TMRs: 0
+WP_001134193.1	inside	1	267				
+//
+# WP_001137459.1 Length: 522
+# WP_001137459.1 Number of predicted TMRs: 0
+WP_001137459.1	inside	1	522				
+//
+# WP_001137495.1 Length: 156
+# WP_001137495.1 Number of predicted TMRs: 0
+WP_001137495.1	inside	1	156				
+//
+# WP_001137778.1 Length: 420
+# WP_001137778.1 Number of predicted TMRs: 0
+WP_001137778.1	outside	1	420				
+//
+# WP_001138360.1 Length: 118
+# WP_001138360.1 Number of predicted TMRs: 0
+WP_001138360.1	inside	1	118				
+//
+# WP_001140234.1 Length: 226
+# WP_001140234.1 Number of predicted TMRs: 0
+WP_001140234.1	inside	1	226				
+//
+# WP_001140696.1 Length: 193
+# WP_001140696.1 Number of predicted TMRs: 0
+WP_001140696.1	inside	1	193				
+//
+# WP_001140799.1 Length: 61
+# WP_001140799.1 Number of predicted TMRs: 0
+WP_001140799.1	inside	1	61				
+//
+# WP_001140871.1 Length: 309
+# WP_001140871.1 Number of predicted TMRs: 0
+WP_001140871.1	inside	1	309				
+//
+# WP_001141883.1 Length: 80
+# WP_001141883.1 Number of predicted TMRs: 0
+WP_001141883.1	inside	1	80				
+//
+# WP_001142337.1 Length: 137
+# WP_001142337.1 Number of predicted TMRs: 0
+WP_001142337.1	inside	1	137				
+//
+# WP_001143493.1 Length: 119
+# WP_001143493.1 Number of predicted TMRs: 0
+WP_001143493.1	inside	1	119				
+//
+# WP_001146762.1 Length: 140
+# WP_001146762.1 Number of predicted TMRs: 0
+WP_001146762.1	inside	1	140				
+//
+# WP_001147860.1 Length: 453
+# WP_001147860.1 Number of predicted TMRs: 0
+WP_001147860.1	inside	1	453				
+//
+# WP_001147955.1 Length: 106
+# WP_001147955.1 Number of predicted TMRs: 0
+WP_001147955.1	inside	1	106				
+//
+# WP_001147973.1 Length: 448
+# WP_001147973.1 Number of predicted TMRs: 11
+WP_001147973.1	outside	1	15				
+WP_001147973.1	TMhelix	16	29				
+WP_001147973.1	inside	30	40				
+WP_001147973.1	TMhelix	41	62				
+WP_001147973.1	outside	63	96				
+WP_001147973.1	TMhelix	97	112				
+WP_001147973.1	inside	113	123				
+WP_001147973.1	TMhelix	124	134				
+WP_001147973.1	outside	135	146				
+WP_001147973.1	TMhelix	147	167				
+WP_001147973.1	inside	168	221				
+WP_001147973.1	TMhelix	222	241				
+WP_001147973.1	outside	242	256				
+WP_001147973.1	TMhelix	257	282				
+WP_001147973.1	inside	283	316				
+WP_001147973.1	TMhelix	317	338				
+WP_001147973.1	outside	339	341				
+WP_001147973.1	TMhelix	342	357				
+WP_001147973.1	inside	358	368				
+WP_001147973.1	TMhelix	369	389				
+WP_001147973.1	outside	390	422				
+WP_001147973.1	TMhelix	423	440				
+WP_001147973.1	inside	441	448				
+//
+# WP_001148590.1 Length: 249
+# WP_001148590.1 Number of predicted TMRs: 0
+WP_001148590.1	inside	1	249				
+//
+# WP_001148860.1 Length: 65
+# WP_001148860.1 Number of predicted TMRs: 0
+WP_001148860.1	inside	1	65				
+//
+# WP_001151451.1 Length: 208
+# WP_001151451.1 Number of predicted TMRs: 0
+WP_001151451.1	inside	1	208				
+//
+# WP_001151485.1 Length: 686
+# WP_001151485.1 Number of predicted TMRs: 0
+WP_001151485.1	inside	1	686				
+//
+# WP_001151896.1 Length: 635
+# WP_001151896.1 Number of predicted TMRs: 1
+WP_001151896.1	signal	1	37				
+WP_001151896.1	outside	38	613				
+WP_001151896.1	TMhelix	614	623				
+WP_001151896.1	inside	624	635				
+//
+# WP_001151997.1 Length: 82
+# WP_001151997.1 Number of predicted TMRs: 0
+WP_001151997.1	inside	1	82				
+//
+# WP_001152696.1 Length: 147
+# WP_001152696.1 Number of predicted TMRs: 0
+WP_001152696.1	inside	1	147				
+//
+# WP_001153681.1 Length: 50
+# WP_001153681.1 Number of predicted TMRs: 0
+WP_001153681.1	inside	1	50				
+//
+# WP_001154224.1 Length: 396
+# WP_001154224.1 Number of predicted TMRs: 12
+WP_001154224.1	inside	1	14				
+WP_001154224.1	TMhelix	15	34				
+WP_001154224.1	outside	35	45				
+WP_001154224.1	TMhelix	46	73				
+WP_001154224.1	inside	74	79				
+WP_001154224.1	TMhelix	80	99				
+WP_001154224.1	outside	100	104				
+WP_001154224.1	TMhelix	105	126				
+WP_001154224.1	inside	127	137				
+WP_001154224.1	TMhelix	138	159				
+WP_001154224.1	outside	160	164				
+WP_001154224.1	TMhelix	165	184				
+WP_001154224.1	inside	185	210				
+WP_001154224.1	TMhelix	211	231				
+WP_001154224.1	outside	232	242				
+WP_001154224.1	TMhelix	243	263				
+WP_001154224.1	inside	264	274				
+WP_001154224.1	TMhelix	275	297				
+WP_001154224.1	outside	298	302				
+WP_001154224.1	TMhelix	303	326				
+WP_001154224.1	inside	327	337				
+WP_001154224.1	TMhelix	338	358				
+WP_001154224.1	outside	359	369				
+WP_001154224.1	TMhelix	370	390				
+WP_001154224.1	inside	391	396				
+//
+# WP_001154302.1 Length: 121
+# WP_001154302.1 Number of predicted TMRs: 0
+WP_001154302.1	inside	1	121				
+//
+# WP_001154635.1 Length: 394
+# WP_001154635.1 Number of predicted TMRs: 0
+WP_001154635.1	inside	1	394				
+//
+# WP_001155282.1 Length: 984
+# WP_001155282.1 Number of predicted TMRs: 0
+WP_001155282.1	outside	1	984				
+//
+# WP_001157329.1 Length: 271
+# WP_001157329.1 Number of predicted TMRs: 8
+WP_001157329.1	outside	1	11				
+WP_001157329.1	TMhelix	12	29				
+WP_001157329.1	inside	30	37				
+WP_001157329.1	TMhelix	38	59				
+WP_001157329.1	outside	60	68				
+WP_001157329.1	TMhelix	69	87				
+WP_001157329.1	inside	88	94				
+WP_001157329.1	TMhelix	95	113				
+WP_001157329.1	outside	114	131				
+WP_001157329.1	TMhelix	132	155				
+WP_001157329.1	inside	156	183				
+WP_001157329.1	TMhelix	184	206				
+WP_001157329.1	outside	207	214				
+WP_001157329.1	TMhelix	215	237				
+WP_001157329.1	inside	238	246				
+WP_001157329.1	TMhelix	247	267				
+WP_001157329.1	outside	268	271				
+//
+# WP_001159035.1 Length: 393
+# WP_001159035.1 Number of predicted TMRs: 0
+WP_001159035.1	inside	1	393				
+//
+# WP_001159430.1 Length: 412
+# WP_001159430.1 Number of predicted TMRs: 5
+WP_001159430.1	outside	1	5				
+WP_001159430.1	TMhelix	6	26				
+WP_001159430.1	inside	27	291				
+WP_001159430.1	TMhelix	292	313				
+WP_001159430.1	outside	314	331				
+WP_001159430.1	TMhelix	332	350				
+WP_001159430.1	inside	351	365				
+WP_001159430.1	TMhelix	366	375				
+WP_001159430.1	outside	376	376				
+WP_001159430.1	TMhelix	377	386				
+WP_001159430.1	inside	387	412				
+//
+# WP_001159765.1 Length: 130
+# WP_001159765.1 Number of predicted TMRs: 0
+WP_001159765.1	inside	1	130				
+//
+# WP_001159898.1 Length: 287
+# WP_001159898.1 Number of predicted TMRs: 10
+WP_001159898.1	outside	1	5				
+WP_001159898.1	TMhelix	6	22				
+WP_001159898.1	inside	23	33				
+WP_001159898.1	TMhelix	34	51				
+WP_001159898.1	outside	52	61				
+WP_001159898.1	TMhelix	62	80				
+WP_001159898.1	inside	81	91				
+WP_001159898.1	TMhelix	92	110				
+WP_001159898.1	outside	111	119				
+WP_001159898.1	TMhelix	120	139				
+WP_001159898.1	inside	140	155				
+WP_001159898.1	TMhelix	156	176				
+WP_001159898.1	outside	177	183				
+WP_001159898.1	TMhelix	184	200				
+WP_001159898.1	inside	201	212				
+WP_001159898.1	TMhelix	213	228				
+WP_001159898.1	outside	229	237				
+WP_001159898.1	TMhelix	238	256				
+WP_001159898.1	inside	257	266				
+WP_001159898.1	TMhelix	267	284				
+WP_001159898.1	outside	285	287				
+//
+# WP_001160605.1 Length: 493
+# WP_001160605.1 Number of predicted TMRs: 3
+WP_001160605.1	outside	1	11				
+WP_001160605.1	TMhelix	12	34				
+WP_001160605.1	inside	35	44				
+WP_001160605.1	TMhelix	45	54				
+WP_001160605.1	outside	55	55				
+WP_001160605.1	TMhelix	56	66				
+WP_001160605.1	inside	67	493				
+//
+# WP_001160682.1 Length: 86
+# WP_001160682.1 Number of predicted TMRs: 1
+WP_001160682.1	outside	1	4				
+WP_001160682.1	TMhelix	5	21				
+WP_001160682.1	inside	22	86				
+//
+# WP_001161085.1 Length: 105
+# WP_001161085.1 Number of predicted TMRs: 4
+WP_001161085.1	outside	1	2				
+WP_001161085.1	TMhelix	3	18				
+WP_001161085.1	inside	19	29				
+WP_001161085.1	TMhelix	30	47				
+WP_001161085.1	outside	48	54				
+WP_001161085.1	TMhelix	55	73				
+WP_001161085.1	inside	74	84				
+WP_001161085.1	TMhelix	85	102				
+WP_001161085.1	outside	103	105				
+//
+# WP_001162348.1 Length: 300
+# WP_001162348.1 Number of predicted TMRs: 0
+WP_001162348.1	inside	1	300				
+//
+# WP_001163761.1 Length: 368
+# WP_001163761.1 Number of predicted TMRs: 0
+WP_001163761.1	inside	1	368				
+//
+# WP_001163816.1 Length: 317
+# WP_001163816.1 Number of predicted TMRs: 0
+WP_001163816.1	inside	1	317				
+//
+# WP_001164085.1 Length: 165
+# WP_001164085.1 Number of predicted TMRs: 0
+WP_001164085.1	inside	1	165				
+//
+# WP_001164629.1 Length: 61
+# WP_001164629.1 Number of predicted TMRs: 0
+WP_001164629.1	inside	1	61				
+//
+# WP_001165072.1 Length: 121
+# WP_001165072.1 Number of predicted TMRs: 0
+WP_001165072.1	inside	1	121				
+//
+# WP_001165363.1 Length: 100
+# WP_001165363.1 Number of predicted TMRs: 0
+WP_001165363.1	inside	1	100				
+//
+# WP_001165377.1 Length: 98
+# WP_001165377.1 Number of predicted TMRs: 0
+WP_001165377.1	inside	1	98				
+//
+# WP_001165814.1 Length: 83
+# WP_001165814.1 Number of predicted TMRs: 0
+WP_001165814.1	inside	1	83				
+//
+# WP_001165969.1 Length: 246
+# WP_001165969.1 Number of predicted TMRs: 0
+WP_001165969.1	inside	1	246				
+//
+# WP_001166505.1 Length: 224
+# WP_001166505.1 Number of predicted TMRs: 0
+WP_001166505.1	inside	1	224				
+//
+# WP_001166596.1 Length: 129
+# WP_001166596.1 Number of predicted TMRs: 0
+WP_001166596.1	inside	1	129				
+//
+# WP_001167158.1 Length: 176
+# WP_001167158.1 Number of predicted TMRs: 0
+WP_001167158.1	inside	1	176				
+//
+# WP_001167828.1 Length: 174
+# WP_001167828.1 Number of predicted TMRs: 0
+WP_001167828.1	inside	1	174				
+//
+# WP_001167888.1 Length: 697
+# WP_001167888.1 Number of predicted TMRs: 2
+WP_001167888.1	inside	1	7				
+WP_001167888.1	TMhelix	8	22				
+WP_001167888.1	outside	23	118				
+WP_001167888.1	TMhelix	119	132				
+WP_001167888.1	inside	133	697				
+//
+# WP_001168916.1 Length: 211
+# WP_001168916.1 Number of predicted TMRs: 7
+WP_001168916.1	inside	1	22				
+WP_001168916.1	TMhelix	23	39				
+WP_001168916.1	outside	40	43				
+WP_001168916.1	TMhelix	44	58				
+WP_001168916.1	inside	59	75				
+WP_001168916.1	TMhelix	76	93				
+WP_001168916.1	outside	94	116				
+WP_001168916.1	TMhelix	117	134				
+WP_001168916.1	inside	135	147				
+WP_001168916.1	TMhelix	148	162				
+WP_001168916.1	outside	163	166				
+WP_001168916.1	TMhelix	167	185				
+WP_001168916.1	inside	186	191				
+WP_001168916.1	TMhelix	192	209				
+WP_001168916.1	outside	210	211				
+//
+# WP_001170272.1 Length: 335
+# WP_001170272.1 Number of predicted TMRs: 0
+WP_001170272.1	signal	1	25				
+WP_001170272.1	outside	26	335				
+//
+# WP_001171354.1 Length: 302
+# WP_001171354.1 Number of predicted TMRs: 0
+WP_001171354.1	inside	1	302				
+//
+# WP_001172344.1 Length: 532
+# WP_001172344.1 Number of predicted TMRs: 0
+WP_001172344.1	inside	1	532				
+//
+# WP_001173165.1 Length: 425
+# WP_001173165.1 Number of predicted TMRs: 10
+WP_001173165.1	inside	1	9				
+WP_001173165.1	TMhelix	10	28				
+WP_001173165.1	outside	29	43				
+WP_001173165.1	TMhelix	44	64				
+WP_001173165.1	inside	65	80				
+WP_001173165.1	TMhelix	81	99				
+WP_001173165.1	outside	100	158				
+WP_001173165.1	TMhelix	159	172				
+WP_001173165.1	inside	173	193				
+WP_001173165.1	TMhelix	194	218				
+WP_001173165.1	outside	219	230				
+WP_001173165.1	TMhelix	231	246				
+WP_001173165.1	inside	247	312				
+WP_001173165.1	TMhelix	313	328				
+WP_001173165.1	outside	329	337				
+WP_001173165.1	TMhelix	338	358				
+WP_001173165.1	inside	359	359				
+WP_001173165.1	TMhelix	360	369				
+WP_001173165.1	outside	370	375				
+WP_001173165.1	TMhelix	376	397				
+WP_001173165.1	inside	398	425				
+//
+# WP_001173200.1 Length: 312
+# WP_001173200.1 Number of predicted TMRs: 0
+WP_001173200.1	inside	1	312				
+//
+# WP_001174259.1 Length: 322
+# WP_001174259.1 Number of predicted TMRs: 0
+WP_001174259.1	inside	1	322				
+//
+# WP_001175772.1 Length: 202
+# WP_001175772.1 Number of predicted TMRs: 0
+WP_001175772.1	inside	1	202				
+//
+# WP_001176726.1 Length: 431
+# WP_001176726.1 Number of predicted TMRs: 0
+WP_001176726.1	inside	1	431				
+//
+# WP_001176863.1 Length: 380
+# WP_001176863.1 Number of predicted TMRs: 0
+WP_001176863.1	inside	1	380				
+//
+# WP_001177186.1 Length: 67
+# WP_001177186.1 Number of predicted TMRs: 1
+WP_001177186.1	inside	1	9				
+WP_001177186.1	TMhelix	10	30				
+WP_001177186.1	outside	31	67				
+//
+# WP_001177821.1 Length: 264
+# WP_001177821.1 Number of predicted TMRs: 0
+WP_001177821.1	inside	1	264				
+//
+# WP_001178619.1 Length: 435
+# WP_001178619.1 Number of predicted TMRs: 14
+WP_001178619.1	inside	1	31				
+WP_001178619.1	TMhelix	32	47				
+WP_001178619.1	outside	48	51				
+WP_001178619.1	TMhelix	52	67				
+WP_001178619.1	inside	68	74				
+WP_001178619.1	TMhelix	75	90				
+WP_001178619.1	outside	91	100				
+WP_001178619.1	TMhelix	101	121				
+WP_001178619.1	inside	122	133				
+WP_001178619.1	TMhelix	134	151				
+WP_001178619.1	outside	152	168				
+WP_001178619.1	TMhelix	169	186				
+WP_001178619.1	inside	187	192				
+WP_001178619.1	TMhelix	193	213				
+WP_001178619.1	outside	214	248				
+WP_001178619.1	TMhelix	249	264				
+WP_001178619.1	inside	265	280				
+WP_001178619.1	TMhelix	281	297				
+WP_001178619.1	outside	298	298				
+WP_001178619.1	TMhelix	299	314				
+WP_001178619.1	inside	315	326				
+WP_001178619.1	TMhelix	327	346				
+WP_001178619.1	outside	347	348				
+WP_001178619.1	TMhelix	349	367				
+WP_001178619.1	inside	368	383				
+WP_001178619.1	TMhelix	384	399				
+WP_001178619.1	outside	400	410				
+WP_001178619.1	TMhelix	411	427				
+WP_001178619.1	inside	428	435				
+//
+# WP_001178942.1 Length: 506
+# WP_001178942.1 Number of predicted TMRs: 0
+WP_001178942.1	inside	1	506				
+//
+# WP_001179389.1 Length: 584
+# WP_001179389.1 Number of predicted TMRs: 0
+WP_001179389.1	inside	1	584				
+//
+# WP_001179873.1 Length: 578
+# WP_001179873.1 Number of predicted TMRs: 0
+WP_001179873.1	inside	1	578				
+//
+# WP_001180222.1 Length: 333
+# WP_001180222.1 Number of predicted TMRs: 0
+WP_001180222.1	inside	1	333				
+//
+# WP_001180267.1 Length: 293
+# WP_001180267.1 Number of predicted TMRs: 6
+WP_001180267.1	inside	1	20				
+WP_001180267.1	TMhelix	21	39				
+WP_001180267.1	outside	40	85				
+WP_001180267.1	TMhelix	86	107				
+WP_001180267.1	inside	108	116				
+WP_001180267.1	TMhelix	117	137				
+WP_001180267.1	outside	138	152				
+WP_001180267.1	TMhelix	153	168				
+WP_001180267.1	inside	169	206				
+WP_001180267.1	TMhelix	207	227				
+WP_001180267.1	outside	228	259				
+WP_001180267.1	TMhelix	260	280				
+WP_001180267.1	inside	281	293				
+//
+# WP_001180327.1 Length: 425
+# WP_001180327.1 Number of predicted TMRs: 0
+WP_001180327.1	inside	1	425				
+//
+# WP_001182436.1 Length: 274
+# WP_001182436.1 Number of predicted TMRs: 0
+WP_001182436.1	inside	1	274				
+//
+# WP_001183429.1 Length: 168
+# WP_001183429.1 Number of predicted TMRs: 0
+WP_001183429.1	inside	1	168				
+//
+# WP_001183854.1 Length: 283
+# WP_001183854.1 Number of predicted TMRs: 8
+WP_001183854.1	inside	1	54				
+WP_001183854.1	TMhelix	55	72				
+WP_001183854.1	outside	73	84				
+WP_001183854.1	TMhelix	85	103				
+WP_001183854.1	inside	104	116				
+WP_001183854.1	TMhelix	117	133				
+WP_001183854.1	outside	134	150				
+WP_001183854.1	TMhelix	151	166				
+WP_001183854.1	inside	167	171				
+WP_001183854.1	TMhelix	172	182				
+WP_001183854.1	outside	183	201				
+WP_001183854.1	TMhelix	202	221				
+WP_001183854.1	inside	222	230				
+WP_001183854.1	TMhelix	231	251				
+WP_001183854.1	outside	252	254				
+WP_001183854.1	TMhelix	255	276				
+WP_001183854.1	inside	277	283				
+//
+# WP_001184003.1 Length: 389
+# WP_001184003.1 Number of predicted TMRs: 0
+WP_001184003.1	inside	1	389				
+//
+# WP_001185205.1 Length: 190
+# WP_001185205.1 Number of predicted TMRs: 6
+WP_001185205.1	inside	1	7				
+WP_001185205.1	TMhelix	8	21				
+WP_001185205.1	outside	22	32				
+WP_001185205.1	TMhelix	33	49				
+WP_001185205.1	inside	50	64				
+WP_001185205.1	TMhelix	65	82				
+WP_001185205.1	outside	83	95				
+WP_001185205.1	TMhelix	96	113				
+WP_001185205.1	inside	114	139				
+WP_001185205.1	TMhelix	140	159				
+WP_001185205.1	outside	160	162				
+WP_001185205.1	TMhelix	163	181				
+WP_001185205.1	inside	182	190				
+//
+# WP_001185421.1 Length: 263
+# WP_001185421.1 Number of predicted TMRs: 0
+WP_001185421.1	inside	1	263				
+//
+# WP_001185462.1 Length: 276
+# WP_001185462.1 Number of predicted TMRs: 0
+WP_001185462.1	inside	1	276				
+//
+# WP_001185680.1 Length: 692
+# WP_001185680.1 Number of predicted TMRs: 13
+WP_001185680.1	outside	1	2				
+WP_001185680.1	TMhelix	3	22				
+WP_001185680.1	inside	23	28				
+WP_001185680.1	TMhelix	29	45				
+WP_001185680.1	outside	46	54				
+WP_001185680.1	TMhelix	55	69				
+WP_001185680.1	inside	70	82				
+WP_001185680.1	TMhelix	83	103				
+WP_001185680.1	outside	104	113				
+WP_001185680.1	TMhelix	114	130				
+WP_001185680.1	inside	131	145				
+WP_001185680.1	TMhelix	146	166				
+WP_001185680.1	outside	167	178				
+WP_001185680.1	TMhelix	179	204				
+WP_001185680.1	inside	205	217				
+WP_001185680.1	TMhelix	218	238				
+WP_001185680.1	outside	239	241				
+WP_001185680.1	TMhelix	242	255				
+WP_001185680.1	inside	256	277				
+WP_001185680.1	TMhelix	278	298				
+WP_001185680.1	outside	299	310				
+WP_001185680.1	TMhelix	311	334				
+WP_001185680.1	inside	335	364				
+WP_001185680.1	TMhelix	365	382				
+WP_001185680.1	outside	383	400				
+WP_001185680.1	TMhelix	401	421				
+WP_001185680.1	inside	422	692				
+//
+# WP_001186608.1 Length: 542
+# WP_001186608.1 Number of predicted TMRs: 0
+WP_001186608.1	inside	1	542				
+//
+# WP_001186801.1 Length: 258
+# WP_001186801.1 Number of predicted TMRs: 0
+WP_001186801.1	inside	1	258				
+//
+# WP_001186912.1 Length: 181
+# WP_001186912.1 Number of predicted TMRs: 6
+WP_001186912.1	inside	1	9				
+WP_001186912.1	TMhelix	10	30				
+WP_001186912.1	outside	31	40				
+WP_001186912.1	TMhelix	41	50				
+WP_001186912.1	inside	51	52				
+WP_001186912.1	TMhelix	53	69				
+WP_001186912.1	outside	70	76				
+WP_001186912.1	TMhelix	77	94				
+WP_001186912.1	inside	95	107				
+WP_001186912.1	TMhelix	108	128				
+WP_001186912.1	outside	129	150				
+WP_001186912.1	TMhelix	151	171				
+WP_001186912.1	inside	172	181				
+//
+# WP_001187617.1 Length: 215
+# WP_001187617.1 Number of predicted TMRs: 0
+WP_001187617.1	inside	1	215				
+//
+# WP_001188075.1 Length: 346
+# WP_001188075.1 Number of predicted TMRs: 0
+WP_001188075.1	outside	1	346				
+//
+# WP_001188482.1 Length: 745
+# WP_001188482.1 Number of predicted TMRs: 0
+WP_001188482.1	inside	1	745				
+//
+# WP_001190119.1 Length: 250
+# WP_001190119.1 Number of predicted TMRs: 0
+WP_001190119.1	inside	1	250				
+//
+# WP_001190527.1 Length: 274
+# WP_001190527.1 Number of predicted TMRs: 0
+WP_001190527.1	outside	1	274				
+//
+# WP_001190825.1 Length: 159
+# WP_001190825.1 Number of predicted TMRs: 0
+WP_001190825.1	inside	1	159				
+//
+# WP_001190841.1 Length: 231
+# WP_001190841.1 Number of predicted TMRs: 0
+WP_001190841.1	inside	1	231				
+//
+# WP_001190913.1 Length: 366
+# WP_001190913.1 Number of predicted TMRs: 0
+WP_001190913.1	inside	1	366				
+//
+# WP_001191874.1 Length: 205
+# WP_001191874.1 Number of predicted TMRs: 6
+WP_001191874.1	inside	1	4				
+WP_001191874.1	TMhelix	5	20				
+WP_001191874.1	outside	21	23				
+WP_001191874.1	TMhelix	24	41				
+WP_001191874.1	inside	42	56				
+WP_001191874.1	TMhelix	57	77				
+WP_001191874.1	outside	78	101				
+WP_001191874.1	TMhelix	102	119				
+WP_001191874.1	inside	120	134				
+WP_001191874.1	TMhelix	135	150				
+WP_001191874.1	outside	151	180				
+WP_001191874.1	TMhelix	181	196				
+WP_001191874.1	inside	197	205				
+//
+# WP_001191948.1 Length: 314
+# WP_001191948.1 Number of predicted TMRs: 0
+WP_001191948.1	inside	1	314				
+//
+# WP_001191976.1 Length: 403
+# WP_001191976.1 Number of predicted TMRs: 12
+WP_001191976.1	inside	1	14				
+WP_001191976.1	TMhelix	15	30				
+WP_001191976.1	outside	31	52				
+WP_001191976.1	TMhelix	53	73				
+WP_001191976.1	inside	74	79				
+WP_001191976.1	TMhelix	80	98				
+WP_001191976.1	outside	99	103				
+WP_001191976.1	TMhelix	104	124				
+WP_001191976.1	inside	125	138				
+WP_001191976.1	TMhelix	139	162				
+WP_001191976.1	outside	163	168				
+WP_001191976.1	TMhelix	169	187				
+WP_001191976.1	inside	188	217				
+WP_001191976.1	TMhelix	218	243				
+WP_001191976.1	outside	244	253				
+WP_001191976.1	TMhelix	254	276				
+WP_001191976.1	inside	277	282				
+WP_001191976.1	TMhelix	283	303				
+WP_001191976.1	outside	304	310				
+WP_001191976.1	TMhelix	311	331				
+WP_001191976.1	inside	332	342				
+WP_001191976.1	TMhelix	343	364				
+WP_001191976.1	outside	365	373				
+WP_001191976.1	TMhelix	374	394				
+WP_001191976.1	inside	395	403				
+//
+# WP_001196354.1 Length: 333
+# WP_001196354.1 Number of predicted TMRs: 0
+WP_001196354.1	inside	1	333				
+//
+# WP_001198020.1 Length: 67
+# WP_001198020.1 Number of predicted TMRs: 2
+WP_001198020.1	outside	1	5				
+WP_001198020.1	TMhelix	6	15				
+WP_001198020.1	inside	16	31				
+WP_001198020.1	TMhelix	32	53				
+WP_001198020.1	outside	54	67				
+//
+# WP_001200540.1 Length: 121
+# WP_001200540.1 Number of predicted TMRs: 4
+WP_001200540.1	inside	1	2				
+WP_001200540.1	TMhelix	3	23				
+WP_001200540.1	outside	24	33				
+WP_001200540.1	TMhelix	34	50				
+WP_001200540.1	inside	51	63				
+WP_001200540.1	TMhelix	64	84				
+WP_001200540.1	outside	85	92				
+WP_001200540.1	TMhelix	93	113				
+WP_001200540.1	inside	114	121				
+//
+# WP_001200743.1 Length: 336
+# WP_001200743.1 Number of predicted TMRs: 0
+WP_001200743.1	inside	1	336				
+//
+# WP_001205664.1 Length: 264
+# WP_001205664.1 Number of predicted TMRs: 0
+WP_001205664.1	signal	1	22				
+WP_001205664.1	outside	23	264				
+//
+# WP_001205732.1 Length: 87
+# WP_001205732.1 Number of predicted TMRs: 0
+WP_001205732.1	inside	1	87				
+//
+# WP_001205918.1 Length: 163
+# WP_001205918.1 Number of predicted TMRs: 2
+WP_001205918.1	inside	1	16				
+WP_001205918.1	TMhelix	17	37				
+WP_001205918.1	outside	38	48				
+WP_001205918.1	TMhelix	49	69				
+WP_001205918.1	inside	70	163				
+//
+# WP_001206099.1 Length: 475
+# WP_001206099.1 Number of predicted TMRs: 0
+WP_001206099.1	inside	1	475				
+//
+# WP_001208757.1 Length: 207
+# WP_001208757.1 Number of predicted TMRs: 0
+WP_001208757.1	inside	1	207				
+//
+# WP_001208914.1 Length: 494
+# WP_001208914.1 Number of predicted TMRs: 0
+WP_001208914.1	signal	1	32				
+WP_001208914.1	outside	33	494				
+//
+# WP_001209857.1 Length: 359
+# WP_001209857.1 Number of predicted TMRs: 0
+WP_001209857.1	inside	1	359				
+//
+# WP_001213027.1 Length: 255
+# WP_001213027.1 Number of predicted TMRs: 0
+WP_001213027.1	inside	1	255				
+//
+# WP_001213908.1 Length: 261
+# WP_001213908.1 Number of predicted TMRs: 0
+WP_001213908.1	inside	1	261				
+//
+# WP_001213992.1 Length: 105
+# WP_001213992.1 Number of predicted TMRs: 0
+WP_001213992.1	inside	1	105				
+//
+# WP_001214649.1 Length: 327
+# WP_001214649.1 Number of predicted TMRs: 0
+WP_001214649.1	signal	1	21				
+WP_001214649.1	outside	22	327				
+//
+# WP_001215400.1 Length: 411
+# WP_001215400.1 Number of predicted TMRs: 0
+WP_001215400.1	inside	1	411				
+//
+# WP_001215907.1 Length: 89
+# WP_001215907.1 Number of predicted TMRs: 0
+WP_001215907.1	inside	1	89				
+//
+# WP_001216898.1 Length: 208
+# WP_001216898.1 Number of predicted TMRs: 0
+WP_001216898.1	inside	1	208				
+//
+# WP_001217112.1 Length: 231
+# WP_001217112.1 Number of predicted TMRs: 0
+WP_001217112.1	inside	1	231				
+//
+# WP_001217257.1 Length: 605
+# WP_001217257.1 Number of predicted TMRs: 0
+WP_001217257.1	inside	1	605				
+//
+# WP_001217295.1 Length: 64
+# WP_001217295.1 Number of predicted TMRs: 0
+WP_001217295.1	inside	1	64				
+//
+# WP_001217724.1 Length: 239
+# WP_001217724.1 Number of predicted TMRs: 0
+WP_001217724.1	inside	1	239				
+//
+# WP_001217795.1 Length: 383
+# WP_001217795.1 Number of predicted TMRs: 0
+WP_001217795.1	inside	1	383				
+//
+# WP_001217920.1 Length: 228
+# WP_001217920.1 Number of predicted TMRs: 0
+WP_001217920.1	inside	1	228				
+//
+# WP_001218598.1 Length: 557
+# WP_001218598.1 Number of predicted TMRs: 0
+WP_001218598.1	inside	1	557				
+//
+# WP_001218728.1 Length: 365
+# WP_001218728.1 Number of predicted TMRs: 0
+WP_001218728.1	inside	1	365				
+//
+# WP_001220197.1 Length: 292
+# WP_001220197.1 Number of predicted TMRs: 0
+WP_001220197.1	signal	1	19				
+WP_001220197.1	outside	20	292				
+//
+# WP_001220805.1 Length: 244
+# WP_001220805.1 Number of predicted TMRs: 0
+WP_001220805.1	inside	1	244				
+//
+# WP_001221406.1 Length: 63
+# WP_001221406.1 Number of predicted TMRs: 0
+WP_001221406.1	signal	1	21				
+WP_001221406.1	outside	22	63				
+//
+# WP_001221645.1 Length: 369
+# WP_001221645.1 Number of predicted TMRs: 0
+WP_001221645.1	inside	1	369				
+//
+# WP_001221654.1 Length: 246
+# WP_001221654.1 Number of predicted TMRs: 6
+WP_001221654.1	inside	1	20				
+WP_001221654.1	TMhelix	21	32				
+WP_001221654.1	outside	33	53				
+WP_001221654.1	TMhelix	54	74				
+WP_001221654.1	inside	75	100				
+WP_001221654.1	TMhelix	101	122				
+WP_001221654.1	outside	123	136				
+WP_001221654.1	TMhelix	137	157				
+WP_001221654.1	inside	158	166				
+WP_001221654.1	TMhelix	167	185				
+WP_001221654.1	outside	186	222				
+WP_001221654.1	TMhelix	223	239				
+WP_001221654.1	inside	240	246				
+//
+# WP_001221857.1 Length: 267
+# WP_001221857.1 Number of predicted TMRs: 0
+WP_001221857.1	inside	1	267				
+//
+# WP_001222105.1 Length: 265
+# WP_001222105.1 Number of predicted TMRs: 0
+WP_001222105.1	inside	1	265				
+//
+# WP_001222133.1 Length: 238
+# WP_001222133.1 Number of predicted TMRs: 6
+WP_001222133.1	inside	1	73				
+WP_001222133.1	TMhelix	74	84				
+WP_001222133.1	outside	85	99				
+WP_001222133.1	TMhelix	100	118				
+WP_001222133.1	inside	119	130				
+WP_001222133.1	TMhelix	131	151				
+WP_001222133.1	outside	152	167				
+WP_001222133.1	TMhelix	168	181				
+WP_001222133.1	inside	182	185				
+WP_001222133.1	TMhelix	186	200				
+WP_001222133.1	outside	201	211				
+WP_001222133.1	TMhelix	212	230				
+WP_001222133.1	inside	231	238				
+//
+# WP_001223006.1 Length: 207
+# WP_001223006.1 Number of predicted TMRs: 0
+WP_001223006.1	inside	1	207				
+//
+# WP_001223706.1 Length: 400
+# WP_001223706.1 Number of predicted TMRs: 0
+WP_001223706.1	inside	1	400				
+//
+# WP_001224183.1 Length: 185
+# WP_001224183.1 Number of predicted TMRs: 0
+WP_001224183.1	inside	1	185				
+//
+# WP_001224379.1 Length: 63
+# WP_001224379.1 Number of predicted TMRs: 0
+WP_001224379.1	inside	1	63				
+//
+# WP_001224793.1 Length: 161
+# WP_001224793.1 Number of predicted TMRs: 0
+WP_001224793.1	inside	1	161				
+//
+# WP_001225042.1 Length: 509
+# WP_001225042.1 Number of predicted TMRs: 0
+WP_001225042.1	signal	1	27				
+WP_001225042.1	outside	28	509				
+//
+# WP_001226823.1 Length: 553
+# WP_001226823.1 Number of predicted TMRs: 0
+WP_001226823.1	inside	1	553				
+//
+# WP_001227728.1 Length: 681
+# WP_001227728.1 Number of predicted TMRs: 8
+WP_001227728.1	inside	1	14				
+WP_001227728.1	TMhelix	15	35				
+WP_001227728.1	outside	36	62				
+WP_001227728.1	TMhelix	63	81				
+WP_001227728.1	inside	82	88				
+WP_001227728.1	TMhelix	89	101				
+WP_001227728.1	outside	102	133				
+WP_001227728.1	TMhelix	134	149				
+WP_001227728.1	inside	150	172				
+WP_001227728.1	TMhelix	173	193				
+WP_001227728.1	outside	194	277				
+WP_001227728.1	TMhelix	278	288				
+WP_001227728.1	inside	289	333				
+WP_001227728.1	TMhelix	334	344				
+WP_001227728.1	outside	345	382				
+WP_001227728.1	TMhelix	383	398				
+WP_001227728.1	inside	399	681				
+//
+# WP_001228168.1 Length: 322
+# WP_001228168.1 Number of predicted TMRs: 0
+WP_001228168.1	inside	1	322				
+//
+# WP_001229093.1 Length: 532
+# WP_001229093.1 Number of predicted TMRs: 0
+WP_001229093.1	signal	1	20				
+WP_001229093.1	outside	21	532				
+//
+# WP_001229248.1 Length: 315
+# WP_001229248.1 Number of predicted TMRs: 2
+WP_001229248.1	inside	1	256				
+WP_001229248.1	TMhelix	257	277				
+WP_001229248.1	outside	278	291				
+WP_001229248.1	TMhelix	292	309				
+WP_001229248.1	inside	310	315				
+//
+# WP_001229919.1 Length: 221
+# WP_001229919.1 Number of predicted TMRs: 0
+WP_001229919.1	inside	1	221				
+//
+# WP_001230226.1 Length: 308
+# WP_001230226.1 Number of predicted TMRs: 0
+WP_001230226.1	inside	1	308				
+//
+# WP_001230675.1 Length: 295
+# WP_001230675.1 Number of predicted TMRs: 0
+WP_001230675.1	inside	1	295				
+//
+# WP_001231451.1 Length: 315
+# WP_001231451.1 Number of predicted TMRs: 0
+WP_001231451.1	inside	1	315				
+//
+# WP_001232653.1 Length: 585
+# WP_001232653.1 Number of predicted TMRs: 0
+WP_001232653.1	inside	1	585				
+//
+# WP_001234989.1 Length: 87
+# WP_001234989.1 Number of predicted TMRs: 0
+WP_001234989.1	inside	1	87				
+//
+# WP_001236362.1 Length: 251
+# WP_001236362.1 Number of predicted TMRs: 0
+WP_001236362.1	signal	1	24				
+WP_001236362.1	outside	25	251				
+//
+# WP_001236734.1 Length: 157
+# WP_001236734.1 Number of predicted TMRs: 0
+WP_001236734.1	signal	1	28				
+WP_001236734.1	outside	29	157				
+//
+# WP_001237004.1 Length: 127
+# WP_001237004.1 Number of predicted TMRs: 4
+WP_001237004.1	inside	1	2				
+WP_001237004.1	TMhelix	3	23				
+WP_001237004.1	outside	24	29				
+WP_001237004.1	TMhelix	30	39				
+WP_001237004.1	inside	40	73				
+WP_001237004.1	TMhelix	74	91				
+WP_001237004.1	outside	92	97				
+WP_001237004.1	TMhelix	98	112				
+WP_001237004.1	inside	113	127				
+//
+# WP_001237522.1 Length: 447
+# WP_001237522.1 Number of predicted TMRs: 14
+WP_001237522.1	inside	1	8				
+WP_001237522.1	TMhelix	9	30				
+WP_001237522.1	outside	31	41				
+WP_001237522.1	TMhelix	42	65				
+WP_001237522.1	inside	66	69				
+WP_001237522.1	TMhelix	70	90				
+WP_001237522.1	outside	91	95				
+WP_001237522.1	TMhelix	96	117				
+WP_001237522.1	inside	118	133				
+WP_001237522.1	TMhelix	134	154				
+WP_001237522.1	outside	155	160				
+WP_001237522.1	TMhelix	161	179				
+WP_001237522.1	inside	180	195				
+WP_001237522.1	TMhelix	196	214				
+WP_001237522.1	outside	215	218				
+WP_001237522.1	TMhelix	219	239				
+WP_001237522.1	inside	240	256				
+WP_001237522.1	TMhelix	257	279				
+WP_001237522.1	outside	280	292				
+WP_001237522.1	TMhelix	293	311				
+WP_001237522.1	inside	312	321				
+WP_001237522.1	TMhelix	322	342				
+WP_001237522.1	outside	343	345				
+WP_001237522.1	TMhelix	346	364				
+WP_001237522.1	inside	365	382				
+WP_001237522.1	TMhelix	383	406				
+WP_001237522.1	outside	407	418				
+WP_001237522.1	TMhelix	419	437				
+WP_001237522.1	inside	438	447				
+//
+# WP_001239298.1 Length: 315
+# WP_001239298.1 Number of predicted TMRs: 10
+WP_001239298.1	inside	1	7				
+WP_001239298.1	TMhelix	8	23				
+WP_001239298.1	outside	24	30				
+WP_001239298.1	TMhelix	31	48				
+WP_001239298.1	inside	49	68				
+WP_001239298.1	TMhelix	69	84				
+WP_001239298.1	outside	85	97				
+WP_001239298.1	TMhelix	98	118				
+WP_001239298.1	inside	119	133				
+WP_001239298.1	TMhelix	134	147				
+WP_001239298.1	outside	148	157				
+WP_001239298.1	TMhelix	158	175				
+WP_001239298.1	inside	176	188				
+WP_001239298.1	TMhelix	189	209				
+WP_001239298.1	outside	210	214				
+WP_001239298.1	TMhelix	215	233				
+WP_001239298.1	inside	234	248				
+WP_001239298.1	TMhelix	249	261				
+WP_001239298.1	outside	262	276				
+WP_001239298.1	TMhelix	277	294				
+WP_001239298.1	inside	295	315				
+//
+# WP_001240315.1 Length: 275
+# WP_001240315.1 Number of predicted TMRs: 0
+WP_001240315.1	inside	1	275				
+//
+# WP_001240827.1 Length: 97
+# WP_001240827.1 Number of predicted TMRs: 0
+WP_001240827.1	inside	1	97				
+//
+# WP_001241193.1 Length: 353
+# WP_001241193.1 Number of predicted TMRs: 0
+WP_001241193.1	inside	1	353				
+//
+# WP_001241214.1 Length: 439
+# WP_001241214.1 Number of predicted TMRs: 0
+WP_001241214.1	inside	1	439				
+//
+# WP_001242102.1 Length: 115
+# WP_001242102.1 Number of predicted TMRs: 0
+WP_001242102.1	inside	1	115				
+//
+# WP_001242303.1 Length: 433
+# WP_001242303.1 Number of predicted TMRs: 0
+WP_001242303.1	inside	1	433				
+//
+# WP_001242418.1 Length: 244
+# WP_001242418.1 Number of predicted TMRs: 1
+WP_001242418.1	inside	1	5				
+WP_001242418.1	TMhelix	6	26				
+WP_001242418.1	outside	27	244				
+//
+# WP_001244175.1 Length: 313
+# WP_001244175.1 Number of predicted TMRs: 0
+WP_001244175.1	inside	1	313				
+//
+# WP_001244301.1 Length: 72
+# WP_001244301.1 Number of predicted TMRs: 2
+WP_001244301.1	inside	1	3				
+WP_001244301.1	TMhelix	4	19				
+WP_001244301.1	outside	20	30				
+WP_001244301.1	TMhelix	31	49				
+WP_001244301.1	inside	50	72				
+//
+# WP_001245584.1 Length: 318
+# WP_001245584.1 Number of predicted TMRs: 10
+WP_001245584.1	inside	1	7				
+WP_001245584.1	TMhelix	8	25				
+WP_001245584.1	outside	26	42				
+WP_001245584.1	TMhelix	43	60				
+WP_001245584.1	inside	61	77				
+WP_001245584.1	TMhelix	78	91				
+WP_001245584.1	outside	92	100				
+WP_001245584.1	TMhelix	101	124				
+WP_001245584.1	inside	125	130				
+WP_001245584.1	TMhelix	131	145				
+WP_001245584.1	outside	146	177				
+WP_001245584.1	TMhelix	178	198				
+WP_001245584.1	inside	199	223				
+WP_001245584.1	TMhelix	224	240				
+WP_001245584.1	outside	241	241				
+WP_001245584.1	TMhelix	242	251				
+WP_001245584.1	inside	252	265				
+WP_001245584.1	TMhelix	266	285				
+WP_001245584.1	outside	286	294				
+WP_001245584.1	TMhelix	295	312				
+WP_001245584.1	inside	313	318				
+//
+# WP_001245754.1 Length: 407
+# WP_001245754.1 Number of predicted TMRs: 10
+WP_001245754.1	inside	1	31				
+WP_001245754.1	TMhelix	32	48				
+WP_001245754.1	outside	49	61				
+WP_001245754.1	TMhelix	62	71				
+WP_001245754.1	inside	72	107				
+WP_001245754.1	TMhelix	108	125				
+WP_001245754.1	outside	126	136				
+WP_001245754.1	TMhelix	137	146				
+WP_001245754.1	inside	147	168				
+WP_001245754.1	TMhelix	169	182				
+WP_001245754.1	outside	183	187				
+WP_001245754.1	TMhelix	188	204				
+WP_001245754.1	inside	205	284				
+WP_001245754.1	TMhelix	285	302				
+WP_001245754.1	outside	303	305				
+WP_001245754.1	TMhelix	306	321				
+WP_001245754.1	inside	322	356				
+WP_001245754.1	TMhelix	357	371				
+WP_001245754.1	outside	372	374				
+WP_001245754.1	TMhelix	375	395				
+WP_001245754.1	inside	396	407				
+//
+# WP_001245796.1 Length: 62
+# WP_001245796.1 Number of predicted TMRs: 0
+WP_001245796.1	inside	1	62				
+//
+# WP_001246010.1 Length: 67
+# WP_001246010.1 Number of predicted TMRs: 0
+WP_001246010.1	inside	1	67				
+//
+# WP_001246562.1 Length: 265
+# WP_001246562.1 Number of predicted TMRs: 6
+WP_001246562.1	inside	1	6				
+WP_001246562.1	TMhelix	7	32				
+WP_001246562.1	outside	33	55				
+WP_001246562.1	TMhelix	56	81				
+WP_001246562.1	inside	82	88				
+WP_001246562.1	TMhelix	89	109				
+WP_001246562.1	outside	110	138				
+WP_001246562.1	TMhelix	139	159				
+WP_001246562.1	inside	160	192				
+WP_001246562.1	TMhelix	193	211				
+WP_001246562.1	outside	212	238				
+WP_001246562.1	TMhelix	239	258				
+WP_001246562.1	inside	259	265				
+//
+# WP_001246704.1 Length: 358
+# WP_001246704.1 Number of predicted TMRs: 1
+WP_001246704.1	signal	1	32				
+WP_001246704.1	outside	33	336				
+WP_001246704.1	TMhelix	337	346				
+WP_001246704.1	inside	347	358				
+//
+# WP_001248939.1 Length: 331
+# WP_001248939.1 Number of predicted TMRs: 0
+WP_001248939.1	inside	1	331				
+//
+# WP_001249287.1 Length: 782
+# WP_001249287.1 Number of predicted TMRs: 0
+WP_001249287.1	inside	1	782				
+//
+# WP_001250036.1 Length: 145
+# WP_001250036.1 Number of predicted TMRs: 0
+WP_001250036.1	inside	1	145				
+//
+# WP_001250275.1 Length: 55
+# WP_001250275.1 Number of predicted TMRs: 0
+WP_001250275.1	inside	1	55				
+//
+# WP_001250329.1 Length: 437
+# WP_001250329.1 Number of predicted TMRs: 0
+WP_001250329.1	inside	1	437				
+//
+# WP_001251192.1 Length: 452
+# WP_001251192.1 Number of predicted TMRs: 2
+WP_001251192.1	inside	1	22				
+WP_001251192.1	TMhelix	23	36				
+WP_001251192.1	outside	37	64				
+WP_001251192.1	TMhelix	65	78				
+WP_001251192.1	inside	79	452				
+//
+# WP_001251224.1 Length: 199
+# WP_001251224.1 Number of predicted TMRs: 0
+WP_001251224.1	inside	1	199				
+//
+# WP_001251935.1 Length: 86
+# WP_001251935.1 Number of predicted TMRs: 0
+WP_001251935.1	inside	1	86				
+//
+# WP_001252542.1 Length: 450
+# WP_001252542.1 Number of predicted TMRs: 0
+WP_001252542.1	inside	1	450				
+//
+# WP_001253301.1 Length: 319
+# WP_001253301.1 Number of predicted TMRs: 0
+WP_001253301.1	inside	1	319				
+//
+# WP_001253464.1 Length: 143
+# WP_001253464.1 Number of predicted TMRs: 4
+WP_001253464.1	inside	1	3				
+WP_001253464.1	TMhelix	4	22				
+WP_001253464.1	outside	23	39				
+WP_001253464.1	TMhelix	40	58				
+WP_001253464.1	inside	59	71				
+WP_001253464.1	TMhelix	72	93				
+WP_001253464.1	outside	94	107				
+WP_001253464.1	TMhelix	108	128				
+WP_001253464.1	inside	129	143				
+//
+# WP_001255379.1 Length: 118
+# WP_001255379.1 Number of predicted TMRs: 0
+WP_001255379.1	signal	1	17				
+WP_001255379.1	outside	18	118				
+//
+# WP_001255460.1 Length: 353
+# WP_001255460.1 Number of predicted TMRs: 0
+WP_001255460.1	inside	1	353				
+//
+# WP_001255780.1 Length: 562
+# WP_001255780.1 Number of predicted TMRs: 0
+WP_001255780.1	inside	1	562				
+//
+# WP_001259682.1 Length: 147
+# WP_001259682.1 Number of predicted TMRs: 0
+WP_001259682.1	inside	1	147				
+//
+# WP_001259930.1 Length: 176
+# WP_001259930.1 Number of predicted TMRs: 6
+WP_001259930.1	inside	1	3				
+WP_001259930.1	TMhelix	4	24				
+WP_001259930.1	outside	25	33				
+WP_001259930.1	TMhelix	34	49				
+WP_001259930.1	inside	50	53				
+WP_001259930.1	TMhelix	54	71				
+WP_001259930.1	outside	72	75				
+WP_001259930.1	TMhelix	76	89				
+WP_001259930.1	inside	90	103				
+WP_001259930.1	TMhelix	104	121				
+WP_001259930.1	outside	122	139				
+WP_001259930.1	TMhelix	140	159				
+WP_001259930.1	inside	160	176				
+//
+# WP_001260041.1 Length: 100
+# WP_001260041.1 Number of predicted TMRs: 0
+WP_001260041.1	inside	1	100				
+//
+# WP_001260099.1 Length: 253
+# WP_001260099.1 Number of predicted TMRs: 0
+WP_001260099.1	inside	1	253				
+//
+# WP_001261460.1 Length: 98
+# WP_001261460.1 Number of predicted TMRs: 0
+WP_001261460.1	inside	1	98				
+//
+# WP_001261675.1 Length: 500
+# WP_001261675.1 Number of predicted TMRs: 0
+WP_001261675.1	inside	1	500				
+//
+# WP_001261797.1 Length: 250
+# WP_001261797.1 Number of predicted TMRs: 0
+WP_001261797.1	inside	1	250				
+//
+# WP_001261987.1 Length: 167
+# WP_001261987.1 Number of predicted TMRs: 0
+WP_001261987.1	inside	1	167				
+//
+# WP_001263796.1 Length: 180
+# WP_001263796.1 Number of predicted TMRs: 0
+WP_001263796.1	inside	1	180				
+//
+# WP_001265704.1 Length: 223
+# WP_001265704.1 Number of predicted TMRs: 0
+WP_001265704.1	inside	1	223				
+//
+# WP_001265708.1 Length: 49
+# WP_001265708.1 Number of predicted TMRs: 0
+WP_001265708.1	inside	1	49				
+//
+# WP_001265709.1 Length: 49
+# WP_001265709.1 Number of predicted TMRs: 0
+WP_001265709.1	inside	1	49				
+//
+# WP_001266160.1 Length: 214
+# WP_001266160.1 Number of predicted TMRs: 0
+WP_001266160.1	inside	1	214				
+//
+# WP_001266549.1 Length: 652
+# WP_001266549.1 Number of predicted TMRs: 10
+WP_001266549.1	inside	1	313				
+WP_001266549.1	TMhelix	314	334				
+WP_001266549.1	outside	335	355				
+WP_001266549.1	TMhelix	356	373				
+WP_001266549.1	inside	374	382				
+WP_001266549.1	TMhelix	383	392				
+WP_001266549.1	outside	393	397				
+WP_001266549.1	TMhelix	398	413				
+WP_001266549.1	inside	414	432				
+WP_001266549.1	TMhelix	433	453				
+WP_001266549.1	outside	454	480				
+WP_001266549.1	TMhelix	481	495				
+WP_001266549.1	inside	496	514				
+WP_001266549.1	TMhelix	515	525				
+WP_001266549.1	outside	526	526				
+WP_001266549.1	TMhelix	527	536				
+WP_001266549.1	inside	537	573				
+WP_001266549.1	TMhelix	574	590				
+WP_001266549.1	outside	591	614				
+WP_001266549.1	TMhelix	615	635				
+WP_001266549.1	inside	636	652				
+//
+# WP_001269643.1 Length: 274
+# WP_001269643.1 Number of predicted TMRs: 0
+WP_001269643.1	inside	1	274				
+//
+# WP_001269918.1 Length: 388
+# WP_001269918.1 Number of predicted TMRs: 0
+WP_001269918.1	inside	1	388				
+//
+# WP_001270834.1 Length: 269
+# WP_001270834.1 Number of predicted TMRs: 0
+WP_001270834.1	inside	1	269				
+//
+# WP_001270861.1 Length: 428
+# WP_001270861.1 Number of predicted TMRs: 0
+WP_001270861.1	inside	1	428				
+//
+# WP_001272123.1 Length: 205
+# WP_001272123.1 Number of predicted TMRs: 0
+WP_001272123.1	inside	1	205				
+//
+# WP_001273058.1 Length: 270
+# WP_001273058.1 Number of predicted TMRs: 6
+WP_001273058.1	inside	1	33				
+WP_001273058.1	TMhelix	34	54				
+WP_001273058.1	outside	55	73				
+WP_001273058.1	TMhelix	74	92				
+WP_001273058.1	inside	93	120				
+WP_001273058.1	TMhelix	121	137				
+WP_001273058.1	outside	138	145				
+WP_001273058.1	TMhelix	146	166				
+WP_001273058.1	inside	167	179				
+WP_001273058.1	TMhelix	180	195				
+WP_001273058.1	outside	196	237				
+WP_001273058.1	TMhelix	238	258				
+WP_001273058.1	inside	259	270				
+//
+# WP_001273087.1 Length: 166
+# WP_001273087.1 Number of predicted TMRs: 0
+WP_001273087.1	inside	1	166				
+//
+# WP_001273586.1 Length: 122
+# WP_001273586.1 Number of predicted TMRs: 0
+WP_001273586.1	inside	1	122				
+//
+# WP_001274017.1 Length: 83
+# WP_001274017.1 Number of predicted TMRs: 0
+WP_001274017.1	inside	1	83				
+//
+# WP_001276571.1 Length: 128
+# WP_001276571.1 Number of predicted TMRs: 1
+WP_001276571.1	outside	1	4				
+WP_001276571.1	TMhelix	5	21				
+WP_001276571.1	inside	22	128				
+//
+# WP_001279338.1 Length: 424
+# WP_001279338.1 Number of predicted TMRs: 1
+WP_001279338.1	inside	1	30				
+WP_001279338.1	TMhelix	31	44				
+WP_001279338.1	outside	45	424				
+//
+# WP_001279381.1 Length: 349
+# WP_001279381.1 Number of predicted TMRs: 0
+WP_001279381.1	inside	1	349				
+//
+# WP_001279727.1 Length: 251
+# WP_001279727.1 Number of predicted TMRs: 0
+WP_001279727.1	inside	1	251				
+//
+# WP_001280005.1 Length: 184
+# WP_001280005.1 Number of predicted TMRs: 0
+WP_001280005.1	inside	1	184				
+//
+# WP_001280010.1 Length: 309
+# WP_001280010.1 Number of predicted TMRs: 0
+WP_001280010.1	inside	1	309				
+//
+# WP_001280141.1 Length: 366
+# WP_001280141.1 Number of predicted TMRs: 0
+WP_001280141.1	inside	1	366				
+//
+# WP_001281141.1 Length: 382
+# WP_001281141.1 Number of predicted TMRs: 0
+WP_001281141.1	inside	1	382				
+//
+# WP_001282562.1 Length: 324
+# WP_001282562.1 Number of predicted TMRs: 0
+WP_001282562.1	inside	1	324				
+//
+# WP_001282728.1 Length: 79
+# WP_001282728.1 Number of predicted TMRs: 0
+WP_001282728.1	inside	1	79				
+//
+# WP_001283055.1 Length: 368
+# WP_001283055.1 Number of predicted TMRs: 0
+WP_001283055.1	inside	1	368				
+//
+# WP_001283300.1 Length: 825
+# WP_001283300.1 Number of predicted TMRs: 0
+WP_001283300.1	inside	1	825				
+//
+# WP_001283444.1 Length: 147
+# WP_001283444.1 Number of predicted TMRs: 0
+WP_001283444.1	inside	1	147				
+//
+# WP_001283612.1 Length: 211
+# WP_001283612.1 Number of predicted TMRs: 0
+WP_001283612.1	inside	1	211				
+//
+# WP_001283682.1 Length: 628
+# WP_001283682.1 Number of predicted TMRs: 0
+WP_001283682.1	inside	1	628				
+//
+# WP_001283794.1 Length: 484
+# WP_001283794.1 Number of predicted TMRs: 0
+WP_001283794.1	inside	1	484				
+//
+# WP_001283977.1 Length: 372
+# WP_001283977.1 Number of predicted TMRs: 0
+WP_001283977.1	inside	1	372				
+//
+# WP_001284285.1 Length: 312
+# WP_001284285.1 Number of predicted TMRs: 0
+WP_001284285.1	inside	1	312				
+//
+# WP_001284658.1 Length: 126
+# WP_001284658.1 Number of predicted TMRs: 0
+WP_001284658.1	inside	1	126				
+//
+# WP_001285954.1 Length: 53
+# WP_001285954.1 Number of predicted TMRs: 2
+WP_001285954.1	inside	1	7				
+WP_001285954.1	TMhelix	8	26				
+WP_001285954.1	outside	27	30				
+WP_001285954.1	TMhelix	31	46				
+WP_001285954.1	inside	47	53				
+//
+# WP_001286320.1 Length: 114
+# WP_001286320.1 Number of predicted TMRs: 0
+WP_001286320.1	inside	1	114				
+//
+# WP_001286928.1 Length: 445
+# WP_001286928.1 Number of predicted TMRs: 0
+WP_001286928.1	inside	1	445				
+//
+# WP_001287080.1 Length: 159
+# WP_001287080.1 Number of predicted TMRs: 2
+WP_001287080.1	inside	1	19				
+WP_001287080.1	TMhelix	20	40				
+WP_001287080.1	outside	41	47				
+WP_001287080.1	TMhelix	48	66				
+WP_001287080.1	inside	67	159				
+//
+# WP_001288058.1 Length: 517
+# WP_001288058.1 Number of predicted TMRs: 12
+WP_001288058.1	inside	1	24				
+WP_001288058.1	TMhelix	25	40				
+WP_001288058.1	outside	41	52				
+WP_001288058.1	TMhelix	53	66				
+WP_001288058.1	inside	67	72				
+WP_001288058.1	TMhelix	73	88				
+WP_001288058.1	outside	89	131				
+WP_001288058.1	TMhelix	132	141				
+WP_001288058.1	inside	142	171				
+WP_001288058.1	TMhelix	172	187				
+WP_001288058.1	outside	188	259				
+WP_001288058.1	TMhelix	260	278				
+WP_001288058.1	inside	279	312				
+WP_001288058.1	TMhelix	313	325				
+WP_001288058.1	outside	326	334				
+WP_001288058.1	TMhelix	335	348				
+WP_001288058.1	inside	349	367				
+WP_001288058.1	TMhelix	368	382				
+WP_001288058.1	outside	383	404				
+WP_001288058.1	TMhelix	405	423				
+WP_001288058.1	inside	424	458				
+WP_001288058.1	TMhelix	459	469				
+WP_001288058.1	outside	470	490				
+WP_001288058.1	TMhelix	491	511				
+WP_001288058.1	inside	512	517				
+//
+# WP_001288206.1 Length: 495
+# WP_001288206.1 Number of predicted TMRs: 0
+WP_001288206.1	inside	1	495				
+//
+# WP_001288298.1 Length: 182
+# WP_001288298.1 Number of predicted TMRs: 0
+WP_001288298.1	inside	1	182				
+//
+# WP_001288675.1 Length: 252
+# WP_001288675.1 Number of predicted TMRs: 0
+WP_001288675.1	inside	1	252				
+//
+# WP_001289551.1 Length: 800
+# WP_001289551.1 Number of predicted TMRs: 0
+WP_001289551.1	inside	1	800				
+//
+# WP_001289618.1 Length: 77
+# WP_001289618.1 Number of predicted TMRs: 0
+WP_001289618.1	inside	1	77				
+//
+# WP_001289711.1 Length: 146
+# WP_001289711.1 Number of predicted TMRs: 0
+WP_001289711.1	inside	1	146				
+//
+# WP_001290433.1 Length: 453
+# WP_001290433.1 Number of predicted TMRs: 0
+WP_001290433.1	inside	1	453				
+//
+# WP_001291020.1 Length: 401
+# WP_001291020.1 Number of predicted TMRs: 0
+WP_001291020.1	inside	1	401				
+//
+# WP_001291497.1 Length: 394
+# WP_001291497.1 Number of predicted TMRs: 0
+WP_001291497.1	inside	1	394				
+//
+# WP_001291515.1 Length: 199
+# WP_001291515.1 Number of predicted TMRs: 0
+WP_001291515.1	inside	1	199				
+//
+# WP_001291532.1 Length: 473
+# WP_001291532.1 Number of predicted TMRs: 0
+WP_001291532.1	inside	1	473				
+//
+# WP_001292149.1 Length: 144
+# WP_001292149.1 Number of predicted TMRs: 0
+WP_001292149.1	inside	1	144				
+//
+# WP_001292252.1 Length: 393
+# WP_001292252.1 Number of predicted TMRs: 0
+WP_001292252.1	inside	1	393				
+//
+# WP_001293059.1 Length: 196
+# WP_001293059.1 Number of predicted TMRs: 0
+WP_001293059.1	inside	1	196				
+//
+# WP_001293307.1 Length: 237
+# WP_001293307.1 Number of predicted TMRs: 0
+WP_001293307.1	inside	1	237				
+//
+# WP_001294624.1 Length: 527
+# WP_001294624.1 Number of predicted TMRs: 6
+WP_001294624.1	inside	1	12				
+WP_001294624.1	TMhelix	13	33				
+WP_001294624.1	outside	34	46				
+WP_001294624.1	TMhelix	47	67				
+WP_001294624.1	inside	68	209				
+WP_001294624.1	TMhelix	210	233				
+WP_001294624.1	outside	234	254				
+WP_001294624.1	TMhelix	255	277				
+WP_001294624.1	inside	278	392				
+WP_001294624.1	TMhelix	393	411				
+WP_001294624.1	outside	412	413				
+WP_001294624.1	TMhelix	414	434				
+WP_001294624.1	inside	435	527				
+//
+# WP_001547756.1 Length: 120
+# WP_001547756.1 Number of predicted TMRs: 0
+WP_001547756.1	inside	1	120				
+//
+# WP_001548498.1 Length: 222
+# WP_001548498.1 Number of predicted TMRs: 0
+WP_001548498.1	inside	1	222				
+//
+# WP_001548538.1 Length: 190
+# WP_001548538.1 Number of predicted TMRs: 0
+WP_001548538.1	inside	1	190				
+//
+# WP_001549167.1 Length: 45
+# WP_001549167.1 Number of predicted TMRs: 0
+WP_001549167.1	inside	1	45				
+//
+# WP_001549185.1 Length: 237
+# WP_001549185.1 Number of predicted TMRs: 0
+WP_001549185.1	inside	1	237				
+//
+# WP_001549802.1 Length: 56
+# WP_001549802.1 Number of predicted TMRs: 2
+WP_001549802.1	inside	1	3				
+WP_001549802.1	TMhelix	4	18				
+WP_001549802.1	outside	19	29				
+WP_001549802.1	TMhelix	30	48				
+WP_001549802.1	inside	49	56				
+//
+# WP_001549960.1 Length: 328
+# WP_001549960.1 Number of predicted TMRs: 3
+WP_001549960.1	outside	1	4				
+WP_001549960.1	TMhelix	5	25				
+WP_001549960.1	inside	26	38				
+WP_001549960.1	TMhelix	39	54				
+WP_001549960.1	outside	55	104				
+WP_001549960.1	TMhelix	105	125				
+WP_001549960.1	inside	126	328				
+//
+# WP_001557331.1 Length: 691
+# WP_001557331.1 Number of predicted TMRs: 0
+WP_001557331.1	inside	1	691				
+//
+# WP_001557361.1 Length: 248
+# WP_001557361.1 Number of predicted TMRs: 0
+WP_001557361.1	inside	1	248				
+//
+# WP_001557561.1 Length: 185
+# WP_001557561.1 Number of predicted TMRs: 0
+WP_001557561.1	inside	1	185				
+//
+# WP_001557601.1 Length: 284
+# WP_001557601.1 Number of predicted TMRs: 0
+WP_001557601.1	inside	1	284				
+//
+# WP_001566779.1 Length: 83
+# WP_001566779.1 Number of predicted TMRs: 3
+WP_001566779.1	inside	1	3				
+WP_001566779.1	TMhelix	4	21				
+WP_001566779.1	outside	22	31				
+WP_001566779.1	TMhelix	32	50				
+WP_001566779.1	inside	51	57				
+WP_001566779.1	TMhelix	58	75				
+WP_001566779.1	outside	76	83				
+//
+# WP_001623479.1 Length: 128
+# WP_001623479.1 Number of predicted TMRs: 1
+WP_001623479.1	inside	1	13				
+WP_001623479.1	TMhelix	14	33				
+WP_001623479.1	outside	34	128				
+//
+# WP_001670170.1 Length: 456
+# WP_001670170.1 Number of predicted TMRs: 9
+WP_001670170.1	inside	1	13				
+WP_001670170.1	TMhelix	14	31				
+WP_001670170.1	outside	32	59				
+WP_001670170.1	TMhelix	60	78				
+WP_001670170.1	inside	79	99				
+WP_001670170.1	TMhelix	100	118				
+WP_001670170.1	outside	119	137				
+WP_001670170.1	TMhelix	138	157				
+WP_001670170.1	inside	158	217				
+WP_001670170.1	TMhelix	218	235				
+WP_001670170.1	outside	236	243				
+WP_001670170.1	TMhelix	244	261				
+WP_001670170.1	inside	262	326				
+WP_001670170.1	TMhelix	327	347				
+WP_001670170.1	outside	348	349				
+WP_001670170.1	TMhelix	350	362				
+WP_001670170.1	inside	363	432				
+WP_001670170.1	TMhelix	433	452				
+WP_001670170.1	outside	453	456				
+//
+# WP_001670171.1 Length: 246
+# WP_001670171.1 Number of predicted TMRs: 0
+WP_001670171.1	inside	1	246				
+//
+# WP_001670172.1 Length: 340
+# WP_001670172.1 Number of predicted TMRs: 0
+WP_001670172.1	inside	1	340				
+//
+# WP_001670176.1 Length: 322
+# WP_001670176.1 Number of predicted TMRs: 6
+WP_001670176.1	outside	1	1				
+WP_001670176.1	TMhelix	2	19				
+WP_001670176.1	inside	20	24				
+WP_001670176.1	TMhelix	25	45				
+WP_001670176.1	outside	46	51				
+WP_001670176.1	TMhelix	52	67				
+WP_001670176.1	inside	68	84				
+WP_001670176.1	TMhelix	85	102				
+WP_001670176.1	outside	103	112				
+WP_001670176.1	TMhelix	113	133				
+WP_001670176.1	inside	134	299				
+WP_001670176.1	TMhelix	300	320				
+WP_001670176.1	outside	321	322				
+//
+# WP_001670177.1 Length: 557
+# WP_001670177.1 Number of predicted TMRs: 0
+WP_001670177.1	inside	1	557				
+//
+# WP_001670187.1 Length: 67
+# WP_001670187.1 Number of predicted TMRs: 2
+WP_001670187.1	inside	1	11				
+WP_001670187.1	TMhelix	12	30				
+WP_001670187.1	outside	31	39				
+WP_001670187.1	TMhelix	40	58				
+WP_001670187.1	inside	59	67				
+//
+# WP_001670188.1 Length: 359
+# WP_001670188.1 Number of predicted TMRs: 10
+WP_001670188.1	inside	1	7				
+WP_001670188.1	TMhelix	8	23				
+WP_001670188.1	outside	24	39				
+WP_001670188.1	TMhelix	40	58				
+WP_001670188.1	inside	59	88				
+WP_001670188.1	TMhelix	89	106				
+WP_001670188.1	outside	107	117				
+WP_001670188.1	TMhelix	118	134				
+WP_001670188.1	inside	135	138				
+WP_001670188.1	TMhelix	139	163				
+WP_001670188.1	outside	164	191				
+WP_001670188.1	TMhelix	192	207				
+WP_001670188.1	inside	208	220				
+WP_001670188.1	TMhelix	221	241				
+WP_001670188.1	outside	242	267				
+WP_001670188.1	TMhelix	268	288				
+WP_001670188.1	inside	289	301				
+WP_001670188.1	TMhelix	302	322				
+WP_001670188.1	outside	323	323				
+WP_001670188.1	TMhelix	324	344				
+WP_001670188.1	inside	345	359				
+//
+# WP_001670198.1 Length: 138
+# WP_001670198.1 Number of predicted TMRs: 4
+WP_001670198.1	inside	1	8				
+WP_001670198.1	TMhelix	9	29				
+WP_001670198.1	outside	30	53				
+WP_001670198.1	TMhelix	54	74				
+WP_001670198.1	inside	75	83				
+WP_001670198.1	TMhelix	84	104				
+WP_001670198.1	outside	105	115				
+WP_001670198.1	TMhelix	116	134				
+WP_001670198.1	inside	135	138				
+//
+# WP_001670222.1 Length: 158
+# WP_001670222.1 Number of predicted TMRs: 3
+WP_001670222.1	inside	1	24				
+WP_001670222.1	TMhelix	25	40				
+WP_001670222.1	outside	41	52				
+WP_001670222.1	TMhelix	53	73				
+WP_001670222.1	inside	74	135				
+WP_001670222.1	TMhelix	136	156				
+WP_001670222.1	outside	157	158				
+//
+# WP_001670226.1 Length: 591
+# WP_001670226.1 Number of predicted TMRs: 0
+WP_001670226.1	inside	1	591				
+//
+# WP_001670235.1 Length: 2391
+# WP_001670235.1 Number of predicted TMRs: 0
+WP_001670235.1	inside	1	2391				
+//
+# WP_001670243.1 Length: 587
+# WP_001670243.1 Number of predicted TMRs: 7
+WP_001670243.1	inside	1	21				
+WP_001670243.1	TMhelix	22	45				
+WP_001670243.1	outside	46	71				
+WP_001670243.1	TMhelix	72	88				
+WP_001670243.1	inside	89	122				
+WP_001670243.1	TMhelix	123	143				
+WP_001670243.1	outside	144	168				
+WP_001670243.1	TMhelix	169	189				
+WP_001670243.1	inside	190	219				
+WP_001670243.1	TMhelix	220	241				
+WP_001670243.1	outside	242	258				
+WP_001670243.1	TMhelix	259	279				
+WP_001670243.1	inside	280	311				
+WP_001670243.1	TMhelix	312	326				
+WP_001670243.1	outside	327	587				
+//
+# WP_001670255.1 Length: 233
+# WP_001670255.1 Number of predicted TMRs: 6
+WP_001670255.1	inside	1	10				
+WP_001670255.1	TMhelix	11	27				
+WP_001670255.1	outside	28	59				
+WP_001670255.1	TMhelix	60	82				
+WP_001670255.1	inside	83	99				
+WP_001670255.1	TMhelix	100	122				
+WP_001670255.1	outside	123	146				
+WP_001670255.1	TMhelix	147	167				
+WP_001670255.1	inside	168	180				
+WP_001670255.1	TMhelix	181	198				
+WP_001670255.1	outside	199	200				
+WP_001670255.1	TMhelix	201	221				
+WP_001670255.1	inside	222	233				
+//
+# WP_001670258.1 Length: 281
+# WP_001670258.1 Number of predicted TMRs: 0
+WP_001670258.1	inside	1	281				
+//
+# WP_001670268.1 Length: 265
+# WP_001670268.1 Number of predicted TMRs: 0
+WP_001670268.1	signal	1	22				
+WP_001670268.1	outside	23	265				
+//
+# WP_001670285.1 Length: 309
+# WP_001670285.1 Number of predicted TMRs: 10
+WP_001670285.1	outside	1	1				
+WP_001670285.1	TMhelix	2	17				
+WP_001670285.1	inside	18	33				
+WP_001670285.1	TMhelix	34	54				
+WP_001670285.1	outside	55	70				
+WP_001670285.1	TMhelix	71	91				
+WP_001670285.1	inside	92	95				
+WP_001670285.1	TMhelix	96	114				
+WP_001670285.1	outside	115	128				
+WP_001670285.1	TMhelix	129	147				
+WP_001670285.1	inside	148	161				
+WP_001670285.1	TMhelix	162	177				
+WP_001670285.1	outside	178	193				
+WP_001670285.1	TMhelix	194	214				
+WP_001670285.1	inside	215	238				
+WP_001670285.1	TMhelix	239	252				
+WP_001670285.1	outside	253	257				
+WP_001670285.1	TMhelix	258	275				
+WP_001670285.1	inside	276	292				
+WP_001670285.1	TMhelix	293	308				
+WP_001670285.1	outside	309	309				
+//
+# WP_001670286.1 Length: 265
+# WP_001670286.1 Number of predicted TMRs: 0
+WP_001670286.1	inside	1	265				
+//
+# WP_001670289.1 Length: 254
+# WP_001670289.1 Number of predicted TMRs: 0
+WP_001670289.1	inside	1	254				
+//
+# WP_001670292.1 Length: 360
+# WP_001670292.1 Number of predicted TMRs: 0
+WP_001670292.1	inside	1	360				
+//
+# WP_001670297.1 Length: 228
+# WP_001670297.1 Number of predicted TMRs: 2
+WP_001670297.1	outside	1	3				
+WP_001670297.1	TMhelix	4	24				
+WP_001670297.1	inside	25	35				
+WP_001670297.1	TMhelix	36	51				
+WP_001670297.1	outside	52	228				
+//
+# WP_001670307.1 Length: 160
+# WP_001670307.1 Number of predicted TMRs: 0
+WP_001670307.1	inside	1	160				
+//
+# WP_001670325.1 Length: 311
+# WP_001670325.1 Number of predicted TMRs: 0
+WP_001670325.1	inside	1	311				
+//
+# WP_001670329.1 Length: 663
+# WP_001670329.1 Number of predicted TMRs: 0
+WP_001670329.1	inside	1	663				
+//
+# WP_001670346.1 Length: 387
+# WP_001670346.1 Number of predicted TMRs: 0
+WP_001670346.1	inside	1	387				
+//
+# WP_001670353.1 Length: 305
+# WP_001670353.1 Number of predicted TMRs: 0
+WP_001670353.1	signal	1	17				
+WP_001670353.1	outside	18	305				
+//
+# WP_001670363.1 Length: 733
+# WP_001670363.1 Number of predicted TMRs: 13
+WP_001670363.1	inside	1	3				
+WP_001670363.1	TMhelix	4	14				
+WP_001670363.1	outside	15	19				
+WP_001670363.1	TMhelix	20	29				
+WP_001670363.1	inside	30	44				
+WP_001670363.1	TMhelix	45	54				
+WP_001670363.1	outside	55	207				
+WP_001670363.1	TMhelix	208	222				
+WP_001670363.1	inside	223	234				
+WP_001670363.1	TMhelix	235	248				
+WP_001670363.1	outside	249	259				
+WP_001670363.1	TMhelix	260	270				
+WP_001670363.1	inside	271	280				
+WP_001670363.1	TMhelix	281	292				
+WP_001670363.1	outside	293	303				
+WP_001670363.1	TMhelix	304	316				
+WP_001670363.1	inside	317	327				
+WP_001670363.1	TMhelix	328	344				
+WP_001670363.1	outside	345	358				
+WP_001670363.1	TMhelix	359	379				
+WP_001670363.1	inside	380	381				
+WP_001670363.1	TMhelix	382	393				
+WP_001670363.1	outside	394	422				
+WP_001670363.1	TMhelix	423	437				
+WP_001670363.1	inside	438	444				
+WP_001670363.1	TMhelix	445	454				
+WP_001670363.1	outside	455	733				
+//
+# WP_001670372.1 Length: 805
+# WP_001670372.1 Number of predicted TMRs: 0
+WP_001670372.1	inside	1	805				
+//
+# WP_001670380.1 Length: 34
+# WP_001670380.1 Number of predicted TMRs: 0
+WP_001670380.1	inside	1	34				
+//
+# WP_001670387.1 Length: 137
+# WP_001670387.1 Number of predicted TMRs: 0
+WP_001670387.1	inside	1	137				
+//
+# WP_001670396.1 Length: 430
+# WP_001670396.1 Number of predicted TMRs: 7
+WP_001670396.1	outside	1	7				
+WP_001670396.1	TMhelix	8	23				
+WP_001670396.1	inside	24	37				
+WP_001670396.1	TMhelix	38	51				
+WP_001670396.1	outside	52	57				
+WP_001670396.1	TMhelix	58	71				
+WP_001670396.1	inside	72	81				
+WP_001670396.1	TMhelix	82	99				
+WP_001670396.1	outside	100	116				
+WP_001670396.1	TMhelix	117	132				
+WP_001670396.1	inside	133	151				
+WP_001670396.1	TMhelix	152	167				
+WP_001670396.1	outside	168	183				
+WP_001670396.1	TMhelix	184	200				
+WP_001670396.1	inside	201	430				
+//
+# WP_001788193.1 Length: 47
+# WP_001788193.1 Number of predicted TMRs: 0
+WP_001788193.1	inside	1	47				
+//
+# WP_001788197.1 Length: 1198
+# WP_001788197.1 Number of predicted TMRs: 0
+WP_001788197.1	inside	1	1198				
+//
+# WP_001788287.1 Length: 173
+# WP_001788287.1 Number of predicted TMRs: 0
+WP_001788287.1	inside	1	173				
+//
+# WP_001788321.1 Length: 30
+# WP_001788321.1 Number of predicted TMRs: 0
+WP_001788321.1	inside	1	30				
+//
+# WP_001788579.1 Length: 36
+# WP_001788579.1 Number of predicted TMRs: 0
+WP_001788579.1	signal	1	35				
+WP_001788579.1	outside	36	36				
+//
+# WP_001788625.1 Length: 31
+# WP_001788625.1 Number of predicted TMRs: 0
+WP_001788625.1	signal	1	16				
+WP_001788625.1	outside	17	31				
+//
+# WP_001788648.1 Length: 231
+# WP_001788648.1 Number of predicted TMRs: 0
+WP_001788648.1	inside	1	231				
+//
+# WP_001788716.1 Length: 36
+# WP_001788716.1 Number of predicted TMRs: 1
+WP_001788716.1	inside	1	17				
+WP_001788716.1	TMhelix	18	32				
+WP_001788716.1	outside	33	36				
+//
+# WP_001788788.1 Length: 209
+# WP_001788788.1 Number of predicted TMRs: 2
+WP_001788788.1	inside	1	9				
+WP_001788788.1	TMhelix	10	31				
+WP_001788788.1	outside	32	34				
+WP_001788788.1	TMhelix	35	53				
+WP_001788788.1	inside	54	209				
+//
+# WP_001788970.1 Length: 33
+# WP_001788970.1 Number of predicted TMRs: 0
+WP_001788970.1	signal	1	32				
+WP_001788970.1	outside	33	33				
+//
+# WP_001788994.1 Length: 37
+# WP_001788994.1 Number of predicted TMRs: 0
+WP_001788994.1	signal	1	21				
+WP_001788994.1	outside	22	37				
+//
+# WP_001789152.1 Length: 61
+# WP_001789152.1 Number of predicted TMRs: 0
+WP_001789152.1	inside	1	61				
+//
+# WP_001789205.1 Length: 55
+# WP_001789205.1 Number of predicted TMRs: 0
+WP_001789205.1	inside	1	55				
+//
+# WP_001789343.1 Length: 117
+# WP_001789343.1 Number of predicted TMRs: 0
+WP_001789343.1	inside	1	117				
+//
+# WP_001789359.1 Length: 81
+# WP_001789359.1 Number of predicted TMRs: 0
+WP_001789359.1	inside	1	81				
+//
+# WP_001789457.1 Length: 41
+# WP_001789457.1 Number of predicted TMRs: 0
+WP_001789457.1	signal	1	40				
+WP_001789457.1	outside	41	41				
+//
+# WP_001789566.1 Length: 48
+# WP_001789566.1 Number of predicted TMRs: 0
+WP_001789566.1	signal	1	44				
+WP_001789566.1	outside	45	48				
+//
+# WP_001789641.1 Length: 36
+# WP_001789641.1 Number of predicted TMRs: 1
+WP_001789641.1	outside	1	10				
+WP_001789641.1	TMhelix	11	31				
+WP_001789641.1	inside	32	36				
+//
+# WP_001789654.1 Length: 43
+# WP_001789654.1 Number of predicted TMRs: 0
+WP_001789654.1	inside	1	43				
+//
+# WP_001789875.1 Length: 59
+# WP_001789875.1 Number of predicted TMRs: 1
+WP_001789875.1	inside	1	36				
+WP_001789875.1	TMhelix	37	57				
+WP_001789875.1	outside	58	59				
+//
+# WP_001789879.1 Length: 48
+# WP_001789879.1 Number of predicted TMRs: 0
+WP_001789879.1	signal	1	41				
+WP_001789879.1	outside	42	48				
+//
+# WP_001789890.1 Length: 37
+# WP_001789890.1 Number of predicted TMRs: 0
+WP_001789890.1	signal	1	35				
+WP_001789890.1	outside	36	37				
+//
+# WP_001789891.1 Length: 65
+# WP_001789891.1 Number of predicted TMRs: 0
+WP_001789891.1	inside	1	65				
+//
+# WP_001789892.1 Length: 74
+# WP_001789892.1 Number of predicted TMRs: 0
+WP_001789892.1	inside	1	74				
+//
+# WP_001789897.1 Length: 32
+# WP_001789897.1 Number of predicted TMRs: 0
+WP_001789897.1	inside	1	32				
+//
+# WP_001789900.1 Length: 189
+# WP_001789900.1 Number of predicted TMRs: 0
+WP_001789900.1	inside	1	189				
+//
+# WP_001789935.1 Length: 34
+# WP_001789935.1 Number of predicted TMRs: 0
+WP_001789935.1	signal	1	12				
+WP_001789935.1	outside	13	34				
+//
+# WP_001789987.1 Length: 30
+# WP_001789987.1 Number of predicted TMRs: 0
+WP_001789987.1	signal	1	28				
+WP_001789987.1	outside	29	30				
+//
+# WP_001790025.1 Length: 42
+# WP_001790025.1 Number of predicted TMRs: 0
+WP_001790025.1	signal	1	37				
+WP_001790025.1	outside	38	42				
+//
+# WP_001790128.1 Length: 30
+# WP_001790128.1 Number of predicted TMRs: 0
+WP_001790128.1	inside	1	30				
+//
+# WP_001790169.1 Length: 68
+# WP_001790169.1 Number of predicted TMRs: 2
+WP_001790169.1	outside	1	4				
+WP_001790169.1	TMhelix	5	20				
+WP_001790169.1	inside	21	30				
+WP_001790169.1	TMhelix	31	51				
+WP_001790169.1	outside	52	68				
+//
+# WP_001790257.1 Length: 36
+# WP_001790257.1 Number of predicted TMRs: 0
+WP_001790257.1	inside	1	36				
+//
+# WP_001790547.1 Length: 130
+# WP_001790547.1 Number of predicted TMRs: 0
+WP_001790547.1	inside	1	130				
+//
+# WP_001790553.1 Length: 31
+# WP_001790553.1 Number of predicted TMRs: 0
+WP_001790553.1	inside	1	31				
+//
+# WP_001790560.1 Length: 36
+# WP_001790560.1 Number of predicted TMRs: 0
+WP_001790560.1	inside	1	36				
+//
+# WP_001790652.1 Length: 36
+# WP_001790652.1 Number of predicted TMRs: 0
+WP_001790652.1	inside	1	36				
+//
+# WP_001790661.1 Length: 33
+# WP_001790661.1 Number of predicted TMRs: 0
+WP_001790661.1	inside	1	33				
+//
+# WP_001790679.1 Length: 30
+# WP_001790679.1 Number of predicted TMRs: 0
+WP_001790679.1	inside	1	30				
+//
+# WP_001790680.1 Length: 57
+# WP_001790680.1 Number of predicted TMRs: 0
+WP_001790680.1	inside	1	57				
+//
+# WP_001790708.1 Length: 61
+# WP_001790708.1 Number of predicted TMRs: 0
+WP_001790708.1	inside	1	61				
+//
+# WP_001790712.1 Length: 39
+# WP_001790712.1 Number of predicted TMRs: 0
+WP_001790712.1	signal	1	12				
+WP_001790712.1	outside	13	39				
+//
+# WP_001791162.1 Length: 175
+# WP_001791162.1 Number of predicted TMRs: 0
+WP_001791162.1	inside	1	175				
+//
+# WP_001791232.1 Length: 33
+# WP_001791232.1 Number of predicted TMRs: 0
+WP_001791232.1	inside	1	33				
+//
+# WP_001791319.1 Length: 553
+# WP_001791319.1 Number of predicted TMRs: 9
+WP_001791319.1	outside	1	5				
+WP_001791319.1	TMhelix	6	21				
+WP_001791319.1	inside	22	51				
+WP_001791319.1	TMhelix	52	62				
+WP_001791319.1	outside	63	63				
+WP_001791319.1	TMhelix	64	73				
+WP_001791319.1	inside	74	84				
+WP_001791319.1	TMhelix	85	105				
+WP_001791319.1	outside	106	109				
+WP_001791319.1	TMhelix	110	125				
+WP_001791319.1	inside	126	132				
+WP_001791319.1	TMhelix	133	154				
+WP_001791319.1	outside	155	176				
+WP_001791319.1	TMhelix	177	197				
+WP_001791319.1	inside	198	242				
+WP_001791319.1	TMhelix	243	263				
+WP_001791319.1	outside	264	282				
+WP_001791319.1	TMhelix	283	300				
+WP_001791319.1	inside	301	553				
+//
+# WP_001791424.1 Length: 34
+# WP_001791424.1 Number of predicted TMRs: 0
+WP_001791424.1	signal	1	14				
+WP_001791424.1	outside	15	34				
+//
+# WP_001791591.1 Length: 51
+# WP_001791591.1 Number of predicted TMRs: 0
+WP_001791591.1	inside	1	51				
+//
+# WP_001791821.1 Length: 35
+# WP_001791821.1 Number of predicted TMRs: 0
+WP_001791821.1	signal	1	10				
+WP_001791821.1	outside	11	35				
+//
+# WP_001791826.1 Length: 86
+# WP_001791826.1 Number of predicted TMRs: 3
+WP_001791826.1	inside	1	2				
+WP_001791826.1	TMhelix	3	23				
+WP_001791826.1	outside	24	38				
+WP_001791826.1	TMhelix	39	56				
+WP_001791826.1	inside	57	64				
+WP_001791826.1	TMhelix	65	83				
+WP_001791826.1	outside	84	86				
+//
+# WP_001791844.1 Length: 61
+# WP_001791844.1 Number of predicted TMRs: 0
+WP_001791844.1	signal	1	60				
+WP_001791844.1	outside	61	61				
+//
+# WP_001791878.1 Length: 30
+# WP_001791878.1 Number of predicted TMRs: 0
+WP_001791878.1	outside	1	30				
+//
+# WP_001791975.1 Length: 36
+# WP_001791975.1 Number of predicted TMRs: 0
+WP_001791975.1	signal	1	24				
+WP_001791975.1	outside	25	36				
+//
+# WP_001792047.1 Length: 40
+# WP_001792047.1 Number of predicted TMRs: 0
+WP_001792047.1	inside	1	40				
+//
+# WP_001792089.1 Length: 32
+# WP_001792089.1 Number of predicted TMRs: 0
+WP_001792089.1	inside	1	32				
+//
+# WP_001792137.1 Length: 43
+# WP_001792137.1 Number of predicted TMRs: 0
+WP_001792137.1	signal	1	39				
+WP_001792137.1	outside	40	43				
+//
+# WP_001792906.1 Length: 147
+# WP_001792906.1 Number of predicted TMRs: 4
+WP_001792906.1	inside	1	18				
+WP_001792906.1	TMhelix	19	28				
+WP_001792906.1	outside	29	43				
+WP_001792906.1	TMhelix	44	53				
+WP_001792906.1	inside	54	74				
+WP_001792906.1	TMhelix	75	84				
+WP_001792906.1	outside	85	97				
+WP_001792906.1	TMhelix	98	118				
+WP_001792906.1	inside	119	147				
+//
+# WP_001793808.1 Length: 251
+# WP_001793808.1 Number of predicted TMRs: 0
+WP_001793808.1	inside	1	251				
+//
+# WP_001794540.1 Length: 74
+# WP_001794540.1 Number of predicted TMRs: 1
+WP_001794540.1	signal	1	10				
+WP_001794540.1	outside	11	18				
+WP_001794540.1	TMhelix	19	29				
+WP_001794540.1	inside	30	74				
+//
+# WP_001794576.1 Length: 92
+# WP_001794576.1 Number of predicted TMRs: 3
+WP_001794576.1	inside	1	3				
+WP_001794576.1	TMhelix	4	22				
+WP_001794576.1	outside	23	31				
+WP_001794576.1	TMhelix	32	51				
+WP_001794576.1	inside	52	62				
+WP_001794576.1	TMhelix	63	84				
+WP_001794576.1	outside	85	92				
+//
+# WP_001795334.1 Length: 48
+# WP_001795334.1 Number of predicted TMRs: 0
+WP_001795334.1	inside	1	48				
+//
+# WP_001795394.1 Length: 102
+# WP_001795394.1 Number of predicted TMRs: 3
+WP_001795394.1	inside	1	7				
+WP_001795394.1	TMhelix	8	24				
+WP_001795394.1	outside	25	35				
+WP_001795394.1	TMhelix	36	53				
+WP_001795394.1	inside	54	63				
+WP_001795394.1	TMhelix	64	84				
+WP_001795394.1	outside	85	102				
+//
+# WP_001797828.1 Length: 207
+# WP_001797828.1 Number of predicted TMRs: 0
+WP_001797828.1	inside	1	207				
+//
+# WP_001801650.1 Length: 32
+# WP_001801650.1 Number of predicted TMRs: 0
+WP_001801650.1	signal	1	31				
+WP_001801650.1	outside	32	32				
+//
+# WP_001801861.1 Length: 31
+# WP_001801861.1 Number of predicted TMRs: 1
+WP_001801861.1	outside	1	4				
+WP_001801861.1	TMhelix	5	25				
+WP_001801861.1	inside	26	31				
+//
+# WP_001802312.1 Length: 35
+# WP_001802312.1 Number of predicted TMRs: 0
+WP_001802312.1	signal	1	33				
+WP_001802312.1	outside	34	35				
+//
+# WP_001802667.1 Length: 227
+# WP_001802667.1 Number of predicted TMRs: 5
+WP_001802667.1	outside	1	24				
+WP_001802667.1	TMhelix	25	44				
+WP_001802667.1	inside	45	46				
+WP_001802667.1	TMhelix	47	67				
+WP_001802667.1	outside	68	72				
+WP_001802667.1	TMhelix	73	93				
+WP_001802667.1	inside	94	94				
+WP_001802667.1	TMhelix	95	112				
+WP_001802667.1	outside	113	117				
+WP_001802667.1	TMhelix	118	138				
+WP_001802667.1	inside	139	227				
+//
+# WP_001802886.1 Length: 159
+# WP_001802886.1 Number of predicted TMRs: 4
+WP_001802886.1	inside	1	4				
+WP_001802886.1	TMhelix	5	25				
+WP_001802886.1	outside	26	65				
+WP_001802886.1	TMhelix	66	86				
+WP_001802886.1	inside	87	96				
+WP_001802886.1	TMhelix	97	117				
+WP_001802886.1	outside	118	131				
+WP_001802886.1	TMhelix	132	148				
+WP_001802886.1	inside	149	159				
+//
+# WP_001803470.1 Length: 191
+# WP_001803470.1 Number of predicted TMRs: 0
+WP_001803470.1	inside	1	191				
+//
+# WP_001803958.1 Length: 32
+# WP_001803958.1 Number of predicted TMRs: 0
+WP_001803958.1	inside	1	32				
+//
+# WP_001805237.1 Length: 215
+# WP_001805237.1 Number of predicted TMRs: 0
+WP_001805237.1	inside	1	215				
+//
+# WP_001805565.1 Length: 41
+# WP_001805565.1 Number of predicted TMRs: 0
+WP_001805565.1	signal	1	38				
+WP_001805565.1	outside	39	41				

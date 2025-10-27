@@ -1,0 +1,64 @@
+#Rates were calculated using Maximim Likelihood
+#The likelihood of the data given the tree is: 
+#LL=-147.148
+#SEQ: the amino acid in the reference sequence in one letter code.
+#SCORE: The conservation scores. lower value = higher conservation.
+#MSA DATA: The number of aligned sequences having an amino acid (non-gapped) from the overall number of sequences at each position.
+
+#POS SEQ  SCORE     MSA DATA
+1    M    -0.5197   2/2
+2    L    -0.5197   2/2
+3    Y    0.8582    2/2
+4    Y    0.8582    2/2
+5    V    1.9167    2/2
+6    L    -0.5197   2/2
+7    V    1.9167    2/2
+8    F    -0.5197   2/2
+9    L    -0.5197   2/2
+10   V    1.9167    2/2
+11   V    1.9167    2/2
+12   A    -0.5197   2/2
+13   L    -0.5197   2/2
+14   V    1.9167    2/2
+15   A    -0.5197   2/2
+16   G    -0.5197   2/2
+17   A    -0.5197   2/2
+18   L    -0.5197   2/2
+19   G    -0.5197   2/2
+20   F    -0.5197   2/2
+21   G    -0.5197   2/2
+22   G    -0.5197   2/2
+23   I    1.2050    2/2
+24   A    -0.5197   2/2
+25   G    -0.5197   2/2
+26   A    -0.5197   2/2
+27   S    -0.5197   2/2
+28   A    -0.5197   2/2
+29   G    -0.5197   2/2
+30   I    1.2050    2/2
+31   A    -0.5197   2/2
+32   Q    -0.5197   2/2
+33   I    1.2050    2/2
+34   L    -0.5197   2/2
+35   F    -0.5197   2/2
+36   F    -0.5197   2/2
+37   V    1.9167    2/2
+38   F    -0.5197   2/2
+39   L    -0.5197   2/2
+40   A    -0.5197   2/2
+41   L    -0.5197   2/2
+42   L    -0.5197   2/2
+43   V    1.9167    2/2
+44   I    1.2050    2/2
+45   S    -0.5197   2/2
+46   L    -0.5197   2/2
+47   I    1.2050    2/2
+48   A    -0.5197   2/2
+49   S    -0.5197   2/2
+50   A    -0.5197   2/2
+51   I    1.2050    2/2
+52   R    -0.5197   2/2
+53   K    -2.6143   2/2
+54   A    -0.5197   2/2
+#Average = 0.0000
+#Standard Deviation = 1.0000
