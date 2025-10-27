@@ -1,0 +1,4 @@
+[2025-10-23 10:53:17,255] Single-chain mode set, will predict PDBs as single chains
+[2025-10-23 10:53:17,265] Single PDB file input (R4IZI5_AF), extracting single chains to data/T.pallidum/epitope_outputs/discotope/R4IZI5_AF/input_chains
+[2025-10-23 10:53:17,588] Found 1 extracted single chains in data/T.pallidum/epitope_outputs/discotope/R4IZI5_AF/input_chains
+[2025-10-23 10:58:02,736] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/T.pallidum/epitope_outputs/discotope/R4IZI5_AF/output

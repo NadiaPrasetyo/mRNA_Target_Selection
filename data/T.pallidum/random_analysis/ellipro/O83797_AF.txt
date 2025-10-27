@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,O83797_AF,A,57,61,HRAIS,5,0.846,Linear
+2,O83797_AF,A,46,52,FNRRTRC,7,0.644,Linear
+3,O83797_AF,A,37,43,RQAPGDR,7,0.618,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,O83797_AF,A:R58, A:A59, A:I60, A:S61,4,0.922,Discontinous
+2,O83797_AF,A:M1, A:N2, A:S3, A:M4, A:H5, A:L6, A:H7, A:A8, A:V9, A:R10,10,0.766,Discontinous
+3,O83797_AF,A:Q38, A:A39, A:P40, A:G41, A:D42, A:H57,6,0.669,Discontinous
+4,O83797_AF,A:P33, A:F46, A:N47, A:R48, A:T50, A:C52,6,0.508,Discontinous

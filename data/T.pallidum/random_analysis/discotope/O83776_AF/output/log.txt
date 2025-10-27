@@ -1,0 +1,4 @@
+[2025-10-23 12:09:41,767] Single-chain mode set, will predict PDBs as single chains
+[2025-10-23 12:09:41,773] Single PDB file input (O83776_AF), extracting single chains to data/T.pallidum/random_analysis/discotope/O83776_AF/input_chains
+[2025-10-23 12:09:42,431] Found 1 extracted single chains in data/T.pallidum/random_analysis/discotope/O83776_AF/input_chains
+[2025-10-23 12:15:33,090] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/T.pallidum/random_analysis/discotope/O83776_AF/output

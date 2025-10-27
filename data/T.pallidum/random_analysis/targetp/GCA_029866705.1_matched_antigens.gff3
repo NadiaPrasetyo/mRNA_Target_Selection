@@ -1,0 +1,21 @@
+##gff-version 3
+antigen_89|O83767|Uncharacterized|WGK75160.1|tpos:1-296	TargetP-2.0	signal_peptide	1	18	0.752982	.	.	.
+antigen_92|P18193|Flagellar|WGK74658.1|tpos:1-350	TargetP-2.0	signal_peptide	1	18	0.999714	.	.	.
+antigen_33|O83358|Uncharacterized|WGK74733.1|tpos:1-162	TargetP-2.0	signal_peptide	1	19	0.948729	.	.	.
+antigen_63|O83284|Uncharacterized|WGK74669.1|tpos:1-448	TargetP-2.0	signal_peptide	1	37	0.595507	.	.	.
+antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|WGK75295.1|tpos:1-540	TargetP-2.0	signal_peptide	1	21	0.812611	.	.	.
+antigen_76|O83229|Large|WGK74609.1|tpos:1-122	TargetP-2.0	transit_peptide	1	32	0.550804	.	.	Note=Mitochondrion
+antigen_119|O83142|Probable|WGK74525.1|tpos:1-593	TargetP-2.0	signal_peptide	1	22	0.594177	.	.	.
+antigen_109|O83696|Uncharacterized|WGK75076.1|tpos:1-181	TargetP-2.0	signal_peptide	1	19	0.974648	.	.	.
+antigen_187|O83077|Putative|WGK74456.1|tpos:1-316	TargetP-2.0	signal_peptide	1	19	0.989253	.	.	.
+antigen_158|O83770|Uncharacterized|WGK75163.1|tpos:1-81	TargetP-2.0	signal_peptide	1	21	0.948162	.	.	.
+antigen_159|O83185|Uncharacterized|WGK74566.1|tpos:1-155	TargetP-2.0	signal_peptide	1	32	0.731525	.	.	.
+antigen_117|O83170|Uncharacterized|WGK74552.1|tpos:1-409	TargetP-2.0	transit_peptide	1	40	0.432337	.	.	Note=Mitochondrion
+antigen_135|O83575|Uncharacterized|WGK74951.1|tpos:1-678	TargetP-2.0	signal_peptide	1	19	0.981609	.	.	.
+antigen_6|O83806|Tyrosine--tRNA|WGK75203.1|tpos:1-409	TargetP-2.0	transit_peptide	1	27	0.589566	.	.	Note=Mitochondrion
+antigen_95|O83550|Uncharacterized|WGK74926.1|tpos:1-73	TargetP-2.0	signal_peptide	1	26	0.951255	.	.	.
+antigen_49|O83463|Uncharacterized|WGK74842.1|tpos:1-196	TargetP-2.0	signal_peptide	1	23	0.980081	.	.	.
+antigen_50|O83805|Uncharacterized|WGK75202.1|tpos:1-240	TargetP-2.0	signal_peptide	1	21	0.988274	.	.	.
+antigen_153|O83774|FAD:protein|WGK75168.1|tpos:1-362	TargetP-2.0	signal_peptide	1	25	0.951371	.	.	.
+antigen_154|O83344|Uncharacterized|WGK74721.1|tpos:1-477	TargetP-2.0	signal_peptide	1	31	0.918199	.	.	.
+antigen_188|O83496|Uncharacterized|WGK74874.1|tpos:30-403	TargetP-2.0	signal_peptide	1	21	0.926385	.	.	.

@@ -1,0 +1,23 @@
+##gff-version 3
+antigen_97|O83390|Uncharacterized|UOY13494.1|tpos:1-69	TargetP-2.0	signal_peptide	1	19	0.993218	.	.	.
+antigen_188|O83496|Uncharacterized|UOY13592.1|tpos:1-374	TargetP-2.0	signal_peptide	1	21	0.926385	.	.	.
+antigen_109|O83696|Uncharacterized|UOY12872.1|tpos:1-181	TargetP-2.0	signal_peptide	1	19	0.968191	.	.	.
+antigen_63|O83284|Uncharacterized|UOY13398.1|tpos:1-442	TargetP-2.0	signal_peptide	1	31	0.929911	.	.	.
+antigen_6|O83806|Tyrosine--tRNA|UOY13680.1|tpos:1-409	TargetP-2.0	transit_peptide	1	27	0.589566	.	.	Note=Mitochondrion
+antigen_154|O83344|Uncharacterized|UOY13448.1|tpos:1-477	TargetP-2.0	signal_peptide	1	31	0.918199	.	.	.
+antigen_4|O83586|Uncharacterized|UOY12771.1|tpos:1-579	TargetP-2.0	signal_peptide	1	21	0.661374	.	.	.
+antigen_153|O83774|FAD:protein|UOY12959.1|tpos:1-362	TargetP-2.0	signal_peptide	1	25	0.952628	.	.	.
+antigen_33|O83358|Uncharacterized|UOY13460.1|tpos:1-162	TargetP-2.0	signal_peptide	1	19	0.948729	.	.	.
+antigen_142|O83277|Uncharacterized|UOY13390.1|tpos:1-75	TargetP-2.0	signal_peptide	1	18	0.906967	.	.	.
+antigen_92|P18193|Flagellar|UOY13389.1|tpos:1-350	TargetP-2.0	signal_peptide	1	18	0.999702	.	.	.
+antigen_49|O83463|Uncharacterized|UOY13562.1|tpos:1-196	TargetP-2.0	signal_peptide	1	23	0.980081	.	.	.
+antigen_50|O83805|Uncharacterized|UOY12990.1|tpos:1-238	TargetP-2.0	signal_peptide	1	19	0.892157	.	.	.
+antigen_135|O83575|Uncharacterized|UOY12759.1|tpos:1-678	TargetP-2.0	signal_peptide	1	19	0.981737	.	.	.
+antigen_76|O83229|Large|UOY13341.1|tpos:1-122	TargetP-2.0	transit_peptide	1	32	0.550804	.	.	Note=Mitochondrion
+antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|UOY13074.1|tpos:1-540	TargetP-2.0	signal_peptide	1	21	0.812611	.	.	.
+antigen_95|O83550|Uncharacterized|UOY12735.1|tpos:1-73	TargetP-2.0	signal_peptide	1	26	0.951255	.	.	.
+antigen_119|O83142|Probable|UOY13258.1|tpos:1-593	TargetP-2.0	signal_peptide	1	22	0.594177	.	.	.
+antigen_158|O83770|Uncharacterized|UOY12955.1|tpos:1-81	TargetP-2.0	signal_peptide	1	21	0.948162	.	.	.
+antigen_159|O83185|Uncharacterized|UOY13302.1|tpos:1-155	TargetP-2.0	signal_peptide	1	32	0.731525	.	.	.
+antigen_187|O83077|Putative|UOY13197.1|tpos:1-316	TargetP-2.0	signal_peptide	1	19	0.989253	.	.	.
+antigen_117|O83170|Uncharacterized|UOY13286.1|tpos:1-376	TargetP-2.0	signal_peptide	1	29	0.823422	.	.	.

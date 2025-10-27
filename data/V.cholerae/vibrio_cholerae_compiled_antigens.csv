@@ -1,0 +1,147 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']","['Homo sapiens (human)', 'Mus musculus BALB/c']",['Other Vibrio cholerae protein'],,,IEDB
+['Vibrio cholerae'],"['Bos taurus (bovine)', 'Homo sapiens (human)']",['Lipopolysaccharide biosynthesis protein RfbV (UniProt:H9L4P1)'],,H9L4P1,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Response regulator VieA (UniProt:H9L4Q6)'],,H9L4Q6,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Mannosyl-transferase (UniProt:H9L4R0)'],,H9L4R0,IEDB
+['Fibrovirus fs1 (Vibrio cholerae O139 fs1 phage)'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:O56842)'],,O56842,IEDB
+['Vibrio cholerae'],"['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C57BL/6']",['Cholera enterotoxin subunit A (UniProt:P01555)'],,P01555,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 569B']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C3H/He', 'Mus musculus C57BL/6', 'Mus musculus (mouse)', 'Oryctolagus cuniculus (rabbit)']",['Cholera enterotoxin subunit B (UniProt:P01556)'],,P01556,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Toxin coregulated pilus biosynthesis protein I (UniProt:P0C6D8)'],,P0C6D8,IEDB
+['Vibrio cholerae'],"['Homo sapiens (human)', 'Mus musculus BALB/c']",['Toxin coregulated pilus biosynthesis protein F (UniProt:P0C6Q5)'],,P0C6Q5,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Ferric vibriobactin receptor ViuA (UniProt:P0C6R1)'],,P0C6R1,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae O1 biovar El Tor str. N16961 (Vibrio cholerae El Tor N16961)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Type II secretion system protein M (UniProt:P41851)'],,P41851,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Type II secretion system protein C (UniProt:P45777)'],,P45777,IEDB
+['Vibrio cholerae O139'],['Homo sapiens (human)'],['Putative mannose-1-phosphate guanylyltransferase (UniProt:Q07024)'],,Q07024,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Outer membrane lipoprotein Blc (UniProt:Q08790)'],,Q08790,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['TIGR03643 family protein (UniProt:Q9K315)'],,Q9K315,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Phage replication protein Cri (UniProt:Q9K394)'],,Q9K394,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Toxin secretion ATP-binding protein (UniProt:Q9KKL9)'],,Q9KKL9,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae B33 (Vibrio cholerae str. B33)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],"['Organic hydroperoxide resistance protein, putative (UniProt:Q9KKU4)']",,Q9KKU4,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae B33 (Vibrio cholerae str. B33)', 'Vibrio cholerae O1 biovar El Tor (Vibrio cholerae O1 biovar eltor)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],"['NADH-dependent flavin oxidoreductase, Oye family (UniProt:Q9KKV2)']",,Q9KKV2,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],"['Oxygen-independent coproporphyrinogen III oxidase, putative (UniProt:Q9KL39)']",,Q9KL39,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['PepSY domain-containing protein (UniProt:Q9KL57)'],,Q9KL57,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],"['Methyltransferase, putative (UniProt:Q9KLB4)']",,Q9KLB4,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Sulfatase N-terminal domain-containing protein (UniProt:Q9KLE4)'],,Q9KLE4,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q9KLG3)'],,Q9KLG3,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Glycerol kinase (UniProt:Q9KLJ9)'],,Q9KLJ9,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Cobyric acid synthase (UniProt:Q9KLL6)'],,Q9KLL6,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MAK 757 (Vibrio cholerae str. MAK 757)']",['Homo sapiens (human)'],['Molybdenum import ATP-binding protein ModC (UniProt:Q9KLL9)'],,Q9KLL9,IEDB
+['Vibrio cholerae NCTC 8457 (Vibrio cholerae str. NCTC 8457)'],['Homo sapiens (human)'],['Polyhydroxyalkanoic acid synthase (UniProt:Q9KLQ4)'],,Q9KLQ4,IEDB
+"['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Protein F-related protein (UniProt:Q9KLT2)'],,Q9KLT2,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],"['Transporter, AcrB/D/F family (UniProt:Q9KLV3)']",,Q9KLV3,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['N-acetyltransferase domain-containing protein (UniProt:Q9KLW0)'],,Q9KLW0,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MZO-2 (Vibrio cholerae str. MZO-2)']",['Homo sapiens (human)'],['Solitary outer membrane autotransporter beta-barrel domain-containing protein (UniProt:Q9KM30)'],,Q9KM30,IEDB
+['Vibrio cholerae O395 (Vibrio cholerae str. O395)'],['Homo sapiens (human)'],"['Cytochrome b561, putative (UniProt:Q9KM51)']",,Q9KM51,IEDB
+['Vibrio cholerae B33 (Vibrio cholerae str. B33)'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q9KMH5)'],,Q9KMH5,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['SMODS and SLOG-associating 2TM effector domain-containing protein (UniProt:Q9KMI6)'],,Q9KMI6,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],['Outer membrane lipoprotein Blc (UniProt:Q9KMJ6)'],,Q9KMJ6,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MAK 757 (Vibrio cholerae str. MAK 757)']",['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q9KML5)'],,Q9KML5,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Chloramphenicol acetyltransferase (UniProt:Q9KMN1)'],,Q9KMN1,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],"['Cytochrome b561, putative (UniProt:Q9KMS1)']",,Q9KMS1,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 1587 (Vibrio cholerae str. 1587)']",['Homo sapiens (human)'],"[""3'3'-cGAMP-specific phosphodiesterase 2 (UniProt:Q9KMV8)""]",,Q9KMV8,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['nicotinate-nucleotide adenylyltransferase (UniProt:Q9KMW0)'],,Q9KMW0,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Methyl-accepting chemotaxis protein (UniProt:Q9KMZ0)'],,Q9KMZ0,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MZO-2 (Vibrio cholerae str. MZO-2)']",['Homo sapiens (human)'],['Periplasmic protein (UniProt:Q9KMZ9)'],,Q9KMZ9,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Aromatic amino acid permease (UniProt:Q9KN06)'],,Q9KN06,IEDB
+"['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Type VI secretion system spike protein VgrG3 (UniProt:Q9KN42)'],,Q9KN42,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['GTPase (UniProt:Q9KNB7)'],,Q9KNB7,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Peptidase S41 (UniProt:Q9KNC1)'],,Q9KNC1,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Glutamine synthetase (UniProt:Q9KNJ2)'],,Q9KNJ2,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],['histidine kinase (UniProt:Q9KNL9)'],,Q9KNL9,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Fumarate reductase flavoprotein subunit (UniProt:Q9KNS5)'],,Q9KNS5,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Sulfate adenylyltransferase subunit 2 (UniProt:Q9KP19)'],,Q9KP19,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Type IV pilus assembly protein PilB (UniProt:Q9KPE4)'],,Q9KPE4,IEDB
+"['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],"['Peptidoglycan D,D-transpeptidase FtsI (UniProt:Q9KPG1)']",,Q9KPG1,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Carbamoyl phosphate synthase large chain (UniProt:Q9KPH9)'],,Q9KPH9,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['diguanylate cyclase (UniProt:Q9KPJ7)'],,Q9KPJ7,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Probable cysteine desulfurase (UniProt:Q9KPQ7)'],,Q9KPQ7,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Na(+)-translocating NADH-quinone reductase subunit B (UniProt:Q9KPS2)'],,Q9KPS2,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Outer membrane protein assembly factor BamA (UniProt:Q9KPW0)'],,Q9KPW0,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Membrane-bound lytic murein transglycosylase D (UniProt:Q9KPX5)'],,Q9KPX5,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['DNA polymerase III subunit epsilon (UniProt:Q9KPX9)'],,Q9KPX9,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],['4-diphosphocytidyl-2-C-methyl-D-erythritol kinase (UniProt:Q9KQ23)'],,Q9KQ23,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['UPF0162 protein VC_2176 (UniProt:Q9KQ28)'],,Q9KQ28,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MAK 757 (Vibrio cholerae str. MAK 757)', 'Vibrio cholerae O395 (Vibrio cholerae str. O395)']",['Homo sapiens (human)'],['LrgB family protein (UniProt:Q9KQA0)'],,Q9KQA0,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['3-oxoacyl-[acyl-carrier-protein] synthase 2 (UniProt:Q9KQH9)'],,Q9KQH9,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V51 (Vibrio cholerae str. V51)']",['Homo sapiens (human)'],['PNPLA domain-containing protein (UniProt:Q9KQI9)'],,Q9KQI9,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Pyruvate kinase (UniProt:Q9KQJ0)'],,Q9KQJ0,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],['Chemotaxis protein CheV (UniProt:Q9KQJ2)'],,Q9KQJ2,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Phospholipid/glycerol acyltransferase domain-containing protein (UniProt:Q9KQN2)'],,Q9KQN2,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 1587 (Vibrio cholerae str. 1587)']",['Homo sapiens (human)'],['PvcB protein (UniProt:Q9KQQ4)'],,Q9KQQ4,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MAK 757 (Vibrio cholerae str. MAK 757)']",['Homo sapiens (human)'],['Rec2-related protein (UniProt:Q9KQW8)'],,Q9KQW8,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['DUF2787 domain-containing protein (UniProt:Q9KR41)'],,Q9KR41,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Kelch domain-containing protein VC_1773 (UniProt:Q9KR70)'],,Q9KR70,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae RC385 (Vibrio cholerae str. RC385)']",['Homo sapiens (human)'],['WYL domain-containing protein (UniProt:Q9KR71)'],,Q9KR71,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['site-specific DNA-methyltransferase (adenine-specific) (UniProt:Q9KR74)'],,Q9KR74,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],"['Helicase, putative (UniProt:Q9KR83)']",,Q9KR83,IEDB
+"['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae RC385 (Vibrio cholerae str. RC385)']",['Homo sapiens (human)'],['Paraquat-inducible protein A (UniProt:Q9KR89)'],,Q9KR89,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['TVP38/TMEM64 family membrane protein (UniProt:Q9KRB9)'],,Q9KRB9,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Ribosomal small subunit pseudouridine synthase A (UniProt:Q9KRK5)'],,Q9KRK5,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae RC385 (Vibrio cholerae str. RC385)']","['Homo sapiens (human)', 'Sus scrofa (pig)']",['AttH domain-containing protein (UniProt:Q9KRL2)'],,Q9KRL2,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Catalase-peroxidase (UniProt:Q9KRS6)'],,Q9KRS6,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['sn-glycerol-3-phosphate transport system permease protein UgpA (UniProt:Q9KRT6)'],,Q9KRT6,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],['DNA ligase (UniProt:Q9KRU2)'],,Q9KRU2,IEDB
+['Vibrio cholerae MAK 757 (Vibrio cholerae str. MAK 757)'],['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q9KRZ1)'],,Q9KRZ1,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V51 (Vibrio cholerae str. V51)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['endopeptidase La (UniProt:Q9KS01)'],,Q9KS01,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Multidrug resistance protein VceA (UniProt:Q9KS50)'],,Q9KS50,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['DnaK-related protein (UniProt:Q9KS86)'],,Q9KS86,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],"['Amino acid ABC transporter, periplasmic amino acid-binding protein (UniProt:Q9KS97)']",,Q9KS97,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['histidine kinase (UniProt:Q9KSB0)'],,Q9KSB0,IEDB
+"['Vibrio cholerae MAK 757 (Vibrio cholerae str. MAK 757)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['DUF112 domain-containing protein (UniProt:Q9KSC6)'],,Q9KSC6,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Carboxy-S-adenosyl-L-methionine synthase (UniProt:Q9KSU2)'],,Q9KSU2,IEDB
+['Vibrio cholerae MAK 757 (Vibrio cholerae str. MAK 757)'],['Homo sapiens (human)'],['diguanylate cyclase (UniProt:Q9KT01)'],,Q9KT01,IEDB
+['Vibrio cholerae 12129(1) (Vibrio cholerae str. 12129(1))'],['Homo sapiens (human)'],"['Transcriptional regulator, LysR family (UniProt:Q9KT56)']",,Q9KT56,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Inosine monophosphate dehydrogenase-related protein (UniProt:Q9KT74)'],,Q9KT74,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Ion-translocating oxidoreductase complex subunit C (UniProt:Q9KT88)'],,Q9KT88,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['N-acetylglucosamine repressor (UniProt:Q9KTB0)'],,Q9KTB0,IEDB
+['Vibrio cholerae B33 (Vibrio cholerae str. B33)'],['Homo sapiens (human)'],['Phosphoenolpyruvate-protein phosphotransferase (UniProt:Q9KTD7)'],,Q9KTD7,IEDB
+"['Vibrio cholerae B33 (Vibrio cholerae str. B33)', 'Vibrio cholerae V51 (Vibrio cholerae str. V51)']",['Homo sapiens (human)'],['Aspartate-semialdehyde dehydrogenase (UniProt:Q9KTH6)'],,Q9KTH6,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Phosphoribosylformylglycinamidine synthase (UniProt:Q9KTN2)'],,Q9KTN2,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae O1 biovar El Tor str. N16961 (Vibrio cholerae El Tor N16961)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],"['Inner membrane protein, putative (UniProt:Q9KTR8)']",,Q9KTR8,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['GMP synthase [glutamine-hydrolyzing] (UniProt:Q9KTW2)'],,Q9KTW2,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],"[""Inosine-5'-monophosphate dehydrogenase (UniProt:Q9KTW3)""]",,Q9KTW3,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['GTPase Der (UniProt:Q9KTW7)'],,Q9KTW7,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],"['Carbon starvation protein A, putative (UniProt:Q9KU42)']",,Q9KU42,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Isoleucine--tRNA ligase (UniProt:Q9KU47)'],,Q9KU47,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['C-di-GMP phosphodiesterase A-related protein (UniProt:Q9KU65)'],,Q9KU65,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],"['Multidrug resistance protein, putative (UniProt:Q9KU94)']",,Q9KU94,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['beta-N-acetylhexosaminidase (UniProt:Q9KUB0)'],,Q9KUB0,IEDB
+['Vibrio cholerae O395 (Vibrio cholerae str. O395)'],['Homo sapiens (human)'],['Cell division protein ZapE (UniProt:Q9KUF3)'],,Q9KUF3,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Glutamate--cysteine ligase (UniProt:Q9KUG5)'],,Q9KUG5,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],"['Protease, insulinase family/protease, insulinase family (UniProt:Q9KUG7)']",,Q9KUG7,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],"['Beta-ketoadipate enol-lactone hydrolase, putative (UniProt:Q9KUJ8)']",,Q9KUJ8,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MZO-3 (Vibrio cholerae str. MZO-3)']",['Homo sapiens (human)'],['Methyl-accepting chemotaxis protein (UniProt:Q9KUK6)'],,Q9KUK6,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],['Glutamine--fructose-6-phosphate aminotransferase [isomerizing] (UniProt:Q9KUM8)'],,Q9KUM8,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['MSHA biogenesis protein MshG (UniProt:Q9KUV6)'],,Q9KUV6,IEDB
+"['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['MSHA biogenesis protein MshN (UniProt:Q9KUV8)'],,Q9KUV8,IEDB
+['Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)'],['Homo sapiens (human)'],['Glucose-6-phosphate isomerase (UniProt:Q9KUY4)'],,Q9KUY4,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['ATP-dependent RNA helicase RhlB (UniProt:Q9KV52)'],,Q9KV52,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],"[""Guanosine-5'-triphosphate,3'-diphosphate pyrophosphatase (UniProt:Q9KV53)""]",,Q9KV53,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['histidine kinase (UniProt:Q9KV54)'],,Q9KV54,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae AM-19226 (Vibrio cholerae str. AM-19226)']",['Homo sapiens (human)'],"['Gluconate permease, putative (UniProt:Q9KV71)']",,Q9KV71,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae MO10 (Vibrio cholerae str. MO10)', 'Vibrio cholerae V52 (Vibrio cholerae str. V52)']",['Homo sapiens (human)'],['Metallo-beta-lactamase family protein RNA-specific (UniProt:Q9KV92)'],,Q9KV92,IEDB
+['Vibrio cholerae O395 (Vibrio cholerae str. O395)'],['Homo sapiens (human)'],['Capsular polysaccharide biosynthesis protein (UniProt:Q9KVB5)'],,Q9KVB5,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],['Large ribosomal subunit protein bL33 (UniProt:Q9KVC7)'],,Q9KVC7,IEDB
+['Vibrio cholerae 1587 (Vibrio cholerae str. 1587)'],['Homo sapiens (human)'],['Methyl-accepting chemotaxis protein (UniProt:Q9KVD0)'],,Q9KVD0,IEDB
+['Vibrio cholerae V52 (Vibrio cholerae str. V52)'],['Homo sapiens (human)'],['Lipid A biosynthesis acyltransferase (UniProt:Q9KVD3)'],,Q9KVD3,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Lipid A biosynthesis acyltransferase (UniProt:Q9KVD4)'],,Q9KVD4,IEDB
+['Vibrio cholerae'],['Homo sapiens (human)'],"['Transcriptional regulator, TetR family (UniProt:Q9KVI0)']",,Q9KVI0,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Uncharacterized protein (UniProt:Q9KVN7)'],,Q9KVN7,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],"['Amino acid ABC transporter, ATP-binding protein (UniProt:Q9KVY0)']",,Q9KVY0,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Membrane protein insertase YidC (UniProt:Q9KVY4)'],,Q9KVY4,IEDB
+"['Vibrio cholerae', 'Vibrio cholerae 2740-80 (Vibrio cholerae str. 2740-80)']",['Homo sapiens (human)'],['Lysine-acyltransferase RtxC (UniProt:Q9X4W3)'],,Q9X4W3,IEDB
+vibrio cholerae,Homo sapiens,O specific polysaccharide,OSP,,literature
+vibrio cholerae,Homo sapiens,CTB,ctxB,,literature
+vibrio cholerae,Homo sapiens,Outer membrane protein,OMPW,,literature
+vibrio cholerae,Homo sapiens,Outer membrane protein,OmpU,,literature
+vibrio cholerae,Homo sapiens,toxin coregulated pili,TcpA,,literature
+vibrio cholerae,Homo sapiens,toxin coregulated pili,TcpF,,literature
+vibrio cholerae,Homo sapiens,nontoxic cholera toxin subunit,CTB,,literature
+vibrio cholerae,Homo sapiens,cholera toxin active subunit,ctxA,,literature
+vibrio cholerae,Homo sapiens,colonization factor,gbpA,,literature
+vibrio cholerae,Homo sapiens,biofilm matrix protein component,bap1,,literature
+vibrio cholerae,Homo sapiens,cell-cell adhesion factor,rbmA,,literature
+vibrio cholerae,Homo sapiens,biofilm stabilization factor,rbmC,,literature
+vibrio cholerae,Homo sapiens,O antigen,,,literature
+vibrio cholerae,Homo sapiens,flagellar H antigen,,,literature
+vibrio cholerae,Homo sapiens,H antigen,,,literature

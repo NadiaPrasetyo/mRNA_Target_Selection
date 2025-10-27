@@ -67,6 +67,8 @@ def run(tool_path: str, input_file: str, output_dir: str, group: str):
 
         for f in bio_output_dir.iterdir():
                 shutil.move(str(f), output_dir / f.name)
+                new_name = output_dir / f"{input_file.stem}_{f.name}"
+                (output_dir / f.name).rename(new_name)
 
         print(f"✅ DeepLocPro completed for {input_file.name}, output saved in {output_dir}")
 

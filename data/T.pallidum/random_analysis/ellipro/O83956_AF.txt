@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,O83956_AF,A,7,11,DLCGW,5,0.581,Linear
+2,O83956_AF,A,19,28,DADGGIPAGT,10,0.54,Linear
+3,O83956_AF,A,31,37,ENLPDHW,7,0.536,Linear
+4,O83956_AF,A,40,44,PLCGV,5,0.527,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,O83956_AF,A:P34, A:D35, A:H36,3,0.795,Discontinous
+2,O83956_AF,A:M1, A:G2, A:N14, A:P15, A:E16, A:V17, A:D19, A:A20, A:D21, A:G22, A:G23, A:I24, A:P25, A:A26, A:G27, A:T28, A:A29, A:E31, A:N32, A:L33, A:K51, A:V52,22,0.544,Discontinous
+3,O83956_AF,A:D7, A:L8, A:C9, A:G10, A:W11, A:E38, A:C39, A:P40, A:L41, A:C42, A:G43, A:V44,12,0.506,Discontinous

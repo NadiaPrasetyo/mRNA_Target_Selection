@@ -1,0 +1,11 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,P74931_AF,A,89,94,VRSGPV,6,0.865,Linear
+2,P74931_AF,A,37,53,AIFQAVTSIQEQTLTFV,17,0.755,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,P74931_AF,A:S91, A:G92, A:P93, A:V94,4,0.902,Discontinous
+2,P74931_AF,A:M2, A:T3, A:Q4, A:G5, A:L8,5,0.8,Discontinous
+3,P74931_AF,A:L34, A:A37, A:I38, A:F39, A:Q40, A:A41, A:V42, A:T43, A:S44, A:I45, A:Q46, A:E47, A:Q48, A:T49, A:L50, A:F52,16,0.775,Discontinous
+4,P74931_AF,A:P86, A:V89, A:R90,3,0.759,Discontinous
+5,P74931_AF,A:G67, A:G68, A:L71, A:T72, A:Q75,5,0.67,Discontinous
+6,P74931_AF,A:V79, A:F82, A:D83,3,0.592,Discontinous

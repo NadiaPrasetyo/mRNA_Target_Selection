@@ -1,0 +1,7 @@
+[2025-10-23 11:40:57,260] Single-chain mode set, will predict PDBs as single chains
+[2025-10-23 11:40:57,274] Single PDB file input (1O75_P29723), extracting single chains to data/T.pallidum/epitope_outputs/discotope/1O75_P29723/input_chains
+[2025-10-23 11:40:58,391] Found 3 extracted single chains in data/T.pallidum/epitope_outputs/discotope/1O75_P29723/input_chains
+[2025-10-23 11:41:16,624] Note: Skipping 1O75_P29723_C, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-23 11:47:17,936] Predicted 2 / 3 PDB files extracted from 1 input PDBs, saved to data/T.pallidum/epitope_outputs/discotope/1O75_P29723/output
+[2025-10-23 11:47:17,936] Note: Excluded predicting 1 PDB chain(s) (see log file):
+1O75_P29723_C

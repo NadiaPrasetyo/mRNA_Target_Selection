@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,O83770_AF,A,30,42,GKGYRNTPGALEE,13,0.721,Linear
+2,O83770_AF,A,54,63,LNVVQIGGRI,10,0.674,Linear
+3,O83770_AF,A,67,75,LTSAAELPR,9,0.657,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,O83770_AF,A:N55, A:V57, A:Q58, A:I59, A:G60, A:G61, A:R62, A:L67, A:T68, A:S69, A:A70, A:A71, A:E72, A:P74, A:R75,15,0.75,Discontinous
+2,O83770_AF,A:P27, A:V28, A:G30, A:K31, A:G32, A:Y33, A:N35, A:T36, A:P37, A:G38, A:A39, A:L40, A:E41, A:E42,14,0.642,Discontinous
+3,O83770_AF,A:I2, A:D3, A:E6, A:L10, A:L13, A:S14, A:S15, A:G16, A:P17, A:A18, A:I63,11,0.585,Discontinous

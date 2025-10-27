@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,B2S2F4_AF,A,1,4,MTKR,4,0.791,Linear
+2,B2S2F4_AF,A,10,19,VRSTIGQREP,10,0.656,Linear
+3,B2S2F4_AF,A,29,35,LRKLHSM,7,0.597,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,B2S2F4_AF,A:E18, A:P19, A:R22,3,0.82,Discontinous
+2,B2S2F4_AF,A:T2, A:K3, A:R4, A:D39, A:G40, A:S41, A:P42, A:A43, A:E59, A:L60, A:G61,11,0.666,Discontinous
+3,B2S2F4_AF,A:S12, A:T13, A:I14, A:G15, A:Q16,5,0.574,Discontinous

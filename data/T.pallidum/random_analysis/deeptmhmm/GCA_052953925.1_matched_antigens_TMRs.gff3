@@ -1,0 +1,1014 @@
+##gff-version 3
+# antigen_38|O83209|Uncharacterized|YAW01783.1|tpos:1-627 Length: 627
+# antigen_38|O83209|Uncharacterized|YAW01783.1|tpos:1-627 Number of predicted TMRs: 0
+antigen_38|O83209|Uncharacterized|YAW01783.1|tpos:1-627	inside	1	627				
+//
+# antigen_91|B2S2J8|Small|YAW01852.1|tpos:1-95 Length: 95
+# antigen_91|B2S2J8|Small|YAW01852.1|tpos:1-95 Number of predicted TMRs: 0
+antigen_91|B2S2J8|Small|YAW01852.1|tpos:1-95	inside	1	95				
+//
+# antigen_92|P18193|Flagellar|YAW01851.1|tpos:1-350 Length: 350
+# antigen_92|P18193|Flagellar|YAW01851.1|tpos:1-350 Number of predicted TMRs: 0
+antigen_92|P18193|Flagellar|YAW01851.1|tpos:1-350	signal	1	20				
+antigen_92|P18193|Flagellar|YAW01851.1|tpos:1-350	outside	21	350				
+//
+# antigen_100|O83668|Fructose-bisphosphate|YAW02233.1|tpos:1-332 Length: 332
+# antigen_100|O83668|Fructose-bisphosphate|YAW02233.1|tpos:1-332 Number of predicted TMRs: 0
+antigen_100|O83668|Fructose-bisphosphate|YAW02233.1|tpos:1-332	inside	1	332				
+//
+# antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130 Length: 130
+# antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130 Number of predicted TMRs: 3
+antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130	inside	1	33				
+antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130	TMhelix	34	54				
+antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130	outside	55	63				
+antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130	TMhelix	64	88				
+antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130	inside	89	101				
+antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130	TMhelix	102	124				
+antigen_101|O83766|Uncharacterized|YAW02353.1|tpos:1-130	outside	125	130				
+//
+# antigen_102|O83228|Small|YAW01801.1|tpos:6-89 Length: 84
+# antigen_102|O83228|Small|YAW01801.1|tpos:6-89 Number of predicted TMRs: 0
+antigen_102|O83228|Small|YAW01801.1|tpos:6-89	inside	1	84				
+//
+# antigen_103|O83845|tRNA|YAW02429.1|tpos:1-135 Length: 135
+# antigen_103|O83845|tRNA|YAW02429.1|tpos:1-135 Number of predicted TMRs: 0
+antigen_103|O83845|tRNA|YAW02429.1|tpos:1-135	inside	1	135				
+//
+# antigen_120|O07896|Ribonuclease|YAW02379.1|tpos:1-308 Length: 308
+# antigen_120|O07896|Ribonuclease|YAW02379.1|tpos:1-308 Number of predicted TMRs: 0
+antigen_120|O07896|Ribonuclease|YAW02379.1|tpos:1-308	inside	1	308				
+//
+# antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191 Length: 190
+# antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191 Number of predicted TMRs: 6
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	outside	1	4				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	TMhelix	5	25				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	inside	26	34				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	TMhelix	35	55				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	outside	56	65				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	TMhelix	66	82				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	inside	83	100				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	TMhelix	101	111				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	outside	112	119				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	TMhelix	120	140				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	inside	141	154				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	TMhelix	155	172				
+antigen_143|O83183|Uncharacterized|YAW01757.1|tpos:2-191	outside	173	190				
+//
+# antigen_71|O07887|Motility|YAW02292.1|tpos:1-238 Length: 238
+# antigen_71|O07887|Motility|YAW02292.1|tpos:1-238 Number of predicted TMRs: 1
+antigen_71|O07887|Motility|YAW02292.1|tpos:1-238	inside	1	21				
+antigen_71|O07887|Motility|YAW02292.1|tpos:1-238	TMhelix	22	37				
+antigen_71|O07887|Motility|YAW02292.1|tpos:1-238	outside	38	238				
+//
+# antigen_145|O83658|Spermidine/putrescine|YAW02224.1|tpos:1-375 Length: 375
+# antigen_145|O83658|Spermidine/putrescine|YAW02224.1|tpos:1-375 Number of predicted TMRs: 0
+antigen_145|O83658|Spermidine/putrescine|YAW02224.1|tpos:1-375	inside	1	375				
+//
+# antigen_69|O83822|Translation|YAW02409.1|tpos:1-173 Length: 173
+# antigen_69|O83822|Translation|YAW02409.1|tpos:1-173 Number of predicted TMRs: 0
+antigen_69|O83822|Translation|YAW02409.1|tpos:1-173	inside	1	173				
+//
+# antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|YAW02483.1|tpos:1-540 Length: 540
+# antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|YAW02483.1|tpos:1-540 Number of predicted TMRs: 0
+antigen_70|O83903|UDP-N-acetylmuramyl-tripeptide|YAW02483.1|tpos:1-540	inside	1	540				
+//
+# antigen_128|O83649|DNA|YAW02216.1|tpos:1-215 Length: 215
+# antigen_128|O83649|DNA|YAW02216.1|tpos:1-215 Number of predicted TMRs: 0
+antigen_128|O83649|DNA|YAW02216.1|tpos:1-215	inside	1	215				
+//
+# antigen_132|O83225|Small|YAW01798.1|tpos:1-247 Length: 247
+# antigen_132|O83225|Small|YAW01798.1|tpos:1-247 Number of predicted TMRs: 0
+antigen_132|O83225|Small|YAW01798.1|tpos:1-247	inside	1	247				
+//
+# antigen_110|O83464|Elongation|YAW02036.1|tpos:16-698 Length: 683
+# antigen_110|O83464|Elongation|YAW02036.1|tpos:16-698 Number of predicted TMRs: 0
+antigen_110|O83464|Elongation|YAW02036.1|tpos:16-698	inside	1	683				
+//
+# antigen_149|O83956|Rubredoxin|YAW02541.1|tpos:1-52 Length: 52
+# antigen_149|O83956|Rubredoxin|YAW02541.1|tpos:1-52 Number of predicted TMRs: 0
+antigen_149|O83956|Rubredoxin|YAW02541.1|tpos:1-52	inside	1	52				
+//
+# antigen_180|O83672|Uncharacterized|YAW02237.1|tpos:1-58 Length: 58
+# antigen_180|O83672|Uncharacterized|YAW02237.1|tpos:1-58 Number of predicted TMRs: 0
+antigen_180|O83672|Uncharacterized|YAW02237.1|tpos:1-58	inside	1	58				
+//
+# antigen_19|O83324|Probable|YAW01897.1|tpos:1-313 Length: 313
+# antigen_19|O83324|Probable|YAW01897.1|tpos:1-313 Number of predicted TMRs: 9
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	outside	1	14				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	15	28				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	inside	29	33				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	34	54				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	outside	55	59				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	60	80				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	inside	81	88				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	89	102				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	outside	103	144				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	145	160				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	inside	161	191				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	192	212				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	outside	213	226				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	227	236				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	inside	237	240				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	241	253				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	outside	254	268				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	TMhelix	269	284				
+antigen_19|O83324|Probable|YAW01897.1|tpos:1-313	inside	285	313				
+//
+# antigen_20|O83640|Tryptophan--tRNA|YAW02206.1|tpos:1-337 Length: 337
+# antigen_20|O83640|Tryptophan--tRNA|YAW02206.1|tpos:1-337 Number of predicted TMRs: 0
+antigen_20|O83640|Tryptophan--tRNA|YAW02206.1|tpos:1-337	inside	1	337				
+//
+# antigen_66|O83714|Bifunctional|YAW02300.1|tpos:27-341 Length: 315
+# antigen_66|O83714|Bifunctional|YAW02300.1|tpos:27-341 Number of predicted TMRs: 0
+antigen_66|O83714|Bifunctional|YAW02300.1|tpos:27-341	inside	1	315				
+//
+# antigen_67|O83785|Large|YAW02369.1|tpos:1-62 Length: 62
+# antigen_67|O83785|Large|YAW02369.1|tpos:1-62 Number of predicted TMRs: 0
+antigen_67|O83785|Large|YAW02369.1|tpos:1-62	inside	1	62				
+//
+# antigen_68|O83425|Protein|YAW01998.1|tpos:1-583 Length: 583
+# antigen_68|O83425|Protein|YAW01998.1|tpos:1-583 Number of predicted TMRs: 6
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	inside	1	7				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	TMhelix	8	25				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	outside	26	415				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	TMhelix	416	434				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	inside	435	435				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	TMhelix	436	459				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	outside	460	467				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	TMhelix	468	483				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	inside	484	509				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	TMhelix	510	530				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	outside	531	538				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	TMhelix	539	558				
+antigen_68|O83425|Protein|YAW01998.1|tpos:1-583	inside	559	583				
+//
+# antigen_31|O83945|Probable|YAW02530.1|tpos:12-351 Length: 340
+# antigen_31|O83945|Probable|YAW02530.1|tpos:12-351 Number of predicted TMRs: 0
+antigen_31|O83945|Probable|YAW02530.1|tpos:12-351	inside	1	340				
+//
+# antigen_32|O83539|V-type|YAW02107.1|tpos:1-209 Length: 209
+# antigen_32|O83539|V-type|YAW02107.1|tpos:1-209 Number of predicted TMRs: 0
+antigen_32|O83539|V-type|YAW02107.1|tpos:1-209	inside	1	209				
+//
+# antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162 Length: 162
+# antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162 Number of predicted TMRs: 3
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	signal	1	19				
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	outside	20	51				
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	TMhelix	52	61				
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	inside	62	62				
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	TMhelix	63	72				
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	outside	73	103				
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	TMhelix	104	124				
+antigen_33|O83358|Uncharacterized|YAW01928.1|tpos:1-162	inside	125	162				
+//
+# antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|YAW02032.1|tpos:16-419 Length: 404
+# antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|YAW02032.1|tpos:16-419 Number of predicted TMRs: 0
+antigen_1|O83460|4-hydroxy-3-methylbut-2-en-1-yl|YAW02032.1|tpos:16-419	inside	1	404				
+//
+# antigen_25|O83952|Uncharacterized|YAW02537.1|tpos:72-127 Length: 56
+# antigen_25|O83952|Uncharacterized|YAW02537.1|tpos:72-127 Number of predicted TMRs: 0
+antigen_25|O83952|Uncharacterized|YAW02537.1|tpos:72-127	inside	1	56				
+//
+# antigen_26|O83058|Uncharacterized|YAW01628.1|tpos:219-410 Length: 192
+# antigen_26|O83058|Uncharacterized|YAW01628.1|tpos:219-410 Number of predicted TMRs: 0
+antigen_26|O83058|Uncharacterized|YAW01628.1|tpos:219-410	inside	1	192				
+//
+# antigen_27|O83219|Large|YAW01792.1|tpos:1-208 Length: 208
+# antigen_27|O83219|Large|YAW01792.1|tpos:1-208 Number of predicted TMRs: 0
+antigen_27|O83219|Large|YAW01792.1|tpos:1-208	inside	1	208				
+//
+# antigen_2|O83608|Uncharacterized|YAW02174.1|tpos:1-217 Length: 217
+# antigen_2|O83608|Uncharacterized|YAW02174.1|tpos:1-217 Number of predicted TMRs: 0
+antigen_2|O83608|Uncharacterized|YAW02174.1|tpos:1-217	inside	1	217				
+//
+# antigen_21|O83610|1-deoxy-D-xylulose|YAW02176.1|tpos:1-376 Length: 376
+# antigen_21|O83610|1-deoxy-D-xylulose|YAW02176.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_21|O83610|1-deoxy-D-xylulose|YAW02176.1|tpos:1-376	inside	1	376				
+//
+# antigen_22|O83861|Translation|YAW02445.1|tpos:57-898 Length: 842
+# antigen_22|O83861|Translation|YAW02445.1|tpos:57-898 Number of predicted TMRs: 0
+antigen_22|O83861|Translation|YAW02445.1|tpos:57-898	inside	1	842				
+//
+# antigen_129|O83489|Acetate|YAW02058.1|tpos:1-448 Length: 448
+# antigen_129|O83489|Acetate|YAW02058.1|tpos:1-448 Number of predicted TMRs: 0
+antigen_129|O83489|Acetate|YAW02058.1|tpos:1-448	inside	1	448				
+//
+# antigen_130|O66075|Large|YAW01857.1|tpos:35-101 Length: 67
+# antigen_130|O66075|Large|YAW01857.1|tpos:35-101 Number of predicted TMRs: 0
+antigen_130|O66075|Large|YAW01857.1|tpos:35-101	inside	1	67				
+//
+# antigen_35|O83727|Large|YAW02313.1|tpos:1-105 Length: 105
+# antigen_35|O83727|Large|YAW02313.1|tpos:1-105 Number of predicted TMRs: 0
+antigen_35|O83727|Large|YAW02313.1|tpos:1-105	inside	1	105				
+//
+# antigen_36|O83074|Uncharacterized|YAW01644.1|tpos:1-92 Length: 92
+# antigen_36|O83074|Uncharacterized|YAW01644.1|tpos:1-92 Number of predicted TMRs: 0
+antigen_36|O83074|Uncharacterized|YAW01644.1|tpos:1-92	inside	1	92				
+//
+# antigen_37|O83537|Elongation|YAW02105.1|tpos:1-187 Length: 187
+# antigen_37|O83537|Elongation|YAW02105.1|tpos:1-187 Number of predicted TMRs: 0
+antigen_37|O83537|Elongation|YAW02105.1|tpos:1-187	inside	1	187				
+//
+# antigen_107|O83066|Uncharacterized|YAW01635.1|tpos:1-722 Length: 722
+# antigen_107|O83066|Uncharacterized|YAW01635.1|tpos:1-722 Number of predicted TMRs: 0
+antigen_107|O83066|Uncharacterized|YAW01635.1|tpos:1-722	inside	1	722				
+//
+# antigen_179|O83705|Uncharacterized|YAW02275.1|tpos:1-125 Length: 125
+# antigen_179|O83705|Uncharacterized|YAW02275.1|tpos:1-125 Number of predicted TMRs: 2
+antigen_179|O83705|Uncharacterized|YAW02275.1|tpos:1-125	inside	1	24				
+antigen_179|O83705|Uncharacterized|YAW02275.1|tpos:1-125	TMhelix	25	51				
+antigen_179|O83705|Uncharacterized|YAW02275.1|tpos:1-125	outside	52	56				
+antigen_179|O83705|Uncharacterized|YAW02275.1|tpos:1-125	TMhelix	57	75				
+antigen_179|O83705|Uncharacterized|YAW02275.1|tpos:1-125	inside	76	125				
+//
+# antigen_186|O83949|Chaperone|YAW02534.1|tpos:1-639 Length: 639
+# antigen_186|O83949|Chaperone|YAW02534.1|tpos:1-639 Number of predicted TMRs: 0
+antigen_186|O83949|Chaperone|YAW02534.1|tpos:1-639	inside	1	639				
+//
+# antigen_42|O83100|Small|YAW01671.1|tpos:1-99 Length: 99
+# antigen_42|O83100|Small|YAW01671.1|tpos:1-99 Number of predicted TMRs: 0
+antigen_42|O83100|Small|YAW01671.1|tpos:1-99	inside	1	99				
+//
+# antigen_53|O83281|Transcription|YAW01856.1|tpos:1-519 Length: 519
+# antigen_53|O83281|Transcription|YAW01856.1|tpos:1-519 Number of predicted TMRs: 0
+antigen_53|O83281|Transcription|YAW01856.1|tpos:1-519	inside	1	519				
+//
+# antigen_54|O83241|Small|YAW01814.1|tpos:1-126 Length: 126
+# antigen_54|O83241|Small|YAW01814.1|tpos:1-126 Number of predicted TMRs: 0
+antigen_54|O83241|Small|YAW01814.1|tpos:1-126	inside	1	126				
+//
+# antigen_55|O83231|Large|YAW01804.1|tpos:1-185 Length: 185
+# antigen_55|O83231|Large|YAW01804.1|tpos:1-185 Number of predicted TMRs: 0
+antigen_55|O83231|Large|YAW01804.1|tpos:1-185	inside	1	185				
+//
+# antigen_90|O83536|Lon|YAW02104.1|tpos:1-881 Length: 881
+# antigen_90|O83536|Lon|YAW02104.1|tpos:1-881 Number of predicted TMRs: 0
+antigen_90|O83536|Lon|YAW02104.1|tpos:1-881	inside	1	881				
+//
+# antigen_133|O83776|Methionine--tRNA|YAW02362.1|tpos:1-811 Length: 811
+# antigen_133|O83776|Methionine--tRNA|YAW02362.1|tpos:1-811 Number of predicted TMRs: 0
+antigen_133|O83776|Methionine--tRNA|YAW02362.1|tpos:1-811	inside	1	811				
+//
+# antigen_123|O83982|Glutamyl-tRNA(Gln)|YAW02568.1|tpos:34-147 Length: 114
+# antigen_123|O83982|Glutamyl-tRNA(Gln)|YAW02568.1|tpos:34-147 Number of predicted TMRs: 0
+antigen_123|O83982|Glutamyl-tRNA(Gln)|YAW02568.1|tpos:34-147	inside	1	114				
+//
+# antigen_146|O83295|Probable|YAW01873.1|tpos:1-324 Length: 324
+# antigen_146|O83295|Probable|YAW01873.1|tpos:1-324 Number of predicted TMRs: 0
+antigen_146|O83295|Probable|YAW01873.1|tpos:1-324	inside	1	324				
+//
+# antigen_147|O83319|Dephospho-CoA|YAW01892.1|tpos:1-211 Length: 211
+# antigen_147|O83319|Dephospho-CoA|YAW01892.1|tpos:1-211 Number of predicted TMRs: 0
+antigen_147|O83319|Dephospho-CoA|YAW01892.1|tpos:1-211	inside	1	211				
+//
+# antigen_159|O83185|Uncharacterized|YAW01759.1|tpos:1-155 Length: 155
+# antigen_159|O83185|Uncharacterized|YAW01759.1|tpos:1-155 Number of predicted TMRs: 0
+antigen_159|O83185|Uncharacterized|YAW01759.1|tpos:1-155	signal	1	30				
+antigen_159|O83185|Uncharacterized|YAW01759.1|tpos:1-155	outside	31	155				
+//
+# antigen_163|O84003|ATP-dependent|YAW02590.1|tpos:1-199 Length: 199
+# antigen_163|O84003|ATP-dependent|YAW02590.1|tpos:1-199 Number of predicted TMRs: 0
+antigen_163|O84003|ATP-dependent|YAW02590.1|tpos:1-199	inside	1	199				
+//
+# antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271 Length: 271
+# antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271 Number of predicted TMRs: 4
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	signal	1	24				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	outside	25	69				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	TMhelix	70	90				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	inside	91	112				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	TMhelix	113	133				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	outside	134	213				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	TMhelix	214	230				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	inside	231	240				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	TMhelix	241	257				
+antigen_164|P74930|Flagellar|YAW02286.1|tpos:1-271	outside	258	271				
+//
+# antigen_171|O83369|FKBP-type|YAW01939.1|tpos:1-176 Length: 176
+# antigen_171|O83369|FKBP-type|YAW01939.1|tpos:1-176 Number of predicted TMRs: 0
+antigen_171|O83369|FKBP-type|YAW01939.1|tpos:1-176	inside	1	176				
+//
+# antigen_187|O83077|Putative|YAW01647.1|tpos:1-316 Length: 316
+# antigen_187|O83077|Putative|YAW01647.1|tpos:1-316 Number of predicted TMRs: 0
+antigen_187|O83077|Putative|YAW01647.1|tpos:1-316	signal	1	19				
+antigen_187|O83077|Putative|YAW01647.1|tpos:1-316	outside	20	316				
+//
+# antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374 Length: 374
+# antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374 Number of predicted TMRs: 8
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	signal	1	21				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	periplasm	22	216				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	217	224				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	outside	225	248				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	249	257				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	periplasm	258	266				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	267	274				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	outside	275	283				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	284	293				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	periplasm	294	301				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	302	310				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	outside	311	324				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	325	333				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	periplasm	334	338				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	339	348				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	outside	349	361				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	Beta sheet	362	370				
+antigen_188|O83496|Uncharacterized|YAW02064.1|tpos:1-374	periplasm	371	374				
+//
+# antigen_185|O83653|Serine--tRNA|YAW02219.1|tpos:1-426 Length: 426
+# antigen_185|O83653|Serine--tRNA|YAW02219.1|tpos:1-426 Number of predicted TMRs: 0
+antigen_185|O83653|Serine--tRNA|YAW02219.1|tpos:1-426	inside	1	426				
+//
+# antigen_34|O83110|Chaperone|YAW01681.1|tpos:1-878 Length: 878
+# antigen_34|O83110|Chaperone|YAW01681.1|tpos:1-878 Number of predicted TMRs: 0
+antigen_34|O83110|Chaperone|YAW01681.1|tpos:1-878	inside	1	878				
+//
+# antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376 Length: 376
+# antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376 Number of predicted TMRs: 4
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	inside	1	50				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	TMhelix	51	68				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	outside	69	103				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	TMhelix	104	124				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	inside	125	164				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	TMhelix	165	183				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	outside	184	211				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	TMhelix	212	230				
+antigen_162|O83710|Flagellar|YAW02283.1|tpos:1-376	inside	231	376				
+//
+# antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707 Length: 707
+# antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707 Number of predicted TMRs: 8
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	inside	1	11				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	12	30				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	outside	31	33				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	34	56				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	inside	57	63				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	64	83				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	outside	84	114				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	115	134				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	inside	135	200				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	201	221				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	outside	222	238				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	239	259				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	inside	260	281				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	282	297				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	outside	298	302				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	TMhelix	303	317				
+antigen_192|Q56338|Flagellar|YAW02282.1|tpos:1-707	inside	318	707				
+//
+# antigen_0|O83679|Glutamate--tRNA|YAW02243.1|tpos:30-566 Length: 537
+# antigen_0|O83679|Glutamate--tRNA|YAW02243.1|tpos:30-566 Number of predicted TMRs: 0
+antigen_0|O83679|Glutamate--tRNA|YAW02243.1|tpos:30-566	inside	1	537				
+//
+# antigen_3|O83971|Flavin-dependent|YAW02556.1|tpos:1-305 Length: 305
+# antigen_3|O83971|Flavin-dependent|YAW02556.1|tpos:1-305 Number of predicted TMRs: 0
+antigen_3|O83971|Flavin-dependent|YAW02556.1|tpos:1-305	inside	1	305				
+//
+# antigen_39|O83792|Uncharacterized|YAW02377.1|tpos:1-221 Length: 221
+# antigen_39|O83792|Uncharacterized|YAW02377.1|tpos:1-221 Number of predicted TMRs: 0
+antigen_39|O83792|Uncharacterized|YAW02377.1|tpos:1-221	inside	1	221				
+//
+# antigen_40|O83236|Small|YAW01808.1|tpos:1-172 Length: 172
+# antigen_40|O83236|Small|YAW01808.1|tpos:1-172 Number of predicted TMRs: 0
+antigen_40|O83236|Small|YAW01808.1|tpos:1-172	inside	1	172				
+//
+# antigen_41|O83500|Uncharacterized|YAW02068.1|tpos:202-651 Length: 450
+# antigen_41|O83500|Uncharacterized|YAW02068.1|tpos:202-651 Number of predicted TMRs: 0
+antigen_41|O83500|Uncharacterized|YAW02068.1|tpos:202-651	inside	1	450				
+//
+# antigen_115|O83264|Transcription|YAW01838.1|tpos:1-185 Length: 185
+# antigen_115|O83264|Transcription|YAW01838.1|tpos:1-185 Number of predicted TMRs: 0
+antigen_115|O83264|Transcription|YAW01838.1|tpos:1-185	inside	1	185				
+//
+# antigen_198|O83890|TPR|YAW02472.1|tpos:1-807 Length: 807
+# antigen_198|O83890|TPR|YAW02472.1|tpos:1-807 Number of predicted TMRs: 0
+antigen_198|O83890|TPR|YAW02472.1|tpos:1-807	inside	1	807				
+//
+# antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|YAW01961.1|tpos:1-278 Length: 278
+# antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|YAW01961.1|tpos:1-278 Number of predicted TMRs: 0
+antigen_56|O83386|4-diphosphocytidyl-2-C-methyl-D-erythritol|YAW01961.1|tpos:1-278	inside	1	278				
+//
+# antigen_57|O83819|Uncharacterized|YAW02406.1|tpos:1-111 Length: 111
+# antigen_57|O83819|Uncharacterized|YAW02406.1|tpos:1-111 Number of predicted TMRs: 0
+antigen_57|O83819|Uncharacterized|YAW02406.1|tpos:1-111	inside	1	111				
+//
+# antigen_58|O66107|Ribulose-phosphate|YAW02494.1|tpos:1-218 Length: 218
+# antigen_58|O66107|Ribulose-phosphate|YAW02494.1|tpos:1-218 Number of predicted TMRs: 0
+antigen_58|O66107|Ribulose-phosphate|YAW02494.1|tpos:1-218	inside	1	218				
+//
+# antigen_86|O83152|Protein|YAW01724.1|tpos:1-331 Length: 331
+# antigen_86|O83152|Protein|YAW01724.1|tpos:1-331 Number of predicted TMRs: 1
+antigen_86|O83152|Protein|YAW01724.1|tpos:1-331	inside	1	14				
+antigen_86|O83152|Protein|YAW01724.1|tpos:1-331	TMhelix	15	31				
+antigen_86|O83152|Protein|YAW01724.1|tpos:1-331	outside	32	331				
+//
+# antigen_150|O83878|tRNA|YAW02460.1|tpos:1-250 Length: 250
+# antigen_150|O83878|tRNA|YAW02460.1|tpos:1-250 Number of predicted TMRs: 0
+antigen_150|O83878|tRNA|YAW02460.1|tpos:1-250	inside	1	250				
+//
+# antigen_166|O83444|V-type|YAW02016.1|tpos:1-622 Length: 622
+# antigen_166|O83444|V-type|YAW02016.1|tpos:1-622 Number of predicted TMRs: 8
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	inside	1	330				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	331	345				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	outside	346	346				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	347	362				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	inside	363	374				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	375	396				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	outside	397	430				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	431	448				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	inside	449	457				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	458	478				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	outside	479	488				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	489	504				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	inside	505	528				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	529	556				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	outside	557	570				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	TMhelix	571	593				
+antigen_166|O83444|V-type|YAW02016.1|tpos:1-622	inside	594	622				
+//
+# antigen_59|O83452|dITP/XTP|YAW02024.1|tpos:1-254 Length: 254
+# antigen_59|O83452|dITP/XTP|YAW02024.1|tpos:1-254 Number of predicted TMRs: 0
+antigen_59|O83452|dITP/XTP|YAW02024.1|tpos:1-254	inside	1	254				
+//
+# antigen_60|O83218|Small|YAW01791.1|tpos:1-102 Length: 102
+# antigen_60|O83218|Small|YAW01791.1|tpos:1-102 Number of predicted TMRs: 0
+antigen_60|O83218|Small|YAW01791.1|tpos:1-102	inside	1	102				
+//
+# antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265 Length: 48
+# antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265 Number of predicted TMRs: 2
+antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265	signal	1	10				
+antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265	periplasm	11	15				
+antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265	Beta sheet	16	23				
+antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265	outside	24	37				
+antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265	Beta sheet	38	46				
+antigen_61|O83336|Uncharacterized|YAW02193.1|tpos:218-265	periplasm	47	48				
+//
+# antigen_48|O83870|Uncharacterized|YAW02453.1|tpos:1-797 Length: 797
+# antigen_48|O83870|Uncharacterized|YAW02453.1|tpos:1-797 Number of predicted TMRs: 0
+antigen_48|O83870|Uncharacterized|YAW02453.1|tpos:1-797	inside	1	797				
+//
+# antigen_87|O83671|Uncharacterized|YAW02236.1|tpos:1-251 Length: 251
+# antigen_87|O83671|Uncharacterized|YAW02236.1|tpos:1-251 Number of predicted TMRs: 0
+antigen_87|O83671|Uncharacterized|YAW02236.1|tpos:1-251	inside	1	251				
+//
+# antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315 Length: 314
+# antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315 Number of predicted TMRs: 9
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	inside	1	27				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	28	37				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	outside	38	53				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	54	71				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	inside	72	84				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	85	98				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	outside	99	120				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	121	139				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	inside	140	149				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	150	163				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	outside	164	234				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	235	244				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	inside	245	245				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	246	255				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	outside	256	263				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	264	277				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	inside	278	287				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	TMhelix	288	302				
+antigen_88|O83968|Uncharacterized|YAW02552.1|tpos:2-315	outside	303	314				
+//
+# antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|YAW01777.1|tpos:1-269 Length: 269
+# antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|YAW01777.1|tpos:1-269 Number of predicted TMRs: 0
+antigen_104|P96122|5'-methylthioadenosine/S-adenosylhomocysteine|YAW01777.1|tpos:1-269	inside	1	269				
+//
+# antigen_113|O83625|Ribose-5-phosphate|YAW02190.1|tpos:9-262 Length: 254
+# antigen_113|O83625|Ribose-5-phosphate|YAW02190.1|tpos:9-262 Number of predicted TMRs: 0
+antigen_113|O83625|Ribose-5-phosphate|YAW02190.1|tpos:9-262	inside	1	254				
+//
+# antigen_43|O83048|Beta|YAW01619.1|tpos:1-371 Length: 371
+# antigen_43|O83048|Beta|YAW01619.1|tpos:1-371 Number of predicted TMRs: 0
+antigen_43|O83048|Beta|YAW01619.1|tpos:1-371	inside	1	371				
+//
+# antigen_44|O83690|Protein|YAW02262.1|tpos:1-407 Length: 407
+# antigen_44|O83690|Protein|YAW02262.1|tpos:1-407 Number of predicted TMRs: 0
+antigen_44|O83690|Protein|YAW02262.1|tpos:1-407	inside	1	407				
+//
+# antigen_108|O83262|Large|YAW01836.1|tpos:1-56 Length: 56
+# antigen_108|O83262|Large|YAW01836.1|tpos:1-56 Number of predicted TMRs: 0
+antigen_108|O83262|Large|YAW01836.1|tpos:1-56	inside	1	56				
+//
+# antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181 Length: 181
+# antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181 Number of predicted TMRs: 8
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	signal	1	19				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	periplasm	20	23				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	24	33				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	outside	34	50				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	51	64				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	periplasm	65	69				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	70	79				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	outside	80	82				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	83	94				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	periplasm	95	99				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	100	109				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	outside	110	128				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	129	141				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	periplasm	142	148				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	149	159				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	outside	160	166				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	Beta sheet	167	179				
+antigen_109|O83696|Uncharacterized|YAW02268.1|tpos:1-181	periplasm	180	181				
+//
+# antigen_119|O83142|Probable|YAW01714.1|tpos:1-593 Length: 593
+# antigen_119|O83142|Probable|YAW01714.1|tpos:1-593 Number of predicted TMRs: 0
+antigen_119|O83142|Probable|YAW01714.1|tpos:1-593	signal	1	21				
+antigen_119|O83142|Probable|YAW01714.1|tpos:1-593	outside	22	593				
+//
+# antigen_134|O83739|Small|YAW02326.1|tpos:1-69 Length: 69
+# antigen_134|O83739|Small|YAW02326.1|tpos:1-69 Number of predicted TMRs: 0
+antigen_134|O83739|Small|YAW02326.1|tpos:1-69	inside	1	69				
+//
+# antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678 Length: 678
+# antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678 Number of predicted TMRs: 8
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	signal	1	19				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	outside	20	227				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	228	250				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	inside	251	261				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	262	291				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	outside	292	306				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	307	325				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	inside	326	338				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	339	359				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	outside	360	362				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	363	380				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	inside	381	387				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	388	405				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	outside	406	420				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	421	439				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	inside	440	455				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	TMhelix	456	475				
+antigen_135|O83575|Uncharacterized|YAW02144.1|tpos:1-678	outside	476	678				
+//
+# antigen_151|O83442|V-type|YAW02014.1|tpos:1-430 Length: 430
+# antigen_151|O83442|V-type|YAW02014.1|tpos:1-430 Number of predicted TMRs: 0
+antigen_151|O83442|V-type|YAW02014.1|tpos:1-430	inside	1	430				
+//
+# antigen_157|O83848|Uncharacterized|YAW02432.1|tpos:4-319 Length: 316
+# antigen_157|O83848|Uncharacterized|YAW02432.1|tpos:4-319 Number of predicted TMRs: 1
+antigen_157|O83848|Uncharacterized|YAW02432.1|tpos:4-319	inside	1	12				
+antigen_157|O83848|Uncharacterized|YAW02432.1|tpos:4-319	TMhelix	13	29				
+antigen_157|O83848|Uncharacterized|YAW02432.1|tpos:4-319	outside	30	316				
+//
+# antigen_184|O83546|Uncharacterized|YAW02115.1|tpos:25-94 Length: 70
+# antigen_184|O83546|Uncharacterized|YAW02115.1|tpos:25-94 Number of predicted TMRs: 0
+antigen_184|O83546|Uncharacterized|YAW02115.1|tpos:25-94	inside	1	70				
+//
+# antigen_169|O83272|Small|YAW01846.1|tpos:1-156 Length: 156
+# antigen_169|O83272|Small|YAW01846.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_169|O83272|Small|YAW01846.1|tpos:1-156	inside	1	156				
+//
+# antigen_170|O83085|Putative|YAW01656.1|tpos:1-299 Length: 299
+# antigen_170|O83085|Putative|YAW01656.1|tpos:1-299 Number of predicted TMRs: 0
+antigen_170|O83085|Putative|YAW01656.1|tpos:1-299	inside	1	299				
+//
+# antigen_189|O83541|V-type|YAW02109.1|tpos:1-605 Length: 605
+# antigen_189|O83541|V-type|YAW02109.1|tpos:1-605 Number of predicted TMRs: 0
+antigen_189|O83541|V-type|YAW02109.1|tpos:1-605	inside	1	605				
+//
+# antigen_160|B2S2F4|Large|YAW01809.1|tpos:1-61 Length: 61
+# antigen_160|B2S2F4|Large|YAW01809.1|tpos:1-61 Number of predicted TMRs: 0
+antigen_160|B2S2F4|Large|YAW01809.1|tpos:1-61	inside	1	61				
+//
+# antigen_161|O83131|Uncharacterized|YAW01703.1|tpos:1-215 Length: 215
+# antigen_161|O83131|Uncharacterized|YAW01703.1|tpos:1-215 Number of predicted TMRs: 1
+antigen_161|O83131|Uncharacterized|YAW01703.1|tpos:1-215	inside	1	109				
+antigen_161|O83131|Uncharacterized|YAW01703.1|tpos:1-215	TMhelix	110	119				
+antigen_161|O83131|Uncharacterized|YAW01703.1|tpos:1-215	outside	120	215				
+//
+# antigen_51|O83593|Uncharacterized|YAW02162.1|tpos:1-469 Length: 469
+# antigen_51|O83593|Uncharacterized|YAW02162.1|tpos:1-469 Number of predicted TMRs: 0
+antigen_51|O83593|Uncharacterized|YAW02162.1|tpos:1-469	inside	1	469				
+//
+# antigen_52|O83802|tRNA|YAW02389.1|tpos:1-244 Length: 244
+# antigen_52|O83802|tRNA|YAW02389.1|tpos:1-244 Number of predicted TMRs: 0
+antigen_52|O83802|tRNA|YAW02389.1|tpos:1-244	inside	1	244				
+//
+# antigen_89|O83767|Uncharacterized|YAW02354.1|tpos:1-296 Length: 296
+# antigen_89|O83767|Uncharacterized|YAW02354.1|tpos:1-296 Number of predicted TMRs: 0
+antigen_89|O83767|Uncharacterized|YAW02354.1|tpos:1-296	signal	1	21				
+antigen_89|O83767|Uncharacterized|YAW02354.1|tpos:1-296	outside	22	296				
+//
+# antigen_99|P96130|ATP-dependent|YAW02257.1|tpos:1-686 Length: 686
+# antigen_99|P96130|ATP-dependent|YAW02257.1|tpos:1-686 Number of predicted TMRs: 0
+antigen_99|P96130|ATP-dependent|YAW02257.1|tpos:1-686	inside	1	686				
+//
+# antigen_167|O83433|Putative|YAW02006.1|tpos:1-388 Length: 388
+# antigen_167|O83433|Putative|YAW02006.1|tpos:1-388 Number of predicted TMRs: 0
+antigen_167|O83433|Putative|YAW02006.1|tpos:1-388	inside	1	388				
+//
+# antigen_176|O83220|Large|YAW01793.1|tpos:9-224 Length: 216
+# antigen_176|O83220|Large|YAW01793.1|tpos:9-224 Number of predicted TMRs: 0
+antigen_176|O83220|Large|YAW01793.1|tpos:9-224	inside	1	216				
+//
+# antigen_190|O83720|Ribosomal|YAW02306.1|tpos:1-111 Length: 111
+# antigen_190|O83720|Ribosomal|YAW02306.1|tpos:1-111 Number of predicted TMRs: 0
+antigen_190|O83720|Ribosomal|YAW02306.1|tpos:1-111	inside	1	111				
+//
+# antigen_199|O83683|Uncharacterized|YAW02247.1|tpos:1-202 Length: 202
+# antigen_199|O83683|Uncharacterized|YAW02247.1|tpos:1-202 Number of predicted TMRs: 0
+antigen_199|O83683|Uncharacterized|YAW02247.1|tpos:1-202	inside	1	202				
+//
+# antigen_153|O83774|FAD:protein|YAW02360.1|tpos:1-334 Length: 334
+# antigen_153|O83774|FAD:protein|YAW02360.1|tpos:1-334 Number of predicted TMRs: 0
+antigen_153|O83774|FAD:protein|YAW02360.1|tpos:1-334	outside	1	334				
+//
+# antigen_154|O83344|Uncharacterized|YAW01917.1|tpos:1-477 Length: 477
+# antigen_154|O83344|Uncharacterized|YAW01917.1|tpos:1-477 Number of predicted TMRs: 1
+antigen_154|O83344|Uncharacterized|YAW01917.1|tpos:1-477	inside	1	12				
+antigen_154|O83344|Uncharacterized|YAW01917.1|tpos:1-477	TMhelix	13	33				
+antigen_154|O83344|Uncharacterized|YAW01917.1|tpos:1-477	outside	34	477				
+//
+# antigen_74|O83990|Uridine|YAW02577.1|tpos:34-291 Length: 258
+# antigen_74|O83990|Uridine|YAW02577.1|tpos:34-291 Number of predicted TMRs: 0
+antigen_74|O83990|Uridine|YAW02577.1|tpos:34-291	inside	1	258				
+//
+# antigen_75|O83979|Transcription|YAW02564.1|tpos:1-141 Length: 141
+# antigen_75|O83979|Transcription|YAW02564.1|tpos:1-141 Number of predicted TMRs: 0
+antigen_75|O83979|Transcription|YAW02564.1|tpos:1-141	inside	1	141				
+//
+# antigen_77|P74935|Gamma-glutamyl|YAW01940.1|tpos:1-428 Length: 428
+# antigen_77|P74935|Gamma-glutamyl|YAW01940.1|tpos:1-428 Number of predicted TMRs: 0
+antigen_77|P74935|Gamma-glutamyl|YAW01940.1|tpos:1-428	inside	1	428				
+//
+# antigen_121|O83258|Replication|YAW01833.1|tpos:1-657 Length: 657
+# antigen_121|O83258|Replication|YAW01833.1|tpos:1-657 Number of predicted TMRs: 0
+antigen_121|O83258|Replication|YAW01833.1|tpos:1-657	inside	1	657				
+//
+# antigen_172|O83747|Uncharacterized|YAW02333.1|tpos:1-293 Length: 293
+# antigen_172|O83747|Uncharacterized|YAW02333.1|tpos:1-293 Number of predicted TMRs: 0
+antigen_172|O83747|Uncharacterized|YAW02333.1|tpos:1-293	inside	1	293				
+//
+# antigen_174|O83564|Putative|YAW02133.1|tpos:1-403 Length: 403
+# antigen_174|O83564|Putative|YAW02133.1|tpos:1-403 Number of predicted TMRs: 10
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	inside	1	9				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	10	28				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	outside	29	30				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	31	45				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	inside	46	93				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	94	115				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	outside	116	187				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	188	206				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	inside	207	241				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	242	262				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	outside	263	268				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	269	285				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	inside	286	286				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	287	297				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	outside	298	306				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	307	324				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	inside	325	337				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	338	351				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	outside	352	352				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	TMhelix	353	370				
+antigen_174|O83564|Putative|YAW02133.1|tpos:1-403	inside	371	403				
+//
+# antigen_175|O83237|Large|YAW01810.1|tpos:1-153 Length: 153
+# antigen_175|O83237|Large|YAW01810.1|tpos:1-153 Number of predicted TMRs: 0
+antigen_175|O83237|Large|YAW01810.1|tpos:1-153	inside	1	153				
+//
+# antigen_194|O83485|UvrABC|YAW02054.1|tpos:1-691 Length: 691
+# antigen_194|O83485|UvrABC|YAW02054.1|tpos:1-691 Number of predicted TMRs: 0
+antigen_194|O83485|UvrABC|YAW02054.1|tpos:1-691	inside	1	691				
+//
+# antigen_16|O83723|Probable|YAW02309.1|tpos:1-204 Length: 204
+# antigen_16|O83723|Probable|YAW02309.1|tpos:1-204 Number of predicted TMRs: 0
+antigen_16|O83723|Probable|YAW02309.1|tpos:1-204	inside	1	204				
+//
+# antigen_17|O83859|tRNA|YAW02443.1|tpos:1-361 Length: 361
+# antigen_17|O83859|tRNA|YAW02443.1|tpos:1-361 Number of predicted TMRs: 0
+antigen_17|O83859|tRNA|YAW02443.1|tpos:1-361	inside	1	361				
+//
+# antigen_28|O83857|Small|YAW02441.1|tpos:1-89 Length: 89
+# antigen_28|O83857|Small|YAW02441.1|tpos:1-89 Number of predicted TMRs: 0
+antigen_28|O83857|Small|YAW02441.1|tpos:1-89	inside	1	89				
+//
+# antigen_29|O83052|Uncharacterized|YAW01624.1|tpos:102-314 Length: 213
+# antigen_29|O83052|Uncharacterized|YAW01624.1|tpos:102-314 Number of predicted TMRs: 0
+antigen_29|O83052|Uncharacterized|YAW01624.1|tpos:102-314	inside	1	213				
+//
+# antigen_30|O83724|GTPase|YAW02310.1|tpos:1-376 Length: 376
+# antigen_30|O83724|GTPase|YAW02310.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_30|O83724|GTPase|YAW02310.1|tpos:1-376	inside	1	376				
+//
+# antigen_14|O83101|Single-stranded|YAW01672.1|tpos:1-176 Length: 176
+# antigen_14|O83101|Single-stranded|YAW01672.1|tpos:1-176 Number of predicted TMRs: 0
+antigen_14|O83101|Single-stranded|YAW01672.1|tpos:1-176	inside	1	176				
+//
+# antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546 Length: 546
+# antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546 Number of predicted TMRs: 8
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	inside	1	10				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	11	27				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	outside	28	36				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	37	49				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	inside	50	57				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	58	75				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	outside	76	84				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	85	105				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	inside	106	116				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	117	130				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	outside	131	161				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	162	181				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	inside	182	201				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	202	219				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	outside	220	515				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	TMhelix	516	534				
+antigen_15|O83279|Apolipoprotein|YAW01854.1|tpos:1-546	inside	535	546				
+//
+# antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298 Length: 298
+# antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298 Number of predicted TMRs: 9
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	outside	1	15				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	16	36				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	inside	37	44				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	45	60				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	outside	61	67				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	68	87				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	inside	88	97				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	98	113				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	outside	114	143				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	144	162				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	inside	163	186				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	187	201				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	outside	202	202				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	203	219				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	inside	220	228				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	229	248				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	outside	249	257				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	TMhelix	258	276				
+antigen_72|P96118|Zinc|YAW01773.1|tpos:1-298	inside	277	298				
+//
+# antigen_73|O83505|DNA|YAW02073.1|tpos:1-605 Length: 605
+# antigen_73|O83505|DNA|YAW02073.1|tpos:1-605 Number of predicted TMRs: 0
+antigen_73|O83505|DNA|YAW02073.1|tpos:1-605	inside	1	605				
+//
+# antigen_124|O83132|Phosphate|YAW01704.1|tpos:1-336 Length: 336
+# antigen_124|O83132|Phosphate|YAW01704.1|tpos:1-336 Number of predicted TMRs: 0
+antigen_124|O83132|Phosphate|YAW01704.1|tpos:1-336	inside	1	336				
+//
+# antigen_125|O83204|Uncharacterized|YAW01780.1|tpos:280-506 Length: 227
+# antigen_125|O83204|Uncharacterized|YAW01780.1|tpos:280-506 Number of predicted TMRs: 0
+antigen_125|O83204|Uncharacterized|YAW01780.1|tpos:280-506	inside	1	227				
+//
+# antigen_76|O83229|Large|YAW01802.1|tpos:1-122 Length: 122
+# antigen_76|O83229|Large|YAW01802.1|tpos:1-122 Number of predicted TMRs: 0
+antigen_76|O83229|Large|YAW01802.1|tpos:1-122	inside	1	122				
+//
+# antigen_96|O83650|Lysine--tRNA|YAW02217.1|tpos:1-528 Length: 528
+# antigen_96|O83650|Lysine--tRNA|YAW02217.1|tpos:1-528 Number of predicted TMRs: 0
+antigen_96|O83650|Lysine--tRNA|YAW02217.1|tpos:1-528	inside	1	528				
+//
+# antigen_195|O83456|DNA|YAW02028.1|tpos:1-573 Length: 573
+# antigen_195|O83456|DNA|YAW02028.1|tpos:1-573 Number of predicted TMRs: 0
+antigen_195|O83456|DNA|YAW02028.1|tpos:1-573	inside	1	573				
+//
+# antigen_82|O83278|DNA-binding|YAW01853.1|tpos:5-109 Length: 105
+# antigen_82|O83278|DNA-binding|YAW01853.1|tpos:5-109 Number of predicted TMRs: 0
+antigen_82|O83278|DNA-binding|YAW01853.1|tpos:5-109	inside	1	105				
+//
+# antigen_83|P74931|Flagellar|YAW02285.1|tpos:1-93 Length: 93
+# antigen_83|P74931|Flagellar|YAW02285.1|tpos:1-93 Number of predicted TMRs: 2
+antigen_83|P74931|Flagellar|YAW02285.1|tpos:1-93	outside	1	16				
+antigen_83|P74931|Flagellar|YAW02285.1|tpos:1-93	TMhelix	17	37				
+antigen_83|P74931|Flagellar|YAW02285.1|tpos:1-93	inside	38	54				
+antigen_83|P74931|Flagellar|YAW02285.1|tpos:1-93	TMhelix	55	70				
+antigen_83|P74931|Flagellar|YAW02285.1|tpos:1-93	outside	71	93				
+//
+# antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|YAW01974.1|tpos:1-459 Length: 459
+# antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|YAW01974.1|tpos:1-459 Number of predicted TMRs: 0
+antigen_84|O83401|UDP-N-acetylmuramoyl-tripeptide--D-alanyl-D-alanine|YAW01974.1|tpos:1-459	inside	1	459				
+//
+# antigen_111|O83103|Uncharacterized|YAW01674.1|tpos:1-144 Length: 144
+# antigen_111|O83103|Uncharacterized|YAW01674.1|tpos:1-144 Number of predicted TMRs: 0
+antigen_111|O83103|Uncharacterized|YAW01674.1|tpos:1-144	inside	1	144				
+//
+# antigen_112|O83388|tRNA(Ile)-lysidine|YAW01962.1|tpos:1-477 Length: 477
+# antigen_112|O83388|tRNA(Ile)-lysidine|YAW01962.1|tpos:1-477 Number of predicted TMRs: 0
+antigen_112|O83388|tRNA(Ile)-lysidine|YAW01962.1|tpos:1-477	inside	1	477				
+//
+# antigen_136|O83808|Uncharacterized|YAW02395.1|tpos:1-274 Length: 274
+# antigen_136|O83808|Uncharacterized|YAW02395.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_136|O83808|Uncharacterized|YAW02395.1|tpos:1-274	inside	1	274				
+//
+# antigen_156|O83047|Chromosomal|YAW01618.1|tpos:1-464 Length: 464
+# antigen_156|O83047|Chromosomal|YAW01618.1|tpos:1-464 Number of predicted TMRs: 0
+antigen_156|O83047|Chromosomal|YAW01618.1|tpos:1-464	inside	1	464				
+//
+# antigen_64|O83217|Elongation|YAW01790.1|tpos:1-395 Length: 395
+# antigen_64|O83217|Elongation|YAW01790.1|tpos:1-395 Number of predicted TMRs: 0
+antigen_64|O83217|Elongation|YAW01790.1|tpos:1-395	inside	1	395				
+//
+# antigen_65|O83097|Replicative|YAW01669.1|tpos:1-438 Length: 438
+# antigen_65|O83097|Replicative|YAW01669.1|tpos:1-438 Number of predicted TMRs: 0
+antigen_65|O83097|Replicative|YAW01669.1|tpos:1-438	inside	1	438				
+//
+# antigen_105|O83373|Putative|YAW01945.1|tpos:1-208 Length: 208
+# antigen_105|O83373|Putative|YAW01945.1|tpos:1-208 Number of predicted TMRs: 0
+antigen_105|O83373|Putative|YAW01945.1|tpos:1-208	inside	1	208				
+//
+# antigen_106|O83554|Holliday|YAW02123.1|tpos:1-227 Length: 227
+# antigen_106|O83554|Holliday|YAW02123.1|tpos:1-227 Number of predicted TMRs: 0
+antigen_106|O83554|Holliday|YAW02123.1|tpos:1-227	inside	1	227				
+//
+# antigen_127|O83786|Acyl|YAW02370.1|tpos:1-78 Length: 78
+# antigen_127|O83786|Acyl|YAW02370.1|tpos:1-78 Number of predicted TMRs: 0
+antigen_127|O83786|Acyl|YAW02370.1|tpos:1-78	inside	1	78				
+//
+# antigen_131|B2S321|V-type|YAW02011.1|tpos:27-197 Length: 171
+# antigen_131|B2S321|V-type|YAW02011.1|tpos:27-197 Number of predicted TMRs: 0
+antigen_131|B2S321|V-type|YAW02011.1|tpos:27-197	inside	1	171				
+//
+# antigen_137|O83348|DNA|YAW01920.1|tpos:1-900 Length: 900
+# antigen_137|O83348|DNA|YAW01920.1|tpos:1-900 Number of predicted TMRs: 0
+antigen_137|O83348|DNA|YAW01920.1|tpos:1-900	inside	1	900				
+//
+# antigen_5|O83490|6-phosphogluconolactonase|YAW02059.1|tpos:1-212 Length: 212
+# antigen_5|O83490|6-phosphogluconolactonase|YAW02059.1|tpos:1-212 Number of predicted TMRs: 0
+antigen_5|O83490|6-phosphogluconolactonase|YAW02059.1|tpos:1-212	inside	1	212				
+//
+# antigen_6|O83806|Tyrosine--tRNA|YAW02393.1|tpos:8-416 Length: 409
+# antigen_6|O83806|Tyrosine--tRNA|YAW02393.1|tpos:8-416 Number of predicted TMRs: 0
+antigen_6|O83806|Tyrosine--tRNA|YAW02393.1|tpos:8-416	inside	1	409				
+//
+# antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332 Length: 332
+# antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332 Number of predicted TMRs: 7
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	outside	1	22				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	TMhelix	23	39				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	inside	40	65				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	TMhelix	66	86				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	outside	87	117				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	TMhelix	118	131				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	inside	132	146				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	TMhelix	147	165				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	outside	166	221				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	TMhelix	222	241				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	inside	242	249				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	TMhelix	250	270				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	outside	271	296				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	TMhelix	297	318				
+antigen_193|O83824|Phosphatidylglycerol--prolipoprotein|YAW02411.1|tpos:1-332	inside	319	332				
+//
+# antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228 Length: 228
+# antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228 Number of predicted TMRs: 4
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	inside	1	18				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	TMhelix	19	34				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	outside	35	38				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	TMhelix	39	54				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	inside	55	67				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	TMhelix	68	81				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	outside	82	104				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	TMhelix	105	119				
+antigen_47|O83254|Uncharacterized|YAW01829.1|tpos:1-228	inside	120	228				
+//
+# antigen_49|O83463|Uncharacterized|YAW02035.1|tpos:1-196 Length: 196
+# antigen_49|O83463|Uncharacterized|YAW02035.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_49|O83463|Uncharacterized|YAW02035.1|tpos:1-196	signal	1	21				
+antigen_49|O83463|Uncharacterized|YAW02035.1|tpos:1-196	outside	22	196				
+//
+# antigen_50|O83805|Uncharacterized|YAW02392.1|tpos:1-238 Length: 238
+# antigen_50|O83805|Uncharacterized|YAW02392.1|tpos:1-238 Number of predicted TMRs: 0
+antigen_50|O83805|Uncharacterized|YAW02392.1|tpos:1-238	signal	1	19				
+antigen_50|O83805|Uncharacterized|YAW02392.1|tpos:1-238	outside	20	238				
+//
+# antigen_80|O83969|Recombination|YAW02553.1|tpos:1-201 Length: 201
+# antigen_80|O83969|Recombination|YAW02553.1|tpos:1-201 Number of predicted TMRs: 0
+antigen_80|O83969|Recombination|YAW02553.1|tpos:1-201	inside	1	201				
+//
+# antigen_181|O83590|Lipoprotein-releasing|YAW02160.1|tpos:1-226 Length: 226
+# antigen_181|O83590|Lipoprotein-releasing|YAW02160.1|tpos:1-226 Number of predicted TMRs: 0
+antigen_181|O83590|Lipoprotein-releasing|YAW02160.1|tpos:1-226	inside	1	226				
+//
+# antigen_182|O83435|Uncharacterized|YAW02007.1|tpos:184-256 Length: 73
+# antigen_182|O83435|Uncharacterized|YAW02007.1|tpos:184-256 Number of predicted TMRs: 0
+antigen_182|O83435|Uncharacterized|YAW02007.1|tpos:184-256	inside	1	73				
+//
+# antigen_183|O83585|Peptide|YAW02155.1|tpos:1-368 Length: 368
+# antigen_183|O83585|Peptide|YAW02155.1|tpos:1-368 Number of predicted TMRs: 0
+antigen_183|O83585|Peptide|YAW02155.1|tpos:1-368	inside	1	368				
+//
+# antigen_196|O83223|Small|YAW01796.1|tpos:1-95 Length: 95
+# antigen_196|O83223|Small|YAW01796.1|tpos:1-95 Number of predicted TMRs: 0
+antigen_196|O83223|Small|YAW01796.1|tpos:1-95	inside	1	95				
+//
+# antigen_197|O83664|Flagellar|YAW02229.1|tpos:1-150 Length: 150
+# antigen_197|O83664|Flagellar|YAW02229.1|tpos:1-150 Number of predicted TMRs: 0
+antigen_197|O83664|Flagellar|YAW02229.1|tpos:1-150	inside	1	150				
+//
+# antigen_98|O83809|Threonine--tRNA|YAW02396.1|tpos:1-582 Length: 582
+# antigen_98|O83809|Threonine--tRNA|YAW02396.1|tpos:1-582 Number of predicted TMRs: 0
+antigen_98|O83809|Threonine--tRNA|YAW02396.1|tpos:1-582	inside	1	582				
+//
+# antigen_141|O83817|UPF0178|YAW02404.1|tpos:20-196 Length: 177
+# antigen_141|O83817|UPF0178|YAW02404.1|tpos:20-196 Number of predicted TMRs: 0
+antigen_141|O83817|UPF0178|YAW02404.1|tpos:20-196	inside	1	177				
+//
+# antigen_62|O83992|Uncharacterized|YAW02579.1|tpos:1-228 Length: 228
+# antigen_62|O83992|Uncharacterized|YAW02579.1|tpos:1-228 Number of predicted TMRs: 0
+antigen_62|O83992|Uncharacterized|YAW02579.1|tpos:1-228	inside	1	228				
+//
+# antigen_63|O83284|Uncharacterized|YAW01862.1|tpos:1-448 Length: 448
+# antigen_63|O83284|Uncharacterized|YAW01862.1|tpos:1-448 Number of predicted TMRs: 0
+antigen_63|O83284|Uncharacterized|YAW01862.1|tpos:1-448	signal	1	31				
+antigen_63|O83284|Uncharacterized|YAW01862.1|tpos:1-448	outside	32	448				
+//
+# antigen_191|O83667|Uncharacterized|YAW02232.1|tpos:1-170 Length: 170
+# antigen_191|O83667|Uncharacterized|YAW02232.1|tpos:1-170 Number of predicted TMRs: 0
+antigen_191|O83667|Uncharacterized|YAW02232.1|tpos:1-170	inside	1	170				
+//
+# antigen_45|O83230|Large|YAW01803.1|tpos:1-103 Length: 103
+# antigen_45|O83230|Large|YAW01803.1|tpos:1-103 Number of predicted TMRs: 0
+antigen_45|O83230|Large|YAW01803.1|tpos:1-103	inside	1	103				
+//
+# antigen_46|B2S369|Probable|YAW02056.1|tpos:1-245 Length: 245
+# antigen_46|B2S369|Probable|YAW02056.1|tpos:1-245 Number of predicted TMRs: 0
+antigen_46|B2S369|Probable|YAW02056.1|tpos:1-245	inside	1	245				
+//
+# antigen_114|O83214|SsrA-binding|YAW01787.1|tpos:1-154 Length: 154
+# antigen_114|O83214|SsrA-binding|YAW01787.1|tpos:1-154 Number of predicted TMRs: 0
+antigen_114|O83214|SsrA-binding|YAW01787.1|tpos:1-154	inside	1	154				
+//
+# antigen_116|O83099|Large|YAW01670.1|tpos:1-156 Length: 156
+# antigen_116|O83099|Large|YAW01670.1|tpos:1-156 Number of predicted TMRs: 0
+antigen_116|O83099|Large|YAW01670.1|tpos:1-156	inside	1	156				
+//
+# antigen_117|O83170|Uncharacterized|YAW01743.1|tpos:1-376 Length: 376
+# antigen_117|O83170|Uncharacterized|YAW01743.1|tpos:1-376 Number of predicted TMRs: 0
+antigen_117|O83170|Uncharacterized|YAW01743.1|tpos:1-376	signal	1	28				
+antigen_117|O83170|Uncharacterized|YAW01743.1|tpos:1-376	outside	29	376				
+//
+# antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128 Length: 128
+# antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128 Number of predicted TMRs: 4
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	outside	1	3				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	TMhelix	4	19				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	inside	20	37				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	TMhelix	38	53				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	outside	54	69				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	TMhelix	70	84				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	inside	85	106				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	TMhelix	107	122				
+antigen_122|O83109|Uncharacterized|YAW01680.1|tpos:1-128	outside	123	128				
+//
+# antigen_152|O83977|Co-chaperonin|YAW02562.1|tpos:1-88 Length: 88
+# antigen_152|O83977|Co-chaperonin|YAW02562.1|tpos:1-88 Number of predicted TMRs: 0
+antigen_152|O83977|Co-chaperonin|YAW02562.1|tpos:1-88	inside	1	88				
+//
+# antigen_10|O83195|Proline--tRNA|YAW01769.1|tpos:3-619 Length: 617
+# antigen_10|O83195|Proline--tRNA|YAW01769.1|tpos:3-619 Number of predicted TMRs: 0
+antigen_10|O83195|Proline--tRNA|YAW01769.1|tpos:3-619	inside	1	617				
+//
+# antigen_23|O83975|Peptidyl-tRNA|YAW02560.1|tpos:1-202 Length: 202
+# antigen_23|O83975|Peptidyl-tRNA|YAW02560.1|tpos:1-202 Number of predicted TMRs: 0
+antigen_23|O83975|Peptidyl-tRNA|YAW02560.1|tpos:1-202	inside	1	202				
+//
+# antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162 Length: 162
+# antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162 Number of predicted TMRs: 4
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	inside	1	24				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	TMhelix	25	35				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	outside	36	37				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	TMhelix	38	47				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	inside	48	61				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	TMhelix	62	72				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	outside	73	111				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	TMhelix	112	128				
+antigen_24|O83493|Uncharacterized|YAW02062.1|tpos:1-162	inside	129	162				
+//
+# antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589 Length: 589
+# antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589 Number of predicted TMRs: 4
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	signal	1	31				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	outside	32	467				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	TMhelix	468	477				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	inside	478	478				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	TMhelix	479	488				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	outside	489	526				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	TMhelix	527	536				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	inside	537	537				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	TMhelix	538	547				
+antigen_4|O83586|Uncharacterized|YAW02156.1|tpos:1-589	outside	548	589				
+//
+# antigen_11|O83876|RNA-binding|YAW02458.1|tpos:1-80 Length: 80
+# antigen_11|O83876|RNA-binding|YAW02458.1|tpos:1-80 Number of predicted TMRs: 0
+antigen_11|O83876|RNA-binding|YAW02458.1|tpos:1-80	inside	1	80				
+//
+# antigen_12|O83737|Methionyl-tRNA|YAW02324.1|tpos:1-319 Length: 319
+# antigen_12|O83737|Methionyl-tRNA|YAW02324.1|tpos:1-319 Number of predicted TMRs: 0
+antigen_12|O83737|Methionyl-tRNA|YAW02324.1|tpos:1-319	inside	1	319				
+//
+# antigen_13|O83154|UvrABC|YAW01726.1|tpos:10-677 Length: 668
+# antigen_13|O83154|UvrABC|YAW01726.1|tpos:10-677 Number of predicted TMRs: 0
+antigen_13|O83154|UvrABC|YAW01726.1|tpos:10-677	inside	1	668				
+//
+# antigen_18|O83530|Crossover|YAW02096.1|tpos:1-196 Length: 196
+# antigen_18|O83530|Crossover|YAW02096.1|tpos:1-196 Number of predicted TMRs: 0
+antigen_18|O83530|Crossover|YAW02096.1|tpos:1-196	inside	1	196				
+//
+# antigen_139|O08399|DNA|YAW02555.1|tpos:1-637 Length: 637
+# antigen_139|O08399|DNA|YAW02555.1|tpos:1-637 Number of predicted TMRs: 0
+antigen_139|O08399|DNA|YAW02555.1|tpos:1-637	inside	1	637				
+//
+# antigen_165|O83266|Large|YAW01840.1|tpos:1-226 Length: 226
+# antigen_165|O83266|Large|YAW01840.1|tpos:1-226 Number of predicted TMRs: 0
+antigen_165|O83266|Large|YAW01840.1|tpos:1-226	inside	1	226				
+//
+# antigen_178|O83129|Cysteine--tRNA|YAW01701.1|tpos:1-520 Length: 520
+# antigen_178|O83129|Cysteine--tRNA|YAW01701.1|tpos:1-520 Number of predicted TMRs: 0
+antigen_178|O83129|Cysteine--tRNA|YAW01701.1|tpos:1-520	inside	1	520				
