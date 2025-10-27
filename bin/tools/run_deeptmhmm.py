@@ -29,9 +29,10 @@ MAX_SEQS_PER_SPLIT = 500
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 MB
 
 
-def split_fasta_file(input_fasta: Path, max_seqs=MAX_SEQS_PER_SPLIT):
+def split_fasta_file(input_fasta: Path, output_dir: Path, max_seqs=MAX_SEQS_PER_SPLIT):
     """Split a FASTA into smaller files (returns list of Paths)."""
-    split_dir = Path(tempfile.mkdtemp(prefix="deeptmhmm_split_"))
+    split_dir = Path(output_dir) / f"{input_fasta.stem}_splits"
+    split_dir.mkdir(parents=True, exist_ok=True)
     records = list(SeqIO.parse(str(input_fasta), "fasta"))
     split_files = []
     for i in range(0, len(records), max_seqs):
@@ -86,7 +87,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
 
         if fasta_size > MAX_FILE_SIZE or seq_count > MAX_SEQS_PER_SPLIT:
             logging.warning(f"{input_fasta.name} is large — splitting into smaller chunks.")
-            split_files, split_dir = split_fasta_file(input_fasta)
+            split_files, split_dir = split_fasta_file(input_fasta, output_dir)
         else:
             split_files, split_dir = [input_fasta], None
 
@@ -134,6 +135,11 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
         if len(split_files) > 1 and all_result_files:
             merged = merge_files_by_extension(all_result_files, output_dir, input_fasta.stem)
             logging.info(f"✅ Merged results for {input_fasta.name}: {', '.join(f.name for f in merged.values())}")
+            # delete all the pre-merged files from splits
+            for f in all_result_files:
+                f.unlink()
+                logging.info(f"Deleted pre-merged file: {f.name}")
+
         elif all_result_files:
             logging.info(f"✅ Single result (no merge needed): {', '.join(f.name for f in all_result_files)}")
         else:
@@ -147,5 +153,6 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
         logging.error(f"❌ DeepTMHMM failed on {input_fasta.name}: {e}")
         logging.info("Full traceback:\n" + traceback.format_exc())
         raise
+
 
 
