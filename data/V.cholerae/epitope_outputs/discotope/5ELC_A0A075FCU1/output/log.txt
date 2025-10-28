@@ -1,0 +1,15 @@
+[2025-10-28 13:14:43,541] Single-chain mode set, will predict PDBs as single chains
+[2025-10-28 13:14:43,542] Single PDB file input (5ELC_A0A075FCU1), extracting single chains to data/V.cholerae/epitope_outputs/discotope/5ELC_A0A075FCU1/input_chains
+[2025-10-28 13:14:44,739] Found 19 extracted single chains in data/V.cholerae/epitope_outputs/discotope/5ELC_A0A075FCU1/input_chains
+[2025-10-28 13:15:06,171] Note: Skipping 5ELC_A0A075FCU1_O, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:18:46,849] Note: Skipping 5ELC_A0A075FCU1_L, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:18:46,853] Note: Skipping 5ELC_A0A075FCU1_M, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:18:46,854] Note: Skipping 5ELC_A0A075FCU1_Q, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:18:46,866] Note: Skipping 5ELC_A0A075FCU1_P, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:21:06,247] Note: Skipping 5ELC_A0A075FCU1_K, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:21:06,248] Note: Skipping 5ELC_A0A075FCU1_N, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:21:54,343] Note: Skipping 5ELC_A0A075FCU1_S, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:22:39,719] Note: Skipping 5ELC_A0A075FCU1_R, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-28 13:22:55,883] Predicted 10 / 19 PDB files extracted from 1 input PDBs, saved to data/V.cholerae/epitope_outputs/discotope/5ELC_A0A075FCU1/output
+[2025-10-28 13:22:55,883] Note: Excluded predicting 9 PDB chain(s) (see log file):
+5ELC_A0A075FCU1_L, 5ELC_A0A075FCU1_R, 5ELC_A0A075FCU1_O, 5ELC_A0A075FCU1_N, 5ELC_A0A075FCU1_P, 5ELC_A0A075FCU1_M, 5ELC_A0A075FCU1_Q, 5ELC_A0A075FCU1_K, 5ELC_A0A075FCU1_S

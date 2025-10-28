@@ -1,0 +1,4 @@
+[2025-10-28 15:14:19,623] Single-chain mode set, will predict PDBs as single chains
+[2025-10-28 15:14:19,624] Single PDB file input (1MB4_Q9KQG2), extracting single chains to data/V.cholerae/random_analysis/discotope/1MB4_Q9KQG2/input_chains
+[2025-10-28 15:14:20,528] Found 2 extracted single chains in data/V.cholerae/random_analysis/discotope/1MB4_Q9KQG2/input_chains
+[2025-10-28 15:18:38,026] Predicted 2 / 2 PDB files extracted from 1 input PDBs, saved to data/V.cholerae/random_analysis/discotope/1MB4_Q9KQG2/output

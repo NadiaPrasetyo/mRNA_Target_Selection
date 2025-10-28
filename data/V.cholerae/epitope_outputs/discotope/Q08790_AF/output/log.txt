@@ -1,0 +1,4 @@
+[2025-10-28 13:59:45,380] Single-chain mode set, will predict PDBs as single chains
+[2025-10-28 13:59:45,381] Single PDB file input (Q08790_AF), extracting single chains to data/V.cholerae/epitope_outputs/discotope/Q08790_AF/input_chains
+[2025-10-28 13:59:45,500] Found 1 extracted single chains in data/V.cholerae/epitope_outputs/discotope/Q08790_AF/input_chains
+[2025-10-28 14:01:36,256] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/V.cholerae/epitope_outputs/discotope/Q08790_AF/output

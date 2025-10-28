@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,Q9KVN7_AF,A,38,44,KAGKSQK,7,0.773,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,Q9KVN7_AF,A:A39, A:G40, A:K41, A:S42, A:Q43, A:K44,6,0.78,Discontinous
+2,Q9KVN7_AF,A:M1, A:D2, A:T3, A:D4, A:T5, A:L6,6,0.769,Discontinous

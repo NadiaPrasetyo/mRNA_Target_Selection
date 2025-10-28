@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,C3LTC8_AF,A,1,9,MKAGIHPDY,9,0.797,Linear
+2,C3LTC8_AF,A,65,85,QKEGRVANFTRRFGQFAKESK,21,0.691,Linear
+3,C3LTC8_AF,A,28,41,TLQTDRTIEWEGKT,14,0.668,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,C3LTC8_AF,A:M1, A:K2, A:A3, A:G4, A:I5, A:H6, A:P7, A:D8, A:T28, A:L29, A:Q30, A:T31, A:D32, A:R33,14,0.734,Discontinous
+2,C3LTC8_AF,A:T34, A:I35, A:E36, A:G39, A:K40, A:T41,6,0.729,Discontinous
+3,C3LTC8_AF,A:E67, A:G68, A:R69, A:V70, A:A71, A:N72, A:F73, A:T74, A:R75, A:R76, A:F77, A:G78, A:Q79, A:F80, A:A81, A:K82, A:S84, A:K85,18,0.71,Discontinous
