@@ -91,7 +91,11 @@ def is_job_completed(tool_type, input_path, base_output_dir):
         expected_suffix = ".txt"
 
     if tool_type == "BCell":
+        subdir = subdir / base_name
         expected_suffix = ".fasta"
+        if not subdir.exists():
+            logging.warning(f"❌ Output directory for {tool_type} does not exist: {subdir}")
+            return False
 
     # Check for any file that matches the base name and expected suffix
     if tool_type == "DSSP":
