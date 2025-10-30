@@ -25,8 +25,8 @@ import traceback
 import biolib
 from Bio import SeqIO
 
-MAX_SEQS_PER_SPLIT = 500
-MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 MB
+MAX_SEQS_PER_SPLIT = 300
+MAX_FILE_SIZE = 2 * 1024 * 1024  # 5 MB
 
 
 def split_fasta_file(input_fasta: Path, output_dir: Path, max_seqs=MAX_SEQS_PER_SPLIT):
