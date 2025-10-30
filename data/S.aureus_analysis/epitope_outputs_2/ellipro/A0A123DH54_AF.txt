@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A123DH54_AF,A,37,48,EILRSRLRHFED,12,0.703,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A123DH54_AF,A:M2, A:W3, A:L4, A:I5, A:I6, A:A7, A:I8, A:L10,8,0.703,Discontinous
+2,A0A123DH54_AF,A:R40, A:S41, A:R42, A:R44,4,0.698,Discontinous
