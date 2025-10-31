@@ -221,16 +221,17 @@ def load_accession_name_fetch(df: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: DataFrame with columns ['accession', 'name'].
     """
     base_url = "https://rest.uniprot.org/uniprotkb/search"
-    params = {
-         "query": query,
-         "fields": "protein_name",
-         "format": "json",
-         "size": 1  # only fetch the top hit
-     }
     for accession in df["accession"].unique():
         # get the name from uniprot
-       query = f"accession:{accession}"
-       try:
+        query = f"accession:{accession}"
+        params = {
+            "query": query,
+            "fields": "protein_name",
+            "format": "json",
+            "size": 1  # only fetch the top hit
+            }
+        
+        try:
               response = requests.get(base_url, params=params)
               response.raise_for_status()
               data = response.json()
@@ -241,8 +242,8 @@ def load_accession_name_fetch(df: pd.DataFrame) -> pd.DataFrame:
                     logging.debug(f"Fetched name for accession {accession}: {name}")
                 else:
                     logging.warning(f"No results found for accession {accession}")
-       except Exception as e:
-           logging.warning(f"Failed to fetch name for accession {accession}: {e}")
+        except Exception as e:
+            logging.warning(f"Failed to fetch name for accession {accession}: {e}")
 
     return df[["accession", "name"]].drop_duplicates().set_index("accession")
 
@@ -418,6 +419,18 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
 
     if y_test is not None:
         out_df["true_label"] = y_test
+
+    # --- Add protein names using the existing function ---
+    try:
+        logging.info("Fetching protein names for test accessions...")
+        name_map = load_accession_name_fetch(out_df.reset_index()[["accession"]])
+        # Merge the names back into the predictions
+        out_df = out_df.merge(name_map, left_index=True, right_index=True, how="left")
+        out_df.rename(columns={"name": "protein_name"}, inplace=True)
+        logging.info("Added protein names to predictions.")
+    except Exception as e:
+        logging.warning(f"Failed to add protein names: {e}")
+
 
     # Order from most likely antigenic -> least likely
     out_df = out_df.sort_values("prob_antigen", ascending=False)
