@@ -1,0 +1,13 @@
+{
+ "settings":{
+   "burn-in":1000000,
+   "chain-length":2000000,
+   "chains":1,
+   "concentration":0.5,
+   "grid size":20,
+   "method":"Variational-Bayes",
+   "non-zero":0,
+   "posterior":0.9,
+   "samples":100
+  }
+}
