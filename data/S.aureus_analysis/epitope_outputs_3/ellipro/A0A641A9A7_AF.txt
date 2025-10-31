@@ -1,8 +1,0 @@
-No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
-1,A0A641A9A7_AF,A,50,63,KNLHAKEFNPSDFF,14,0.732,Linear
-
-No.,Structure,Residues,Number of Residues,Score,Type
-1,A0A641A9A7_AF,A:F57, A:N58, A:P59, A:S60, A:D61, A:F62,6,0.876,Discontinous
-2,A0A641A9A7_AF,A:I3, A:L4, A:I5, A:T6, A:G7, A:T8, A:V9, A:I11, A:L12,9,0.705,Discontinous
-3,A0A641A9A7_AF,A:H53, A:A54, A:K55, A:E56,4,0.651,Discontinous
-4,A0A641A9A7_AF,A:N28, A:D29, A:R32,3,0.593,Discontinous
