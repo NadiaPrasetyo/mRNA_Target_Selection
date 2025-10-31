@@ -189,6 +189,7 @@ mRNA_Target_Selection/
 - [MACSE](https://bioweb.supagro.inra.fr/macse/) (via conda)
 - [HyPhy](http://hyphy.org/) (via conda)
 - [Pfam database](https://www.ebi.ac.uk/interpro/download/pfam/)
+- [EMBOSS backtranseq](https://emboss.bioinformatics.nl/cgi-bin/emboss/backtranseq)
 
 ### Specialized Tools
 - [SignalP-5.0](https://services.healthtech.dtu.dk/services/SignalP-5.0/)
