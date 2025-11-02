@@ -1,4 +1,0 @@
-[2025-10-28 19:59:15,408] Single-chain mode set, will predict PDBs as single chains
-[2025-10-28 19:59:15,409] Single PDB file input (A0AAJ4YWR0_AF), extracting single chains to data/S.aureus_analysis/epitope_outputs_1/discotope/A0AAJ4YWR0_AF/input_chains
-[2025-10-28 19:59:15,861] Found 1 extracted single chains in data/S.aureus_analysis/epitope_outputs_1/discotope/A0AAJ4YWR0_AF/input_chains
-[2025-10-28 20:02:02,856] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/S.aureus_analysis/epitope_outputs_1/discotope/A0AAJ4YWR0_AF/output

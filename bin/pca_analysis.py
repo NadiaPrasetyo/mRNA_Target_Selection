@@ -186,7 +186,7 @@ def categorize_feature(feature, subfeature):
         "per_site_score"
     ]:
         return "Conservation Analysis Across Strains"
-    if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred"]:
+    if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred", "discotope"]:
         return "Epitope Prediction"
     if feature in ["dssp", "ProtLearn"]:
         return "Structure Analysis"
@@ -671,9 +671,10 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     # Identify and report problematic columns
     nan_cols = corr_df.columns[corr_df.isna().all()]
     if len(nan_cols) > 0:
-	    logging.warning(
-		f"These features have constant values and no Spearman correlation: {list(nan_cols)}"
-	    )
+        logging.warning(
+            f"These features have constant values and no Spearman correlation: {list(nan_cols)}"
+        )
+
     # EITHER drop them:
     corr_df = corr_df.drop(index=nan_cols, columns=nan_cols)
 

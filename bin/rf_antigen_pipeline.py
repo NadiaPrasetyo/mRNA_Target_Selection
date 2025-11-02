@@ -214,38 +214,77 @@ def train_rf(X_train: pd.DataFrame, y_train: np.ndarray, n_estimators:int=500, r
 # ----------------------
 def load_accession_name_fetch(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Load mapping of accession to name from the dataframe if 'name' column exists.
+    Fetch protein names from UniProt for given accessions.
+    
+    If 'name' column exists, values are preserved and only missing names are fetched.
+    
     Args:
-        df (pd.DataFrame): DataFrame containing at least 'accession' and optionally 'name'.
+        df (pd.DataFrame): DataFrame containing at least an 'accession' column,
+            and optionally a 'name' column.
+    
     Returns:
-        pd.DataFrame: DataFrame with columns ['accession', 'name'].
+        pd.DataFrame: DataFrame indexed by 'accession' with columns ['accession', 'name'].
     """
+    if "accession" not in df.columns:
+        raise ValueError("Input DataFrame must contain an 'accession' column.")
+    
     base_url = "https://rest.uniprot.org/uniprotkb/search"
-    params = {
-         "query": query,
-         "fields": "protein_name",
-         "format": "json",
-         "size": 1  # only fetch the top hit
-     }
+    df = df.copy()
+
+    # Ensure 'name' column exists
+    if "name" not in df.columns:
+        df["name"] = None
+
     for accession in df["accession"].unique():
-        # get the name from uniprot
-       query = f"accession:{accession}"
-       try:
-              response = requests.get(base_url, params=params)
-              response.raise_for_status()
-              data = response.json()
-              if data.get("results"):
-                for entry in data.get("results", []):
-                    name = entry.get("proteinDescription", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
-                    df.loc[df["accession"] == accession, "name"] = name
-                    logging.debug(f"Fetched name for accession {accession}: {name}")
-                else:
-                    logging.warning(f"No results found for accession {accession}")
-       except Exception as e:
-           logging.warning(f"Failed to fetch name for accession {accession}: {e}")
+        if pd.notna(df.loc[df["accession"] == accession, "name"].iloc[0]):
+            # Skip already known names
+            continue
+
+        params = {
+            "query": f"accession:{accession}",
+            "fields": "protein_name",
+            "format": "json",
+            "size": 1  # fetch only the top hit
+        }
+
+        try:
+            response = requests.get(base_url, params=params, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+
+            if not data.get("results"):
+                logging.warning(f"No results found for accession {accession}")
+                continue
+
+            entry = data["results"][0]
+            protein_desc = entry.get("proteinDescription", {})
+
+            # Try to extract recommendedName or submissionNames
+            name = ""
+            if "recommendedName" in protein_desc:
+                name = (
+                    protein_desc["recommendedName"]
+                    .get("fullName", {})
+                    .get("value", "")
+                )
+            elif "submissionNames" in protein_desc and protein_desc["submissionNames"]:
+                name = (
+                    protein_desc["submissionNames"][0]
+                    .get("fullName", {})
+                    .get("value", "")
+                )
+
+            if name:
+                name = name.strip().capitalize()
+                df.loc[df["accession"] == accession, "name"] = name
+                logging.debug(f"Fetched name for {accession}: {name}")
+            else:
+                logging.warning(f"No protein name found for accession {accession}")
+
+        except Exception as e:
+            logging.warning(f"Failed to fetch name for accession {accession}: {e}")
 
     return df[["accession", "name"]].drop_duplicates().set_index("accession")
-
 
 # ----------------------
 # Main pipeline
@@ -418,6 +457,18 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
 
     if y_test is not None:
         out_df["true_label"] = y_test
+
+    # --- Add protein names using the existing function ---
+    try:
+        logging.info("Fetching protein names for test accessions...")
+        name_map = load_accession_name_fetch(out_df.reset_index()[["accession"]])
+        # Merge the names back into the predictions
+        out_df = out_df.merge(name_map, left_index=True, right_index=True, how="left")
+        out_df.rename(columns={"name": "protein_name"}, inplace=True)
+        logging.info("Added protein names to predictions.")
+    except Exception as e:
+        logging.warning(f"Failed to add protein names: {e}")
+
 
     # Order from most likely antigenic -> least likely
     out_df = out_df.sort_values("prob_antigen", ascending=False)
