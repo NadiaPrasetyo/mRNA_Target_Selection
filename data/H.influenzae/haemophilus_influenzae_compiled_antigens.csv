@@ -1,0 +1,89 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+"['Acinetobacter baumannii', 'Aggregatibacter actinomycetemcomitans serotype b str. Y4', 'Alcaligenes faecalis', 'Brucella', 'Brucella melitensis bv. 1 str. 16M', 'Campylobacter jejuni subsp. jejuni serotype HS:15', 'Candida albicans', 'Candidozyma auris', 'Citrobacter freundii', 'Clostridium difficile', 'Clostridium difficile BI / NAP1/ 027', 'Cryptococcus neoformans', 'Cryptococcus neoformans Mu-1', 'Enterococcus faecalis', 'Escherichia coli O25b:ST131', 'Francisella tularensis subsp. tularensis strain 15', 'Haemophilus influenzae', 'Haemophilus influenzae Serotype B', 'Klebsiella pneumoniae', 'Mycoplasmoides pneumoniae (Filterable agent of primary atypical pneumonia)', 'Neisseria meningitidis', 'Neisseria meningitidis serogroup A', 'Neisseria meningitidis serogroup B', 'Neisseria meningitidis serogroup C', 'Neisseria meningitidis serogroup C strain C11', 'Neisseria meningitidis serogroup C strain MC19', 'Neisseria meningitidis serogroup W', 'Neisseria meningitidis serogroup W-135', 'Neisseria meningitidis serogroup X', 'Neisseria meningitidis serogroup Y', 'Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)', 'Salmonella enterica subsp. enterica serovar Typhi', 'Salmonella enterica subsp. enterica serovar Typhimurium', 'Salmonella typhi 620Ty', 'Streptococcus agalactiae', 'Streptococcus agalactiae 18RS21 (Streptococcus agalactiae str. 18RS21)', 'Streptococcus agalactiae CJB111 (Streptococcus agalactiae str. CJB111)', 'Streptococcus agalactiae H36B (Streptococcus agalactiae str. H36B)', 'Streptococcus agalactiae serogroup Ia', 'Streptococcus agalactiae serogroup III', 'Streptococcus agalactiae serogroup III M781', 'Streptococcus agalactiae serogroup V', 'Streptococcus agalactiae serogroup VII strain 7271', 'Streptococcus anginosus K214-2K', 'Streptococcus dysgalactiae subsp. equisimilis ATCC 12388', 'Streptococcus pneumoniae', 'Streptococcus pneumoniae 23F', 'Streptococcus pneumoniae 7F', 'Streptococcus pneumoniae CCUG 1378', 'Streptococcus pneumoniae type 1', 'Streptococcus pneumoniae type 10A', 'Streptococcus pneumoniae type 14', 'Streptococcus pneumoniae type 19A', 'Streptococcus pneumoniae type 19F', 'Streptococcus pneumoniae type 2', 'Streptococcus pneumoniae type 27', 'Streptococcus pneumoniae type 3', 'Streptococcus pneumoniae type 37', 'Streptococcus pneumoniae type 6A', 'Streptococcus pneumoniae type 6B', 'Streptococcus pneumoniae type 8', 'Streptococcus pyogenes', 'Streptococcus pyogenes serotype M3 D58', ""Streptococcus sp. 'group A'"", ""Streptococcus sp. 'group B'"", 'Streptococcus suis 1178027', 'Streptococcus suis 13730', 'Streptococcus suis 2651', 'Streptococcus suis S735 (Streptococcus suis str. S735)', 'Trypanosoma cruzi', 'Vibrio vulnificus BO62316', 'Vibrio vulnificus MO6-24/O (Vibrio vulnificus str. MO6-24/O)']","['Canis lupus familiaris (dogs)', 'Equid (horse)', 'Equus caballus (domestic horse)', 'Felis catus (cat)', 'Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus BALB/c X DBA/2', 'Mus musculus C57BL/6', 'Mus musculus CD1', 'Mus musculus (mouse)', 'Mus musculus NHI Swiss', 'Mus musculus Swiss Webster', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)', 'Ovis aries (domestic sheep)', 'Sus scrofa (pig)']",['polysaccharide'],,18154,IEDB
+['Haemophilus influenzae'],"['Homo sapiens (human)', 'Oryctolagus cuniculus (rabbit)']",['Other Haemophilus influenzae protein'],,,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae PittII (Haemophilus influenzae str. PittII)']",['Homo sapiens (human)'],['Uncharacterized membrane protein HI_1728 (UniProt:O05087)'],,O05087,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 86-028NP (Haemophilus influenzae str. 86-028NP)', 'Haemophilus influenzae NTHi 1479', 'Haemophilus influenzae PittHH (Haemophilus influenzae str. PittHH)', 'Haemophilus influenzae Strain Eagan']","['Homo sapiens (human)', 'Mus musculus BALB/c', 'Oryctolagus cuniculus (rabbit)']",['Peptidoglycan-associated lipoprotein (UniProt:P10324)'],,P10324,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Biopolymer transport protein ExbB (UniProt:P43008)'],,P43008,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['DNA-directed RNA polymerase subunit beta (UniProt:P43738)'],,P43738,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],"[""DNA-directed RNA polymerase subunit beta' (UniProt:P43739)""]",,P43739,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2846 (Haemophilus influenzae str. R2846)']",['Homo sapiens (human)'],['Transketolase (UniProt:P43757)'],,P43757,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['DNA replication and repair protein RecF (UniProt:P43767)'],,P43767,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 6U', 'Haemophilus influenzae MinnA', 'Haemophilus influenzae Serotype B']","['Cavia porcellus (guinea pig)', 'Homo sapiens (human)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus C57BL/6', 'Mus musculus (mouse)', 'Oryctolagus cuniculus (rabbit)']",['Outer membrane protein P1 (UniProt:P43838)'],,P43838,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 6U', 'Haemophilus influenzae ATCC 9795', 'Haemophilus influenzae MinnA', 'Haemophilus influenzae NTHi 1479', 'Haemophilus influenzae strain 1479', 'Haemophilus influenzae Subtype 1H', 'Haemophilus influenzae Variant d1']","['Cavia porcellus (guinea pig)', 'Homo sapiens (human)', 'Mus musculus BALB/c', 'Mus musculus C3H', 'Mus musculus C57BL/6', 'Mus musculus (mouse)', 'Mus musculus SJL', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)']",['Outer membrane protein P2 (UniProt:P43839)'],,P43839,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 86-028NP (Haemophilus influenzae str. 86-028NP)', 'Haemophilus influenzae NTHi 1128', 'Haemophilus influenzae NTHi UC19']","['Chinchilla lanigera (long-tailed chinchilla)', 'Homo sapiens (human)', 'Oryctolagus cuniculus New Zealand White', 'Rattus norvegicus (brown rat)']",['Outer membrane protein P5 (UniProt:P43840)'],,P43840,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae Rd KW20 (Haemophilus influenzae KW20)']",['Homo sapiens (human)'],['Phosphoribosylformylglycinamidine synthase (UniProt:P43847)'],,P43847,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['ATP-dependent Clp protease proteolytic subunit (UniProt:P43867)'],,P43867,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 22.1-21 (Haemophilus influenzae 22121)']",['Homo sapiens (human)'],['Uncharacterized protein HI_0040 (UniProt:P43929)'],,P43929,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae Rd KW20 (Haemophilus influenzae KW20)']",['Homo sapiens (human)'],['Uncharacterized protein HI_0082 (UniProt:P43937)'],,P43937,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R3021 (Haemophilus influenzae str. R3021)']",['Homo sapiens (human)'],['Uncharacterized protein HI_0487 (UniProt:P44003)'],,P44003,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 3655 (Haemophilus influenzae str. 3655)']",['Homo sapiens (human)'],['Putative oligopeptide transporter HI_0561 (UniProt:P44016)'],,P44016,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Putative nickel/cobalt efflux system HI_1248 (UniProt:P44136)'],,P44136,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Mu-like prophage FluMu tail sheath protein (UniProt:P44233)'],,P44233,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Lipoprotein-releasing system transmembrane protein LolC (UniProt:P44252)'],,P44252,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Exodeoxyribonuclease III (UniProt:P44318)'],,P44318,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Aspartate ammonia-lyase (UniProt:P44324)'],,P44324,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Ribosomal protein L11 methyltransferase (UniProt:P44402)'],,P44402,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 22.1-21 (Haemophilus influenzae 22121)']",['Homo sapiens (human)'],['ATP-dependent lipid A-core flippase (UniProt:P44407)'],,P44407,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae PittII (Haemophilus influenzae str. PittII)']",['Homo sapiens (human)'],['Recombination protein 2 (UniProt:P44408)'],,P44408,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 22.1-21 (Haemophilus influenzae 22121)']",['Homo sapiens (human)'],['Putative phosphatase HI_0003 (UniProt:P44447)'],,P44447,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Homoserine kinase (UniProt:P44504)'],,P44504,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 6P18H1 (Haemophilus influenzae str. 6P18H1)']","['Homo sapiens (human)', 'Mus musculus Ob.1A12 TCR Tg']",['GTPase Der (UniProt:P44536)'],,P44536,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Heme/hemopexin-binding protein (UniProt:P44602)'],,P44602,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2846 (Haemophilus influenzae str. R2846)']",['Homo sapiens (human)'],['tRNA-dihydrouridine(16) synthase (UniProt:P44606)'],,P44606,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae Rd KW20 (Haemophilus influenzae KW20)']",['Homo sapiens (human)'],['UPF0761 membrane protein HI_0276 (UniProt:P44608)'],,P44608,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Prepilin leader peptidase/N-methyltransferase (UniProt:P44620)'],,P44620,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae PittII (Haemophilus influenzae str. PittII)']",['Homo sapiens (human)'],['ATP-dependent DNA helicase YoaA (UniProt:P44680)'],,P44680,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Tellurite resistance protein TehA homolog (UniProt:P44741)'],,P44741,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2846 (Haemophilus influenzae str. R2846)']",['Homo sapiens (human)'],['Peptidase E (UniProt:P44766)'],,P44766,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Carbamate kinase (UniProt:P44769)'],,P44769,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['HTH-type transcriptional activator IlvY (UniProt:P44821)'],,P44821,IEDB
+['Haemophilus influenzae R2846 (Haemophilus influenzae str. R2846)'],['Homo sapiens (human)'],['Probable hemoglobin and hemoglobin-haptoglobin-binding protein 3 (UniProt:P44836)'],,P44836,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Immunoglobulin A1 protease autotransporter (UniProt:P44969)'],,P44969,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['4-hydroxy-3-methylbut-2-enyl diphosphate reductase (UniProt:P44976)'],,P44976,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Biotin synthase (UniProt:P44987)'],,P44987,IEDB
+['Haemophilus influenzae'],"['Homo sapiens (human)', 'Mus musculus (mouse)', 'Mus musculus NOD.Cg-Tg']",['ATP-dependent RNA helicase HrpA homolog (UniProt:P45018)'],,P45018,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Lipooligosaccharide heptosyltransferase 2 (UniProt:P45042)'],,P45042,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae PittGG (Haemophilus influenzae str. PittGG)']",['Homo sapiens (human)'],['Xylose operon regulatory protein (UniProt:P45043)'],,P45043,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae PittAA (Haemophilus influenzae str. PittAA)']",['Homo sapiens (human)'],['Oligopeptide transport system permease protein OppC (UniProt:P45053)'],,P45053,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2846 (Haemophilus influenzae str. R2846)']",['Homo sapiens (human)'],['Arginine ABC transporter permease protein ArtQ (UniProt:P45090)'],,P45090,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae Rd KW20 (Haemophilus influenzae KW20)']",['Homo sapiens (human)'],['Uncharacterized protein HI_1198 (UniProt:P45103)'],,P45103,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae 7P49H1 (Haemophilus influenzae str. 7P49H1)']",['Homo sapiens (human)'],['UvrABC system protein B (UniProt:P45125)'],,P45125,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Probable NADP-dependent dehydrogenase HI_1430 (UniProt:P45200)'],,P45200,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2846 (Haemophilus influenzae str. R2846)']",['Homo sapiens (human)'],['Formate dehydrogenase major subunit (UniProt:P46448)'],,P46448,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Trk system potassium uptake protein TrkA (UniProt:P71354)'],,P71354,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2866 (Haemophilus influenzae str. R2866)']",['Homo sapiens (human)'],['Protein LicA (UniProt:P71392)'],,P71392,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Lsg locus putative protein 4 (UniProt:P71398)'],,P71398,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Mu-like prophage FluMu DNA transposition protein B (UniProt:P96343)'],,P96343,IEDB
+['Haemophilus influenzae 86-028NP (Haemophilus influenzae str. 86-028NP)'],['Homo sapiens (human)'],['Glycerophosphodiester phosphodiesterase (UniProt:Q06282)'],,Q06282,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Uncharacterized glycosyltransferase HI_1696 (UniProt:Q48214)'],,Q48214,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Uncharacterized ABC transporter ATP-binding protein HI_1051 (UniProt:Q57180)'],,Q57180,IEDB
+['Haemophilus influenzae'],['Homo sapiens (human)'],['Uncharacterized ABC transporter ATP-binding protein HI_1272 (UniProt:Q57243)'],,Q57243,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2846 (Haemophilus influenzae str. R2846)']",['Homo sapiens (human)'],['Ion-translocating oxidoreductase complex subunit D (UniProt:Q57288)'],,Q57288,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R2866 (Haemophilus influenzae str. R2866)']",['Homo sapiens (human)'],['Uncharacterized MscS family protein HI_0195.1 (UniProt:Q57362)'],,Q57362,IEDB
+"['Haemophilus influenzae', 'Haemophilus influenzae R3021 (Haemophilus influenzae str. R3021)']",['Homo sapiens (human)'],['Putative esterase/lipase HI_0193 (UniProt:Q57427)'],,Q57427,IEDB
+haemophilus influenzae,Homo sapiens,Hap protein,,,literature
+haemophilus influenzae,Homo sapiens,HMW1,,,literature
+haemophilus influenzae,Homo sapiens,HMW2,,,literature
+haemophilus influenzae,Homo sapiens,Hia immunodominant protein,hia,,literature
+haemophilus influenzae,Homo sapiens,pillin,,,literature
+haemophilus influenzae,Homo sapiens,pili,,,literature
+haemophilus influenzae,Homo sapiens,HifA,,,literature
+haemophilus influenzae,Homo sapiens,fimbrin protein,,,literature
+haemophilus influenzae,Homo sapiens,P5,,,literature
+haemophilus influenzae,Homo sapiens,lipooligosaccharide,,,literature
+haemophilus influenzae,Homo sapiens,IgA protease,,,literature
+haemophilus influenzae,Homo sapiens,OMP,,,literature
+haemophilus influenzae,Homo sapiens,P1,,,literature
+haemophilus influenzae,Homo sapiens,P2,,,literature
+haemophilus influenzae,Homo sapiens,P4,,,literature
+haemophilus influenzae,Homo sapiens,protein b,,,literature
+haemophilus influenzae,Homo sapiens,protein c,,,literature
+haemophilus influenzae,Homo sapiens,protein a,,,literature
+haemophilus influenzae,Homo sapiens,protein e,,,literature
+haemophilus influenzae,Homo sapiens,protein d,,,literature
+haemophilus influenzae,Homo sapiens,protein g,,,literature
+haemophilus influenzae,Homo sapiens,P6,,,literature
+haemophilus influenzae,Homo sapiens,OMP26,,,literature
+haemophilus influenzae,Homo sapiens,D15,,,literature
+haemophilus influenzae,Homo sapiens,transferrin binding protein,Tbp,,literature
+haemophilus influenzae,Homo sapiens,hemopexin binding protein,HxuA,,literature
