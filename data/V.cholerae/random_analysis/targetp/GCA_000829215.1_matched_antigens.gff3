@@ -1,0 +1,20 @@
+##gff-version 3
+antigen_95|Q9KM50|UPF0312|BAP04849.1|tpos:1-189	TargetP-2.0	signal_peptide	1	22	0.998955	.	.	.
+antigen_117|C3LPJ7|Flagellar|BAP03596.1|tpos:1-361	TargetP-2.0	signal_peptide	1	18	0.999935	.	.	.
+antigen_155|C3LND9|Tol-Pal|BAP03256.1|tpos:1-450	TargetP-2.0	signal_peptide	1	22	0.987239	.	.	.
+antigen_130|C3LVF6|UPF0312|BAP04849.1|tpos:1-189	TargetP-2.0	signal_peptide	1	22	0.998955	.	.	.
+antigen_118|P0C6Q7|ToxR-activated|BAP02282.1|tpos:2-1001	TargetP-2.0	signal_peptide	1	20	0.988536	.	.	.
+antigen_48|P17266|Outer|BAP05166.1|tpos:1-90	TargetP-2.0	signal_peptide	1	21	0.999939	.	.	.
+antigen_34|Q9KPQ4|Membrane-bound|BAP03709.1|tpos:1-368	TargetP-2.0	signal_peptide	1	18	0.990386	.	.	.
+antigen_76|Q9KQ48|Outer|BAP03565.1|tpos:1-339	TargetP-2.0	signal_peptide	1	22	0.992275	.	.	.
+antigen_31|C3LPP2|UPF0294|BAP03640.1|tpos:1-281	TargetP-2.0	signal_peptide	1	25	0.923881	.	.	.
+antigen_10|Q9KRQ1|Catalase|BAP03023.1|tpos:1-503	TargetP-2.0	signal_peptide	1	21	0.995911	.	.	.
+antigen_17|Q9KVI9|Vitamin|BAP04125.1|tpos:1-611	TargetP-2.0	signal_peptide	1	22	0.981717	.	.	.
+antigen_28|A5F378|Outer|BAP02311.1|tpos:1-119	TargetP-2.0	signal_peptide	1	20	0.997168	.	.	.
+antigen_75|C3LT39|D-amino|BAP02251.1|tpos:1-420	TargetP-2.0	signal_peptide	1	22	0.783680	.	.	.
+antigen_196|C3LTC5|Proline--tRNA|BAP02333.1|tpos:1-546	TargetP-2.0	transit_peptide	1	34	0.859199	.	.	Note=Mitochondrion
+antigen_83|P45774|Type|BAP04100.1|tpos:1-194	TargetP-2.0	signal_peptide	1	28	0.836533	.	.	.
+antigen_140|A5F934|Outer|BAP02106.1|tpos:1-341	TargetP-2.0	signal_peptide	1	21	0.999894	.	.	.
+antigen_191|Q9KQZ4|UPF0319|BAP03271.1|tpos:1-224	TargetP-2.0	signal_peptide	1	21	0.999364	.	.	.
+antigen_21|C3LS71|Penicillin-binding|BAP02058.1|tpos:1-601	TargetP-2.0	signal_peptide	1	27	0.923376	.	.	.
+antigen_172|Q9KLX6|Peptide|BAP04924.1|tpos:1-378	TargetP-2.0	signal_peptide	1	25	0.999371	.	.	.
