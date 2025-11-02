@@ -66,10 +66,48 @@ def ensure_dir(path: str):
     os.makedirs(path, exist_ok=True)
 
 
-def download_and_extract_zip(url: str, accession: str, output_dir: str):
-    """Download a genome ZIP and extract FASTA files."""
-    r = requests.get(url, stream=True, headers={"accept": "application/zip"})
-    r.raise_for_status()
+import time
+from requests.adapters import HTTPAdapter, Retry
+
+def get_requests_session():
+    """Create a persistent session with retries for transient NCBI errors."""
+    session = requests.Session()
+    retries = Retry(
+        total=6,
+        backoff_factor=0.5,  # quick exponential backoff
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+        raise_on_status=False
+    )
+    adapter = HTTPAdapter(max_retries=retries)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
+
+def download_and_extract_zip(url: str, accession: str, output_dir: str, session=None):
+    """
+    Download and extract genome/protein FASTA files.
+    Automatically retries and backs off on 429 or 5xx errors.
+    """
+    session = session or get_requests_session()
+    base_delay = 0.2  # small constant delay to smooth bursts
+
+    for attempt in range(6):
+        r = session.get(url, stream=True, headers={"accept": "application/zip"})
+        if r.status_code == 429:
+            retry_after = int(r.headers.get("Retry-After", (attempt + 1) * 2))
+            logging.warning(f"Rate-limited (429) for {accession}. Waiting {retry_after}s...")
+            time.sleep(retry_after)
+            continue
+        elif 500 <= r.status_code < 600:
+            wait = 2 ** attempt
+            logging.warning(f"Server error {r.status_code} for {accession}. Retry in {wait}s...")
+            time.sleep(wait)
+            continue
+        elif not r.ok:
+            r.raise_for_status()
+        break
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as tmp:
         for chunk in r.iter_content(chunk_size=8192):
@@ -77,23 +115,20 @@ def download_and_extract_zip(url: str, accession: str, output_dir: str):
         tmp_path = tmp.name
 
     with zipfile.ZipFile(tmp_path, "r") as zf:
-        # Extract only .fna/.fasta
         for member in zf.namelist():
             if member.endswith((".fna", ".faa", ".fasta")):
                 zf.extract(member, output_dir)
-                # Rename .fna to .fasta for consistency
+                src = os.path.join(output_dir, member)
                 if member.endswith(".fna"):
-                    shutil.move(
-                        os.path.join(output_dir, member),
-                        os.path.join(output_dir, f"{accession}.fasta")
-                    )
+                    dst = os.path.join(output_dir, f"{accession}.fasta")
                 elif member.endswith(".faa"):
-                    shutil.move(
-                        os.path.join(output_dir, member),
-                        os.path.join(output_dir, f"{accession}_proteins.fasta")
-                    )
+                    dst = os.path.join(output_dir, f"{accession}_proteins.fasta")
+                else:
+                    dst = os.path.join(output_dir, member)
+                shutil.move(src, dst)
 
     os.remove(tmp_path)
+    time.sleep(base_delay)
 
 # ---------------------------
 # Fetching genomes
@@ -139,7 +174,6 @@ def fetch_complete_genomes_for_taxon(taxon: str) -> list:
 def fetch_random_genomes(taxon: str, n: int, output_dir: str):
     logging.info(f"Fetching list of complete genomes for {taxon}...")
     assemblies = fetch_complete_genomes_for_taxon(taxon)
-
     if not assemblies:
         raise RuntimeError(f"No complete genomes found for {taxon}")
 
@@ -148,13 +182,22 @@ def fetch_random_genomes(taxon: str, n: int, output_dir: str):
     logging.info(f"Chosen assemblies: {chosen}")
     ensure_dir(output_dir)
 
+    session = get_requests_session()
     logging.info(f"Downloading {len(chosen)} random genomes...")
     for asm in tqdm(chosen, desc="Downloading"):
         acc = asm["accession"]
-        url = f"{API_BASE}/accession/{acc}/download?include_annotation_type=GENOME_FASTA&include_annotation_type=PROT_FASTA&hydrated=FULLY_HYDRATED"
-        download_and_extract_zip(url, acc, output_dir)
-
+        url = (
+            f"{API_BASE}/accession/{acc}/download?"
+            "include_annotation_type=GENOME_FASTA&"
+            "include_annotation_type=PROT_FASTA&hydrated=FULLY_HYDRATED"
+        )
+        try:
+            download_and_extract_zip(url, acc, output_dir, session=session)
+        except requests.exceptions.HTTPError as e:
+            logging.warning(f"Skipping {acc}: {e}")
+    
     logging.info(f"Saved genomes in {output_dir}")
+
 
 
 def fetch_from_csv(csv_path: str, output_dir: str):
