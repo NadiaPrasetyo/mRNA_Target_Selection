@@ -84,51 +84,83 @@ def get_requests_session():
     session.mount("http://", adapter)
     return session
 
+import time
+from requests.adapters import HTTPAdapter, Retry
+
+def get_requests_session():
+    """Create a persistent session with retries for transient NCBI errors."""
+    session = requests.Session()
+    retries = Retry(
+        total=6,
+        backoff_factor=0.5,  # quick exponential backoff
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+        raise_on_status=False
+    )
+    adapter = HTTPAdapter(max_retries=retries)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
 
 def download_and_extract_zip(url: str, accession: str, output_dir: str, session=None):
     """
     Download and extract genome/protein FASTA files.
-    Automatically retries and backs off on 429 or 5xx errors.
+    Retries automatically on rate limits, server errors, and invalid ZIPs.
     """
     session = session or get_requests_session()
-    base_delay = 0.2  # small constant delay to smooth bursts
 
-    for attempt in range(6):
-        r = session.get(url, stream=True, headers={"accept": "application/zip"})
-        if r.status_code == 429:
-            retry_after = int(r.headers.get("Retry-After", (attempt + 1) * 2))
-            logging.warning(f"Rate-limited (429) for {accession}. Waiting {retry_after}s...")
-            time.sleep(retry_after)
-            continue
-        elif 500 <= r.status_code < 600:
-            wait = 2 ** attempt
-            logging.warning(f"Server error {r.status_code} for {accession}. Retry in {wait}s...")
-            time.sleep(wait)
-            continue
-        elif not r.ok:
-            r.raise_for_status()
-        break
+    for attempt in range(5):
+        try:
+            r = session.get(url, stream=True, headers={"accept": "application/zip"})
+            if r.status_code in (429, 500, 502, 503, 504):
+                wait = 2 ** attempt
+                logging.warning(f"Server error {r.status_code} for {accession}. Retrying in {wait}s...")
+                time.sleep(wait)
+                continue
+            elif not r.ok:
+                r.raise_for_status()
 
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as tmp:
-        for chunk in r.iter_content(chunk_size=8192):
-            tmp.write(chunk)
-        tmp_path = tmp.name
+            # Validate Content-Type
+            content_type = r.headers.get("Content-Type", "")
+            if "zip" not in content_type.lower():
+                logging.warning(f"Invalid content for {accession}: {content_type}")
+                time.sleep(2 ** attempt)
+                continue
 
-    with zipfile.ZipFile(tmp_path, "r") as zf:
-        for member in zf.namelist():
-            if member.endswith((".fna", ".faa", ".fasta")):
-                zf.extract(member, output_dir)
-                src = os.path.join(output_dir, member)
-                if member.endswith(".fna"):
-                    dst = os.path.join(output_dir, f"{accession}.fasta")
-                elif member.endswith(".faa"):
-                    dst = os.path.join(output_dir, f"{accession}_proteins.fasta")
-                else:
-                    dst = os.path.join(output_dir, member)
-                shutil.move(src, dst)
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as tmp:
+                for chunk in r.iter_content(chunk_size=8192):
+                    tmp.write(chunk)
+                tmp_path = tmp.name
 
-    os.remove(tmp_path)
-    time.sleep(base_delay)
+            # Check if ZIP is valid
+            try:
+                with zipfile.ZipFile(tmp_path, "r") as zf:
+                    for member in zf.namelist():
+                        if member.endswith((".fna", ".faa", ".fasta")):
+                            zf.extract(member, output_dir)
+                            src = os.path.join(output_dir, member)
+                            if member.endswith(".fna"):
+                                dst = os.path.join(output_dir, f"{accession}.fasta")
+                            elif member.endswith(".faa"):
+                                dst = os.path.join(output_dir, f"{accession}_proteins.fasta")
+                            else:
+                                dst = os.path.join(output_dir, member)
+                            shutil.move(src, dst)
+                os.remove(tmp_path)
+                return  # ✅ success
+            except zipfile.BadZipFile:
+                logging.warning(f"Bad ZIP for {accession} (attempt {attempt+1}). Retrying...")
+                os.remove(tmp_path)
+                time.sleep(2 ** attempt)
+                continue
+
+        except Exception as e:
+            logging.warning(f"Error fetching {accession}: {e} (attempt {attempt+1})")
+            time.sleep(2 ** attempt)
+
+    logging.error(f"Failed to download valid ZIP for {accession} after multiple attempts — skipping.")
+
 
 # ---------------------------
 # Fetching genomes
