@@ -136,10 +136,11 @@ def download_and_extract_zip(url: str, accession: str, output_dir: str, session=
 def fetch_complete_genomes_for_taxon(taxon: str) -> list:
     """
     Return a list of dicts with assembly info for a taxon at complete genome level.
-    Handles pagination to retrieve all available assemblies.
+    Handles pagination to retrieve all available assemblies, with retry/backoff for 500/429 errors.
     """
     assemblies = []
     next_page_token = None
+    session = get_requests_session()
 
     while True:
         url = f"{API_BASE}/taxon/{requests.utils.quote(taxon)}/dataset_report"
@@ -150,8 +151,22 @@ def fetch_complete_genomes_for_taxon(taxon: str) -> list:
         if next_page_token:
             params["page_token"] = next_page_token
 
-        r = requests.get(url, params=params, headers={"accept": "application/json"})
-        r.raise_for_status()
+        # retry loop for transient errors
+        for attempt in range(5):
+            r = session.get(url, params=params, headers={"accept": "application/json"})
+            if r.status_code in (429, 500, 502, 503, 504):
+                wait = 2 ** attempt
+                logging.warning(f"NCBI API error {r.status_code} on {taxon}, retrying in {wait}s...")
+                time.sleep(wait)
+                continue
+            elif not r.ok:
+                r.raise_for_status()
+            break
+
+        # If still failing after retries, give up
+        if not r.ok:
+            raise RuntimeError(f"Failed to fetch genome list for {taxon} after retries: {r.status_code}")
+
         data = r.json()
         total = data.get("total_count", 0)
         logging.info(f"Found {total} complete genomes for {taxon}")
@@ -159,13 +174,10 @@ def fetch_complete_genomes_for_taxon(taxon: str) -> list:
         for record in data.get("reports", []):
             acc = record.get("accession")
             if acc:
-                logging.info(f"Processing assembly {len(assemblies) + 1}/{total}: {acc}")
-                assemblies.append({
-                    "accession": acc
-                })
+                assemblies.append({"accession": acc})
 
         next_page_token = data.get("next_page_token")
-        if not next_page_token:  # No more pages
+        if not next_page_token:
             break
 
     return assemblies
