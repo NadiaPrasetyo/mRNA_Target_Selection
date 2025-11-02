@@ -1,670 +1,670 @@
-accession,prob_antigen,pred_label,true_label
-X5ELQ6,1.0,1,1
-A0A090LRP9,1.0,1,1
-W8U6M5,1.0,1,1
-A0A0D6GBG7,1.0,1,1
-A0A0D3Q6S2,1.0,1,1
-A0A0D3QA93,1.0,1,1
-Q70MK4,1.0,1,1
-Q6GJM8,1.0,1,1
-Q7WS91,1.0,1,1
-A0A0D6GCD0,1.0,1,1
-A0A0D6H3T6,1.0,1,1
-A0A0D6H7X3,1.0,1,1
-E2GAH4,1.0,1,1
-P60158,1.0,1,1
-A0A0G3D1I8,1.0,1,1
-A0A0E8J2S9,1.0,1,1
-A0AAJ5CRW3,1.0,1,1
-A0AAJ4YYP0,1.0,1,1
-A0AAJ4YVZ0,1.0,1,1
-A0AAJ5CRM5,1.0,1,1
-A0AAJ4YZC1,1.0,1,1
-A0AAJ4YYA4,1.0,1,1
-A0A166JT38,1.0,1,1
-A0A1K8I4B4,1.0,1,1
-A0A1D4H1Q1,1.0,1,1
-A0AAJ4YVK7,1.0,1,1
-A0AAE8TKH1,1.0,1,1
-A0A166LCE3,1.0,1,1
-A0AAJ4YY62,1.0,1,1
-A0A122DF78,1.0,1,1
-A0AAJ5CS40,1.0,1,1
-A0A131JAK2,1.0,1,1
-A0AAX2MJJ6,1.0,1,1
-A0AAX2K1M1,1.0,1,1
-A0AAJ5CTK1,1.0,1,1
-A0AAJ5CTN4,1.0,1,1
-A0A131K2A0,1.0,1,1
-A0AAJ5CTI4,1.0,1,1
-P0A074,1.0,1,1
-O54461,1.0,1,1
-A0A0Y9QEI6,1.0,1,1
-A0A0Z0MT78,1.0,1,1
-A0AAE8TIF0,1.0,1,1
-A0A166N8V6,1.0,1,1
-A0A166PFD1,1.0,1,1
-A0A166Q5A2,1.0,1,1
-A0A641A9N0,1.0,1,1
-A0A641A9N7,1.0,1,1
-A0A641A9D2,1.0,1,1
-A0A641A9B4,1.0,1,1
-A0A2C9TY49,1.0,1,1
-A0A2U0IPJ7,1.0,1,1
-A0A8G2MAE5,1.0,1,1
-A0A9N8IH31,1.0,1,1
-A0A2U0IK27,1.0,1,1
-A0A641ABA7,1.0,1,1
-A0A641AB29,1.0,1,1
-A0A389QCM1,1.0,1,1
-A0A2Y9TLP4,1.0,1,1
-A0A389U9A3,1.0,1,1
-A0A389VIP1,1.0,1,1
-A0A389VE54,1.0,1,1
-A0A391LQP8,1.0,1,1
-X5DVD1,1.0,1,1
-A0A391ERX3,1.0,1,1
-A0A391DGH4,1.0,1,1
-A0A391M7N5,1.0,1,1
-A0A0D1H8K9,1.0,1,1
-X5DRS2,1.0,1,1
-A0A389WRH0,1.0,1,1
-A0A389QEW1,1.0,1,1
-A0A390B4P9,1.0,1,1
-A0A390BBS7,1.0,1,1
-A0A641A901,1.0,1,1
-A0A391EKT5,1.0,1,1
-A0A5C8X6J1,1.0,1,1
-A0A641A4M0,1.0,1,1
-A0A641A6Z5,1.0,1,1
-A0A641ABK1,1.0,1,1
-A0AAE2ZUL3,1.0,1,1
-A0AAE2ZUJ5,1.0,1,1
-A0AAE2ZSL6,1.0,1,1
-A0A2U0IPK5,1.0,1,1
-A0A2L2F4N6,1.0,1,1
-A0A2S6D294,1.0,1,1
-A0AAE2ZWJ3,1.0,1,1
-A0AAE3D6E5,1.0,1,1
-A0A2C9TYK2,1.0,1,1
-A0AAE8PB46,1.0,1,1
-A0AAE8P9U8,1.0,1,1
-A0A6B2IZR7,1.0,1,1
-A0A380E1J8,1.0,1,1
-A0A6B5KXH1,1.0,1,1
-Q7DI43,0.998,1,1
-P81177,0.998,1,1
-Q2FVE7,0.998,1,1
-Q2G1F3,0.998,1,1
-Q33C62,0.998,1,1
-A0A0D6HSA5,0.998,1,1
-A0A0D6WII1,0.998,1,1
-A0A0E1XCS8,0.998,1,1
-A0A0E7RZY7,0.998,1,1
-Q53782,0.998,1,1
-Q6GE14,0.998,1,1
-Q6GED5,0.998,1,1
-Q6GJN3,0.998,1,1
-A0A0D6GBK0,0.998,1,1
-W8TV96,0.998,1,1
-X5E2Q9,0.998,1,1
-X5EK72,0.998,1,1
-A0A166Q7U6,0.998,1,1
-A0A169E8V2,0.998,1,1
-A0AAE8TKI7,0.998,1,1
-A0AAE8TKE8,0.998,1,1
-A0AAE8TKW4,0.998,1,1
-A0AAJ4YVQ8,0.998,1,1
-A0AAJ4YV91,0.998,1,1
-A0AAJ4YV38,0.998,1,1
-A0A166EAB0,0.998,1,1
-A0A166DWI7,0.998,1,1
-A0A166JH61,0.998,1,1
-A0A163QKA2,0.998,1,1
-A0AAJ4YYD7,0.998,1,1
-A0AAJ4YY44,0.998,1,1
-A0AAJ4YXI7,0.998,1,1
-A0A166JSW2,0.998,1,1
-A0AAJ4YZ87,0.998,1,1
-A0AAJ4YZ59,0.998,1,1
-A0AAJ4YYQ0,0.998,1,1
-A8QKC8,0.998,1,1
-B2NJ60,0.998,1,1
-C3VIQ5,0.998,1,1
-P0C6P2,0.998,1,1
-O54462,0.998,1,1
-P0C1U8,0.998,1,1
-P0A0L8,0.998,1,1
-A8QKE0,0.998,1,1
-A0AAX2MNC3,0.998,1,1
-A0AAJ5CTM9,0.998,1,1
-A0A162G2W5,0.998,1,1
-A0A162FG49,0.998,1,1
-A0A131JP41,0.998,1,1
-A0A0U1MK78,0.998,1,1
-A0A0H2DUF0,0.998,1,1
-W8TWS4,0.998,1,1
-W8U0W4,0.998,1,1
-W8U629,0.998,1,1
-W8U5S1,0.998,1,1
-W8U6L2,0.998,1,1
-A0A090LUS6,0.998,1,1
-Q9RL71,0.998,1,1
-W8TRN2,0.998,1,1
-A0A0D3Q6D3,0.998,1,1
-A0A0D3QAE7,0.998,1,1
-A0A0D6HDD7,0.998,1,1
-A0A0D6HBZ8,0.998,1,1
-A0A0D3QAH7,0.998,1,1
-A0A0D6GAM0,0.998,1,1
-Q7X0E4,0.998,1,1
-Q83TG5,0.998,1,1
-Q6GJX5,0.998,1,1
-A0A2L2E2K2,0.998,1,1
-A0AAE2ZZL2,0.998,1,1
-A0AAE2ZZ67,0.998,1,1
-A0AAE2ZZ37,0.998,1,1
-A0AAE2ZWL4,0.998,1,1
-A0AAE3D3F5,0.998,1,1
-A0A2L2E3D0,0.998,1,1
-A0AAE2ZWA6,0.998,1,1
-A0AAE2ZW53,0.998,1,1
-A0AAE8PBA3,0.998,1,1
-A0AAE8PBB6,0.998,1,1
-A0AAE8TK88,0.998,1,1
-A0A2C6MZ76,0.998,1,1
-A0A380DP26,0.998,1,1
-A0A641AAM4,0.998,1,1
-A0A2S6DNW9,0.998,1,1
-A0A2U0IF80,0.998,1,1
-A0A8A7XIF5,0.998,1,1
-A0A659IBA1,0.998,1,1
-A0A641AC18,0.998,1,1
-A0A641ABQ3,0.998,1,1
-A0AAE2ZRY0,0.998,1,1
-A0AAE2ZTW7,0.998,1,1
-A0AAE2ZU14,0.998,1,1
-A0A2C9TVL9,0.998,1,1
-A0A2W3TG75,0.998,1,1
-A0A9P2YV90,0.998,1,1
-A0A2U0IJR9,0.998,1,1
-A0AAE8TIW2,0.998,1,1
-A0AAE8P9X9,0.998,1,1
-A0AAE8PAL3,0.998,1,1
-A0A224B3G8,0.998,1,1
-A0A266CN08,0.998,1,1
-A0A2C9TSC4,0.998,1,1
-A0AAE3D601,0.998,1,1
-A0AAE3D5Q0,0.998,1,1
-A0A641A8M2,0.998,1,1
-A0A641A912,0.998,1,1
-A0A389UFR6,0.998,1,1
-A0A389VJ67,0.998,1,1
-A0A641A8S4,0.998,1,1
-A0A641A9M0,0.998,1,1
-A0A641A9G9,0.998,1,1
-A0A641A9T1,0.998,1,1
-A0A2W3WBR7,0.998,1,1
-A0A389XVZ5,0.998,1,1
-A0A389XYY8,0.998,1,1
-A0A390AFP1,0.998,1,1
-A0A390EPY9,0.998,1,1
-A0A641A7K4,0.998,1,1
-A0A390J584,0.998,1,1
-A0A641A7W2,0.998,1,1
-A0A641A7Q8,0.998,1,1
-A0A641A8N9,0.998,1,1
-A0A641A8P6,0.998,1,1
-A0A641A8J4,0.998,1,1
-A0A641A4L8,0.998,1,1
-A0A5N5IJZ3,0.998,1,1
-A0A5N5IQ84,0.998,1,1
-A0A641A5J8,0.998,1,1
-A0A641A6T6,0.998,1,1
-A0A391DK74,0.998,1,1
-A0A4P7PAF7,0.998,1,1
-A0A4P7P3I1,0.998,1,1
-A0A3M9H3Z7,0.998,1,1
-A0A4T9YI84,0.998,1,1
-A0A3A3ATI1,0.998,1,1
-A0A3A3AEZ5,0.998,1,1
-A0A391DDB2,0.998,1,1
-X5E0C0,0.998,1,1
-A0A391AB27,0.998,1,1
-W8UTZ7,0.998,1,1
-W8UXH5,0.998,1,1
-W8USR6,0.998,1,1
-W8URT6,0.998,1,1
-A0A0D3Q4X2,0.998,1,1
-A0A0B4N958,0.998,1,1
-A0A0D1GQ07,0.996,1,1
-X5EF25,0.996,1,1
-W8TNQ9,0.996,1,1
-A0A390ZED4,0.996,1,1
-Q9LC46,0.996,1,1
-Q9LAB5,0.996,1,1
-Q9RN32,0.996,1,1
-Q9ZAI5,0.996,1,1
-Q9ZFS5,0.996,1,1
-Q9ZFS6,0.996,1,1
-Q9EY53,0.996,1,1
-A0A0D6GBP6,0.996,1,1
-Q99RL9,0.996,1,1
-A0A0D6GGQ7,0.996,1,1
-A0A391FC21,0.996,1,1
-A0A0D6GUT9,0.996,1,1
-A0A0D6HC73,0.996,1,1
-A0A391DGG2,0.996,1,1
-A0A3A3AS45,0.996,1,1
-A0A3A3ALI8,0.996,1,1
-A0A3A5M257,0.996,1,1
-A0A3A5M4N3,0.996,1,1
-A0A391F9N7,0.996,1,1
-A0A518QF20,0.996,1,1
-A0A641A4E5,0.996,1,1
-A0A641A4T7,0.996,1,1
-A0A391DPH1,0.996,1,1
-A0A389U9K2,0.996,1,1
-A0A389UE07,0.996,1,1
-A0A389VCE2,0.996,1,1
-A0A0D6HLH7,0.996,1,1
-A0A0D6HFN1,0.996,1,1
-Q6GAG0,0.996,1,1
-Q6G6Q1,0.996,1,1
-Q6GJK9,0.996,1,1
-Q6GHV3,0.996,1,1
-Q6YCN3,0.996,1,1
-A0A641A6X6,0.996,1,1
-A0A641A761,0.996,1,1
-A0A641A6Y4,0.996,1,1
-A0A390PKN6,0.996,1,1
-A0A390UFQ0,0.996,1,1
-C4B818,0.996,1,1
-A0A389PUB8,0.996,1,1
-C4B833,0.996,1,1
-A0A389PZU7,0.996,1,1
-Q07227,0.996,1,1
-Q2FVL6,0.996,1,1
-A0A389Q5J4,0.996,1,1
-A0A641A9A1,0.996,1,1
-A0A641AA31,0.996,1,1
-A0A641A9P8,0.996,1,1
-A0A641A9C1,0.996,1,1
-Q2G0X7,0.996,1,1
-Q2G1S8,0.996,1,1
-Q33C64,0.996,1,1
-A0A0D6HEZ2,0.996,1,1
-A0A389VEG0,0.996,1,1
-A0A0D6WG27,0.996,1,1
-A0A641A8Q3,0.996,1,1
-P0C1U7,0.996,1,1
-P0A0L5,0.996,1,1
-A0A641AC27,0.996,1,1
-P0A0L2,0.996,1,1
-A0A0D6HF50,0.996,1,1
-A0AAE3D531,0.996,1,1
-A0AAJ4YZA4,0.996,1,1
-A0AAJ4YZ65,0.996,1,1
-A0AAE3D5D3,0.996,1,1
-A0AAJ4YX04,0.996,1,1
-A0AAJ4YYM9,0.996,1,1
-A0AAJ4YZ19,0.996,1,1
-A0AAJ4YXL0,0.996,1,1
-A0AAJ4YXI6,0.996,1,1
-A0A2L2E298,0.996,1,1
-A0AAE2ZVK6,0.996,1,1
-A0AAE2ZU05,0.996,1,1
-A0AAE2ZV74,0.996,1,1
-A0A162H218,0.996,1,1
-A0A162GR70,0.996,1,1
-A0AAE2ZTI9,0.996,1,1
-A0AAJ4YXY2,0.996,1,1
-A0A2S6D3A1,0.996,1,1
-A0A2S6D1X8,0.996,1,1
-A0AAE2ZY64,0.996,1,1
-A0A2W3PXW4,0.996,1,1
-A0A9Q3MR89,0.996,1,1
-A0A9P3DML6,0.996,1,1
-A0AAJ5CU80,0.996,1,1
-A0A2W3EU09,0.996,1,1
-A0AAX2MKD2,0.996,1,1
-A0AAX2K025,0.996,1,1
-A0AAX2MMZ9,0.996,1,1
-A5JNM2,0.996,1,1
-A0A6B5FIU0,0.996,1,1
-A0A6B5S7D5,0.996,1,1
-A0A0E8IUH3,0.996,1,1
-A0A6B5E444,0.996,1,1
-A0A6K1K184,0.996,1,1
-A0A6B5TU88,0.996,1,1
-A0A2S6DKY9,0.996,1,1
-A0A7U7IC02,0.996,1,1
-A0A2U0IR43,0.996,1,1
-A0A113W024,0.996,1,1
-B1Q017,0.996,1,1
-B6VQW5,0.996,1,1
-A0A0D3Q6S7,0.996,1,1
-A0A0D6GBH7,0.996,1,1
-W8U0B2,0.996,1,1
-X5DYK9,0.996,1,1
-W8U414,0.996,1,1
-A0A166QIC8,0.996,1,1
-A0A0D1IQA4,0.996,1,1
-X5DSM8,0.996,1,1
-A0A0D3Q5Z8,0.996,1,1
-A0AAE8TJK5,0.996,1,1
-A0AAE8TJ68,0.996,1,1
-W8U4R2,0.996,1,1
-A0AAE8TK43,0.996,1,1
-A0A166NTM9,0.996,1,1
-A0A166LM76,0.996,1,1
-A0A166IYH7,0.996,1,1
-A0AAE8PDQ6,0.996,1,1
-A0AAE8PDG0,0.996,1,1
-A0AAE8PDC6,0.996,1,1
-A0AAE8PD09,0.996,1,1
-A0AAE8PCR4,0.996,1,1
-A0AAE8PC88,0.996,1,1
-A0AAE8PAM7,0.996,1,1
-A0AAE8P9K4,0.996,1,1
-A0A227LZW5,0.996,1,1
-A0A1S6DSG8,0.996,1,1
-A0A2C9TU38,0.996,1,1
-A0A2C6MVP5,0.996,1,1
-A0A166J4L2,0.996,1,1
-A0A166JQS2,0.996,1,1
-A0AAJ4YWH1,0.996,1,1
-A0AAJ4YWR0,0.996,1,1
-A0AAE8PBR8,0.996,1,1
-A0AAE2ZZC2,0.996,1,1
-A0A0D1JUU6,0.996,1,1
-A0AAE8PBT4,0.996,1,1
-A0AAE8PBB7,0.996,1,1
-A0A2C9TV59,0.996,1,1
-A0A391A4D9,0.994,1,1
-A0A090LVV4,0.994,1,1
-A0A3M7ZM78,0.994,1,1
-W8TMJ4,0.994,1,1
-X5E203,0.994,1,1
-A0A0D1HWZ3,0.994,1,1
-X5EJN4,0.994,1,1
-A0A068DV34,0.994,1,1
-A0A068A6G0,0.994,1,1
-A0A0D6HF55,0.994,1,1
-A0A389UCX7,0.994,1,1
-Q57227,0.994,1,1
-Q6G8C4,0.994,1,1
-Q6GDD3,0.994,1,1
-A0A390B6L2,0.994,1,1
-Q93PN3,0.994,1,1
-Q6SV31,0.994,1,1
-Q6GI34,0.994,1,1
-Q53781,0.994,1,1
-A0A389VJ56,0.994,1,1
-Q9ZFS3,0.994,1,1
-Q9EYL5,0.994,1,1
-A0A3M9GHA5,0.994,1,1
-A0A3M8VBL4,0.994,1,1
-A0A5Q2QJY5,0.994,1,1
-A0A0D6HDR6,0.994,1,1
-C4B852,0.994,1,1
-A0A641ABP3,0.994,1,1
-A0A641ABA5,0.994,1,1
-P0A0M0,0.994,1,1
-Q2FVC5,0.994,1,1
-Q2FZR2,0.994,1,1
-Q2FZK7,0.994,1,1
-Q2FXH4,0.994,1,1
-A0A641A9L3,0.994,1,1
-A0A2X3QG95,0.994,1,1
-A0A2Y9TLI2,0.994,1,1
-A0A2Y1RIG2,0.994,1,1
-A0A0D6WBZ7,0.994,1,1
-A0A641A8Q8,0.994,1,1
-A0A0D6HQY2,0.994,1,1
-A0A122JP17,0.994,1,1
-A0A9P2YX88,0.994,1,1
-A0A9Q8DF91,0.994,1,1
-A0AAX2MI48,0.994,1,1
-A0AAX2K114,0.994,1,1
-A8QKD5,0.994,1,1
-A0A0Z0X9F2,0.994,1,1
-A0AAJ4Z045,0.994,1,1
-A0A2C9TXC9,0.994,1,1
-A0AAE2ZUT4,0.994,1,1
-A0AAE2ZV88,0.994,1,1
-A0AAJ4YZF6,0.994,1,1
-A0A9P2YW15,0.994,1,1
-A0A2U0ITW0,0.994,1,1
-A0AAJ5CU40,0.994,1,1
-A0AAJ5CTI3,0.994,1,1
-A0AAJ5CT13,0.994,1,1
-A0AAE2ZX53,0.994,1,1
-A0AAE2ZW11,0.994,1,1
-A0A2G4VM73,0.994,1,1
-A0AAE2ZTH7,0.994,1,1
-A0A131JSY8,0.994,1,1
-A0A166EPD7,0.994,1,1
-A0AAE8PBN0,0.994,1,1
-A0AAE8PAQ7,0.994,1,1
-A0A1S5YLW8,0.994,1,1
-A0A166JMZ6,0.994,1,1
-A0A2C9TL89,0.994,1,1
-A0AAE8PAW7,0.994,1,1
-A0AAE8PCH5,0.994,1,1
-A0A1S6DAJ0,0.994,1,1
-A0A1M4RHY1,0.994,1,1
-A0AAE8P9T6,0.994,1,1
-A0AAE8TIB6,0.994,1,1
-A0AAE8TIU7,0.994,1,1
-A0AAE8TIW8,0.994,1,1
-A0AAE8TJU3,0.994,1,1
-A0AAE8TKC7,0.994,1,1
-A0AAJ4YUB2,0.994,1,1
-A0AAJ4YV34,0.994,1,1
-A0A167H2Q7,0.994,1,1
-A0AAJ4YVY9,0.994,1,1
-A0A3A2ISC3,0.994,1,1
-A0A0D6GBL1,0.994,1,1
-A0A0D6G9V6,0.994,1,1
-W8UWT4,0.994,1,1
-W8UY38,0.994,1,1
-X5DST2,0.994,1,1
-A0A0D1JPY7,0.994,1,1
-A0A0D3Q4F9,0.992,1,1
-X5DU72,0.992,1,1
-X5DW82,0.992,1,1
-W8U332,0.992,1,1
-W8U0F6,0.992,1,1
-A0A114AKY3,0.992,1,1
-A0A162H328,0.992,1,1
-W8U9Q7,0.992,1,1
-A0AAE8TJU8,0.992,1,1
-A0AAJ4YV78,0.992,1,1
-A0AAE8TK97,0.992,1,1
-A0A1J0J3G8,0.992,1,1
-A0A166Q7R0,0.992,1,1
-A0AAE8PDZ2,0.992,1,1
-A0A131JS96,0.992,1,1
-A0AAE2ZU90,0.992,1,1
-A0AAJ5CS60,0.992,1,1
-A0AAE2ZYQ6,0.992,1,1
-A0AAE3D3N5,0.992,1,1
-A0A2S6D767,0.992,1,1
-A0AAE2ZW93,0.992,1,1
-A0AAJ5CSE5,0.992,1,1
-A0A5S9I2G1,0.992,1,1
-Q9F0L7,0.992,1,1
-A0A391DD44,0.992,1,1
-A0A0D3Q629,0.992,1,1
-A0A0D3Q6F6,0.992,1,1
-A0A090N182,0.992,1,1
-W8TR90,0.992,1,1
-A0A4U2KP01,0.992,1,1
-A0A5D3UEU8,0.992,1,1
-A0A3A3AD99,0.992,1,1
-A0A641A3T5,0.992,1,1
-A0A0D6HCK9,0.992,1,1
-A0A0D6HDR3,0.992,1,1
-A0A641A684,0.992,1,1
-Q8VQS9,0.992,1,1
-A0A0D6I082,0.992,1,1
-A0A641A7Q5,0.992,1,1
-A0A641A7H5,0.992,1,1
-A0A390ZCI1,0.992,1,1
-Q6YCN4,0.992,1,1
-Q7DI48,0.992,1,1
-Q99WS0,0.992,1,1
-A0A0D6GUE2,0.992,1,1
-A0A390DBJ6,0.992,1,1
-A0A390F740,0.992,1,1
-A0A390U9J4,0.992,1,1
-Q93UU8,0.992,1,1
-A0A0D6GL09,0.992,1,1
-A0A2W3XW02,0.992,1,1
-A0A641A9C5,0.992,1,1
-P0A077,0.992,1,1
-A0A0Z4NNI4,0.992,1,1
-H6UH57,0.992,1,1
-O87491,0.992,1,1
-A0A389PZW7,0.992,1,1
-A0A6A9GVV2,0.992,1,1
-A0A641A9M4,0.992,1,1
-A0A641AA78,0.992,1,1
-A0A7I0YLT7,0.992,1,1
-A0A0Y9ABM8,0.992,1,1
-A0A8G2M8L9,0.992,1,1
-A0A8G2HYY2,0.992,1,1
-A0AAE2ZQ20,0.992,1,1
-A0AAE2ZRT7,0.992,1,1
-A0A9N8NS69,0.992,1,1
-A0AAQ1CIB4,0.992,1,1
-A0AAJ5CTN7,0.992,1,1
-A0A390BCG4,0.992,1,1
-A0A390ZN89,0.992,1,1
-A0A389U7S2,0.99,1,1
-A0A0D6WBT7,0.99,1,1
-A0A641A6V2,0.99,1,1
-A0A641A5V3,0.99,1,1
-A0A3A3ALE1,0.99,1,1
-A0A389XS11,0.99,1,1
-Q7BGA5,0.99,1,1
-A0A391DHU9,0.99,1,1
-A0A2I7YBL5,0.99,1,1
-A0AAJ5CSE2,0.99,1,1
-A0AAJ4YUY7,0.99,1,1
-A0AAE8P9W0,0.99,1,1
-A0A3A2ILB4,0.99,1,1
-A0A390W8I0,0.99,1,1
-Q9ZFS4,0.99,1,1
-A0A0D6W7J6,0.99,1,1
-A0A0D6HYB8,0.99,1,1
-A0A7U7IED2,0.99,1,1
-Q1XG18,0.99,1,1
-A0A6B3J2A6,0.99,1,1
-A0A6B3INW0,0.99,1,1
-A0A641AAF9,0.99,1,1
-A0A0Y9RFD4,0.99,1,1
-A0A0E8JWI2,0.99,1,1
-A0AAX2JZY5,0.99,1,1
-A0A0U1MMC4,0.99,1,1
-A0AAX2MNS4,0.99,1,1
-A0AAJ5CU77,0.99,1,1
-A0AAQ1CLX2,0.99,1,1
-A0A2S6DCI1,0.99,1,1
-A0A166LCU2,0.99,1,1
-A0AAJ4YW98,0.99,1,1
-A0AAE8PC26,0.99,1,1
-W8UA89,0.99,1,1
-A0A166DEL7,0.99,1,1
-A0AAJ4YVY6,0.99,1,1
-W8U7V9,0.99,1,1
-A0AAE8TJG1,0.988,1,1
-A0A0D3QAF5,0.988,1,1
-A0A2I7YBH6,0.988,1,1
-A0A641A5U9,0.988,1,1
-A0A0C2LK74,0.988,1,1
-A0A641A6Q5,0.988,1,1
-A0A641A8U6,0.988,1,1
-A0A0D6GUP8,0.988,1,1
-A0A2Y1TBB7,0.988,1,1
-O85383,0.988,1,1
-A0A659I881,0.988,1,1
-A0A9Q4UZ21,0.988,1,1
-A0A9P3DM65,0.988,1,1
-P00807,0.988,1,1
-A0A641AAE0,0.988,1,1
-Q2FC27,0.988,1,1
-A0A166M720,0.988,1,1
-A0A1S6D4V8,0.988,1,1
-A0AAE2ZVL7,0.988,1,1
-A0AAE2ZU24,0.988,1,1
-A0A181GKX6,0.988,1,1
-A0A218M1Q9,0.988,1,1
-A0AAE8TK32,0.988,1,1
-X5E0B5,0.986,1,1
-A0A166N5L1,0.986,1,1
-X5EG17,0.986,1,1
-X5E526,0.986,1,1
-A0AAE8TIR2,0.986,1,1
-W8U485,0.986,1,1
-A0AAJ4YXX9,0.986,1,1
-A0AAE3D5F7,0.986,1,1
-A0AAJ5CSS1,0.986,1,1
-B0I1V8,0.986,1,1
-A0A3A3AIJ1,0.986,1,1
-Q2FWN1,0.986,1,1
-D2J6U4,0.986,1,1
-Q1XG25,0.986,1,1
-A0A2U0IFR6,0.986,1,1
-A0AAX2K353,0.986,1,1
-A0A9P2Z0D5,0.986,1,1
-A0A641A839,0.986,1,1
-A0AAE3D4M0,0.984,1,1
-A0A2I7YBQ7,0.984,1,1
-A0AAJ5CTZ3,0.984,1,1
-A0A641A794,0.984,1,1
-A0A0D1HKW8,0.984,1,1
-A0A0D6H001,0.984,1,1
-Q7X0E8,0.984,1,1
-A0A2Y9TTN6,0.984,1,1
-A0AAN1ZDM6,0.984,1,1
-A0A0Z4LY14,0.984,1,1
-A0A641A9A7,0.984,1,1
-A0AAE2ZXD1,0.982,1,1
-A0A166J6C2,0.982,1,1
-A0AAJ4YX42,0.982,1,1
-A0AAJ5CSZ5,0.982,1,1
-A0AAE8P9H8,0.982,1,1
-A0A513Q6V6,0.982,1,1
-A0A3A2IVX8,0.982,1,1
-B6V384,0.982,1,1
-A0A2U0ITS3,0.982,1,1
-A0A0D1HLP4,0.982,1,1
-A0A391A4W5,0.982,1,1
-W8TV02,0.982,1,1
-A0A0C6ERT7,0.98,1,1
-A0A0D3QAT6,0.98,1,1
-A0A0D1IH94,0.978,1,1
-A0A9P2YYE8,0.978,1,1
-A0AAW4YAX5,0.978,1,1
-A0A0E8IMG8,0.978,1,1
-A0A389UAT8,0.978,1,1
-A0A6B3IQP6,0.978,1,1
-A0AAJ5CSZ9,0.976,1,1
-A0A389NBE8,0.976,1,1
-A0AAE2ZSI2,0.976,1,1
-Q2G260,0.976,1,1
-A0A659ZYI3,0.974,1,1
-A0AAW4Y5F4,0.974,1,1
-A0AAE2ZV66,0.974,1,1
-A0A2C9TMN6,0.974,1,1
-A0A162H7Z8,0.974,1,1
-X5DWZ3,0.972,1,1
-A0A641ACA7,0.972,1,1
-A0A3A3AKD2,0.972,1,1
-A0A163VMG3,0.968,1,1
-A0AAJ4YZG0,0.968,1,1
-A0A131I431,0.964,1,1
-A0A123DH54,0.942,1,1
-A0A2U0IM51,0.902,1,1
+accession,prob_antigen,pred_label,true_label,protein_name
+X5ELQ6,1.0,1,1,Lipoprotein
+A0A090LRP9,1.0,1,1,Foldase protein prsa
+W8U6M5,1.0,1,1,Lipoprotein
+A0A0D6GCD0,1.0,1,1,Lipoprotein
+Q6GJM8,1.0,1,1,Uncharacterized lipoprotein sar0445
+A0A0D3Q6S2,1.0,1,1,Fibrinogen-binding protein
+Q7WS91,1.0,1,1,Cell-wall-anchored protein sasc
+A0A0D3QA93,1.0,1,1,Zinc abc transporter substrate-binding lipoprotein adca
+A0A0D6GBG7,1.0,1,1,Fklrk protein
+Q53782,1.0,1,1,Serine protease splc
+Q6GED5,1.0,1,1,Staphylococcal secretory antigen ssaa2
+A0A0E7RZY7,1.0,1,1,Serine protease
+Q70MK4,1.0,1,1,Molybdate abc transporter substrate-binding protein
+A0A0D6H3T6,1.0,1,1,Molybdate abc transporter substrate-binding protein
+A0A166LCE3,1.0,1,1,"Abc-type nitrate/sulfonate/bicarbonate transporter, taua"
+A0A131JAK2,1.0,1,1,Extracellular solute-binding protein
+A0A131K2A0,1.0,1,1,Lipoprotein
+A0A166JT38,1.0,1,1,Exotoxin
+A0A1K8I4B4,1.0,1,1,Zinc abc transporter substrate-binding protein
+A0AAJ4YVK7,1.0,1,1,Surface anchored protein
+A0AAE8TIF0,1.0,1,1,Oligopeptide abc transporter substrate-binding protein
+A0AAE8TKH1,1.0,1,1,Lipoprotein
+A0A163QKA2,1.0,1,1,Serine protease
+A0AAJ4YY62,1.0,1,1,"Gram-positive signal peptide, ysirk family protein"
+A0AAJ4YYA4,1.0,1,1,Iron-regulated surface determinant protein c
+A0AAJ4YYP0,1.0,1,1,Lipoprotein
+A0A122DF78,1.0,1,1,Zn-binding lipoprotein adca-like protein
+A0A0G3D1I8,1.0,1,1,"Iron (fe3+) abc superfamily atp binding cassette transporter, membrane/binding protein"
+A0A0E8J2S9,1.0,1,1,Transglycosylase
+A0AAJ5CTN4,1.0,1,1,Staphylococcal tandem lipoprotein
+A0AAJ5CRW3,1.0,1,1,Lipoprotein
+A0AAJ5CTI4,1.0,1,1,Membrane lipoprotein
+A0AAJ5CTK1,1.0,1,1,Staphylococcal tandem lipoprotein
+A0AAJ4YZC1,1.0,1,1,Lipoprotein
+A0AAJ5CRM5,1.0,1,1,Lipoprotein
+A0AAX2MJJ6,1.0,1,1,Exported protein
+A0AAX2K1M1,1.0,1,1,Lipoprotein
+E2GAH4,1.0,1,1,Von willebrand factor-binding protein
+A0A0Y9QEI6,1.0,1,1,Probable transglycosylase isaa
+O54461,1.0,1,1,Ampicillin resistance protein
+P60158,1.0,1,1,Probable transglycosylase isaa
+A0AAJ4YVZ0,1.0,1,1,Lipoprotein
+A0A641A9B4,1.0,1,1,Lipoprotein
+A0A389QCM1,1.0,1,1,Staphylococcal tandem lipoprotein
+A0A380E1J8,1.0,1,1,Iron-regulated surface determinant protein c
+A0A2Y9TLP4,1.0,1,1,Lipoprotein
+A0A6B5KXH1,1.0,1,1,Lipoprotein
+A0A8G2MAE5,1.0,1,1,Probable transglycosylase isaa
+A0A9N8IH31,1.0,1,1,Membrane lipoprotein
+A0A641ABK1,1.0,1,1,Duf1672 domain-containing protein
+A0A641ABA7,1.0,1,1,Abc transporter substrate-binding protein
+A0A641AB29,1.0,1,1,Superantigen-like protein ssl6
+A0A641A9N7,1.0,1,1,Fibrinogen-binding protein
+A0A641A6Z5,1.0,1,1,Zinc abc transporter substrate-binding lipoprotein adca
+A0A641A901,1.0,1,1,Fklrk protein
+A0A389VIP1,1.0,1,1,Probable transglycosylase isaa
+A0A390BBS7,1.0,1,1,Lipoprotein
+A0A391ERX3,1.0,1,1,Transglycosylase
+A0A391EKT5,1.0,1,1,Staphylococcal tandem lipoprotein
+A0A391DGH4,1.0,1,1,Oligopeptide abc transporter substrate-binding protein
+X5DVD1,1.0,1,1,Abc transporter substrate-binding protein
+A0A391M7N5,1.0,1,1,"Cell-wall binding lipoprotein, ykya"
+A0A391LQP8,1.0,1,1,"Abc superfamily atp binding cassette transporter, binding protein"
+X5DRS2,1.0,1,1,Lipoprotein
+A0A0D1H8K9,1.0,1,1,Exported protein
+A0A5C8X6J1,1.0,1,1,Abc transporter substrate-binding protein
+A0A641A5J8,1.0,1,1,Serine protease
+A0A641A4M0,1.0,1,1,Uncharacterized protein
+A0A389QEW1,1.0,1,1,Duf1672 domain-containing protein
+A0A389VE54,1.0,1,1,Superantigen-like protein
+A0A389U9A3,1.0,1,1,Abc transporter substrate-binding protein
+A0A389WRH0,1.0,1,1,Extracellular solute-binding protein
+A0A390B4P9,1.0,1,1,Lipoprotein
+A0A641A9D2,1.0,1,1,Tandem-type lipoprotein
+A0A2C9TYK2,1.0,1,1,Putative lipoprotein
+A0A2C9TY49,1.0,1,1,Duf1672 domain-containing protein
+A0A2U0IPK5,1.0,1,1,Tandem-type lipoprotein
+A0A6B2IZR7,1.0,1,1,Oligopeptide abc transporter substrate-binding protein
+A0A2S6D294,1.0,1,1,Probable transglycosylase isaa
+A0AAE2ZSL6,1.0,1,1,Tandem-type lipoprotein
+A0AAE2ZUL3,1.0,1,1,Zinc abc transporter substrate-binding lipoprotein adca
+A0AAE2ZWJ3,1.0,1,1,Abc transporter substrate-binding protein
+A0AAE8PB46,1.0,1,1,Lytic transglycosylase sced
+A0AAE3D6E5,1.0,1,1,Lipoprotein
+A0AAE8P9U8,1.0,1,1,Molybdate abc transporter substrate-binding protein
+A0A641A9N0,1.0,1,1,Tandem-type lipoprotein lpl5
+A0A2U0IJR9,1.0,1,1,Chap domain-containing protein
+A0A2U0IK27,1.0,1,1,Membrane lipoprotein
+A0A2U0IPJ7,1.0,1,1,Tandem-type lipoprotein
+A0A2L2F4N6,1.0,1,1,Uncharacterized protein
+A0A166N8V6,1.0,1,1,Putative lipoprotein
+A0A166Q5A2,1.0,1,1,Iron(iii) dicitrate-binding protein
+A0A1D4H1Q1,1.0,1,1,Duf5067 domain-containing protein
+A0A166PFD1,1.0,1,1,Molybdate-binding protein
+A0A0D6WII1,0.998,1,1,Alpha-hemolysin
+Q2G1F3,0.998,1,1,Uncharacterized protein saouhsc_00172
+A0A0E1XCS8,0.998,1,1,Tandem lipoprotein
+A0A0D6HDD7,0.998,1,1,Beta-lactamase
+A0A0D3QAH7,0.998,1,1,Duf1433 domain-containing protein
+W8TRN2,0.998,1,1,Exported protein
+Q33C62,0.998,1,1,Lipoprotein
+A0A0D6H7X3,0.998,1,1,Hyaluronate lyase
+A0A0D6HBZ8,0.998,1,1,Cams family sex pheromone protein
+Q6GJX5,0.998,1,1,Efem/efeo family lipoprotein
+Q6GJN3,0.998,1,1,Uncharacterized lipoprotein sar0438
+A0AAE8TK88,0.998,1,1,Lipoprotein
+A0AAE8TIW2,0.998,1,1,Myeloperoxidase inhibitor spin
+A0AAE8TKI7,0.998,1,1,Lipoprotein
+A0AAE8TKE8,0.998,1,1,Osmoprotectant abc transporter substrate-binding protein
+A0AAE8TKW4,0.998,1,1,Abc-type transporter
+A0AAJ4YVQ8,0.998,1,1,Foldase protein prsa
+A0AAJ4YV91,0.998,1,1,Lipoprotein
+A0AAJ4YV38,0.998,1,1,"Osmotically activated l-carnitine/choline abc transporter, substrate-binding protein opucc"
+A0A166JH61,0.998,1,1,Exported protein
+A0A166EAB0,0.998,1,1,Lipoprotein
+A0A166DWI7,0.998,1,1,Abc-type transporter
+A0A162FG49,0.998,1,1,Lipoprotein
+A0A131JP41,0.998,1,1,Glycyl-glycine endopeptidase lytm
+A0AAJ4YY44,0.998,1,1,Lipoprotein (pheromone)
+A0AAJ4YXI7,0.998,1,1,Iron compound abc uptake transporter substrate-binding protein
+A0A166JSW2,0.998,1,1,Exported protein
+A0AAJ4YYQ0,0.998,1,1,Phosphate-binding protein
+A0A162G2W5,0.998,1,1,Lipoprotein
+A8QKC8,0.998,1,1,Neutral metalloproteinase
+A8QKE0,0.998,1,1,Neutral metalloproteinase
+C3VIQ5,0.998,1,1,Staphylokinase
+B2NJ60,0.998,1,1,Coagulase
+P0A0L8,0.998,1,1,Enterotoxin type g
+O54462,0.998,1,1,"Superantigen-like protein, exotoxin 14"
+A0A0D6HSA5,0.998,1,1,Exotoxin
+P81177,0.998,1,1,Zinc metalloproteinase aureolysin
+A0AAX2MNC3,0.998,1,1,Lipoprotein
+A0AAX2K025,0.998,1,1,Alkaline phosphatase
+A0AAJ5CTM9,0.998,1,1,Staphylococcal exotoxin
+A0AAJ5CS40,0.998,1,1,Oligopeptide transporter putative substrate binding domain protein
+A0AAJ4YZ87,0.998,1,1,Exotoxin
+A0AAJ4YZ59,0.998,1,1,"Enterotoxin p, phage associated"
+P0C1U8,0.998,1,1,Glutamyl endopeptidase
+P0C6P2,0.998,1,1,Fibrinogen-binding protein
+A0A0U1MK78,0.998,1,1,Fibrinogen-binding protein
+A0A0H2DUF0,0.998,1,1,Staphylococcal complement inhibitor
+A0A0D3Q6D3,0.998,1,1,Fprl1 inhibitory protein
+X5E2Q9,0.998,1,1,Lipoprotein
+X5EK72,0.998,1,1,Duf1307 domain-containing protein
+A0A090LUS6,0.998,1,1,Duf1307 domain-containing protein
+W8U0W4,0.998,1,1,Lipoprotein
+W8U629,0.998,1,1,Phosphate-binding protein
+W8U6L2,0.998,1,1,Lipoprotein
+A0A0D3QAE7,0.998,1,1,Glycine/betaine abc transporter substrate-binding protein
+A0A0D6GBK0,0.998,1,1,Exotoxin
+A0A0D6GAM0,0.998,1,1,Staphylococcal exotoxin
+W8TV96,0.998,1,1,Foldase protein prsa
+W8TWS4,0.998,1,1,Ribonuclease y
+Q7DI43,0.998,1,1,Chitinase
+Q7X0E4,0.998,1,1,Enterotoxin type g
+Q83TG5,0.998,1,1,Dm13 domain-containing protein
+Q9RL71,0.998,1,1,Neutral metalloproteinase
+A0AAE2ZWA6,0.998,1,1,Oligopeptide transporter putative substrate binding domain protein
+A0AAE2ZZ67,0.998,1,1,Tandem-type lipoprotein
+A0AAE2ZZ37,0.998,1,1,Serine protease
+A0AAE2ZU14,0.998,1,1,Exotoxin
+A0A2S6D3A1,0.998,1,1,Chap domain-containing protein
+A0AAE2ZTW7,0.998,1,1,Duf1672 domain-containing protein
+A0AAE2ZW53,0.998,1,1,Staphylococcal exotoxin
+A0AAE8PAL3,0.998,1,1,Lipoprotein
+A0AAE8PBA3,0.998,1,1,Glycyl-glycine endopeptidase lytm
+A0AAE8PBB6,0.998,1,1,Exotoxin
+A0A169E8V2,0.998,1,1,Secretory antigen ssaa
+A0A166Q7U6,0.998,1,1,Fibrinogen-binding protein
+A0A641A9M0,0.998,1,1,Superantigen-like protein ssl5
+A0A641A9T1,0.998,1,1,Serine protease
+A0A641AAM4,0.998,1,1,Superantigen-like protein ssl2
+A0A2U0IF80,0.998,1,1,Tandem-type lipoprotein lpl1
+A0A2S6DNW9,0.998,1,1,Cams family sex pheromone protein
+A0A659IBA1,0.998,1,1,Exotoxin
+A0A641AC18,0.998,1,1,Fprl1 inhibitory protein
+A0A641ABQ3,0.998,1,1,Duf1672 domain-containing protein
+A0A9P2YV90,0.998,1,1,Lipoprotein
+A0AAE2ZRY0,0.998,1,1,Iron compound abc uptake transporter substrate-binding protein
+A0A2C9TVL9,0.998,1,1,Abc transporter substrate-binding protein
+A0A2L2E2K2,0.998,1,1,Dm13 domain-containing protein
+A0A2L2E3D0,0.998,1,1,Exported protein
+A0A8A7XIF5,0.998,1,1,Cap domain-containing protein
+A0A6B5FIU0,0.998,1,1,Alkaline phosphatase
+A0A2W3TG75,0.998,1,1,Fibrinogen-binding protein
+A0A2C6MZ76,0.998,1,1,Tandem-type lipoprotein
+A0A2C9TSC4,0.998,1,1,Dna-binding protein
+A0AAE3D5Q0,0.998,1,1,Cap domain-containing protein
+A0AAE8P9X9,0.998,1,1,Cell surface like-protein map-w
+A0AAE2ZZL2,0.998,1,1,Extracellular adherence protein eap/map
+A0A266CN08,0.998,1,1,Tandem-type lipoprotein
+A0AAE3D3F5,0.998,1,1,Lipoprotein
+A0A224B3G8,0.998,1,1,Staphylokinase
+A0AAE2ZWL4,0.998,1,1,Fprl1 inhibitory protein
+A0A641A7W2,0.998,1,1,Tandem-type lipoprotein
+A0A641A7Q8,0.998,1,1,Tandem-type lipoprotein
+A0A641A8M2,0.998,1,1,Superantigen-like protein ssl4
+A0A641A8P6,0.998,1,1,Dna-binding protein
+A0A641A8S4,0.998,1,1,Efem/efeo family lipoprotein
+A0A641A8J4,0.998,1,1,Ndxxf motif lipoprotein
+A0A380DP26,0.998,1,1,Exotoxin
+A0A390EPY9,0.998,1,1,Cams family sex pheromone protein
+A0A390J584,0.998,1,1,Cell surface like-protein map-w
+A0A641A4L8,0.998,1,1,Cams family sex pheromone protein
+A0A641A6T6,0.998,1,1,Osmoprotectant abc transporter substrate-binding protein
+A0A389VJ67,0.998,1,1,Beta-lactamase
+A0A641A7K4,0.998,1,1,Lysm peptidoglycan-binding domain-containing protein
+A0A389UFR6,0.998,1,1,"Oligopeptide abc superfamily atp binding cassette transporter, binding protein"
+A0A641A9G9,0.998,1,1,Tandem-type lipoprotein
+A0A2W3WBR7,0.998,1,1,Lipoprotein
+A0A641A912,0.998,1,1,Glycyl-glycine endopeptidase lytm
+A0A518QF20,0.998,1,1,Chap domain-containing protein
+A0A5N5IJZ3,0.998,1,1,Staphylococcal enterotoxin type o
+A0A389XVZ5,0.998,1,1,Superantigen-like protein
+A0A5N5IQ84,0.998,1,1,Tandem-type lipoprotein
+A0A389XYY8,0.998,1,1,Hyaluronate lyase
+A0A390AFP1,0.998,1,1,Superantigen-like protein
+A0A3A3ATI1,0.998,1,1,Glycyl-glycine endopeptidase lytm
+A0A3A3AEZ5,0.998,1,1,Exported protein
+A0A4P7P3I1,0.998,1,1,Tandem-type lipoprotein
+A0A3M9H3Z7,0.998,1,1,Exotoxin
+A0A4P7PAF7,0.998,1,1,Class a sortase srta
+A0A4T9YI84,0.998,1,1,Staphylococcal complement inhibitor
+A0A391DDB2,0.998,1,1,"Glycine betaine/l-proline abc superfamily atp binding cassette transporter, binding protein"
+A0A391DK74,0.998,1,1,5'-nucleotidase
+X5E0C0,0.998,1,1,Lipoprotein
+A0A390ZED4,0.998,1,1,Alkaline phosphatase
+A0A391AB27,0.998,1,1,Lipoprotein
+W8UXH5,0.998,1,1,Lipoprotein
+W8UTZ7,0.998,1,1,Maltodextrin-binding protein
+W8USR6,0.998,1,1,Lysm peptidoglycan-binding domain-containing protein
+W8URT6,0.998,1,1,Abc transporter substrate-binding protein
+A0A0B4N958,0.998,1,1,Efem/efeo family lipoprotein
+A0A0D3Q6S7,0.996,1,1,Alpha-hemolysin
+A0A0D6GBH7,0.996,1,1,Superantigen-like protein
+Q9ZFS5,0.996,1,1,Exotoxin 1
+W8TNQ9,0.996,1,1,"Abc superfamily atp binding cassette transporter, binding protein"
+Q9ZFS6,0.996,1,1,Exotoxin
+X5DYK9,0.996,1,1,Exotoxin
+A0A391DPH1,0.996,1,1,Exotoxin
+A0A391F9N7,0.996,1,1,Staphylococcal tandem lipoprotein
+A0A391FC21,0.996,1,1,Duf1307 domain-containing protein
+Q9ZFS3,0.996,1,1,Exotoxin 4
+Q6YCN3,0.996,1,1,Enterotoxin sen
+A0A641A4E5,0.996,1,1,Bi-component leukocidin lukgh subunit h
+A0A641A4T7,0.996,1,1,Serine protease
+A0A3A3ALI8,0.996,1,1,Lipoprotein
+A0A390UFQ0,0.996,1,1,Serine protease
+A0A391DGG2,0.996,1,1,Serine protease
+Q9RN32,0.996,1,1,Exotoxin 1
+Q9ZAI5,0.996,1,1,Cdaa regulatory protein cdar
+Q9EY53,0.996,1,1,Rgd-containing lipoprotein
+Q99RL9,0.996,1,1,Lipoprotein
+Q9LC46,0.996,1,1,Staphylokinase
+Q9LAB5,0.996,1,1,Immunodominant staphylococcal antigen b
+A0A390PKN6,0.996,1,1,"Enterotoxin p, phage associated"
+A0A3A5M4N3,0.996,1,1,Exotoxin 11
+A0A3A3AS45,0.996,1,1,Membrane lipoprotein
+A0A3A5M257,0.996,1,1,Exotoxin 15
+A0A641A761,0.996,1,1,Iron citrate abc transporter substrate-binding protein
+A0A641A6Y4,0.996,1,1,Tandem-type lipoprotein
+A0A641A6X6,0.996,1,1,Serine protease
+Q6GAG0,0.996,1,1,Bifunctional autolysin
+Q2FZR2,0.996,1,1,"Oligopeptide abc transporter, substrate-binding protein, putative"
+Q2G0X7,0.996,1,1,Staphylococcal superantigen-like 3
+A0A389VCE2,0.996,1,1,Duf5067 domain-containing protein
+A0A389U9K2,0.996,1,1,Map domain-containing protein
+Q6GHV3,0.996,1,1,High-affinity heme uptake system protein isde
+A0A389VEG0,0.996,1,1,"Oligopeptide abc superfamily atp binding cassette transporter, binding protein"
+A0A389UE07,0.996,1,1,Exotoxin
+Q6GJK9,0.996,1,1,N-acetylmuramoyl-l-alanine amidase sle1
+A0A0D6GBP6,0.996,1,1,Superantigen-like protein
+A0A0D6GGQ7,0.996,1,1,Peptide abc transporter substrate-binding protein
+A0A0D6GUT9,0.996,1,1,"4,4'-diapophytoene desaturase (4,4'-diaponeurosporene-forming)"
+A0A0D6HC73,0.996,1,1,Bi-component leukocidin lukgh subunit h
+A0A2U0ITW0,0.996,1,1,Triacylglycerol lipase
+A0A2U0IR43,0.996,1,1,Fprl1 inhibitory protein
+A0A2S6DKY9,0.996,1,1,Map domain-containing protein
+A0A0D6HEZ2,0.996,1,1,Leader peptide-processing serine protease
+A0A389Q5J4,0.996,1,1,Lipoprotein
+A0A641A9A1,0.996,1,1,Staphopain b
+A0A641AA31,0.996,1,1,"Oligopeptide abc transporter, periplasmic oligopeptide-binding protein oppa"
+A0A641AC27,0.996,1,1,Superantigen-like protein ssl12
+A0A641A9P8,0.996,1,1,"4,4'-diapophytoene desaturase (4,4'-diaponeurosporene-forming)"
+A0A641A9C1,0.996,1,1,"5'-nucleotidase, lipoprotein e(p4) family"
+A0A2W3EU09,0.996,1,1,Map domain-containing protein
+Q2FVE7,0.996,1,1,Metal-staphylopine-binding protein cnta
+A0A641A8Q3,0.996,1,1,Superantigen-like protein ssl11
+A0A641A8N9,0.996,1,1,Staphylopine-dependent metal abc transporter substrate-binding protein cnta
+A0A2X3QG95,0.996,1,1,"Poly-beta-1,6-n-acetyl-d-glucosamine n-deacetylase"
+A0A2Y9TLI2,0.996,1,1,Triacylglycerol lipase
+Q2FVL6,0.996,1,1,Duf4467 domain-containing protein
+A0A389PZU7,0.996,1,1,Bi-component leukocidin lukgh subunit h
+A0A389PUB8,0.996,1,1,Abc-type dipeptide transport system periplasmic component-like protein
+Q33C64,0.996,1,1,Similar to staphylocoagulase
+Q2G1S8,0.996,1,1,Staphylococcal superantigen-like 4
+A0A6B5E444,0.996,1,1,Tandem-type lipoprotein
+A0A0D6HLH7,0.996,1,1,Duf1672 domain-containing protein
+A0A0D6HF50,0.996,1,1,Serine protease
+A0A0D6WG27,0.996,1,1,Staphylococcal complement inhibitor
+A0A0D6WBZ7,0.996,1,1,Chap domain-containing protein
+A0A0D6HFN1,0.996,1,1,Serine protease
+A0A162GR70,0.996,1,1,Exotoxin
+A0AAJ4YYM9,0.996,1,1,Iron(iii) dicitrate-binding protein
+A0A2C9TU38,0.996,1,1,Map domain-containing protein
+A0A2C9TV59,0.996,1,1,Glycyl-glycine endopeptidase lytm
+A0AAE3D531,0.996,1,1,Exotoxin
+A0AAE2ZTH7,0.996,1,1,Chap domain-containing protein
+A0A2S6D1X8,0.996,1,1,Osmoprotectant abc transporter substrate-binding protein
+A0A2L2E298,0.996,1,1,Putative lipoprotein
+A0AAJ4Z045,0.996,1,1,"Poly-beta-1,6-n-acetyl-d-glucosamine n-deacetylase"
+A0AAE2ZY64,0.996,1,1,Immunodominant antigen b
+A0AAE2ZZC2,0.996,1,1,Duf1672 domain-containing protein
+A0AAJ4YZ19,0.996,1,1,Thermonuclease
+A0AAJ4YZ65,0.996,1,1,Mhc class ii antigen-like protein
+A0AAE2ZVK6,0.996,1,1,"Abc superfamily atp binding cassette transporter, binding protein"
+A0AAJ4YXY2,0.996,1,1,"Sced-like transglycosylase, biomarker for vancomycin-intermediate strains"
+A5JNM2,0.996,1,1,Enterotoxin m
+A0AAX2MMZ9,0.996,1,1,Staphylokinase
+A0AAE2ZU05,0.996,1,1,Tandem-type lipoprotein
+A0AAX2MKD2,0.996,1,1,Exotoxin
+A0AAE2ZTI9,0.996,1,1,Staphylococcal complement inhibitor
+A0AAJ5CU80,0.996,1,1,Ybbr-like family protein
+A0A7U7IC02,0.996,1,1,Membrane protein
+A0A6K1K184,0.996,1,1,"Abc superfamily atp binding cassette transporter, binding protein"
+A0A6B5TU88,0.996,1,1,Tandem-type lipoprotein
+A0A6B5S7D5,0.996,1,1,Chemotaxis inhibitory protein
+A0A0E8IUH3,0.996,1,1,Serine protease
+A0A9Q3MR89,0.996,1,1,Dm13 domain-containing protein
+A0A0Z0MT78,0.996,1,1,Hyaluronate lyase
+A0A9P3DML6,0.996,1,1,Staphylokinase
+A0A113W024,0.996,1,1,Exotoxin
+B6VQW5,0.996,1,1,Staphylocoagulase
+C4B852,0.996,1,1,Staphylocoagulase
+C4B818,0.996,1,1,Staphylocoagulase
+H6UH57,0.996,1,1,Alkaline phosphatase
+P0A0L2,0.996,1,1,Enterotoxin type a
+P0A0L5,0.996,1,1,Enterotoxin type c-3
+P0C1U7,0.996,1,1,N-acetylmuramoyl-l-alanine amidase sle1
+A0A0D1IQA4,0.996,1,1,Cell surface like-protein map-w
+A0A0D1JUU6,0.996,1,1,N-acetylmuramoyl-l-alanine amidase
+A0A0D3Q5Z8,0.996,1,1,"Oligopeptide abc transporter, periplasmic oligopeptide-binding protein oppa"
+W8U4R2,0.996,1,1,High-affinity heme uptake system protein isde
+W8U5S1,0.996,1,1,Abc transporter substrate-binding protein
+W8U0B2,0.996,1,1,Glycerophosphodiester phosphodiesterase
+A0AAE8TJ68,0.996,1,1,Peptide abc transporter substrate-binding protein
+X5EF25,0.996,1,1,Cell surface like-protein map-w
+A0AAE8TK43,0.996,1,1,"4,4'-diapophytoene desaturase (4,4'-diaponeurosporene-forming)"
+A0AAE8TJU3,0.996,1,1,"Poly-beta-1,6-n-acetyl-d-glucosamine n-deacetylase"
+A0AAE8TJK5,0.996,1,1,Alpha-hemolysin
+A0AAE8PCR4,0.996,1,1,Bifunctional autolysin
+A0AAE8PD09,0.996,1,1,Enterotoxin sem
+A0AAE8PDC6,0.996,1,1,Lipoprotein
+A0AAE8PDG0,0.996,1,1,Exotoxin
+A0A166LM76,0.996,1,1,"Cysteine abc transporter, substrate-binding protein"
+A0AAE8PC88,0.996,1,1,Probable cell wall hydrolase lytn
+A0AAE8PBT4,0.996,1,1,Autolysin/adhesin aaa
+A0AAE8PBR8,0.996,1,1,Exotoxin 1
+A0AAE8PBN0,0.996,1,1,Superantigen-like protein ssl10
+A0AAE8PBB7,0.996,1,1,Maltodextrin-binding protein
+A0A166NTM9,0.996,1,1,Maltodextrin-binding protein
+A0A166J4L2,0.996,1,1,Exotoxin
+A0A166IYH7,0.996,1,1,"Oligopeptide abc transporter, periplasmic oligopeptide-binding protein oppa"
+A0AAJ4YWR0,0.996,1,1,"4,4'-diapophytoene desaturase (4,4'-diaponeurosporene-forming)"
+A0AAJ4YWH1,0.996,1,1,"Abc superfamily atp binding cassette transporter, binding protein"
+A0A166JQS2,0.996,1,1,Truncated cell surface protein map-w
+A0A1M4RHY1,0.996,1,1,"Poly-beta-1,6-n-acetyl-d-glucosamine n-deacetylase"
+A0AAJ4YX04,0.996,1,1,Secretory antigen ssaa
+A0A1S6DSG8,0.996,1,1,Tandem-type lipoprotein
+A0A227LZW5,0.996,1,1,Lipoprotein
+A0A2C6MVP5,0.996,1,1,Beta-channel forming cytolysin
+A0AAJ4YXL0,0.996,1,1,Bifunctional autolysin
+A0AAJ4YXI6,0.996,1,1,Staphopain b
+A0A0D1GQ07,0.996,1,1,Exported protein
+X5DSM8,0.996,1,1,Superantigen-like protein
+W8U414,0.996,1,1,Abc transporter substrate-binding protein
+A0A162H218,0.996,1,1,Immunodominant antigen b
+A0AAE2ZV74,0.996,1,1,"Oligopeptide abc transporter, periplasmic oligopeptide-binding protein oppa"
+A0AAE2ZV88,0.996,1,1,Triacylglycerol lipase
+A0AAE8PAM7,0.996,1,1,High-affinity heme uptake system protein isde
+A0AAE8P9K4,0.996,1,1,"Cysteine abc transporter, substrate-binding protein"
+A0AAE8PDQ6,0.996,1,1,Exotoxin
+W8TMJ4,0.994,1,1,Iron-regulated surface determinant protein c
+A0A068A6G0,0.994,1,1,Chemotaxis inhibitory protein
+A0A0D6G9V6,0.994,1,1,Exotoxin
+A0A0D6GBL1,0.994,1,1,Exotoxin
+A0A068DV34,0.994,1,1,Putative iron(iii) dicitrate transporter binding lipoprotein
+A0A389UCX7,0.994,1,1,Abc-type transporter
+A0A389VJ56,0.994,1,1,Enterotoxin sem
+Q6SV31,0.994,1,1,Alpha-hemolysin
+Q6GI34,0.994,1,1,Glutamyl endopeptidase
+A0A0D6GL09,0.994,1,1,1-phosphatidylinositol phosphodiesterase
+Q9EYL5,0.994,1,1,Disulfide bond protein a
+A0A3A2ISC3,0.994,1,1,Exotoxin
+A0A391A4D9,0.994,1,1,Chemotaxis inhibitory protein
+Q93UU8,0.994,1,1,Bi-component leukocidin luked subunit d
+A0A3M8VBL4,0.994,1,1,Fibrinogen-binding protein
+A0A5D3UEU8,0.994,1,1,"Poly-beta-1,6-n-acetyl-d-glucosamine n-deacetylase"
+A0A3M9GHA5,0.994,1,1,Probable cell wall hydrolase lytn
+Q93PN3,0.994,1,1,Abc transporter substrate-binding protein
+A0A5Q2QJY5,0.994,1,1,Serine protease
+A0A390B6L2,0.994,1,1,"Abc transporter, periplasmic spermidine putrescine-binding protein potd"
+A0A0D6HDR6,0.994,1,1,Serine protease
+A0A641ABA5,0.994,1,1,Tandem-type lipoprotein
+A0A641ABP3,0.994,1,1,Zinc metallopeptidase
+A0A641A9M4,0.994,1,1,Superantigen-like protein ssl10
+A0A641A9L3,0.994,1,1,Superantigen-like protein ssl1
+Q2FVC5,0.994,1,1,Uncharacterized lipoprotein saouhsc_02788
+A0A0D6W7J6,0.994,1,1,Exotoxin
+A0A0D6HQY2,0.994,1,1,Probable cell wall hydrolase lytn
+A0A0D6HF55,0.994,1,1,Serine protease
+A0A2Y1RIG2,0.994,1,1,Staphopain b
+A0A641A8Q8,0.994,1,1,Superantigen-like protein ssl8
+A0A641A7H5,0.994,1,1,Amidase domain-containing protein
+A0A389U7S2,0.994,1,1,Amidase domain-containing protein
+Q53781,0.994,1,1,Serine protease splb
+Q6G8C4,0.994,1,1,Serine protease splf
+Q6GDD3,0.994,1,1,Lipase 1
+Q2FXH4,0.994,1,1,Lpxtg-anchored repetitive surface protein sasc
+A0A9P2YX88,0.994,1,1,Lipoprotein
+A0A0Z0X9F2,0.994,1,1,Serine protease
+A0A9P2YW15,0.994,1,1,High-affinity fe2+/pb2+ permease-like protein
+A0AAX2MI48,0.994,1,1,Secreted von willebrand factor-binding protein
+A8QKD5,0.994,1,1,Neutral metalloproteinase
+P0A0M0,0.994,1,1,Enterotoxin type h
+A0AAE2ZX53,0.994,1,1,Exotoxin
+A0AAE2ZW11,0.994,1,1,Exotoxin
+A0AAJ5CT13,0.994,1,1,Ferrichrome-binding periplasmic protein
+A0AAJ5CTI3,0.994,1,1,Superantigen-like protein
+A0A9Q8DF91,0.994,1,1,"5'-nucleotidase, lipoprotein e(p4) family"
+A0A2C9TXC9,0.994,1,1,Cysteine protease
+A0AAQ1CIB4,0.994,1,1,N-acetylmuramoyl-l-alanine amidase
+A0AAQ1CLX2,0.994,1,1,Mmpl family transporter
+A0AAX2K114,0.994,1,1,Exotoxin 13
+A0AAJ5CU40,0.994,1,1,Leukocidin s subunit
+A0AAE3D5D3,0.994,1,1,Ftr1 family iron permease
+A0A131JSY8,0.994,1,1,"5'-nucleotidase, lipoprotein e(p4) family"
+A0A122JP17,0.994,1,1,Probable cell wall hydrolase lytn
+A0A114AKY3,0.994,1,1,1-phosphatidylinositol phosphodiesterase
+A0AAE2ZUT4,0.994,1,1,"Abc transporter, periplasmic spermidine putrescine-binding protein potd"
+A0AAJ4YZF6,0.994,1,1,Staphopain a
+A0AAE8PAW7,0.994,1,1,Duf4467 domain-containing protein
+A0AAE8TIB6,0.994,1,1,Extracellular ecm and plasma binding protein emp
+A0A1S6DAJ0,0.994,1,1,5'-nucleotidase
+A0A166JMZ6,0.994,1,1,"Abc transporter, periplasmic spermidine putrescine-binding protein potd"
+A0A2C9TL89,0.994,1,1,Cystatin-like fold lipoprotein
+A0A1S5YLW8,0.994,1,1,Leucotoxin lukd
+A0A166EPD7,0.994,1,1,Staphylococcal complement inhibitor
+A0AAE8PCH5,0.994,1,1,Bi-component leukocidin lukgh subunit h
+A0AAE8PAQ7,0.994,1,1,Duf4467 domain-containing protein
+A0AAJ4YVY9,0.994,1,1,Serine protease
+A0A167H2Q7,0.994,1,1,Glycerophosphoryl diester phosphodiesterase
+A0AAE8PDZ2,0.994,1,1,Amidase domain-containing protein
+A0AAE8P9T6,0.994,1,1,Uncharacterized distant relative of cell wall-associated hydrolases
+A0AAE8TIW8,0.994,1,1,Abc transporter substrate-binding protein
+A0AAJ4YUB2,0.994,1,1,Spp1 family prophage l54a
+A0AAJ4YV34,0.994,1,1,"Protein-disulfide isomerase, dsba-like protein"
+A0AAE8TJU8,0.994,1,1,1-phosphatidylinositol phosphodiesterase
+A0AAE8TKC7,0.994,1,1,5'-nucleotidase
+X5EJN4,0.994,1,1,Amino acid abc transporter substrate-binding protein
+X5DST2,0.994,1,1,Iron transporter
+X5E203,0.994,1,1,"Abc transporter, periplasmic spermidine putrescine-binding protein potd"
+A0A090LVV4,0.994,1,1,Abc transporter substrate-binding protein
+W8UY38,0.994,1,1,Thermonuclease
+W8UWT4,0.994,1,1,"Enterotoxin p, phage associated"
+A0A0D1JPY7,0.994,1,1,Zinc metallopeptidase
+A0A0D1HWZ3,0.994,1,1,Disulfide bond formation protein d
+A0A0D3Q4F9,0.992,1,1,Exotoxin
+A0A0D3Q4X2,0.992,1,1,Lipoprotein
+W8U332,0.992,1,1,Chap domain-containing protein
+W8U0F6,0.992,1,1,Cnnm domain-containing protein
+A0A1J0J3G8,0.992,1,1,Chap domain-containing protein
+A0AAE3D601,0.992,1,1,Duf1672 domain-containing protein
+A0AAE8TK97,0.992,1,1,Bi-component leukocidin lukgh subunit g
+A0AAJ4YV78,0.992,1,1,Secretory antigen ssaa
+A0A166Q7R0,0.992,1,1,Fibrinogen-binding protein
+W8U9Q7,0.992,1,1,Exported protein
+A0AAE2ZQ20,0.992,1,1,Abc transporter substrate-binding protein
+A0AAE2ZRT7,0.992,1,1,Zk354.3 domain protein
+A0AAJ5CS60,0.992,1,1,Esterase/lipase
+A0AAJ4YZA4,0.992,1,1,Exotoxin
+A0A162H328,0.992,1,1,Immunoglobulin-binding protein sbi
+A0A131JS96,0.992,1,1,Exported protein
+A0AAJ5CTN7,0.992,1,1,5'-nucleotidase
+A0AAJ5CSE5,0.992,1,1,Lipoprotein
+A0AAE2ZYQ6,0.992,1,1,Enterotoxin
+A0AAE2ZUJ5,0.992,1,1,Bi-component gamma-hemolysin hlgab subunit a
+A0AAE2ZW93,0.992,1,1,"4,4'-diaponeurosporenoate glycosyltransferase"
+A0AAE2ZU90,0.992,1,1,Chap domain-containing protein
+A0AAJ4YYD7,0.992,1,1,Lipoprotein
+A0AAE3D3N5,0.992,1,1,Chap domain-containing protein
+A0A3A3ALE1,0.992,1,1,Bifunctional autolysin
+A0A641A9C5,0.992,1,1,Superantigen-like protein ssl7
+O87491,0.992,1,1,"Iron (fe3+) abc superfamily atp binding cassette transporter, binding protein"
+A0A391DD44,0.992,1,1,"4,4'-diaponeurosporenoate glycosyltransferase"
+A0A390ZN89,0.992,1,1,Exotoxin
+W8TR90,0.992,1,1,Chap domain-containing protein
+A0A090N182,0.992,1,1,Exported protein
+A0A0D3Q6F6,0.992,1,1,Fibrinogen-binding protein
+A0A0D3Q629,0.992,1,1,Duf21 domain-containing protein
+X5DU72,0.992,1,1,Phosphonate abc transporter substrate-binding protein
+Q7DI48,0.992,1,1,"Amino acid abc superfamily atp binding cassette transporter, binding protein"
+Q8VQS9,0.992,1,1,Mntc
+Q9F0L7,0.992,1,1,Extracellular enterotoxin l
+Q99WS0,0.992,1,1,5'-nucleotidase
+A0A4U2KP01,0.992,1,1,Phage holin
+Q6YCN4,0.992,1,1,Enterotoxin
+X5DW82,0.992,1,1,Holin
+A0A3A3AD99,0.992,1,1,Phosphate/phosphite/phosphonate abc transporter substrate-binding protein
+A0A389PZW7,0.992,1,1,Cysteine protease sspb
+Q2FZK7,0.992,1,1,Bifunctional autolysin
+A0A0D6GUE2,0.992,1,1,"4,4'-diaponeurosporenoate glycosyltransferase"
+A0A390BCG4,0.992,1,1,Duf1093-containing protein
+A0A5S9I2G1,0.992,1,1,Staphylococcal enterotoxin type 02
+A0A390W8I0,0.992,1,1,Bi-component leukocidin luked subunit d
+A0A390ZCI1,0.992,1,1,Duf1672 domain-containing protein
+A0A641A684,0.992,1,1,Bi-component leukocidin lukgh subunit g
+A0A390F740,0.992,1,1,Exotoxin
+A0A390U9J4,0.992,1,1,Lipoprotein
+A0A390DBJ6,0.992,1,1,Bi-component leukocidin lukgh subunit g
+A0A0D6HDR3,0.992,1,1,Lipoprotein
+A0A0D6HCK9,0.992,1,1,Bi-component leukocidin lukgh subunit g
+A0A641A3T5,0.992,1,1,Cysteine protease staphopain a
+A0A8G2HYY2,0.992,1,1,Uncharacterized distant relative of cell wall-associated hydrolases
+A0A2S6D767,0.992,1,1,Putative duf1093-containing protein
+A0A0Y9ABM8,0.992,1,1,"4,4'-diaponeurosporenoate glycosyltransferase"
+P0A074,0.992,1,1,Gamma-hemolysin component a
+A0A6A9GVV2,0.992,1,1,Phosphate/phosphite/phosphonate abc transporter substrate-binding protein
+A0A641A7Q5,0.992,1,1,Lpxtg cell wall anchor domain-containing protein
+A0A2W3XW02,0.992,1,1,Iron transporter
+A0A0D6I082,0.992,1,1,Extracellular matrix and plasma binding protein
+A0A641AA78,0.992,1,1,Yxea family protein
+C4B833,0.992,1,1,Staphylocoagulase
+A0A9N8NS69,0.992,1,1,1-phosphatidylinositol phosphodiesterase
+A0A0Z4NNI4,0.992,1,1,Exported protein
+A0A7I0YLT7,0.992,1,1,Duf1093-containing protein
+A0A7U7IED2,0.992,1,1,Collagen adhesin
+A0A8G2M8L9,0.992,1,1,Acid phosphatase
+A0AAJ4YVY6,0.99,1,1,Uncharacterized distant relative of cell wall-associated hydrolases
+A0AAE8PC26,0.99,1,1,Extracellular enterotoxin type i
+W8U7V9,0.99,1,1,Chap domain-containing protein
+Q9ZFS4,0.99,1,1,Exotoxin 5
+Q7BGA5,0.99,1,1,Abc transporter substrate-binding protein
+A0A391DHU9,0.99,1,1,Anaerobic ribonucleoside-triphosphate reductase activating protein
+A0A3A2ILB4,0.99,1,1,Extracellular ecm and plasma binding protein emp
+A0A641A5V3,0.99,1,1,Uncharacterized protein
+A0A389XS11,0.99,1,1,Immunoglobulin-binding protein sbi
+A0A0D6HYB8,0.99,1,1,Extracellular ecm and plasma binding protein emp
+A0A641AAF9,0.99,1,1,Superantigen-like protein ssl9
+Q1XG18,0.99,1,1,Beta-lactamase
+W8UA89,0.99,1,1,Multifunctional fusion protein
+A0AAJ5CSE2,0.99,1,1,Extracellular matrix and plasma binding protein
+A0AAJ4YUY7,0.99,1,1,Multifunctional fusion protein
+A0A166LCU2,0.99,1,1,Chap domain-containing protein
+A0AAJ4YW98,0.99,1,1,Lysm domain protein
+A0A166DEL7,0.99,1,1,Exported protein
+A0A641A6V2,0.99,1,1,Extracellular matrix protein-binding adhesin emp
+Q6GE14,0.99,1,1,Gamma-hemolysin component a
+A0A6B3J2A6,0.99,1,1,Staphylococcal enterotoxin type k
+A0A6B3INW0,0.99,1,1,Staphylococcal enterotoxin type q
+A0A2W3PXW4,0.99,1,1,Lipoprotein
+A0A2S6DCI1,0.99,1,1,Chap domain-containing protein
+A0A0D6WBT7,0.99,1,1,"Orthopoxovirus protein, pf05708 family"
+A0AAJ5CU77,0.99,1,1,Leukocidin f subunit
+A0A2I7YBL5,0.99,1,1,Yfcc family protein
+A0A0Y9RFD4,0.99,1,1,Amidase domain-containing protein
+A0AAX2MNS4,0.99,1,1,Staphopain a
+A0A0U1MMC4,0.99,1,1,Multifunctional fusion protein
+A0A0E8JWI2,0.99,1,1,Cysteine protease
+A0AAX2JZY5,0.99,1,1,Collagen adhesin
+A0A2Y1TBB7,0.988,1,1,Beta-lactamase
+A0A0D3QAF5,0.988,1,1,Immunoglobulin-binding protein sbi
+A0A0C2LK74,0.988,1,1,Abc transporter permease subunit
+A0AAE8TK32,0.988,1,1,Alpha/beta hydrolase
+A0AAE8TJG1,0.988,1,1,Genomic island nu sa alpha2
+A0A166M720,0.988,1,1,Lipoprotein
+A0A218M1Q9,0.988,1,1,D-alanyl-d-alanine carboxypeptidase
+A0AAE2ZU24,0.988,1,1,Serine protease
+A0AAE2ZVL7,0.988,1,1,Immunoglobulin-binding protein sbi
+A0A9Q4UZ21,0.988,1,1,"Cell wall anchored protein, putative"
+A0A2I7YBH6,0.988,1,1,Duf4909 domain-containing protein
+A0A1S6D4V8,0.988,1,1,D-alanyl-d-alanine carboxypeptidase
+A0A641A6Q5,0.988,1,1,Chap domain-containing protein
+A0A0D6GUP8,0.988,1,1,Alpha/beta hydrolase
+A0A641A5U9,0.988,1,1,Duf4909 domain-containing protein
+Q2FC27,0.988,1,1,Beta-lactamase
+A0A641AAE0,0.988,1,1,Uncharacterized protein
+A0A641A8U6,0.988,1,1,Immunoglobulin-binding protein sbi
+P00807,0.988,1,1,Beta-lactamase
+A0A9P3DM65,0.988,1,1,Cell wall-anchored protein
+O85383,0.988,1,1,Enterotoxin type i
+A0A659I881,0.988,1,1,Alpha/beta hydrolase
+A0A181GKX6,0.988,1,1,Penicillin binding protein 4
+A0A9P2Z0D5,0.986,1,1,Ser-asp rich fibrinogen/bone sialoprotein-binding protein sdrh
+A0A2U0IFR6,0.986,1,1,Duf4909 domain-containing protein
+D2J6U4,0.986,1,1,Multi-copper oxidase mco
+Q1XG25,0.986,1,1,Uncharacterized protein
+A0A3A3AIJ1,0.986,1,1,Alpha/beta hydrolase
+A0AAJ5CSS1,0.986,1,1,D-alanyl-d-alanine carboxypeptidase / penicillin binding protein pbp4
+A0AAE8TIR2,0.986,1,1,Anaerobic ribonucleoside-triphosphate reductase activating protein
+A0A2G4VM73,0.986,1,1,High-affinity iron permease
+X5EG17,0.986,1,1,Lipoprotein
+X5E526,0.986,1,1,Chap domain-containing protein
+A0AAE3D5F7,0.986,1,1,Cell wall inhibition responsive protein cwra
+B0I1V8,0.986,1,1,"Bacteriocin, lactococcin 972 family protein"
+A0A641A839,0.986,1,1,Lpxtg cell wall anchor domain-containing protein
+Q2FWN1,0.986,1,1,Membrane anchored protein
+X5E0B5,0.984,1,1,Abc transporter permease
+Q7X0E8,0.984,1,1,Enterotoxin sei variant
+B1Q017,0.984,1,1,Gamma-hemolysin subunit a
+A0A0Z4LY14,0.984,1,1,D-alanyl-d-alanine carboxypeptidase
+Q6G6Q1,0.984,1,1,Gamma-hemolysin component c
+A0A2Y9TTN6,0.984,1,1,"Glycosyl-4,4'-diaponeurosporenoate acyltransferase"
+A0A0D1HKW8,0.984,1,1,"Lipoprotein, putative"
+A0A0D6H001,0.984,1,1,Lipoprotein
+A0A641A794,0.984,1,1,Uncharacterized protein
+A0AAX2K353,0.984,1,1,Extracellular glutamine-binding protein
+A0AAN1ZDM6,0.984,1,1,Transposon-related protein
+A0A2I7YBQ7,0.984,1,1,"Glycosyl-4,4'-diaponeurosporenoate acyltransferase"
+Q07227,0.984,1,1,Gamma-hemolysin component c
+A0A641A9A7,0.984,1,1,Exported protein
+A0AAJ5CTZ3,0.984,1,1,Membrane anchored protein
+A0AAE3D4M0,0.984,1,1,Sdrh family protein
+A0A166QIC8,0.984,1,1,Gamma-hemolysin subunit a
+A0A166N5L1,0.982,1,1,Extracellular glutamine-binding protein
+W8U485,0.982,1,1,Membrane protein insertase yidc
+A0A0D1HLP4,0.982,1,1,Cell wall inhibition responsive protein cwra
+A0AAE8P9H8,0.982,1,1,Lipoprotein
+A0AAJ5CSZ5,0.982,1,1,Lipoprotein
+A0A391A4W5,0.982,1,1,Lipoprotein
+A0A2U0ITS3,0.982,1,1,"Glycosyl-4,4'-diaponeurosporenoate acyltransferase"
+B6V384,0.982,1,1,Lipoprotein
+P0A077,0.982,1,1,Gamma-hemolysin component b
+A0AAJ4YX42,0.982,1,1,"Lipoprotein, putative"
+A0AAE8TIU7,0.982,1,1,Bi-component gamma-hemolysin hlgab/hlgcb subunit b
+A0AAE2ZXD1,0.982,1,1,"Glycosyl-4,4'-diaponeurosporenoate acyltransferase"
+A0A166J6C2,0.982,1,1,Pathogenicity island protein
+A0A513Q6V6,0.982,1,1,Sphingomyelin phosphodiesterase/beta-hemolysin
+W8TV02,0.982,1,1,Holin
+A0A3M7ZM78,0.982,1,1,Bi-component gamma-hemolysin hlgcb subunit c
+A0A3A2IVX8,0.982,1,1,Chap domain-containing protein
+Q57227,0.982,1,1,F component of leucocodin r
+A0A0D3QAT6,0.98,1,1,Membrane protein
+A0A0C6ERT7,0.98,1,1,Duf1514 domain-containing protein
+A0AAJ4YXX9,0.98,1,1,Membrane protein insertase yidc
+A0AAE8P9W0,0.978,1,1,Bi-component gamma-hemolysin hlgcb subunit c
+A0A0D1IH94,0.978,1,1,Membrane protein
+A0AAW4YAX5,0.978,1,1,Duf1514 family protein
+A0A389UAT8,0.978,1,1,Uncharacterized protein
+A0A9P2YYE8,0.978,1,1,Uncharacterized protein
+A0A0E8IMG8,0.978,1,1,Duf1514 domain-containing protein
+A0A6B3IQP6,0.978,1,1,Duf1514 domain-containing protein
+A0AAJ5CSZ9,0.976,1,1,Transposon-related protein
+Q2G260,0.976,1,1,Uncharacterized protein saouhsc_00094
+A0A389NBE8,0.976,1,1,Lipoprotein
+A0AAE2ZSI2,0.976,1,1,Membrane protein
+A0A659ZYI3,0.974,1,1,Lipoprotein
+A0A162H7Z8,0.974,1,1,Feob-associated cys-rich membrane protein
+A0AAE2ZV66,0.974,1,1,Low-complexity protein
+A0A2C9TMN6,0.974,1,1,Exported protein
+A0AAW4Y5F4,0.974,1,1,Exported protein
+A0A3A3AKD2,0.972,1,1,Feob-associated cys-rich membrane protein
+A0A641ACA7,0.972,1,1,Lactococcin 972 family bacteriocin
+X5DWZ3,0.972,1,1,Feob-associated cys-rich membrane protein
+A0A163VMG3,0.968,1,1,Liporotein
+A0AAJ4YZG0,0.968,1,1,Conserved low-complexity protein
+A0A131I431,0.964,1,1,Lipoprotein
+A0A123DH54,0.942,1,1,Phage protein
+A0A2U0IM51,0.902,1,1,Uncharacterized protein
