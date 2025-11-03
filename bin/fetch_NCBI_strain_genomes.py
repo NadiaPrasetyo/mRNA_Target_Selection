@@ -178,6 +178,7 @@ def fetch_complete_genomes_for_taxon(taxon: str) -> list:
         url = f"{API_BASE}/taxon/{requests.utils.quote(taxon)}/dataset_report"
         params = {
             "filters.assembly_level": "complete_genome",
+            "filters.assembly_source": "refseq",
             "page_size": 1000,  # maximum allowed page size
         }
         if next_page_token:
