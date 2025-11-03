@@ -36,228 +36,226 @@ Outputs:
 
 Author: Nadia
 """
-import csv
-import requests
-import os
-import re
-import unicodedata
 import argparse
+import csv
+import logging
+import os
+import random
+import shutil
+import tempfile
+import zipfile
 import time
+import requests
+from tqdm import tqdm
+from functools import wraps
 
-def clean_antigen_name(name):
-    """
-    Clean and standardize the antigen name.
-    Args:
-        name (str): Original antigen name.
-    Returns:
-        str: Cleaned antigen name.
-    """
-    if not isinstance(name, str):
-        return ""
-    name = name.strip()
-    if name.startswith("[") and name.endswith("]"):
-        name = name[1:-1].strip()
-    if name.startswith("'") and name.endswith("'"):
-        name = name[1:-1].strip()
+# ---------------------------
+# Configuration
+# ---------------------------
+API_BASE = "https://api.ncbi.nlm.nih.gov/datasets/v2/genome"
+DEFAULT_THREADS = 4
+DEFAULT_RANDOM_NUM = 5
+RATE_LIMIT_RPS = 5          # 5 requests per second
+MIN_REQUEST_INTERVAL = 1.0 / RATE_LIMIT_RPS
 
-    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
-    name = name.lower()
-    name = re.sub(r'\(.*?\)', '', name)
-    name = re.sub(r'\[.*?\]', '', name)
-    name = re.sub(
-        r'\b(alpha|beta|gamma|delta|epsilon|zeta|theta|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)[ -]?',
-        '', name, flags=re.IGNORECASE
+
+# ---------------------------
+# Rate Limiting Decorator
+# ---------------------------
+
+_last_request_time = 0.0
+
+def rate_limited_request(func):
+    """Decorator to enforce rate limit and retry on 429 responses."""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        global _last_request_time
+        elapsed = time.time() - _last_request_time
+        if elapsed < MIN_REQUEST_INTERVAL:
+            time.sleep(MIN_REQUEST_INTERVAL - elapsed)
+
+        for attempt in range(5):  # up to 5 retries
+            response = func(*args, **kwargs)
+            if response.status_code != 429:
+                _last_request_time = time.time()
+                return response
+
+            retry_after = int(response.headers.get("Retry-After", 2))
+            logging.warning(f"Rate limited (HTTP 429). Retrying after {retry_after}s...")
+            time.sleep(retry_after)
+
+        raise RuntimeError("Exceeded retry limit after repeated 429 responses.")
+    return wrapper
+
+
+@rate_limited_request
+def safe_get(url, **kwargs):
+    """Wrapper around requests.get with rate limiting and retries."""
+    return requests.get(url, **kwargs)
+
+
+# ---------------------------
+# Utilities
+# ---------------------------
+
+def setup_logging():
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(asctime)s] %(levelname)s: %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
     )
-    name = re.split(r'[,/;]', name)[0]
-    name = re.sub(r'\s+', ' ', name).strip()
-    name = re.sub(r'^\W+|\W+$', '', name)
-    return name
 
 
-def fetch_uniprot_data(query, retries=3, delay=5):
-    """Fetch data from UniProt API with retries.
-    Args:
-        query (str): Query string for UniProt API.
-        retries (int): Number of retry attempts on failure.
-        delay (int): Delay in seconds between retries.
-    Returns:
-        dict: JSON response from UniProt API or None if all retries fail.
-    """
-    base_url = "https://rest.uniprot.org/uniprotkb/search"
-    params = {
-        "query": query,
-        "fields": "accession,protein_name,sequence,organism_name,xref_pfam,xref_refseq",
-        "format": "json",
-        "size": 1  # only fetch the top hit
-    }
-
-    for attempt in range(retries):
-        try:
-            response = requests.get(base_url, params=params)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Attempt {attempt + 1} failed: {e}")
-            if attempt < retries - 1:
-                print(f"Retrying in {delay} seconds...")
-                time.sleep(delay)
-            else:
-                print("All retries failed.")
-                return None
+def ensure_dir(path: str):
+    os.makedirs(path, exist_ok=True)
 
 
-def fetch_refseq_nucleotide(refseq_id):
-    """Fetch RefSeq sequence and return bare nucleotide/protein sequence without headers."""
-    base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+def download_and_extract_zip(url: str, accession: str, output_dir: str):
+    """Download a genome ZIP and extract FASTA files."""
+    r = safe_get(url, stream=True, headers={"accept": "application/zip"})
+    r.raise_for_status()
 
-    db = "protein" if refseq_id.startswith(("WP_", "YP_", "NP_")) else "nuccore"
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as tmp:
+        for chunk in r.iter_content(chunk_size=8192):
+            tmp.write(chunk)
+        tmp_path = tmp.name
 
-    params = {
-        "db": db,
-        "id": refseq_id,
-        "rettype": "fasta",
-        "retmode": "text"
-    }
+    with zipfile.ZipFile(tmp_path, "r") as zf:
+        for member in zf.namelist():
+            if member.endswith((".fna", ".faa", ".fasta")):
+                zf.extract(member, output_dir)
+                if member.endswith(".fna"):
+                    shutil.move(
+                        os.path.join(output_dir, member),
+                        os.path.join(output_dir, f"{accession}.fasta")
+                    )
+                elif member.endswith(".faa"):
+                    shutil.move(
+                        os.path.join(output_dir, member),
+                        os.path.join(output_dir, f"{accession}_proteins.fasta")
+                    )
 
-    try:
-        response = requests.get(base_url, params=params)
-        response.raise_for_status()
-        # Remove FASTA headers and newlines
-        lines = response.text.strip().splitlines()
-        seq = "".join(line for line in lines if not line.startswith(">"))
-        return seq
-    except requests.exceptions.RequestException as e:
-        print(f"Failed to fetch RefSeq {refseq_id} from {db}: {e}")
-        return ""
-
-
-def parse_uniprot_response(data):
-    """Parse UniProt API response to extract relevant fields.
-    Args:
-        data (dict): JSON response from UniProt API.
-    Returns:
-        list: List of dictionaries with parsed protein data.
-    """
-    results = []
-    if not data or "results" not in data:
-        return results
-
-    for entry in data.get("results", []):
-        accession = entry.get("primaryAccession", "")
-        protein_name = entry.get("proteinDescription", {}).get("recommendedName", {}).get("fullName", {}).get("value", "")
-        sequence = entry.get("sequence", {}).get("value", "")
-        organism = entry.get("organism", {}).get("scientificName", "")
-        pfam = ";".join([xref["id"] for xref in entry.get("uniProtKBCrossReferences", []) if xref.get("database") == "Pfam"])
-
-        # Only fetch the first RefSeq nucleotide sequence
-        refseq_ids = [xref["id"] for xref in entry.get("uniProtKBCrossReferences", []) if xref.get("database") == "RefSeq"]
-        nucleotide_sequence = ""
-        if refseq_ids:
-            nucleotide_sequence = fetch_refseq_nucleotide(refseq_ids[0])
-
-        results.append({
-            "uniprot_accession": accession,
-            "protein_name": protein_name,
-            "sequence": sequence,
-            "organism_name": organism,
-            "pfam": pfam,
-            "nucleotide_sequence": nucleotide_sequence
-        })
-    return results
+    os.remove(tmp_path)
 
 
-def load_antigen_records(file_path):
-    """Load antigen records from a CSV file.
-    Args:
-        file_path (str): Path to the CSV file.
-    Returns:
-        list: List of dictionaries with antigen data.
-    """
-    records = []
-    with open(file_path, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
+# ---------------------------
+# Fetching genomes
+# ---------------------------
+
+def fetch_complete_genomes_for_taxon(taxon: str) -> list:
+    """Return a list of dicts with assembly info for a taxon at complete genome level."""
+    assemblies = []
+    next_page_token = None
+
+    while True:
+        url = f"{API_BASE}/taxon/{requests.utils.quote(taxon)}/dataset_report"
+        params = {
+            "filters.assembly_level": "complete_genome",
+            "filters.assembly_source": "refseq",
+            "page_size": 1000,
+        }
+        if next_page_token:
+            params["page_token"] = next_page_token
+
+        r = safe_get(url, params=params, headers={"accept": "application/json"})
+        r.raise_for_status()
+        data = r.json()
+        total = data.get("total_count", 0)
+        logging.info(f"Found {total} complete genomes for {taxon}")
+
+        for record in data.get("reports", []):
+            acc = record.get("accession")
+            if acc:
+                assemblies.append({"accession": acc})
+
+        next_page_token = data.get("next_page_token")
+        if not next_page_token:
+            break
+
+    return assemblies
+
+
+def fetch_random_genomes(taxon: str, n: int, output_dir: str):
+    logging.info(f"Fetching list of complete genomes for {taxon}...")
+    assemblies = fetch_complete_genomes_for_taxon(taxon)
+
+    if not assemblies:
+        raise RuntimeError(f"No complete genomes found for {taxon}")
+
+    chosen = random.sample(assemblies, min(n, len(assemblies)))
+    logging.info(f"Selected {len(chosen)} genomes for download.")
+    ensure_dir(output_dir)
+
+    for asm in tqdm(chosen, desc="Downloading"):
+        acc = asm["accession"]
+        url = f"{API_BASE}/accession/{acc}/download?include_annotation_type=GENOME_FASTA&include_annotation_type=PROT_FASTA&hydrated=FULLY_HYDRATED"
+        download_and_extract_zip(url, acc, output_dir)
+
+    logging.info(f"Saved genomes in {output_dir}")
+
+
+def fetch_from_csv(csv_path: str, output_dir: str):
+    ensure_dir(output_dir)
+
+    ids = []
+    with open(csv_path, newline="") as f:
+        reader = csv.DictReader(f)
         for row in reader:
-            antigen = {
-                "antigen_name": clean_antigen_name(row.get("antigen_name", "")),
-                "gene_name": row.get("gene_name", "").strip(),
-                "uniprot_id": row.get("Uniprot_ID", "").strip()
-            }
-            records.append(antigen)
-    return records
+            embl_id = row.get("RefSeq_ID")
+            if embl_id:
+                ids.append(embl_id)
+
+    if not ids:
+        raise RuntimeError("No valid RefSeq IDs found in CSV.")
+
+    logging.info(f"Fetching {len(ids)} genomes from CSV...")
+    for acc in tqdm(ids, desc="Downloading"):
+        url = f"{API_BASE}/accession/{acc}/download?include_annotation_type=GENOME_FASTA&include_annotation_type=PROT_FASTA&hydrated=FULLY_HYDRATED"
+        try:
+            download_and_extract_zip(url, acc, output_dir)
+        except Exception as e:
+            logging.warning(f"Failed to fetch {acc}: {e}")
+
+    logging.info(f"Saved genomes in {output_dir}")
 
 
-def main(pathogen, organism="null", output=None, input=None, fasta=False):
-    """Main function to fetch and compile protein data from UniProt.
-    Args:
-        pathogen (str): Subdirectory under `data/` containing pathogen data.
-        organism (str): Full name of the organism for UniProt queries.
-        output (str): Output CSV file path for compiled protein data.
-        input (str): Input CSV file path with antigen data.
-        fasta (bool): If True, output FASTA files instead of CSV.
-    """
-    pathogen_dir = os.path.join("data", pathogen)
-    organism_tag = organism.replace(" ", "_").lower() if organism.lower() != "null" else "null"
+# ---------------------------
+# Main
+# ---------------------------
 
-    antigens_file = os.path.join(pathogen_dir, input or f"{organism_tag}_compiled_antigens.csv")
-    output_file = os.path.join(pathogen_dir, output or f"{organism_tag}_compiled_proteins.csv")
+def main():
+    parser = argparse.ArgumentParser(description="Fetch NCBI genomes (random or CSV-based).")
+    parser.add_argument("pathogen_dir", help="Output directory under data/")
+    parser.add_argument("--csv_file", nargs="?", help="CSV file with strain names and IDs")
+    parser.add_argument("--threads", type=int, default=DEFAULT_THREADS)
+    parser.add_argument("--random", dest="random_pathogen", help="Fetch random genomes for pathogen")
+    parser.add_argument("--random-num", type=int, default=DEFAULT_RANDOM_NUM)
+    parser.add_argument("--output-dir", help="Output directory (default: pathogen_dir/strain_genomes)", default="strain_genomes")
 
-    if not os.path.exists(antigens_file):
-        print(f"[FATAL] Antigen file not found: {antigens_file}")
-        return
+    args = parser.parse_args()
+    setup_logging()
 
-    antigen_records = load_antigen_records(antigens_file)
-    protein_data = []
-    seen_accessions = set()
+    base_dir = os.path.join("data", args.pathogen_dir)
+    output_dir = os.path.join(base_dir, args.output_dir)
+    ensure_dir(output_dir)
 
-    for record in antigen_records:
-        antigen_name = record.get("antigen_name")
-        gene_name = record.get("gene_name")
-        uniprot_id = record.get("uniprot_id")
+    if args.random_pathogen:
+        fetch_random_genomes(args.random_pathogen, args.random_num, output_dir)
+    else:
+        if not args.csv_file:
+            parser.error("CSV file required when not using --random")
+        csv_path = os.path.join(base_dir, args.csv_file)
+        if not os.path.exists(csv_path):
+            raise FileNotFoundError(f"CSV file not found: {csv_path}")
+        fetch_from_csv(csv_path, output_dir)
 
-        print(f"[INFO] Processing antigen: {antigen_name}, Gene: {gene_name}, UniProt ID: {uniprot_id}")
+    # Cleanup
+    ncbi_tmp_dir = os.path.join(output_dir, "ncbi_dataset")
+    if os.path.exists(ncbi_tmp_dir):
+        shutil.rmtree(ncbi_tmp_dir)
 
-        query = None
-        if uniprot_id:
-            query = f"accession:{uniprot_id}"
-        elif gene_name:
-            query = f"gene:{gene_name}"
-        elif antigen_name:
-            query = f"protein_name:{antigen_name}"
-
-        if organism.lower() != "null" and query:
-            query += f" AND organism_name:\"{organism}\""
-
-        if query:
-            entry = fetch_uniprot_data(query)
-            parsed = parse_uniprot_response(entry)
-            for p in parsed:
-                if p["uniprot_accession"] not in seen_accessions:
-                    protein_data.append(p)
-                    seen_accessions.add(p["uniprot_accession"])
-                    print(f"  [✓] Match: {p['uniprot_accession']}")
-                else:
-                    print("  [WARN] Duplicate entry skipped")
-
-    if not protein_data:
-        print("[WARN] No matching proteins found.")
-        return
-
-    fieldnames = ["uniprot_accession", "protein_name", "sequence", "organism_name", "pfam", "nucleotide_sequence"]
-    with open(output_file, 'w', newline='') as outfile:
-        writer = csv.DictWriter(outfile, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(protein_data)
-
-    print(f"[DONE] Wrote {len(protein_data)} proteins to: {output_file}")
+    logging.info("Done.")
 
 
 if __name__ == "__main__":
-    """Command-line interface for fetching protein sequences from UniProt."""
-    parser = argparse.ArgumentParser(description="Fetch protein sequence and metadata from UniProt based on antigen data.")
-    parser.add_argument("pathogen_directory", help="Directory name under data/")
-    parser.add_argument("pathogen_name", help='Organism name (e.g., "SARS-CoV-2")')
-    parser.add_argument("--output", help="Output CSV file path")
-    parser.add_argument("--input", help="Input antigen CSV file path")
-    args = parser.parse_args()
-
-    main(args.pathogen_directory, args.pathogen_name, output=args.output, input=args.input)
+    main()
