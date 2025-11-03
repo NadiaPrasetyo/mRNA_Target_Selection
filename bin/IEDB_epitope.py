@@ -81,10 +81,14 @@ def is_job_completed(tool_type, input_path, base_output_dir):
         return False
 
     base_name = input_path.stem
+    # e.g. GCA_002989965.2_matched_antigens.fasta
     expected_suffix = ""
+
     # Check for any file that matches the base name and expected suffix
+    # GCA_002989965.2_matched_antigens_mhci_out
+    # GCA_002989965.2_matched_antigens_mhcii
     if tool_type in ["MHCI", "MHCII"]:
-        expected_suffix = "_matched_antigens_mchi" if tool_type == "MHCI" else "_matched_antigens_mchii"
+        expected_suffix = "_mhci_out" if tool_type == "MHCI" else "_mhcii"
 
     # Check for any file that matches the base name and expected suffix
     if tool_type in ["Ellipro", "MixMHC2pred"]:

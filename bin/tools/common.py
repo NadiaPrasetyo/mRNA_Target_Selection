@@ -409,7 +409,7 @@ def check_iedb_tool(base_path):
 
 def remove_invalid_aa(fasta_file: Path) -> Path:
     """
-    Replace invalid amino acids with 'X' (unknown) in the given FASTA file.
+    Remove sequences with nonstandard amino acids from a FASTA file.
 
     Args:
         fasta_file (Path): Path to the FASTA file.
@@ -419,30 +419,30 @@ def remove_invalid_aa(fasta_file: Path) -> Path:
     """
     valid_aa = set("ACDEFGHIKLMNPQRSTVWY")
 
-    with open(fasta_file, "r") as in_f:
-        lines = in_f.readlines()
+    with open(fasta_file) as fin:
+        lines = fin.readlines()
 
-    with open(fasta_file, "w") as out_f:
+    with open(fasta_file, "w") as fout:
         header = None
         seq = ""
-
         for line in lines:
             if line.startswith(">"):
-                # Write previous sequence if any
                 if header and seq:
-                    cleaned_seq = "".join(aa if aa in valid_aa else "X" for aa in seq)
-                    out_f.write(f"{header}\n{cleaned_seq}\n")
+                    if all(aa in valid_aa for aa in seq):
+                        fout.write(f"{header}\n{seq}\n")
+                    else:
+                        logging.warning(f"⚠️ Skipping {header}: contains nonstandard amino acid: {seq}")
                 header = line.strip()
                 seq = ""
             else:
                 seq += line.strip()
 
         # Write last sequence
-        if header and seq:
-            cleaned_seq = "".join(aa if aa in valid_aa else "X" for aa in seq)
-            out_f.write(f"{header}\n{cleaned_seq}\n")
+        if header and seq and all(aa in valid_aa for aa in seq):
+            fout.write(f"{header}\n{seq}\n")
 
     return fasta_file
+
 
 def convert_fasta_to_txt(fasta_files, temp_txt_dir: Path):
     """
