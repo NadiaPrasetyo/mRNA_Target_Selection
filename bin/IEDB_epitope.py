@@ -62,57 +62,45 @@ tool_runners = {
     "DiscoTope": run_discotope.run
 }
 
-def is_job_completed(tool_type, input_path, base_output_dir):
+def is_job_completed(tool_type: str, input_path: Path, base_output_dir: Path) -> bool:
     """
     Check if a job has already been processed by verifying if a result
-    JSON file exists in the tool-specific output directory.
-    Looks for any JSON file that contains the input's base name
-    and ends with the tool suffix.
-    Args:
-        tool_type (str): Type of tool (e.g., "MHCI", "MHCII", "BCell").
-        input_path (Path): Path to the input file.
-        base_output_dir (Path): Base output directory where results are stored.
-    Returns:
-        bool: True if the job has been completed (result file exists), False otherwise.
+    file exists in the tool-specific output directory.
     """
-    subdir = base_output_dir / tool_type.lower()
+    tool = tool_type.lower()
+    subdir = base_output_dir / tool
+    base_name = input_path.stem
+
     if not subdir.exists():
         logging.warning(f"❌ Output directory for {tool_type} does not exist: {subdir}")
         return False
 
-    base_name = input_path.stem
-    # e.g. GCA_002989965.2_matched_antigens.fasta
-    expected_suffix = ""
+    # Define expected filename patterns
+    patterns = {
+        "mhci": [f"{base_name}_mhci_out"],
+        "mhcii": [f"{base_name}_mhcii"],
+        "ellipro": [f"{base_name}*.txt"],
+        "mixmhc2pred": [f"{base_name}*.txt"],
+        "bcell": [f"*.fasta"],
+        "dssp": [f"{base_name}*.dssp"],
+        "protlearn": [f"{base_name}*.csv"],
+        "discotope": [f"*discotope*.csv"],
+    }
 
-    # Check for any file that matches the base name and expected suffix
-    # GCA_002989965.2_matched_antigens_mhci_out
-    # GCA_002989965.2_matched_antigens_mhcii
-    if tool_type in ["MHCI", "MHCII"]:
-        expected_suffix = "_mhci_out" if tool_type == "MHCI" else "_mhcii"
-
-    # Check for any file that matches the base name and expected suffix
-    if tool_type in ["Ellipro", "MixMHC2pred"]:
-        expected_suffix = ".txt"
-
-    if tool_type == "BCell":
+    # Adjust directory paths for special cases
+    if tool == "bcell":
         subdir = subdir / base_name
-        expected_suffix = ".fasta"
-
-    # Check for any file that matches the base name and expected suffix
-    if tool_type == "DSSP":
-        expected_suffix = ".dssp"
-
-    if tool_type in ["ProtLearn"]:
-        expected_suffix = ".csv"
-
-    if tool_type in ["DiscoTope"]:
-        expected_suffix = ".csv"
-        # data/S.aureus/epitope_outputs/discotope/2F68_A0AAE2ZXQ7/output/2F68_A0AAE2ZXQ7_X_discotope3.csv
+    elif tool == "discotope":
         subdir = subdir / base_name / "output"
 
-    for file in subdir.glob(f"*{expected_suffix}"):
-        if base_name in file.stem:
+    expected_patterns = patterns.get(tool, [])
+
+    for pattern in expected_patterns:
+        matches = list(subdir.glob(pattern))
+        if matches:
+            logging.debug(f"✅ Found completed job for {tool_type}: {matches[0].name}")
             return True
+
     return False
 
 def run_predictions_parallel(job_list, output_dir, max_threads):
