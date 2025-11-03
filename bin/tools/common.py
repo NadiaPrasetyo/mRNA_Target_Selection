@@ -409,30 +409,38 @@ def check_iedb_tool(base_path):
 
 def remove_invalid_aa(fasta_file: Path) -> Path:
     """
-    Remove invalid amino acid characters from the given sequence.
+    Replace invalid amino acids with 'X' (unknown) in the given FASTA file.
 
     Args:
-        seq (str): Protein sequence to validate.
-    Allowed character lower and uppercase amino acids:
-    {'D', 'R', 'W', 'P', 'G', 'T', 'S', 'C', 'H', 'I', 'Y', 'A', 'Q', 'V', 'N', 'E', 'L', 'M', 'F', 'K'}
+        fasta_file (Path): Path to the FASTA file.
 
     Returns:
-        fasta_file (Path): Path to the cleaned FASTA file.
+        Path: Path to the cleaned FASTA file (same as input).
     """
     valid_aa = set("ACDEFGHIKLMNPQRSTVWY")
+
     with open(fasta_file, "r") as in_f:
         lines = in_f.readlines()
 
     with open(fasta_file, "w") as out_f:
-        for i in range(0, len(lines), 2):
-            header = lines[i].strip()
-            seq = lines[i + 1].strip()
-            if seq and all(aa in valid_aa for aa in seq):
-                out_f.write(f"{header}\n{seq}\n")
+        header = None
+        seq = ""
+
+        for line in lines:
+            if line.startswith(">"):
+                # Write previous sequence if any
+                if header and seq:
+                    cleaned_seq = "".join(aa if aa in valid_aa else "X" for aa in seq)
+                    out_f.write(f"{header}\n{cleaned_seq}\n")
+                header = line.strip()
+                seq = ""
             else:
-                invalid_aa = set(seq) - valid_aa
-                logging.warning(f"Skipping invalid amino acids found in sequence for {header}: invalid aa = {invalid_aa}")
-                continue
+                seq += line.strip()
+
+        # Write last sequence
+        if header and seq:
+            cleaned_seq = "".join(aa if aa in valid_aa else "X" for aa in seq)
+            out_f.write(f"{header}\n{cleaned_seq}\n")
 
     return fasta_file
 

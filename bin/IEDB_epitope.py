@@ -84,7 +84,7 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     expected_suffix = ""
     # Check for any file that matches the base name and expected suffix
     if tool_type in ["MHCI", "MHCII"]:
-        expected_suffix = ".xls"
+        expected_suffix = "_matched_antigens_mchi" if tool_type == "MHCI" else "_matched_antigens_mchii"
 
     # Check for any file that matches the base name and expected suffix
     if tool_type in ["Ellipro", "MixMHC2pred"]:
@@ -93,9 +93,6 @@ def is_job_completed(tool_type, input_path, base_output_dir):
     if tool_type == "BCell":
         subdir = subdir / base_name
         expected_suffix = ".fasta"
-        if not subdir.exists():
-            logging.warning(f"❌ Output directory for {tool_type} does not exist: {subdir}")
-            return False
 
     # Check for any file that matches the base name and expected suffix
     if tool_type == "DSSP":
@@ -108,9 +105,6 @@ def is_job_completed(tool_type, input_path, base_output_dir):
         expected_suffix = ".csv"
         # data/S.aureus/epitope_outputs/discotope/2F68_A0AAE2ZXQ7/output/2F68_A0AAE2ZXQ7_X_discotope3.csv
         subdir = subdir / base_name / "output"
-        if not subdir.exists():
-            logging.warning(f"❌ Output directory for {tool_type} does not exist: {subdir}")
-            return False
 
     for file in subdir.glob(f"*{expected_suffix}"):
         if base_name in file.stem:
