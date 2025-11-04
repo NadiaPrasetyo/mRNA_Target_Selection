@@ -1,0 +1,6 @@
+[2025-11-04 13:51:24,690] Single-chain mode set, will predict PDBs as single chains
+[2025-11-04 13:51:24,692] Single PDB file input (2AIZ_P10324), extracting single chains to data/H.influenzae/epitope_outputs/discotope/2AIZ_P10324/input_chains
+[2025-11-04 13:51:25,505] Found 2 extracted single chains in data/H.influenzae/epitope_outputs/discotope/2AIZ_P10324/input_chains
+[2025-11-04 13:51:32,406] Note: Skipping 2AIZ_P10324_U, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-11-04 13:51:32,409] Note: Skipping 2AIZ_P10324_P, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-11-04 13:51:32,426] Error: No PDB files were valid. Please check input PDBs.

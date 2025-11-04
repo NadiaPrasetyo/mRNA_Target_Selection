@@ -1,0 +1,15 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,P44297_AF,A,46,53,KSLIENQE,8,0.806,Linear
+2,P44297_AF,A,75,94,NNLAIESDEILEQDFHYYDE,20,0.745,Linear
+3,P44297_AF,A,1,11,MDFQFTHYQGN,11,0.713,Linear
+4,P44297_AF,A,32,36,RSNSD,5,0.638,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,P44297_AF,A:D88, A:H90, A:Y91,3,0.906,Discontinous
+2,P44297_AF,A:T6, A:H7, A:G10, A:N11,4,0.833,Discontinous
+3,P44297_AF,A:F115, A:I116, A:A117,3,0.772,Discontinous
+4,P44297_AF,A:N75, A:N76, A:L77, A:A78, A:I79, A:E80, A:S81, A:D82, A:E83,9,0.751,Discontinous
+5,P44297_AF,A:S47, A:L48, A:I49, A:E50, A:N51, A:Q52, A:E53, A:N66, A:A67, A:D68,10,0.744,Discontinous
+6,P44297_AF,A:V31, A:R32, A:S33, A:N34, A:S35, A:D36,6,0.561,Discontinous
+7,P44297_AF,A:G58, A:T59, A:E60,3,0.547,Discontinous
+8,P44297_AF,A:M1, A:D2, A:S17, A:M18, A:D93, A:E94, A:E95, A:S96,8,0.521,Discontinous

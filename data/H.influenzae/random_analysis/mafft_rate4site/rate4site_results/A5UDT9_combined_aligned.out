@@ -1,0 +1,73 @@
+#Rates were calculated using Maximim Likelihood
+#The likelihood of the data given the tree is: 
+#LL=-180.318
+#SEQ: the amino acid in the reference sequence in one letter code.
+#SCORE: The conservation scores. lower value = higher conservation.
+#MSA DATA: The number of aligned sequences having an amino acid (non-gapped) from the overall number of sequences at each position.
+
+#POS SEQ  SCORE     MSA DATA
+1    M    -0.2801   5/5
+2    K    -0.4245   5/5
+3    A    -0.2801   5/5
+4    Q    -0.2801   5/5
+5    D    -0.2801   5/5
+6    L    -0.2801   5/5
+7    R    -0.2801   5/5
+8    T    -0.2801   5/5
+9    K    -0.4245   5/5
+10   S    -0.2801   5/5
+11   V    3.3747    5/5
+12   E    -0.2801   5/5
+13   E    -0.2801   5/5
+14   L    -0.2801   5/5
+15   N    -0.2801   5/5
+16   A    -0.2801   5/5
+17   E    -0.2801   5/5
+18   L    -0.2801   5/5
+19   V    3.3747    5/5
+20   N    -0.2801   5/5
+21   L    -0.2801   5/5
+22   L    -0.2801   5/5
+23   G    -0.2801   5/5
+24   E    -0.2801   5/5
+25   Q    -0.2801   5/5
+26   F    -0.2801   5/5
+27   K    -0.4245   5/5
+28   L    -0.2801   5/5
+29   R    -0.2801   5/5
+30   M    -0.2801   5/5
+31   Q    -0.2801   5/5
+32   T    -0.2801   5/5
+33   A    -0.2801   5/5
+34   T    -0.2801   5/5
+35   G    -0.2801   5/5
+36   Q    -0.2801   5/5
+37   L    -0.2801   5/5
+38   Q    -0.2801   5/5
+39   Q    -0.2801   5/5
+40   T    -0.2801   5/5
+41   H    -0.1615   5/5
+42   Q    -0.2801   5/5
+43   A    -0.2801   5/5
+44   K    -0.4245   5/5
+45   Q    -0.2801   5/5
+46   V    3.3747    5/5
+47   R    -0.2801   5/5
+48   R    -0.2801   5/5
+49   D    -0.2801   5/5
+50   I    -0.1612   5/5
+51   A    -0.2801   5/5
+52   R    -0.2801   5/5
+53   V    3.3747    5/5
+54   K    -0.4245   5/5
+55   T    -0.2801   5/5
+56   V    3.3747    5/5
+57   L    -0.2801   5/5
+58   T    -0.2801   5/5
+59   E    -0.2801   5/5
+60   K    -0.4245   5/5
+61   A    -0.2801   5/5
+62   G    -0.2801   5/5
+63   E    -0.2801   5/5
+#Average = 0.0000
+#Standard Deviation = 1.0000

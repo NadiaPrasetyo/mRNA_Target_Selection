@@ -1,0 +1,818 @@
+##gff-version 3
+# antigen_53|Q06282|Glycerophosphodiester|VTP70100.1|tpos:1-364 Length: 364
+# antigen_53|Q06282|Glycerophosphodiester|VTP70100.1|tpos:1-364 Number of predicted TMRs: 0
+antigen_53|Q06282|Glycerophosphodiester|VTP70100.1|tpos:1-364	signal	1	18				
+antigen_53|Q06282|Glycerophosphodiester|VTP70100.1|tpos:1-364	outside	19	364				
+//
+# antigen_42|P45043|Xylose|VTP70299.1|tpos:238-330 Length: 93
+# antigen_42|P45043|Xylose|VTP70299.1|tpos:238-330 Number of predicted TMRs: 0
+antigen_42|P45043|Xylose|VTP70299.1|tpos:238-330	inside	1	93				
+//
+# antigen_46|P45125|UvrABC|VTP77326.1|tpos:1-679 Length: 679
+# antigen_46|P45125|UvrABC|VTP77326.1|tpos:1-679 Number of predicted TMRs: 0
+antigen_46|P45125|UvrABC|VTP77326.1|tpos:1-679	inside	1	679				
+//
+# antigen_11|P43867|ATP-dependent|VTP70214.1|tpos:1-193 Length: 193
+# antigen_11|P43867|ATP-dependent|VTP70214.1|tpos:1-193 Number of predicted TMRs: 0
+antigen_11|P43867|ATP-dependent|VTP70214.1|tpos:1-193	inside	1	193				
+//
+# antigen_15|P44016|Putative|VTP70950.1|tpos:1-632 Length: 632
+# antigen_15|P44016|Putative|VTP70950.1|tpos:1-632 Number of predicted TMRs: 17
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	1	10				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	11	25				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	26	45				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	46	62				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	63	73				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	74	89				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	90	127				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	128	145				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	146	170				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	171	180				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	181	181				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	182	202				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	203	228				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	229	247				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	248	279				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	280	300				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	301	310				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	311	336				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	337	344				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	345	365				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	366	378				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	379	392				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	393	419				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	420	440				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	441	482				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	483	503				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	504	509				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	510	520				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	521	521				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	522	542				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	543	563				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	564	584				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	outside	585	606				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	TMhelix	607	628				
+antigen_15|P44016|Putative|VTP70950.1|tpos:1-632	inside	629	632				
+//
+# antigen_69|A0A0D6FQ88||VTP70116.1|tpos:1-274 Length: 274
+# antigen_69|A0A0D6FQ88||VTP70116.1|tpos:1-274 Number of predicted TMRs: 0
+antigen_69|A0A0D6FQ88||VTP70116.1|tpos:1-274	signal	1	20				
+antigen_69|A0A0D6FQ88||VTP70116.1|tpos:1-274	outside	21	274				
+//
+# antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361 Length: 361
+# antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361 Number of predicted TMRs: 16
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	signal	1	20				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	21	32				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	33	44				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	45	55				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	56	69				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	70	77				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	78	89				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	90	103				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	104	112				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	113	117				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	118	125				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	126	150				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	151	159				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	160	164				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	165	172				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	173	200				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	201	207				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	208	212				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	213	220				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	221	241				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	242	248				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	249	255				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	256	263				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	264	274				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	275	283				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	284	288				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	289	298				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	299	310				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	311	319				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	320	324				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	325	334				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	outside	335	350				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	Beta sheet	351	359				
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	periplasm	360	361				
+//
+# antigen_75|M4PH69||VTP73010.1|tpos:17-149 Length: 133
+# antigen_75|M4PH69||VTP73010.1|tpos:17-149 Number of predicted TMRs: 0
+antigen_75|M4PH69||VTP73010.1|tpos:17-149	outside	1	133				
+//
+# antigen_47|P45200|Probable|VTP76515.1|tpos:1-251 Length: 251
+# antigen_47|P45200|Probable|VTP76515.1|tpos:1-251 Number of predicted TMRs: 0
+antigen_47|P45200|Probable|VTP76515.1|tpos:1-251	inside	1	251				
+//
+# antigen_49|P71354|Trk|VTP70802.1|tpos:1-458 Length: 458
+# antigen_49|P71354|Trk|VTP70802.1|tpos:1-458 Number of predicted TMRs: 0
+antigen_49|P71354|Trk|VTP70802.1|tpos:1-458	inside	1	458				
+//
+# antigen_9|P43840|Outer|VTP74052.1|tpos:1-358 Length: 358
+# antigen_9|P43840|Outer|VTP74052.1|tpos:1-358 Number of predicted TMRs: 8
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	signal	1	21				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	periplasm	22	28				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	29	36				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	outside	37	65				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	66	72				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	periplasm	73	81				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	82	88				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	outside	89	111				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	112	119				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	periplasm	120	125				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	126	133				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	outside	134	163				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	164	171				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	periplasm	172	177				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	178	184				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	outside	185	210				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	Beta sheet	211	218				
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	periplasm	219	358				
+//
+# antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314 Length: 314
+# antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314 Number of predicted TMRs: 10
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	inside	1	11				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	12	27				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	outside	28	40				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	41	61				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	inside	62	81				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	82	97				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	outside	98	104				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	105	125				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	inside	126	140				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	141	156				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	outside	157	167				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	168	182				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	inside	183	200				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	201	216				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	outside	217	226				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	227	245				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	inside	246	255				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	256	271				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	outside	272	283				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	TMhelix	284	307				
+antigen_32|P44741|Tellurite|VTP70319.1|tpos:1-314	inside	308	314				
+//
+# antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459 Length: 1445
+# antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459 Number of predicted TMRs: 12
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	signal	1	11				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	periplasm	12	1198				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1199	1206				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	outside	1207	1221				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1222	1231				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	periplasm	1232	1236				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1237	1245				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	outside	1246	1260				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1261	1270				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	periplasm	1271	1274				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1275	1285				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	outside	1286	1302				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1303	1312				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	periplasm	1313	1319				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1320	1328				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	outside	1329	1350				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1351	1360				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	periplasm	1361	1371				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1372	1381				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	outside	1382	1404				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1405	1412				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	periplasm	1413	1417				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1418	1427				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	outside	1428	1432				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	Beta sheet	1433	1444				
+antigen_66|A0A2S9RP42||VTP72358.1|tpos:15-1459	periplasm	1445	1445				
+//
+# antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393 Length: 393
+# antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393 Number of predicted TMRs: 4
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	inside	1	24				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	TMhelix	25	48				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	outside	49	261				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	TMhelix	262	282				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	inside	283	308				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	TMhelix	309	336				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	outside	337	356				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	TMhelix	357	377				
+antigen_18|P44252|Lipoprotein-releasing|VTP76874.1|tpos:1-393	inside	378	393				
+//
+# antigen_65|A0A2S9RQN3|Lipooligosaccharide|VTP78296.1|tpos:1-346 Length: 346
+# antigen_65|A0A2S9RQN3|Lipooligosaccharide|VTP78296.1|tpos:1-346 Number of predicted TMRs: 0
+antigen_65|A0A2S9RQN3|Lipooligosaccharide|VTP78296.1|tpos:1-346	inside	1	346				
+//
+# antigen_70|P46024|Outer|VTP69674.1|tpos:1-792 Length: 792
+# antigen_70|P46024|Outer|VTP69674.1|tpos:1-792 Number of predicted TMRs: 16
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	signal	1	19				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	20	421				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	422	427				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	428	436				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	437	442				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	443	452				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	453	459				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	460	464				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	465	470				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	471	482				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	483	488				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	489	506				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	507	513				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	514	523				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	524	530				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	531	561				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	562	568				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	569	584				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	585	594				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	595	600				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	601	608				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	609	621				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	622	630				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	631	684				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	685	693				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	694	709				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	710	718				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	719	749				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	750	757				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	758	764				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	765	772				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	outside	773	782				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	Beta sheet	783	788				
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	periplasm	789	792				
+//
+# antigen_4|P43739|DNA-directed|VTP70325.1|tpos:1-1410 Length: 1410
+# antigen_4|P43739|DNA-directed|VTP70325.1|tpos:1-1410 Number of predicted TMRs: 0
+antigen_4|P43739|DNA-directed|VTP70325.1|tpos:1-1410	inside	1	1410				
+//
+# antigen_19|P44318|Exodeoxyribonuclease|VTP73598.1|tpos:1-267 Length: 267
+# antigen_19|P44318|Exodeoxyribonuclease|VTP73598.1|tpos:1-267 Number of predicted TMRs: 0
+antigen_19|P44318|Exodeoxyribonuclease|VTP73598.1|tpos:1-267	inside	1	267				
+//
+# antigen_24|P44447|Putative|VTP74290.1|tpos:1-261 Length: 261
+# antigen_24|P44447|Putative|VTP74290.1|tpos:1-261 Number of predicted TMRs: 0
+antigen_24|P44447|Putative|VTP74290.1|tpos:1-261	inside	1	261				
+//
+# antigen_25|P44504|Homoserine|VTP77912.1|tpos:1-314 Length: 314
+# antigen_25|P44504|Homoserine|VTP77912.1|tpos:1-314 Number of predicted TMRs: 0
+antigen_25|P44504|Homoserine|VTP77912.1|tpos:1-314	inside	1	314				
+//
+# antigen_6|P43767|DNA|VTP69536.1|tpos:10-368 Length: 359
+# antigen_6|P43767|DNA|VTP69536.1|tpos:10-368 Number of predicted TMRs: 0
+antigen_6|P43767|DNA|VTP69536.1|tpos:10-368	inside	1	359				
+//
+# antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150 Length: 150
+# antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150 Number of predicted TMRs: 3
+antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150	outside	1	13				
+antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150	TMhelix	14	32				
+antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150	inside	33	61				
+antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150	TMhelix	62	82				
+antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150	outside	83	103				
+antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150	TMhelix	104	124				
+antigen_2|P43008|Biopolymer|VTP72389.1|tpos:1-150	inside	125	150				
+//
+# antigen_63|P45996|Outer|VTP74052.1|tpos:1-358 Length: 358
+# antigen_63|P45996|Outer|VTP74052.1|tpos:1-358 Number of predicted TMRs: 8
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	signal	1	21				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	periplasm	22	28				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	29	36				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	outside	37	65				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	66	72				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	periplasm	73	81				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	82	88				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	outside	89	111				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	112	119				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	periplasm	120	125				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	126	133				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	outside	134	163				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	164	171				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	periplasm	172	177				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	178	184				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	outside	185	210				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	Beta sheet	211	218				
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	periplasm	219	358				
+//
+# antigen_50|P71392|Protein|VTP76762.1|tpos:80-346 Length: 267
+# antigen_50|P71392|Protein|VTP76762.1|tpos:80-346 Number of predicted TMRs: 0
+antigen_50|P71392|Protein|VTP76762.1|tpos:80-346	inside	1	267				
+//
+# antigen_54|Q48214|Uncharacterized|VTP77154.1|tpos:1-291 Length: 291
+# antigen_54|Q48214|Uncharacterized|VTP77154.1|tpos:1-291 Number of predicted TMRs: 0
+antigen_54|Q48214|Uncharacterized|VTP77154.1|tpos:1-291	inside	1	291				
+//
+# antigen_64|A0AB37B1K1||VTP74684.1|tpos:1-284 Length: 284
+# antigen_64|A0AB37B1K1||VTP74684.1|tpos:1-284 Number of predicted TMRs: 0
+antigen_64|A0AB37B1K1||VTP74684.1|tpos:1-284	signal	1	18				
+antigen_64|A0AB37B1K1||VTP74684.1|tpos:1-284	outside	19	284				
+//
+# antigen_67|P46027|Outer|VTP73144.1|tpos:1-361 Length: 361
+# antigen_67|P46027|Outer|VTP73144.1|tpos:1-361 Number of predicted TMRs: 16
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	signal	1	20				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	21	32				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	33	44				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	45	55				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	56	69				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	70	77				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	78	89				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	90	103				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	104	112				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	113	117				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	118	125				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	126	150				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	151	159				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	160	164				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	165	172				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	173	200				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	201	207				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	208	212				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	213	220				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	221	241				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	242	248				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	249	255				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	256	263				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	264	274				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	275	283				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	284	288				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	289	298				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	299	310				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	311	319				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	320	324				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	325	334				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	outside	335	350				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	Beta sheet	351	359				
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	periplasm	360	361				
+//
+# antigen_68|P10641|Outer|VTP72878.1|tpos:1-449 Length: 449
+# antigen_68|P10641|Outer|VTP72878.1|tpos:1-449 Number of predicted TMRs: 14
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	signal	1	22				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	23	66				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	67	72				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	outside	73	110				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	111	117				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	118	125				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	126	132				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	outside	133	157				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	158	165				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	166	173				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	174	181				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	outside	182	238				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	239	247				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	248	253				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	254	261				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	outside	262	291				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	292	300				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	301	306				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	307	314				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	outside	315	344				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	345	352				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	353	359				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	360	365				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	outside	366	385				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	386	393				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	394	398				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	399	407				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	outside	408	440				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	Beta sheet	441	447				
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	periplasm	448	449				
+//
+# antigen_71|A0A2S9RZ43|Molybdopterin-synthase|VTP75953.1|tpos:1-243 Length: 243
+# antigen_71|A0A2S9RZ43|Molybdopterin-synthase|VTP75953.1|tpos:1-243 Number of predicted TMRs: 0
+antigen_71|A0A2S9RZ43|Molybdopterin-synthase|VTP75953.1|tpos:1-243	inside	1	243				
+//
+# antigen_8|P43839|Outer|VTP73144.1|tpos:1-361 Length: 361
+# antigen_8|P43839|Outer|VTP73144.1|tpos:1-361 Number of predicted TMRs: 16
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	signal	1	20				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	21	32				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	33	44				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	45	55				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	56	69				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	70	77				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	78	89				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	90	103				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	104	112				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	113	117				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	118	125				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	126	150				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	151	159				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	160	164				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	165	172				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	173	200				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	201	207				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	208	212				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	213	220				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	221	241				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	242	248				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	249	255				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	256	263				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	264	274				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	275	283				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	284	288				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	289	298				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	299	310				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	311	319				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	320	324				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	325	334				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	outside	335	350				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	Beta sheet	351	359				
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	periplasm	360	361				
+//
+# antigen_10|P43847|Phosphoribosylformylglycinamidine|VTP70050.1|tpos:1-1297 Length: 1297
+# antigen_10|P43847|Phosphoribosylformylglycinamidine|VTP70050.1|tpos:1-1297 Number of predicted TMRs: 0
+antigen_10|P43847|Phosphoribosylformylglycinamidine|VTP70050.1|tpos:1-1297	inside	1	1297				
+//
+# antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230 Length: 230
+# antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230 Number of predicted TMRs: 8
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	outside	1	3				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	4	24				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	inside	25	61				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	62	79				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	outside	80	83				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	84	104				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	inside	105	110				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	111	125				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	outside	126	137				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	138	155				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	inside	156	168				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	169	179				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	outside	180	182				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	183	201				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	inside	202	208				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	TMhelix	209	225				
+antigen_30|P44620|Prepilin|VTP72643.1|tpos:1-230	outside	226	230				
+//
+# antigen_34|P44769|Carbamate|VTP70742.1|tpos:1-310 Length: 310
+# antigen_34|P44769|Carbamate|VTP70742.1|tpos:1-310 Number of predicted TMRs: 0
+antigen_34|P44769|Carbamate|VTP70742.1|tpos:1-310	inside	1	310				
+//
+# antigen_59|Q57427|Putative|VTP77771.1|tpos:1-260 Length: 260
+# antigen_59|Q57427|Putative|VTP77771.1|tpos:1-260 Number of predicted TMRs: 0
+antigen_59|Q57427|Putative|VTP77771.1|tpos:1-260	inside	1	260				
+//
+# antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587 Length: 587
+# antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587 Number of predicted TMRs: 6
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	inside	1	28				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	TMhelix	29	49				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	outside	50	73				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	TMhelix	74	95				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	inside	96	145				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	TMhelix	146	166				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	outside	167	170				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	TMhelix	171	193				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	inside	194	253				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	TMhelix	254	274				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	outside	275	291				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	TMhelix	292	313				
+antigen_22|P44407|ATP-dependent|VTP73476.1|tpos:1-587	inside	314	587				
+//
+# antigen_26|P44536|GTPase|VTP73167.1|tpos:1-504 Length: 504
+# antigen_26|P44536|GTPase|VTP73167.1|tpos:1-504 Number of predicted TMRs: 0
+antigen_26|P44536|GTPase|VTP73167.1|tpos:1-504	inside	1	504				
+//
+# antigen_61|Q8GM74||VTP74384.1|tpos:1294-2797 Length: 1504
+# antigen_61|Q8GM74||VTP74384.1|tpos:1294-2797 Number of predicted TMRs: 0
+antigen_61|Q8GM74||VTP74384.1|tpos:1294-2797	outside	1	1504				
+//
+# antigen_76|Q71BF9||VTP72450.1|tpos:1-918 Length: 918
+# antigen_76|Q71BF9||VTP72450.1|tpos:1-918 Number of predicted TMRs: 0
+antigen_76|Q71BF9||VTP72450.1|tpos:1-918	signal	1	21				
+antigen_76|Q71BF9||VTP72450.1|tpos:1-918	periplasm	22	918				
+//
+# antigen_3|P43738|DNA-directed|VTP70329.1|tpos:1-1343 Length: 1343
+# antigen_3|P43738|DNA-directed|VTP70329.1|tpos:1-1343 Number of predicted TMRs: 0
+antigen_3|P43738|DNA-directed|VTP70329.1|tpos:1-1343	inside	1	1343				
+//
+# antigen_28|P44606|tRNA-dihydrouridine(16)|VTP72493.1|tpos:1-310 Length: 310
+# antigen_28|P44606|tRNA-dihydrouridine(16)|VTP72493.1|tpos:1-310 Number of predicted TMRs: 0
+antigen_28|P44606|tRNA-dihydrouridine(16)|VTP72493.1|tpos:1-310	inside	1	310				
+//
+# antigen_33|P44766|Peptidase|VTP70707.1|tpos:1-210 Length: 210
+# antigen_33|P44766|Peptidase|VTP70707.1|tpos:1-210 Number of predicted TMRs: 0
+antigen_33|P44766|Peptidase|VTP70707.1|tpos:1-210	inside	1	210				
+//
+# antigen_60|Q8KHG5||VTP72358.1|tpos:70-596 Length: 527
+# antigen_60|Q8KHG5||VTP72358.1|tpos:70-596 Number of predicted TMRs: 0
+antigen_60|Q8KHG5||VTP72358.1|tpos:70-596	signal	1	10				
+antigen_60|Q8KHG5||VTP72358.1|tpos:70-596	periplasm	11	527				
+//
+# antigen_39|P44987|Biotin|VTP79082.1|tpos:1-333 Length: 333
+# antigen_39|P44987|Biotin|VTP79082.1|tpos:1-333 Number of predicted TMRs: 0
+antigen_39|P44987|Biotin|VTP79082.1|tpos:1-333	inside	1	333				
+//
+# antigen_41|P45042|Lipooligosaccharide|VTP78296.1|tpos:1-346 Length: 346
+# antigen_41|P45042|Lipooligosaccharide|VTP78296.1|tpos:1-346 Number of predicted TMRs: 0
+antigen_41|P45042|Lipooligosaccharide|VTP78296.1|tpos:1-346	inside	1	346				
+//
+# antigen_36|P44836|Probable|VTP70206.1|tpos:1-64 Length: 64
+# antigen_36|P44836|Probable|VTP70206.1|tpos:1-64 Number of predicted TMRs: 0
+antigen_36|P44836|Probable|VTP70206.1|tpos:1-64	signal	1	24				
+antigen_36|P44836|Probable|VTP70206.1|tpos:1-64	outside	25	64				
+//
+# antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221 Length: 221
+# antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221 Number of predicted TMRs: 5
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	outside	1	7				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	TMhelix	8	36				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	inside	37	48				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	TMhelix	49	70				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	outside	71	86				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	TMhelix	87	106				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	inside	107	146				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	TMhelix	147	162				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	outside	163	184				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	TMhelix	185	206				
+antigen_44|P45090|Arginine|VTP74234.1|tpos:1-221	inside	207	221				
+//
+# antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269 Length: 269
+# antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269 Number of predicted TMRs: 6
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	inside	1	28				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	TMhelix	29	49				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	outside	50	90				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	TMhelix	91	108				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	inside	109	127				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	TMhelix	128	148				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	outside	149	167				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	TMhelix	168	188				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	inside	189	198				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	TMhelix	199	223				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	outside	224	227				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	TMhelix	228	257				
+antigen_29|P44608|UPF0761|VTP72526.1|tpos:1-269	inside	258	269				
+//
+# antigen_31|P44680|ATP-dependent|VTP72972.1|tpos:1-640 Length: 640
+# antigen_31|P44680|ATP-dependent|VTP72972.1|tpos:1-640 Number of predicted TMRs: 0
+antigen_31|P44680|ATP-dependent|VTP72972.1|tpos:1-640	inside	1	640				
+//
+# antigen_38|P44976|4-hydroxy-3-methylbut-2-enyl|VTP79113.1|tpos:1-314 Length: 314
+# antigen_38|P44976|4-hydroxy-3-methylbut-2-enyl|VTP79113.1|tpos:1-314 Number of predicted TMRs: 0
+antigen_38|P44976|4-hydroxy-3-methylbut-2-enyl|VTP79113.1|tpos:1-314	inside	1	314				
+//
+# antigen_40|P45018|ATP-dependent|VTP78499.1|tpos:1-1303 Length: 1303
+# antigen_40|P45018|ATP-dependent|VTP78499.1|tpos:1-1303 Number of predicted TMRs: 0
+antigen_40|P45018|ATP-dependent|VTP78499.1|tpos:1-1303	inside	1	1303				
+//
+# antigen_51|P71398|Lsg|VTP77160.1|tpos:1-257 Length: 257
+# antigen_51|P71398|Lsg|VTP77160.1|tpos:1-257 Number of predicted TMRs: 0
+antigen_51|P71398|Lsg|VTP77160.1|tpos:1-257	inside	1	257				
+//
+# antigen_14|P44003|Uncharacterized|VTP71644.1|tpos:1-125 Length: 125
+# antigen_14|P44003|Uncharacterized|VTP71644.1|tpos:1-125 Number of predicted TMRs: 0
+antigen_14|P44003|Uncharacterized|VTP71644.1|tpos:1-125	inside	1	125				
+//
+# antigen_17|P44233|Mu-like|VTP78646.1|tpos:4-471 Length: 468
+# antigen_17|P44233|Mu-like|VTP78646.1|tpos:4-471 Number of predicted TMRs: 0
+antigen_17|P44233|Mu-like|VTP78646.1|tpos:4-471	outside	1	468				
+//
+# antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788 Length: 788
+# antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788 Number of predicted TMRs: 13
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	inside	1	4				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	5	22				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	outside	23	29				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	30	46				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	inside	47	50				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	51	65				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	outside	66	227				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	228	246				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	inside	247	261				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	262	279				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	outside	280	287				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	288	298				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	inside	299	307				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	308	321				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	outside	322	330				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	331	345				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	inside	346	366				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	367	388				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	outside	389	396				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	397	407				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	inside	408	408				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	409	428				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	outside	429	455				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	456	473				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	inside	474	513				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	TMhelix	514	527				
+antigen_23|P44408|Recombination|VTP73470.1|tpos:1-788	outside	528	788				
+//
+# antigen_7|P43838|Outer|VTP72878.1|tpos:1-449 Length: 449
+# antigen_7|P43838|Outer|VTP72878.1|tpos:1-449 Number of predicted TMRs: 14
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	signal	1	22				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	23	66				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	67	72				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	outside	73	110				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	111	117				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	118	125				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	126	132				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	outside	133	157				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	158	165				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	166	173				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	174	181				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	outside	182	238				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	239	247				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	248	253				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	254	261				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	outside	262	291				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	292	300				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	301	306				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	307	314				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	outside	315	344				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	345	352				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	353	359				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	360	365				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	outside	366	385				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	386	393				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	394	398				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	399	407				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	outside	408	440				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	Beta sheet	441	447				
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	periplasm	448	449				
+//
+# antigen_56|Q57243|Uncharacterized|VTP76836.1|tpos:5-220 Length: 216
+# antigen_56|Q57243|Uncharacterized|VTP76836.1|tpos:5-220 Number of predicted TMRs: 0
+antigen_56|Q57243|Uncharacterized|VTP76836.1|tpos:5-220	inside	1	216				
+//
+# antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107 Length: 1107
+# antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107 Number of predicted TMRs: 11
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	signal	1	26				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	outside	27	485				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	486	506				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	inside	507	539				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	540	560				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	outside	561	567				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	568	589				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	inside	590	611				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	612	629				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	outside	630	644				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	645	662				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	inside	663	681				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	682	702				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	outside	703	712				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	713	730				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	inside	731	788				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	789	809				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	outside	810	841				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	842	856				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	inside	857	880				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	881	898				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	outside	899	918				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TMhelix	919	931				
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	inside	932	1107				
+//
+# antigen_35|P44821|HTH-type|VTP70075.1|tpos:1-292 Length: 292
+# antigen_35|P44821|HTH-type|VTP70075.1|tpos:1-292 Number of predicted TMRs: 0
+antigen_35|P44821|HTH-type|VTP70075.1|tpos:1-292	inside	1	292				
+//
+# antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397 Length: 397
+# antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397 Number of predicted TMRs: 11
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	inside	1	15				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	16	34				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	outside	35	41				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	42	61				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	inside	62	88				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	89	109				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	outside	110	118				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	119	134				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	inside	135	140				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	141	161				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	outside	162	182				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	183	200				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	inside	201	222				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	223	242				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	outside	243	268				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	269	289				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	inside	290	309				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	310	325				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	outside	326	331				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	332	352				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	inside	353	367				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	TMhelix	368	389				
+antigen_0|O05087|Uncharacterized|VTP74408.1|tpos:1-397	outside	390	397				
+//
+# antigen_20|P44324|Aspartate|VTP70405.1|tpos:1-472 Length: 472
+# antigen_20|P44324|Aspartate|VTP70405.1|tpos:1-472 Number of predicted TMRs: 0
+antigen_20|P44324|Aspartate|VTP70405.1|tpos:1-472	inside	1	472				
+//
+# antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685 Length: 1685
+# antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685 Number of predicted TMRs: 12
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	signal	1	25				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	periplasm	26	1439				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1440	1447				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	outside	1448	1463				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1464	1472				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	periplasm	1473	1478				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1479	1487				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	outside	1488	1501				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1502	1511				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	periplasm	1512	1517				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1518	1526				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	outside	1527	1544				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1545	1553				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	periplasm	1554	1561				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1562	1571				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	outside	1572	1594				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1595	1603				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	periplasm	1604	1613				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1614	1622				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	outside	1623	1644				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1645	1652				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	periplasm	1653	1656				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1657	1666				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	outside	1667	1674				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	Beta sheet	1675	1683				
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	periplasm	1684	1685				
+//
+# antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311 Length: 311
+# antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311 Number of predicted TMRs: 6
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	inside	1	46				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	TMhelix	47	65				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	outside	66	106				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	TMhelix	107	135				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	inside	136	148				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	TMhelix	149	169				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	outside	170	172				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	TMhelix	173	189				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	inside	190	226				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	TMhelix	227	245				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	outside	246	278				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	TMhelix	279	299				
+antigen_43|P45053|Oligopeptide|VTP78244.1|tpos:1-311	inside	300	311				
+//
+# antigen_45|P45103|Uncharacterized|VTP77638.1|tpos:1-207 Length: 207
+# antigen_45|P45103|Uncharacterized|VTP77638.1|tpos:1-207 Number of predicted TMRs: 0
+antigen_45|P45103|Uncharacterized|VTP77638.1|tpos:1-207	inside	1	207				
+//
+# antigen_48|P46448|Formate|VTP78926.1|tpos:6-412 Length: 407
+# antigen_48|P46448|Formate|VTP78926.1|tpos:6-412 Number of predicted TMRs: 0
+antigen_48|P46448|Formate|VTP78926.1|tpos:6-412	signal	1	30				
+antigen_48|P46448|Formate|VTP78926.1|tpos:6-412	outside	31	407				
+//
+# antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358 Length: 358
+# antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358 Number of predicted TMRs: 10
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	inside	1	18				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	19	35				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	outside	36	45				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	46	60				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	inside	61	74				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	75	88				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	outside	89	94				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	95	109				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	inside	110	121				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	122	138				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	outside	139	219				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	220	240				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	inside	241	245				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	246	266				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	outside	267	272				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	273	294				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	inside	295	303				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	304	319				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	outside	320	325				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	TMhelix	326	341				
+antigen_57|Q57288|Ion-translocating|VTP74660.1|tpos:1-358	inside	342	358				
+//
+# antigen_27|P44602|Heme/hemopexin-binding|VTP72450.1|tpos:1-918 Length: 918
+# antigen_27|P44602|Heme/hemopexin-binding|VTP72450.1|tpos:1-918 Number of predicted TMRs: 0
+antigen_27|P44602|Heme/hemopexin-binding|VTP72450.1|tpos:1-918	signal	1	21				
+antigen_27|P44602|Heme/hemopexin-binding|VTP72450.1|tpos:1-918	periplasm	22	918				
+//
+# antigen_5|P43757|Transketolase|VTP79076.1|tpos:1-665 Length: 665
+# antigen_5|P43757|Transketolase|VTP79076.1|tpos:1-665 Number of predicted TMRs: 0
+antigen_5|P43757|Transketolase|VTP79076.1|tpos:1-665	inside	1	665				
+//
+# antigen_16|P44136|Putative|VTP77317.1|tpos:1-322 Length: 322
+# antigen_16|P44136|Putative|VTP77317.1|tpos:1-322 Number of predicted TMRs: 7
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	inside	1	5				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	TMhelix	6	21				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	outside	22	55				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	TMhelix	56	74				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	inside	75	98				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	TMhelix	99	119				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	outside	120	136				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	TMhelix	137	154				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	inside	155	212				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	TMhelix	213	234				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	outside	235	243				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	TMhelix	244	264				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	inside	265	290				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	TMhelix	291	312				
+antigen_16|P44136|Putative|VTP77317.1|tpos:1-322	outside	313	322				
+//
+# antigen_21|P44402|Ribosomal|VTP69562.1|tpos:1-295 Length: 295
+# antigen_21|P44402|Ribosomal|VTP69562.1|tpos:1-295 Number of predicted TMRs: 0
+antigen_21|P44402|Ribosomal|VTP69562.1|tpos:1-295	inside	1	295				
+//
+# antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614 Length: 614
+# antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614 Number of predicted TMRs: 6
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	inside	1	40				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	TMhelix	41	61				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	outside	62	91				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	TMhelix	92	112				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	inside	113	161				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	TMhelix	162	183				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	outside	184	186				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	TMhelix	187	207				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	inside	208	272				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	TMhelix	273	293				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	outside	294	306				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	TMhelix	307	329				
+antigen_55|Q57180|Uncharacterized|VTP78576.1|tpos:1-614	inside	330	614				
+//
+# antigen_1|P10324|Peptidoglycan-associated|VTP73010.1|tpos:1-153 Length: 153
+# antigen_1|P10324|Peptidoglycan-associated|VTP73010.1|tpos:1-153 Number of predicted TMRs: 0
+antigen_1|P10324|Peptidoglycan-associated|VTP73010.1|tpos:1-153	signal	1	19				
+antigen_1|P10324|Peptidoglycan-associated|VTP73010.1|tpos:1-153	outside	20	153				
+//
+# antigen_12|P43929|Uncharacterized|VTP73604.1|tpos:1-258 Length: 258
+# antigen_12|P43929|Uncharacterized|VTP73604.1|tpos:1-258 Number of predicted TMRs: 0
+antigen_12|P43929|Uncharacterized|VTP73604.1|tpos:1-258	inside	1	258				

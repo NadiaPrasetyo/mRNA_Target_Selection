@@ -1,0 +1,11 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,P44465_AF,A,1,19,MTIENDYAKLKELMEFPAK,19,0.775,Linear
+2,P44465_AF,A,41,60,QKYIKGDYIPKEKRSSKGTY,20,0.671,Linear
+3,P44465_AF,A,27,31,INREG,5,0.602,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,P44465_AF,A:T2, A:I3, A:E4,3,0.946,Discontinous
+2,P44465_AF,A:N5, A:D6, A:Y7, A:A8, A:K9, A:L10, A:K11, A:E12, A:L13, A:M14, A:F16, A:P17, A:K19, A:I68, A:N71,15,0.69,Discontinous
+3,P44465_AF,A:I27, A:N28, A:R54, A:S55, A:S56, A:K57, A:G58, A:T59, A:Y60, A:V85, A:E86, A:G87, A:V88, A:K89,14,0.679,Discontinous
+4,P44465_AF,A:Q41, A:I44, A:K45, A:G46, A:D47, A:Y48,6,0.629,Discontinous
+5,P44465_AF,A:R29, A:G31, A:Q34, A:Q38,4,0.557,Discontinous

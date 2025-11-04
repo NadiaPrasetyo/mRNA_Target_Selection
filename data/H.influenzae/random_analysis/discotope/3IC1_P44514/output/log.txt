@@ -1,0 +1,4 @@
+[2025-11-03 13:16:08,388] Single-chain mode set, will predict PDBs as single chains
+[2025-11-03 13:16:08,393] Single PDB file input (3IC1_P44514), extracting single chains to data/H.influenzae/random_analysis/discotope/3IC1_P44514/input_chains
+[2025-11-03 13:16:08,779] Found 2 extracted single chains in data/H.influenzae/random_analysis/discotope/3IC1_P44514/input_chains
+[2025-11-03 13:18:56,902] Predicted 2 / 2 PDB files extracted from 1 input PDBs, saved to data/H.influenzae/random_analysis/discotope/3IC1_P44514/output

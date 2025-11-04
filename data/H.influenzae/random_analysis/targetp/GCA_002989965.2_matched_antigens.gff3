@@ -1,0 +1,26 @@
+##gff-version 3
+antigen_80|Q57223|Probable|XVI80549.1|tpos:1-161	TargetP-2.0	signal_peptide	1	21	0.990586	.	.	.
+antigen_149|P44103|Uncharacterized|XVI80277.1|tpos:1-369	TargetP-2.0	signal_peptide	1	19	0.999663	.	.	.
+antigen_57|P44569|NAD|XVI81191.1|tpos:1-603	TargetP-2.0	signal_peptide	1	25	0.996286	.	.	.
+antigen_166|A4N8V8|Putative|XVI81344.1|tpos:1-293	TargetP-2.0	signal_peptide	1	22	0.995770	.	.	.
+antigen_179|P45024|Probable|XVI80302.1|tpos:1-257	TargetP-2.0	signal_peptide	1	23	0.997758	.	.	.
+antigen_49|P44664|D-alanyl-D-alanine|XVI81346.1|tpos:1-292	TargetP-2.0	signal_peptide	1	18	0.992911	.	.	.
+antigen_78|P44416|Opacity-associated|XVI81316.1|tpos:1-134	TargetP-2.0	signal_peptide	1	20	0.998723	.	.	.
+antigen_116|P45074|Lipopolysaccharide|XVI80366.1|tpos:1-172	TargetP-2.0	signal_peptide	1	23	0.998797	.	.	.
+antigen_34|P44794|tRNA-dihydrouridine(20/20a)|XVI81639.1|tpos:1-327	TargetP-2.0	transit_peptide	1	40	0.516846	.	.	Note=Mitochondrion
+antigen_3|Q57380|Putative|XVI80889.1|tpos:133-203	TargetP-2.0	signal_peptide	1	27	0.960382	.	.	.
+antigen_40|P45038|Thiol:disulfide|XVI80317.1|tpos:1-181	TargetP-2.0	signal_peptide	1	18	0.960841	.	.	.
+antigen_4|P44290|UPF0319|XVI80878.1|tpos:1-221	TargetP-2.0	signal_peptide	1	21	0.996404	.	.	.
+antigen_79|P44658|Putative|XVI81339.1|tpos:1-314	TargetP-2.0	signal_peptide	1	22	0.969605	.	.	.
+antigen_90|Q57092|Endolytic|XVI80966.1|tpos:1-287	TargetP-2.0	signal_peptide	1	25	0.998417	.	.	.
+antigen_16|P31810|Thiol:disulfide|XVI80102.1|tpos:1-205	TargetP-2.0	signal_peptide	1	22	0.996466	.	.	.
+antigen_25|P44566|Penicillin-insensitive|XVI81182.1|tpos:1-286	TargetP-2.0	signal_peptide	1	22	0.991137	.	.	.
+antigen_38|P46458|Putative|XVI80318.1|tpos:1-153	TargetP-2.0	signal_peptide	1	23	0.998657	.	.	.
+antigen_58|Q9KIV2|Hemoglobin-binding|XVI81641.1|tpos:1-39	TargetP-2.0	signal_peptide	1	24	0.999995	.	.	.
+antigen_178|A5UFV3|N-acetylneuraminate|XVI81137.1|tpos:1-375	TargetP-2.0	signal_peptide	1	22	0.997795	.	.	.
+antigen_91|P31771|Competence|XVI81470.1|tpos:1-137	TargetP-2.0	signal_peptide	1	18	0.999607	.	.	.
+antigen_114|P45114|Probable|XVI80421.1|tpos:1-914	TargetP-2.0	signal_peptide	1	25	0.823881	.	.	.
+antigen_15|P45323|Molybdate-binding|XVI80890.1|tpos:1-254	TargetP-2.0	signal_peptide	1	21	0.944396	.	.	.
+antigen_74|P44654|Periplasmic|XVI81332.1|tpos:1-147	TargetP-2.0	signal_peptide	1	23	0.998926	.	.	.
+antigen_187|P43769|Tol-Pal|XVI81422.1|tpos:1-139	TargetP-2.0	signal_peptide	1	37	0.523208	.	.	.
+antigen_138|P44276|Uncharacterized|XVI80444.1|tpos:1-227	TargetP-2.0	signal_peptide	1	21	0.995447	.	.	.

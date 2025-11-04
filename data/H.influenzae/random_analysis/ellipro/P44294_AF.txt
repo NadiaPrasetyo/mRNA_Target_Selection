@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,P44294_AF,A,17,20,KQGE,4,0.571,Linear
+2,P44294_AF,A,26,40,AGAAYEVEGLIEGYA,15,0.545,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,P44294_AF,A:A26, A:G27, A:A28, A:A29, A:Y30, A:K44, A:L45, A:P46,8,0.663,Discontinous
+2,P44294_AF,A:M1, A:K2, A:G3, A:K17, A:Q18, A:G19, A:E20, A:G34, A:L35, A:I36, A:E37, A:G38, A:Y39, A:A40,14,0.556,Discontinous
