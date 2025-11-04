@@ -128,7 +128,7 @@ def fetch_refseq_nucleotide(refseq_id):
         title = summary_data["result"].get(uid, {}).get("title", "").lower()
 
         # Check if it's a complete genome or complete sequence
-        if "complete genome" in title or "complete sequence" in title:
+        if "complete genome" in title or "complete sequence" in title or "whole genome" in title:
             print(f"Skipping {refseq_id}: appears to be a complete genome/sequence.")
             return ""
 
