@@ -107,11 +107,39 @@ def fetch_uniprot_data(query, retries=3, delay=5):
 
 
 def fetch_refseq_nucleotide(refseq_id):
-    """Fetch RefSeq nucleotide sequence (FASTA format) from NCBI."""
+    """Fetch RefSeq nucleotide sequence (FASTA format) from NCBI, skipping complete genomes."""
     base_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+    summary_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi"
 
+    # Step 1: Fetch summary info to check if this is a complete genome
+    summary_params = {
+        "db": "nuccore",
+        "id": refseq_id,
+        "retmode": "json"
+    }
+
+    try:
+        summary_resp = requests.get(summary_url, params=summary_params)
+        summary_resp.raise_for_status()
+        summary_data = summary_resp.json()
+
+        # Extract the title if available
+        uid = next(iter(summary_data["result"].keys() - {"uids"}), None)
+        title = summary_data["result"].get(uid, {}).get("title", "").lower()
+
+        # Check if it's a complete genome or complete sequence
+        if "complete genome" in title or "complete sequence" in title:
+            print(f"Skipping {refseq_id}: appears to be a complete genome/sequence.")
+            return ""
+
+    except requests.exceptions.RequestException as e:
+        print(f"Warning: Failed to fetch summary for {refseq_id}: {e}")
+        # You can choose to return "" or continue fetching, depending on how strict you want it
+        return ""
+
+    # Step 2: Fetch FASTA only if not a complete genome
     params = {
-        "db": "nuccore",   # Force nucleotide database
+        "db": "nuccore",
         "id": refseq_id,
         "rettype": "fasta",
         "retmode": "text"
@@ -125,6 +153,7 @@ def fetch_refseq_nucleotide(refseq_id):
         lines = response.text.strip().splitlines()
         seq = "".join(line for line in lines if not line.startswith(">"))
         return seq
+
     except requests.exceptions.RequestException as e:
         print(f"Failed to fetch nucleotide RefSeq {refseq_id}: {e}")
         return ""
