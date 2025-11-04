@@ -1,0 +1,7 @@
+DiscoTope failed on data/H.influenzae/random_pdb_sequences/2JWK_P43769.pdb
+Error code: 1
+
+/home/prana47p/miniconda3/envs/discotope_tools_env/lib/python3.9/site-packages/xgboost/compat.py:105: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+
+ERROR conda.cli.main_run:execute(127): `conda run python /projects/health_sciences/bms/biochemistry/gardner_group/nadia/discotope3_web/src/predict_webserver.py --models_dir /projects/health_sciences/bms/biochemistry/gardner_group/nadia/discotope3_web/models --cpu_only --pdb_or_zip_file data/H.influenzae/random_pdb_sequences/2JWK_P43769.pdb --struc_type solved --out_dir data/H.influenzae/random_analysis/discotope/2JWK_P43769` failed. (See above for error)

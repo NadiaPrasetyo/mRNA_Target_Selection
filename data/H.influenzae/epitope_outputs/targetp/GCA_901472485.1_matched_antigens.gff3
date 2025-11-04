@@ -1,0 +1,18 @@
+##gff-version 3
+antigen_53|Q06282|Glycerophosphodiester|VTP70100.1|tpos:1-364	TargetP-2.0	signal_peptide	1	17	0.975856	.	.	.
+antigen_69|A0A0D6FQ88||VTP70116.1|tpos:1-274	TargetP-2.0	signal_peptide	1	23	0.996422	.	.	.
+antigen_72|Q48219|Outer|VTP73144.1|tpos:1-361	TargetP-2.0	signal_peptide	1	20	0.999175	.	.	.
+antigen_9|P43840|Outer|VTP74052.1|tpos:1-358	TargetP-2.0	signal_peptide	1	21	0.999819	.	.	.
+antigen_70|P46024|Outer|VTP69674.1|tpos:1-792	TargetP-2.0	signal_peptide	1	19	0.997873	.	.	.
+antigen_63|P45996|Outer|VTP74052.1|tpos:1-358	TargetP-2.0	signal_peptide	1	21	0.999819	.	.	.
+antigen_64|A0AB37B1K1||VTP74684.1|tpos:1-284	TargetP-2.0	signal_peptide	1	19	0.991980	.	.	.
+antigen_67|P46027|Outer|VTP73144.1|tpos:1-361	TargetP-2.0	signal_peptide	1	20	0.999175	.	.	.
+antigen_68|P10641|Outer|VTP72878.1|tpos:1-449	TargetP-2.0	signal_peptide	1	22	0.995902	.	.	.
+antigen_8|P43839|Outer|VTP73144.1|tpos:1-361	TargetP-2.0	signal_peptide	1	20	0.999175	.	.	.
+antigen_76|Q71BF9||VTP72450.1|tpos:1-918	TargetP-2.0	signal_peptide	1	21	0.998953	.	.	.
+antigen_36|P44836|Probable|VTP70206.1|tpos:1-64	TargetP-2.0	signal_peptide	1	24	0.999946	.	.	.
+antigen_7|P43838|Outer|VTP72878.1|tpos:1-449	TargetP-2.0	signal_peptide	1	22	0.995902	.	.	.
+antigen_58|Q57362|Uncharacterized|VTP77753.1|tpos:1-1107	TargetP-2.0	signal_peptide	1	26	0.963678	.	.	.
+antigen_37|P44969|Immunoglobulin|VTP69538.1|tpos:1-1685	TargetP-2.0	signal_peptide	1	25	0.908083	.	.	.
+antigen_27|P44602|Heme/hemopexin-binding|VTP72450.1|tpos:1-918	TargetP-2.0	signal_peptide	1	21	0.998953	.	.	.
+antigen_1|P10324|Peptidoglycan-associated|VTP73010.1|tpos:1-153	TargetP-2.0	signal_peptide	1	20	0.994680	.	.	.

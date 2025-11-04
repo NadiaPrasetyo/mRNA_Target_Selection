@@ -1,0 +1,4 @@
+[2025-11-03 12:43:32,722] Single-chain mode set, will predict PDBs as single chains
+[2025-11-03 12:43:32,727] Single PDB file input (P45024_AF), extracting single chains to data/H.influenzae/random_analysis/discotope/P45024_AF/input_chains
+[2025-11-03 12:43:32,848] Found 1 extracted single chains in data/H.influenzae/random_analysis/discotope/P45024_AF/input_chains
+[2025-11-03 12:45:18,850] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/H.influenzae/random_analysis/discotope/P45024_AF/output

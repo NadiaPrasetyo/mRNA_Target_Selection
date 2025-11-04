@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,P44179_AF,A,22,32,HLDILPRQAGV,11,0.594,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,P44179_AF,A:M1, A:T2, A:Q29, A:A30, A:G31, A:V32, A:Q33,7,0.663,Discontinous
+2,P44179_AF,A:D24, A:I25, A:L26, A:P27, A:R28,5,0.6,Discontinous
+3,P44179_AF,A:P8, A:S9, A:A10, A:S11, A:T12, A:S13, A:D14, A:F15, A:F18, A:H22, A:N37, A:L38, A:T39,13,0.576,Discontinous

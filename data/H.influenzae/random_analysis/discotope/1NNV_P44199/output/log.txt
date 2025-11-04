@@ -1,0 +1,5 @@
+[2025-11-04 13:52:02,022] Single-chain mode set, will predict PDBs as single chains
+[2025-11-04 13:52:02,023] Single PDB file input (1NNV_P44199), extracting single chains to data/H.influenzae/random_analysis/discotope/1NNV_P44199/input_chains
+[2025-11-04 13:52:02,716] Found 1 extracted single chains in data/H.influenzae/random_analysis/discotope/1NNV_P44199/input_chains
+[2025-11-04 13:52:05,538] Note: Skipping 1NNV_P44199_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-11-04 13:52:05,555] Error: No PDB files were valid. Please check input PDBs.
