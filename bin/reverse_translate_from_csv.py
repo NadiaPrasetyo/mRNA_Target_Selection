@@ -174,10 +174,22 @@ def main():
     args = parser.parse_args()
 
     pathogen_dir = Path("data") / args.pathogen_dir
+    input_file = pathogen_dir / args.input_csv
+    output_file = pathogen_dir / args.output_csv
     setup_logging(pathogen_dir, args.verbose)
 
+    # check that the files and directories exist
+    if not input_file.exists():
+        logging.error(f"Input CSV file does not exist: {input_file}")
+        sys.exit(1)
+
+    if not pathogen_dir.exists():
+        logging.error(f"Pathogen directory does not exist: {pathogen_dir}")
+        sys.exit(1)
+
+
     check_backtranseq()
-    process_csv(pathogen_dir, Path(args.input_csv), Path(args.output_csv))
+    process_csv(pathogen_dir, input_file, output_file)
 
 
 if __name__ == "__main__":
