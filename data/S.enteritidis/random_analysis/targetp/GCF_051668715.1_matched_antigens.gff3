@@ -1,0 +1,10 @@
+##gff-version 3
+antigen_105|B5R2W7|D-amino|WP_001266937.1|tpos:1-432	TargetP-2.0	signal_peptide	1	16	0.704675	.	.	.
+antigen_155|B5R5I1|UPF0412|WP_001258084.1|tpos:1-134	TargetP-2.0	signal_peptide	1	23	0.999778	.	.	.
+antigen_19|Q54001|Outer|WP_001575014.1|tpos:1-491	TargetP-2.0	signal_peptide	1	24	0.990398	.	.	.
+antigen_38|B5R0F4|UPF0387|WP_001261696.1|tpos:1-35	TargetP-2.0	signal_peptide	1	22	0.987659	.	.	.
+antigen_39|B5QX24|Tol-Pal|WP_001562341.1|tpos:1-430	TargetP-2.0	signal_peptide	1	21	0.998347	.	.	.
+antigen_67|P0A1Z9|Curli|WP_000557256.1|tpos:1-108	TargetP-2.0	signal_peptide	1	19	0.995956	.	.	.
+antigen_68|B5QY15|Glucans|WP_001562609.1|tpos:1-511	TargetP-2.0	signal_peptide	1	22	0.998404	.	.	.
+antigen_162|B5R3S0|3-ketoacyl-CoA|WP_001248128.1|tpos:1-436	TargetP-2.0	transit_peptide	1	28	0.520455	.	.	Note=Mitochondrion
+antigen_79|B5R0R9|Replication|WP_001519453.1|tpos:1-104	TargetP-2.0	transit_peptide	1	28	0.521675	.	.	Note=Mitochondrion

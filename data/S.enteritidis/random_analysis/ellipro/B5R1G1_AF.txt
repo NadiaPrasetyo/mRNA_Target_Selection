@@ -1,0 +1,15 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,B5R1G1_AF,A,41,46,APNGSE,6,0.731,Linear
+2,B5R1G1_AF,A,16,23,RKLKELGA,8,0.71,Linear
+3,B5R1G1_AF,A,53,69,TVEKAIAEQLKYTGNKD,17,0.677,Linear
+4,B5R1G1_AF,A,83,90,LEKGIKDV,8,0.643,Linear
+5,B5R1G1_AF,A,31,34,TPRH,4,0.592,Linear
+6,B5R1G1_AF,A,112,117,EAGLQF,6,0.541,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,B5R1G1_AF,A:M1, A:D2, A:K3, A:K4, A:S5, A:A6, A:I8, A:R9, A:R10, A:G96,10,0.814,Discontinous
+2,B5R1G1_AF,A:T12, A:R16, A:K19,3,0.758,Discontinous
+3,B5R1G1_AF,A:K17, A:E20, A:L21, A:G22, A:A23, A:T24, A:A41, A:P42, A:N43, A:G44, A:S45, A:E46,12,0.705,Discontinous
+4,B5R1G1_AF,A:L83, A:E84, A:G86, A:I87,4,0.694,Discontinous
+5,B5R1G1_AF,A:H34, A:T53, A:V54, A:E55, A:K56, A:A57, A:A59, A:E60, A:Q61, A:L62, A:Y64, A:T65, A:G66, A:N67, A:K68, A:D69, A:Y99, A:H100, A:G101, A:Q104,20,0.639,Discontinous
+6,B5R1G1_AF,A:K88, A:D89, A:V90, A:A113, A:G114, A:L115, A:Q116,7,0.547,Discontinous

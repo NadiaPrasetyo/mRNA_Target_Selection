@@ -1,0 +1,4 @@
+[2025-11-04 17:12:59,899] Single-chain mode set, will predict PDBs as single chains
+[2025-11-04 17:12:59,900] Single PDB file input (A0A656I9Z7_AF), extracting single chains to data/S.enteritidis/epitope_outputs/discotope/A0A656I9Z7_AF/input_chains
+[2025-11-04 17:12:59,991] Found 1 extracted single chains in data/S.enteritidis/epitope_outputs/discotope/A0A656I9Z7_AF/input_chains
+[2025-11-04 17:16:34,634] Predicted 1 / 1 PDB files extracted from 1 input PDBs, saved to data/S.enteritidis/epitope_outputs/discotope/A0A656I9Z7_AF/output
