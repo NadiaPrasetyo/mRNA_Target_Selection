@@ -1,0 +1,76 @@
+source_organism,host_organisms,antigen_name,gene_name,Uniprot_ID,source
+"['Acinetobacter baumannii', 'Aggregatibacter actinomycetemcomitans serotype b str. Y4', 'Alcaligenes faecalis', 'Brucella', 'Brucella melitensis bv. 1 str. 16M', 'Campylobacter jejuni subsp. jejuni serotype HS:15', 'Candida albicans', 'Candidozyma auris', 'Citrobacter freundii', 'Clostridium difficile', 'Clostridium difficile BI / NAP1/ 027', 'Cryptococcus neoformans', 'Cryptococcus neoformans Mu-1', 'Enterococcus faecalis', 'Escherichia coli O25b:ST131', 'Francisella tularensis subsp. tularensis strain 15', 'Haemophilus influenzae', 'Haemophilus influenzae Serotype B', 'Klebsiella pneumoniae', 'Mycoplasmoides pneumoniae (Filterable agent of primary atypical pneumonia)', 'Neisseria meningitidis', 'Neisseria meningitidis serogroup A', 'Neisseria meningitidis serogroup B', 'Neisseria meningitidis serogroup C', 'Neisseria meningitidis serogroup C strain C11', 'Neisseria meningitidis serogroup C strain MC19', 'Neisseria meningitidis serogroup W', 'Neisseria meningitidis serogroup W-135', 'Neisseria meningitidis serogroup X', 'Neisseria meningitidis serogroup Y', 'Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)', 'Salmonella enterica subsp. enterica serovar Typhi', 'Salmonella enterica subsp. enterica serovar Typhimurium', 'Salmonella typhi 620Ty', 'Streptococcus agalactiae', 'Streptococcus agalactiae 18RS21 (Streptococcus agalactiae str. 18RS21)', 'Streptococcus agalactiae CJB111 (Streptococcus agalactiae str. CJB111)', 'Streptococcus agalactiae H36B (Streptococcus agalactiae str. H36B)', 'Streptococcus agalactiae serogroup Ia', 'Streptococcus agalactiae serogroup III', 'Streptococcus agalactiae serogroup III M781', 'Streptococcus agalactiae serogroup V', 'Streptococcus agalactiae serogroup VII strain 7271', 'Streptococcus anginosus K214-2K', 'Streptococcus dysgalactiae subsp. equisimilis ATCC 12388', 'Streptococcus pneumoniae', 'Streptococcus pneumoniae 23F', 'Streptococcus pneumoniae 7F', 'Streptococcus pneumoniae CCUG 1378', 'Streptococcus pneumoniae type 1', 'Streptococcus pneumoniae type 10A', 'Streptococcus pneumoniae type 14', 'Streptococcus pneumoniae type 19A', 'Streptococcus pneumoniae type 19F', 'Streptococcus pneumoniae type 2', 'Streptococcus pneumoniae type 27', 'Streptococcus pneumoniae type 3', 'Streptococcus pneumoniae type 37', 'Streptococcus pneumoniae type 6A', 'Streptococcus pneumoniae type 6B', 'Streptococcus pneumoniae type 8', 'Streptococcus pyogenes', 'Streptococcus pyogenes serotype M3 D58', ""Streptococcus sp. 'group A'"", ""Streptococcus sp. 'group B'"", 'Streptococcus suis 1178027', 'Streptococcus suis 13730', 'Streptococcus suis 2651', 'Streptococcus suis S735 (Streptococcus suis str. S735)', 'Trypanosoma cruzi', 'Vibrio vulnificus BO62316', 'Vibrio vulnificus MO6-24/O (Vibrio vulnificus str. MO6-24/O)']","['Canis lupus familiaris (dogs)', 'Equid (horse)', 'Equus caballus (domestic horse)', 'Felis catus (cat)', 'Homo sapiens (human)', 'Macaca mulatta (rhesus macaque)', 'Mus musculus A/J', 'Mus musculus BALB/c', 'Mus musculus BALB/c X DBA/2', 'Mus musculus C57BL/6', 'Mus musculus CD1', 'Mus musculus (mouse)', 'Mus musculus NHI Swiss', 'Mus musculus Swiss Webster', 'Oryctolagus cuniculus New Zealand White', 'Oryctolagus cuniculus (rabbit)', 'Ovis aries (domestic sheep)', 'Sus scrofa (pig)']",['polysaccharide'],,18154,IEDB
+"['Salmonella enterica', 'Salmonella enterica subsp. enterica serovar Choleraesuis', 'Salmonella enterica subsp. enterica serovar Choleraesuis str. SC-B67 (Salmonella enterica subsp. enterica serovar Choleraesuis SC-B67)', 'Salmonella enterica subsp. enterica serovar Dublin', 'Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)', 'Salmonella enterica subsp. enterica serovar Paratyphi A', 'Salmonella enterica subsp. enterica serovar Paratyphi A str. AKU_12601 (Salmonella enterica subsp. enterica serovar Paratyphi A strain AKU_12601)', 'Salmonella enterica subsp. enterica serovar Paratyphi B str. SPB7 (Salmonella enterica subsp. enterica serovar Paratyphi B strain SPB7)', 'Salmonella enterica subsp. enterica serovar Schwarzengrund str. CVM19633 (Salmonella enterica subsp. enterica serovar Schwarzengrund CVM19633)', 'Salmonella enterica subsp. enterica serovar Typhi', 'Salmonella enterica subsp. enterica serovar Typhimurium', 'Salmonella enterica subsp. enterica serovar Typhi str. CT18 (Salmonella enterica subsp. enterica serovar Typhi CT18)']","['Bos taurus (bovine)', 'Homo sapiens (human)', 'Mus musculus C57BL/6']",['Other Salmonella enterica protein'],,,IEDB
+"['Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)', 'Salmonella enterica subsp. enterica serovar Enteritidis str. LK5 (Salmonella enterica subsp. enterica serovar Enteritidis LK5)', 'Salmonella enterica subsp. enterica serovar Paratyphi A', 'Salmonella enterica subsp. enterica serovar Typhimurium str. LT2 (Salmonella enterica subsp. enterica serovar Typhimurium LT2)', 'Salmonella enterica subsp. enterica serovar Typhi str. Quailes']",['Homo sapiens (human)'],['Non-specific acid phosphatase (UniProt:P26976)'],,P26976,IEDB
+"['Salmonella enterica', 'Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)', 'Salmonella enterica subsp. enterica serovar Typhimurium str. LT2 (Salmonella enterica subsp. enterica serovar Typhimurium LT2)']",['Homo sapiens (human)'],['3-dehydroquinate dehydratase (UniProt:P58687)'],,P58687,IEDB
+['Salmonella enterica subsp. enterica serovar Enteritidis (Salmonella enterica serovar Enteritidis)'],['Homo sapiens (human)'],"[""Aminoglycoside (3'') (9) adenylyltransferase (UniProt:Q8ZPX9)""]",,Q8ZPX9,IEDB
+salmonella enteritidis,Homo sapiens,TrhW,HCM1.99,,literature
+salmonella enteritidis,Homo sapiens,TcfB,STY0346,,literature
+salmonella enteritidis,Homo sapiens,StbD,STY0370,,literature
+salmonella enteritidis,Homo sapiens,CsgG,STY1176,,literature
+salmonella enteritidis,Homo sapiens,CsgF,STY1177,,literature
+salmonella enteritidis,Homo sapiens,CsgE,STY1178,,literature
+salmonella enteritidis,Homo sapiens,AcrA,STY0520,,literature
+salmonella enteritidis,Homo sapiens,PspC,STY1373,,literature
+salmonella enteritidis,Homo sapiens,PspD,STY1374,,literature
+salmonella enteritidis,Homo sapiens,PspE,STY1375,,literature
+salmonella enteritidis,Homo sapiens,Putative autotransporter,STY0405,,literature
+salmonella enteritidis,Homo sapiens,PagC,STY1878,,literature
+salmonella enteritidis,Homo sapiens,ShdA,STY2755,,literature
+salmonella enteritidis,Homo sapiens,MerP,HCM1.153,,literature
+salmonella enteritidis,Homo sapiens,Conserved hypothetical protein,STY0909,,literature
+salmonella enteritidis,Homo sapiens,Periplasmic oligopeptide-binding protein,STY1304,,literature
+salmonella enteritidis,Homo sapiens,Putative lipoprotein,STY2852,,literature
+salmonella enteritidis,Homo sapiens,Putative ABC transporter,STY3796,,literature
+salmonella enteritidis,Homo sapiens,YhjE,STY4194,,literature
+salmonella enteritidis,Homo sapiens,Putative exported protein,STY1255,,literature
+salmonella enteritidis,Homo sapiens,Putative secreted protein,STY1522,,literature
+salmonella enteritidis,Homo sapiens,Putative outer membrane protein,STY2659,,literature
+salmonella enteritidis,Homo sapiens,CyoD,STY0482,,literature
+salmonella enteritidis,Homo sapiens,TopB,STY1816,,literature
+salmonella enteritidis,Homo sapiens,YijO,STY3756,,literature
+salmonella enteritidis,Homo sapiens,Hypothetical protein,HCM1.176,,literature
+salmonella enteritidis,Homo sapiens,Putative periplasmic protein,HMC1.257,,literature
+salmonella enteritidis,Homo sapiens,Putative lipoprotein,HCM2.0028,,literature
+salmonella enteritidis,Homo sapiens,Conserved hypothetical protein,STY0860,,literature
+salmonella enteritidis,Homo sapiens,Hypothetical protein,STY1648,,literature
+salmonella enteritidis,Homo sapiens,Hypothetical protein,STY2156,,literature
+salmonella enteritidis,Homo sapiens,Conserved hypothetical protein,STY2195,,literature
+salmonella enteritidis,Homo sapiens,Putative outer membrane protein,STY2761,,literature
+salmonella enteritidis,Homo sapiens,Putative membrane protein,STY3683,,literature
+salmonella enteritidis,Homo sapiens,Hypothetical protein,STY3684,,literature
+salmonella enteritidis,Homo sapiens,flagellin,,,literature
+salmonella enteritidis,Homo sapiens,porin,,,literature
+salmonella enteritidis,Homo sapiens,OmpC,,,literature
+salmonella enteritidis,Homo sapiens,OmpF,,,literature
+salmonella enteritidis,Homo sapiens,OmpD,,,literature
+salmonella enteritidis,Homo sapiens,CRM197,,,literature
+salmonella enteritidis,Homo sapiens,Salmonella o polysaccharide,,,literature
+salmonella enteritidis,Homo sapiens,LPS,,,literature
+salmonella enteritidis,Homo sapiens,invA,,,literature
+salmonella enteritidis,Homo sapiens,invH,,,literature
+salmonella enteritidis,Homo sapiens,prgH,,,literature
+salmonella enteritidis,Homo sapiens,hilA,,,literature
+salmonella enteritidis,Homo sapiens,sirA,,,literature
+salmonella enteritidis,Homo sapiens,phoP,,,literature
+salmonella enteritidis,Homo sapiens,phoQ,,,literature
+salmonella enteritidis,Homo sapiens,sipB,,,literature
+salmonella enteritidis,Homo sapiens,sipC,,,literature
+salmonella enteritidis,Homo sapiens,sipD,,,literature
+salmonella enteritidis,Homo sapiens,sopA,,,literature
+salmonella enteritidis,Homo sapiens,sopB,,,literature
+salmonella enteritidis,Homo sapiens,sopD,,,literature
+salmonella enteritidis,Homo sapiens,sopE,,,literature
+salmonella enteritidis,Homo sapiens,avrA,,,literature
+salmonella enteritidis,Homo sapiens,sptP,,,literature
+salmonella enteritidis,Homo sapiens,sspH1,,,literature
+salmonella enteritidis,Homo sapiens,sspH2,,,literature
+salmonella enteritidis,Homo sapiens,pipA,,,literature
+salmonella enteritidis,Homo sapiens,pipB,,,literature
+salmonella enteritidis,Homo sapiens,pipD,,,literature
+salmonella enteritidis,Homo sapiens,stn,,,literature
+salmonella enteritidis,Homo sapiens,aroAD,,,literature
+salmonella enteritidis,Homo sapiens,sipA,,,literature
+salmonella enteritidis,Homo sapiens,concanavalin A,ConA,,literature
+salmonella enteritidis,Homo sapiens,flagella,,,literature
+salmonella enteritidis,Homo sapiens,envelope,,,literature
