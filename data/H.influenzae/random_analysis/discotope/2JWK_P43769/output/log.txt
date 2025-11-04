@@ -1,0 +1,6 @@
+[2025-11-04 13:52:04,007] Single-chain mode set, will predict PDBs as single chains
+[2025-11-04 13:52:04,009] Single PDB file input (2JWK_P43769), extracting single chains to data/H.influenzae/random_analysis/discotope/2JWK_P43769/input_chains
+[2025-11-04 13:52:04,893] Found 2 extracted single chains in data/H.influenzae/random_analysis/discotope/2JWK_P43769/input_chains
+[2025-11-04 13:52:07,542] Note: Skipping 2JWK_P43769_B, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-11-04 13:52:07,545] Note: Skipping 2JWK_P43769_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-11-04 13:52:07,563] Error: No PDB files were valid. Please check input PDBs.

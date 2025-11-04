@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,1JNI_P44654,A,81,92,MDRDGKVS,8,0.76,Linear
+2,1JNI_P44654,A,37,55,NQPPMVPHSVANYQVTKNV,19,0.621,Linear
+3,1JNI_P44654,A,64,72,PENSRLSGA,9,0.601,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,1JNI_P44654,A:M81, A:D82, A:R83, A:D84, A:G85, A:K86, A:V87,7,0.828,Discontinous
+2,1JNI_P44654,A:Q50, A:T52, A:K53, A:N54, A:V55, A:Q57,6,0.698,Discontinous
+3,1JNI_P44654,A:N37, A:Q38, A:P39, A:P40, A:M41, A:V42, A:P43, A:H44, A:S45, A:V46, A:A47, A:N48, A:Y49, A:H102, A:V103, A:S104,16,0.577,Discontinous
+4,1JNI_P44654,A:P64, A:E65, A:N66, A:S67, A:R68, A:L69, A:S70, A:G71, A:A72, A:R74,10,0.577,Discontinous

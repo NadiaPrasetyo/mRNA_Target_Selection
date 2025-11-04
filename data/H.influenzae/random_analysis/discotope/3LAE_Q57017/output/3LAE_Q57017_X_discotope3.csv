@@ -1,0 +1,4 @@
+pdb,chain,res_id,residue,DiscoTope-3.0_score,calibrated_score,epitope,rsa,pLDDTs,length,alphafold_struc_flag
+3LAE_Q57017_X,X,1,I,0.46626,0.04392,False,1.25872,100,3,0
+3LAE_Q57017_X,X,2,F,0.49902,0.21584,False,0.97534,100,3,0
+3LAE_Q57017_X,X,3,G,0.51382,0.29351,False,1.50392,100,3,0

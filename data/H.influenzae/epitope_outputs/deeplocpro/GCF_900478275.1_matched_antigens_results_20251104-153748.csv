@@ -1,0 +1,72 @@
+,ACC,Localization,Cell wall & surface,Extracellular,Cytoplasmic,Cytoplasmic Membrane,Outer Membrane,Periplasmic
+0,antigen_75|M4PH69||WP_005652235.1|tpos:17-149,Outer Membrane,0.0000,0.0013,0.0001,0.0017,0.9714,0.0254
+1,antigen_1|P10324|Peptidoglycan-associated|WP_005652235.1|tpos:1-153,Outer Membrane,0.0000,0.0000,0.0000,0.0008,0.9984,0.0007
+2,antigen_4|P43739|DNA-directed|WP_015701707.1|tpos:1-1410,Cytoplasmic,0.0046,0.0027,0.6328,0.0432,0.3088,0.0079
+3,antigen_71|A0A2S9RZ43|Molybdopterin-synthase|WP_077643799.1|tpos:1-243,Cytoplasmic,0.0001,0.0008,0.9926,0.0013,0.0049,0.0004
+4,antigen_60|Q8KHG5||WP_015701475.1|tpos:70-592,Extracellular,0.0003,0.9968,0.0001,0.0001,0.0024,0.0003
+5,antigen_8|P43839|Outer|WP_015701411.1|tpos:1-361,Outer Membrane,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000
+6,antigen_66|A0A2S9RP42||WP_015701475.1|tpos:15-1400,Extracellular,0.0042,0.6514,0.0007,0.0004,0.3347,0.0086
+7,antigen_39|P44987|Biotin|WP_015702024.1|tpos:1-333,Cytoplasmic,0.0001,0.0006,0.9271,0.0510,0.0131,0.0081
+8,antigen_20|P44324|Aspartate|WP_015701720.1|tpos:1-472,Outer Membrane,0.0000,0.0022,0.4156,0.0002,0.5814,0.0007
+9,antigen_30|P44620|Prepilin|WP_041175037.1|tpos:1-230,Cytoplasmic Membrane,0.0000,0.0010,0.0074,0.9879,0.0037,0.0000
+10,antigen_42|P45043|Xylose|WP_011272388.1|tpos:1-387,Cytoplasmic,0.0001,0.0009,0.9972,0.0014,0.0004,0.0000
+11,antigen_33|P44766|Peptidase|WP_048954542.1|tpos:1-210,Cytoplasmic,0.0002,0.0259,0.9654,0.0021,0.0057,0.0007
+12,antigen_61|Q8GM74||WP_077643923.1|tpos:1273-2415,Cell wall & surface,0.9112,0.0001,0.0000,0.0000,0.0887,0.0000
+13,antigen_26|P44536|GTPase|WP_015701409.1|tpos:1-503,Cytoplasmic,0.0000,0.0000,0.9671,0.0268,0.0059,0.0002
+14,antigen_25|P44504|Homoserine|WP_005667888.1|tpos:1-314,Cytoplasmic,0.0006,0.0011,0.9422,0.0497,0.0060,0.0004
+15,antigen_67|P46027|Outer|WP_015701411.1|tpos:1-361,Outer Membrane,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000
+16,antigen_11|P43867|ATP-dependent|WP_257003823.1|tpos:11-203,Cytoplasmic,0.0001,0.0076,0.9548,0.0235,0.0052,0.0088
+17,antigen_43|P45053|Oligopeptide|WP_005661282.1|tpos:1-311,Cytoplasmic Membrane,0.0000,0.0000,0.0000,1.0000,0.0000,0.0000
+18,antigen_53|Q06282|Glycerophosphodiester|WP_015701802.1|tpos:1-364,Outer Membrane,0.0027,0.1025,0.0272,0.0116,0.4723,0.3838
+19,antigen_51|P71398|Lsg|WP_077643928.1|tpos:1-257,Cytoplasmic Membrane,0.0010,0.0314,0.3077,0.5781,0.0812,0.0007
+20,antigen_28|P44606|tRNA-dihydrouridine(16)|WP_015701977.1|tpos:11-259,Cytoplasmic,0.0000,0.0003,0.9910,0.0032,0.0049,0.0006
+21,antigen_47|P45200|Probable|WP_015701420.1|tpos:6-220,Cytoplasmic,0.0050,0.0116,0.6439,0.0211,0.1229,0.1956
+22,antigen_49|P71354|Trk|WP_077643730.1|tpos:1-458,Cytoplasmic Membrane,0.0001,0.0012,0.2671,0.7110,0.0186,0.0021
+23,antigen_21|P44402|Ribosomal|WP_005647969.1|tpos:1-295,Cytoplasmic,0.0000,0.0003,0.9959,0.0013,0.0018,0.0007
+24,antigen_35|P44821|HTH-type|WP_005655042.1|tpos:1-292,Cytoplasmic,0.0000,0.0004,0.9973,0.0008,0.0014,0.0001
+25,antigen_54|Q48214|Uncharacterized|WP_015702483.1|tpos:1-294,Cytoplasmic Membrane,0.0010,0.0049,0.0312,0.9108,0.0519,0.0002
+26,antigen_58|Q57362|Uncharacterized|WP_041175032.1|tpos:1-1106,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9986,0.0012,0.0000
+27,antigen_34|P44769|Carbamate|WP_050848028.1|tpos:1-310,Cytoplasmic,0.0011,0.0021,0.8857,0.0211,0.0890,0.0010
+28,antigen_68|P10641|Outer|WP_041175107.1|tpos:1-455,Outer Membrane,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000
+29,antigen_45|P45103|Uncharacterized|WP_005689272.1|tpos:1-207,Cytoplasmic,0.0000,0.0001,0.9911,0.0074,0.0002,0.0010
+30,antigen_19|P44318|Exodeoxyribonuclease|WP_077643831.1|tpos:1-267,Cytoplasmic,0.0000,0.0001,0.9990,0.0001,0.0006,0.0002
+31,antigen_72|Q48219|Outer|WP_015701411.1|tpos:1-361,Outer Membrane,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000
+32,antigen_0|O05087|Uncharacterized|WP_021035413.1|tpos:1-397,Cytoplasmic Membrane,0.0000,0.0000,0.0000,0.9994,0.0006,0.0000
+33,antigen_24|P44447|Putative|WP_014326506.1|tpos:1-261,Cytoplasmic,0.0001,0.0002,0.9978,0.0013,0.0006,0.0000
+34,antigen_56|Q57243|Uncharacterized|WP_015702157.1|tpos:1-254,Cytoplasmic,0.0005,0.0045,0.5446,0.4456,0.0031,0.0017
+35,antigen_70|P46024|Outer|WP_015701933.1|tpos:1-797,Outer Membrane,0.0000,0.0000,0.0000,0.0001,0.9999,0.0000
+36,antigen_38|P44976|4-hydroxy-3-methylbut-2-enyl|WP_005647895.1|tpos:1-314,Cytoplasmic,0.0001,0.0007,0.9814,0.0042,0.0128,0.0008
+37,antigen_7|P43838|Outer|WP_041175107.1|tpos:1-455,Outer Membrane,0.0000,0.0000,0.0000,0.0000,1.0000,0.0000
+38,antigen_27|P44602|Heme/hemopexin-binding|WP_015701486.1|tpos:1-928,Extracellular,0.0015,0.9690,0.0001,0.0000,0.0274,0.0019
+39,antigen_37|P44969|Immunoglobulin|WP_077643664.1|tpos:1-1545,Extracellular,0.0041,0.7697,0.0001,0.0003,0.2239,0.0019
+40,antigen_46|P45125|UvrABC|WP_005646675.1|tpos:1-679,Cytoplasmic,0.0006,0.0025,0.9576,0.0316,0.0075,0.0001
+41,antigen_69|A0A0D6FQ88||WP_015701804.1|tpos:1-274,Outer Membrane,0.0001,0.0011,0.0004,0.0012,0.6121,0.3851
+42,antigen_23|P44408|Recombination|WP_014326543.1|tpos:1-788,Cytoplasmic Membrane,0.0000,0.0001,0.0023,0.9925,0.0051,0.0000
+43,antigen_3|P43738|DNA-directed|WP_015701708.1|tpos:1-1343,Cytoplasmic,0.0014,0.0095,0.5422,0.0179,0.4248,0.0043
+44,antigen_15|P44016|Putative|WP_077643678.1|tpos:29-660,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9981,0.0018,0.0000
+45,antigen_41|P45042|Lipooligosaccharide|WP_041175069.1|tpos:1-346,Cytoplasmic,0.0000,0.0002,0.5656,0.4158,0.0171,0.0012
+46,antigen_16|P44136|Putative|WP_015702144.1|tpos:1-322,Cytoplasmic Membrane,0.0000,0.0001,0.0004,0.9977,0.0018,0.0000
+47,antigen_18|P44252|Lipoprotein-releasing|WP_077643956.1|tpos:1-393,Cytoplasmic Membrane,0.0000,0.0000,0.0000,0.9998,0.0002,0.0000
+48,antigen_32|P44741|Tellurite|WP_015701706.1|tpos:1-314,Cytoplasmic Membrane,0.0000,0.0000,0.0001,0.9994,0.0005,0.0000
+49,antigen_65|A0A2S9RQN3|Lipooligosaccharide|WP_041175069.1|tpos:1-346,Cytoplasmic,0.0000,0.0002,0.5656,0.4158,0.0171,0.0012
+50,antigen_40|P45018|ATP-dependent|WP_077643755.1|tpos:1-1303,Cytoplasmic,0.0012,0.0021,0.9342,0.0504,0.0112,0.0009
+51,antigen_50|P71392|Protein|WP_422386078.1|tpos:103-369,Cytoplasmic,0.0001,0.0021,0.9891,0.0016,0.0069,0.0002
+52,antigen_76|Q71BF9||WP_015701486.1|tpos:1-928,Extracellular,0.0015,0.9690,0.0001,0.0000,0.0274,0.0019
+53,antigen_14|P44003|Uncharacterized|WP_015701696.1|tpos:1-125,Cytoplasmic,0.0000,0.0028,0.9950,0.0018,0.0004,0.0000
+54,antigen_48|P46448|Formate|WP_143413628.1|tpos:1-1028,Periplasmic,0.0003,0.0076,0.0213,0.0277,0.1122,0.8310
+55,antigen_6|P43767|DNA|WP_005686265.1|tpos:1-359,Cytoplasmic,0.0000,0.0002,0.8872,0.1091,0.0033,0.0003
+56,antigen_44|P45090|Arginine|WP_015702103.1|tpos:1-221,Cytoplasmic Membrane,0.0000,0.0000,0.0000,0.9999,0.0001,0.0000
+57,antigen_55|Q57180|Uncharacterized|WP_077643746.1|tpos:1-614,Cytoplasmic Membrane,0.0000,0.0001,0.0000,0.9993,0.0005,0.0000
+58,antigen_63|P45996|Outer|WP_077643771.1|tpos:1-353,Outer Membrane,0.0000,0.0000,0.0000,0.0001,0.9999,0.0000
+59,antigen_57|Q57288|Ion-translocating|WP_015702477.1|tpos:1-358,Cytoplasmic Membrane,0.0000,0.0001,0.0017,0.9954,0.0027,0.0000
+60,antigen_64|A0AB37B1K1||WP_077643771.1|tpos:231-352,Outer Membrane,0.0428,0.0666,0.0244,0.0948,0.4673,0.3040
+61,antigen_9|P43840|Outer|WP_077643771.1|tpos:1-353,Outer Membrane,0.0000,0.0000,0.0000,0.0001,0.9999,0.0000
+62,antigen_22|P44407|ATP-dependent|WP_014326542.1|tpos:1-587,Cytoplasmic Membrane,0.0000,0.0000,0.0000,0.9964,0.0035,0.0000
+63,antigen_29|P44608|UPF0761|WP_005656225.1|tpos:1-269,Cytoplasmic Membrane,0.0000,0.0000,0.0001,0.9992,0.0008,0.0000
+64,antigen_10|P43847|Phosphoribosylformylglycinamidine|WP_077643854.1|tpos:1-1297,Cytoplasmic,0.0004,0.0062,0.9122,0.0070,0.0688,0.0054
+65,antigen_12|P43929|Uncharacterized|WP_050847189.1|tpos:1-258,Cytoplasmic,0.0003,0.0071,0.9546,0.0305,0.0068,0.0007
+66,antigen_2|P43008|Biopolymer|WP_111742161.1|tpos:1-150,Cytoplasmic Membrane,0.0000,0.0002,0.0000,0.9984,0.0013,0.0000
+67,antigen_5|P43757|Transketolase|WP_041175063.1|tpos:1-665,Cytoplasmic,0.0005,0.0026,0.8686,0.0048,0.1178,0.0058
+68,antigen_36|P44836|Probable|WP_126466921.1|tpos:1-67,Periplasmic,0.0001,0.0621,0.0000,0.0001,0.0062,0.9316
+69,antigen_59|Q57427|Putative|WP_005653834.1|tpos:1-260,Cytoplasmic,0.0015,0.0140,0.9536,0.0165,0.0140,0.0005
+70,antigen_31|P44680|ATP-dependent|WP_015701608.1|tpos:1-640,Cytoplasmic,0.0006,0.0015,0.9584,0.0179,0.0207,0.0008

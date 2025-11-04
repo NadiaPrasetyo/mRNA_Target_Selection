@@ -1,0 +1,4 @@
+[2025-11-03 13:23:02,969] Single-chain mode set, will predict PDBs as single chains
+[2025-11-03 13:23:02,977] Single PDB file input (3LAE_Q57017), extracting single chains to data/H.influenzae/random_analysis/discotope/3LAE_Q57017/input_chains
+[2025-11-03 13:23:03,078] Found 2 extracted single chains in data/H.influenzae/random_analysis/discotope/3LAE_Q57017/input_chains
+[2025-11-03 13:24:32,129] Predicted 2 / 2 PDB files extracted from 1 input PDBs, saved to data/H.influenzae/random_analysis/discotope/3LAE_Q57017/output

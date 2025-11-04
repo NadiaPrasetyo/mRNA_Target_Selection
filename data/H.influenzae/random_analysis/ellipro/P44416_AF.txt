@@ -1,0 +1,16 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,P44416_AF,A,1,38,MLKKTSLIFTALLMTGCVQNANVTTPQAQKMQVEKVDK,38,0.821,Linear
+2,P44416_AF,A,127,134,TSERLSGQ,8,0.664,Linear
+3,P44416_AF,A,88,92,ISERG,5,0.594,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,P44416_AF,A:L2, A:K3, A:K4, A:T5, A:S6, A:L7, A:I8,7,0.963,Discontinous
+2,P44416_AF,A:Q27, A:A28, A:Q29, A:K30,4,0.866,Discontinous
+3,P44416_AF,A:F9, A:T10, A:A11, A:L12, A:L13, A:M14, A:T15, A:G16, A:C17, A:V18, A:Q19, A:N20, A:A21, A:N22, A:V23, A:T24, A:T25, A:P26,18,0.83,Discontinous
+4,P44416_AF,A:L131, A:S132, A:G133, A:Q134,4,0.759,Discontinous
+5,P44416_AF,A:M31, A:Q32, A:V33, A:E34,4,0.666,Discontinous
+6,P44416_AF,A:K64, A:K68, A:N69,3,0.634,Discontinous
+7,P44416_AF,A:I88, A:S89, A:E90, A:R91, A:G92, A:R105,6,0.566,Discontinous
+8,P44416_AF,A:V36, A:D37, A:K38,3,0.56,Discontinous
+9,P44416_AF,A:C50, A:Q51, A:D52, A:D53, A:R54, A:D106, A:D107, A:F108, A:T121, A:Q122,10,0.554,Discontinous
+10,P44416_AF,A:T127, A:S128, A:E129,3,0.522,Discontinous

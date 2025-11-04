@@ -1,0 +1,11 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,3LAE_Q57017,A,-2,7,SNAIQQSDGS,10,0.685,Linear
+2,3LAE_Q57017,A,44,54,EEIPDEGTICE,11,0.654,Linear
+3,3LAE_Q57017,A,21,33,KMFNWELDTEDAR,13,0.626,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,3LAE_Q57017,A:I1, A:Q2, A:Q3, A:S4, A:D5, A:G6, A:S7,7,0.77,Discontinous
+2,3LAE_Q57017,A:E44, A:E45, A:I46, A:P47, A:D48, A:E49, A:G50, A:T51, A:I52, A:E64, A:V65, A:G66, A:D67, A:N68,14,0.711,Discontinous
+3,3LAE_Q57017,A:R17, A:L27, A:D28, A:T29, A:E30, A:D31, A:A32,7,0.65,Discontinous
+4,3LAE_Q57017,A:S-2, A:N-1, A:D18, A:M22, X:I1, X:F2, X:G3,7,0.641,Discontinous
+5,3LAE_Q57017,A:G57, A:K77, A:L78,3,0.627,Discontinous

@@ -1,0 +1,11 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A5UF06_AF,A,90,96,ARVEKTK,7,0.821,Linear
+2,A5UF06_AF,A,59,76,SSRPGRNPKTGDVVPVSA,18,0.777,Linear
+3,A5UF06_AF,A,14,23,SDKYHLSKQD,10,0.709,Linear
+4,A5UF06_AF,A,41,44,FGQD,4,0.555,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A5UF06_AF,A:A90, A:R91, A:V92, A:E93, A:K94, A:T95,6,0.8,Discontinous
+2,A5UF06_AF,A:S59, A:S60, A:R61, A:P62, A:G63, A:R64, A:N65, A:P66, A:K67, A:T68, A:G69, A:D70, A:V71, A:V72, A:P73, A:V74, A:S75, A:A76,18,0.777,Discontinous
+3,A5UF06_AF,A:E11, A:S14, A:D15, A:L19, A:S20, A:K21, A:Q22, A:D23, A:N26,9,0.722,Discontinous
+4,A5UF06_AF,A:M1, A:A2, A:T3,3,0.667,Discontinous
