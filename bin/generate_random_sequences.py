@@ -40,6 +40,8 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))  # Add parent directory to sys.path
 from bin.fetch_sequences_Uniprot import parse_uniprot_response, fetch_refseq_nucleotide
 
+# Increase the CSV field size limit to handle very large sequences
+csv.field_size_limit(sys.maxsize)
 
 def get_antigen_protein_names(antigen_file):
     """Extract antigen protein names from the CSV file.
