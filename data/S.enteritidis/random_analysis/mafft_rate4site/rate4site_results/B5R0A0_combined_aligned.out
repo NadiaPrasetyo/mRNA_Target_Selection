@@ -1,0 +1,74 @@
+#Rates were calculated using Maximim Likelihood
+#The likelihood of the data given the tree is: 
+#LL=-185.566
+#SEQ: the amino acid in the reference sequence in one letter code.
+#SCORE: The conservation scores. lower value = higher conservation.
+#MSA DATA: The number of aligned sequences having an amino acid (non-gapped) from the overall number of sequences at each position.
+
+#POS SEQ  SCORE     MSA DATA
+1    M    -0.4490   6/6
+2    K    -0.5539   6/6
+3    V    2.2060    6/6
+4    N    -0.4490   6/6
+5    D    -0.4490   6/6
+6    R    -0.4490   6/6
+7    V    2.2060    6/6
+8    T    -0.4490   6/6
+9    V    2.2060    6/6
+10   K    -0.5539   6/6
+11   T    -0.4490   6/6
+12   D    -0.4490   6/6
+13   G    -0.4490   6/6
+14   G    -0.4490   6/6
+15   P    -0.4490   6/6
+16   R    -0.4490   6/6
+17   R    -0.4490   6/6
+18   P    -0.4490   6/6
+19   G    -0.4490   6/6
+20   V    2.2060    6/6
+21   V    2.2060    6/6
+22   L    -0.4490   6/6
+23   A    -0.4490   6/6
+24   V    2.2060    6/6
+25   E    -0.4490   6/6
+26   E    -0.4490   6/6
+27   F    -0.4490   6/6
+28   S    -0.4490   6/6
+29   E    -0.4490   6/6
+30   G    -0.4490   6/6
+31   T    -0.4490   6/6
+32   M    -0.4490   6/6
+33   Y    2.0423    6/6
+34   L    -0.4490   6/6
+35   V    2.2060    6/6
+36   S    -0.4490   6/6
+37   L    -0.4490   6/6
+38   E    -0.4490   6/6
+39   D    -0.4490   6/6
+40   Y    2.0423    6/6
+41   P    -0.4490   6/6
+42   L    -0.4490   6/6
+43   G    -0.4490   6/6
+44   I    -0.3626   6/6
+45   W    -0.4490   6/6
+46   F    -0.4490   6/6
+47   F    -0.4490   6/6
+48   N    -0.4490   6/6
+49   E    -0.4490   6/6
+50   S    -0.4490   6/6
+51   G    -0.4490   6/6
+52   H    2.2060    6/6
+53   Q    -0.4490   6/6
+54   D    -0.4490   6/6
+55   G    -0.4490   6/6
+56   I    -0.3626   6/6
+57   F    -0.4490   6/6
+58   V    2.2060    6/6
+59   E    -0.4490   6/6
+60   K    -0.5539   6/6
+61   A    -0.4490   6/6
+62   E    -0.4490   6/6
+63   Q    -0.4490   6/6
+64   D    -0.4490   6/6
+#Average = 0.0000
+#Standard Deviation = 1.0000

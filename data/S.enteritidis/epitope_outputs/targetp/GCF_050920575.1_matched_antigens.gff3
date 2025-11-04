@@ -1,0 +1,8 @@
+##gff-version 3
+antigen_7|A0A2R4NA08||WP_000927219.1|tpos:110-185	TargetP-2.0	signal_peptide	1	23	0.956503	.	.	.
+antigen_8|A0A3R0QC43||WP_000715097.1|tpos:1-147	TargetP-2.0	signal_peptide	1	26	0.991872	.	.	.
+antigen_5|A0A726EJ39||WP_000769037.1|tpos:8-362	TargetP-2.0	signal_peptide	1	14	0.534634	.	.	.
+antigen_12|A0A725QUL8|PhoP/PhoQ|WP_000714547.1|tpos:1-47	TargetP-2.0	signal_peptide	1	23	0.984383	.	.	.
+antigen_2|A0A1R2H6T8||WP_000758335.1|tpos:1-372	TargetP-2.0	signal_peptide	1	22	0.999850	.	.	.
+antigen_3|A0A3V9CGI1||WP_000865521.1|tpos:1-378	TargetP-2.0	signal_peptide	1	21	0.999901	.	.	.
+antigen_6|A0A5T7KR29|LPS-assembly|WP_001269950.1|tpos:1-196	TargetP-2.0	signal_peptide	1	17	0.991657	.	.	.

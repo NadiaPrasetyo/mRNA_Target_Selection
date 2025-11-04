@@ -1,0 +1,4 @@
+[2025-11-04 18:28:57,415] Single-chain mode set, will predict PDBs as single chains
+[2025-11-04 18:28:57,416] Single PDB file input (3TW9_B5R541), extracting single chains to data/S.enteritidis/random_analysis/discotope/3TW9_B5R541/input_chains
+[2025-11-04 18:29:02,006] Found 4 extracted single chains in data/S.enteritidis/random_analysis/discotope/3TW9_B5R541/input_chains
+[2025-11-04 18:40:47,215] Predicted 4 / 4 PDB files extracted from 1 input PDBs, saved to data/S.enteritidis/random_analysis/discotope/3TW9_B5R541/output

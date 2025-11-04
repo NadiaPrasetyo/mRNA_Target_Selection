@@ -1,0 +1,8 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A724LC01_AF,A,33,36,YIIE,4,0.799,Linear
+2,A0A724LC01_AF,A,16,21,VRNDDT,6,0.616,Linear
+3,A0A724LC01_AF,A,1,13,MKKRISSRPRSRK,13,0.592,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A724LC01_AF,A:I34, A:I35, A:E36,3,0.907,Discontinous
+2,A0A724LC01_AF,A:V16, A:R17, A:N18, A:D19, A:D20, A:T21, A:P23,7,0.575,Discontinous
