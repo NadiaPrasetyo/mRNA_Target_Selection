@@ -1,0 +1,8 @@
+[2025-10-07 22:38:15,629] Single-chain mode set, will predict PDBs as single chains
+[2025-10-07 22:38:15,630] Single PDB file input (7VE5_Q2FX09), extracting single chains to data/S.aureus/epitope_outputs/discotope/7VE5_Q2FX09/input_chains
+[2025-10-07 22:38:15,712] Found 4 extracted single chains in data/S.aureus/epitope_outputs/discotope/7VE5_Q2FX09/input_chains
+[2025-10-07 22:38:54,580] Note: Skipping 7VE5_Q2FX09_C, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-07 22:38:54,583] Note: Skipping 7VE5_Q2FX09_D, ESM-IF1 unable to extract valid amino-acid backbone
+[2025-10-07 22:39:21,798] Predicted 2 / 4 PDB files extracted from 1 input PDBs, saved to data/S.aureus/epitope_outputs/discotope/7VE5_Q2FX09/output
+[2025-10-07 22:39:21,799] Note: Excluded predicting 2 PDB chain(s) (see log file):
+7VE5_Q2FX09_C, 7VE5_Q2FX09_D
