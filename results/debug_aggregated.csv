@@ -7454,6 +7454,13 @@ A0A1Q9J9W6,signalp_prob_signalp,0.81706864
 A0A1Q9J9W6,targetp_prob_SP,0.82016593
 A0A1Q9J9W6,targetp_prob_mTP,0.00096483337
 A0A1Q9J9W6,targetp_prob_noTP,0.17886901
+A0A1R2H6T8,FEL_mean_alpha,1350.9727
+A0A1R2H6T8,FEL_mean_beta,0.52215374
+A0A1R2H6T8,FEL_mean_lrt,0.87743956
+A0A1R2H6T8,FUBAR_mean_alpha,5.626727
+A0A1R2H6T8,FUBAR_mean_beta,5.896677
+A0A1R2H6T8,FUBAR_mean_prob_neg,0.49874008
+A0A1R2H6T8,FUBAR_mean_prob_pos,0.45125303
 A0A1R2H6T8,ProtLearn_Amino acid composition,5.0
 A0A1R2H6T8,ProtLearn_Average flexibility indices,0.0
 A0A1R2H6T8,ProtLearn_Average volume of buried residue,138.0
@@ -7466,6 +7473,9 @@ A0A1R2H6T8,ProtLearn_Relative mutability,79.0
 A0A1R2H6T8,ProtLearn_Volume,72.0
 A0A1R2H6T8,ProtLearn_length,372.0
 A0A1R2H6T8,ProtLearn_pK (-COOH),2.0
+A0A1R2H6T8,SLAC_mean_dN/dS,0.53526783
+A0A1R2H6T8,SLAC_mean_n,1.129902
+A0A1R2H6T8,SLAC_mean_s,0.84068626
 A0A1R2H6T8,allergenicity_blast_score,0.0
 A0A1R2H6T8,allergenicity_hybrid_score,0.65300006
 A0A1R2H6T8,allergenicity_merci_score,0.33333334
@@ -7531,6 +7541,13 @@ A0A1R2H6T8,signalp_prob_signalp,0.99785596
 A0A1R2H6T8,targetp_prob_SP,0.9996403
 A0A1R2H6T8,targetp_prob_mTP,4.6333338e-05
 A0A1R2H6T8,targetp_prob_noTP,0.00031333332
+A0A1R2MVB1,FEL_mean_alpha,573.0239
+A0A1R2MVB1,FEL_mean_beta,14.324733
+A0A1R2MVB1,FEL_mean_lrt,1.1084619
+A0A1R2MVB1,FUBAR_mean_alpha,5.754694
+A0A1R2MVB1,FUBAR_mean_beta,8.647801
+A0A1R2MVB1,FUBAR_mean_prob_neg,0.61942
+A0A1R2MVB1,FUBAR_mean_prob_pos,0.3314909
 A0A1R2MVB1,ProtLearn_Amino acid composition,6.0
 A0A1R2MVB1,ProtLearn_Average flexibility indices,0.0
 A0A1R2MVB1,ProtLearn_Average volume of buried residue,134.0
@@ -7543,6 +7560,9 @@ A0A1R2MVB1,ProtLearn_Relative mutability,88.0
 A0A1R2MVB1,ProtLearn_Volume,69.0
 A0A1R2MVB1,ProtLearn_length,409.0
 A0A1R2MVB1,ProtLearn_pK (-COOH),2.0
+A0A1R2MVB1,SLAC_mean_dN/dS,0.46756482
+A0A1R2MVB1,SLAC_mean_n,1.204114
+A0A1R2MVB1,SLAC_mean_s,0.8148734
 A0A1R2MVB1,allergenicity_blast_score,-0.5
 A0A1R2MVB1,allergenicity_hybrid_score,-0.369
 A0A1R2MVB1,allergenicity_merci_score,0.0
@@ -7608,6 +7628,13 @@ A0A1R2MVB1,signalp_prob_signalp,0.002567
 A0A1R2MVB1,targetp_prob_SP,0.000974
 A0A1R2MVB1,targetp_prob_mTP,0.0022
 A0A1R2MVB1,targetp_prob_noTP,0.996825
+A0A1R2XWH4,FEL_mean_alpha,440.15448
+A0A1R2XWH4,FEL_mean_beta,1.166777
+A0A1R2XWH4,FEL_mean_lrt,0.94601274
+A0A1R2XWH4,FUBAR_mean_alpha,5.597574
+A0A1R2XWH4,FUBAR_mean_beta,5.81413
+A0A1R2XWH4,FUBAR_mean_prob_neg,0.4970318
+A0A1R2XWH4,FUBAR_mean_prob_pos,0.4528662
 A0A1R2XWH4,ProtLearn_Amino acid composition,5.0
 A0A1R2XWH4,ProtLearn_Average flexibility indices,0.0
 A0A1R2XWH4,ProtLearn_Average volume of buried residue,138.0
@@ -7620,6 +7647,9 @@ A0A1R2XWH4,ProtLearn_Relative mutability,84.0
 A0A1R2XWH4,ProtLearn_Volume,71.0
 A0A1R2XWH4,ProtLearn_length,343.0
 A0A1R2XWH4,ProtLearn_pK (-COOH),2.0
+A0A1R2XWH4,SLAC_mean_dN/dS,0.53159225
+A0A1R2XWH4,SLAC_mean_n,1.1984375
+A0A1R2XWH4,SLAC_mean_s,0.8328125
 A0A1R2XWH4,allergenicity_blast_score,0.0
 A0A1R2XWH4,allergenicity_hybrid_score,0.115
 A0A1R2XWH4,allergenicity_merci_score,0.0
@@ -7685,6 +7715,13 @@ A0A1R2XWH4,signalp_prob_signalp,0.002081
 A0A1R2XWH4,targetp_prob_SP,0.000127
 A0A1R2XWH4,targetp_prob_mTP,0.000515
 A0A1R2XWH4,targetp_prob_noTP,0.99935895
+A0A1R2YP51,FEL_mean_alpha,886.8908
+A0A1R2YP51,FEL_mean_beta,9.226465
+A0A1R2YP51,FEL_mean_lrt,1.2105995
+A0A1R2YP51,FUBAR_mean_alpha,5.924796
+A0A1R2YP51,FUBAR_mean_beta,7.654894
+A0A1R2YP51,FUBAR_mean_prob_neg,0.56652844
+A0A1R2YP51,FUBAR_mean_prob_pos,0.38382208
 A0A1R2YP51,ProtLearn_Amino acid composition,5.0
 A0A1R2YP51,ProtLearn_Average flexibility indices,0.0
 A0A1R2YP51,ProtLearn_Average volume of buried residue,142.0
@@ -7697,6 +7734,9 @@ A0A1R2YP51,ProtLearn_Relative mutability,76.0
 A0A1R2YP51,ProtLearn_Volume,77.0
 A0A1R2YP51,ProtLearn_length,459.0
 A0A1R2YP51,ProtLearn_pK (-COOH),2.0
+A0A1R2YP51,SLAC_mean_dN/dS,0.33866322
+A0A1R2YP51,SLAC_mean_n,0.93318963
+A0A1R2YP51,SLAC_mean_s,0.8814655
 A0A1R2YP51,allergenicity_blast_score,-0.5
 A0A1R2YP51,allergenicity_hybrid_score,0.008
 A0A1R2YP51,allergenicity_merci_score,0.5
@@ -7880,6 +7920,13 @@ A0A1S6ZGG9,signalp_prob_signalp,0.000986
 A0A1S6ZGG9,targetp_prob_SP,0.000552
 A0A1S6ZGG9,targetp_prob_mTP,0.000586
 A0A1S6ZGG9,targetp_prob_noTP,0.998863
+A0A1X8W5A6,FEL_mean_alpha,33.36525
+A0A1X8W5A6,FEL_mean_beta,0.16339166
+A0A1X8W5A6,FEL_mean_lrt,0.86792487
+A0A1X8W5A6,FUBAR_mean_alpha,5.473881
+A0A1X8W5A6,FUBAR_mean_beta,5.922956
+A0A1X8W5A6,FUBAR_mean_prob_neg,0.5595313
+A0A1X8W5A6,FUBAR_mean_prob_pos,0.3903618
 A0A1X8W5A6,ProtLearn_Amino acid composition,5.0
 A0A1X8W5A6,ProtLearn_Average flexibility indices,0.0
 A0A1X8W5A6,ProtLearn_Average volume of buried residue,146.0
@@ -7892,6 +7939,9 @@ A0A1X8W5A6,ProtLearn_Relative mutability,76.0
 A0A1X8W5A6,ProtLearn_Volume,79.0
 A0A1X8W5A6,ProtLearn_length,411.0
 A0A1X8W5A6,ProtLearn_pK (-COOH),2.0
+A0A1X8W5A6,SLAC_mean_dN/dS,0.48878688
+A0A1X8W5A6,SLAC_mean_n,1.2425
+A0A1X8W5A6,SLAC_mean_s,0.8425
 A0A1X8W5A6,allergenicity_blast_score,0.0
 A0A1X8W5A6,allergenicity_hybrid_score,0.023999998
 A0A1X8W5A6,allergenicity_merci_score,0.0
@@ -7957,6 +8007,13 @@ A0A1X8W5A6,signalp_prob_signalp,0.001097
 A0A1X8W5A6,targetp_prob_SP,0.003375
 A0A1X8W5A6,targetp_prob_mTP,0.001153
 A0A1X8W5A6,targetp_prob_noTP,0.995471
+A0A1X8WHE7,FEL_mean_alpha,251.52235
+A0A1X8WHE7,FEL_mean_beta,15.511041
+A0A1X8WHE7,FEL_mean_lrt,1.1066774
+A0A1X8WHE7,FUBAR_mean_alpha,5.6142797
+A0A1X8WHE7,FUBAR_mean_beta,5.820787
+A0A1X8WHE7,FUBAR_mean_prob_neg,0.49584162
+A0A1X8WHE7,FUBAR_mean_prob_pos,0.45421687
 A0A1X8WHE7,ProtLearn_Amino acid composition,5.0
 A0A1X8WHE7,ProtLearn_Average flexibility indices,0.0
 A0A1X8WHE7,ProtLearn_Average volume of buried residue,145.0
@@ -7969,6 +8026,9 @@ A0A1X8WHE7,ProtLearn_Relative mutability,79.0
 A0A1X8WHE7,ProtLearn_Volume,78.0
 A0A1X8WHE7,ProtLearn_length,381.0
 A0A1X8WHE7,ProtLearn_pK (-COOH),2.0
+A0A1X8WHE7,SLAC_mean_dN/dS,0.53289187
+A0A1X8WHE7,SLAC_mean_n,1.2733517
+A0A1X8WHE7,SLAC_mean_s,0.83104396
 A0A1X8WHE7,allergenicity_blast_score,-0.5
 A0A1X8WHE7,allergenicity_hybrid_score,-0.487
 A0A1X8WHE7,allergenicity_merci_score,0.0
@@ -10302,6 +10362,13 @@ A0A379B243,signalp_prob_signalp,0.023282
 A0A379B243,targetp_prob_SP,0.09437301
 A0A379B243,targetp_prob_mTP,0.585278
 A0A379B243,targetp_prob_noTP,0.320349
+A0A3R0QC43,FEL_mean_alpha,3.1162405
+A0A3R0QC43,FEL_mean_beta,0.22360694
+A0A3R0QC43,FEL_mean_lrt,0.24159375
+A0A3R0QC43,FUBAR_mean_alpha,5.612326
+A0A3R0QC43,FUBAR_mean_beta,5.8879576
+A0A3R0QC43,FUBAR_mean_prob_neg,0.5010766
+A0A3R0QC43,FUBAR_mean_prob_pos,0.44892287
 A0A3R0QC43,ProtLearn_Amino acid composition,5.0
 A0A3R0QC43,ProtLearn_Average flexibility indices,0.0
 A0A3R0QC43,ProtLearn_Average volume of buried residue,144.0
@@ -10314,6 +10381,9 @@ A0A3R0QC43,ProtLearn_Relative mutability,80.0
 A0A3R0QC43,ProtLearn_Volume,77.0
 A0A3R0QC43,ProtLearn_length,147.0
 A0A3R0QC43,ProtLearn_pK (-COOH),2.0
+A0A3R0QC43,SLAC_mean_dN/dS,0.43087617
+A0A3R0QC43,SLAC_mean_n,1.1311111
+A0A3R0QC43,SLAC_mean_s,0.8155556
 A0A3R0QC43,allergenicity_blast_score,0.0
 A0A3R0QC43,allergenicity_hybrid_score,0.253
 A0A3R0QC43,allergenicity_merci_score,0.0
@@ -10379,6 +10449,13 @@ A0A3R0QC43,signalp_prob_signalp,0.980365
 A0A3R0QC43,targetp_prob_SP,0.991872
 A0A3R0QC43,targetp_prob_mTP,0.000186
 A0A3R0QC43,targetp_prob_noTP,0.007942
+A0A3V9CGI1,FEL_mean_alpha,330.7369
+A0A3V9CGI1,FEL_mean_beta,6.4519377
+A0A3V9CGI1,FEL_mean_lrt,0.82389903
+A0A3V9CGI1,FUBAR_mean_alpha,5.6303296
+A0A3V9CGI1,FUBAR_mean_beta,5.8491836
+A0A3V9CGI1,FUBAR_mean_prob_neg,0.49543807
+A0A3V9CGI1,FUBAR_mean_prob_pos,0.45462418
 A0A3V9CGI1,ProtLearn_Amino acid composition,5.0
 A0A3V9CGI1,ProtLearn_Average flexibility indices,0.0
 A0A3V9CGI1,ProtLearn_Average volume of buried residue,138.0
@@ -10391,6 +10468,9 @@ A0A3V9CGI1,ProtLearn_Relative mutability,79.0
 A0A3V9CGI1,ProtLearn_Volume,72.0
 A0A3V9CGI1,ProtLearn_length,378.0
 A0A3V9CGI1,ProtLearn_pK (-COOH),2.0
+A0A3V9CGI1,SLAC_mean_dN/dS,0.55787766
+A0A3V9CGI1,SLAC_mean_n,1.3152866
+A0A3V9CGI1,SLAC_mean_s,0.7929936
 A0A3V9CGI1,allergenicity_blast_score,0.0
 A0A3V9CGI1,allergenicity_hybrid_score,0.35
 A0A3V9CGI1,allergenicity_merci_score,0.0
@@ -10456,6 +10536,13 @@ A0A3V9CGI1,signalp_prob_signalp,0.9994109
 A0A3V9CGI1,targetp_prob_SP,0.999901
 A0A3V9CGI1,targetp_prob_mTP,3e-06
 A0A3V9CGI1,targetp_prob_noTP,9.6e-05
+A0A403FE84,FEL_mean_alpha,1.4226075
+A0A403FE84,FEL_mean_beta,16.163126
+A0A403FE84,FEL_mean_lrt,1.1243125
+A0A403FE84,FUBAR_mean_alpha,3.9639306
+A0A403FE84,FUBAR_mean_beta,7.0702806
+A0A403FE84,FUBAR_mean_prob_neg,0.6528452
+A0A403FE84,FUBAR_mean_prob_pos,0.2975934
 A0A403FE84,ProtLearn_Amino acid composition,6.0
 A0A403FE84,ProtLearn_Average flexibility indices,0.0
 A0A403FE84,ProtLearn_Average volume of buried residue,132.0
@@ -10468,6 +10555,9 @@ A0A403FE84,ProtLearn_Relative mutability,86.0
 A0A403FE84,ProtLearn_Volume,67.0
 A0A403FE84,ProtLearn_length,501.0
 A0A403FE84,ProtLearn_pK (-COOH),2.0
+A0A403FE84,SLAC_mean_dN/dS,0.48388425
+A0A403FE84,SLAC_mean_n,1.0578704
+A0A403FE84,SLAC_mean_s,0.8310185
 A0A403FE84,allergenicity_blast_score,0.0
 A0A403FE84,allergenicity_hybrid_score,0.6934
 A0A403FE84,allergenicity_merci_score,0.4
@@ -10533,6 +10623,13 @@ A0A403FE84,signalp_prob_signalp,9e-05
 A0A403FE84,targetp_prob_SP,0.000495
 A0A403FE84,targetp_prob_mTP,0.0448966
 A0A403FE84,targetp_prob_noTP,0.9546086
+A0A403FM66,FEL_mean_alpha,855.81537
+A0A403FM66,FEL_mean_beta,0.68332064
+A0A403FM66,FEL_mean_lrt,1.0190204
+A0A403FM66,FUBAR_mean_alpha,5.601957
+A0A403FM66,FUBAR_mean_beta,5.827854
+A0A403FM66,FUBAR_mean_prob_neg,0.4982313
+A0A403FM66,FUBAR_mean_prob_pos,0.45171097
 A0A403FM66,ProtLearn_Amino acid composition,5.0
 A0A403FM66,ProtLearn_Average flexibility indices,0.0
 A0A403FM66,ProtLearn_Average volume of buried residue,143.0
@@ -10545,6 +10642,9 @@ A0A403FM66,ProtLearn_Relative mutability,78.0
 A0A403FM66,ProtLearn_Volume,77.0
 A0A403FM66,ProtLearn_length,559.0
 A0A403FM66,ProtLearn_pK (-COOH),2.0
+A0A403FM66,SLAC_mean_dN/dS,0.48519698
+A0A403FM66,SLAC_mean_n,1.1422136
+A0A403FM66,SLAC_mean_s,0.8423423
 A0A403FM66,allergenicity_blast_score,-0.5
 A0A403FM66,allergenicity_hybrid_score,-0.37600002
 A0A403FM66,allergenicity_merci_score,0.0
@@ -11558,6 +11658,13 @@ A0A5S4TFJ9,signalp_prob_signalp,0.108119495
 A0A5S4TFJ9,targetp_prob_SP,0.38989615
 A0A5S4TFJ9,targetp_prob_mTP,0.019725999
 A0A5S4TFJ9,targetp_prob_noTP,0.5903777
+A0A5T7KR29,FEL_mean_alpha,3.5018616
+A0A5T7KR29,FEL_mean_beta,0.24626748
+A0A5T7KR29,FEL_mean_lrt,-0.17739852
+A0A5T7KR29,FUBAR_mean_alpha,5.6399403
+A0A5T7KR29,FUBAR_mean_beta,5.8542395
+A0A5T7KR29,FUBAR_mean_prob_neg,0.49348223
+A0A5T7KR29,FUBAR_mean_prob_pos,0.45635232
 A0A5T7KR29,ProtLearn_Amino acid composition,5.0
 A0A5T7KR29,ProtLearn_Average flexibility indices,0.0
 A0A5T7KR29,ProtLearn_Average volume of buried residue,140.0
@@ -11570,6 +11677,9 @@ A0A5T7KR29,ProtLearn_Relative mutability,83.0
 A0A5T7KR29,ProtLearn_Volume,74.0
 A0A5T7KR29,ProtLearn_length,196.0
 A0A5T7KR29,ProtLearn_pK (-COOH),2.0
+A0A5T7KR29,SLAC_mean_dN/dS,0.48513114
+A0A5T7KR29,SLAC_mean_n,1.0521885
+A0A5T7KR29,SLAC_mean_s,0.88720536
 A0A5T7KR29,allergenicity_blast_score,0.0
 A0A5T7KR29,allergenicity_hybrid_score,0.095
 A0A5T7KR29,allergenicity_merci_score,0.0
@@ -11635,6 +11745,13 @@ A0A5T7KR29,signalp_prob_signalp,0.967364
 A0A5T7KR29,targetp_prob_SP,0.991657
 A0A5T7KR29,targetp_prob_mTP,0.004284
 A0A5T7KR29,targetp_prob_noTP,0.004059
+A0A5T7KX54,FEL_mean_alpha,0.0
+A0A5T7KX54,FEL_mean_beta,0.0
+A0A5T7KX54,FEL_mean_lrt,0.0
+A0A5T7KX54,FUBAR_mean_alpha,5.630655
+A0A5T7KX54,FUBAR_mean_beta,5.630655
+A0A5T7KX54,FUBAR_mean_prob_neg,0.475
+A0A5T7KX54,FUBAR_mean_prob_pos,0.475
 A0A5T7KX54,ProtLearn_Amino acid composition,5.0
 A0A5T7KX54,ProtLearn_Average flexibility indices,0.0
 A0A5T7KX54,ProtLearn_Average volume of buried residue,144.0
@@ -11647,6 +11764,9 @@ A0A5T7KX54,ProtLearn_Relative mutability,79.0
 A0A5T7KX54,ProtLearn_Volume,77.0
 A0A5T7KX54,ProtLearn_length,292.0
 A0A5T7KX54,ProtLearn_pK (-COOH),2.0
+A0A5T7KX54,SLAC_mean_dN/dS,0.0
+A0A5T7KX54,SLAC_mean_n,0.0
+A0A5T7KX54,SLAC_mean_s,0.0
 A0A5T7KX54,allergenicity_blast_score,0.0
 A0A5T7KX54,allergenicity_hybrid_score,0.544
 A0A5T7KX54,allergenicity_merci_score,0.5
@@ -11712,6 +11832,16 @@ A0A5T7KX54,signalp_prob_signalp,0.001635
 A0A5T7KX54,targetp_prob_SP,0.002379
 A0A5T7KX54,targetp_prob_mTP,0.028965
 A0A5T7KX54,targetp_prob_noTP,0.968656
+A0A5U8J002,FEL_mean_alpha,260.5711
+A0A5U8J002,FEL_mean_beta,0.5370334
+A0A5U8J002,FEL_mean_lrt,1.0578637
+A0A5U8J002,FUBAR_mean_alpha,5.622176
+A0A5U8J002,FUBAR_mean_beta,5.9119673
+A0A5U8J002,FUBAR_mean_prob_neg,0.50164545
+A0A5U8J002,FUBAR_mean_prob_pos,0.44840428
+A0A5U8J002,SLAC_mean_dN/dS,0.42624134
+A0A5U8J002,SLAC_mean_n,1.0596491
+A0A5U8J002,SLAC_mean_s,0.8350877
 A0A5X1B012,ProtLearn_Amino acid composition,5.0
 A0A5X1B012,ProtLearn_Average flexibility indices,0.0
 A0A5X1B012,ProtLearn_Average volume of buried residue,144.0
@@ -11735,7 +11865,7 @@ A0A5X1B012,deeplocpro_prob_cell_wall_surface,0.0
 A0A5X1B012,deeplocpro_prob_cytoplasmic,0.9302667
 A0A5X1B012,deeplocpro_prob_cytoplasmic_membrane,0.0003
 A0A5X1B012,deeplocpro_prob_extracellular,0.057866663
-A0A5X1B012,deeplocpro_prob_outer_membrane,0.0009333333
+A0A5X1B012,deeplocpro_prob_outer_membrane,0.00093333336
 A0A5X1B012,deeplocpro_prob_periplasmic,0.010633334
 A0A5X1B012,deeptmhmm_proportion_outside,0.0
 A0A5X1B012,discotope_max_calibrated_score,2.31385
@@ -11789,6 +11919,13 @@ A0A5X1B012,signalp_prob_signalp,0.0011560001
 A0A5X1B012,targetp_prob_SP,0.0011513334
 A0A5X1B012,targetp_prob_mTP,0.004505
 A0A5X1B012,targetp_prob_noTP,0.9943437
+A0A614WAI4,FEL_mean_alpha,437.13904
+A0A614WAI4,FEL_mean_beta,1.0805284
+A0A614WAI4,FEL_mean_lrt,1.0363445
+A0A614WAI4,FUBAR_mean_alpha,5.609517
+A0A614WAI4,FUBAR_mean_beta,5.8184996
+A0A614WAI4,FUBAR_mean_prob_neg,0.4962263
+A0A614WAI4,FUBAR_mean_prob_pos,0.45371297
 A0A614WAI4,ProtLearn_Amino acid composition,5.0
 A0A614WAI4,ProtLearn_Average flexibility indices,0.0
 A0A614WAI4,ProtLearn_Average volume of buried residue,147.0
@@ -11801,6 +11938,9 @@ A0A614WAI4,ProtLearn_Relative mutability,78.0
 A0A614WAI4,ProtLearn_Volume,81.0
 A0A614WAI4,ProtLearn_length,487.0
 A0A614WAI4,ProtLearn_pK (-COOH),2.0
+A0A614WAI4,SLAC_mean_dN/dS,0.4821218
+A0A614WAI4,SLAC_mean_n,1.1398929
+A0A614WAI4,SLAC_mean_s,0.8681392
 A0A614WAI4,allergenicity_blast_score,-0.5
 A0A614WAI4,allergenicity_hybrid_score,-0.489
 A0A614WAI4,allergenicity_merci_score,0.0
@@ -11866,6 +12006,13 @@ A0A614WAI4,signalp_prob_signalp,0.020374
 A0A614WAI4,targetp_prob_SP,0.161316
 A0A614WAI4,targetp_prob_mTP,0.005315
 A0A614WAI4,targetp_prob_noTP,0.833369
+A0A656I9Z7,FEL_mean_alpha,0.0
+A0A656I9Z7,FEL_mean_beta,0.0
+A0A656I9Z7,FEL_mean_lrt,0.0
+A0A656I9Z7,FUBAR_mean_alpha,0.0
+A0A656I9Z7,FUBAR_mean_beta,0.0
+A0A656I9Z7,FUBAR_mean_prob_neg,0.0
+A0A656I9Z7,FUBAR_mean_prob_pos,0.0
 A0A656I9Z7,ProtLearn_Amino acid composition,5.0
 A0A656I9Z7,ProtLearn_Average flexibility indices,0.0
 A0A656I9Z7,ProtLearn_Average volume of buried residue,142.0
@@ -11878,6 +12025,9 @@ A0A656I9Z7,ProtLearn_Relative mutability,81.0
 A0A656I9Z7,ProtLearn_Volume,75.0
 A0A656I9Z7,ProtLearn_length,154.0
 A0A656I9Z7,ProtLearn_pK (-COOH),2.0
+A0A656I9Z7,SLAC_mean_dN/dS,1.0864073
+A0A656I9Z7,SLAC_mean_n,1.9375
+A0A656I9Z7,SLAC_mean_s,0.5625
 A0A656I9Z7,allergenicity_blast_score,0.0
 A0A656I9Z7,allergenicity_hybrid_score,0.228
 A0A656I9Z7,allergenicity_merci_score,0.0
@@ -11943,6 +12093,13 @@ A0A656I9Z7,signalp_prob_signalp,0.002089
 A0A656I9Z7,targetp_prob_SP,0.000895
 A0A656I9Z7,targetp_prob_mTP,0.001303
 A0A656I9Z7,targetp_prob_noTP,0.997802
+A0A656IJ70,FEL_mean_alpha,562.9916
+A0A656IJ70,FEL_mean_beta,0.6816455
+A0A656IJ70,FEL_mean_lrt,1.0472335
+A0A656IJ70,FUBAR_mean_alpha,5.594135
+A0A656IJ70,FUBAR_mean_beta,5.9145365
+A0A656IJ70,FUBAR_mean_prob_neg,0.5069014
+A0A656IJ70,FUBAR_mean_prob_pos,0.44335997
 A0A656IJ70,ProtLearn_Amino acid composition,6.0
 A0A656IJ70,ProtLearn_Average flexibility indices,0.0
 A0A656IJ70,ProtLearn_Average volume of buried residue,136.0
@@ -11955,6 +12112,9 @@ A0A656IJ70,ProtLearn_Relative mutability,82.0
 A0A656IJ70,ProtLearn_Volume,72.0
 A0A656IJ70,ProtLearn_length,593.0
 A0A656IJ70,ProtLearn_pK (-COOH),2.0
+A0A656IJ70,SLAC_mean_dN/dS,0.52518094
+A0A656IJ70,SLAC_mean_n,1.2607061
+A0A656IJ70,SLAC_mean_s,0.8122106
 A0A656IJ70,allergenicity_blast_score,0.0
 A0A656IJ70,allergenicity_hybrid_score,0.245
 A0A656IJ70,allergenicity_merci_score,0.0
@@ -12550,6 +12710,13 @@ A0A6I3UXD9,signalp_prob_signalp,0.0014291666
 A0A6I3UXD9,targetp_prob_SP,0.00048133335
 A0A6I3UXD9,targetp_prob_mTP,1.6666667e-05
 A0A6I3UXD9,targetp_prob_noTP,0.9995022
+A0A6Y0SRF9,FEL_mean_alpha,1604.0029
+A0A6Y0SRF9,FEL_mean_beta,6.9064794
+A0A6Y0SRF9,FEL_mean_lrt,0.87831455
+A0A6Y0SRF9,FUBAR_mean_alpha,6.031794
+A0A6Y0SRF9,FUBAR_mean_beta,8.839753
+A0A6Y0SRF9,FUBAR_mean_prob_neg,0.58082414
+A0A6Y0SRF9,FUBAR_mean_prob_pos,0.3694334
 A0A6Y0SRF9,ProtLearn_Amino acid composition,5.0
 A0A6Y0SRF9,ProtLearn_Average flexibility indices,0.0
 A0A6Y0SRF9,ProtLearn_Average volume of buried residue,146.0
@@ -12562,6 +12729,9 @@ A0A6Y0SRF9,ProtLearn_Relative mutability,82.0
 A0A6Y0SRF9,ProtLearn_Volume,79.0
 A0A6Y0SRF9,ProtLearn_length,140.0
 A0A6Y0SRF9,ProtLearn_pK (-COOH),2.0
+A0A6Y0SRF9,SLAC_mean_dN/dS,0.60267854
+A0A6Y0SRF9,SLAC_mean_n,1.504717
+A0A6Y0SRF9,SLAC_mean_s,0.740566
 A0A6Y0SRF9,allergenicity_blast_score,0.0
 A0A6Y0SRF9,allergenicity_hybrid_score,0.098
 A0A6Y0SRF9,allergenicity_merci_score,0.0
@@ -12773,6 +12943,13 @@ A0A724LC01,signalp_prob_signalp,0.017502
 A0A724LC01,targetp_prob_SP,0.203421
 A0A724LC01,targetp_prob_mTP,0.022067
 A0A724LC01,targetp_prob_noTP,0.774512
+A0A725QUL8,FEL_mean_alpha,2430.671
+A0A725QUL8,FEL_mean_beta,13.128223
+A0A725QUL8,FEL_mean_lrt,0.83238864
+A0A725QUL8,FUBAR_mean_alpha,5.899745
+A0A725QUL8,FUBAR_mean_beta,7.7526584
+A0A725QUL8,FUBAR_mean_prob_neg,0.5508104
+A0A725QUL8,FUBAR_mean_prob_pos,0.39885303
 A0A725QUL8,ProtLearn_Amino acid composition,5.0
 A0A725QUL8,ProtLearn_Average flexibility indices,0.0
 A0A725QUL8,ProtLearn_Average volume of buried residue,156.0
@@ -12785,6 +12962,9 @@ A0A725QUL8,ProtLearn_Relative mutability,67.0
 A0A725QUL8,ProtLearn_Volume,91.0
 A0A725QUL8,ProtLearn_length,47.0
 A0A725QUL8,ProtLearn_pK (-COOH),2.0
+A0A725QUL8,SLAC_mean_dN/dS,0.75704503
+A0A725QUL8,SLAC_mean_n,1.7361112
+A0A725QUL8,SLAC_mean_s,0.7083333
 A0A725QUL8,allergenicity_blast_score,0.0
 A0A725QUL8,allergenicity_hybrid_score,0.286
 A0A725QUL8,allergenicity_merci_score,0.0
@@ -12850,6 +13030,13 @@ A0A725QUL8,signalp_prob_signalp,0.480441
 A0A725QUL8,targetp_prob_SP,0.9843829
 A0A725QUL8,targetp_prob_mTP,0.0
 A0A725QUL8,targetp_prob_noTP,0.015617001
+A0A726EJ39,FEL_mean_alpha,423.9003
+A0A726EJ39,FEL_mean_beta,3.8411765
+A0A726EJ39,FEL_mean_lrt,1.4140444
+A0A726EJ39,FUBAR_mean_alpha,6.5282645
+A0A726EJ39,FUBAR_mean_beta,9.36414
+A0A726EJ39,FUBAR_mean_prob_neg,0.5960343
+A0A726EJ39,FUBAR_mean_prob_pos,0.35260457
 A0A726EJ39,ProtLearn_Amino acid composition,5.0
 A0A726EJ39,ProtLearn_Average flexibility indices,0.0
 A0A726EJ39,ProtLearn_Average volume of buried residue,138.0
@@ -12862,6 +13049,9 @@ A0A726EJ39,ProtLearn_Relative mutability,79.0
 A0A726EJ39,ProtLearn_Volume,73.0
 A0A726EJ39,ProtLearn_length,355.0
 A0A726EJ39,ProtLearn_pK (-COOH),2.0
+A0A726EJ39,SLAC_mean_dN/dS,0.48325318
+A0A726EJ39,SLAC_mean_n,1.2368914
+A0A726EJ39,SLAC_mean_s,1.0215356
 A0A726EJ39,allergenicity_blast_score,0.0
 A0A726EJ39,allergenicity_hybrid_score,0.40366665
 A0A726EJ39,allergenicity_merci_score,0.0
@@ -13134,6 +13324,13 @@ A0A822QE61,signalp_prob_signalp,0.003507667
 A0A822QE61,targetp_prob_SP,0.0007885
 A0A822QE61,targetp_prob_mTP,0.000133
 A0A822QE61,targetp_prob_noTP,0.99907917
+A0A894I0U4,FEL_mean_alpha,1133.4808
+A0A894I0U4,FEL_mean_beta,3.6785853
+A0A894I0U4,FEL_mean_lrt,0.98246956
+A0A894I0U4,FUBAR_mean_alpha,5.70497
+A0A894I0U4,FUBAR_mean_beta,6.4973235
+A0A894I0U4,FUBAR_mean_prob_neg,0.53020245
+A0A894I0U4,FUBAR_mean_prob_pos,0.41996342
 A0A894I0U4,ProtLearn_Amino acid composition,5.0
 A0A894I0U4,ProtLearn_Average flexibility indices,0.0
 A0A894I0U4,ProtLearn_Average volume of buried residue,146.0
@@ -13146,6 +13343,9 @@ A0A894I0U4,ProtLearn_Relative mutability,77.0
 A0A894I0U4,ProtLearn_Volume,79.0
 A0A894I0U4,ProtLearn_length,288.0
 A0A894I0U4,ProtLearn_pK (-COOH),2.0
+A0A894I0U4,SLAC_mean_dN/dS,0.43981877
+A0A894I0U4,SLAC_mean_n,1.3274279
+A0A894I0U4,SLAC_mean_s,0.7828084
 A0A894I0U4,allergenicity_blast_score,0.0
 A0A894I0U4,allergenicity_hybrid_score,0.078
 A0A894I0U4,allergenicity_merci_score,0.0
@@ -13211,6 +13411,13 @@ A0A894I0U4,signalp_prob_signalp,0.000675
 A0A894I0U4,targetp_prob_SP,0.00017199999
 A0A894I0U4,targetp_prob_mTP,0.00047
 A0A894I0U4,targetp_prob_noTP,0.999358
+A0A894I4B0,FEL_mean_alpha,813.2414
+A0A894I4B0,FEL_mean_beta,13.973791
+A0A894I4B0,FEL_mean_lrt,0.98788327
+A0A894I4B0,FUBAR_mean_alpha,5.640188
+A0A894I4B0,FUBAR_mean_beta,6.2650714
+A0A894I4B0,FUBAR_mean_prob_neg,0.5256806
+A0A894I4B0,FUBAR_mean_prob_pos,0.42472517
 A0A894I4B0,ProtLearn_Amino acid composition,5.0
 A0A894I4B0,ProtLearn_Average flexibility indices,0.0
 A0A894I4B0,ProtLearn_Average volume of buried residue,139.0
@@ -13223,6 +13430,9 @@ A0A894I4B0,ProtLearn_Relative mutability,81.0
 A0A894I4B0,ProtLearn_Volume,73.0
 A0A894I4B0,ProtLearn_length,335.0
 A0A894I4B0,ProtLearn_pK (-COOH),2.0
+A0A894I4B0,SLAC_mean_dN/dS,0.50059205
+A0A894I4B0,SLAC_mean_n,1.2434211
+A0A894I4B0,SLAC_mean_s,0.82894737
 A0A894I4B0,allergenicity_blast_score,0.0
 A0A894I4B0,allergenicity_hybrid_score,0.316
 A0A894I4B0,allergenicity_merci_score,0.0
@@ -45405,6 +45615,8 @@ B5QWW2,allergenicity_hybrid_score,0.093
 B5QWW2,allergenicity_merci_score,0.0
 B5QWW2,bcell_avg_peptide_length,8.333333
 B5QWW2,bcell_num_peptides,9.0
+B5QWW2,cluster_num_clusters,1.0
+B5QWW2,cluster_percent_identity/num_strain,6.0
 B5QWW2,deeplocpro_prob_cell_wall_surface,0.0004
 B5QWW2,deeplocpro_prob_cytoplasmic,0.6352
 B5QWW2,deeplocpro_prob_cytoplasmic_membrane,0.1485
@@ -45642,7 +45854,7 @@ B5QWY6,deeplocpro_prob_cytoplasmic_membrane,0.99990004
 B5QWY6,deeplocpro_prob_extracellular,0.0
 B5QWY6,deeplocpro_prob_outer_membrane,1e-04
 B5QWY6,deeplocpro_prob_periplasmic,0.0
-B5QWY6,deeptmhmm_proportion_outside,0.2005814
+B5QWY6,deeptmhmm_proportion_outside,0.20058139
 B5QWY6,discotope_max_calibrated_score,4.84708
 B5QWY6,discotope_max_discotope_score,0.6295
 B5QWY6,discotope_max_rsa,0.94792
@@ -47768,7 +47980,7 @@ B5QYX4,deeplocpro_prob_cytoplasmic_membrane,0.9967
 B5QYX4,deeplocpro_prob_extracellular,0.0002
 B5QYX4,deeplocpro_prob_outer_membrane,0.0021
 B5QYX4,deeplocpro_prob_periplasmic,1e-04
-B5QYX4,deeptmhmm_proportion_outside,0.109311745
+B5QYX4,deeptmhmm_proportion_outside,0.10931174
 B5QYX4,discotope_max_calibrated_score,4.22178
 B5QYX4,discotope_max_discotope_score,0.66916
 B5QYX4,discotope_max_rsa,0.96407
@@ -48301,7 +48513,7 @@ B5QZ97,deeplocpro_prob_cytoplasmic_membrane,0.999
 B5QZ97,deeplocpro_prob_extracellular,0.0
 B5QZ97,deeplocpro_prob_outer_membrane,0.00090000004
 B5QZ97,deeplocpro_prob_periplasmic,0.0
-B5QZ97,deeptmhmm_proportion_outside,0.23679419
+B5QZ97,deeptmhmm_proportion_outside,0.23679417
 B5QZ97,discotope_max_calibrated_score,5.25777
 B5QZ97,discotope_max_discotope_score,0.43139
 B5QZ97,discotope_max_rsa,1.14067
@@ -49673,7 +49885,7 @@ B5R0F4,deeplocpro_prob_cytoplasmic_membrane,0.9726
 B5R0F4,deeplocpro_prob_extracellular,0.0202
 B5R0F4,deeplocpro_prob_outer_membrane,0.0047
 B5R0F4,deeplocpro_prob_periplasmic,0.002
-B5R0F4,deeptmhmm_proportion_outside,0.22857144
+B5R0F4,deeptmhmm_proportion_outside,0.22857143
 B5R0F4,dssp_percent_helix,0.64705884
 B5R0F4,dssp_percent_loop,0.039215688
 B5R0F4,dssp_percent_sheet,0.0
@@ -51716,7 +51928,7 @@ B5R1S4,deeplocpro_prob_cytoplasmic_membrane,0.9988
 B5R1S4,deeplocpro_prob_extracellular,0.0
 B5R1S4,deeplocpro_prob_outer_membrane,0.001
 B5R1S4,deeplocpro_prob_periplasmic,0.0
-B5R1S4,deeptmhmm_proportion_outside,0.10967742
+B5R1S4,deeptmhmm_proportion_outside,0.10967741
 B5R1S4,discotope_max_calibrated_score,4.7732
 B5R1S4,discotope_max_discotope_score,0.36364
 B5R1S4,discotope_max_rsa,1.38527
@@ -51945,7 +52157,7 @@ B5R274,deeplocpro_prob_cytoplasmic_membrane,0.997
 B5R274,deeplocpro_prob_extracellular,1e-04
 B5R274,deeplocpro_prob_outer_membrane,0.0023
 B5R274,deeplocpro_prob_periplasmic,0.0003
-B5R274,deeptmhmm_proportion_outside,0.4835767
+B5R274,deeptmhmm_proportion_outside,0.48357666
 B5R274,discotope_max_calibrated_score,6.58923
 B5R274,discotope_max_discotope_score,0.5251
 B5R274,discotope_max_rsa,1.01392
@@ -52403,7 +52615,7 @@ B5R2A8,deeplocpro_prob_cytoplasmic_membrane,0.9988833
 B5R2A8,deeplocpro_prob_extracellular,0.0
 B5R2A8,deeplocpro_prob_outer_membrane,0.0006
 B5R2A8,deeplocpro_prob_periplasmic,0.0
-B5R2A8,deeptmhmm_proportion_outside,0.10482528
+B5R2A8,deeptmhmm_proportion_outside,0.10482529
 B5R2A8,discotope_max_calibrated_score,4.71445
 B5R2A8,discotope_max_discotope_score,0.35512
 B5R2A8,discotope_max_rsa,1.12668
@@ -53090,7 +53302,7 @@ B5R2S7,deeplocpro_prob_cytoplasmic_membrane,0.9969
 B5R2S7,deeplocpro_prob_extracellular,0.0014999999
 B5R2S7,deeplocpro_prob_outer_membrane,0.0013
 B5R2S7,deeplocpro_prob_periplasmic,0.0
-B5R2S7,deeptmhmm_proportion_outside,0.105802044
+B5R2S7,deeptmhmm_proportion_outside,0.10580204
 B5R2S7,discotope_max_calibrated_score,3.17867
 B5R2S7,discotope_max_discotope_score,0.43608
 B5R2S7,discotope_max_rsa,1.01447
@@ -54009,7 +54221,7 @@ B5R3B6,deeplocpro_prob_cytoplasmic,0.8193
 B5R3B6,deeplocpro_prob_cytoplasmic_membrane,0.056833338
 B5R3B6,deeplocpro_prob_extracellular,0.1141
 B5R3B6,deeplocpro_prob_outer_membrane,0.0064666667
-B5R3B6,deeplocpro_prob_periplasmic,0.0030666664
+B5R3B6,deeplocpro_prob_periplasmic,0.0030666667
 B5R3B6,deeptmhmm_proportion_outside,0.0
 B5R3B6,discotope_max_calibrated_score,2.65753
 B5R3B6,discotope_max_discotope_score,0.61845
@@ -56983,7 +57195,7 @@ B5R5I1,deeplocpro_prob_cytoplasmic_membrane,0.0014
 B5R5I1,deeplocpro_prob_extracellular,0.8244
 B5R5I1,deeplocpro_prob_outer_membrane,0.0177
 B5R5I1,deeplocpro_prob_periplasmic,0.1548
-B5R5I1,deeptmhmm_proportion_outside,0.8283583
+B5R5I1,deeptmhmm_proportion_outside,0.82835823
 B5R5I1,discotope_max_calibrated_score,2.46074
 B5R5I1,discotope_max_discotope_score,0.68494
 B5R5I1,discotope_max_rsa,0.91387
@@ -123989,7 +124201,7 @@ P0A1Z9,deeplocpro_prob_cytoplasmic_membrane,0.0892
 P0A1Z9,deeplocpro_prob_extracellular,0.0362
 P0A1Z9,deeplocpro_prob_outer_membrane,0.0137
 P0A1Z9,deeplocpro_prob_periplasmic,0.79800004
-P0A1Z9,deeptmhmm_proportion_outside,0.9074074
+P0A1Z9,deeptmhmm_proportion_outside,0.90740746
 P0A1Z9,discotope_max_calibrated_score,2.26529
 P0A1Z9,discotope_max_discotope_score,0.6965
 P0A1Z9,discotope_max_rsa,1.03258
@@ -201442,6 +201654,13 @@ Q8P2A7,signalp_prob_signalp,0.000268
 Q8P2A7,targetp_prob_SP,3.6e-05
 Q8P2A7,targetp_prob_mTP,5.5e-05
 Q8P2A7,targetp_prob_noTP,0.999909
+Q8VQB5,FEL_mean_alpha,1145.9331
+Q8VQB5,FEL_mean_beta,7.5957394
+Q8VQB5,FEL_mean_lrt,0.9349376
+Q8VQB5,FUBAR_mean_alpha,6.0619287
+Q8VQB5,FUBAR_mean_beta,7.474983
+Q8VQB5,FUBAR_mean_prob_neg,0.5418175
+Q8VQB5,FUBAR_mean_prob_pos,0.40801722
 Q8VQB5,ProtLearn_Amino acid composition,5.0
 Q8VQB5,ProtLearn_Average flexibility indices,0.0
 Q8VQB5,ProtLearn_Average volume of buried residue,138.0
@@ -201454,6 +201673,9 @@ Q8VQB5,ProtLearn_Relative mutability,83.0
 Q8VQB5,ProtLearn_Volume,71.0
 Q8VQB5,ProtLearn_length,685.0
 Q8VQB5,ProtLearn_pK (-COOH),2.0
+Q8VQB5,SLAC_mean_dN/dS,0.42331582
+Q8VQB5,SLAC_mean_n,1.208815
+Q8VQB5,SLAC_mean_s,0.8547688
 Q8VQB5,allergenicity_blast_score,-0.5
 Q8VQB5,allergenicity_hybrid_score,0.098
 Q8VQB5,allergenicity_merci_score,0.5
