@@ -491,51 +491,51 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, scale=2.5, n_dir
     # =========================
     # Plot representative vectors
     # =========================
-    for _, row in rep_df.iterrows():
-        x, y = row["PC1_loading"] * dynamic_scale, row["PC2_loading"] * dynamic_scale
-        
-        # Draw arrow
-        plt.arrow(
-            0, 0, x, y, color='red', alpha=0.7,
-            head_width=0.03 * dynamic_scale,
-            length_includes_head=True,
-            linewidth=1.5,
-            overhang=0.3
-        )
-        
-        # Add text label
-        text = plt.text(
-            x * 1.1, y * 1.1, row["feature"],
-            fontsize=9, color="darkred", weight='bold',
-            bbox=dict(
-                boxstyle="round,pad=0.3",
-                facecolor="white",
-                alpha=0.85,
-                edgecolor="red",
-                linewidth=0.5
-            )
-        )
-        texts.append(text)
+    #for _, row in rep_df.iterrows():
+    #    x, y = row["PC1_loading"] * dynamic_scale, row["PC2_loading"] * dynamic_scale
+    #    
+    #    # Draw arrow
+    #    plt.arrow(
+    #        0, 0, x, y, color='red', alpha=0.7,
+    #        head_width=0.03 * dynamic_scale,
+    #        length_includes_head=True,
+    #        linewidth=1.5,
+    #        overhang=0.3
+    #    )
+    #    
+    #    # Add text label
+    #    text = plt.text(
+    #        x * 1.1, y * 1.1, row["feature"],
+    #        fontsize=9, color="darkred", weight='bold',
+    #        bbox=dict(
+    #            boxstyle="round,pad=0.3",
+    #            facecolor="white",
+    #            alpha=0.85,
+    #            edgecolor="red",
+    #            linewidth=0.5
+    #        )
+    #    )
+    #    texts.append(text)
 
     # =========================
     # Adjust labels
     # =========================
-    try:
-        adjust_text(
-            texts,
-            arrowprops=dict(arrowstyle="->", color='gray', lw=0.8, alpha=0.7),
-            expand_points=(1.5, 1.8),
-            expand_text=(1.3, 1.6),
-            force_points=(0.5, 0.8),
-            force_text=(0.8, 1.2),
-            va='center', ha='center',
-            only_move={'points':'xy', 'text':'xy', 'objects':'xy'},
-            avoid_points=True,
-            avoid_text=True,
-            lim=150
-        )
-    except ImportError:
-        print("adjustText not available, using basic label placement")
+    #try:
+    #    adjust_text(
+    #        texts,
+    #        arrowprops=dict(arrowstyle="->", color='gray', lw=0.8, alpha=0.7),
+    #        expand_points=(1.5, 1.8),
+    #        expand_text=(1.3, 1.6),
+    #        force_points=(0.5, 0.8),
+    #        force_text=(0.8, 1.2),
+    #        va='center', ha='center',
+    #        only_move={'points':'xy', 'text':'xy', 'objects':'xy'},
+    #        avoid_points=True,
+    #        avoid_text=True,
+    #        lim=150
+    #    )
+    #except ImportError:
+    #    print("adjustText not available, using basic label placement")
 
     # =========================
     # Axes and formatting
