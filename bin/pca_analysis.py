@@ -300,7 +300,7 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
         
         # Extend x-axis range slightly to make room for labels
         x_max = max(df_subset["adjusted_auroc"]) + 0.1
-        plt.xlim(0, x_max)
+        plt.xlim(0.5, x_max)
         plt.gca().invert_yaxis()
         plt.tight_layout()
         plt.savefig(save_path, dpi=300)
