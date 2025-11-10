@@ -385,7 +385,7 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         plt.title(f"KS Statistics Summary {title_suffix}".strip())
         # Extend x-axis range slightly to make room for labels
         x_max = max(df_subset["ks_statistic"]) + 0.1
-        plt.xlim(0.5, x_max * 1.2) if title_suffix == "(Top 20 Features)" else plt.xlim(0, x_max)
+        plt.xlim(0, x_max)
         plt.gca().invert_yaxis()
         plt.tight_layout()
         plt.savefig(save_path, dpi=300)
