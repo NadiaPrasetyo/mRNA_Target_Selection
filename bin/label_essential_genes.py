@@ -8,11 +8,6 @@ def main():
         description="Add essential/non-essential labels to a gene/protein CSV."
     )
     parser.add_argument(
-        "--pathogen-dir",
-        required=True,
-        help="Directory under data/ that contains all the relevant files.",
-    )
-    parser.add_argument(
         "--input-csv",
         required=True,
         help="Input CSV file with proteins/genes to be labeled.",
@@ -31,14 +26,13 @@ def main():
     args = parser.parse_args()
 
     # --- Resolve paths ---
-    pathogen_dir = Path("data") / args.pathogen_dir
-    input_csv = pathogen_dir / args.input_csv
-    essential_csv = pathogen_dir / args.essential_csv
+    input_csv = args.input_csv
+    essential_csv = args.essential_csv
 
     if args.output_file:
-        output_csv = pathogen_dir / args.output_file
+        output_csv = args.output_file
     else:
-        output_csv = pathogen_dir / f"{Path(args.input_csv).stem}_essential.csv"
+        output_csv = Path("results") / f"{Path(args.input_csv).stem}_essential.csv"
 
     # --- Load CSVs ---
     print(f"📖 Reading input file: {input_csv}")
