@@ -51,6 +51,7 @@ from adjustText import adjust_text
 from scipy.stats import ks_2samp, ttest_ind, spearmanr
 from sklearn.metrics import roc_auc_score
 import matplotlib.patches as mpatches
+from scipy.sparse import issparse
 
 # ----------------------
 # Configuration
@@ -228,19 +229,13 @@ def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
 # ----------------------
 def plot_auroc_summary(results_df, output_dir, prefix="all"):
     """
-    Plot AUROC summary for significant features (AUROC != 0.5 and t_pvalue < 0.05).
-    Features with AUROC < 0.5 are adjusted to 1 - AUROC.
-    Features are colored by category and hatched based on t-statistic direction.
-
-    Args:
-        results_df (pd.DataFrame): DataFrame with KS, t-test, and AUROC results.
-        output_dir (str): Directory to save the plot.
-        prefix (str): Prefix for the output file name.
+    Plot AUROC summary and Top 20 plot for significant features.
     """
-    output_path = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
+    output_path_all = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
+    output_path_top20 = os.path.join(output_dir, f"auroc_summary_top20_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
 
-    # Filter for significant and non-null AUROC results
+    # Filter for significant AUROC results
     df = results_df.dropna(subset=["auroc", "t_pvalue", "t_statistic"]).copy()
     df = df[(df["auroc"] != 0.5) & (df["t_pvalue"] < 0.05)]
 
@@ -254,7 +249,7 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
     df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
     df = df.sort_values("adjusted_auroc", ascending=False)
 
-    # Define category colors
+    # Define colors
     category_palette = {
         "Subcellular localisation": "#1b9e77",
         "Allergenicity": "#d95f02",
@@ -265,46 +260,53 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
         "Other": "#a6761d"
     }
 
-    colors = df["category"].map(category_palette).fillna("#a6761d")
-    hatches = ['' if t >= 0 else '////' for t in df["t_statistic"]]
+    def _plot(df_subset, save_path, title_suffix=""):
+        colors = df_subset["category"].map(category_palette).fillna("#a6761d")
+        hatches = ['' if t >= 0 else '////' for t in df_subset["t_statistic"]]
 
-    # Plot
-    plt.figure(figsize=(10, max(4, 0.3 * len(df))))
-    bars = plt.barh(df["label"], df["adjusted_auroc"], color=colors)
+        plt.figure(figsize=(10, max(4, 0.3 * len(df_subset))))
+        bars = plt.barh(df_subset["label"], df_subset["adjusted_auroc"], color=colors)
 
-    # Apply hatching
-    for bar, hatch in zip(bars, hatches):
-        bar.set_hatch(hatch)
+        for bar, hatch in zip(bars, hatches):
+            bar.set_hatch(hatch)
 
-    # Add AUROC value labels
-    for bar in bars:
-        width = bar.get_width()
-        plt.text(width + 0.01, bar.get_y() + bar.get_height() / 2, f"{width:.3f}", va="center", fontsize=9)
+        for bar in bars:
+            width = bar.get_width()
+            plt.text(width + 0.01, bar.get_y() + bar.get_height() / 2,
+                     f"{width:.3f}", va="center", fontsize=9)
 
-    # Add legend
-    handles = [mpatches.Patch(color=color, label=cat) for cat, color in category_palette.items()]
-    handles += [
-        mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
-        mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
-    ]
-    plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
+        handles = [mpatches.Patch(color=color, label=cat)
+                   for cat, color in category_palette.items()]
+        handles += [
+            mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
+            mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
+        ]
 
-    # Axis settings
-    plt.xlabel("AUROC (adjusted, min=0.5)")
-    plt.title("AUROC Summary (Significant Features)")
-    plt.xlim(0.5, 1.0)  # <-- Ensure x-axis starts at 0.5
-    plt.gca().invert_yaxis()
-    plt.tight_layout()
+        plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
+        plt.xlabel("AUROC (adjusted, min=0.5)")
+        plt.title(f"AUROC Summary {title_suffix}".strip())
+        plt.xlim(0.5, 1.0)
+        plt.gca().invert_yaxis()
+        plt.tight_layout()
+        plt.savefig(save_path, dpi=300)
+        plt.close()
 
-    # Save and close
-    plt.savefig(output_path, dpi=300)
-    plt.close()
+    # Plot all and top 20
+    _plot(df, output_path_all, "(Significant Features)")
+    logging.info(f"AUROC summary plot saved to {output_path_all}")
 
-    logging.info(f"AUROC summary plot saved to {output_path}")
+    df_top20 = df.head(20)
+    if not df_top20.empty:
+        _plot(df_top20, output_path_top20, "(Top 20 Features)")
+        logging.info(f"AUROC top 20 plot saved to {output_path_top20}")
 
 
 def plot_ks_summary(results_df, output_dir, prefix="all"):
-    output_path = os.path.join(output_dir, f"ks_summary_{prefix}.png")
+    """
+    Plot KS summary and Top 20 plot for significant features.
+    """
+    output_path_all = os.path.join(output_dir, f"ks_summary_{prefix}.png")
+    output_path_top20 = os.path.join(output_dir, f"ks_summary_top20_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
 
     df = results_df.dropna(subset=["ks_statistic", "ks_pvalue", "t_statistic"]).copy()
@@ -328,34 +330,44 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         "Other": "#a6761d"
     }
 
-    colors = df["category"].map(category_palette).fillna("#a6761d")
-    hatches = ['' if t >= 0 else '////' for t in df["t_statistic"]]
+    def _plot(df_subset, save_path, title_suffix=""):
+        colors = df_subset["category"].map(category_palette).fillna("#a6761d")
+        hatches = ['' if t >= 0 else '////' for t in df_subset["t_statistic"]]
 
-    plt.figure(figsize=(10, max(4, 0.3 * len(df))))
-    bars = plt.barh(df["label"], df["ks_statistic"], color=colors)
+        plt.figure(figsize=(10, max(4, 0.3 * len(df_subset))))
+        bars = plt.barh(df_subset["label"], df_subset["ks_statistic"], color=colors)
 
-    for bar, hatch in zip(bars, hatches):
-        bar.set_hatch(hatch)
+        for bar, hatch in zip(bars, hatches):
+            bar.set_hatch(hatch)
 
-    for bar in bars:
-        width = bar.get_width()
-        plt.text(width + 0.01, bar.get_y() + bar.get_height()/2, f"{width:.3f}", va="center", fontsize=9)
+        for bar in bars:
+            width = bar.get_width()
+            plt.text(width + 0.01, bar.get_y() + bar.get_height()/2,
+                     f"{width:.3f}", va="center", fontsize=9)
 
-    handles = [mpatches.Patch(color=color, label=cat) for cat, color in category_palette.items()]
-    handles += [
-        mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
-        mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
-    ]
+        handles = [mpatches.Patch(color=color, label=cat)
+                   for cat, color in category_palette.items()]
+        handles += [
+            mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
+            mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
+        ]
 
-    plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
-    plt.xlabel("KS Statistic")
-    plt.title("KS Statistics Summary (Significant Features)")
-    plt.gca().invert_yaxis()
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=300)
-    plt.close()
+        plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
+        plt.xlabel("KS Statistic")
+        plt.title(f"KS Statistics Summary {title_suffix}".strip())
+        plt.gca().invert_yaxis()
+        plt.tight_layout()
+        plt.savefig(save_path, dpi=300)
+        plt.close()
 
-    logging.info(f"KS summary plot saved to {output_path}")
+    # Plot all and top 20
+    _plot(df, output_path_all, "(Significant Features)")
+    logging.info(f"KS summary plot saved to {output_path_all}")
+
+    df_top20 = df.head(20)
+    if not df_top20.empty:
+        _plot(df_top20, output_path_top20, "(Top 20 Features)")
+        logging.info(f"KS top 20 plot saved to {output_path_top20}")
 
 
 # ----------------------
@@ -638,18 +650,26 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
     plt.close()
 
 
+
 def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
-    """Plot Spearman correlation matrix heatmap with clustering (labels only on right)."""
+    """
+    Plot Spearman correlation matrix heatmap with hierarchical clustering.
+    Labels correspond to clustered heatmap pixels (right side only).
+    """
+    os.makedirs(output_dir, exist_ok=True)
     n_features = X_scaled.shape[1]
 
     # ----------------------
     # Downsample high-dimensional data
     # ----------------------
     if n_features > max_features:
-        logging.warning(f"Too many features ({n_features}), downsampling to top {max_features}.")
-        col_var = np.array(
-            X_scaled.power(2).mean(axis=0) - np.power(X_scaled.mean(axis=0), 2)
-        ).ravel()
+        logging.warning(f"Too many features ({n_features}), downsampling to top {max_features} by variance.")
+        if issparse(X_scaled):
+            col_var = np.array(
+                X_scaled.power(2).mean(axis=0) - np.power(X_scaled.mean(axis=0), 2)
+            ).ravel()
+        else:
+            col_var = X_scaled.var(axis=0)
         top_idx = np.argpartition(col_var, -max_features)[-max_features:]
         X_scaled = X_scaled[:, top_idx]
         feature_names = feature_enc.inverse_transform(top_idx)
@@ -659,7 +679,10 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     # ----------------------
     # Convert to dense for correlation computation
     # ----------------------
-    X_dense = X_scaled.toarray().astype(np.float32)
+    if issparse(X_scaled):
+        X_dense = X_scaled.toarray().astype(np.float32)
+    else:
+        X_dense = X_scaled.astype(np.float32)
 
     # ----------------------
     # Spearman correlation
@@ -667,38 +690,62 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     logging.info("Computing Spearman correlation matrix...")
     corr_matrix, _ = spearmanr(X_dense, axis=0)
     corr_df = pd.DataFrame(corr_matrix, index=feature_names, columns=feature_names)
-    
-    # Identify and report problematic columns
+
+    # Identify and drop NaN columns (constant features)
     nan_cols = corr_df.columns[corr_df.isna().all()]
     if len(nan_cols) > 0:
-        logging.warning(
-            f"These features have constant values and no Spearman correlation: {list(nan_cols)}"
-        )
-
-    # EITHER drop them:
-    corr_df = corr_df.drop(index=nan_cols, columns=nan_cols)
-
-    # OR (alternative) keep them but fill NaNs:
-    # corr_df = corr_df.fillna(0)
+        logging.warning(f"Constant features with NaN correlation dropped: {list(nan_cols)}")
+        corr_df = corr_df.drop(index=nan_cols, columns=nan_cols)
 
     # ----------------------
-    # Clustered heatmap
+    # Clustered heatmap (Seaborn handles linkage order)
     # ----------------------
-    g = sns.clustermap(corr_df, cmap="coolwarm", center=0, figsize=(21, 18))
-
-    # ✅ Keep labels only on the right
-    g.ax_heatmap.tick_params(
-        left=True,      # keep left ticks
-        labelleft=False, # remove left labels
-        bottom=False,    # remove bottom ticks
-        labelbottom=False, # remove bottom labels
-        right=True,      # keep right ticks
-        labelright=True, # keep right labels
-        top=False,       # remove top ticks
-        labeltop=False,   # remove top labels
-        labelsize=10
+    logging.info("Plotting clustered correlation heatmap...")
+    sns.set(style="white")
+    g = sns.clustermap(
+        corr_df,
+        cmap="coolwarm",
+        center=0,
+        figsize=(21, 18),
+        xticklabels=False,  # handled manually
+        yticklabels=False,  # handled manually
+        dendrogram_ratio=(0.1, 0.1),
+        cbar_kws={"label": "Spearman correlation"}
     )
 
+    # ----------------------
+    # Fix tick labels to match cluster order
+    # ----------------------
+    clustered_features = corr_df.index[g.dendrogram_row.reordered_ind]
+
+    # Show only every Nth label if too many
+    max_labels = 80
+    step = max(1, len(clustered_features) // max_labels)
+
+    g.ax_heatmap.set_yticks(np.arange(0, len(clustered_features), step))
+    g.ax_heatmap.set_yticklabels(
+        clustered_features[::step],
+        fontsize=8,
+        rotation=0
+    )
+
+    # Only keep labels on the right
+    g.ax_heatmap.yaxis.set_label_position("right")
+    g.ax_heatmap.yaxis.tick_right()
+
+    # Clean up axes
+    g.ax_heatmap.tick_params(
+        left=False,
+        labelleft=False,
+        right=True,
+        labelright=True,
+        bottom=False,
+        labelbottom=False,
+        labelsize=8,
+        pad=2
+    )
+
+    plt.title("Spearman Correlation Matrix (Clustered)", fontsize=14, pad=20)
     plt.savefig(os.path.join(output_dir, "correlation_matrix_spearman.png"), dpi=600, bbox_inches="tight")
     plt.close()
 
@@ -707,51 +754,7 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     # ----------------------
     corr_df.to_csv(os.path.join(output_dir, "correlation_matrix_spearman.csv"))
 
-
-
-def plot_covariance_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
-    """Plot covariance matrix heatmap (labels only on right)."""
-    n_features = X_scaled.shape[1]
-
-    if n_features > max_features:
-        logging.warning(f"Too many features ({n_features}), downsampling to top {max_features}.")
-        col_var = np.array(X_scaled.power(2).mean(axis=0) - np.power(X_scaled.mean(axis=0), 2)).ravel()
-        top_idx = np.argpartition(col_var, -max_features)[-max_features:]
-        X_scaled = X_scaled[:, top_idx]
-        feature_names = feature_enc.inverse_transform(top_idx)
-    else:
-        feature_names = feature_enc.inverse_transform(np.arange(n_features))
-
-    X_dense = X_scaled.toarray().astype(np.float32)
-    cov_matrix = np.cov(X_dense, rowvar=False)
-
-    cov_df = pd.DataFrame(cov_matrix, index=feature_names, columns=feature_names)
-
-    plt.figure(figsize=(12, 10))
-    ax = sns.heatmap(cov_df, cmap="coolwarm", center=0,
-                     xticklabels=True, yticklabels=True)
-
-    # ✅ Keep labels only on the right
-    ax.tick_params(
-        left=True,
-        labelleft=False,
-        bottom=False,
-        labelbottom=False,
-        right=True,
-        labelright=True,
-        top=False,
-        labeltop=False
-    )
-
-    plt.title("Feature Covariance Matrix")
-    plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, "covariance_matrix.png"), dpi=300)
-    plt.close()
-
-    # ----------------------
-    # Save covariance values
-    # ----------------------
-    cov_df.to_csv(os.path.join(output_dir, "covariance_matrix.csv"))
+    logging.info(f"Saved correlation heatmap and matrix to {output_dir}")
 
 
 
@@ -848,7 +851,6 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     plot_scree(ipca, output_dir)
     plot_pca_biplot(pca_df, ipca, feature_enc, output_dir)
     plot_loading_scatter(ipca, feature_enc, output_dir)
-    plot_covariance_matrix(X_scaled, feature_enc, output_dir)
     plot_correlation_matrix(X_scaled, feature_enc, output_dir)
 
     # ----------------------
