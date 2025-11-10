@@ -295,12 +295,12 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
         ]
 
         plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
-        plt.xlabel("AUROC (adjusted, min=0.5)")
+        plt.xlabel("AUROC")
         plt.title(f"AUROC Summary {title_suffix}".strip())
         
         # Extend x-axis range slightly to make room for labels
         x_min, x_max = plt.xlim()
-        plt.xlim(0.5, x_max * 1.5)  # add 50 % extra space on the right
+        plt.xlim(0.5, x_max * 1.2) if title_suffix == "(Top 20 Features)" else plt.xlim(0.5, x_max)
 
         plt.gca().invert_yaxis()
         plt.tight_layout()
@@ -353,7 +353,7 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         plt.figure(figsize=(10, max(4, 0.3 * len(df_subset))))
         # Extend x-axis range slightly to make room for labels
         x_min, x_max = plt.xlim()
-        plt.xlim(x_min, x_max * 1.05)  # add 5 % extra space on the right
+        plt.xlim(x_min, x_max) 
         bars = plt.barh(df_subset["label"], df_subset["ks_statistic"], color=colors)
 
         for bar, hatch in zip(bars, hatches):
