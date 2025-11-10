@@ -340,22 +340,22 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         for bar, hatch in zip(bars, hatches):
             bar.set_hatch(hatch)
 
-            # Add value labels — keep them inside the plot bounds
         for bar in bars:
-            width = bar.get_width()
-            x_pos = min(width - 0.01, plt.xlim()[1] - 0.02)  # never beyond x-axis limit
-            align = "right" if width > 0.25 else "left"       # inside if bar long, outside if short
+            width = bar.get_width()            
             plt.text(
-                x_pos,
-                bar.get_y() + bar.get_height() / 2,
-                f"{width:.3f}",
-                va="center",
-                ha=align,
-                fontsize=9,
-                color="white" if width > 0.25 else "black",
-                fontweight="bold" if width > 0.25 else "normal",
-            )
-
+            width + 0.01,
+            bar.get_y() + bar.get_height() / 2,
+            f"{width:.3f}",
+            va="center",
+            ha="left",
+            fontsize=9,
+            color="black",
+            backgroundcolor="white",   # white box behind text
+            bbox=dict(
+                facecolor="white", edgecolor="none", boxstyle="square,pad=0.1"
+            ),
+            clip_on=False              # allow text slightly outside axes
+        )
 
         handles = [mpatches.Patch(color=color, label=cat)
                    for cat, color in category_palette.items()]
