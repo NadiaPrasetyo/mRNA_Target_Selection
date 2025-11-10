@@ -299,9 +299,8 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
         plt.title(f"AUROC Summary {title_suffix}".strip())
         
         # Extend x-axis range slightly to make room for labels
-        x_min, x_max = plt.xlim()
-        plt.xlim(0.5, x_max * 1.2) if title_suffix == "(Top 20 Features)" else plt.xlim(0.5, x_max)
-
+        x_max = max(df_subset["adjusted_auroc"]) + 0.1
+        plt.xlim(0, x_max)
         plt.gca().invert_yaxis()
         plt.tight_layout()
         plt.savefig(save_path, dpi=300)
