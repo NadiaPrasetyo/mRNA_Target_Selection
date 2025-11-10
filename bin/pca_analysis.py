@@ -271,9 +271,21 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
             bar.set_hatch(hatch)
 
         for bar in bars:
-            width = bar.get_width()
-            plt.text(width + 0.01, bar.get_y() + bar.get_height() / 2,
-                     f"{width:.3f}", va="center", fontsize=9)
+            width = bar.get_width()            
+            plt.text(
+            width + 0.01,
+            bar.get_y() + bar.get_height() / 2,
+            f"{width:.3f}",
+            va="center",
+            ha="left",
+            fontsize=9,
+            color="black",
+            backgroundcolor="white",   # white box behind text
+            bbox=dict(
+                facecolor="white", edgecolor="none", boxstyle="square,pad=0.1"
+            ),
+            clip_on=False              # allow text slightly outside axes
+        )
 
         handles = [mpatches.Patch(color=color, label=cat)
                    for cat, color in category_palette.items()]
@@ -285,7 +297,11 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
         plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
         plt.xlabel("AUROC (adjusted, min=0.5)")
         plt.title(f"AUROC Summary {title_suffix}".strip())
-        plt.xlim(0.5, 1.0)
+        
+        # Extend x-axis range slightly to make room for labels
+        x_min, x_max = plt.xlim()
+        plt.xlim(x_min, x_max * 1.1)  # add 10 % extra space on the right
+
         plt.gca().invert_yaxis()
         plt.tight_layout()
         plt.savefig(save_path, dpi=300)
@@ -335,6 +351,9 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         hatches = ['' if t >= 0 else '////' for t in df_subset["t_statistic"]]
 
         plt.figure(figsize=(10, max(4, 0.3 * len(df_subset))))
+        # Extend x-axis range slightly to make room for labels
+        x_min, x_max = plt.xlim()
+        plt.xlim(x_min, x_max * 1.1)  # add 10 % extra space on the right
         bars = plt.barh(df_subset["label"], df_subset["ks_statistic"], color=colors)
 
         for bar, hatch in zip(bars, hatches):
