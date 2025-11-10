@@ -351,9 +351,6 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         hatches = ['' if t >= 0 else '////' for t in df_subset["t_statistic"]]
 
         plt.figure(figsize=(10, max(4, 0.3 * len(df_subset))))
-        # Extend x-axis range slightly to make room for labels
-        x_min, x_max = plt.xlim()
-        plt.xlim(x_min, x_max) 
         bars = plt.barh(df_subset["label"], df_subset["ks_statistic"], color=colors)
 
         for bar, hatch in zip(bars, hatches):
@@ -386,6 +383,9 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         plt.legend(handles=handles, title="Category / Directionality", loc="lower right", fontsize=9)
         plt.xlabel("KS Statistic")
         plt.title(f"KS Statistics Summary {title_suffix}".strip())
+        # Extend x-axis range slightly to make room for labels
+        x_max = max(df_subset["ks_statistic"]) + 0.1
+        plt.xlim(0.5, x_max * 1.2) if title_suffix == "(Top 20 Features)" else plt.xlim(0, x_max)
         plt.gca().invert_yaxis()
         plt.tight_layout()
         plt.savefig(save_path, dpi=300)
