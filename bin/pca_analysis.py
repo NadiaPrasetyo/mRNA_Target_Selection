@@ -186,7 +186,7 @@ def categorize_feature(feature, subfeature):
         "outside_score_per_site",
         "per_site_score"
     ]:
-        return "Conservation Analysis Across Strains"
+        return "Conservation"
     if feature in ["bcell", "ellipro", "mhci", "mhcii", "mixmhc2pred", "discotope"]:
         return "Epitope Prediction"
     if feature in ["dssp", "ProtLearn"]:
@@ -254,7 +254,7 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
         "Subcellular localisation": "#0072B2",
         "Allergenicity": "#D55E00",
         "Immunogenicity": "#56B4E9",
-        "Conservation Analysis Across Strains": "#CC79A7",
+        "Conservation": "#CC79A7",
         "Epitope Prediction": "#009E73",
         "Structure Analysis": "#E69F00",
         "Other": "#999999"
@@ -339,7 +339,7 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
         "Subcellular localisation": "#0072B2",
         "Allergenicity": "#D55E00",
         "Immunogenicity": "#56B4E9",
-        "Conservation Analysis Across Strains": "#CC79A7",
+        "Conservation": "#CC79A7",
         "Epitope Prediction": "#009E73",
         "Structure Analysis": "#E69F00",
         "Other": "#999999"
