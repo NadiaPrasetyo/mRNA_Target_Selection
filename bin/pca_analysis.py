@@ -682,14 +682,13 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
     plt.savefig(os.path.join(output_dir, "pca_loading_scatter.png"), dpi=300, bbox_inches='tight')
     plt.close()
 
-
-
-
-
+# ----------------------
+# Correlation matrix plotting
+# ----------------------
 def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
     """
-    Plot a publication-quality Spearman correlation matrix heatmap with hierarchical clustering.
-    Produces a clean, single-dendrogram figure (left only), no legend, centered title.
+    Plot Spearman correlation matrix heatmap with hierarchical clustering.
+    Labels correspond to clustered heatmap pixels (right side only).
     """
     os.makedirs(output_dir, exist_ok=True)
     n_features = X_scaled.shape[1]
@@ -714,7 +713,10 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     # ----------------------
     # Convert to dense for correlation computation
     # ----------------------
-    X_dense = X_scaled.toarray().astype(np.float32) if issparse(X_scaled) else X_scaled.astype(np.float32)
+    if issparse(X_scaled):
+        X_dense = X_scaled.toarray().astype(np.float32)
+    else:
+        X_dense = X_scaled.astype(np.float32)
 
     # ----------------------
     # Spearman correlation
@@ -723,66 +725,65 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     corr_matrix, _ = spearmanr(X_dense, axis=0)
     corr_df = pd.DataFrame(corr_matrix, index=feature_names, columns=feature_names)
 
-    # Drop constant features (NaN correlations)
+    # Identify and drop NaN columns (constant features)
     nan_cols = corr_df.columns[corr_df.isna().all()]
     if len(nan_cols) > 0:
         logging.warning(f"Constant features with NaN correlation dropped: {list(nan_cols)}")
         corr_df = corr_df.drop(index=nan_cols, columns=nan_cols)
 
     # ----------------------
-    # Clustered heatmap
+    # Clustered heatmap (Seaborn handles linkage order)
     # ----------------------
-    logging.info("Plotting publication-quality clustered correlation heatmap...")
-    sns.set_theme(style="white")
+    logging.info("Plotting clustered correlation heatmap...")
+    sns.set(style="white")
     g = sns.clustermap(
-        corr_df,
-        cmap="coolwarm",
-        center=0,
-        figsize=(18, 16),
-        xticklabels=False,
-        yticklabels=False,
-        dendrogram_ratio=(0.15, 0),
-        cbar=False,  # remove legend
-        row_cluster=True,
-        col_cluster=False,  # one dendrogram only
+    corr_df,
+    cmap="coolwarm",
+    center=0,
+    figsize=(21, 18),
+    xticklabels=False,
+    yticklabels=False,
+    row_cluster=False,     # ❌ remove tree on the left
+    col_cluster=False,     # ❌ remove tree on the top
+    dendrogram_ratio=(0, 0),  # ensure no space for dendrograms
+    cbar_pos=None          # ❌ remove legend/colorbar
     )
 
     # ----------------------
-    # Label the right side only
+    # Fix tick labels to match cluster order
     # ----------------------
     clustered_features = corr_df.index[g.dendrogram_row.reordered_ind]
+
+    # Show only every Nth label if too many
     max_labels = 80
     step = max(1, len(clustered_features) // max_labels)
+
     g.ax_heatmap.set_yticks(np.arange(0, len(clustered_features), step))
     g.ax_heatmap.set_yticklabels(
         clustered_features[::step],
         fontsize=8,
-        rotation=0,
-        va="center"
+        rotation=0
     )
+
+    # Only keep labels on the right
     g.ax_heatmap.yaxis.set_label_position("right")
     g.ax_heatmap.yaxis.tick_right()
-    g.ax_heatmap.tick_params(left=False, right=True, labelsize=8, pad=3)
 
-    # Remove axis labels, gridlines, and spines
-    g.ax_heatmap.set_xlabel("")
-    g.ax_heatmap.set_ylabel("")
-    for spine in g.ax_heatmap.spines.values():
-        spine.set_visible(False)
-
-    # Add centered title
-    g.fig.suptitle(
-        "Spearman Correlation Matrix (Clustered)",
-        fontsize=16,
-        fontweight="bold",
-        y=1.02,
-        ha="center"
+    # Clean up axes
+    g.ax_heatmap.tick_params(
+        left=False,
+        labelleft=False,
+        right=True,
+        labelright=True,
+        bottom=False,
+        labelbottom=False,
+        labelsize=8,
+        pad=2
     )
 
-    plt.tight_layout()
-    output_path = os.path.join(output_dir, "correlation_matrix_spearman.png")
-    g.savefig(output_path, dpi=600, bbox_inches="tight")
-    plt.close(g.fig)
+    plt.title("Spearman Correlation Matrix (Clustered)", fontsize=14, pad=20)
+    plt.savefig(os.path.join(output_dir, "correlation_matrix_spearman.png"), dpi=600, bbox_inches="tight")
+    plt.close()
 
     # ----------------------
     # Save correlation values
@@ -790,6 +791,7 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     corr_df.to_csv(os.path.join(output_dir, "correlation_matrix_spearman.csv"))
 
     logging.info(f"Saved correlation heatmap and matrix to {output_dir}")
+
 
 # ----------------------
 # Main analysis
