@@ -251,13 +251,13 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
 
     # Define colors
     category_palette = {
-        "Subcellular localisation": "#1b9e77",
-        "Allergenicity": "#d95f02",
-        "Immunogenicity": "#7570b3",
-        "Conservation Analysis Across Strains": "#e7298a",
-        "Epitope Prediction": "#66a61e",
-        "Structure Analysis": "#d010e1",
-        "Other": "#a6761d"
+        "Subcellular localisation": "#0072B2",
+        "Allergenicity": "#D55E00",
+        "Immunogenicity": "#56B4E9",
+        "Conservation Analysis Across Strains": "#CC79A7",
+        "Epitope Prediction": "#009E73",
+        "Structure Analysis": "#E69F00",
+        "Other": "#999999"
     }
 
     def _plot(df_subset, save_path, title_suffix=""):
@@ -336,13 +336,13 @@ def plot_ks_summary(results_df, output_dir, prefix="all"):
     df = df.sort_values("ks_statistic", ascending=False)
 
     category_palette = {
-        "Subcellular localisation": "#1b9e77",
-        "Allergenicity": "#d95f02",
-        "Immunogenicity": "#7570b3",
-        "Conservation Analysis Across Strains": "#e7298a",
-        "Epitope Prediction": "#66a61e",
-        "Structure Analysis": "#d010e1",
-        "Other": "#a6761d"
+        "Subcellular localisation": "#0072B2",
+        "Allergenicity": "#D55E00",
+        "Immunogenicity": "#56B4E9",
+        "Conservation Analysis Across Strains": "#CC79A7",
+        "Epitope Prediction": "#009E73",
+        "Structure Analysis": "#E69F00",
+        "Other": "#999999"
     }
 
     def _plot(df_subset, save_path, title_suffix=""):
@@ -461,18 +461,21 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, scale=2.5, n_dir
     unique_labels = pca_df['label'].unique()
     if 'random' in unique_labels:
         n_other_labels = len(unique_labels) - 1
-        other_colors = sns.color_palette("viridis", n_other_labels)
+        
+        # Use a perceptually uniform blue palette for non-random samples
+        other_colors = sns.light_palette("#0072B2", n_other_labels, reverse=True)  # Okabe–Ito blue
         
         custom_palette = {}
         other_idx = 0
         for label in unique_labels:
             if label == 'random':
-                custom_palette[label] = 'red'
+                # Use a color-blind–safe red/orange (high contrast, distinct in grayscale)
+                custom_palette[label] = "#D55E00"   # Okabe–Ito vermilion
             else:
                 custom_palette[label] = other_colors[other_idx]
                 other_idx += 1
     else:
-        custom_palette = "viridis"
+        custom_palette = sns.light_palette("#0072B2", as_cmap=True)
 
     scatter = sns.scatterplot(
         data=pca_df, x="PC1", y="PC2", hue="label",
