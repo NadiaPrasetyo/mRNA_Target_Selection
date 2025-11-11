@@ -745,7 +745,7 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
         xticklabels=False,   # handled manually
         yticklabels=False,   # handled manually
         row_cluster=True,    # keep side dendrogram
-        col_cluster=False,   # remove top dendrogram
+        col_cluster=True,   # keep top dendrogram
         dendrogram_ratio=(0.1, 0),  # keep space for side dendrogram only
         cbar_pos=None        # remove legend/colorbar
     )
