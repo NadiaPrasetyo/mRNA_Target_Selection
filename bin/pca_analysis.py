@@ -685,6 +685,7 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
 # ----------------------
 # Correlation matrix plotting
 # ----------------------
+
 def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
     """
     Plot Spearman correlation matrix heatmap with hierarchical clustering.
@@ -737,16 +738,16 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     logging.info("Plotting clustered correlation heatmap...")
     sns.set(style="white")
     g = sns.clustermap(
-    corr_df,
-    cmap="coolwarm",
-    center=0,
-    figsize=(21, 18),
-    xticklabels=False,
-    yticklabels=False,
-    row_cluster=False,     # ❌ remove tree on the left
-    col_cluster=False,     # ❌ remove tree on the top
-    dendrogram_ratio=(0, 0),  # ensure no space for dendrograms
-    cbar_pos=None          # ❌ remove legend/colorbar
+        corr_df,
+        cmap="coolwarm",
+        center=0,
+        figsize=(21, 18),
+        xticklabels=False,   # handled manually
+        yticklabels=False,   # handled manually
+        row_cluster=True,    # keep side dendrogram
+        col_cluster=False,   # remove top dendrogram
+        dendrogram_ratio=(0.1, 0),  # keep space for side dendrogram only
+        cbar_pos=None        # remove legend/colorbar
     )
 
     # ----------------------
