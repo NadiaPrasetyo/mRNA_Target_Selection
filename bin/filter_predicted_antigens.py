@@ -48,12 +48,24 @@ def main():
         (df_raw["mhcii_num_strong_binders"] > 0)
     ]
 
+    removed = df_raw[~df_raw.index.isin(filtered_raw.index)]
+    print(f"ℹ️  Removed {len(removed)} rows that did not meet allergenicity/binder criteria.")
+
     # --- Merge with predictions ---
     merged = pd.merge(
         filtered_raw,
         df_pred,
         on="accession",
         how="inner",  # only keep matching accessions
+        suffixes=("_raw", "_pred")  # rename duplicate columns clearly
+    )
+
+    merged_removed = pd.merge(
+        removed,
+        df_pred,
+        on="accession",
+        how="outer",  # keep all accessions to see which were missing
+        indicator=True,
         suffixes=("_raw", "_pred")  # rename duplicate columns clearly
     )
     
@@ -70,8 +82,19 @@ def main():
         "gene_names"
     ]]
 
+    removed_df = merged_removed[[
+        "accession",
+        prob_col,
+        "pred_label",
+        "protein_names",
+        "gene_names",
+        "_merge"
+    ]]
+
     # --- Save results ---
     final_df.to_csv(output_path, index=False)
+    removed_output_path = output_path.parent / f"removed_{pred_path.stem}.csv"
+    removed_df.to_csv(removed_output_path, index=False)
 
     print(f"✅ Filtered and merged data saved to: {output_path}")
     print(f"Rows before filtering: {len(df_raw)}")
