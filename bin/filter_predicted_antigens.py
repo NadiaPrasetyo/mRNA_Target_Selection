@@ -4,49 +4,80 @@ from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Filter CSV by allergenicity and binder criteria."
+        description="Filter raw CSV by allergenicity/binder criteria and cross-check with predictions."
     )
     parser.add_argument(
-        "input_file",
-        type=str,
-        help="Path to the input CSV file."
+        "--input-raw",
+        required=True,
+        help="Path to the main raw CSV file (with feature data)."
     )
     parser.add_argument(
-        "-o", "--output_file",
-        type=str,
+        "--input-pred",
+        required=True,
+        help="Path to the prediction CSV file (with accession, prob_antigen, etc.)."
+    )
+    parser.add_argument(
+        "-o", "--output-file",
         default=None,
         help="Optional path for the output CSV file. "
-             "Defaults to results/filtered_<input_filename_stem>.csv"
+             "Defaults to results/filtered_<input_pred_filename_stem>.csv"
     )
 
     args = parser.parse_args()
 
-    input_path = Path(args.input_file)
+    # Define paths
+    raw_path = Path(args.input_raw)
+    pred_path = Path(args.input_pred)
     output_path = (
         Path(args.output_file)
         if args.output_file
-        else Path("results") / f"filtered_{input_path.stem}.csv"
+        else Path("results") / f"filtered_{pred_path.stem}.csv"
     )
 
     # Ensure output directory exists
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Load the CSV file
-    df = pd.read_csv(input_path)
+    # --- Load the CSV files ---
+    df_raw = pd.read_csv(raw_path)
+    df_pred = pd.read_csv(pred_path)
 
-    # Apply filters
-    filtered_df = df[
-        (df["allergenicity_hybrid_score"] < 0.3) &
-        (df["mhci_num_strong_binders"] > 0) &
-        (df["mhcii_num_strong_binders"] > 0)
+    # --- Filter raw data ---
+    filtered_raw = df_raw[
+        (df_raw["allergenicity_hybrid_score"] < 0.3) &
+        (df_raw["mhci_num_strong_binders"] > 0) &
+        (df_raw["mhcii_num_strong_binders"] > 0)
     ]
 
-    # Save the filtered results
-    filtered_df.to_csv(output_path, index=False)
+    # --- Merge with predictions ---
+    merged = pd.merge(
+        filtered_raw,
+        df_pred,
+        on="accession",
+        how="inner",  # only keep matching accessions
+        suffixes=("_raw", "_pred")  # rename duplicate columns clearly
+    )
+    
+    # --- Determine which prob_antigen column to use ---
+    prob_col = "prob_antigen_raw" if "prob_antigen_raw" in merged.columns else "prob_antigen"
 
-    print(f"✅ Filtered data saved to: {output_path}")
-    print(f"Rows before filtering: {len(df)}")
-    print(f"Rows after filtering: {len(filtered_df)}")
+
+    # --- Select only desired columns ---
+    final_df = merged[[
+        "accession",
+        prob_col,
+        "pred_label",
+        "protein_names",
+        "gene_names"
+    ]]
+
+    # --- Save results ---
+    final_df.to_csv(output_path, index=False)
+
+    print(f"✅ Filtered and merged data saved to: {output_path}")
+    print(f"Rows before filtering: {len(df_raw)}")
+    print(f"Rows after filtering: {len(filtered_raw)}")
+    print(f"Rows after merge: {len(final_df)}")
 
 if __name__ == "__main__":
     main()
+
