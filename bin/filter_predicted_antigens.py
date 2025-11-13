@@ -64,7 +64,7 @@ def main():
         removed,
         df_pred,
         on="accession",
-        how="outer",  # keep all accessions to see which were missing
+        how="inner",  # only keep matching accessions
         indicator=True,
         suffixes=("_raw", "_pred")  # rename duplicate columns clearly
     )
