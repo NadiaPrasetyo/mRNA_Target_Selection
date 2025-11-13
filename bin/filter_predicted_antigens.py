@@ -87,8 +87,7 @@ def main():
         prob_col,
         "pred_label",
         "protein_names",
-        "gene_names",
-        "_merge"
+        "gene_names"
     ]]
 
     # --- Save results ---
