@@ -685,11 +685,16 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
 # ----------------------
 # Correlation matrix plotting
 # ----------------------
-
-def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features=2000):
+def plot_correlation_matrix(
+    X_scaled, 
+    feature_enc, 
+    output_dir: str, 
+    max_features=2000,
+    subset_prefixes=("discotope_", "ellipro_", "dssp_", "Protlearn_")
+):
     """
-    Plot Spearman correlation matrix heatmap with hierarchical clustering.
-    Labels correspond to clustered heatmap pixels (right side only).
+    Plot Spearman correlation heatmap (clustered) for all features,
+    and a separate heatmap for selected subsets of features.
     """
     os.makedirs(output_dir, exist_ok=True)
     n_features = X_scaled.shape[1]
@@ -733,7 +738,7 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
         corr_df = corr_df.drop(index=nan_cols, columns=nan_cols)
 
     # ----------------------
-    # Clustered heatmap (Seaborn handles linkage order)
+    # Clustered heatmap for all features
     # ----------------------
     logging.info("Plotting clustered correlation heatmap...")
     sns.set(style="white")
@@ -791,7 +796,63 @@ def plot_correlation_matrix(X_scaled, feature_enc, output_dir: str, max_features
     # ----------------------
     corr_df.to_csv(os.path.join(output_dir, "correlation_matrix_spearman.csv"))
 
-    logging.info(f"Saved correlation heatmap and matrix to {output_dir}")
+    logging.info("Saved full correlation heatmap.")
+
+    # =====================================================================
+    #                     SUBSET HEATMAP SECTION
+    # =====================================================================
+    logging.info("Creating subset correlation heatmap...")
+
+    # Select features by prefix
+    selected_features = [
+        f for f in corr_df.columns
+        if any(f.startswith(prefix) for prefix in subset_prefixes)
+    ]
+
+    if len(selected_features) < 2:
+        logging.warning("Not enough subset features found to compute correlation heatmap.")
+        return
+
+    corr_subset = corr_df.loc[selected_features, selected_features]
+
+    # Drop NaN groups
+    nan_cols_subset = corr_subset.columns[corr_subset.isna().all()]
+    if len(nan_cols_subset) > 0:
+        logging.warning(f"Subset constant features dropped: {list(nan_cols_subset)}")
+        corr_subset = corr_subset.drop(index=nan_cols_subset, columns=nan_cols_subset)
+
+    # Cluster heatmap
+    g_sub = sns.clustermap(
+        corr_subset,
+        cmap="coolwarm",
+        center=0,
+        figsize=(18, 14),
+        xticklabels=True,
+        yticklabels=True,
+        row_cluster=True,
+        col_cluster=True,
+        dendrogram_ratio=(0.1, 0.1),
+        cbar_pos=None,
+    )
+
+    plt.title(
+        "Spearman Correlation (Subset of Interest)",
+        fontsize=14, 
+        pad=20
+    )
+
+    plt.savefig(
+        os.path.join(output_dir, "correlation_matrix_spearman_subset.png"),
+        dpi=600, bbox_inches="tight"
+    )
+    plt.close()
+
+    corr_subset.to_csv(
+        os.path.join(output_dir, "correlation_matrix_spearman_subset.csv")
+    )
+
+    logging.info("Saved subset correlation heatmap and matrix.")
+
 
 
 # ----------------------
