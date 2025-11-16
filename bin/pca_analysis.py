@@ -690,7 +690,7 @@ def plot_correlation_matrix(
     feature_enc, 
     output_dir: str, 
     max_features=2000,
-    subset_prefixes=("discotope_", "ellipro_", "dssp_", "Protlearn_")
+    subset_prefixes=("discotope_", "ellipro_", "dssp_", "Protlearn_", "FEL_", "FUBAR_", "SLAC_", "cluster_percent_")
 ):
     """
     Plot Spearman correlation heatmap (clustered) for all features,
@@ -803,7 +803,9 @@ def plot_correlation_matrix(
     # =====================================================================
     logging.info("Creating subset correlation heatmap...")
 
+    # ----------------------
     # Select features by prefix
+    # ----------------------
     selected_features = [
         f for f in corr_df.columns
         if any(f.startswith(prefix) for prefix in subset_prefixes)
@@ -815,32 +817,73 @@ def plot_correlation_matrix(
 
     corr_subset = corr_df.loc[selected_features, selected_features]
 
-    # Drop NaN groups
+    # ----------------------
+    # Drop NaN-only rows/cols (constant subset features)
+    # ----------------------
     nan_cols_subset = corr_subset.columns[corr_subset.isna().all()]
     if len(nan_cols_subset) > 0:
         logging.warning(f"Subset constant features dropped: {list(nan_cols_subset)}")
         corr_subset = corr_subset.drop(index=nan_cols_subset, columns=nan_cols_subset)
 
-    # Cluster heatmap
+    if corr_subset.shape[0] < 2:
+        logging.warning("Subset correlation matrix has < 2 features after cleaning.")
+        return
+
+    # ----------------------
+    # Clustered heatmap
+    # ----------------------
+    sns.set(style="white")
     g_sub = sns.clustermap(
         corr_subset,
         cmap="coolwarm",
         center=0,
         figsize=(18, 14),
-        xticklabels=True,
-        yticklabels=True,
+        xticklabels=False,
+        yticklabels=False,
         row_cluster=True,
         col_cluster=True,
-        dendrogram_ratio=(0.1, 0.1),
-        cbar_pos=None,
+        dendrogram_ratio=(0.1, 0),    # keep left dendrogram; no top dendrogram
+        cbar_pos=(0.02, 0.8, 0.05, 0.18),
     )
 
-    plt.title(
-        "Spearman Correlation (Subset of Interest)",
-        fontsize=14, 
-        pad=20
+    # ----------------------
+    # Reorder labels based on clustering
+    # ----------------------
+    clustered_features = corr_subset.index[g_sub.dendrogram_row.reordered_ind]
+
+    # Determine how many labels we can show
+    max_labels = 80
+    step = max(1, len(clustered_features) // max_labels)
+
+    # Apply y-axis labels (right side only)
+    g_sub.ax_heatmap.set_yticks(np.arange(0, len(clustered_features), step))
+    g_sub.ax_heatmap.set_yticklabels(
+        clustered_features[::step],
+        fontsize=10,
+        rotation=0
     )
 
+    # Right-side labels only
+    g_sub.ax_heatmap.yaxis.set_label_position("right")
+    g_sub.ax_heatmap.yaxis.tick_right()
+
+    # Axis cleanup
+    g_sub.ax_heatmap.tick_params(
+        left=False,
+        labelleft=False,
+        right=True,
+        labelright=True,
+        bottom=False,
+        labelbottom=False,
+        labelsize=8,
+        pad=2
+    )
+
+    plt.title("Spearman Correlation (Selected Feature Subset)", fontsize=16, pad=20)
+
+    # ----------------------
+    # Save figure + matrix
+    # ----------------------
     plt.savefig(
         os.path.join(output_dir, "correlation_matrix_spearman_subset.png"),
         dpi=600, bbox_inches="tight"
@@ -852,7 +895,6 @@ def plot_correlation_matrix(
     )
 
     logging.info("Saved subset correlation heatmap and matrix.")
-
 
 
 # ----------------------
