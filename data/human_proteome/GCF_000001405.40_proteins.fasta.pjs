@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "GCF_000001405.40_proteins.fasta",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "data/human_proteome/GCF_000001405.40_proteins.fasta",
+  "number-of-letters": 94737518,
+  "number-of-sequences": 136807,
+  "last-updated": "2025-11-17T18:51:00",
+  "number-of-volumes": 1,
+  "bytes-total": 117111553,
+  "bytes-to-cache": 95968942,
+  "files": [
+    "GCF_000001405.40_proteins.fasta.pdb",
+    "GCF_000001405.40_proteins.fasta.phr",
+    "GCF_000001405.40_proteins.fasta.pin",
+    "GCF_000001405.40_proteins.fasta.pot",
+    "GCF_000001405.40_proteins.fasta.psq",
+    "GCF_000001405.40_proteins.fasta.ptf",
+    "GCF_000001405.40_proteins.fasta.pto"
+  ]
+}

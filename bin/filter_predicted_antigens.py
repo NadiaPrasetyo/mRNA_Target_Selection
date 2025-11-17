@@ -27,6 +27,8 @@ import subprocess
 import tempfile
 import os
 import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))  # Add parent directory to sys.path
+
 
 # Attempt to import the NCBI helper functions from the provided script path
 # The user indicated the fetch script is at: bin/fetch_NCBI_strain_genomes.py
