@@ -1,9 +1,119 @@
+#!/usr/bin/env python3
+"""
+filter_proteins_with_auto_human.py
+
+Filter raw CSV, merge with predictions, and remove proteins with human
+similarity using BLASTP. If --human-fasta is omitted, the script will attempt
+to locate the human proteome in data/human_proteome/. If it does not exist,
+the script automatically downloads the human proteome (RefSeq: GCF_000001405.40)
+using helpers from bin/fetch_NCBI_strain_genomes.py.
+
+Requirements:
+    - BLAST+ installed (makeblastdb, blastp)
+    - requests, tqdm (used by the fetch helper)
+    - bin/fetch_NCBI_strain_genomes.py must be present and importable
+
+Usage:
+    python filter_proteins_with_auto_human.py --input-raw raw.csv \
+        --input-pred preds.csv --input-fasta proteins.fasta
+    # optionally:
+    --human-fasta path/to/human_proteome.fasta
+"""
+
 import argparse
 import pandas as pd
 from pathlib import Path
 import subprocess
 import tempfile
 import os
+import sys
+
+# Attempt to import the NCBI helper functions from the provided script path
+# The user indicated the fetch script is at: bin/fetch_NCBI_strain_genomes.py
+try:
+    from bin.fetch_NCBI_strain_genomes import (
+        get_requests_session,
+        download_and_extract_zip,
+        ensure_dir,
+        API_BASE,
+    )
+except Exception as e:
+    # Provide helpful error message if import fails
+    print(
+        "ERROR: Failed to import required functions from bin/fetch_NCBI_strain_genomes.py.\n"
+        "Make sure the file exists at bin/fetch_NCBI_strain_genomes.py and that the current\n"
+        "working directory is the project root. Import error details:\n",
+        e,
+        file=sys.stderr,
+    )
+    raise
+
+
+# -----------------------------------------------------------
+# Small wrapper: fetch_human_proteome
+# (reuses download_and_extract_zip and get_requests_session
+#  from bin/fetch_NCBI_strain_genomes)
+# -----------------------------------------------------------
+
+def fetch_human_proteome(refseq_id: str, output_dir: str, session=None) -> str:
+    """
+    Download the human proteome FASTA for the given RefSeq assembly using
+    NCBI Datasets v2 API and the project's download helper.
+
+    Parameters:
+        refseq_id: e.g. "GCF_000001405.40"
+        output_dir: directory to save extracted FASTA (folder will be created)
+        session: optional requests.Session (if not provided, get_requests_session() will be used)
+
+    Returns:
+        Path (string) to the extracted protein FASTA file, typically:
+            {output_dir}/{refseq_id}_proteins.fasta
+
+    Raises:
+        FileNotFoundError if the expected FASTA cannot be located after download.
+    """
+    # Ensure output dir exists
+    ensure_dir(output_dir)
+
+    session = session or get_requests_session()
+
+    # Build the download URL in the same style used in the fetch script
+    # The fetch script uses: f"{API_BASE}/accession/{acc}/download?include_annotation_type=GENOME_FASTA&include_annotation_type=PROT_FASTA&hydrated=FULLY_HYDRATED"
+    # For proteins-only, include PROT_FASTA and hydrated
+    url = (
+        f"{API_BASE}/accession/{refseq_id}/download?"
+        "include_annotation_type=PROT_FASTA&hydrated=FULLY_HYDRATED"
+    )
+
+    print(f"📥 Downloading human proteome for {refseq_id} ...")
+    # download_and_extract_zip will extract matching files and rename them according to its logic:
+    # - .faa -> {accession}_proteins.fasta
+    # - .fna -> {accession}.fasta
+    # so we expect: {refseq_id}_proteins.fasta
+    download_and_extract_zip(url, refseq_id, output_dir, session=session)
+
+    expected = os.path.join(output_dir, f"{refseq_id}_proteins.fasta")
+    if not os.path.exists(expected):
+        # try a couple of plausible alternative names (be robust)
+        alt1 = os.path.join(output_dir, f"{refseq_id}_proteins.faa")
+        alt2 = os.path.join(output_dir, f"{refseq_id}.faa")
+        alt3 = os.path.join(output_dir, f"{refseq_id}.fasta")
+        for alt in (alt1, alt2, alt3):
+            if os.path.exists(alt):
+                print(f"ℹ️  Found alternative extracted file: {alt}")
+                return alt
+        raise FileNotFoundError(
+            f"Expected protein FASTA not found after download: {expected}. "
+            f"Check download logs or that the NCBI endpoint is available."
+        )
+
+    print(f"✅ Human proteome saved to: {expected}")
+    return expected
+
+
+# -----------------------------------------------------------
+# BLASTP Utilities (unchanged style from your original script)
+# -----------------------------------------------------------
 
 def run_blastp(seq, human_db_path, tmpdir):
     """Run BLASTP for a single amino acid sequence and return best hit stats."""
@@ -31,6 +141,7 @@ def run_blastp(seq, human_db_path, tmpdir):
     )
     return df.iloc[0]  # best hit
 
+
 def ensure_human_db(human_fasta):
     """Build BLAST DB for human proteome if not already built."""
     required = [human_fasta + ext for ext in [".pin", ".phr", ".psq"]]
@@ -40,6 +151,7 @@ def ensure_human_db(human_fasta):
     print("⚙️  Building BLAST database for human proteome...")
     subprocess.run(["makeblastdb", "-in", human_fasta, "-dbtype", "prot"], check=True)
     return human_fasta
+
 
 def load_fasta_to_dict(fasta_path):
     """Load FASTA into dict: accession → sequence."""
@@ -60,6 +172,11 @@ def load_fasta_to_dict(fasta_path):
             seqs[acc] = "".join(seq_lines)
     return seqs
 
+
+# -----------------------------------------------------------
+# Main
+# -----------------------------------------------------------
+
 def main():
     parser = argparse.ArgumentParser(
         description="Filter raw CSV, merge with predictions, and remove proteins with human similarity (BLASTP)."
@@ -68,8 +185,8 @@ def main():
     parser.add_argument("--input-pred", required=True)
     parser.add_argument("--input-fasta", required=True,
                         help="FASTA containing sequences corresponding to accessions in the dataset.")
-    parser.add_argument("--human-fasta", required=True,
-                        help="FASTA of all human proteins.")
+    parser.add_argument("--human-fasta", default=None,
+                        help="FASTA of all human proteins. If omitted the script will look in data/human_proteome/ and download GCF_000001405.40 if missing.")
     parser.add_argument("-o", "--output-file", default=None)
 
     args = parser.parse_args()
@@ -78,7 +195,6 @@ def main():
     raw_path = Path(args.input_raw)
     pred_path = Path(args.input_pred)
     fasta_path = Path(args.input_fasta)
-    human_fasta = Path(args.human_fasta)
 
     output_path = (
         Path(args.output_file)
@@ -93,6 +209,26 @@ def main():
 
     # Load sequences
     seq_dict = load_fasta_to_dict(fasta_path)
+
+    # Determine human proteome FASTA
+    if args.human_fasta:
+        human_fasta = Path(args.human_fasta)
+        if not human_fasta.exists():
+            raise FileNotFoundError(f"Provided --human-fasta does not exist: {human_fasta}")
+        print(f"📂 Using provided human FASTA: {human_fasta}")
+    else:
+        cache_dir = Path("data/human_proteome")
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        expected = cache_dir / "GCF_000001405.40_proteins.fasta"
+
+        if expected.exists():
+            human_fasta = expected
+            print(f"📂 Using cached human proteome: {human_fasta}")
+        else:
+            # Download
+            print("📥 Human proteome FASTA not found in cache; downloading now...")
+            human_fasta_path = fetch_human_proteome("GCF_000001405.40", str(cache_dir))
+            human_fasta = Path(human_fasta_path)
 
     # Build BLAST DB if necessary
     human_db = ensure_human_db(str(human_fasta))
@@ -158,6 +294,7 @@ def main():
 
     print(f"✅ Final filtered output saved to: {output_path}")
     print(f"❌ Human similarity removed saved to: {removed_human_path}")
+
 
 if __name__ == "__main__":
     main()
