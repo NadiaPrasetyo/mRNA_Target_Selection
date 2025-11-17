@@ -158,7 +158,8 @@ def run_blastp(accession, seq, human_db_path, tmpdir):
     subprocess.run(cmd, stdout=open(out_path, "w"), stderr=subprocess.DEVNULL)
 
     if out_path.stat().st_size == 0:
-        logging.debug(f"No BLASTP hits for {accession}.")
+        logging.info(f"No BLASTP hits for {accession}.")
+        out_path.unlink()
         return None  # no hits
 
     df = pd.read_csv(
@@ -231,7 +232,7 @@ def main():
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    setup_logging(args.verbose, output_path)
+    setup_logging(args.verbose, output_path.parent)
 
     # Load data
     df_raw = pd.read_csv(raw_path)
@@ -278,7 +279,7 @@ def main():
                 temp_dir = Path("data/human_blast_tmp")
                 temp_dir.mkdir(parents=True, exist_ok=True)
 
-            hit = run_blastp(accession, seq, human_db, temp_dir)
+            hit = run_blastp(acc, seq, human_db, temp_dir)
             if hit is None:
                 blast_flags.append(False)  # no hit → keep
                 continue
