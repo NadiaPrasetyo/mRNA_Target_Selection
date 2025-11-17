@@ -843,7 +843,7 @@ def plot_correlation_matrix(
         row_cluster=True,
         col_cluster=True,
         dendrogram_ratio=(0.1, 0),    # keep left dendrogram; no top dendrogram
-        cbar_pos=(0.02, 0.8, 0.05, 0.18),
+        cbar_pos=(-0.02, 0.8, 0.05, 0.18),
     )
 
     # ----------------------
@@ -859,7 +859,7 @@ def plot_correlation_matrix(
     g_sub.ax_heatmap.set_yticks(np.arange(0, len(clustered_features), step))
     g_sub.ax_heatmap.set_yticklabels(
         clustered_features[::step],
-        fontsize=10,
+        fontsize=20,
         rotation=0
     )
 
@@ -875,11 +875,16 @@ def plot_correlation_matrix(
         labelright=True,
         bottom=False,
         labelbottom=False,
-        labelsize=8,
+        labelsize=20,
         pad=2
     )
+    
+    # Increase colorbar tick label size
+    if g_sub.cax is not None:
+        g_sub.cax.tick_params(labelsize=20)   # bigger tick labels
 
-    plt.title("Spearman Correlation (Selected Feature Subset)", fontsize=16, pad=20)
+
+    plt.title("Spearman Correlation (Selected Feature Subset)", fontsize=25, pad=20)
 
     # ----------------------
     # Save figure + matrix
