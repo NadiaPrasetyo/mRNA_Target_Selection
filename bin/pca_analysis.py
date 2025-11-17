@@ -690,7 +690,7 @@ def plot_correlation_matrix(
     feature_enc, 
     output_dir: str, 
     max_features=2000,
-    subset_prefixes=("discotope_", "ellipro_", "dssp_", "Protlearn_", "FEL_", "FUBAR_", "SLAC_", "cluster_percent_")
+    subset_prefixes=("discotope_", "ellipro_", "dssp_", "ProtLearn_", "FEL_", "FUBAR_", "SLAC_", "cluster_percent_")
 ):
     """
     Plot Spearman correlation heatmap (clustered) for all features,
