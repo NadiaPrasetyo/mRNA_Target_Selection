@@ -268,7 +268,7 @@ def main():
     logging.info("🔍 Running BLASTP similarity filtering against human proteome...")
     blast_flags = []
     with tempfile.TemporaryDirectory() as tmpdir:
-        for acc in df_raw["accession"]:
+        for acc in df_pred["accession"]:
             seq = seq_dict.get(acc, None)
             if seq is None:
                 blast_flags.append(False)  # cannot evaluate, keep
@@ -288,13 +288,13 @@ def main():
             remove_flag = (hit["pident"] > 30.0) and (hit["evalue"] < 0.005) or (hit["evalue"] < 1e-6)
             blast_flags.append(remove_flag)
 
-    df_raw["remove_human_similarity"] = blast_flags
-    removed_human = df_raw[df_raw["remove_human_similarity"] == True]
-    df_raw = df_raw[df_raw["remove_human_similarity"] == False]
+    df_pred["remove_human_similarity"] = blast_flags
+    removed_human = df_pred[df_pred["remove_human_similarity"] == True]
+    df_pred = df_pred[df_pred["remove_human_similarity"] == False]
 
     logging.info(f"Removed {len(removed_human)} for high similarity to human proteins.")
 
-    # --- Your existing filtering ---
+    # --- Allergenicity and mhc filtering ---
     filtered_raw = df_raw[
         (df_raw["allergenicity_hybrid_score"] < 0.3) &
         (df_raw["mhci_num_strong_binders"] > 0) &
