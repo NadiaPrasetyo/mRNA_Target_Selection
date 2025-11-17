@@ -34,10 +34,14 @@ def main():
                 if len(header_parts) > 1:
                     accession = header_parts[1]
                     if accession in accessions_set:
+                        # modify header to only include accession
+                        record.id = accession
+                        record.description = ""
                         filtered_sequences.append(record)
 
     if filtered_sequences:
-        SeqIO.write(filtered_sequences, output_fasta, "fasta")
+        with open(output_fasta, "w") as output_handle:
+            SeqIO.write(filtered_sequences, output_handle, "fasta")
         print(f"Saved {len(filtered_sequences)} sequences to {output_fasta}")
     else:
         print("No sequences matched the accessions in the CSV.")

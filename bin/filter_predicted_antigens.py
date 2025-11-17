@@ -27,6 +27,7 @@ import subprocess
 import tempfile
 import os
 import sys
+import logging
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))  # Add parent directory to sys.path
 
 
@@ -41,7 +42,7 @@ try:
     )
 except Exception as e:
     # Provide helpful error message if import fails
-    print(
+    logging.error(
         "ERROR: Failed to import required functions from bin/fetch_NCBI_strain_genomes.py.\n"
         "Make sure the file exists at bin/fetch_NCBI_strain_genomes.py and that the current\n"
         "working directory is the project root. Import error details:\n",
@@ -50,6 +51,29 @@ except Exception as e:
     )
     raise
 
+
+def setup_logging(verbose: bool, output_path: Path):
+    """Configure logging: always log to console; if verbose also append to a file."""
+    logger = logging.getLogger()
+    # Clear existing handlers to avoid duplicate logs when reusing in interactive runs
+    for h in list(logger.handlers):
+        logger.removeHandler(h)
+    level = logging.DEBUG if verbose else logging.INFO
+    logger.setLevel(level)
+    fmt = logging.Formatter("%(asctime)s %(levelname)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+    # Console handler (always)
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setLevel(level)
+    ch.setFormatter(fmt)
+    logger.addHandler(ch)
+    # File handler (only when verbose)
+    if verbose:
+        log_file = output_path / "filter_predicted_antigens.log"
+        fh = logging.FileHandler(log_file, mode="a")
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(fmt)
+        logger.addHandler(fh)
+    logger.debug("Logging initialized (verbose=%s)", verbose)
 
 # -----------------------------------------------------------
 # Small wrapper: fetch_human_proteome
@@ -87,7 +111,7 @@ def fetch_human_proteome(refseq_id: str, output_dir: str, session=None) -> str:
         "include_annotation_type=PROT_FASTA&hydrated=FULLY_HYDRATED"
     )
 
-    print(f"📥 Downloading human proteome for {refseq_id} ...")
+    logging.info(f"📥 Downloading human proteome for {refseq_id} ...")
     # download_and_extract_zip will extract matching files and rename them according to its logic:
     # - .faa -> {accession}_proteins.fasta
     # - .fna -> {accession}.fasta
@@ -102,14 +126,14 @@ def fetch_human_proteome(refseq_id: str, output_dir: str, session=None) -> str:
         alt3 = os.path.join(output_dir, f"{refseq_id}.fasta")
         for alt in (alt1, alt2, alt3):
             if os.path.exists(alt):
-                print(f"ℹ️  Found alternative extracted file: {alt}")
+                logging.info(f"ℹ️  Found alternative extracted file: {alt}")
                 return alt
         raise FileNotFoundError(
             f"Expected protein FASTA not found after download: {expected}. "
             f"Check download logs or that the NCBI endpoint is available."
         )
 
-    print(f"✅ Human proteome saved to: {expected}")
+    logging.info(f"✅ Human proteome saved to: {expected}")
     return expected
 
 
@@ -117,13 +141,13 @@ def fetch_human_proteome(refseq_id: str, output_dir: str, session=None) -> str:
 # BLASTP Utilities (unchanged style from your original script)
 # -----------------------------------------------------------
 
-def run_blastp(seq, human_db_path, tmpdir):
+def run_blastp(accession, seq, human_db_path, tmpdir):
     """Run BLASTP for a single amino acid sequence and return best hit stats."""
     query_fa = Path(tmpdir) / "query.fa"
     with open(query_fa, "w") as f:
-        f.write(">query\n" + seq + "\n")
+        f.write(f">{accession}\n" + seq + "\n")
 
-    out_path = Path(tmpdir) / "blast_out.tsv"
+    out_path = Path(tmpdir) / f"{accession}_blast_out.tsv"
     cmd = [
         "blastp",
         "-query", str(query_fa),
@@ -134,6 +158,7 @@ def run_blastp(seq, human_db_path, tmpdir):
     subprocess.run(cmd, stdout=open(out_path, "w"), stderr=subprocess.DEVNULL)
 
     if out_path.stat().st_size == 0:
+        logging.debug(f"No BLASTP hits for {accession}.")
         return None  # no hits
 
     df = pd.read_csv(
@@ -150,7 +175,7 @@ def ensure_human_db(human_fasta):
     if all(Path(f).exists() for f in required):
         return human_fasta  # already exists
 
-    print("⚙️  Building BLAST database for human proteome...")
+    logging.info("⚙️  Building BLAST database for human proteome...")
     subprocess.run(["makeblastdb", "-in", human_fasta, "-dbtype", "prot"], check=True)
     return human_fasta
 
@@ -190,6 +215,7 @@ def main():
     parser.add_argument("--human-fasta", default=None,
                         help="FASTA of all human proteins. If omitted the script will look in data/human_proteome/ and download GCF_000001405.40 if missing.")
     parser.add_argument("-o", "--output-file", default=None)
+    parser.add_argument("--verbose", action="store_true")
 
     args = parser.parse_args()
 
@@ -205,6 +231,8 @@ def main():
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    setup_logging(args.verbose, output_path)
+
     # Load data
     df_raw = pd.read_csv(raw_path)
     df_pred = pd.read_csv(pred_path)
@@ -217,7 +245,7 @@ def main():
         human_fasta = Path(args.human_fasta)
         if not human_fasta.exists():
             raise FileNotFoundError(f"Provided --human-fasta does not exist: {human_fasta}")
-        print(f"📂 Using provided human FASTA: {human_fasta}")
+        logging.info(f"📂 Using provided human FASTA: {human_fasta}")
     else:
         cache_dir = Path("data/human_proteome")
         cache_dir.mkdir(parents=True, exist_ok=True)
@@ -225,10 +253,10 @@ def main():
 
         if expected.exists():
             human_fasta = expected
-            print(f"📂 Using cached human proteome: {human_fasta}")
+            logging.info(f"📂 Using cached human proteome: {human_fasta}")
         else:
             # Download
-            print("📥 Human proteome FASTA not found in cache; downloading now...")
+            logging.info("📥 Human proteome FASTA not found in cache; downloading now...")
             human_fasta_path = fetch_human_proteome("GCF_000001405.40", str(cache_dir))
             human_fasta = Path(human_fasta_path)
 
@@ -236,7 +264,7 @@ def main():
     human_db = ensure_human_db(str(human_fasta))
 
     # BLASTP filtering
-    print("🔍 Running BLASTP similarity filtering against human proteome...")
+    logging.info("🔍 Running BLASTP similarity filtering against human proteome...")
     blast_flags = []
     with tempfile.TemporaryDirectory() as tmpdir:
         for acc in df_raw["accession"]:
@@ -245,20 +273,25 @@ def main():
                 blast_flags.append(False)  # cannot evaluate, keep
                 continue
 
-            hit = run_blastp(seq, human_db, tmpdir)
+            if args.verbose:
+                logging.info(f"Running BLASTP for accession: {acc}")
+                temp_dir = Path("data/human_blast_tmp")
+                temp_dir.mkdir(parents=True, exist_ok=True)
+
+            hit = run_blastp(accession, seq, human_db, temp_dir)
             if hit is None:
                 blast_flags.append(False)  # no hit → keep
                 continue
 
-            # Filter: >30% identity AND E-value < 0.005
-            remove_flag = (hit["pident"] > 30.0) and (hit["evalue"] < 0.005)
+            # Filter: >30% identity AND E-value < 0.005 or E-value < 1e-6
+            remove_flag = (hit["pident"] > 30.0) and (hit["evalue"] < 0.005) or (hit["evalue"] < 1e-6)
             blast_flags.append(remove_flag)
 
     df_raw["remove_human_similarity"] = blast_flags
     removed_human = df_raw[df_raw["remove_human_similarity"] == True]
     df_raw = df_raw[df_raw["remove_human_similarity"] == False]
 
-    print(f"❌ Removed {len(removed_human)} for high similarity to human proteins.")
+    logging.info(f"Removed {len(removed_human)} for high similarity to human proteins.")
 
     # --- Your existing filtering ---
     filtered_raw = df_raw[
@@ -294,8 +327,8 @@ def main():
     removed_human_path = output_path.parent / f"removed_human_similarity_{pred_path.stem}.csv"
     removed_human.to_csv(removed_human_path, index=False)
 
-    print(f"✅ Final filtered output saved to: {output_path}")
-    print(f"❌ Human similarity removed saved to: {removed_human_path}")
+    logging.info(f"✅ Final filtered output saved to: {output_path}")
+    logging.info(f"❌ Human similarity removed saved to: {removed_human_path}")
 
 
 if __name__ == "__main__":
