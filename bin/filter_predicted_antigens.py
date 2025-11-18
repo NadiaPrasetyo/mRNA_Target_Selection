@@ -278,6 +278,8 @@ def main():
                 logging.info(f"Running BLASTP for accession: {acc}")
                 temp_dir = Path("data/human_blast_tmp")
                 temp_dir.mkdir(parents=True, exist_ok=True)
+            else:
+            	temp_dir = tmpdir
 
             hit = run_blastp(acc, seq, human_db, temp_dir)
             if hit is None:
