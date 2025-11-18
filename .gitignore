@@ -14,6 +14,7 @@ data/S.enteritidis/*/mchii/
 data/S.enteritidis/*/mchi/
 r4sOrig.res
 data/human_proteome/*.fasta
+predicted.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
