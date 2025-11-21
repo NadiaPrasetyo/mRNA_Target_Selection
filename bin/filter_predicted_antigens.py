@@ -332,6 +332,35 @@ def main():
         for rep, alts in alt_map.items():
             accs = [rep] + alts
 
+            # merge protein names and gene names from all cluster members
+            prot_names = []
+            gene_names = []
+
+            for a in accs:
+                # from df_pred
+                row_p = orig_pred[orig_pred["accession"] == a]
+                if not row_p.empty:
+                    pn = row_p.iloc[0].get("protein_names", "")
+                    gn = row_p.iloc[0].get("gene_names", "")
+
+                    if isinstance(pn, str) and pn.strip():
+                        prot_names.extend([x.strip() for x in re.split(r"[,;/]+", pn) if x.strip()])
+
+                    if isinstance(gn, str) and gn.strip():
+                        gene_names.extend([x.strip() for x in re.split(r"[,;/]+", gn) if x.strip()])
+
+            # deduplicate, preserve order
+            prot_names = list(dict.fromkeys(prot_names))
+            gene_names = list(dict.fromkeys(gene_names))
+
+            # update representative rows in *both* df_pred and df_raw
+            df_pred.loc[df_pred["accession"] == rep, "protein_names"] = "; ".join(prot_names)
+            df_pred.loc[df_pred["accession"] == rep, "gene_names"] = "; ".join(gene_names)
+
+            df_raw.loc[df_raw["accession"] == rep, "protein_names"] = "; ".join(prot_names)
+            df_raw.loc[df_raw["accession"] == rep, "gene_names"] = "; ".join(gene_names)
+
+
             # mean prob_antigen
             mean_prob = orig_pred[orig_pred["accession"].isin(accs)]["prob_antigen"].mean()
             df_pred.loc[df_pred["accession"] == rep, "prob_antigen"] = mean_prob
