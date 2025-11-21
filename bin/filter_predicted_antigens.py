@@ -353,13 +353,9 @@ def main():
             prot_names = list(dict.fromkeys(prot_names))
             gene_names = list(dict.fromkeys(gene_names))
 
-            # update representative rows in *both* df_pred and df_raw
+            # update representative rows in *both* df_pred
             df_pred.loc[df_pred["accession"] == rep, "protein_names"] = "; ".join(prot_names)
             df_pred.loc[df_pred["accession"] == rep, "gene_names"] = "; ".join(gene_names)
-
-            df_raw.loc[df_raw["accession"] == rep, "protein_names"] = "; ".join(prot_names)
-            df_raw.loc[df_raw["accession"] == rep, "gene_names"] = "; ".join(gene_names)
-
 
             # mean prob_antigen
             mean_prob = orig_pred[orig_pred["accession"].isin(accs)]["prob_antigen"].mean()
