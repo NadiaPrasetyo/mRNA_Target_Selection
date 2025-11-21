@@ -242,10 +242,6 @@ def main():
     # Collapse homologous proteins using protein_names only
     # (remove gene-name based grouping — too strict)
     # -----------------------------------------------------------
-
-    import re
-    from collections import defaultdict
-
     def extract_codes(name_string):
         """
         Extract 4-letter protein codes from protein_names.
@@ -256,32 +252,45 @@ def main():
         parts = re.split(r"[ ,;/()]+", name_string)
         codes = [p for p in parts if re.fullmatch(r"[A-Za-z0-9]{4}", p)]
         return [c.lower() for c in codes]
+    
+    def extract_genes(gene_string):
+        """Extract gene names from gene_names column."""
+        if pd.isna(gene_string):
+            return []
+        genes = re.split(r"[ ,;/]+", gene_string)
+        return [g.lower() for g in genes if g.strip()]
 
 
-    # Build groups only by 4-letter protein codes
+    # Build groups only by 4-letter protein codes and gene names
     code_groups = defaultdict(set)
+    gene_groups = defaultdict(set)
 
     for idx, row in df_pred.iterrows():
         acc = row["accession"]
         codes = extract_codes(row.get("protein_names", ""))
+        genes = extract_genes(row.get("gene_names", ""))
+
         for c in codes:
             code_groups[c].add(acc)
+        for g in genes:
+            gene_groups[g].add(acc)
 
     # Merge overlapping groups
     groups = []
-    for _, accs in code_groups.items():
-        accs = set(accs)
-        if len(accs) <= 1:
-            continue
-
-        merged = False
-        for g in groups:
-            if g & accs:
-                g |= accs
-                merged = True
-                break
-        if not merged:
-            groups.append(accs)
+    
+    for d in (code_groups, gene_groups):
+        for _, accs in d.items():
+            accs = set(accs)
+            if len(accs) <= 1:
+                continue
+            merged = False
+            for g in groups:
+                if g & accs:  # overlap
+                    g |= accs
+                    merged = True
+                    break
+            if not merged:
+                groups.append(set(accs))
 
     # Collapse clusters
     collapse_map = {}     # accession → representative
