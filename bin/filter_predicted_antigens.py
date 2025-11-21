@@ -249,63 +249,31 @@ def main():
         codes = [p for p in parts if re.fullmatch(r"[A-Za-z0-9]{4}", p)]
         return [c.lower() for c in codes]
 
-    def extract_genes(gene_string):
-        if pd.isna(gene_string):
-            return []
-        parts = re.split(r"[ ,;/]+", gene_string)
-        return [g.lower() for g in parts if g.strip()]
-
-
-    # ------------------------------------------------------------
-    # Build full connectivity graph (protein_name codes + gene_names)
-    # ------------------------------------------------------------
-    edges = defaultdict(set)
+    
+    # Build groups only by 4-letter protein codes
+    code_groups = defaultdict(set)
 
     for idx, row in df_pred.iterrows():
         acc = row["accession"]
         codes = extract_codes(row.get("protein_names", ""))
-        genes = extract_genes(row.get("gene_names", ""))
-
-        # for each code, link all proteins with that code
         for c in codes:
-            edges[f"code::{c}"].add(acc)
-            edges[acc].add(f"code::{c}")
+            code_groups[c].add(acc)
 
-        # for each gene, link all proteins with that gene
-        for g in genes:
-            edges[f"gene::{g}"].add(acc)
-            edges[acc].add(f"gene::{g}")
-
-
-    # ------------------------------------------------------------
-    # BFS/DFS to get full transitive clusters
-    # ------------------------------------------------------------
+    # Merge overlapping groups
     groups = []
-    visited = set()
-
-    for node in edges:
-        if not node.startswith("A"):  # only protein accessions start with A or Q or W etc.
-            continue
-        if node in visited:
+    for _, accs in code_groups.items():
+        accs = set(accs)
+        if len(accs) <= 1:
             continue
 
-        queue = deque([node])
-        cluster = set([node])
-        visited.add(node)
-
-        while queue:
-            cur = queue.popleft()
-            for nxt in edges[cur]:
-                if nxt not in visited:
-                    visited.add(nxt)
-                    queue.append(nxt)
-                    # Only real accessions go into final cluster
-                    if not nxt.startswith("code::") and not nxt.startswith("gene::"):
-                        cluster.add(nxt)
-
-        if len(cluster) > 1:
-            groups.append(cluster)
-
+        merged = False
+        for g in groups:
+            if g & accs:
+                g |= accs
+                merged = True
+                break
+        if not merged:
+            groups.append(accs)
 
     # Collapse clusters
     collapse_map = {}     # accession → representative
