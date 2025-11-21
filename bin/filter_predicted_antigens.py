@@ -308,6 +308,17 @@ def main():
     if collapse_map:
         logging.info(f"Collapsing homologous proteins: {len(collapse_map)} removed.")
 
+        # log homolog removed proteins
+        homolog_removed = pd.DataFrame({
+            "accession": list(collapse_map.keys()),
+            "representative": [collapse_map[a] for a in collapse_map.keys()]
+        })
+
+        homolog_removed_path = output_path.parent / f"removed_homologs_{pred_path.stem}.csv"
+        homolog_removed.to_csv(homolog_removed_path, index=False)
+        logging.info(f"Homolog-removed proteins saved to: {homolog_removed_path}")
+
+
         df_pred = df_pred[~df_pred["accession"].isin(collapse_map.keys())].copy()
         df_raw = df_raw[~df_raw["accession"].isin(collapse_map.keys())].copy()
 
@@ -411,8 +422,18 @@ def main():
 
     prob_col = "prob_antigen_raw" if "prob_antigen_raw" in merged.columns else "prob_antigen"
 
-    final_df = merged[["accession", prob_col, "pred_label", "protein_names", "gene_names"]]
-    removed_df = merged_removed[["accession", prob_col, "pred_label", "protein_names", "gene_names"]]
+    # include alternative accessions if present
+    columns = ["accession", prob_col, "pred_label", "protein_names", "gene_names"]
+    if "alternative_accessions" in merged.columns:
+        columns.append("alternative_accessions")
+
+    final_df = merged[columns]
+
+    columns_removed = ["accession", prob_col, "pred_label", "protein_names", "gene_names"]
+    if "alternative_accessions" in merged_removed.columns:
+        columns_removed.append("alternative_accessions")
+
+    removed_df = merged_removed[columns_removed]
 
     # Save
     final_df.to_csv(output_path, index=False)
