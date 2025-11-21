@@ -239,118 +239,96 @@ def main():
     df_pred = pd.read_csv(pred_path)
 
     # -----------------------------------------------------------
-    # Collapse homologous proteins using protein_names + gene_names
+    # Collapse homologous proteins using protein_names only
+    # (remove gene-name based grouping — too strict)
     # -----------------------------------------------------------
+
+    import re
+    from collections import defaultdict
 
     def extract_codes(name_string):
         """
         Extract 4-letter protein codes from protein_names.
-        Example: "ABC-type transporter, TauA" → ["tauA"]
+        Example: "ABC transporter, TauA" → ["taua"]
         """
         if pd.isna(name_string):
             return []
         parts = re.split(r"[ ,;/()]+", name_string)
-        # 4-character alphanumeric tokens (case-insensitive)
         codes = [p for p in parts if re.fullmatch(r"[A-Za-z0-9]{4}", p)]
         return [c.lower() for c in codes]
 
-    def extract_genes(gene_string):
-        """
-        Split gene_names field into tokens.
-        """
-        if pd.isna(gene_string):
-            return []
-        # split on comma or spaces
-        genes = re.split(r"[ ,;/]+", gene_string)
-        return [g.lower() for g in genes if g.strip()]
 
-    # Build homology groups
+    # Build groups only by 4-letter protein codes
     code_groups = defaultdict(set)
-    gene_groups = defaultdict(set)
 
     for idx, row in df_pred.iterrows():
         acc = row["accession"]
         codes = extract_codes(row.get("protein_names", ""))
-        genes = extract_genes(row.get("gene_names", ""))
-
         for c in codes:
             code_groups[c].add(acc)
-        for g in genes:
-            gene_groups[g].add(acc)
 
-    # Merge overlapping groups into unified homology clusters
+    # Merge overlapping groups
     groups = []
-    seen = set()
+    for _, accs in code_groups.items():
+        accs = set(accs)
+        if len(accs) <= 1:
+            continue
 
-    for d in (code_groups, gene_groups):
-        for _, accs in d.items():
-            accs = set(accs)
-            if len(accs) <= 1:
-                continue
-            # merge with existing clusters if overlapping
-            merged = False
-            for g in groups:
-                if g & accs:
-                    g |= accs
-                    merged = True
-                    break
-            if not merged:
-                groups.append(set(accs))
+        merged = False
+        for g in groups:
+            if g & accs:
+                g |= accs
+                merged = True
+                break
+        if not merged:
+            groups.append(accs)
 
-    # Collapse all groups
+    # Collapse clusters
     collapse_map = {}     # accession → representative
-    alt_map = {}          # representative → list of alternatives
-    
+    alt_map = {}          # representative → [others]
+
     for cluster in groups:
         cluster = list(cluster)
-    
-        # determine representative = max prob_antigen
+
+        # pick rep = highest prob_antigen
         sub = df_pred[df_pred["accession"].isin(cluster)]
-        rep_row = sub.loc[sub["prob_antigen"].idxmax()]
-        rep = rep_row["accession"]
-    
-        alts = [a for a in cluster if a != rep]
-    
-        for a in alts:
-            collapse_map[a] = rep
-    
-        alt_map[rep] = alts
-    
-    # Load sequences before applying collapsing so seq_dict is available
+        rep = sub.loc[sub["prob_antigen"].idxmax()]["accession"]
+
+        others = [a for a in cluster if a != rep]
+        alt_map[rep] = others
+
+        for o in others:
+            collapse_map[o] = rep
+
+    # Load sequences
+    logging.info("📥 Loading protein sequences from FASTA...")
     seq_dict = load_fasta_to_dict(fasta_path)
-    
-    # Apply collapsing: remove alt accessions
+
+    # Apply collapse
     if collapse_map:
-        logging.info(f"Collapsing homologous proteins: {len(collapse_map)} accessions removed.")
-    
-        # Remove duplicates from df_pred
+        logging.info(f"Collapsing homologous proteins: {len(collapse_map)} removed.")
+
         df_pred = df_pred[~df_pred["accession"].isin(collapse_map.keys())].copy()
-    
-        # Remove duplicates from df_raw
         df_raw = df_raw[~df_raw["accession"].isin(collapse_map.keys())].copy()
-    
-        # Add alternative_accessions to df_pred
+
         df_pred["alternative_accessions"] = df_pred["accession"].map(
             lambda a: ";".join(alt_map.get(a, []))
         )
-    
-        # Recompute means for rep entries
+
+        # Mean recomputation
+        orig_pred = pd.read_csv(pred_path)
+
         for rep, alts in alt_map.items():
             accs = [rep] + alts
-    
-            # mean prob_antigen from df_pred and original prediction input
-            orig_pred = pd.read_csv(pred_path)   # use the path
-            meansub = orig_pred[orig_pred["accession"].isin(accs)]
-            mean_prob = meansub["prob_antigen"].mean()
+
+            # mean prob_antigen
+            mean_prob = orig_pred[orig_pred["accession"].isin(accs)]["prob_antigen"].mean()
             df_pred.loc[df_pred["accession"] == rep, "prob_antigen"] = mean_prob
-    
-    
-            df_pred.loc[df_pred["accession"] == rep, "prob_antigen"] = meansub["prob_antigen"].mean()
-    
+
             # mean allergenicity
             mean_allergen = df_raw[df_raw["accession"].isin(accs)]["allergenicity_hybrid_score"].mean()
             df_raw.loc[df_raw["accession"] == rep, "allergenicity_hybrid_score"] = mean_allergen
-    
+
         # Remove FASTA sequences for collapsed accessions
         for alt in collapse_map.keys():
             if alt in seq_dict:
