@@ -29,7 +29,7 @@ import os
 import sys
 import logging
 import re
-from collections import defaultdict
+from collections import defaultdict, deque
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))  # Add parent directory to sys.path
 
 
@@ -240,57 +240,72 @@ def main():
 
     # -----------------------------------------------------------
     # Collapse homologous proteins using protein_names only
-    # (remove gene-name based grouping — too strict)
     # -----------------------------------------------------------
+    
     def extract_codes(name_string):
-        """
-        Extract 4-letter protein codes from protein_names.
-        Example: "ABC transporter, TauA" → ["taua"]
-        """
         if pd.isna(name_string):
             return []
         parts = re.split(r"[ ,;/()]+", name_string)
         codes = [p for p in parts if re.fullmatch(r"[A-Za-z0-9]{4}", p)]
         return [c.lower() for c in codes]
-    
+
     def extract_genes(gene_string):
-        """Extract gene names from gene_names column."""
         if pd.isna(gene_string):
             return []
-        genes = re.split(r"[ ,;/]+", gene_string)
-        return [g.lower() for g in genes if g.strip()]
+        parts = re.split(r"[ ,;/]+", gene_string)
+        return [g.lower() for g in parts if g.strip()]
 
 
-    # Build groups only by 4-letter protein codes and gene names
-    code_groups = defaultdict(set)
-    gene_groups = defaultdict(set)
+    # ------------------------------------------------------------
+    # Build full connectivity graph (protein_name codes + gene_names)
+    # ------------------------------------------------------------
+    edges = defaultdict(set)
 
     for idx, row in df_pred.iterrows():
         acc = row["accession"]
         codes = extract_codes(row.get("protein_names", ""))
         genes = extract_genes(row.get("gene_names", ""))
 
+        # for each code, link all proteins with that code
         for c in codes:
-            code_groups[c].add(acc)
-        for g in genes:
-            gene_groups[g].add(acc)
+            edges[f"code::{c}"].add(acc)
+            edges[acc].add(f"code::{c}")
 
-    # Merge overlapping groups
+        # for each gene, link all proteins with that gene
+        for g in genes:
+            edges[f"gene::{g}"].add(acc)
+            edges[acc].add(f"gene::{g}")
+
+
+    # ------------------------------------------------------------
+    # BFS/DFS to get full transitive clusters
+    # ------------------------------------------------------------
     groups = []
-    
-    for d in (code_groups, gene_groups):
-        for _, accs in d.items():
-            accs = set(accs)
-            if len(accs) <= 1:
-                continue
-            merged = False
-            for g in groups:
-                if g & accs:  # overlap
-                    g |= accs
-                    merged = True
-                    break
-            if not merged:
-                groups.append(set(accs))
+    visited = set()
+
+    for node in edges:
+        if not node.startswith("A"):  # only protein accessions start with A or Q or W etc.
+            continue
+        if node in visited:
+            continue
+
+        queue = deque([node])
+        cluster = set([node])
+        visited.add(node)
+
+        while queue:
+            cur = queue.popleft()
+            for nxt in edges[cur]:
+                if nxt not in visited:
+                    visited.add(nxt)
+                    queue.append(nxt)
+                    # Only real accessions go into final cluster
+                    if not nxt.startswith("code::") and not nxt.startswith("gene::"):
+                        cluster.add(nxt)
+
+        if len(cluster) > 1:
+            groups.append(cluster)
+
 
     # Collapse clusters
     collapse_map = {}     # accession → representative
