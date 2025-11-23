@@ -239,27 +239,38 @@ def main():
     df_pred = pd.read_csv(pred_path)
 
     # -----------------------------------------------------------
-    # Collapse homologous proteins using protein_names only
+    # Collapse homologous proteins using BOTH protein_names and gene_names
     # -----------------------------------------------------------
-    
+
     def extract_codes(name_string):
+        """
+        Extract any 4-letter alphanumeric codes from protein_names or gene_names.
+        E.g.: 'sasC', 'ebh1', 'mrpA', etc.
+        """
         if pd.isna(name_string):
             return []
         parts = re.split(r"[ ,;/()]+", name_string)
         codes = [p for p in parts if re.fullmatch(r"[A-Za-z0-9]{4}", p)]
         return [c.lower() for c in codes]
 
-    
-    # Build groups only by 4-letter protein codes
+
+    # 1. Build code → accession sets for BOTH protein_names AND gene_names
     code_groups = defaultdict(set)
 
     for idx, row in df_pred.iterrows():
         acc = row["accession"]
-        codes = extract_codes(row.get("protein_names", ""))
-        for c in codes:
+
+        # protein-name codes
+        prot_codes = extract_codes(row.get("protein_names", ""))
+
+        # gene-name codes (NEW)
+        gene_codes = extract_codes(row.get("gene_names", ""))
+
+        for c in prot_codes + gene_codes:
             code_groups[c].add(acc)
 
-    # Merge overlapping groups
+
+    # 2. Merge overlapping sets (Union-Find–like merging)
     groups = []
     for _, accs in code_groups.items():
         accs = set(accs)
@@ -268,21 +279,24 @@ def main():
 
         merged = False
         for g in groups:
-            if g & accs:
+            if g & accs:       # overlap → merge
                 g |= accs
                 merged = True
                 break
+
         if not merged:
             groups.append(accs)
 
-    # Collapse clusters
-    collapse_map = {}     # accession → representative
-    alt_map = {}          # representative → [others]
+
+    # 3. Create collapse map: accession → representative
+    collapse_map = {}     # accession → rep
+    alt_map = {}          # rep → [alts]
+
 
     for cluster in groups:
         cluster = list(cluster)
 
-        # pick rep = highest prob_antigen
+        # Choose representative = highest prob_antigen
         sub = df_pred[df_pred["accession"].isin(cluster)]
         rep = sub.loc[sub["prob_antigen"].idxmax()]["accession"]
 
@@ -292,44 +306,43 @@ def main():
         for o in others:
             collapse_map[o] = rep
 
-    # Load sequences
-    logging.info("📥 Loading protein sequences from FASTA...")
+    # Load FASTA sequences
+    logging.info("📥 Loading input FASTA sequences...")
     seq_dict = load_fasta_to_dict(fasta_path)
 
-    # Apply collapse
+    # 4. Apply collapse to df_pred, df_raw and integrate names/means
     if collapse_map:
-        logging.info(f"Collapsing homologous proteins: {len(collapse_map)} removed.")
+        logging.info(f"Collapsing homologous proteins (protein+gene based): {len(collapse_map)} removed.")
 
-        # log homolog removed proteins
+        # Save removed homologs list
         homolog_removed = pd.DataFrame({
             "accession": list(collapse_map.keys()),
             "representative": [collapse_map[a] for a in collapse_map.keys()]
         })
-
         homolog_removed_path = output_path.parent / f"removed_homologs_{pred_path.stem}.csv"
         homolog_removed.to_csv(homolog_removed_path, index=False)
         logging.info(f"Homolog-removed proteins saved to: {homolog_removed_path}")
 
-
+        # Remove collapsed accessions
         df_pred = df_pred[~df_pred["accession"].isin(collapse_map.keys())].copy()
-        df_raw = df_raw[~df_raw["accession"].isin(collapse_map.keys())].copy()
+        df_raw  = df_raw[~df_raw["accession"].isin(collapse_map.keys())].copy()
 
+        # For representative accessions, we add alt list
         df_pred["alternative_accessions"] = df_pred["accession"].map(
             lambda a: ";".join(alt_map.get(a, []))
         )
 
-        # Mean recomputation
+        # Load full original predictions to recompute merged names and means
         orig_pred = pd.read_csv(pred_path)
 
         for rep, alts in alt_map.items():
             accs = [rep] + alts
 
-            # merge protein names and gene names from all cluster members
+            # Merge protein_names + gene_names from all members
             prot_names = []
             gene_names = []
 
             for a in accs:
-                # from df_pred
                 row_p = orig_pred[orig_pred["accession"] == a]
                 if not row_p.empty:
                     pn = row_p.iloc[0].get("protein_names", "")
@@ -341,19 +354,19 @@ def main():
                     if isinstance(gn, str) and gn.strip():
                         gene_names.extend([x.strip() for x in re.split(r"[,;/]+", gn) if x.strip()])
 
-            # deduplicate, preserve order
+            # Deduplicate but preserve order
             prot_names = list(dict.fromkeys(prot_names))
             gene_names = list(dict.fromkeys(gene_names))
 
-            # update representative rows in *both* df_pred
+            # Update representative rows
             df_pred.loc[df_pred["accession"] == rep, "protein_names"] = "; ".join(prot_names)
-            df_pred.loc[df_pred["accession"] == rep, "gene_names"] = "; ".join(gene_names)
+            df_pred.loc[df_pred["accession"] == rep, "gene_names"]    = "; ".join(gene_names)
 
-            # mean prob_antigen
+            # --- mean prob_antigen ---
             mean_prob = orig_pred[orig_pred["accession"].isin(accs)]["prob_antigen"].mean()
             df_pred.loc[df_pred["accession"] == rep, "prob_antigen"] = mean_prob
 
-            # mean allergenicity
+            # --- mean allergenicity ---
             mean_allergen = df_raw[df_raw["accession"].isin(accs)]["allergenicity_hybrid_score"].mean()
             df_raw.loc[df_raw["accession"] == rep, "allergenicity_hybrid_score"] = mean_allergen
 
@@ -361,6 +374,7 @@ def main():
         for alt in collapse_map.keys():
             if alt in seq_dict:
                 del seq_dict[alt]
+
 
     # Determine human proteome FASTA
     if args.human_fasta:
