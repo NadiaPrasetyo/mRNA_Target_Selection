@@ -1,6 +1,7 @@
 import argparse
 import pandas as pd
 from pathlib import Path
+import re
 
 def main():
     # --- Parse arguments ---
@@ -56,7 +57,11 @@ def main():
     def label_essential(gene_names_str):
         if pd.isna(gene_names_str):
             return "non-essential"
-        genes = [g.strip().lower() for g in gene_names_str.split(",")]
+        
+        # Split on commas OR semicolons OR whitespace
+        genes = re.split(r"[;,]", gene_names_str.lower())
+        genes = [g.strip() for g in genes if g.strip()]
+        
         return "essential" if any(g in essential_genes for g in genes) else "non-essential"
 
     # --- Apply labeling ---

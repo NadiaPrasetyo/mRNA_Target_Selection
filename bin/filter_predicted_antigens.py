@@ -327,13 +327,15 @@ def main():
         df_pred = df_pred[~df_pred["accession"].isin(collapse_map.keys())].copy()
         df_raw  = df_raw[~df_raw["accession"].isin(collapse_map.keys())].copy()
 
-        # For representative accessions, we add alt list
+        # For representative accessions, we add alt list using comma instead of semicolon
         df_pred["alternative_accessions"] = df_pred["accession"].map(
-            lambda a: ";".join(alt_map.get(a, []))
+            lambda a: ",".join(alt_map.get(a, []))
         )
 
         # Load full original predictions to recompute merged names and means
         orig_pred = pd.read_csv(pred_path)
+
+        split_pattern = r"[,;/]+"  # normalize splitting on anything previously used
 
         for rep, alts in alt_map.items():
             accs = [rep] + alts
@@ -344,23 +346,33 @@ def main():
 
             for a in accs:
                 row_p = orig_pred[orig_pred["accession"] == a]
-                if not row_p.empty:
-                    pn = row_p.iloc[0].get("protein_names", "")
-                    gn = row_p.iloc[0].get("gene_names", "")
+                if row_p.empty:
+                    continue
 
-                    if isinstance(pn, str) and pn.strip():
-                        prot_names.extend([x.strip() for x in re.split(r"[,;/]+", pn) if x.strip()])
+                pn = row_p.iloc[0].get("protein_names", "")
+                gn = row_p.iloc[0].get("gene_names", "")
 
-                    if isinstance(gn, str) and gn.strip():
-                        gene_names.extend([x.strip() for x in re.split(r"[,;/]+", gn) if x.strip()])
+                if isinstance(pn, str) and pn.strip():
+                    prot_names.extend(
+                        x.strip()
+                        for x in re.split(split_pattern, pn)
+                        if x.strip()
+                    )
+
+                if isinstance(gn, str) and gn.strip():
+                    gene_names.extend(
+                        x.strip()
+                        for x in re.split(split_pattern, gn)
+                        if x.strip()
+                    )
 
             # Deduplicate but preserve order
             prot_names = list(dict.fromkeys(prot_names))
             gene_names = list(dict.fromkeys(gene_names))
 
-            # Update representative rows
-            df_pred.loc[df_pred["accession"] == rep, "protein_names"] = "; ".join(prot_names)
-            df_pred.loc[df_pred["accession"] == rep, "gene_names"]    = "; ".join(gene_names)
+            # Update representative rows using comma join instead of semicolon
+            df_pred.loc[df_pred["accession"] == rep, "protein_names"] = ", ".join(prot_names)
+            df_pred.loc[df_pred["accession"] == rep, "gene_names"] = ", ".join(gene_names)
 
             # --- mean prob_antigen ---
             mean_prob = orig_pred[orig_pred["accession"].isin(accs)]["prob_antigen"].mean()
