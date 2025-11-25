@@ -1005,11 +1005,21 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     # PCA
     # ----------------------
     logging.info("Running PCA on KS-filtered data...")
-    ipca = IncrementalPCA(n_components=50, batch_size=10000)
+    # Number of PCA components cannot exceed num_features
+    num_features = X_scaled.shape[1]
+    n_components = min(50, num_features)
+    
+    if n_components < 2:
+        logging.error(f"Not enough features ({num_features}) for PCA. Need at least 2.")
+        return
+    
+    logging.info(f"Using n_components={n_components} for PCA (num_features={num_features})")
+    ipca = IncrementalPCA(n_components=n_components, batch_size=10000)    
     pcs = ipca.fit_transform(X_scaled)
     pca_df = pd.DataFrame(
         pcs[:, :2], columns=["PC1", "PC2"], index=accession_enc.classes_
     ).join(meta)
+    logging.info(f"PCA output shape: {pcs.shape}")
 
     # ----------------------
     # Plots

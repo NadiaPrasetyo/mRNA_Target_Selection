@@ -111,7 +111,7 @@ def run(tool_path: Optional[Path], input_fasta: Path, output_dir: Path, rate4sit
 
     command = [
         "conda", "run", "-n", common.EXT_TOOLS_ENV_NAME,
-        "mafft", "--localpair", "--maxiterate", "1000", #L-INS-i (probably most accurate; recommended for <200 sequences; iterative refinement method incorporating local pairwise alignment information)
+        "mafft", 
         "--reorder", # Output order: aligned.
         "--treeout", # Guide tree is output to the input.tree file
         "--amino", # Assume the sequences are amino acid
