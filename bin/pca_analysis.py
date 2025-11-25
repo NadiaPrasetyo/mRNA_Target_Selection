@@ -901,7 +901,6 @@ def plot_correlation_matrix(
 
     logging.info("Saved subset correlation heatmap and matrix.")
 
-
 # ----------------------
 # Main analysis
 # ----------------------
@@ -930,12 +929,43 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     )
 
     # ----------------------
+    # 🔥 Compute KS/AUROC BEFORE PCA (feature selection happens here)
+    # ----------------------
+    logging.info("Computing KS/AUROC statistics (before PCA)...")
+    results_df = compute_stats(all_data)
+    results_df.to_csv(os.path.join(output_dir, "ks_auroc_results.csv"), index=False)
+
+    # Threshold for PCA feature selection
+    ks_threshold = 0.15
+    significant = results_df.loc[results_df["ks_statistic"] > ks_threshold].copy()
+
+    significant["feature_subfeature"] = (
+        significant["feature"].astype(str) + "_" + significant["subfeature"].astype(str)
+    )
+    selected_features = set(significant["feature_subfeature"])
+
+    logging.info(f"{len(selected_features):,} features passed KS > {ks_threshold}")
+
+    if len(selected_features) == 0:
+        logging.warning("No features exceed KS threshold. Skipping PCA.")
+        # Still plot KS/AUROC summaries
+        plot_ks_summary(results_df, output_dir)
+        plot_auroc_summary(results_df, output_dir)
+        return
+
+    # ----------------------
     # Aggregate by accession
     # ----------------------
     agg_df, accession_labels = aggregate_by_accession(all_data)
 
     logging.info(f"Aggregated data shape: {agg_df.shape}")
     logging.info(f"Unique features: {agg_df['feature_subfeature'].nunique():,}")
+
+    # ----------------------
+    # Apply KS filter to aggregated data (critical!)
+    # ----------------------
+    agg_df = agg_df[agg_df["feature_subfeature"].isin(selected_features)]
+    logging.info(f"After KS filtering: {len(agg_df['feature_subfeature'].unique()):,} features remain")
 
     # ----------------------
     # Encode rows (accessions) and columns (features)
@@ -952,7 +982,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     ).tocsr()
 
     logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}")
-    logging.info(f"X_sparse unique features: {len(feature_enc.classes_):,}")
+    logging.info(f"Filtered features encoded: {len(feature_enc.classes_):,}")
 
     # ----------------------
     # Metadata for plotting
@@ -966,23 +996,15 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     # 🔥 Z-score Normalization (per feature)
     # ----------------------
     logging.info("Applying Z-score normalization per feature...")
-    scaler = StandardScaler(with_mean=False)  # works with sparse
-    X_scaled = scaler.fit_transform(X_sparse)  # <-- NEW: normalized features
+    scaler = StandardScaler(with_mean=False)  # works with sparse matrices
+    X_scaled = scaler.fit_transform(X_sparse)
 
-    logging.info(f"X_scaled shape after scaling: {X_scaled.shape}, nnz={X_scaled.nnz:,}")
-    logging.info(f"X_scaled features: {len(feature_enc.classes_):,}")
-
-    # If you want explicit mean=0, std=1 normalization (dense version):
-    # X_dense = X_sparse.toarray()
-    # means = np.mean(X_dense, axis=0)
-    # stds = np.std(X_dense, axis=0, ddof=0)
-    # stds[stds == 0] = 1  # avoid divide by zero
-    # X_scaled = (X_dense - means) / stds
+    logging.info(f"X_scaled shape: {X_scaled.shape}, nnz={X_scaled.nnz:,}")
 
     # ----------------------
     # PCA
     # ----------------------
-    logging.info("Running PCA on normalized data...")
+    logging.info("Running PCA on KS-filtered data...")
     ipca = IncrementalPCA(n_components=50, batch_size=10000)
     pcs = ipca.fit_transform(X_scaled)
     pca_df = pd.DataFrame(
@@ -997,13 +1019,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     plot_loading_scatter(ipca, feature_enc, output_dir)
     plot_correlation_matrix(X_scaled, feature_enc, output_dir)
 
-    # ----------------------
-    # KS/t-test/AUROC computations
-    # ----------------------
-    results_df = compute_stats(all_data)
-    results_df.to_csv(os.path.join(output_dir, "ks_auroc_results.csv"), index=False)
-
-    # KS and AUROC plots
+    # KS and AUROC summary plots (computed earlier)
     plot_ks_summary(results_df, output_dir)
     plot_auroc_summary(results_df, output_dir)
 
