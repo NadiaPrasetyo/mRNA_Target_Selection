@@ -24,9 +24,10 @@ Author: Nadia
 """
 import subprocess
 from pathlib import Path
+from typing import Optional
 import logging
 import shutil
-from tools import common
+from bin.tools import common
 import re
 
 ############################ HELPER FUNCTIONS ############################
@@ -84,12 +85,11 @@ def rename_tree_headers_from_files(tree_file: Path, fasta_file: Path):
     
 ############################ RUN MAFFT FUNCTION ############################
 
-
-def run(tool_path: Path, input_fasta: Path, output_dir: Path, rate4site: bool = True):
+def run(tool_path: Optional[Path], input_fasta: Path, output_dir: Path, rate4site: bool = True):
     """
     Runs MAFFT using the external_tools_env conda environment.
     Args:
-    - tool_path: Path to the MAFFT executable (ignored, required by interface).
+    - tool_path: Optional[Path] to the MAFFT executable (ignored, required by interface); can be None.
     - input_fasta: Path to the input FASTA file.
     - output_dir: Path to the output directory.
     - rate4site: Boolean flag to indicate if Rate4Site analysis should be run.
@@ -170,3 +170,17 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, rate4site: bool = 
         else:
             logging.error("❌ MAFFT did not produce the expected output file. Rate4Site will not be run.")
             raise RuntimeError("MAFFT alignment failed, output file not created.")
+        
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run MAFFT multiple sequence alignment.")
+    parser.add_argument("input_fasta", type=Path, help="Path to the input FASTA file.")
+    parser.add_argument("output_dir", type=Path, help="Directory where output will be saved.")
+    parser.add_argument("--rate4site", action="store_true", help="Flag to indicate if Rate4Site analysis should be run.")
+
+    args = parser.parse_args()
+
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+    run(None, args.input_fasta, args.output_dir, rate4site=args.rate4site)

@@ -42,6 +42,8 @@ import zipfile
 import logging
 import requests
 from tqdm import tqdm
+import time
+from requests.adapters import HTTPAdapter, Retry
 
 # ---------------------------
 # Configuration
@@ -64,28 +66,6 @@ def setup_logging():
 
 def ensure_dir(path: str):
     os.makedirs(path, exist_ok=True)
-
-
-import time
-from requests.adapters import HTTPAdapter, Retry
-
-def get_requests_session():
-    """Create a persistent session with retries for transient NCBI errors."""
-    session = requests.Session()
-    retries = Retry(
-        total=6,
-        backoff_factor=0.5,  # quick exponential backoff
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["GET"],
-        raise_on_status=False
-    )
-    adapter = HTTPAdapter(max_retries=retries)
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
-    return session
-
-import time
-from requests.adapters import HTTPAdapter, Retry
 
 def get_requests_session():
     """Create a persistent session with retries for transient NCBI errors."""
