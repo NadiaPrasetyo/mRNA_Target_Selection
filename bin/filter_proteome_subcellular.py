@@ -18,15 +18,15 @@ def get_filtered_accessions(input_dir):
             filtered_accessions.extend(df["accession"].tolist())
     return filtered_accessions
 
-def filter_proteome(proteome_fasta_files, filtered_accessions, output_dir):
-    # filter the sequences in the fasta for each stem
+def filter_proteome(proteome_fasta_files, filtered_accessions, output_dir, proteome_dir):
     for fasta_file in proteome_fasta_files:
         filtered_fasta_file = os.path.join(output_dir, fasta_file.replace(".fasta", "_filtered.fasta"))
-        with open(fasta_file) as fin:
+        with open(os.path.join(proteome_dir, fasta_file)) as fin:  
             with open(filtered_fasta_file, "w") as fout:
                 for record in SeqIO.parse(fin, "fasta"):
-                    if record.id in filtered_accessions:
-                        SeqIO.write(record, fout, "fasta")
+                    for filtered_accession in filtered_accessions:
+                        if filtered_accession in record.id:
+                            SeqIO.write(record, fout, "fasta")
 
 def summarize_to_csv(output_dir):
     # combine all the filtered fasta files into a single csv with fields: accession, sequence
@@ -43,7 +43,7 @@ def summarize_to_csv(output_dir):
 def main(input_dir, proteome_dir, output_dir):
     proteome_fasta_files = get_proteome_fastas(proteome_dir)
     filtered_accessions = get_filtered_accessions(input_dir)
-    filter_proteome(proteome_fasta_files, filtered_accessions, output_dir)
+    filter_proteome(proteome_fasta_files, filtered_accessions, output_dir, proteome_dir)
     summarize_to_csv(output_dir)
 
     print(f"✅ Finished! Saved {len(filtered_accessions)} accessions to {output_dir}")
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o", "--output_dir",
         required=False,
-        default="data/"
+        default="data/",
         help="Optional directory to save per-stem FASTA and combined CSV outputs."
     )
     args = parser.parse_args()
