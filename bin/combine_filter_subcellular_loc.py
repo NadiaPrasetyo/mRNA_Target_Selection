@@ -116,6 +116,7 @@ def combine_predictions_by_stem(directory, output_dir=None):
     # define the complete set of expected columns
     expected_columns = [
         # DeeplocPro
+        "deeplocpro_localisation",
         "deeplocpro_prob_cell_wall_surface",
         "deeplocpro_prob_extracellular",
         "deeplocpro_prob_cytoplasmic",
@@ -173,6 +174,42 @@ def combine_predictions_by_stem(directory, output_dir=None):
 
     return all_matrices
 
+def filter_remove_cytoplasmic_no_signalp(results):
+    """
+    Filter out rows where the highest scoring DeeplocPro feature is "cytoplasmic"
+    and the highest scoring SignalP feature is "other" and the highest scoring
+    TargetP feature is "noTP".
+
+    Parameters
+    ----------
+    results : pandas.DataFrame
+        DataFrame containing the combined feature matrices.
+
+    Returns
+    -------
+    filtered_results : pandas.DataFrame
+        DataFrame containing the filtered feature matrices.
+    """
+    deeplocpro_cols = [c for c in results.columns if c.startswith("deeplocpro_prob_")]  # bug fix: was `df`, also scoped to prob_ cols
+    signalp_cols    = [c for c in results.columns if c.startswith("signalp_")]
+    targetp_cols    = [c for c in results.columns if c.startswith("targetp_")]
+
+    deeplocpro_idxmax = results[deeplocpro_cols].idxmax(axis=1)
+    signalp_idxmax    = results[signalp_cols].idxmax(axis=1)
+    targetp_idxmax    = results[targetp_cols].idxmax(axis=1)
+
+    # Rows to REMOVE
+    mask_remove = (
+        (deeplocpro_idxmax == "deeplocpro_prob_cytoplasmic")  # condition 1
+        |
+        (                                                      # condition 2
+            (signalp_idxmax == "signalp_prob_other") &
+            (targetp_idxmax == "targetp_prob_noTP")
+        )
+    )
+
+    return results[~mask_remove]
+
 
 if __name__ == "__main__":
     import argparse
@@ -186,9 +223,24 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o", "--output_dir",
         required=False,
+        default="data/"
         help="Optional directory to save per-stem CSV outputs."
+    )
+    parser.add_argument(
+        "--filter",
+        action="store_true",
+        help="Filter out proteins that were predicted to be localised in the cytoplasm and did not have any signal peptide were excluded according to the scores predicted by the tools."
     )
     args = parser.parse_args()
 
-    results = combine_predictions_by_stem(args.directory, args.output_dir)
+    all_matrices = combine_predictions_by_stem(args.directory, args.output_dir)
+
+    for stem, matrix in all_matrices.items():                 
+        if args.filter:
+            matrix = filter_remove_cytoplasmic_no_signalp(matrix)
+
+        output_path = os.path.join(args.output_dir, f"{stem}_combined_features.csv")
+        matrix.to_csv(output_path, index=False, na_rep="NA") # overwrites the file in-place
+        logging.info(f"Saved filtered matrix for {stem} → {output_path}")
+
     logging.info(f"Processed {len(results)} genomes successfully.")
