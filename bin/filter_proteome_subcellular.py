@@ -41,6 +41,7 @@ def summarize_to_csv(output_dir):
                 for record in SeqIO.parse(fin, "fasta"):
                     fout.write(f"{record.id},{record.seq}\n")
 def main(input_dir, proteome_dir, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
     proteome_fasta_files = get_proteome_fastas(proteome_dir)
     filtered_accessions = get_filtered_accessions(input_dir)
     filter_proteome(proteome_fasta_files, filtered_accessions, output_dir, proteome_dir)
