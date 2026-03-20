@@ -53,45 +53,75 @@ def parse_deeplocpro_file(path):
 
 
 def parse_signalp_file(path):
-    """Parse a single SignalP .txt file."""
+    """
+    Parse a single SignalP output file.
+
+    Expected tab-separated columns (after skipping comment/header lines):
+        0: ID
+        1: Prediction   (SP / TAT / LIPO / OTHER)
+        2: SP(Sec/SPI)  probability
+        3: TAT(Tat/SPI) probability
+        4: LIPO(Sec/SPII) probability
+        5: OTHER        probability
+        6: CS Position  (optional)
+
+    Lines beginning with '#' are skipped.
+    """
     results = []
     try:
         with open(path) as f:
-            for i, line in enumerate(f):
+            for line in f:
                 if line.startswith("#") or not line.strip():
                     continue
                 parts = line.strip().split('\t')
-                if len(parts) >= 6:
-                    try:
-                        accession = parts[0].split('|')[1] if '|' in parts[0] else parts[0]
-                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
-                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_tat", "value": float(parts[3])})
-                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_lipo", "value": float(parts[4])})
-                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_other", "value": float(parts[5])})
-                    except Exception:
-                        continue
+                if len(parts) < 6:
+                    # not enough columns — skip malformed lines
+                    continue
+                try:
+                    raw_id = parts[0]
+                    accession = raw_id.split('|')[1] if '|' in raw_id else raw_id
+                    results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
+                    results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_tat",     "value": float(parts[3])})
+                    results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_lipo",    "value": float(parts[4])})
+                    results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_other",   "value": float(parts[5])})
+                except (ValueError, IndexError):
+                    continue
     except Exception as e:
         logging.error(f"SIGNALP: Failed parsing {path}: {e}")
     return results
 
 
 def parse_targetp_file(path):
-    """Parse a single TargetP .txt file."""
+    """
+    Parse a single TargetP output file.
+
+    Expected tab-separated columns (after skipping comment/header lines):
+        0: ID
+        1: Prediction
+        2: noTP probability
+        3: SP   probability
+        4: mTP  probability
+        5: CS Position (optional)
+
+    Lines beginning with '#' are skipped.
+    """
     results = []
     try:
         with open(path) as f:
-            for i, line in enumerate(f):
+            for line in f:
                 if line.startswith("#") or not line.strip():
                     continue
                 parts = line.strip().split('\t')
-                if len(parts) >= 5:
-                    try:
-                        accession = parts[0].split('|')[1] if '|' in parts[0] else parts[0]
-                        results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_noTP", "value": float(parts[2])})
-                        results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_SP", "value": float(parts[3])})
-                        results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_mTP", "value": float(parts[4])})
-                    except Exception:
-                        continue
+                if len(parts) < 5:
+                    continue
+                try:
+                    raw_id = parts[0]
+                    accession = raw_id.split('|')[1] if '|' in raw_id else raw_id
+                    results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_noTP", "value": float(parts[2])})
+                    results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_SP",   "value": float(parts[3])})
+                    results.append({"accession": accession, "feature": "targetp", "subfeature": "prob_mTP",  "value": float(parts[4])})
+                except (ValueError, IndexError):
+                    continue
     except Exception as e:
         logging.error(f"TARGETP: Failed parsing {path}: {e}")
     return results
@@ -115,10 +145,9 @@ def combine_predictions_by_stem(directory, output_dir=None):
 
     all_matrices = {}
 
-    # define the complete set of expected columns
+    # define the complete set of expected columns (deeplocpro_localisation removed)
     expected_columns = [
         # DeeplocPro
-        "deeplocpro_localisation",
         "deeplocpro_prob_cell_wall_surface",
         "deeplocpro_prob_extracellular",
         "deeplocpro_prob_cytoplasmic",
@@ -178,6 +207,7 @@ def combine_predictions_by_stem(directory, output_dir=None):
 
     return all_matrices
 
+
 def filter_remove_cytoplasmic_no_signalp(results):
     """
     Filter out rows where the highest scoring DeeplocPro feature is "cytoplasmic"
@@ -194,9 +224,10 @@ def filter_remove_cytoplasmic_no_signalp(results):
     filtered_results : pandas.DataFrame
         DataFrame containing the filtered feature matrices.
     """
-    deeplocpro_cols = [c for c in results.columns if c.startswith("deeplocpro_prob_")]  # bug fix: was `df`, also scoped to prob_ cols
-    signalp_cols    = [c for c in results.columns if c.startswith("signalp_")]
-    targetp_cols    = [c for c in results.columns if c.startswith("targetp_")]
+    # Scope all three tool column sets to prob_ columns only for consistency
+    deeplocpro_cols = [c for c in results.columns if c.startswith("deeplocpro_prob_")]
+    signalp_cols    = [c for c in results.columns if c.startswith("signalp_prob_")]
+    targetp_cols    = [c for c in results.columns if c.startswith("targetp_prob_")]
 
     deeplocpro_idxmax = results[deeplocpro_cols].idxmax(axis=1)
     signalp_idxmax    = results[signalp_cols].idxmax(axis=1)
@@ -235,18 +266,18 @@ if __name__ == "__main__":
     parser.add_argument(
         "--filter",
         action="store_true",
-        help="Filter out proteins that were predicted to be localised in the cytoplasm and did not have any signal peptide were excluded according to the scores predicted by the tools."
+        help="Filter out proteins predicted to be localised in the cytoplasm with no signal peptide."
     )
     args = parser.parse_args()
 
     all_matrices = combine_predictions_by_stem(args.directory, args.output_dir)
 
-    for stem, matrix in all_matrices.items():                 
+    for stem, matrix in all_matrices.items():
         if args.filter:
             matrix = filter_remove_cytoplasmic_no_signalp(matrix)
 
         output_path = os.path.join(args.output_dir, f"{stem}_combined_features.csv")
-        matrix.to_csv(output_path, index=False, na_rep="NA") # overwrites the file in-place
+        matrix.to_csv(output_path, index=False, na_rep="NA")
         logging.info(f"Saved filtered matrix for {stem} → {output_path}")
 
     logging.info(f"Processed {len(all_matrices)} genomes successfully.")
