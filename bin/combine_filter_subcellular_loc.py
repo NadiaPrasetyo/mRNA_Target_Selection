@@ -276,7 +276,7 @@ if __name__ == "__main__":
         if args.filter:
             matrix = filter_remove_cytoplasmic_no_signalp(matrix)
 
-        output_path = os.path.join(args.output_dir, f"{stem}_combined_features.csv")
+        output_path = os.path.join(args.output_dir, f"{stem}_filtered_features.csv")
         matrix.to_csv(output_path, index=False, na_rep="NA")
         logging.info(f"Saved filtered matrix for {stem} → {output_path}")
 
