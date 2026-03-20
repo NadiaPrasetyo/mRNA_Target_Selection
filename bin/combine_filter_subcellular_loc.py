@@ -127,6 +127,8 @@ def combine_predictions_by_stem(directory, output_dir=None):
         "deeplocpro_prob_periplasmic",
         # SignalP
         "signalp_prob_signalp",
+        "signalp_prob_tat",
+        "signalp_prob_lipo",
         "signalp_prob_other",
         # TargetP
         "targetp_prob_noTP",
@@ -204,6 +206,8 @@ def filter_remove_cytoplasmic_no_signalp(results):
     mask_remove = (
         (deeplocpro_idxmax == "deeplocpro_prob_cytoplasmic")  # condition 1
         |
+        (deeplocpro_idxmax == "deeplocpro_prob_periplasmic")
+        |
         (                                                      # condition 2
             (signalp_idxmax == "signalp_prob_other") &
             (targetp_idxmax == "targetp_prob_noTP")
@@ -225,7 +229,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o", "--output_dir",
         required=False,
-        default="data/"
+        default="data/",
         help="Optional directory to save per-stem CSV outputs."
     )
     parser.add_argument(
@@ -245,4 +249,4 @@ if __name__ == "__main__":
         matrix.to_csv(output_path, index=False, na_rep="NA") # overwrites the file in-place
         logging.info(f"Saved filtered matrix for {stem} → {output_path}")
 
-    logging.info(f"Processed {len(results)} genomes successfully.")
+    logging.info(f"Processed {len(all_matrices)} genomes successfully.")
