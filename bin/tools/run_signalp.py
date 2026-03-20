@@ -34,7 +34,7 @@ import sys
 import shutil
 from os.path import abspath
 
-def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000):
+def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 10000, organism: str = "gram+"):
     """
     Run SignalP on the given input FASTA file and save results to the specified output directory.
     Args:
@@ -69,7 +69,8 @@ def run(signalp_path: Path, input_fasta: Path, output_dir: Path, batch_size: int
         "-mature",
         "-batch", str(batch_size),
         "-stdout",
-        "-tmp", str(tmp_dir_abs)
+        "-tmp", str(tmp_dir_abs),
+        "-org", organism
     ]
 
     with output_file.open("w") as outfile:
@@ -109,6 +110,7 @@ if __name__ == "__main__":
     parser.add_argument("output_dir", type=Path, help="Output directory")
     parser.add_argument("--batch-size", type=int, default=10000, help="Batch size")
     parser.add_argument("--signalp-path", type=Path, required=True, help="Path to signalp executable")
+    parser.add_argument("--organism", type=str, default="gram+", help="Organism name, options: arch, gram+, gram-, euk")
 
     args = parser.parse_args()
-    run(args.signalp_path, args.input_fasta, args.output_dir, args.batch_size)
+    run(args.signalp_path, args.input_fasta, args.output_dir, args.batch_size, args.organism)
