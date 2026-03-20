@@ -61,11 +61,13 @@ def parse_signalp_file(path):
                 if line.startswith("#") or not line.strip():
                     continue
                 parts = line.strip().split('\t')
-                if len(parts) >= 4:
+                if len(parts) >= 6:
                     try:
                         accession = parts[0].split('|')[1] if '|' in parts[0] else parts[0]
                         results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_signalp", "value": float(parts[2])})
-                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_other", "value": float(parts[3])})
+                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_tat", "value": float(parts[3])})
+                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_lipo", "value": float(parts[4])})
+                        results.append({"accession": accession, "feature": "signalp", "subfeature": "prob_other", "value": float(parts[5])})
                     except Exception:
                         continue
     except Exception as e:
