@@ -1,0 +1,76 @@
+#Rates were calculated using Maximim Likelihood
+#The likelihood of the data given the tree is: 
+#LL=-324.663
+#SEQ: the amino acid in the reference sequence in one letter code.
+#SCORE: The conservation scores. lower value = higher conservation.
+#MSA DATA: The number of aligned sequences having an amino acid (non-gapped) from the overall number of sequences at each position.
+
+#POS SEQ  SCORE     MSA DATA
+1    M    -0.5404   6/6
+2    W    -0.5404   6/6
+3    I    -0.5404   6/6
+4    V    0.1868    6/6
+5    I    -0.1248   6/6
+6    S    -0.2156   6/6
+7    I    -0.5404   6/6
+8    V    -0.5404   6/6
+9    L    0.1352    6/6
+10   A    4.7289    6/6
+11   I    -0.5404   6/6
+12   F    0.1358    6/6
+13   L    -0.5404   6/6
+14   L    -0.5404   6/6
+15   I    -0.2199   6/6
+16   L    1.3941    6/6
+17   L    -0.0011   6/6
+18   S    -0.5404   6/6
+19   S    1.0422    6/6
+20   I    1.4785    6/6
+21   S    -0.5404   6/6
+22   H    0.3468    6/6
+23   K    0.2520    6/6
+24   M    0.6452    6/6
+25   K    -0.1813   6/6
+26   T    0.5258    6/6
+27   I    -0.5404   6/6
+28   E    -0.2313   6/6
+29   A    -0.5404   6/6
+30   L    -0.5404   6/6
+31   E    0.4386    6/6
+32   Y    -0.5404   6/6
+33   M    -0.5404   6/6
+34   N    -0.5404   6/6
+35   S    4.7289    6/6
+36   Y    -0.5404   6/6
+37   L    -0.5404   6/6
+38   F    0.1358    6/6
+39   K    0.4113    6/6
+40   Q    -0.2333   6/6
+41   L    0.1489    6/6
+42   V    -0.5404   6/6
+43   K    -0.5404   6/6
+44   N    -0.0378   6/6
+45   N    -0.1278   6/6
+46   G    -0.5404   6/6
+47   V    1.2044    6/6
+48   E    0.1551    6/6
+49   G    -0.5404   6/6
+50   L    -0.5404   6/6
+51   E    -0.5404   6/6
+52   D    -0.1996   6/6
+53   Y    -0.5404   6/6
+54   E    0.4386    6/6
+55   N    1.3373    6/6
+56   E    -0.5404   6/6
+57   V    0.1268    6/6
+58   E    -0.0522   6/6
+59   R    -0.5404   6/6
+60   I    -0.5404   6/6
+61   R    -0.5404   5/6
+62   K    -0.5404   5/6
+63   R    -0.5404   5/6
+64   F    -0.5404   5/6
+65   K    -0.5404   5/6
+66   S    -0.5404   5/6
+#Average = 0.0000
+#Standard Deviation = 1.0000

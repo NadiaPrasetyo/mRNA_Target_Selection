@@ -1,0 +1,10 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,W8U915_AF,A,72,76,FVASN,5,0.855,Linear
+2,W8U915_AF,A,20,30,FLHIPQYPSMT,11,0.705,Linear
+3,W8U915_AF,A,44,58,MLTFKDKQISASLKF,15,0.681,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,W8U915_AF,A:V73, A:A74, A:S75, A:N76,4,0.882,Discontinous
+2,W8U915_AF,A:L17, A:L21, A:H22, A:I23, A:P24, A:Q25, A:Y26,7,0.759,Discontinous
+3,W8U915_AF,A:M1, A:Q3, A:F4, A:M44, A:L45, A:K48, A:D49, A:K50, A:Q51, A:I52, A:S53, A:A54, A:S55, A:L56,14,0.74,Discontinous
+4,W8U915_AF,A:P27, A:S28, A:M29, A:T30,4,0.622,Discontinous

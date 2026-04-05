@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A2S6DP54_AF,A,27,33,QAPNIEY,7,0.714,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A2S6DP54_AF,A:F16, A:K20, A:R24, A:Q27, A:A28, A:P29, A:N30, A:I31, A:E32, A:Y33,10,0.703,Discontinous
+2,A0A2S6DP54_AF,A:L4, A:V6, A:I7,3,0.586,Discontinous

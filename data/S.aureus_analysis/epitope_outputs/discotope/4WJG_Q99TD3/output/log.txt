@@ -1,0 +1,16 @@
+[2026-03-23 10:48:34,928] Single-chain mode set, will predict PDBs as single chains
+[2026-03-23 10:48:34,974] Single PDB file input (4WJG_Q99TD3), extracting single chains to data/S.aureus_analysis/epitope_outputs/discotope/4WJG_Q99TD3/input_chains
+[2026-03-23 10:48:40,579] Found 40 extracted single chains in data/S.aureus_analysis/epitope_outputs/discotope/4WJG_Q99TD3/input_chains
+[2026-03-23 10:56:25,399] Note: Skipping 4WJG_Q99TD3_j, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 10:57:37,314] Note: Skipping 4WJG_Q99TD3_e, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:01:08,192] Note: Skipping 4WJG_Q99TD3_i, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:01:48,914] Note: Skipping 4WJG_Q99TD3_f, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:02:31,781] Note: Skipping 4WJG_Q99TD3_g, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:05:47,545] Note: Skipping 4WJG_Q99TD3_a, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:07:54,073] Note: Skipping 4WJG_Q99TD3_d, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:09:24,292] Note: Skipping 4WJG_Q99TD3_h, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:14:00,683] Note: Skipping 4WJG_Q99TD3_c, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:14:42,099] Note: Skipping 4WJG_Q99TD3_b, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 11:17:39,845] Predicted 30 / 40 PDB files extracted from 1 input PDBs, saved to data/S.aureus_analysis/epitope_outputs/discotope/4WJG_Q99TD3/output
+[2026-03-23 11:17:39,846] Note: Excluded predicting 10 PDB chain(s) (see log file):
+4WJG_Q99TD3_e, 4WJG_Q99TD3_h, 4WJG_Q99TD3_d, 4WJG_Q99TD3_g, 4WJG_Q99TD3_f, 4WJG_Q99TD3_c, 4WJG_Q99TD3_a, 4WJG_Q99TD3_b, 4WJG_Q99TD3_i, 4WJG_Q99TD3_j

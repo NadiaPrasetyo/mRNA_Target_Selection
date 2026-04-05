@@ -1,0 +1,8 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,W8U713_AF,A,1,9,MKLNQRYVK,9,0.71,Linear
+2,W8U713_AF,A,23,32,IIVKNNNLIK,10,0.677,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,W8U713_AF,A:Y50, A:L51, A:R54,3,0.772,Discontinous
+2,W8U713_AF,A:I23, A:I24, A:V25, A:N27, A:N28, A:N29, A:K32,7,0.697,Discontinous
+3,W8U713_AF,A:L3, A:N4, A:R6, A:Y7,4,0.693,Discontinous

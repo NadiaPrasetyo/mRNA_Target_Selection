@@ -1,0 +1,5 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A0D1IYZ2_AF,A,30,35,TFYFSF,6,0.786,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A0D1IYZ2_AF,A:M1, A:V2, A:D3, A:F4, A:L5, A:L6,6,0.748,Discontinous

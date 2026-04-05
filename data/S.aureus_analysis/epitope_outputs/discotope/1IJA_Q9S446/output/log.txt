@@ -1,0 +1,5 @@
+[2026-03-23 14:34:51,362] Single-chain mode set, will predict PDBs as single chains
+[2026-03-23 14:34:51,368] Single PDB file input (1IJA_Q9S446), extracting single chains to data/S.aureus_analysis/epitope_outputs/discotope/1IJA_Q9S446/input_chains
+[2026-03-23 14:34:54,990] Found 1 extracted single chains in data/S.aureus_analysis/epitope_outputs/discotope/1IJA_Q9S446/input_chains
+[2026-03-23 14:35:01,347] Note: Skipping 1IJA_Q9S446_A, ESM-IF1 unable to extract valid amino-acid backbone
+[2026-03-23 14:35:01,350] Error: No PDB files were valid. Please check input PDBs.

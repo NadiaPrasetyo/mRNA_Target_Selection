@@ -1,0 +1,5 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A2U0IPG9_AF,A,22,26,WSEKF,5,0.792,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A2U0IPG9_AF,A:I2, A:T3, A:L4,3,0.692,Discontinous

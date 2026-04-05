@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,Q53643_AF,A,35,46,VEVPKELTQLHE,12,0.672,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,Q53643_AF,A:M1, A:N2, A:T3, A:L4, A:F5, A:N6, A:L7,7,0.764,Discontinous
+2,Q53643_AF,A:V35, A:E36, A:V37, A:P38, A:K39, A:E40, A:L41, A:T42, A:Q43,9,0.594,Discontinous

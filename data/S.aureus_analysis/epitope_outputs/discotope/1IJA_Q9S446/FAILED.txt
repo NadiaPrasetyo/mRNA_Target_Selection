@@ -1,0 +1,7 @@
+DiscoTope failed on data/S.aureus_analysis/pdb_sequences/1IJA_Q9S446.pdb
+Error code: 1
+
+/home/prana47p/miniconda3/envs/discotope_tools_env/lib/python3.9/site-packages/xgboost/compat.py:105: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+
+ERROR conda.cli.main_run:execute(127): `conda run python /projects/health_sciences/bms/biochemistry/gardner_group/nadia/discotope3_web/src/predict_webserver.py --models_dir /projects/health_sciences/bms/biochemistry/gardner_group/nadia/discotope3_web/models --cpu_only --pdb_or_zip_file data/S.aureus_analysis/pdb_sequences/1IJA_Q9S446.pdb --struc_type solved --out_dir data/S.aureus_analysis/epitope_outputs/discotope/1IJA_Q9S446` failed. (See above for error)

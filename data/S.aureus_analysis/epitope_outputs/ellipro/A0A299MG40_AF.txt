@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A299MG40_AF,A,1,9,MISIANALH,9,0.651,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A299MG40_AF,A:N30, A:L31, A:S32, A:N33, A:K34, A:K35,6,0.743,Discontinous
+2,A0A299MG40_AF,A:M1, A:I2, A:S3, A:I4, A:A5, A:N6, A:L8,7,0.727,Discontinous

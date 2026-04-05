@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,W8TR80_AF,A,26,37,KSAKEQGSNATR,12,0.709,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,W8TR80_AF,A:V54, A:T55, A:L57, A:L58, A:M61,5,0.81,Discontinous
+2,W8TR80_AF,A:K26, A:S27, A:E30, A:Q31, A:G32, A:S33, A:N34, A:A35, A:T36, A:R37,10,0.744,Discontinous
+3,W8TR80_AF,A:M1, A:T2, A:T3, A:A4, A:L5, A:I6, A:I9, A:I12,8,0.725,Discontinous

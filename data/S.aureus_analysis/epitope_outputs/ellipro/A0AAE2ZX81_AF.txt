@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0AAE2ZX81_AF,A,20,28,QLSQSHLDS,9,0.719,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0AAE2ZX81_AF,A:D50, A:K51, A:K53, A:K54,4,0.823,Discontinous
+2,A0AAE2ZX81_AF,A:L21, A:S22, A:Q23, A:S24, A:H25,5,0.745,Discontinous
+3,A0AAE2ZX81_AF,A:D27, A:S28, A:I31,3,0.739,Discontinous

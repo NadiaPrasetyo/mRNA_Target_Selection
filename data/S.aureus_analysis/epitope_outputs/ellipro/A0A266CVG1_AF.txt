@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A266CVG1_AF,A,1,7,MGGDLIV,7,0.675,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A266CVG1_AF,A:K16, A:T17, A:A18, A:S19, A:G20, A:Y21,6,0.712,Discontinous
+2,A0A266CVG1_AF,A:G2, A:G3, A:D4, A:L5, A:I6, A:V7,6,0.626,Discontinous
+3,A0A266CVG1_AF,A:Q30, A:A31, A:A32, A:I33,4,0.598,Discontinous
