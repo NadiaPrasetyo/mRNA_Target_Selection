@@ -97,17 +97,23 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
         logging.info("DeepTMHMM successfully loaded.")
 
         all_result_files = []
-
-        # Run each split
+        #  Run each split
         for split_fasta in split_files:
             logging.info(f"Running DeepTMHMM on chunk: {split_fasta.name}")
-            deeptmhmm_job = deeptmhmm.cli(args=f'--fasta {split_fasta.resolve()}')
+
+            # Use BioLib's file input dict instead of passing a local path string.
+            with open(split_fasta, 'rb') as fasta_handle:
+                deeptmhmm_job = deeptmhmm.cli(
+                    args='--fasta sequences.fasta',
+                    files={'sequences.fasta': fasta_handle}
+                )
+
             logging.info(f"DeepTMHMM job object: {deeptmhmm_job}")
             logging.info(f"Job status: {getattr(deeptmhmm_job, 'status', 'unknown')}")
             logging.info(f"DeepTMHMM stdout:\n{deeptmhmm_job.get_stdout()}")
             logging.info(f"DeepTMHMM stderr:\n{deeptmhmm_job.get_stderr()}")
 
-            if b"too large for the app" in getattr(deeptmhmm_job, 'stdout', b''):
+            if b"too large for the app" in (deeptmhmm_job.get_stdout() or b''):
                 logging.error(f"{split_fasta.name} too large for DeepTMHMM. Skipping.")
                 continue
 
