@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,O33586_AF,A,37,47,VPAELTNLYDK,11,0.696,Linear
+2,O33586_AF,A,1,11,MNTLVNMFFDF,11,0.617,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,O33586_AF,A:M1, A:N2, A:T3, A:L4, A:V5, A:N6, A:F8, A:F9,8,0.697,Discontinous
+2,O33586_AF,A:V37, A:P38, A:A39, A:E40, A:L41, A:T42, A:N43, A:L44, A:Y45, A:D46, A:K47,11,0.696,Discontinous

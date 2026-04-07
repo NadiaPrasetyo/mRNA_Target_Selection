@@ -1,0 +1,8 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A641A7E2_AF,A,1,6,MTTALI,6,0.751,Linear
+2,A0A641A7E2_AF,A,26,37,KSAKEQGSNATR,12,0.713,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A641A7E2_AF,A:V54, A:T55, A:L57, A:L58, A:M61,5,0.79,Discontinous
+2,A0A641A7E2_AF,A:M1, A:T2, A:T3, A:A4, A:L5, A:I6, A:I9, A:I12,8,0.705,Discontinous
+3,A0A641A7E2_AF,A:K26, A:S27, A:A28, A:K29, A:E30, A:Q31, A:G32, A:S33, A:N34, A:A35, A:T36,11,0.696,Discontinous

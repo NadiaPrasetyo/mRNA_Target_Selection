@@ -1,0 +1,82 @@
+HEADER    PROTEIN FIBRIL                          09-JAN-18   6FG4
+TITLE     CRYSTAL STRUCTURE OF THE AMYLOID-LIKE IIKVIK SEGMENT FROM THE S.
+TITLE    2 AUREUS BIOFILM-ASSOCIATED PSMALPHA1
+COMPND    MOL_ID: 1;
+COMPND   2 MOLECULE: PHENOL-SOLUBLE MODULIN ALPHA 1 PEPTIDE;
+COMPND   3 CHAIN: A;
+COMPND   4 FRAGMENT: AMYLOID SPINE SEGMENT IIKVIK FROM PSMALPHA1 (RESIDUES 7-12)
+COMPND   5 SECRETED BY S. AUREUS;
+COMPND   6 SYNONYM: PSM ALPHA-1;
+COMPND   7 ENGINEERED: YES
+SOURCE    MOL_ID: 1;
+SOURCE   2 SYNTHETIC: YES;
+SOURCE   3 ORGANISM_SCIENTIFIC: STAPHYLOCOCCUS AUREUS;
+SOURCE   4 ORGANISM_TAXID: 1280;
+SOURCE   5 OTHER_DETAILS: IIKVIK FROM PSMALPHA1, SYNTHESIZED
+ATOM      1  N   ILE A   1      18.428  -5.794   2.367  1.00100.00           N  
+ATOM      2  CA AILE A   1      17.612  -6.054   3.583  0.50100.00           C  
+ATOM      3  CA BILE A   1      17.622  -6.022   3.620  0.50100.00           C  
+ATOM      4  C   ILE A   1      16.239  -5.401   3.420  1.00100.00           C  
+ATOM      5  O   ILE A   1      16.134  -4.190   3.220  1.00100.00           O  
+ATOM      6  CB AILE A   1      18.331  -5.506   4.818  0.50100.00           C  
+ATOM      7  CB BILE A   1      18.243  -5.381   4.889  0.50100.00           C  
+ATOM      8  CG1AILE A   1      19.625  -6.295   5.066  0.50100.00           C  
+ATOM      9  CG1BILE A   1      19.735  -5.693   5.050  0.50100.00           C  
+ATOM     10  CG2AILE A   1      17.411  -5.497   6.040  0.50100.00           C  
+ATOM     11  CG2BILE A   1      17.475  -5.832   6.124  0.50100.00           C  
+ATOM     12  CD1AILE A   1      20.626  -5.534   5.902  0.50100.00           C  
+ATOM     13  CD1BILE A   1      20.006  -7.081   5.551  0.50100.00           C  
+ATOM     14  N   ILE A   2      15.201  -6.241   3.458  1.00100.00           N  
+ATOM     15  CA  ILE A   2      13.820  -5.782   3.323  1.00100.00           C  
+ATOM     16  C   ILE A   2      13.039  -6.431   4.473  1.00100.00           C  
+ATOM     17  O   ILE A   2      13.062  -7.664   4.622  1.00100.00           O  
+ATOM     18  CB  ILE A   2      13.236  -6.200   1.956  1.00100.00           C  
+ATOM     19  CG1 ILE A   2      13.988  -5.484   0.832  1.00100.00           C  
+ATOM     20  CG2 ILE A   2      11.745  -5.881   1.905  1.00100.00           C  
+ATOM     21  CD1 ILE A   2      13.668  -6.042  -0.546  1.00100.00           C  
+ATOM     22  N   LYS A   3      12.365  -5.595   5.271  1.00100.00           N  
+ATOM     23  CA  LYS A   3      11.566  -6.070   6.398  1.00100.00           C  
+ATOM     24  C   LYS A   3      10.201  -5.395   6.315  1.00100.00           C  
+ATOM     25  O   LYS A   3      10.126  -4.152   6.240  1.00100.00           O  
+ATOM     26  CB  LYS A   3      12.270  -5.662   7.696  1.00100.00           C  
+ATOM     27  CG  LYS A   3      13.613  -6.346   7.913  1.00100.00           C  
+ATOM     28  CD  LYS A   3      14.352  -5.795   9.135  1.00100.00           C  
+ATOM     29  CE  LYS A   3      15.640  -6.545   9.403  1.00100.00           C  
+ATOM     30  NZ  LYS A   3      16.350  -6.138  10.645  1.00100.00           N  
+ATOM     31  N   VAL A   4       9.133  -6.197   6.315  1.00100.00           N  
+ATOM     32  CA  VAL A   4       7.768  -5.666   6.136  1.00100.00           C  
+ATOM     33  C   VAL A   4       6.833  -6.307   7.155  1.00100.00           C  
+ATOM     34  O   VAL A   4       6.798  -7.525   7.251  1.00100.00           O  
+ATOM     35  CB  VAL A   4       7.219  -5.977   4.706  1.00100.00           C  
+ATOM     36  CG1 VAL A   4       5.790  -5.451   4.560  1.00100.00           C  
+ATOM     37  CG2 VAL A   4       8.108  -5.350   3.644  1.00100.00           C  
+ATOM     38  N   ILE A   5       6.076  -5.466   7.866  1.00100.00           N  
+ATOM     39  CA  ILE A   5       4.960  -5.953   8.671  1.00100.00           C  
+ATOM     40  C   ILE A   5       3.672  -5.353   8.104  1.00100.00           C  
+ATOM     41  O   ILE A   5       3.547  -4.136   8.003  1.00100.00           O  
+ATOM     42  CB  ILE A   5       5.073  -5.534  10.147  1.00100.00           C  
+ATOM     43  CG1 ILE A   5       6.348  -6.104  10.765  1.00100.00           C  
+ATOM     44  CG2 ILE A   5       3.842  -6.000  10.918  1.00100.00           C  
+ATOM     45  CD1 ILE A   5       6.554  -5.728  12.225  1.00100.00           C  
+ATOM     46  N  ALYS A   6       2.692  -6.187   7.777  0.50100.00           N  
+ATOM     47  N  BLYS A   6       2.719  -6.255   7.782  0.50100.00           N  
+ATOM     48  CA ALYS A   6       1.311  -5.701   7.587  0.50100.00           C  
+ATOM     49  CA BLYS A   6       1.371  -5.922   7.275  0.50100.00           C  
+ATOM     50  C  ALYS A   6       0.360  -6.360   8.607  0.50100.00           C  
+ATOM     51  C  BLYS A   6       0.291  -6.012   8.362  0.50100.00           C  
+ATOM     52  O  ALYS A   6       0.656  -7.437   9.143  0.50100.00           O  
+ATOM     53  O  BLYS A   6       0.518  -6.434   9.499  0.50100.00           O  
+ATOM     54  CB ALYS A   6       0.812  -5.877   6.136  0.50100.00           C  
+ATOM     55  CB BLYS A   6       0.933  -6.898   6.166  0.50100.00           C  
+ATOM     56  CG ALYS A   6       1.688  -6.696   5.193  0.50100.00           C  
+ATOM     57  CG BLYS A   6       1.898  -7.125   5.010  0.50100.00           C  
+ATOM     58  CD ALYS A   6       1.046  -6.787   3.805  0.50100.00           C  
+ATOM     59  CD BLYS A   6       1.186  -7.867   3.877  0.50100.00           C  
+ATOM     60  CE ALYS A   6       1.799  -7.698   2.842  0.50100.00           C  
+ATOM     61  CE BLYS A   6       2.169  -8.487   2.897  0.50100.00           C  
+ATOM     62  NZ ALYS A   6       1.014  -7.993   1.597  0.50100.00           N  
+ATOM     63  NZ BLYS A   6       1.552  -8.806   1.574  0.50100.00           N  
+ATOM     64  OXTALYS A   6      -0.727  -5.837   8.930  0.50100.00           O  
+ATOM     65  OXTBLYS A   6      -0.897  -5.746   8.097  0.50100.00           O  
+TER      66      LYS A   6                                                       
+END   

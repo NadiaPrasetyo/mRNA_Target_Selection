@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,X5DX94_AF,A,31,41,SPQIASARQSS,11,0.692,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,X5DX94_AF,A:A2, A:T3, A:M4, A:Y5, A:E6, A:R8,6,0.752,Discontinous
+2,X5DX94_AF,A:S31, A:P32, A:Q33, A:I34, A:A35, A:S36, A:A37, A:R38,8,0.598,Discontinous

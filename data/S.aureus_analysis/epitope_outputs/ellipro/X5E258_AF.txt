@@ -1,0 +1,9 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,X5E258_AF,A,53,67,LTTVSKINKEELKKG,15,0.598,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,X5E258_AF,A:K87, A:N88, A:T89, A:T90, A:S91, A:Y92,6,0.85,Discontinous
+2,X5E258_AF,A:S3, A:Y4, A:C6, A:K7, A:G8, A:S9, A:F10, A:L11, A:I12, A:D13, A:S14, A:M15, A:A16,13,0.744,Discontinous
+3,X5E258_AF,A:K65, A:Q77, A:S78, A:D79, A:Q80, A:Q81, A:I97, A:Q98,8,0.739,Discontinous
+4,X5E258_AF,A:L53, A:T54, A:V56, A:S57, A:K58, A:I59, A:N60, A:K61, A:E62, A:E63, A:K66, A:G67,12,0.638,Discontinous
+5,X5E258_AF,A:T69, A:I70, A:G71, A:K72,4,0.634,Discontinous

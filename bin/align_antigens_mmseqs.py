@@ -49,6 +49,8 @@ from pathlib import Path
 import logging
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
+csv.field_size_limit(sys.maxsize)
+
 def setup_logging(verbose, output_dir):
     """
     Configures logging to output to both console and a log file.

@@ -27,7 +27,7 @@ from pathlib import Path
 from typing import Optional
 import logging
 import shutil
-from bin.tools import common
+from tools import common
 import re
 
 ############################ HELPER FUNCTIONS ############################

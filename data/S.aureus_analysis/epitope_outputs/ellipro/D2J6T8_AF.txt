@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,D2J6T8_AF,A,21,31,VNSILFDGSFV,11,0.632,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,D2J6T8_AF,A:E50, A:G51, A:D52, A:K53, A:E54, A:K55, A:K56,7,0.772,Discontinous
+2,D2J6T8_AF,A:V21, A:S23, A:I24, A:L25, A:F26, A:D27, A:G28, A:S29, A:F30, A:V31,10,0.651,Discontinous

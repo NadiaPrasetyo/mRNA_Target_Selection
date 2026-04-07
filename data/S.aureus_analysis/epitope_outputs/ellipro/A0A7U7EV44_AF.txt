@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A7U7EV44_AF,A,38,50,PSDFEKIRAEVSW,13,0.642,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A7U7EV44_AF,A:A46, A:E47, A:V48, A:S49, A:W50,5,0.816,Discontinous
+2,A0A7U7EV44_AF,A:L12, A:Y15, A:E16,3,0.66,Discontinous

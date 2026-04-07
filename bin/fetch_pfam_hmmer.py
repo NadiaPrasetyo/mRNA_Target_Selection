@@ -36,6 +36,7 @@ import re
 import tempfile
 import shutil
 
+csv.field_size_limit(sys.maxsize)
 
 def check_hmmer_installed():
     """Ensure that hmmfetch from HMMER is available in PATH."""

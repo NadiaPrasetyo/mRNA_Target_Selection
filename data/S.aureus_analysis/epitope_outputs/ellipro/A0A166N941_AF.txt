@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A166N941_AF,A,33,42,IYHALDHEDH,10,0.736,Linear
+2,A0A166N941_AF,A,1,5,MSEAN,5,0.705,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A166N941_AF,A:M1, A:S2, A:E3, A:N5,4,0.774,Discontinous

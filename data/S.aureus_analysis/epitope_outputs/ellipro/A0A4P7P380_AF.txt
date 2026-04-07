@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A4P7P380_AF,A,31,36,KKNGRR,6,0.778,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A4P7P380_AF,A:M1, A:T2, A:E3, A:Q4, A:M5, A:Y6,6,0.81,Discontinous
+2,A0A4P7P380_AF,A:N33, A:G34, A:R35,3,0.778,Discontinous

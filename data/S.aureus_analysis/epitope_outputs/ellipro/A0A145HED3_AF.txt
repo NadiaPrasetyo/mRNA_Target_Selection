@@ -1,0 +1,8 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A145HED3_AF,A,1,9,MFGFIGMLI,9,0.741,Linear
+2,A0A145HED3_AF,A,46,58,KLFGQWGPELGSI,13,0.694,Linear
+3,A0A145HED3_AF,A,26,31,IPGGIL,6,0.585,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A145HED3_AF,A:F2, A:G3, A:F4, A:I5, A:G6, A:L8, A:I9, A:L47, A:F48, A:G49, A:Q50, A:W51, A:G52, A:P53, A:E54, A:L55, A:G56, A:S57, A:I58, A:Y59, A:L61,21,0.693,Discontinous
+2,A0A145HED3_AF,A:G23, A:K24, A:D25, A:I26, A:P27, A:G28, A:G29, A:I30, A:L31, A:L76, A:I77, A:L78, A:R79, A:A80, A:V81, A:K83,16,0.658,Discontinous

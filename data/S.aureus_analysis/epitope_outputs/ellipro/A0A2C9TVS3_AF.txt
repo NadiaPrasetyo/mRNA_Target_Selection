@@ -1,0 +1,5 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A2C9TVS3_AF,A,1,7,MCVRTRL,7,0.767,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A2C9TVS3_AF,A:Y27, A:D30, A:G33, A:L34,4,0.729,Discontinous

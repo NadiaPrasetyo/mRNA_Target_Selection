@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,I2FJE6_AF,A,48,57,CENKLLLQKQ,10,0.772,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,I2FJE6_AF,A:C48, A:E49, A:N50, A:K51, A:L52, A:L53, A:L54, A:Q55, A:K56, A:Q57,10,0.772,Discontinous
+2,I2FJE6_AF,A:M3, A:L5, A:T6, A:Y7, A:I8, A:C9, A:L10,7,0.729,Discontinous

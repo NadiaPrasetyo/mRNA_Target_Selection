@@ -1,0 +1,7 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A0H2JNT4_AF,A,40,49,DYVFRAEVSE,10,0.722,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A0H2JNT4_AF,A:R44, A:A45, A:E46, A:V47, A:S48, A:E49,6,0.864,Discontinous
+2,A0A0H2JNT4_AF,A:I2, A:K3, A:L6,3,0.707,Discontinous
+3,A0A0H2JNT4_AF,A:L11, A:L12, A:Y15, A:E16, A:K19, A:Y20,6,0.643,Discontinous

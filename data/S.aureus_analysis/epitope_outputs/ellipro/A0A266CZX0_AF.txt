@@ -1,0 +1,6 @@
+No.,Structure,Chain,Start Position,End Position,Peptide,Number of Residues,Score,Type
+1,A0A266CZX0_AF,A,28,35,KLLKHSLI,8,0.721,Linear
+
+No.,Structure,Residues,Number of Residues,Score,Type
+1,A0A266CZX0_AF,A:L30, A:K31, A:H32, A:S33, A:L34, A:I35,6,0.771,Discontinous
+2,A0A266CZX0_AF,A:V2, A:L3, A:L4, A:F6,4,0.757,Discontinous
