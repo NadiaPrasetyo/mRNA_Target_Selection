@@ -105,7 +105,7 @@ def run(tool_path: Path, input_fasta: Path, output_dir: Path, batch_size: int = 
             with open(split_fasta, 'rb') as fasta_handle:
                 deeptmhmm_job = deeptmhmm.cli(
                     args='--fasta sequences.fasta',
-                    files={'sequences.fasta': fasta_handle}
+                    files={'sequences.fasta': fasta_handle.read()}  # .read() to pass bytes, not a handle
                 )
 
             logging.info(f"DeepTMHMM job object: {deeptmhmm_job}")
