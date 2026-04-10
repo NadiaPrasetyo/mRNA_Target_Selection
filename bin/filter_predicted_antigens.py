@@ -192,7 +192,8 @@ def load_fasta_to_dict(fasta_path):
             if line.startswith(">"):
                 if acc:
                     seqs[acc] = "".join(seq_lines)
-                acc = line[1:].split()[0]
+                    print(f"adding seq to {acc}")
+                acc = line[1:].split('|')[1]
                 seq_lines = []
             else:
                 seq_lines.append(line)

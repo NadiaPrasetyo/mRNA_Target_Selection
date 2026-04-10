@@ -10,6 +10,7 @@ notes/to_do_list.md
 data/*/*/*/*/output_interactive_figures.html
 data/*/*/mhcii/*
 data/*/*/mhci/*
+data/*/*/*_alignment.tsv
 data/S.enteritidis/*/mchii/
 data/S.enteritidis/*/mchi/
 r4sOrig.res

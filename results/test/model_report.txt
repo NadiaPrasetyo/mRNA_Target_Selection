@@ -1,0 +1,9 @@
+Training bacteria: ['B.melitensis', 'C.burnetii', 'C.trachomatis', 'H.influenzae', 'H.pylori', 'N.gonorrhoeae', 'P.aeruginosa', 'S.enteritidis', 'S.pneumoniae', 'S.pyogenes', 'T.pallidum', 'V.cholerae']
+Training samples: 3054 (pos=1036, neg=2018)
+Validation samples: 540 (pos=183, neg=357)
+Validation accuracy: 0.8556
+Validation AUC: 0.9257167347813442
+Test bacterium: S.aureus_analysis
+Test samples: 1002 (pos=1002, neg=0)
+Test accuracy: 0.8673
+Test AUC: nan

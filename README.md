@@ -383,6 +383,13 @@ python bin/pca_analysis.py --base-dir results \
     --input-dir S.aureus E.coli P.aeruginosa --verbose
 ```
 
+### Filtering Analysis Results
+```bash
+# Filter predicted antigens for high allergenicity and human homologs
+python bin/filter_predicted_antigens.py --input-raw results/S_aureus_analysis_features_with_probs.csv --input-pred results/S_aureus_analysis_predictions.csv -o results/filtered_S_aureus_analysis_predictions.csv --input-fasta compiled_mmseqs_matches.fasta
+```
+
+
 ### Key Analysis Results
 
 The pipeline generates comprehensive results including:
