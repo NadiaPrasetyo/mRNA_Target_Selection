@@ -443,6 +443,22 @@ def main():
     df_pred = df_pred[df_pred["remove_human_similarity"] == False]
 
     logging.info(f"Removed {len(removed_human)} for high similarity to human proteins.")
+    
+    # --- Allergenicity and MHC filtering with per-filter removal counts ---
+    removed_allergenicity = df_raw[df_raw["allergenicity_hybrid_score"] >= 0.3]
+    removed_mhci = df_raw[
+        (df_raw["allergenicity_hybrid_score"] < 0.3) &
+        (df_raw["mhci_num_strong_binders"] == 0)
+    ]
+    removed_mhcii = df_raw[
+        (df_raw["allergenicity_hybrid_score"] < 0.3) &
+        (df_raw["mhci_num_strong_binders"] > 0) &
+        (df_raw["mhcii_num_strong_binders"] == 0)
+    ]
+ 
+    logging.info(f"🧪 Removed {len(removed_allergenicity)} proteins with allergenicity_hybrid_score >= 0.3")
+    logging.info(f"🧬 Removed {len(removed_mhci)} proteins with mhci_num_strong_binders == 0 (after allergenicity filter)")
+    logging.info(f"🧬 Removed {len(removed_mhcii)} proteins with mhcii_num_strong_binders == 0 (after allergenicity + mhci filters)")
 
     # --- Allergenicity and mhc filtering ---
     filtered_raw = df_raw[
