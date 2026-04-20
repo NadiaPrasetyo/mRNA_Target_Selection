@@ -450,6 +450,13 @@ def main():
         (df_raw["allergenicity_hybrid_score"] < 0.3) &
         (df_raw["mhci_num_strong_binders"] == 0)
     ]
+
+    # merge removed allergenicity with predictions
+    removed_allergenicity = pd.merge(removed_allergenicity, df_pred, how="left", on="accession")
+    # remove allergenicity columns that aren't needed
+    removed_allergenicity = removed_allergenicity["accession", "prob_antigen", "pred_label", "protein_names", "gene_names"]
+
+
     removed_mhcii = df_raw[
         (df_raw["allergenicity_hybrid_score"] < 0.3) &
         (df_raw["mhci_num_strong_binders"] > 0) &
