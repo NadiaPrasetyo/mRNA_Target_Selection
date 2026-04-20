@@ -458,8 +458,10 @@ def main():
  
     logging.info(f"🧪 Removed {len(removed_allergenicity)} proteins with allergenicity_hybrid_score >= 0.3")
     # save removed_allergenic rows to csv
-    removed_allergenicity.to_csv(args.output_dir + "removed_allergenicity.csv", index=False)
     
+    removed_allergenicity_path = output_path.parent / f"removed_allergenic_{pred_path.stem}.csv"
+    removed_allergenicity.to_csv(removed_allergenicity_path, index=False)
+
     logging.info(f"🧬 Removed {len(removed_mhci)} proteins with mhci_num_strong_binders == 0 (after allergenicity filter)")
     logging.info(f"🧬 Removed {len(removed_mhcii)} proteins with mhcii_num_strong_binders == 0 (after allergenicity + mhci filters)")
 
