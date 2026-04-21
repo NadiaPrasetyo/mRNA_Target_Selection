@@ -453,8 +453,6 @@ def main():
 
     # merge removed allergenicity with predictions
     removed_allergenicity = pd.merge(removed_allergenicity, df_pred, how="left", on="accession")
-    # remove allergenicity columns that aren't needed
-    removed_allergenicity = removed_allergenicity["accession", "prob_antigen", "pred_label", "protein_names", "gene_names"]
 
 
     removed_mhcii = df_raw[
