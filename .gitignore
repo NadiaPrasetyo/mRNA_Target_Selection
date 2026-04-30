@@ -5,7 +5,6 @@ data/*/raw_positive_features.csv
 data/*/raw_random_features.csv
 data/*/raw_positive_features/
 data/*/raw_random_features/
-results/*/raw_data/
 notes/to_do_list.md
 data/*/*/*/*/output_interactive_figures.html
 data/*/*/mhcii/*

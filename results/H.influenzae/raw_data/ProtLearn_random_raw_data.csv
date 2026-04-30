@@ -1,0 +1,2329 @@
+accession,label,feature,subfeature,value
+Q57147,random,ProtLearn,length,128
+Q57147,random,ProtLearn,Hydrophobicity index,1
+Q57147,random,ProtLearn,Average flexibility indices,0
+Q57147,random,ProtLearn,Average volume of buried residue,156
+Q57147,random,ProtLearn,Amino acid composition,5
+Q57147,random,ProtLearn,Relative mutability,69
+Q57147,random,ProtLearn,Composition,0
+Q57147,random,ProtLearn,Polarity,7
+Q57147,random,ProtLearn,Volume,91
+Q57147,random,ProtLearn,Hydrophobicity,1
+Q57147,random,ProtLearn,pK (-COOH),2
+Q57147,random,ProtLearn,Hydropathy index,0
+P45300,random,ProtLearn,length,119
+P45300,random,ProtLearn,Hydrophobicity index,0
+P45300,random,ProtLearn,Average flexibility indices,0
+P45300,random,ProtLearn,Average volume of buried residue,150
+P45300,random,ProtLearn,Amino acid composition,5
+P45300,random,ProtLearn,Relative mutability,78
+P45300,random,ProtLearn,Composition,0
+P45300,random,ProtLearn,Polarity,8
+P45300,random,ProtLearn,Volume,83
+P45300,random,ProtLearn,Hydrophobicity,1
+P45300,random,ProtLearn,pK (-COOH),2
+P45300,random,ProtLearn,Hydropathy index,0
+P44514,random,ProtLearn,length,739
+P44514,random,ProtLearn,Hydrophobicity index,0
+P44514,random,ProtLearn,Average flexibility indices,0
+P44514,random,ProtLearn,Average volume of buried residue,141
+P44514,random,ProtLearn,Amino acid composition,5
+P44514,random,ProtLearn,Relative mutability,79
+P44514,random,ProtLearn,Composition,0
+P44514,random,ProtLearn,Polarity,8
+P44514,random,ProtLearn,Volume,75
+P44514,random,ProtLearn,Hydrophobicity,1
+P44514,random,ProtLearn,pK (-COOH),2
+P44514,random,ProtLearn,Hydropathy index,0
+P43965,random,ProtLearn,length,176
+P43965,random,ProtLearn,Hydrophobicity index,1
+P43965,random,ProtLearn,Average flexibility indices,0
+P43965,random,ProtLearn,Average volume of buried residue,156
+P43965,random,ProtLearn,Amino acid composition,5
+P43965,random,ProtLearn,Relative mutability,74
+P43965,random,ProtLearn,Composition,0
+P43965,random,ProtLearn,Polarity,8
+P43965,random,ProtLearn,Volume,88
+P43965,random,ProtLearn,Hydrophobicity,1
+P43965,random,ProtLearn,pK (-COOH),2
+P43965,random,ProtLearn,Hydropathy index,0
+P43701,random,ProtLearn,length,806
+P43701,random,ProtLearn,Hydrophobicity index,0
+P43701,random,ProtLearn,Average flexibility indices,0
+P43701,random,ProtLearn,Average volume of buried residue,143
+P43701,random,ProtLearn,Amino acid composition,5
+P43701,random,ProtLearn,Relative mutability,79
+P43701,random,ProtLearn,Composition,0
+P43701,random,ProtLearn,Polarity,8
+P43701,random,ProtLearn,Volume,77
+P43701,random,ProtLearn,Hydrophobicity,1
+P43701,random,ProtLearn,pK (-COOH),2
+P43701,random,ProtLearn,Hydropathy index,0
+P71390,random,ProtLearn,length,39
+P71390,random,ProtLearn,Hydrophobicity index,1
+P71390,random,ProtLearn,Average flexibility indices,0
+P71390,random,ProtLearn,Average volume of buried residue,149
+P71390,random,ProtLearn,Amino acid composition,5
+P71390,random,ProtLearn,Relative mutability,69
+P71390,random,ProtLearn,Composition,0
+P71390,random,ProtLearn,Polarity,7
+P71390,random,ProtLearn,Volume,85
+P71390,random,ProtLearn,Hydrophobicity,1
+P71390,random,ProtLearn,pK (-COOH),2
+P71390,random,ProtLearn,Hydropathy index,0
+P44193,random,ProtLearn,length,191
+P44193,random,ProtLearn,Hydrophobicity index,0
+P44193,random,ProtLearn,Average flexibility indices,0
+P44193,random,ProtLearn,Average volume of buried residue,154
+P44193,random,ProtLearn,Amino acid composition,5
+P44193,random,ProtLearn,Relative mutability,74
+P44193,random,ProtLearn,Composition,0
+P44193,random,ProtLearn,Polarity,8
+P44193,random,ProtLearn,Volume,86
+P44193,random,ProtLearn,Hydrophobicity,1
+P44193,random,ProtLearn,pK (-COOH),2
+P44193,random,ProtLearn,Hydropathy index,0
+P44331,random,ProtLearn,length,306
+P44331,random,ProtLearn,Hydrophobicity index,0
+P44331,random,ProtLearn,Average flexibility indices,0
+P44331,random,ProtLearn,Average volume of buried residue,136
+P44331,random,ProtLearn,Amino acid composition,6
+P44331,random,ProtLearn,Relative mutability,82
+P44331,random,ProtLearn,Composition,0
+P44331,random,ProtLearn,Polarity,8
+P44331,random,ProtLearn,Volume,71
+P44331,random,ProtLearn,Hydrophobicity,1
+P44331,random,ProtLearn,pK (-COOH),2
+P44331,random,ProtLearn,Hydropathy index,0
+P44119,random,ProtLearn,length,156
+P44119,random,ProtLearn,Hydrophobicity index,0
+P44119,random,ProtLearn,Average flexibility indices,0
+P44119,random,ProtLearn,Average volume of buried residue,155
+P44119,random,ProtLearn,Amino acid composition,5
+P44119,random,ProtLearn,Relative mutability,73
+P44119,random,ProtLearn,Composition,0
+P44119,random,ProtLearn,Polarity,8
+P44119,random,ProtLearn,Volume,89
+P44119,random,ProtLearn,Hydrophobicity,1
+P44119,random,ProtLearn,pK (-COOH),2
+P44119,random,ProtLearn,Hydropathy index,0
+P71351,random,ProtLearn,length,91
+P71351,random,ProtLearn,Hydrophobicity index,0
+P71351,random,ProtLearn,Average flexibility indices,0
+P71351,random,ProtLearn,Average volume of buried residue,149
+P71351,random,ProtLearn,Amino acid composition,5
+P71351,random,ProtLearn,Relative mutability,80
+P71351,random,ProtLearn,Composition,0
+P71351,random,ProtLearn,Polarity,8
+P71351,random,ProtLearn,Volume,83
+P71351,random,ProtLearn,Hydrophobicity,1
+P71351,random,ProtLearn,pK (-COOH),2
+P71351,random,ProtLearn,Hydropathy index,0
+A5UC39,random,ProtLearn,length,344
+A5UC39,random,ProtLearn,Hydrophobicity index,0
+A5UC39,random,ProtLearn,Average flexibility indices,0
+A5UC39,random,ProtLearn,Average volume of buried residue,139
+A5UC39,random,ProtLearn,Amino acid composition,6
+A5UC39,random,ProtLearn,Relative mutability,76
+A5UC39,random,ProtLearn,Composition,0
+A5UC39,random,ProtLearn,Polarity,8
+A5UC39,random,ProtLearn,Volume,74
+A5UC39,random,ProtLearn,Hydrophobicity,1
+A5UC39,random,ProtLearn,pK (-COOH),2
+A5UC39,random,ProtLearn,Hydropathy index,0
+A5UCP4,random,ProtLearn,length,229
+A5UCP4,random,ProtLearn,Hydrophobicity index,0
+A5UCP4,random,ProtLearn,Average flexibility indices,0
+A5UCP4,random,ProtLearn,Average volume of buried residue,136
+A5UCP4,random,ProtLearn,Amino acid composition,6
+A5UCP4,random,ProtLearn,Relative mutability,80
+A5UCP4,random,ProtLearn,Composition,0
+A5UCP4,random,ProtLearn,Polarity,8
+A5UCP4,random,ProtLearn,Volume,72
+A5UCP4,random,ProtLearn,Hydrophobicity,1
+A5UCP4,random,ProtLearn,pK (-COOH),2
+A5UCP4,random,ProtLearn,Hydropathy index,0
+Q48211,random,ProtLearn,length,304
+Q48211,random,ProtLearn,Hydrophobicity index,1
+Q48211,random,ProtLearn,Average flexibility indices,0
+Q48211,random,ProtLearn,Average volume of buried residue,153
+Q48211,random,ProtLearn,Amino acid composition,5
+Q48211,random,ProtLearn,Relative mutability,74
+Q48211,random,ProtLearn,Composition,0
+Q48211,random,ProtLearn,Polarity,8
+Q48211,random,ProtLearn,Volume,86
+Q48211,random,ProtLearn,Hydrophobicity,1
+Q48211,random,ProtLearn,pK (-COOH),2
+Q48211,random,ProtLearn,Hydropathy index,0
+P45287,random,ProtLearn,length,295
+P45287,random,ProtLearn,Hydrophobicity index,1
+P45287,random,ProtLearn,Average flexibility indices,0
+P45287,random,ProtLearn,Average volume of buried residue,148
+P45287,random,ProtLearn,Amino acid composition,5
+P45287,random,ProtLearn,Relative mutability,75
+P45287,random,ProtLearn,Composition,0
+P45287,random,ProtLearn,Polarity,7
+P45287,random,ProtLearn,Volume,83
+P45287,random,ProtLearn,Hydrophobicity,1
+P45287,random,ProtLearn,pK (-COOH),2
+P45287,random,ProtLearn,Hydropathy index,0
+A5UFU9,random,ProtLearn,length,300
+A5UFU9,random,ProtLearn,Hydrophobicity index,0
+A5UFU9,random,ProtLearn,Average flexibility indices,0
+A5UFU9,random,ProtLearn,Average volume of buried residue,137
+A5UFU9,random,ProtLearn,Amino acid composition,6
+A5UFU9,random,ProtLearn,Relative mutability,78
+A5UFU9,random,ProtLearn,Composition,0
+A5UFU9,random,ProtLearn,Polarity,8
+A5UFU9,random,ProtLearn,Volume,72
+A5UFU9,random,ProtLearn,Hydrophobicity,1
+A5UFU9,random,ProtLearn,pK (-COOH),2
+A5UFU9,random,ProtLearn,Hydropathy index,0
+A5UDN2,random,ProtLearn,length,72
+A5UDN2,random,ProtLearn,Hydrophobicity index,0
+A5UDN2,random,ProtLearn,Average flexibility indices,0
+A5UDN2,random,ProtLearn,Average volume of buried residue,139
+A5UDN2,random,ProtLearn,Amino acid composition,6
+A5UDN2,random,ProtLearn,Relative mutability,86
+A5UDN2,random,ProtLearn,Composition,0
+A5UDN2,random,ProtLearn,Polarity,8
+A5UDN2,random,ProtLearn,Volume,73
+A5UDN2,random,ProtLearn,Hydrophobicity,1
+A5UDN2,random,ProtLearn,pK (-COOH),2
+A5UDN2,random,ProtLearn,Hydropathy index,0
+Q4QM83,random,ProtLearn,length,182
+Q4QM83,random,ProtLearn,Hydrophobicity index,0
+Q4QM83,random,ProtLearn,Average flexibility indices,0
+Q4QM83,random,ProtLearn,Average volume of buried residue,142
+Q4QM83,random,ProtLearn,Amino acid composition,5
+Q4QM83,random,ProtLearn,Relative mutability,77
+Q4QM83,random,ProtLearn,Composition,0
+Q4QM83,random,ProtLearn,Polarity,8
+Q4QM83,random,ProtLearn,Volume,76
+Q4QM83,random,ProtLearn,Hydrophobicity,1
+Q4QM83,random,ProtLearn,pK (-COOH),2
+Q4QM83,random,ProtLearn,Hydropathy index,0
+P44800,random,ProtLearn,length,313
+P44800,random,ProtLearn,Hydrophobicity index,1
+P44800,random,ProtLearn,Average flexibility indices,0
+P44800,random,ProtLearn,Average volume of buried residue,153
+P44800,random,ProtLearn,Amino acid composition,5
+P44800,random,ProtLearn,Relative mutability,74
+P44800,random,ProtLearn,Composition,0
+P44800,random,ProtLearn,Polarity,8
+P44800,random,ProtLearn,Volume,86
+P44800,random,ProtLearn,Hydrophobicity,1
+P44800,random,ProtLearn,pK (-COOH),2
+P44800,random,ProtLearn,Hydropathy index,0
+P44991,random,ProtLearn,length,485
+P44991,random,ProtLearn,Hydrophobicity index,0
+P44991,random,ProtLearn,Average flexibility indices,0
+P44991,random,ProtLearn,Average volume of buried residue,146
+P44991,random,ProtLearn,Amino acid composition,5
+P44991,random,ProtLearn,Relative mutability,78
+P44991,random,ProtLearn,Composition,0
+P44991,random,ProtLearn,Polarity,8
+P44991,random,ProtLearn,Volume,80
+P44991,random,ProtLearn,Hydrophobicity,1
+P44991,random,ProtLearn,pK (-COOH),2
+P44991,random,ProtLearn,Hydropathy index,0
+P44746,random,ProtLearn,length,86
+P44746,random,ProtLearn,Hydrophobicity index,1
+P44746,random,ProtLearn,Average flexibility indices,0
+P44746,random,ProtLearn,Average volume of buried residue,145
+P44746,random,ProtLearn,Amino acid composition,5
+P44746,random,ProtLearn,Relative mutability,75
+P44746,random,ProtLearn,Composition,0
+P44746,random,ProtLearn,Polarity,8
+P44746,random,ProtLearn,Volume,77
+P44746,random,ProtLearn,Hydrophobicity,1
+P44746,random,ProtLearn,pK (-COOH),2
+P44746,random,ProtLearn,Hydropathy index,0
+P44923,random,ProtLearn,length,354
+P44923,random,ProtLearn,Hydrophobicity index,0
+P44923,random,ProtLearn,Average flexibility indices,0
+P44923,random,ProtLearn,Average volume of buried residue,152
+P44923,random,ProtLearn,Amino acid composition,5
+P44923,random,ProtLearn,Relative mutability,76
+P44923,random,ProtLearn,Composition,0
+P44923,random,ProtLearn,Polarity,8
+P44923,random,ProtLearn,Volume,86
+P44923,random,ProtLearn,Hydrophobicity,1
+P44923,random,ProtLearn,pK (-COOH),2
+P44923,random,ProtLearn,Hydropathy index,0
+P44611,random,ProtLearn,length,247
+P44611,random,ProtLearn,Hydrophobicity index,0
+P44611,random,ProtLearn,Average flexibility indices,0
+P44611,random,ProtLearn,Average volume of buried residue,148
+P44611,random,ProtLearn,Amino acid composition,5
+P44611,random,ProtLearn,Relative mutability,75
+P44611,random,ProtLearn,Composition,0
+P44611,random,ProtLearn,Polarity,8
+P44611,random,ProtLearn,Volume,82
+P44611,random,ProtLearn,Hydrophobicity,1
+P44611,random,ProtLearn,pK (-COOH),2
+P44611,random,ProtLearn,Hydropathy index,0
+P44372,random,ProtLearn,length,235
+P44372,random,ProtLearn,Hydrophobicity index,0
+P44372,random,ProtLearn,Average flexibility indices,0
+P44372,random,ProtLearn,Average volume of buried residue,142
+P44372,random,ProtLearn,Amino acid composition,6
+P44372,random,ProtLearn,Relative mutability,77
+P44372,random,ProtLearn,Composition,0
+P44372,random,ProtLearn,Polarity,8
+P44372,random,ProtLearn,Volume,77
+P44372,random,ProtLearn,Hydrophobicity,1
+P44372,random,ProtLearn,pK (-COOH),2
+P44372,random,ProtLearn,Hydropathy index,0
+P43871,random,ProtLearn,length,309
+P43871,random,ProtLearn,Hydrophobicity index,0
+P43871,random,ProtLearn,Average flexibility indices,0
+P43871,random,ProtLearn,Average volume of buried residue,148
+P43871,random,ProtLearn,Amino acid composition,5
+P43871,random,ProtLearn,Relative mutability,78
+P43871,random,ProtLearn,Composition,0
+P43871,random,ProtLearn,Polarity,8
+P43871,random,ProtLearn,Volume,81
+P43871,random,ProtLearn,Hydrophobicity,1
+P43871,random,ProtLearn,pK (-COOH),2
+P43871,random,ProtLearn,Hydropathy index,0
+P44131,random,ProtLearn,length,155
+P44131,random,ProtLearn,Hydrophobicity index,0
+P44131,random,ProtLearn,Average flexibility indices,0
+P44131,random,ProtLearn,Average volume of buried residue,145
+P44131,random,ProtLearn,Amino acid composition,5
+P44131,random,ProtLearn,Relative mutability,79
+P44131,random,ProtLearn,Composition,0
+P44131,random,ProtLearn,Polarity,8
+P44131,random,ProtLearn,Volume,79
+P44131,random,ProtLearn,Hydrophobicity,1
+P44131,random,ProtLearn,pK (-COOH),2
+P44131,random,ProtLearn,Hydropathy index,0
+A5UCR5,random,ProtLearn,length,363
+A5UCR5,random,ProtLearn,Hydrophobicity index,0
+A5UCR5,random,ProtLearn,Average flexibility indices,0
+A5UCR5,random,ProtLearn,Average volume of buried residue,148
+A5UCR5,random,ProtLearn,Amino acid composition,5
+A5UCR5,random,ProtLearn,Relative mutability,74
+A5UCR5,random,ProtLearn,Composition,0
+A5UCR5,random,ProtLearn,Polarity,8
+A5UCR5,random,ProtLearn,Volume,81
+A5UCR5,random,ProtLearn,Hydrophobicity,1
+A5UCR5,random,ProtLearn,pK (-COOH),2
+A5UCR5,random,ProtLearn,Hydropathy index,0
+P44916,random,ProtLearn,length,329
+P44916,random,ProtLearn,Hydrophobicity index,0
+P44916,random,ProtLearn,Average flexibility indices,0
+P44916,random,ProtLearn,Average volume of buried residue,141
+P44916,random,ProtLearn,Amino acid composition,6
+P44916,random,ProtLearn,Relative mutability,81
+P44916,random,ProtLearn,Composition,0
+P44916,random,ProtLearn,Polarity,8
+P44916,random,ProtLearn,Volume,75
+P44916,random,ProtLearn,Hydrophobicity,1
+P44916,random,ProtLearn,pK (-COOH),2
+P44916,random,ProtLearn,Hydropathy index,0
+P45312,random,ProtLearn,length,223
+P45312,random,ProtLearn,Hydrophobicity index,0
+P45312,random,ProtLearn,Average flexibility indices,0
+P45312,random,ProtLearn,Average volume of buried residue,147
+P45312,random,ProtLearn,Amino acid composition,5
+P45312,random,ProtLearn,Relative mutability,80
+P45312,random,ProtLearn,Composition,0
+P45312,random,ProtLearn,Polarity,8
+P45312,random,ProtLearn,Volume,80
+P45312,random,ProtLearn,Hydrophobicity,1
+P45312,random,ProtLearn,pK (-COOH),2
+P45312,random,ProtLearn,Hydropathy index,0
+P44460,random,ProtLearn,length,291
+P44460,random,ProtLearn,Hydrophobicity index,0
+P44460,random,ProtLearn,Average flexibility indices,0
+P44460,random,ProtLearn,Average volume of buried residue,142
+P44460,random,ProtLearn,Amino acid composition,6
+P44460,random,ProtLearn,Relative mutability,80
+P44460,random,ProtLearn,Composition,0
+P44460,random,ProtLearn,Polarity,8
+P44460,random,ProtLearn,Volume,76
+P44460,random,ProtLearn,Hydrophobicity,1
+P44460,random,ProtLearn,pK (-COOH),2
+P44460,random,ProtLearn,Hydropathy index,0
+A5UE98,random,ProtLearn,length,205
+A5UE98,random,ProtLearn,Hydrophobicity index,0
+A5UE98,random,ProtLearn,Average flexibility indices,0
+A5UE98,random,ProtLearn,Average volume of buried residue,147
+A5UE98,random,ProtLearn,Amino acid composition,5
+A5UE98,random,ProtLearn,Relative mutability,77
+A5UE98,random,ProtLearn,Composition,0
+A5UE98,random,ProtLearn,Polarity,8
+A5UE98,random,ProtLearn,Volume,82
+A5UE98,random,ProtLearn,Hydrophobicity,1
+A5UE98,random,ProtLearn,pK (-COOH),2
+A5UE98,random,ProtLearn,Hydropathy index,0
+P45269,random,ProtLearn,length,416
+P45269,random,ProtLearn,Hydrophobicity index,0
+P45269,random,ProtLearn,Average flexibility indices,0
+P45269,random,ProtLearn,Average volume of buried residue,147
+P45269,random,ProtLearn,Amino acid composition,5
+P45269,random,ProtLearn,Relative mutability,76
+P45269,random,ProtLearn,Composition,0
+P45269,random,ProtLearn,Polarity,8
+P45269,random,ProtLearn,Volume,80
+P45269,random,ProtLearn,Hydrophobicity,1
+P45269,random,ProtLearn,pK (-COOH),2
+P45269,random,ProtLearn,Hydropathy index,0
+P44290,random,ProtLearn,length,221
+P44290,random,ProtLearn,Hydrophobicity index,0
+P44290,random,ProtLearn,Average flexibility indices,0
+P44290,random,ProtLearn,Average volume of buried residue,136
+P44290,random,ProtLearn,Amino acid composition,6
+P44290,random,ProtLearn,Relative mutability,83
+P44290,random,ProtLearn,Composition,0
+P44290,random,ProtLearn,Polarity,8
+P44290,random,ProtLearn,Volume,71
+P44290,random,ProtLearn,Hydrophobicity,1
+P44290,random,ProtLearn,pK (-COOH),2
+P44290,random,ProtLearn,Hydropathy index,0
+P43758,random,ProtLearn,length,145
+P43758,random,ProtLearn,Hydrophobicity index,0
+P43758,random,ProtLearn,Average flexibility indices,0
+P43758,random,ProtLearn,Average volume of buried residue,148
+P43758,random,ProtLearn,Amino acid composition,5
+P43758,random,ProtLearn,Relative mutability,78
+P43758,random,ProtLearn,Composition,0
+P43758,random,ProtLearn,Polarity,8
+P43758,random,ProtLearn,Volume,82
+P43758,random,ProtLearn,Hydrophobicity,1
+P43758,random,ProtLearn,pK (-COOH),2
+P43758,random,ProtLearn,Hydropathy index,0
+P44661,random,ProtLearn,length,282
+P44661,random,ProtLearn,Hydrophobicity index,1
+P44661,random,ProtLearn,Average flexibility indices,0
+P44661,random,ProtLearn,Average volume of buried residue,143
+P44661,random,ProtLearn,Amino acid composition,6
+P44661,random,ProtLearn,Relative mutability,72
+P44661,random,ProtLearn,Composition,0
+P44661,random,ProtLearn,Polarity,7
+P44661,random,ProtLearn,Volume,80
+P44661,random,ProtLearn,Hydrophobicity,1
+P44661,random,ProtLearn,pK (-COOH),2
+P44661,random,ProtLearn,Hydropathy index,1
+P44160,random,ProtLearn,length,269
+P44160,random,ProtLearn,Hydrophobicity index,0
+P44160,random,ProtLearn,Average flexibility indices,0
+P44160,random,ProtLearn,Average volume of buried residue,147
+P44160,random,ProtLearn,Amino acid composition,5
+P44160,random,ProtLearn,Relative mutability,77
+P44160,random,ProtLearn,Composition,0
+P44160,random,ProtLearn,Polarity,8
+P44160,random,ProtLearn,Volume,80
+P44160,random,ProtLearn,Hydrophobicity,1
+P44160,random,ProtLearn,pK (-COOH),2
+P44160,random,ProtLearn,Hydropathy index,0
+P44989,random,ProtLearn,length,231
+P44989,random,ProtLearn,Hydrophobicity index,0
+P44989,random,ProtLearn,Average flexibility indices,0
+P44989,random,ProtLearn,Average volume of buried residue,145
+P44989,random,ProtLearn,Amino acid composition,5
+P44989,random,ProtLearn,Relative mutability,77
+P44989,random,ProtLearn,Composition,0
+P44989,random,ProtLearn,Polarity,8
+P44989,random,ProtLearn,Volume,78
+P44989,random,ProtLearn,Hydrophobicity,1
+P44989,random,ProtLearn,pK (-COOH),2
+P44989,random,ProtLearn,Hydropathy index,0
+P45323,random,ProtLearn,length,254
+P45323,random,ProtLearn,Hydrophobicity index,0
+P45323,random,ProtLearn,Average flexibility indices,0
+P45323,random,ProtLearn,Average volume of buried residue,139
+P45323,random,ProtLearn,Amino acid composition,6
+P45323,random,ProtLearn,Relative mutability,79
+P45323,random,ProtLearn,Composition,0
+P45323,random,ProtLearn,Polarity,8
+P45323,random,ProtLearn,Volume,74
+P45323,random,ProtLearn,Hydrophobicity,1
+P45323,random,ProtLearn,pK (-COOH),2
+P45323,random,ProtLearn,Hydropathy index,0
+P43902,random,ProtLearn,length,544
+P43902,random,ProtLearn,Hydrophobicity index,0
+P43902,random,ProtLearn,Average flexibility indices,0
+P43902,random,ProtLearn,Average volume of buried residue,147
+P43902,random,ProtLearn,Amino acid composition,5
+P43902,random,ProtLearn,Relative mutability,76
+P43902,random,ProtLearn,Composition,0
+P43902,random,ProtLearn,Polarity,8
+P43902,random,ProtLearn,Volume,81
+P43902,random,ProtLearn,Hydrophobicity,1
+P43902,random,ProtLearn,pK (-COOH),2
+P43902,random,ProtLearn,Hydropathy index,0
+O86228,random,ProtLearn,length,102
+O86228,random,ProtLearn,Hydrophobicity index,0
+O86228,random,ProtLearn,Average flexibility indices,0
+O86228,random,ProtLearn,Average volume of buried residue,146
+O86228,random,ProtLearn,Amino acid composition,5
+O86228,random,ProtLearn,Relative mutability,78
+O86228,random,ProtLearn,Composition,0
+O86228,random,ProtLearn,Polarity,8
+O86228,random,ProtLearn,Volume,81
+O86228,random,ProtLearn,Hydrophobicity,1
+O86228,random,ProtLearn,pK (-COOH),2
+O86228,random,ProtLearn,Hydropathy index,0
+A5UBN7,random,ProtLearn,length,230
+A5UBN7,random,ProtLearn,Hydrophobicity index,0
+A5UBN7,random,ProtLearn,Average flexibility indices,0
+A5UBN7,random,ProtLearn,Average volume of buried residue,142
+A5UBN7,random,ProtLearn,Amino acid composition,5
+A5UBN7,random,ProtLearn,Relative mutability,77
+A5UBN7,random,ProtLearn,Composition,0
+A5UBN7,random,ProtLearn,Polarity,8
+A5UBN7,random,ProtLearn,Volume,76
+A5UBN7,random,ProtLearn,Hydrophobicity,1
+A5UBN7,random,ProtLearn,pK (-COOH),2
+A5UBN7,random,ProtLearn,Hydropathy index,0
+P45277,random,ProtLearn,length,135
+P45277,random,ProtLearn,Hydrophobicity index,0
+P45277,random,ProtLearn,Average flexibility indices,0
+P45277,random,ProtLearn,Average volume of buried residue,150
+P45277,random,ProtLearn,Amino acid composition,5
+P45277,random,ProtLearn,Relative mutability,77
+P45277,random,ProtLearn,Composition,0
+P45277,random,ProtLearn,Polarity,8
+P45277,random,ProtLearn,Volume,84
+P45277,random,ProtLearn,Hydrophobicity,1
+P45277,random,ProtLearn,pK (-COOH),2
+P45277,random,ProtLearn,Hydropathy index,0
+A5UFT9,random,ProtLearn,length,195
+A5UFT9,random,ProtLearn,Hydrophobicity index,0
+A5UFT9,random,ProtLearn,Average flexibility indices,0
+A5UFT9,random,ProtLearn,Average volume of buried residue,143
+A5UFT9,random,ProtLearn,Amino acid composition,5
+A5UFT9,random,ProtLearn,Relative mutability,78
+A5UFT9,random,ProtLearn,Composition,0
+A5UFT9,random,ProtLearn,Polarity,8
+A5UFT9,random,ProtLearn,Volume,76
+A5UFT9,random,ProtLearn,Hydrophobicity,1
+A5UFT9,random,ProtLearn,pK (-COOH),2
+A5UFT9,random,ProtLearn,Hydropathy index,0
+Q57486,random,ProtLearn,length,461
+Q57486,random,ProtLearn,Hydrophobicity index,1
+Q57486,random,ProtLearn,Average flexibility indices,0
+Q57486,random,ProtLearn,Average volume of buried residue,143
+Q57486,random,ProtLearn,Amino acid composition,5
+Q57486,random,ProtLearn,Relative mutability,75
+Q57486,random,ProtLearn,Composition,0
+Q57486,random,ProtLearn,Polarity,7
+Q57486,random,ProtLearn,Volume,79
+Q57486,random,ProtLearn,Hydrophobicity,1
+Q57486,random,ProtLearn,pK (-COOH),2
+Q57486,random,ProtLearn,Hydropathy index,1
+O86223,random,ProtLearn,length,1629
+O86223,random,ProtLearn,Hydrophobicity index,0
+O86223,random,ProtLearn,Average flexibility indices,0
+O86223,random,ProtLearn,Average volume of buried residue,137
+O86223,random,ProtLearn,Amino acid composition,6
+O86223,random,ProtLearn,Relative mutability,78
+O86223,random,ProtLearn,Composition,0
+O86223,random,ProtLearn,Polarity,8
+O86223,random,ProtLearn,Volume,72
+O86223,random,ProtLearn,Hydrophobicity,1
+O86223,random,ProtLearn,pK (-COOH),2
+O86223,random,ProtLearn,Hydropathy index,0
+P45324,random,ProtLearn,length,255
+P45324,random,ProtLearn,Hydrophobicity index,0
+P45324,random,ProtLearn,Average flexibility indices,0
+P45324,random,ProtLearn,Average volume of buried residue,147
+P45324,random,ProtLearn,Amino acid composition,5
+P45324,random,ProtLearn,Relative mutability,80
+P45324,random,ProtLearn,Composition,0
+P45324,random,ProtLearn,Polarity,8
+P45324,random,ProtLearn,Volume,80
+P45324,random,ProtLearn,Hydrophobicity,1
+P45324,random,ProtLearn,pK (-COOH),2
+P45324,random,ProtLearn,Hydropathy index,0
+A5UC51,random,ProtLearn,length,625
+A5UC51,random,ProtLearn,Hydrophobicity index,0
+A5UC51,random,ProtLearn,Average flexibility indices,0
+A5UC51,random,ProtLearn,Average volume of buried residue,142
+A5UC51,random,ProtLearn,Amino acid composition,5
+A5UC51,random,ProtLearn,Relative mutability,78
+A5UC51,random,ProtLearn,Composition,0
+A5UC51,random,ProtLearn,Polarity,8
+A5UC51,random,ProtLearn,Volume,75
+A5UC51,random,ProtLearn,Hydrophobicity,1
+A5UC51,random,ProtLearn,pK (-COOH),2
+A5UC51,random,ProtLearn,Hydropathy index,0
+A5UBU1,random,ProtLearn,length,128
+A5UBU1,random,ProtLearn,Hydrophobicity index,0
+A5UBU1,random,ProtLearn,Average flexibility indices,0
+A5UBU1,random,ProtLearn,Average volume of buried residue,149
+A5UBU1,random,ProtLearn,Amino acid composition,5
+A5UBU1,random,ProtLearn,Relative mutability,81
+A5UBU1,random,ProtLearn,Composition,0
+A5UBU1,random,ProtLearn,Polarity,8
+A5UBU1,random,ProtLearn,Volume,83
+A5UBU1,random,ProtLearn,Hydrophobicity,1
+A5UBU1,random,ProtLearn,pK (-COOH),2
+A5UBU1,random,ProtLearn,Hydropathy index,0
+Q4QLV1,random,ProtLearn,length,83
+Q4QLV1,random,ProtLearn,Hydrophobicity index,0
+Q4QLV1,random,ProtLearn,Average flexibility indices,0
+Q4QLV1,random,ProtLearn,Average volume of buried residue,151
+Q4QLV1,random,ProtLearn,Amino acid composition,5
+Q4QLV1,random,ProtLearn,Relative mutability,81
+Q4QLV1,random,ProtLearn,Composition,0
+Q4QLV1,random,ProtLearn,Polarity,8
+Q4QLV1,random,ProtLearn,Volume,86
+Q4QLV1,random,ProtLearn,Hydrophobicity,1
+Q4QLV1,random,ProtLearn,pK (-COOH),2
+Q4QLV1,random,ProtLearn,Hydropathy index,0
+A5UCW3,random,ProtLearn,length,305
+A5UCW3,random,ProtLearn,Hydrophobicity index,0
+A5UCW3,random,ProtLearn,Average flexibility indices,0
+A5UCW3,random,ProtLearn,Average volume of buried residue,145
+A5UCW3,random,ProtLearn,Amino acid composition,5
+A5UCW3,random,ProtLearn,Relative mutability,78
+A5UCW3,random,ProtLearn,Composition,0
+A5UCW3,random,ProtLearn,Polarity,8
+A5UCW3,random,ProtLearn,Volume,79
+A5UCW3,random,ProtLearn,Hydrophobicity,1
+A5UCW3,random,ProtLearn,pK (-COOH),2
+A5UCW3,random,ProtLearn,Hydropathy index,0
+P45105,random,ProtLearn,length,323
+P45105,random,ProtLearn,Hydrophobicity index,0
+P45105,random,ProtLearn,Average flexibility indices,0
+P45105,random,ProtLearn,Average volume of buried residue,146
+P45105,random,ProtLearn,Amino acid composition,5
+P45105,random,ProtLearn,Relative mutability,78
+P45105,random,ProtLearn,Composition,0
+P45105,random,ProtLearn,Polarity,8
+P45105,random,ProtLearn,Volume,80
+P45105,random,ProtLearn,Hydrophobicity,1
+P45105,random,ProtLearn,pK (-COOH),2
+P45105,random,ProtLearn,Hydropathy index,0
+Q57256,random,ProtLearn,length,218
+Q57256,random,ProtLearn,Hydrophobicity index,1
+Q57256,random,ProtLearn,Average flexibility indices,0
+Q57256,random,ProtLearn,Average volume of buried residue,143
+Q57256,random,ProtLearn,Amino acid composition,5
+Q57256,random,ProtLearn,Relative mutability,70
+Q57256,random,ProtLearn,Composition,0
+Q57256,random,ProtLearn,Polarity,7
+Q57256,random,ProtLearn,Volume,79
+Q57256,random,ProtLearn,Hydrophobicity,1
+Q57256,random,ProtLearn,pK (-COOH),2
+Q57256,random,ProtLearn,Hydropathy index,1
+P45081,random,ProtLearn,length,576
+P45081,random,ProtLearn,Hydrophobicity index,0
+P45081,random,ProtLearn,Average flexibility indices,0
+P45081,random,ProtLearn,Average volume of buried residue,148
+P45081,random,ProtLearn,Amino acid composition,5
+P45081,random,ProtLearn,Relative mutability,75
+P45081,random,ProtLearn,Composition,0
+P45081,random,ProtLearn,Polarity,8
+P45081,random,ProtLearn,Volume,83
+P45081,random,ProtLearn,Hydrophobicity,1
+P45081,random,ProtLearn,pK (-COOH),2
+P45081,random,ProtLearn,Hydropathy index,0
+P44465,random,ProtLearn,length,92
+P44465,random,ProtLearn,Hydrophobicity index,0
+P44465,random,ProtLearn,Average flexibility indices,0
+P44465,random,ProtLearn,Average volume of buried residue,148
+P44465,random,ProtLearn,Amino acid composition,5
+P44465,random,ProtLearn,Relative mutability,80
+P44465,random,ProtLearn,Composition,0
+P44465,random,ProtLearn,Polarity,8
+P44465,random,ProtLearn,Volume,84
+P44465,random,ProtLearn,Hydrophobicity,1
+P44465,random,ProtLearn,pK (-COOH),2
+P44465,random,ProtLearn,Hydropathy index,0
+P44598,random,ProtLearn,length,195
+P44598,random,ProtLearn,Hydrophobicity index,0
+P44598,random,ProtLearn,Average flexibility indices,0
+P44598,random,ProtLearn,Average volume of buried residue,138
+P44598,random,ProtLearn,Amino acid composition,6
+P44598,random,ProtLearn,Relative mutability,77
+P44598,random,ProtLearn,Composition,0
+P44598,random,ProtLearn,Polarity,8
+P44598,random,ProtLearn,Volume,73
+P44598,random,ProtLearn,Hydrophobicity,1
+P44598,random,ProtLearn,pK (-COOH),2
+P44598,random,ProtLearn,Hydropathy index,0
+P43874,random,ProtLearn,length,155
+P43874,random,ProtLearn,Hydrophobicity index,0
+P43874,random,ProtLearn,Average flexibility indices,0
+P43874,random,ProtLearn,Average volume of buried residue,136
+P43874,random,ProtLearn,Amino acid composition,6
+P43874,random,ProtLearn,Relative mutability,82
+P43874,random,ProtLearn,Composition,0
+P43874,random,ProtLearn,Polarity,8
+P43874,random,ProtLearn,Volume,70
+P43874,random,ProtLearn,Hydrophobicity,1
+P43874,random,ProtLearn,pK (-COOH),2
+P43874,random,ProtLearn,Hydropathy index,0
+P44350,random,ProtLearn,length,163
+P44350,random,ProtLearn,Hydrophobicity index,0
+P44350,random,ProtLearn,Average flexibility indices,0
+P44350,random,ProtLearn,Average volume of buried residue,141
+P44350,random,ProtLearn,Amino acid composition,6
+P44350,random,ProtLearn,Relative mutability,79
+P44350,random,ProtLearn,Composition,0
+P44350,random,ProtLearn,Polarity,8
+P44350,random,ProtLearn,Volume,76
+P44350,random,ProtLearn,Hydrophobicity,1
+P44350,random,ProtLearn,pK (-COOH),2
+P44350,random,ProtLearn,Hydropathy index,0
+A5UAL5,random,ProtLearn,length,480
+A5UAL5,random,ProtLearn,Hydrophobicity index,0
+A5UAL5,random,ProtLearn,Average flexibility indices,0
+A5UAL5,random,ProtLearn,Average volume of buried residue,146
+A5UAL5,random,ProtLearn,Amino acid composition,5
+A5UAL5,random,ProtLearn,Relative mutability,78
+A5UAL5,random,ProtLearn,Composition,0
+A5UAL5,random,ProtLearn,Polarity,8
+A5UAL5,random,ProtLearn,Volume,79
+A5UAL5,random,ProtLearn,Hydrophobicity,1
+A5UAL5,random,ProtLearn,pK (-COOH),2
+A5UAL5,random,ProtLearn,Hydropathy index,0
+P44505,random,ProtLearn,length,815
+P44505,random,ProtLearn,Hydrophobicity index,0
+P44505,random,ProtLearn,Average flexibility indices,0
+P44505,random,ProtLearn,Average volume of buried residue,140
+P44505,random,ProtLearn,Amino acid composition,6
+P44505,random,ProtLearn,Relative mutability,79
+P44505,random,ProtLearn,Composition,0
+P44505,random,ProtLearn,Polarity,8
+P44505,random,ProtLearn,Volume,74
+P44505,random,ProtLearn,Hydrophobicity,1
+P44505,random,ProtLearn,pK (-COOH),2
+P44505,random,ProtLearn,Hydropathy index,0
+P44714,random,ProtLearn,length,556
+P44714,random,ProtLearn,Hydrophobicity index,0
+P44714,random,ProtLearn,Average flexibility indices,0
+P44714,random,ProtLearn,Average volume of buried residue,136
+P44714,random,ProtLearn,Amino acid composition,6
+P44714,random,ProtLearn,Relative mutability,78
+P44714,random,ProtLearn,Composition,0
+P44714,random,ProtLearn,Polarity,7
+P44714,random,ProtLearn,Volume,71
+P44714,random,ProtLearn,Hydrophobicity,1
+P44714,random,ProtLearn,pK (-COOH),2
+P44714,random,ProtLearn,Hydropathy index,0
+Q57223,random,ProtLearn,length,161
+Q57223,random,ProtLearn,Hydrophobicity index,0
+Q57223,random,ProtLearn,Average flexibility indices,0
+Q57223,random,ProtLearn,Average volume of buried residue,147
+Q57223,random,ProtLearn,Amino acid composition,5
+Q57223,random,ProtLearn,Relative mutability,75
+Q57223,random,ProtLearn,Composition,0
+Q57223,random,ProtLearn,Polarity,8
+Q57223,random,ProtLearn,Volume,80
+Q57223,random,ProtLearn,Hydrophobicity,1
+Q57223,random,ProtLearn,pK (-COOH),2
+Q57223,random,ProtLearn,Hydropathy index,0
+A5UDW2,random,ProtLearn,length,215
+A5UDW2,random,ProtLearn,Hydrophobicity index,0
+A5UDW2,random,ProtLearn,Average flexibility indices,0
+A5UDW2,random,ProtLearn,Average volume of buried residue,139
+A5UDW2,random,ProtLearn,Amino acid composition,5
+A5UDW2,random,ProtLearn,Relative mutability,81
+A5UDW2,random,ProtLearn,Composition,0
+A5UDW2,random,ProtLearn,Polarity,8
+A5UDW2,random,ProtLearn,Volume,72
+A5UDW2,random,ProtLearn,Hydrophobicity,1
+A5UDW2,random,ProtLearn,pK (-COOH),2
+A5UDW2,random,ProtLearn,Hydropathy index,0
+P45252,random,ProtLearn,length,267
+P45252,random,ProtLearn,Hydrophobicity index,1
+P45252,random,ProtLearn,Average flexibility indices,0
+P45252,random,ProtLearn,Average volume of buried residue,151
+P45252,random,ProtLearn,Amino acid composition,5
+P45252,random,ProtLearn,Relative mutability,73
+P45252,random,ProtLearn,Composition,0
+P45252,random,ProtLearn,Polarity,8
+P45252,random,ProtLearn,Volume,84
+P45252,random,ProtLearn,Hydrophobicity,1
+P45252,random,ProtLearn,pK (-COOH),2
+P45252,random,ProtLearn,Hydropathy index,0
+P44416,random,ProtLearn,length,134
+P44416,random,ProtLearn,Hydrophobicity index,0
+P44416,random,ProtLearn,Average flexibility indices,0
+P44416,random,ProtLearn,Average volume of buried residue,147
+P44416,random,ProtLearn,Amino acid composition,5
+P44416,random,ProtLearn,Relative mutability,78
+P44416,random,ProtLearn,Composition,0
+P44416,random,ProtLearn,Polarity,8
+P44416,random,ProtLearn,Volume,82
+P44416,random,ProtLearn,Hydrophobicity,1
+P44416,random,ProtLearn,pK (-COOH),2
+P44416,random,ProtLearn,Hydropathy index,0
+P71399,random,ProtLearn,length,401
+P71399,random,ProtLearn,Hydrophobicity index,1
+P71399,random,ProtLearn,Average flexibility indices,0
+P71399,random,ProtLearn,Average volume of buried residue,152
+P71399,random,ProtLearn,Amino acid composition,5
+P71399,random,ProtLearn,Relative mutability,71
+P71399,random,ProtLearn,Composition,0
+P71399,random,ProtLearn,Polarity,7
+P71399,random,ProtLearn,Volume,88
+P71399,random,ProtLearn,Hydrophobicity,1
+P71399,random,ProtLearn,pK (-COOH),2
+P71399,random,ProtLearn,Hydropathy index,0
+P45249,random,ProtLearn,length,260
+P45249,random,ProtLearn,Hydrophobicity index,0
+P45249,random,ProtLearn,Average flexibility indices,0
+P45249,random,ProtLearn,Average volume of buried residue,147
+P45249,random,ProtLearn,Amino acid composition,5
+P45249,random,ProtLearn,Relative mutability,75
+P45249,random,ProtLearn,Composition,0
+P45249,random,ProtLearn,Polarity,8
+P45249,random,ProtLearn,Volume,81
+P45249,random,ProtLearn,Hydrophobicity,1
+P45249,random,ProtLearn,pK (-COOH),2
+P45249,random,ProtLearn,Hydropathy index,0
+P45026,random,ProtLearn,length,85
+P45026,random,ProtLearn,Hydrophobicity index,0
+P45026,random,ProtLearn,Average flexibility indices,0
+P45026,random,ProtLearn,Average volume of buried residue,149
+P45026,random,ProtLearn,Amino acid composition,5
+P45026,random,ProtLearn,Relative mutability,80
+P45026,random,ProtLearn,Composition,0
+P45026,random,ProtLearn,Polarity,8
+P45026,random,ProtLearn,Volume,83
+P45026,random,ProtLearn,Hydrophobicity,1
+P45026,random,ProtLearn,pK (-COOH),2
+P45026,random,ProtLearn,Hydropathy index,0
+P44248,random,ProtLearn,length,184
+P44248,random,ProtLearn,Hydrophobicity index,0
+P44248,random,ProtLearn,Average flexibility indices,0
+P44248,random,ProtLearn,Average volume of buried residue,148
+P44248,random,ProtLearn,Amino acid composition,5
+P44248,random,ProtLearn,Relative mutability,79
+P44248,random,ProtLearn,Composition,0
+P44248,random,ProtLearn,Polarity,8
+P44248,random,ProtLearn,Volume,82
+P44248,random,ProtLearn,Hydrophobicity,1
+P44248,random,ProtLearn,pK (-COOH),2
+P44248,random,ProtLearn,Hydropathy index,0
+A5UEN9,random,ProtLearn,length,954
+A5UEN9,random,ProtLearn,Hydrophobicity index,0
+A5UEN9,random,ProtLearn,Average flexibility indices,0
+A5UEN9,random,ProtLearn,Average volume of buried residue,147
+A5UEN9,random,ProtLearn,Amino acid composition,5
+A5UEN9,random,ProtLearn,Relative mutability,78
+A5UEN9,random,ProtLearn,Composition,0
+A5UEN9,random,ProtLearn,Polarity,8
+A5UEN9,random,ProtLearn,Volume,80
+A5UEN9,random,ProtLearn,Hydrophobicity,1
+A5UEN9,random,ProtLearn,pK (-COOH),2
+A5UEN9,random,ProtLearn,Hydropathy index,0
+P44328,random,ProtLearn,length,315
+P44328,random,ProtLearn,Hydrophobicity index,0
+P44328,random,ProtLearn,Average flexibility indices,0
+P44328,random,ProtLearn,Average volume of buried residue,140
+P44328,random,ProtLearn,Amino acid composition,5
+P44328,random,ProtLearn,Relative mutability,81
+P44328,random,ProtLearn,Composition,0
+P44328,random,ProtLearn,Polarity,8
+P44328,random,ProtLearn,Volume,75
+P44328,random,ProtLearn,Hydrophobicity,1
+P44328,random,ProtLearn,pK (-COOH),2
+P44328,random,ProtLearn,Hydropathy index,0
+P44882,random,ProtLearn,length,168
+P44882,random,ProtLearn,Hydrophobicity index,0
+P44882,random,ProtLearn,Average flexibility indices,0
+P44882,random,ProtLearn,Average volume of buried residue,142
+P44882,random,ProtLearn,Amino acid composition,5
+P44882,random,ProtLearn,Relative mutability,78
+P44882,random,ProtLearn,Composition,0
+P44882,random,ProtLearn,Polarity,8
+P44882,random,ProtLearn,Volume,76
+P44882,random,ProtLearn,Hydrophobicity,1
+P44882,random,ProtLearn,pK (-COOH),2
+P44882,random,ProtLearn,Hydropathy index,0
+P43890,random,ProtLearn,length,1406
+P43890,random,ProtLearn,Hydrophobicity index,0
+P43890,random,ProtLearn,Average flexibility indices,0
+P43890,random,ProtLearn,Average volume of buried residue,140
+P43890,random,ProtLearn,Amino acid composition,5
+P43890,random,ProtLearn,Relative mutability,76
+P43890,random,ProtLearn,Composition,0
+P43890,random,ProtLearn,Polarity,8
+P43890,random,ProtLearn,Volume,76
+P43890,random,ProtLearn,Hydrophobicity,1
+P43890,random,ProtLearn,pK (-COOH),2
+P43890,random,ProtLearn,Hydropathy index,0
+P44826,random,ProtLearn,length,264
+P44826,random,ProtLearn,Hydrophobicity index,1
+P44826,random,ProtLearn,Average flexibility indices,0
+P44826,random,ProtLearn,Average volume of buried residue,137
+P44826,random,ProtLearn,Amino acid composition,6
+P44826,random,ProtLearn,Relative mutability,71
+P44826,random,ProtLearn,Composition,0
+P44826,random,ProtLearn,Polarity,7
+P44826,random,ProtLearn,Volume,72
+P44826,random,ProtLearn,Hydrophobicity,1
+P44826,random,ProtLearn,pK (-COOH),2
+P44826,random,ProtLearn,Hydropathy index,0
+P31810,random,ProtLearn,length,205
+P31810,random,ProtLearn,Hydrophobicity index,0
+P31810,random,ProtLearn,Average flexibility indices,0
+P31810,random,ProtLearn,Average volume of buried residue,145
+P31810,random,ProtLearn,Amino acid composition,5
+P31810,random,ProtLearn,Relative mutability,77
+P31810,random,ProtLearn,Composition,0
+P31810,random,ProtLearn,Polarity,8
+P31810,random,ProtLearn,Volume,79
+P31810,random,ProtLearn,Hydrophobicity,1
+P31810,random,ProtLearn,pK (-COOH),2
+P31810,random,ProtLearn,Hydropathy index,0
+P40134,random,ProtLearn,length,843
+P40134,random,ProtLearn,Hydrophobicity index,0
+P40134,random,ProtLearn,Average flexibility indices,0
+P40134,random,ProtLearn,Average volume of buried residue,150
+P40134,random,ProtLearn,Amino acid composition,5
+P40134,random,ProtLearn,Relative mutability,77
+P40134,random,ProtLearn,Composition,0
+P40134,random,ProtLearn,Polarity,8
+P40134,random,ProtLearn,Volume,83
+P40134,random,ProtLearn,Hydrophobicity,1
+P40134,random,ProtLearn,pK (-COOH),2
+P40134,random,ProtLearn,Hydropathy index,0
+P51000,random,ProtLearn,length,295
+P51000,random,ProtLearn,Hydrophobicity index,1
+P51000,random,ProtLearn,Average flexibility indices,0
+P51000,random,ProtLearn,Average volume of buried residue,143
+P51000,random,ProtLearn,Amino acid composition,5
+P51000,random,ProtLearn,Relative mutability,75
+P51000,random,ProtLearn,Composition,0
+P51000,random,ProtLearn,Polarity,7
+P51000,random,ProtLearn,Volume,77
+P51000,random,ProtLearn,Hydrophobicity,1
+P51000,random,ProtLearn,pK (-COOH),2
+P51000,random,ProtLearn,Hydropathy index,0
+P44123,random,ProtLearn,length,141
+P44123,random,ProtLearn,Hydrophobicity index,0
+P44123,random,ProtLearn,Average flexibility indices,0
+P44123,random,ProtLearn,Average volume of buried residue,149
+P44123,random,ProtLearn,Amino acid composition,5
+P44123,random,ProtLearn,Relative mutability,78
+P44123,random,ProtLearn,Composition,0
+P44123,random,ProtLearn,Polarity,8
+P44123,random,ProtLearn,Volume,83
+P44123,random,ProtLearn,Hydrophobicity,1
+P44123,random,ProtLearn,pK (-COOH),2
+P44123,random,ProtLearn,Hydropathy index,0
+P44376,random,ProtLearn,length,156
+P44376,random,ProtLearn,Hydrophobicity index,0
+P44376,random,ProtLearn,Average flexibility indices,0
+P44376,random,ProtLearn,Average volume of buried residue,145
+P44376,random,ProtLearn,Amino acid composition,6
+P44376,random,ProtLearn,Relative mutability,78
+P44376,random,ProtLearn,Composition,0
+P44376,random,ProtLearn,Polarity,8
+P44376,random,ProtLearn,Volume,79
+P44376,random,ProtLearn,Hydrophobicity,1
+P44376,random,ProtLearn,pK (-COOH),2
+P44376,random,ProtLearn,Hydropathy index,0
+P22236,random,ProtLearn,length,394
+P22236,random,ProtLearn,Hydrophobicity index,0
+P22236,random,ProtLearn,Average flexibility indices,0
+P22236,random,ProtLearn,Average volume of buried residue,137
+P22236,random,ProtLearn,Amino acid composition,6
+P22236,random,ProtLearn,Relative mutability,81
+P22236,random,ProtLearn,Composition,0
+P22236,random,ProtLearn,Polarity,8
+P22236,random,ProtLearn,Volume,71
+P22236,random,ProtLearn,Hydrophobicity,1
+P22236,random,ProtLearn,pK (-COOH),2
+P22236,random,ProtLearn,Hydropathy index,0
+A5UG62,random,ProtLearn,length,298
+A5UG62,random,ProtLearn,Hydrophobicity index,0
+A5UG62,random,ProtLearn,Average flexibility indices,0
+A5UG62,random,ProtLearn,Average volume of buried residue,140
+A5UG62,random,ProtLearn,Amino acid composition,6
+A5UG62,random,ProtLearn,Relative mutability,80
+A5UG62,random,ProtLearn,Composition,0
+A5UG62,random,ProtLearn,Polarity,8
+A5UG62,random,ProtLearn,Volume,74
+A5UG62,random,ProtLearn,Hydrophobicity,1
+A5UG62,random,ProtLearn,pK (-COOH),2
+A5UG62,random,ProtLearn,Hydropathy index,0
+A5UDU5,random,ProtLearn,length,109
+A5UDU5,random,ProtLearn,Hydrophobicity index,0
+A5UDU5,random,ProtLearn,Average flexibility indices,0
+A5UDU5,random,ProtLearn,Average volume of buried residue,145
+A5UDU5,random,ProtLearn,Amino acid composition,6
+A5UDU5,random,ProtLearn,Relative mutability,80
+A5UDU5,random,ProtLearn,Composition,0
+A5UDU5,random,ProtLearn,Polarity,8
+A5UDU5,random,ProtLearn,Volume,81
+A5UDU5,random,ProtLearn,Hydrophobicity,1
+A5UDU5,random,ProtLearn,pK (-COOH),2
+A5UDU5,random,ProtLearn,Hydropathy index,0
+Q4QNM3,random,ProtLearn,length,246
+Q4QNM3,random,ProtLearn,Hydrophobicity index,0
+Q4QNM3,random,ProtLearn,Average flexibility indices,0
+Q4QNM3,random,ProtLearn,Average volume of buried residue,136
+Q4QNM3,random,ProtLearn,Amino acid composition,6
+Q4QNM3,random,ProtLearn,Relative mutability,81
+Q4QNM3,random,ProtLearn,Composition,0
+Q4QNM3,random,ProtLearn,Polarity,8
+Q4QNM3,random,ProtLearn,Volume,71
+Q4QNM3,random,ProtLearn,Hydrophobicity,1
+Q4QNM3,random,ProtLearn,pK (-COOH),2
+Q4QNM3,random,ProtLearn,Hydropathy index,0
+A5UDJ5,random,ProtLearn,length,85
+A5UDJ5,random,ProtLearn,Hydrophobicity index,0
+A5UDJ5,random,ProtLearn,Average flexibility indices,0
+A5UDJ5,random,ProtLearn,Average volume of buried residue,137
+A5UDJ5,random,ProtLearn,Amino acid composition,6
+A5UDJ5,random,ProtLearn,Relative mutability,77
+A5UDJ5,random,ProtLearn,Composition,0
+A5UDJ5,random,ProtLearn,Polarity,8
+A5UDJ5,random,ProtLearn,Volume,73
+A5UDJ5,random,ProtLearn,Hydrophobicity,1
+A5UDJ5,random,ProtLearn,pK (-COOH),2
+A5UDJ5,random,ProtLearn,Hydropathy index,0
+P45345,random,ProtLearn,length,781
+P45345,random,ProtLearn,Hydrophobicity index,0
+P45345,random,ProtLearn,Average flexibility indices,0
+P45345,random,ProtLearn,Average volume of buried residue,146
+P45345,random,ProtLearn,Amino acid composition,5
+P45345,random,ProtLearn,Relative mutability,78
+P45345,random,ProtLearn,Composition,0
+P45345,random,ProtLearn,Polarity,8
+P45345,random,ProtLearn,Volume,79
+P45345,random,ProtLearn,Hydrophobicity,1
+P45345,random,ProtLearn,pK (-COOH),2
+P45345,random,ProtLearn,Hydropathy index,0
+P45024,random,ProtLearn,length,257
+P45024,random,ProtLearn,Hydrophobicity index,0
+P45024,random,ProtLearn,Average flexibility indices,0
+P45024,random,ProtLearn,Average volume of buried residue,142
+P45024,random,ProtLearn,Amino acid composition,6
+P45024,random,ProtLearn,Relative mutability,77
+P45024,random,ProtLearn,Composition,0
+P45024,random,ProtLearn,Polarity,8
+P45024,random,ProtLearn,Volume,77
+P45024,random,ProtLearn,Hydrophobicity,1
+P45024,random,ProtLearn,pK (-COOH),2
+P45024,random,ProtLearn,Hydropathy index,0
+P44159,random,ProtLearn,length,194
+P44159,random,ProtLearn,Hydrophobicity index,1
+P44159,random,ProtLearn,Average flexibility indices,0
+P44159,random,ProtLearn,Average volume of buried residue,156
+P44159,random,ProtLearn,Amino acid composition,5
+P44159,random,ProtLearn,Relative mutability,76
+P44159,random,ProtLearn,Composition,0
+P44159,random,ProtLearn,Polarity,8
+P44159,random,ProtLearn,Volume,88
+P44159,random,ProtLearn,Hydrophobicity,1
+P44159,random,ProtLearn,pK (-COOH),2
+P44159,random,ProtLearn,Hydropathy index,0
+A5UGC4,random,ProtLearn,length,302
+A5UGC4,random,ProtLearn,Hydrophobicity index,0
+A5UGC4,random,ProtLearn,Average flexibility indices,0
+A5UGC4,random,ProtLearn,Average volume of buried residue,149
+A5UGC4,random,ProtLearn,Amino acid composition,5
+A5UGC4,random,ProtLearn,Relative mutability,76
+A5UGC4,random,ProtLearn,Composition,0
+A5UGC4,random,ProtLearn,Polarity,8
+A5UGC4,random,ProtLearn,Volume,83
+A5UGC4,random,ProtLearn,Hydrophobicity,1
+A5UGC4,random,ProtLearn,pK (-COOH),2
+A5UGC4,random,ProtLearn,Hydropathy index,0
+P44627,random,ProtLearn,length,483
+P44627,random,ProtLearn,Hydrophobicity index,0
+P44627,random,ProtLearn,Average flexibility indices,0
+P44627,random,ProtLearn,Average volume of buried residue,144
+P44627,random,ProtLearn,Amino acid composition,5
+P44627,random,ProtLearn,Relative mutability,77
+P44627,random,ProtLearn,Composition,0
+P44627,random,ProtLearn,Polarity,8
+P44627,random,ProtLearn,Volume,78
+P44627,random,ProtLearn,Hydrophobicity,1
+P44627,random,ProtLearn,pK (-COOH),2
+P44627,random,ProtLearn,Hydropathy index,0
+A5UDD6,random,ProtLearn,length,436
+A5UDD6,random,ProtLearn,Hydrophobicity index,0
+A5UDD6,random,ProtLearn,Average flexibility indices,0
+A5UDD6,random,ProtLearn,Average volume of buried residue,136
+A5UDD6,random,ProtLearn,Amino acid composition,6
+A5UDD6,random,ProtLearn,Relative mutability,81
+A5UDD6,random,ProtLearn,Composition,0
+A5UDD6,random,ProtLearn,Polarity,8
+A5UDD6,random,ProtLearn,Volume,71
+A5UDD6,random,ProtLearn,Hydrophobicity,1
+A5UDD6,random,ProtLearn,pK (-COOH),2
+A5UDD6,random,ProtLearn,Hydropathy index,0
+P45074,random,ProtLearn,length,172
+P45074,random,ProtLearn,Hydrophobicity index,0
+P45074,random,ProtLearn,Average flexibility indices,0
+P45074,random,ProtLearn,Average volume of buried residue,140
+P45074,random,ProtLearn,Amino acid composition,5
+P45074,random,ProtLearn,Relative mutability,82
+P45074,random,ProtLearn,Composition,0
+P45074,random,ProtLearn,Polarity,8
+P45074,random,ProtLearn,Volume,75
+P45074,random,ProtLearn,Hydrophobicity,1
+P45074,random,ProtLearn,pK (-COOH),2
+P45074,random,ProtLearn,Hydropathy index,0
+A5UGE3,random,ProtLearn,length,236
+A5UGE3,random,ProtLearn,Hydrophobicity index,0
+A5UGE3,random,ProtLearn,Average flexibility indices,0
+A5UGE3,random,ProtLearn,Average volume of buried residue,148
+A5UGE3,random,ProtLearn,Amino acid composition,5
+A5UGE3,random,ProtLearn,Relative mutability,72
+A5UGE3,random,ProtLearn,Composition,0
+A5UGE3,random,ProtLearn,Polarity,8
+A5UGE3,random,ProtLearn,Volume,82
+A5UGE3,random,ProtLearn,Hydrophobicity,1
+A5UGE3,random,ProtLearn,pK (-COOH),2
+A5UGE3,random,ProtLearn,Hydropathy index,0
+P44871,random,ProtLearn,length,218
+P44871,random,ProtLearn,Hydrophobicity index,0
+P44871,random,ProtLearn,Average flexibility indices,0
+P44871,random,ProtLearn,Average volume of buried residue,145
+P44871,random,ProtLearn,Amino acid composition,5
+P44871,random,ProtLearn,Relative mutability,75
+P44871,random,ProtLearn,Composition,0
+P44871,random,ProtLearn,Polarity,8
+P44871,random,ProtLearn,Volume,79
+P44871,random,ProtLearn,Hydrophobicity,1
+P44871,random,ProtLearn,pK (-COOH),2
+P44871,random,ProtLearn,Hydropathy index,0
+P43712,random,ProtLearn,length,312
+P43712,random,ProtLearn,Hydrophobicity index,0
+P43712,random,ProtLearn,Average flexibility indices,0
+P43712,random,ProtLearn,Average volume of buried residue,139
+P43712,random,ProtLearn,Amino acid composition,6
+P43712,random,ProtLearn,Relative mutability,78
+P43712,random,ProtLearn,Composition,0
+P43712,random,ProtLearn,Polarity,8
+P43712,random,ProtLearn,Volume,74
+P43712,random,ProtLearn,Hydrophobicity,1
+P43712,random,ProtLearn,pK (-COOH),2
+P43712,random,ProtLearn,Hydropathy index,0
+P43925,random,ProtLearn,length,379
+P43925,random,ProtLearn,Hydrophobicity index,0
+P43925,random,ProtLearn,Average flexibility indices,0
+P43925,random,ProtLearn,Average volume of buried residue,142
+P43925,random,ProtLearn,Amino acid composition,5
+P43925,random,ProtLearn,Relative mutability,81
+P43925,random,ProtLearn,Composition,0
+P43925,random,ProtLearn,Polarity,8
+P43925,random,ProtLearn,Volume,76
+P43925,random,ProtLearn,Hydrophobicity,1
+P43925,random,ProtLearn,pK (-COOH),2
+P43925,random,ProtLearn,Hydropathy index,0
+P44133,random,ProtLearn,length,266
+P44133,random,ProtLearn,Hydrophobicity index,1
+P44133,random,ProtLearn,Average flexibility indices,0
+P44133,random,ProtLearn,Average volume of buried residue,148
+P44133,random,ProtLearn,Amino acid composition,5
+P44133,random,ProtLearn,Relative mutability,73
+P44133,random,ProtLearn,Composition,0
+P44133,random,ProtLearn,Polarity,7
+P44133,random,ProtLearn,Volume,84
+P44133,random,ProtLearn,Hydrophobicity,1
+P44133,random,ProtLearn,pK (-COOH),2
+P44133,random,ProtLearn,Hydropathy index,1
+P44658,random,ProtLearn,length,314
+P44658,random,ProtLearn,Hydrophobicity index,0
+P44658,random,ProtLearn,Average flexibility indices,0
+P44658,random,ProtLearn,Average volume of buried residue,145
+P44658,random,ProtLearn,Amino acid composition,5
+P44658,random,ProtLearn,Relative mutability,77
+P44658,random,ProtLearn,Composition,0
+P44658,random,ProtLearn,Polarity,8
+P44658,random,ProtLearn,Volume,79
+P44658,random,ProtLearn,Hydrophobicity,1
+P44658,random,ProtLearn,pK (-COOH),2
+P44658,random,ProtLearn,Hydropathy index,0
+P44198,random,ProtLearn,length,88
+P44198,random,ProtLearn,Hydrophobicity index,0
+P44198,random,ProtLearn,Average flexibility indices,0
+P44198,random,ProtLearn,Average volume of buried residue,149
+P44198,random,ProtLearn,Amino acid composition,5
+P44198,random,ProtLearn,Relative mutability,74
+P44198,random,ProtLearn,Composition,0
+P44198,random,ProtLearn,Polarity,8
+P44198,random,ProtLearn,Volume,84
+P44198,random,ProtLearn,Hydrophobicity,1
+P44198,random,ProtLearn,pK (-COOH),2
+P44198,random,ProtLearn,Hydropathy index,0
+P46450,random,ProtLearn,length,562
+P46450,random,ProtLearn,Hydrophobicity index,0
+P46450,random,ProtLearn,Average flexibility indices,0
+P46450,random,ProtLearn,Average volume of buried residue,147
+P46450,random,ProtLearn,Amino acid composition,5
+P46450,random,ProtLearn,Relative mutability,76
+P46450,random,ProtLearn,Composition,0
+P46450,random,ProtLearn,Polarity,8
+P46450,random,ProtLearn,Volume,81
+P46450,random,ProtLearn,Hydrophobicity,1
+P46450,random,ProtLearn,pK (-COOH),2
+P46450,random,ProtLearn,Hydropathy index,0
+P43761,random,ProtLearn,length,518
+P43761,random,ProtLearn,Hydrophobicity index,0
+P43761,random,ProtLearn,Average flexibility indices,0
+P43761,random,ProtLearn,Average volume of buried residue,143
+P43761,random,ProtLearn,Amino acid composition,5
+P43761,random,ProtLearn,Relative mutability,80
+P43761,random,ProtLearn,Composition,0
+P43761,random,ProtLearn,Polarity,8
+P43761,random,ProtLearn,Volume,76
+P43761,random,ProtLearn,Hydrophobicity,1
+P43761,random,ProtLearn,pK (-COOH),2
+P43761,random,ProtLearn,Hydropathy index,0
+P44301,random,ProtLearn,length,109
+P44301,random,ProtLearn,Hydrophobicity index,1
+P44301,random,ProtLearn,Average flexibility indices,0
+P44301,random,ProtLearn,Average volume of buried residue,153
+P44301,random,ProtLearn,Amino acid composition,5
+P44301,random,ProtLearn,Relative mutability,69
+P44301,random,ProtLearn,Composition,0
+P44301,random,ProtLearn,Polarity,7
+P44301,random,ProtLearn,Volume,87
+P44301,random,ProtLearn,Hydrophobicity,1
+P44301,random,ProtLearn,pK (-COOH),2
+P44301,random,ProtLearn,Hydropathy index,1
+P44492,random,ProtLearn,length,471
+P44492,random,ProtLearn,Hydrophobicity index,0
+P44492,random,ProtLearn,Average flexibility indices,0
+P44492,random,ProtLearn,Average volume of buried residue,147
+P44492,random,ProtLearn,Amino acid composition,5
+P44492,random,ProtLearn,Relative mutability,77
+P44492,random,ProtLearn,Composition,0
+P44492,random,ProtLearn,Polarity,8
+P44492,random,ProtLearn,Volume,81
+P44492,random,ProtLearn,Hydrophobicity,1
+P44492,random,ProtLearn,pK (-COOH),2
+P44492,random,ProtLearn,Hydropathy index,0
+P44664,random,ProtLearn,length,292
+P44664,random,ProtLearn,Hydrophobicity index,0
+P44664,random,ProtLearn,Average flexibility indices,0
+P44664,random,ProtLearn,Average volume of buried residue,144
+P44664,random,ProtLearn,Amino acid composition,5
+P44664,random,ProtLearn,Relative mutability,81
+P44664,random,ProtLearn,Composition,0
+P44664,random,ProtLearn,Polarity,8
+P44664,random,ProtLearn,Volume,78
+P44664,random,ProtLearn,Hydrophobicity,1
+P44664,random,ProtLearn,pK (-COOH),2
+P44664,random,ProtLearn,Hydropathy index,0
+P44337,random,ProtLearn,length,150
+P44337,random,ProtLearn,Hydrophobicity index,0
+P44337,random,ProtLearn,Average flexibility indices,0
+P44337,random,ProtLearn,Average volume of buried residue,148
+P44337,random,ProtLearn,Amino acid composition,5
+P44337,random,ProtLearn,Relative mutability,79
+P44337,random,ProtLearn,Composition,0
+P44337,random,ProtLearn,Polarity,8
+P44337,random,ProtLearn,Volume,83
+P44337,random,ProtLearn,Hydrophobicity,1
+P44337,random,ProtLearn,pK (-COOH),2
+P44337,random,ProtLearn,Hydropathy index,0
+P44794,random,ProtLearn,length,327
+P44794,random,ProtLearn,Hydrophobicity index,0
+P44794,random,ProtLearn,Average flexibility indices,0
+P44794,random,ProtLearn,Average volume of buried residue,147
+P44794,random,ProtLearn,Amino acid composition,5
+P44794,random,ProtLearn,Relative mutability,75
+P44794,random,ProtLearn,Composition,0
+P44794,random,ProtLearn,Polarity,8
+P44794,random,ProtLearn,Volume,80
+P44794,random,ProtLearn,Hydrophobicity,1
+P44794,random,ProtLearn,pK (-COOH),2
+P44794,random,ProtLearn,Hydropathy index,0
+P44199,random,ProtLearn,length,2140
+P44199,random,ProtLearn,Hydrophobicity index,1
+P44199,random,ProtLearn,Average flexibility indices,0
+P44199,random,ProtLearn,Average volume of buried residue,150
+P44199,random,ProtLearn,Amino acid composition,5
+P44199,random,ProtLearn,Relative mutability,79
+P44199,random,ProtLearn,Composition,0
+P44199,random,ProtLearn,Polarity,8
+P44199,random,ProtLearn,Volume,84
+P44199,random,ProtLearn,Hydrophobicity,1
+P44199,random,ProtLearn,pK (-COOH),2
+P44199,random,ProtLearn,Hydropathy index,0
+A5UA77,random,ProtLearn,length,91
+A5UA77,random,ProtLearn,Hydrophobicity index,0
+A5UA77,random,ProtLearn,Average flexibility indices,0
+A5UA77,random,ProtLearn,Average volume of buried residue,145
+A5UA77,random,ProtLearn,Amino acid composition,5
+A5UA77,random,ProtLearn,Relative mutability,83
+A5UA77,random,ProtLearn,Composition,0
+A5UA77,random,ProtLearn,Polarity,8
+A5UA77,random,ProtLearn,Volume,78
+A5UA77,random,ProtLearn,Hydrophobicity,1
+A5UA77,random,ProtLearn,pK (-COOH),2
+A5UA77,random,ProtLearn,Hydropathy index,0
+P45199,random,ProtLearn,length,257
+P45199,random,ProtLearn,Hydrophobicity index,0
+P45199,random,ProtLearn,Average flexibility indices,0
+P45199,random,ProtLearn,Average volume of buried residue,144
+P45199,random,ProtLearn,Amino acid composition,5
+P45199,random,ProtLearn,Relative mutability,79
+P45199,random,ProtLearn,Composition,0
+P45199,random,ProtLearn,Polarity,8
+P45199,random,ProtLearn,Volume,78
+P45199,random,ProtLearn,Hydrophobicity,1
+P45199,random,ProtLearn,pK (-COOH),2
+P45199,random,ProtLearn,Hydropathy index,0
+P44843,random,ProtLearn,length,487
+P44843,random,ProtLearn,Hydrophobicity index,1
+P44843,random,ProtLearn,Average flexibility indices,0
+P44843,random,ProtLearn,Average volume of buried residue,145
+P44843,random,ProtLearn,Amino acid composition,5
+P44843,random,ProtLearn,Relative mutability,73
+P44843,random,ProtLearn,Composition,0
+P44843,random,ProtLearn,Polarity,7
+P44843,random,ProtLearn,Volume,80
+P44843,random,ProtLearn,Hydrophobicity,1
+P44843,random,ProtLearn,pK (-COOH),2
+P44843,random,ProtLearn,Hydropathy index,0
+P45289,random,ProtLearn,length,269
+P45289,random,ProtLearn,Hydrophobicity index,0
+P45289,random,ProtLearn,Average flexibility indices,0
+P45289,random,ProtLearn,Average volume of buried residue,146
+P45289,random,ProtLearn,Amino acid composition,5
+P45289,random,ProtLearn,Relative mutability,80
+P45289,random,ProtLearn,Composition,0
+P45289,random,ProtLearn,Polarity,8
+P45289,random,ProtLearn,Volume,80
+P45289,random,ProtLearn,Hydrophobicity,1
+P45289,random,ProtLearn,pK (-COOH),2
+P45289,random,ProtLearn,Hydropathy index,0
+A5UDN8,random,ProtLearn,length,323
+A5UDN8,random,ProtLearn,Hydrophobicity index,0
+A5UDN8,random,ProtLearn,Average flexibility indices,0
+A5UDN8,random,ProtLearn,Average volume of buried residue,148
+A5UDN8,random,ProtLearn,Amino acid composition,5
+A5UDN8,random,ProtLearn,Relative mutability,78
+A5UDN8,random,ProtLearn,Composition,0
+A5UDN8,random,ProtLearn,Polarity,8
+A5UDN8,random,ProtLearn,Volume,80
+A5UDN8,random,ProtLearn,Hydrophobicity,1
+A5UDN8,random,ProtLearn,pK (-COOH),2
+A5UDN8,random,ProtLearn,Hydropathy index,0
+Q9KIV2,random,ProtLearn,length,1013
+Q9KIV2,random,ProtLearn,Hydrophobicity index,0
+Q9KIV2,random,ProtLearn,Average flexibility indices,0
+Q9KIV2,random,ProtLearn,Average volume of buried residue,146
+Q9KIV2,random,ProtLearn,Amino acid composition,5
+Q9KIV2,random,ProtLearn,Relative mutability,79
+Q9KIV2,random,ProtLearn,Composition,0
+Q9KIV2,random,ProtLearn,Polarity,8
+Q9KIV2,random,ProtLearn,Volume,79
+Q9KIV2,random,ProtLearn,Hydrophobicity,1
+Q9KIV2,random,ProtLearn,pK (-COOH),2
+Q9KIV2,random,ProtLearn,Hydropathy index,0
+P44096,random,ProtLearn,length,324
+P44096,random,ProtLearn,Hydrophobicity index,0
+P44096,random,ProtLearn,Average flexibility indices,0
+P44096,random,ProtLearn,Average volume of buried residue,147
+P44096,random,ProtLearn,Amino acid composition,5
+P44096,random,ProtLearn,Relative mutability,82
+P44096,random,ProtLearn,Composition,0
+P44096,random,ProtLearn,Polarity,8
+P44096,random,ProtLearn,Volume,81
+P44096,random,ProtLearn,Hydrophobicity,1
+P44096,random,ProtLearn,pK (-COOH),2
+P44096,random,ProtLearn,Hydropathy index,0
+A5UAZ2,random,ProtLearn,length,56
+A5UAZ2,random,ProtLearn,Hydrophobicity index,0
+A5UAZ2,random,ProtLearn,Average flexibility indices,0
+A5UAZ2,random,ProtLearn,Average volume of buried residue,144
+A5UAZ2,random,ProtLearn,Amino acid composition,5
+A5UAZ2,random,ProtLearn,Relative mutability,82
+A5UAZ2,random,ProtLearn,Composition,0
+A5UAZ2,random,ProtLearn,Polarity,9
+A5UAZ2,random,ProtLearn,Volume,78
+A5UAZ2,random,ProtLearn,Hydrophobicity,0
+A5UAZ2,random,ProtLearn,pK (-COOH),2
+A5UAZ2,random,ProtLearn,Hydropathy index,-1
+P46455,random,ProtLearn,length,85
+P46455,random,ProtLearn,Hydrophobicity index,1
+P46455,random,ProtLearn,Average flexibility indices,0
+P46455,random,ProtLearn,Average volume of buried residue,152
+P46455,random,ProtLearn,Amino acid composition,5
+P46455,random,ProtLearn,Relative mutability,71
+P46455,random,ProtLearn,Composition,0
+P46455,random,ProtLearn,Polarity,7
+P46455,random,ProtLearn,Volume,86
+P46455,random,ProtLearn,Hydrophobicity,1
+P46455,random,ProtLearn,pK (-COOH),2
+P46455,random,ProtLearn,Hydropathy index,0
+P44103,random,ProtLearn,length,369
+P44103,random,ProtLearn,Hydrophobicity index,0
+P44103,random,ProtLearn,Average flexibility indices,0
+P44103,random,ProtLearn,Average volume of buried residue,143
+P44103,random,ProtLearn,Amino acid composition,5
+P44103,random,ProtLearn,Relative mutability,76
+P44103,random,ProtLearn,Composition,0
+P44103,random,ProtLearn,Polarity,8
+P44103,random,ProtLearn,Volume,77
+P44103,random,ProtLearn,Hydrophobicity,1
+P44103,random,ProtLearn,pK (-COOH),2
+P44103,random,ProtLearn,Hydropathy index,0
+A5UHU3,random,ProtLearn,length,179
+A5UHU3,random,ProtLearn,Hydrophobicity index,0
+A5UHU3,random,ProtLearn,Average flexibility indices,0
+A5UHU3,random,ProtLearn,Average volume of buried residue,147
+A5UHU3,random,ProtLearn,Amino acid composition,5
+A5UHU3,random,ProtLearn,Relative mutability,76
+A5UHU3,random,ProtLearn,Composition,0
+A5UHU3,random,ProtLearn,Polarity,8
+A5UHU3,random,ProtLearn,Volume,81
+A5UHU3,random,ProtLearn,Hydrophobicity,1
+A5UHU3,random,ProtLearn,pK (-COOH),2
+A5UHU3,random,ProtLearn,Hydropathy index,0
+A5UIA3,random,ProtLearn,length,941
+A5UIA3,random,ProtLearn,Hydrophobicity index,0
+A5UIA3,random,ProtLearn,Average flexibility indices,0
+A5UIA3,random,ProtLearn,Average volume of buried residue,145
+A5UIA3,random,ProtLearn,Amino acid composition,5
+A5UIA3,random,ProtLearn,Relative mutability,77
+A5UIA3,random,ProtLearn,Composition,0
+A5UIA3,random,ProtLearn,Polarity,8
+A5UIA3,random,ProtLearn,Volume,79
+A5UIA3,random,ProtLearn,Hydrophobicity,1
+A5UIA3,random,ProtLearn,pK (-COOH),2
+A5UIA3,random,ProtLearn,Hydropathy index,0
+P44427,random,ProtLearn,length,633
+P44427,random,ProtLearn,Hydrophobicity index,0
+P44427,random,ProtLearn,Average flexibility indices,0
+P44427,random,ProtLearn,Average volume of buried residue,136
+P44427,random,ProtLearn,Amino acid composition,6
+P44427,random,ProtLearn,Relative mutability,77
+P44427,random,ProtLearn,Composition,0
+P44427,random,ProtLearn,Polarity,8
+P44427,random,ProtLearn,Volume,71
+P44427,random,ProtLearn,Hydrophobicity,1
+P44427,random,ProtLearn,pK (-COOH),2
+P44427,random,ProtLearn,Hydropathy index,0
+P44439,random,ProtLearn,length,452
+P44439,random,ProtLearn,Hydrophobicity index,0
+P44439,random,ProtLearn,Average flexibility indices,0
+P44439,random,ProtLearn,Average volume of buried residue,151
+P44439,random,ProtLearn,Amino acid composition,5
+P44439,random,ProtLearn,Relative mutability,75
+P44439,random,ProtLearn,Composition,0
+P44439,random,ProtLearn,Polarity,8
+P44439,random,ProtLearn,Volume,83
+P44439,random,ProtLearn,Hydrophobicity,1
+P44439,random,ProtLearn,pK (-COOH),2
+P44439,random,ProtLearn,Hydropathy index,0
+P44179,random,ProtLearn,length,39
+P44179,random,ProtLearn,Hydrophobicity index,0
+P44179,random,ProtLearn,Average flexibility indices,0
+P44179,random,ProtLearn,Average volume of buried residue,143
+P44179,random,ProtLearn,Amino acid composition,5
+P44179,random,ProtLearn,Relative mutability,81
+P44179,random,ProtLearn,Composition,0
+P44179,random,ProtLearn,Polarity,8
+P44179,random,ProtLearn,Volume,77
+P44179,random,ProtLearn,Hydrophobicity,1
+P44179,random,ProtLearn,pK (-COOH),2
+P44179,random,ProtLearn,Hydropathy index,0
+A5UEI7,random,ProtLearn,length,292
+A5UEI7,random,ProtLearn,Hydrophobicity index,0
+A5UEI7,random,ProtLearn,Average flexibility indices,0
+A5UEI7,random,ProtLearn,Average volume of buried residue,143
+A5UEI7,random,ProtLearn,Amino acid composition,5
+A5UEI7,random,ProtLearn,Relative mutability,81
+A5UEI7,random,ProtLearn,Composition,0
+A5UEI7,random,ProtLearn,Polarity,8
+A5UEI7,random,ProtLearn,Volume,76
+A5UEI7,random,ProtLearn,Hydrophobicity,1
+A5UEI7,random,ProtLearn,pK (-COOH),2
+A5UEI7,random,ProtLearn,Hydropathy index,0
+P44428,random,ProtLearn,length,113
+P44428,random,ProtLearn,Hydrophobicity index,0
+P44428,random,ProtLearn,Average flexibility indices,0
+P44428,random,ProtLearn,Average volume of buried residue,138
+P44428,random,ProtLearn,Amino acid composition,5
+P44428,random,ProtLearn,Relative mutability,80
+P44428,random,ProtLearn,Composition,0
+P44428,random,ProtLearn,Polarity,8
+P44428,random,ProtLearn,Volume,71
+P44428,random,ProtLearn,Hydrophobicity,1
+P44428,random,ProtLearn,pK (-COOH),2
+P44428,random,ProtLearn,Hydropathy index,0
+A5UII7,random,ProtLearn,length,197
+A5UII7,random,ProtLearn,Hydrophobicity index,0
+A5UII7,random,ProtLearn,Average flexibility indices,0
+A5UII7,random,ProtLearn,Average volume of buried residue,142
+A5UII7,random,ProtLearn,Amino acid composition,6
+A5UII7,random,ProtLearn,Relative mutability,77
+A5UII7,random,ProtLearn,Composition,0
+A5UII7,random,ProtLearn,Polarity,8
+A5UII7,random,ProtLearn,Volume,77
+A5UII7,random,ProtLearn,Hydrophobicity,1
+A5UII7,random,ProtLearn,pK (-COOH),2
+A5UII7,random,ProtLearn,Hydropathy index,0
+A5UBB0,random,ProtLearn,length,92
+A5UBB0,random,ProtLearn,Hydrophobicity index,0
+A5UBB0,random,ProtLearn,Average flexibility indices,0
+A5UBB0,random,ProtLearn,Average volume of buried residue,148
+A5UBB0,random,ProtLearn,Amino acid composition,5
+A5UBB0,random,ProtLearn,Relative mutability,80
+A5UBB0,random,ProtLearn,Composition,0
+A5UBB0,random,ProtLearn,Polarity,8
+A5UBB0,random,ProtLearn,Volume,84
+A5UBB0,random,ProtLearn,Hydrophobicity,1
+A5UBB0,random,ProtLearn,pK (-COOH),2
+A5UBB0,random,ProtLearn,Hydropathy index,0
+P44236,random,ProtLearn,length,631
+P44236,random,ProtLearn,Hydrophobicity index,0
+P44236,random,ProtLearn,Average flexibility indices,0
+P44236,random,ProtLearn,Average volume of buried residue,135
+P44236,random,ProtLearn,Amino acid composition,6
+P44236,random,ProtLearn,Relative mutability,78
+P44236,random,ProtLearn,Composition,0
+P44236,random,ProtLearn,Polarity,8
+P44236,random,ProtLearn,Volume,70
+P44236,random,ProtLearn,Hydrophobicity,1
+P44236,random,ProtLearn,pK (-COOH),2
+P44236,random,ProtLearn,Hydropathy index,0
+P44638,random,ProtLearn,length,135
+P44638,random,ProtLearn,Hydrophobicity index,0
+P44638,random,ProtLearn,Average flexibility indices,0
+P44638,random,ProtLearn,Average volume of buried residue,141
+P44638,random,ProtLearn,Amino acid composition,5
+P44638,random,ProtLearn,Relative mutability,77
+P44638,random,ProtLearn,Composition,0
+P44638,random,ProtLearn,Polarity,8
+P44638,random,ProtLearn,Volume,75
+P44638,random,ProtLearn,Hydrophobicity,1
+P44638,random,ProtLearn,pK (-COOH),2
+P44638,random,ProtLearn,Hydropathy index,0
+P44007,random,ProtLearn,length,311
+P44007,random,ProtLearn,Hydrophobicity index,0
+P44007,random,ProtLearn,Average flexibility indices,0
+P44007,random,ProtLearn,Average volume of buried residue,142
+P44007,random,ProtLearn,Amino acid composition,5
+P44007,random,ProtLearn,Relative mutability,80
+P44007,random,ProtLearn,Composition,0
+P44007,random,ProtLearn,Polarity,8
+P44007,random,ProtLearn,Volume,75
+P44007,random,ProtLearn,Hydrophobicity,1
+P44007,random,ProtLearn,pK (-COOH),2
+P44007,random,ProtLearn,Hydropathy index,0
+P31770,random,ProtLearn,length,173
+P31770,random,ProtLearn,Hydrophobicity index,0
+P31770,random,ProtLearn,Average flexibility indices,0
+P31770,random,ProtLearn,Average volume of buried residue,151
+P31770,random,ProtLearn,Amino acid composition,5
+P31770,random,ProtLearn,Relative mutability,75
+P31770,random,ProtLearn,Composition,0
+P31770,random,ProtLearn,Polarity,8
+P31770,random,ProtLearn,Volume,84
+P31770,random,ProtLearn,Hydrophobicity,1
+P31770,random,ProtLearn,pK (-COOH),2
+P31770,random,ProtLearn,Hydropathy index,0
+A5UE38,random,ProtLearn,length,105
+A5UE38,random,ProtLearn,Hydrophobicity index,0
+A5UE38,random,ProtLearn,Average flexibility indices,0
+A5UE38,random,ProtLearn,Average volume of buried residue,146
+A5UE38,random,ProtLearn,Amino acid composition,5
+A5UE38,random,ProtLearn,Relative mutability,78
+A5UE38,random,ProtLearn,Composition,0
+A5UE38,random,ProtLearn,Polarity,8
+A5UE38,random,ProtLearn,Volume,79
+A5UE38,random,ProtLearn,Hydrophobicity,1
+A5UE38,random,ProtLearn,pK (-COOH),2
+A5UE38,random,ProtLearn,Hydropathy index,0
+Q57380,random,ProtLearn,length,119
+Q57380,random,ProtLearn,Hydrophobicity index,1
+Q57380,random,ProtLearn,Average flexibility indices,0
+Q57380,random,ProtLearn,Average volume of buried residue,146
+Q57380,random,ProtLearn,Amino acid composition,5
+Q57380,random,ProtLearn,Relative mutability,74
+Q57380,random,ProtLearn,Composition,0
+Q57380,random,ProtLearn,Polarity,7
+Q57380,random,ProtLearn,Volume,81
+Q57380,random,ProtLearn,Hydrophobicity,1
+Q57380,random,ProtLearn,pK (-COOH),2
+Q57380,random,ProtLearn,Hydropathy index,0
+O86243,random,ProtLearn,length,59
+O86243,random,ProtLearn,Hydrophobicity index,0
+O86243,random,ProtLearn,Average flexibility indices,0
+O86243,random,ProtLearn,Average volume of buried residue,150
+O86243,random,ProtLearn,Amino acid composition,4
+O86243,random,ProtLearn,Relative mutability,78
+O86243,random,ProtLearn,Composition,0
+O86243,random,ProtLearn,Polarity,8
+O86243,random,ProtLearn,Volume,81
+O86243,random,ProtLearn,Hydrophobicity,1
+O86243,random,ProtLearn,pK (-COOH),2
+O86243,random,ProtLearn,Hydropathy index,0
+P44294,random,ProtLearn,length,46
+P44294,random,ProtLearn,Hydrophobicity index,0
+P44294,random,ProtLearn,Average flexibility indices,0
+P44294,random,ProtLearn,Average volume of buried residue,137
+P44294,random,ProtLearn,Amino acid composition,6
+P44294,random,ProtLearn,Relative mutability,76
+P44294,random,ProtLearn,Composition,0
+P44294,random,ProtLearn,Polarity,8
+P44294,random,ProtLearn,Volume,73
+P44294,random,ProtLearn,Hydrophobicity,1
+P44294,random,ProtLearn,pK (-COOH),2
+P44294,random,ProtLearn,Hydropathy index,0
+P44621,random,ProtLearn,length,406
+P44621,random,ProtLearn,Hydrophobicity index,0
+P44621,random,ProtLearn,Average flexibility indices,0
+P44621,random,ProtLearn,Average volume of buried residue,150
+P44621,random,ProtLearn,Amino acid composition,5
+P44621,random,ProtLearn,Relative mutability,77
+P44621,random,ProtLearn,Composition,0
+P44621,random,ProtLearn,Polarity,8
+P44621,random,ProtLearn,Volume,84
+P44621,random,ProtLearn,Hydrophobicity,1
+P44621,random,ProtLearn,pK (-COOH),2
+P44621,random,ProtLearn,Hydropathy index,0
+A5UH41,random,ProtLearn,length,271
+A5UH41,random,ProtLearn,Hydrophobicity index,0
+A5UH41,random,ProtLearn,Average flexibility indices,0
+A5UH41,random,ProtLearn,Average volume of buried residue,145
+A5UH41,random,ProtLearn,Amino acid composition,5
+A5UH41,random,ProtLearn,Relative mutability,79
+A5UH41,random,ProtLearn,Composition,0
+A5UH41,random,ProtLearn,Polarity,8
+A5UH41,random,ProtLearn,Volume,79
+A5UH41,random,ProtLearn,Hydrophobicity,1
+A5UH41,random,ProtLearn,pK (-COOH),2
+A5UH41,random,ProtLearn,Hydropathy index,0
+P44255,random,ProtLearn,length,178
+P44255,random,ProtLearn,Hydrophobicity index,0
+P44255,random,ProtLearn,Average flexibility indices,0
+P44255,random,ProtLearn,Average volume of buried residue,148
+P44255,random,ProtLearn,Amino acid composition,5
+P44255,random,ProtLearn,Relative mutability,76
+P44255,random,ProtLearn,Composition,0
+P44255,random,ProtLearn,Polarity,8
+P44255,random,ProtLearn,Volume,81
+P44255,random,ProtLearn,Hydrophobicity,1
+P44255,random,ProtLearn,pK (-COOH),2
+P44255,random,ProtLearn,Hydropathy index,0
+P45038,random,ProtLearn,length,181
+P45038,random,ProtLearn,Hydrophobicity index,1
+P45038,random,ProtLearn,Average flexibility indices,0
+P45038,random,ProtLearn,Average volume of buried residue,147
+P45038,random,ProtLearn,Amino acid composition,5
+P45038,random,ProtLearn,Relative mutability,72
+P45038,random,ProtLearn,Composition,0
+P45038,random,ProtLearn,Polarity,8
+P45038,random,ProtLearn,Volume,82
+P45038,random,ProtLearn,Hydrophobicity,1
+P45038,random,ProtLearn,pK (-COOH),2
+P45038,random,ProtLearn,Hydropathy index,0
+Q4QLS3,random,ProtLearn,length,358
+Q4QLS3,random,ProtLearn,Hydrophobicity index,0
+Q4QLS3,random,ProtLearn,Average flexibility indices,0
+Q4QLS3,random,ProtLearn,Average volume of buried residue,139
+Q4QLS3,random,ProtLearn,Amino acid composition,5
+Q4QLS3,random,ProtLearn,Relative mutability,78
+Q4QLS3,random,ProtLearn,Composition,0
+Q4QLS3,random,ProtLearn,Polarity,8
+Q4QLS3,random,ProtLearn,Volume,73
+Q4QLS3,random,ProtLearn,Hydrophobicity,1
+Q4QLS3,random,ProtLearn,pK (-COOH),2
+Q4QLS3,random,ProtLearn,Hydropathy index,0
+P43837,random,ProtLearn,length,756
+P43837,random,ProtLearn,Hydrophobicity index,0
+P43837,random,ProtLearn,Average flexibility indices,0
+P43837,random,ProtLearn,Average volume of buried residue,140
+P43837,random,ProtLearn,Amino acid composition,5
+P43837,random,ProtLearn,Relative mutability,79
+P43837,random,ProtLearn,Composition,0
+P43837,random,ProtLearn,Polarity,8
+P43837,random,ProtLearn,Volume,74
+P43837,random,ProtLearn,Hydrophobicity,1
+P43837,random,ProtLearn,pK (-COOH),2
+P43837,random,ProtLearn,Hydropathy index,0
+A5UDJ8,random,ProtLearn,length,140
+A5UDJ8,random,ProtLearn,Hydrophobicity index,0
+A5UDJ8,random,ProtLearn,Average flexibility indices,0
+A5UDJ8,random,ProtLearn,Average volume of buried residue,147
+A5UDJ8,random,ProtLearn,Amino acid composition,5
+A5UDJ8,random,ProtLearn,Relative mutability,82
+A5UDJ8,random,ProtLearn,Composition,0
+A5UDJ8,random,ProtLearn,Polarity,8
+A5UDJ8,random,ProtLearn,Volume,80
+A5UDJ8,random,ProtLearn,Hydrophobicity,1
+A5UDJ8,random,ProtLearn,pK (-COOH),2
+A5UDJ8,random,ProtLearn,Hydropathy index,0
+P63196,random,ProtLearn,length,124
+P63196,random,ProtLearn,Hydrophobicity index,0
+P63196,random,ProtLearn,Average flexibility indices,0
+P63196,random,ProtLearn,Average volume of buried residue,143
+P63196,random,ProtLearn,Amino acid composition,5
+P63196,random,ProtLearn,Relative mutability,72
+P63196,random,ProtLearn,Composition,0
+P63196,random,ProtLearn,Polarity,8
+P63196,random,ProtLearn,Volume,77
+P63196,random,ProtLearn,Hydrophobicity,1
+P63196,random,ProtLearn,pK (-COOH),2
+P63196,random,ProtLearn,Hydropathy index,0
+P43773,random,ProtLearn,length,5919
+P43773,random,ProtLearn,Hydrophobicity index,0
+P43773,random,ProtLearn,Average flexibility indices,0
+P43773,random,ProtLearn,Average volume of buried residue,142
+P43773,random,ProtLearn,Amino acid composition,6
+P43773,random,ProtLearn,Relative mutability,81
+P43773,random,ProtLearn,Composition,0
+P43773,random,ProtLearn,Polarity,8
+P43773,random,ProtLearn,Volume,77
+P43773,random,ProtLearn,Hydrophobicity,1
+P43773,random,ProtLearn,pK (-COOH),2
+P43773,random,ProtLearn,Hydropathy index,0
+P45114,random,ProtLearn,length,913
+P45114,random,ProtLearn,Hydrophobicity index,0
+P45114,random,ProtLearn,Average flexibility indices,0
+P45114,random,ProtLearn,Average volume of buried residue,144
+P45114,random,ProtLearn,Amino acid composition,5
+P45114,random,ProtLearn,Relative mutability,79
+P45114,random,ProtLearn,Composition,0
+P45114,random,ProtLearn,Polarity,8
+P45114,random,ProtLearn,Volume,77
+P45114,random,ProtLearn,Hydrophobicity,1
+P45114,random,ProtLearn,pK (-COOH),2
+P45114,random,ProtLearn,Hydropathy index,0
+P44227,random,ProtLearn,length,308
+P44227,random,ProtLearn,Hydrophobicity index,0
+P44227,random,ProtLearn,Average flexibility indices,0
+P44227,random,ProtLearn,Average volume of buried residue,141
+P44227,random,ProtLearn,Amino acid composition,5
+P44227,random,ProtLearn,Relative mutability,78
+P44227,random,ProtLearn,Composition,0
+P44227,random,ProtLearn,Polarity,8
+P44227,random,ProtLearn,Volume,75
+P44227,random,ProtLearn,Hydrophobicity,1
+P44227,random,ProtLearn,pK (-COOH),2
+P44227,random,ProtLearn,Hydropathy index,0
+P45148,random,ProtLearn,length,1315
+P45148,random,ProtLearn,Hydrophobicity index,0
+P45148,random,ProtLearn,Average flexibility indices,0
+P45148,random,ProtLearn,Average volume of buried residue,147
+P45148,random,ProtLearn,Amino acid composition,5
+P45148,random,ProtLearn,Relative mutability,77
+P45148,random,ProtLearn,Composition,0
+P45148,random,ProtLearn,Polarity,8
+P45148,random,ProtLearn,Volume,81
+P45148,random,ProtLearn,Hydrophobicity,1
+P45148,random,ProtLearn,pK (-COOH),2
+P45148,random,ProtLearn,Hydropathy index,0
+P44276,random,ProtLearn,length,227
+P44276,random,ProtLearn,Hydrophobicity index,0
+P44276,random,ProtLearn,Average flexibility indices,0
+P44276,random,ProtLearn,Average volume of buried residue,145
+P44276,random,ProtLearn,Amino acid composition,5
+P44276,random,ProtLearn,Relative mutability,78
+P44276,random,ProtLearn,Composition,0
+P44276,random,ProtLearn,Polarity,8
+P44276,random,ProtLearn,Volume,78
+P44276,random,ProtLearn,Hydrophobicity,1
+P44276,random,ProtLearn,pK (-COOH),2
+P44276,random,ProtLearn,Hydropathy index,0
+P45267,random,ProtLearn,length,352
+P45267,random,ProtLearn,Hydrophobicity index,0
+P45267,random,ProtLearn,Average flexibility indices,0
+P45267,random,ProtLearn,Average volume of buried residue,152
+P45267,random,ProtLearn,Amino acid composition,5
+P45267,random,ProtLearn,Relative mutability,76
+P45267,random,ProtLearn,Composition,0
+P45267,random,ProtLearn,Polarity,8
+P45267,random,ProtLearn,Volume,86
+P45267,random,ProtLearn,Hydrophobicity,1
+P45267,random,ProtLearn,pK (-COOH),2
+P45267,random,ProtLearn,Hydropathy index,0
+P44798,random,ProtLearn,length,763
+P44798,random,ProtLearn,Hydrophobicity index,0
+P44798,random,ProtLearn,Average flexibility indices,0
+P44798,random,ProtLearn,Average volume of buried residue,142
+P44798,random,ProtLearn,Amino acid composition,5
+P44798,random,ProtLearn,Relative mutability,77
+P44798,random,ProtLearn,Composition,0
+P44798,random,ProtLearn,Polarity,8
+P44798,random,ProtLearn,Volume,75
+P44798,random,ProtLearn,Hydrophobicity,1
+P44798,random,ProtLearn,pK (-COOH),2
+P44798,random,ProtLearn,Hydropathy index,0
+P44415,random,ProtLearn,length,431
+P44415,random,ProtLearn,Hydrophobicity index,0
+P44415,random,ProtLearn,Average flexibility indices,0
+P44415,random,ProtLearn,Average volume of buried residue,140
+P44415,random,ProtLearn,Amino acid composition,5
+P44415,random,ProtLearn,Relative mutability,85
+P44415,random,ProtLearn,Composition,0
+P44415,random,ProtLearn,Polarity,8
+P44415,random,ProtLearn,Volume,73
+P44415,random,ProtLearn,Hydrophobicity,1
+P44415,random,ProtLearn,pK (-COOH),2
+P44415,random,ProtLearn,Hydropathy index,0
+P44566,random,ProtLearn,length,286
+P44566,random,ProtLearn,Hydrophobicity index,0
+P44566,random,ProtLearn,Average flexibility indices,0
+P44566,random,ProtLearn,Average volume of buried residue,142
+P44566,random,ProtLearn,Amino acid composition,5
+P44566,random,ProtLearn,Relative mutability,75
+P44566,random,ProtLearn,Composition,0
+P44566,random,ProtLearn,Polarity,8
+P44566,random,ProtLearn,Volume,74
+P44566,random,ProtLearn,Hydrophobicity,1
+P44566,random,ProtLearn,pK (-COOH),2
+P44566,random,ProtLearn,Hydropathy index,0
+A5UDW7,random,ProtLearn,length,70
+A5UDW7,random,ProtLearn,Hydrophobicity index,0
+A5UDW7,random,ProtLearn,Average flexibility indices,0
+A5UDW7,random,ProtLearn,Average volume of buried residue,142
+A5UDW7,random,ProtLearn,Amino acid composition,5
+A5UDW7,random,ProtLearn,Relative mutability,75
+A5UDW7,random,ProtLearn,Composition,0
+A5UDW7,random,ProtLearn,Polarity,8
+A5UDW7,random,ProtLearn,Volume,76
+A5UDW7,random,ProtLearn,Hydrophobicity,1
+A5UDW7,random,ProtLearn,pK (-COOH),2
+A5UDW7,random,ProtLearn,Hydropathy index,0
+A5UG90,random,ProtLearn,length,213
+A5UG90,random,ProtLearn,Hydrophobicity index,0
+A5UG90,random,ProtLearn,Average flexibility indices,0
+A5UG90,random,ProtLearn,Average volume of buried residue,144
+A5UG90,random,ProtLearn,Amino acid composition,5
+A5UG90,random,ProtLearn,Relative mutability,77
+A5UG90,random,ProtLearn,Composition,0
+A5UG90,random,ProtLearn,Polarity,8
+A5UG90,random,ProtLearn,Volume,77
+A5UG90,random,ProtLearn,Hydrophobicity,1
+A5UG90,random,ProtLearn,pK (-COOH),2
+A5UG90,random,ProtLearn,Hydropathy index,0
+P44569,random,ProtLearn,length,565
+P44569,random,ProtLearn,Hydrophobicity index,0
+P44569,random,ProtLearn,Average flexibility indices,0
+P44569,random,ProtLearn,Average volume of buried residue,142
+P44569,random,ProtLearn,Amino acid composition,5
+P44569,random,ProtLearn,Relative mutability,79
+P44569,random,ProtLearn,Composition,0
+P44569,random,ProtLearn,Polarity,8
+P44569,random,ProtLearn,Volume,76
+P44569,random,ProtLearn,Hydrophobicity,1
+P44569,random,ProtLearn,pK (-COOH),2
+P44569,random,ProtLearn,Hydropathy index,0
+P45022,random,ProtLearn,length,257
+P45022,random,ProtLearn,Hydrophobicity index,0
+P45022,random,ProtLearn,Average flexibility indices,0
+P45022,random,ProtLearn,Average volume of buried residue,146
+P45022,random,ProtLearn,Amino acid composition,5
+P45022,random,ProtLearn,Relative mutability,77
+P45022,random,ProtLearn,Composition,0
+P45022,random,ProtLearn,Polarity,8
+P45022,random,ProtLearn,Volume,80
+P45022,random,ProtLearn,Hydrophobicity,1
+P45022,random,ProtLearn,pK (-COOH),2
+P45022,random,ProtLearn,Hydropathy index,0
+P31771,random,ProtLearn,length,137
+P31771,random,ProtLearn,Hydrophobicity index,0
+P31771,random,ProtLearn,Average flexibility indices,0
+P31771,random,ProtLearn,Average volume of buried residue,147
+P31771,random,ProtLearn,Amino acid composition,5
+P31771,random,ProtLearn,Relative mutability,79
+P31771,random,ProtLearn,Composition,0
+P31771,random,ProtLearn,Polarity,8
+P31771,random,ProtLearn,Volume,81
+P31771,random,ProtLearn,Hydrophobicity,1
+P31771,random,ProtLearn,pK (-COOH),2
+P31771,random,ProtLearn,Hydropathy index,0
+P45337,random,ProtLearn,length,221
+P45337,random,ProtLearn,Hydrophobicity index,0
+P45337,random,ProtLearn,Average flexibility indices,0
+P45337,random,ProtLearn,Average volume of buried residue,146
+P45337,random,ProtLearn,Amino acid composition,5
+P45337,random,ProtLearn,Relative mutability,75
+P45337,random,ProtLearn,Composition,0
+P45337,random,ProtLearn,Polarity,8
+P45337,random,ProtLearn,Volume,80
+P45337,random,ProtLearn,Hydrophobicity,1
+P45337,random,ProtLearn,pK (-COOH),2
+P45337,random,ProtLearn,Hydropathy index,0
+P44861,random,ProtLearn,length,382
+P44861,random,ProtLearn,Hydrophobicity index,0
+P44861,random,ProtLearn,Average flexibility indices,0
+P44861,random,ProtLearn,Average volume of buried residue,142
+P44861,random,ProtLearn,Amino acid composition,5
+P44861,random,ProtLearn,Relative mutability,77
+P44861,random,ProtLearn,Composition,0
+P44861,random,ProtLearn,Polarity,8
+P44861,random,ProtLearn,Volume,76
+P44861,random,ProtLearn,Hydrophobicity,1
+P44861,random,ProtLearn,pK (-COOH),2
+P44861,random,ProtLearn,Hydropathy index,0
+P44875,random,ProtLearn,length,217
+P44875,random,ProtLearn,Hydrophobicity index,0
+P44875,random,ProtLearn,Average flexibility indices,0
+P44875,random,ProtLearn,Average volume of buried residue,138
+P44875,random,ProtLearn,Amino acid composition,6
+P44875,random,ProtLearn,Relative mutability,78
+P44875,random,ProtLearn,Composition,0
+P44875,random,ProtLearn,Polarity,8
+P44875,random,ProtLearn,Volume,73
+P44875,random,ProtLearn,Hydrophobicity,1
+P44875,random,ProtLearn,pK (-COOH),2
+P44875,random,ProtLearn,Hydropathy index,0
+A5UBU4,random,ProtLearn,length,279
+A5UBU4,random,ProtLearn,Hydrophobicity index,0
+A5UBU4,random,ProtLearn,Average flexibility indices,0
+A5UBU4,random,ProtLearn,Average volume of buried residue,150
+A5UBU4,random,ProtLearn,Amino acid composition,5
+A5UBU4,random,ProtLearn,Relative mutability,78
+A5UBU4,random,ProtLearn,Composition,0
+A5UBU4,random,ProtLearn,Polarity,8
+A5UBU4,random,ProtLearn,Volume,83
+A5UBU4,random,ProtLearn,Hydrophobicity,1
+A5UBU4,random,ProtLearn,pK (-COOH),2
+A5UBU4,random,ProtLearn,Hydropathy index,0
+A5UDT9,random,ProtLearn,length,63
+A5UDT9,random,ProtLearn,Hydrophobicity index,0
+A5UDT9,random,ProtLearn,Average flexibility indices,0
+A5UDT9,random,ProtLearn,Average volume of buried residue,147
+A5UDT9,random,ProtLearn,Amino acid composition,5
+A5UDT9,random,ProtLearn,Relative mutability,79
+A5UDT9,random,ProtLearn,Composition,0
+A5UDT9,random,ProtLearn,Polarity,8
+A5UDT9,random,ProtLearn,Volume,82
+A5UDT9,random,ProtLearn,Hydrophobicity,0
+A5UDT9,random,ProtLearn,pK (-COOH),2
+A5UDT9,random,ProtLearn,Hydropathy index,0
+Q4QNL7,random,ProtLearn,length,134
+Q4QNL7,random,ProtLearn,Hydrophobicity index,1
+Q4QNL7,random,ProtLearn,Average flexibility indices,0
+Q4QNL7,random,ProtLearn,Average volume of buried residue,152
+Q4QNL7,random,ProtLearn,Amino acid composition,5
+Q4QNL7,random,ProtLearn,Relative mutability,78
+Q4QNL7,random,ProtLearn,Composition,0
+Q4QNL7,random,ProtLearn,Polarity,8
+Q4QNL7,random,ProtLearn,Volume,86
+Q4QNL7,random,ProtLearn,Hydrophobicity,1
+Q4QNL7,random,ProtLearn,pK (-COOH),2
+Q4QNL7,random,ProtLearn,Hydropathy index,0
+P44828,random,ProtLearn,length,323
+P44828,random,ProtLearn,Hydrophobicity index,0
+P44828,random,ProtLearn,Average flexibility indices,0
+P44828,random,ProtLearn,Average volume of buried residue,142
+P44828,random,ProtLearn,Amino acid composition,5
+P44828,random,ProtLearn,Relative mutability,80
+P44828,random,ProtLearn,Composition,0
+P44828,random,ProtLearn,Polarity,8
+P44828,random,ProtLearn,Volume,76
+P44828,random,ProtLearn,Hydrophobicity,1
+P44828,random,ProtLearn,pK (-COOH),2
+P44828,random,ProtLearn,Hydropathy index,0
+P44078,random,ProtLearn,length,161
+P44078,random,ProtLearn,Hydrophobicity index,0
+P44078,random,ProtLearn,Average flexibility indices,0
+P44078,random,ProtLearn,Average volume of buried residue,150
+P44078,random,ProtLearn,Amino acid composition,5
+P44078,random,ProtLearn,Relative mutability,75
+P44078,random,ProtLearn,Composition,0
+P44078,random,ProtLearn,Polarity,8
+P44078,random,ProtLearn,Volume,84
+P44078,random,ProtLearn,Hydrophobicity,1
+P44078,random,ProtLearn,pK (-COOH),2
+P44078,random,ProtLearn,Hydropathy index,0
+P44914,random,ProtLearn,length,338
+P44914,random,ProtLearn,Hydrophobicity index,0
+P44914,random,ProtLearn,Average flexibility indices,0
+P44914,random,ProtLearn,Average volume of buried residue,145
+P44914,random,ProtLearn,Amino acid composition,5
+P44914,random,ProtLearn,Relative mutability,79
+P44914,random,ProtLearn,Composition,0
+P44914,random,ProtLearn,Polarity,8
+P44914,random,ProtLearn,Volume,79
+P44914,random,ProtLearn,Hydrophobicity,1
+P44914,random,ProtLearn,pK (-COOH),2
+P44914,random,ProtLearn,Hydropathy index,0
+P44838,random,ProtLearn,length,411
+P44838,random,ProtLearn,Hydrophobicity index,0
+P44838,random,ProtLearn,Average flexibility indices,0
+P44838,random,ProtLearn,Average volume of buried residue,143
+P44838,random,ProtLearn,Amino acid composition,5
+P44838,random,ProtLearn,Relative mutability,78
+P44838,random,ProtLearn,Composition,0
+P44838,random,ProtLearn,Polarity,8
+P44838,random,ProtLearn,Volume,78
+P44838,random,ProtLearn,Hydrophobicity,1
+P44838,random,ProtLearn,pK (-COOH),2
+P44838,random,ProtLearn,Hydropathy index,0
+A4N8V8,random,ProtLearn,length,293
+A4N8V8,random,ProtLearn,Hydrophobicity index,0
+A4N8V8,random,ProtLearn,Average flexibility indices,0
+A4N8V8,random,ProtLearn,Average volume of buried residue,143
+A4N8V8,random,ProtLearn,Amino acid composition,5
+A4N8V8,random,ProtLearn,Relative mutability,79
+A4N8V8,random,ProtLearn,Composition,0
+A4N8V8,random,ProtLearn,Polarity,8
+A4N8V8,random,ProtLearn,Volume,77
+A4N8V8,random,ProtLearn,Hydrophobicity,1
+A4N8V8,random,ProtLearn,pK (-COOH),2
+A4N8V8,random,ProtLearn,Hydropathy index,0
+P44500,random,ProtLearn,length,262
+P44500,random,ProtLearn,Hydrophobicity index,0
+P44500,random,ProtLearn,Average flexibility indices,0
+P44500,random,ProtLearn,Average volume of buried residue,147
+P44500,random,ProtLearn,Amino acid composition,5
+P44500,random,ProtLearn,Relative mutability,75
+P44500,random,ProtLearn,Composition,0
+P44500,random,ProtLearn,Polarity,8
+P44500,random,ProtLearn,Volume,81
+P44500,random,ProtLearn,Hydrophobicity,1
+P44500,random,ProtLearn,pK (-COOH),2
+P44500,random,ProtLearn,Hydropathy index,0
+Q57017,random,ProtLearn,length,81
+Q57017,random,ProtLearn,Hydrophobicity index,0
+Q57017,random,ProtLearn,Average flexibility indices,0
+Q57017,random,ProtLearn,Average volume of buried residue,142
+Q57017,random,ProtLearn,Amino acid composition,5
+Q57017,random,ProtLearn,Relative mutability,82
+Q57017,random,ProtLearn,Composition,0
+Q57017,random,ProtLearn,Polarity,8
+Q57017,random,ProtLearn,Volume,77
+Q57017,random,ProtLearn,Hydrophobicity,1
+Q57017,random,ProtLearn,pK (-COOH),2
+Q57017,random,ProtLearn,Hydropathy index,0
+P45052,random,ProtLearn,length,323
+P45052,random,ProtLearn,Hydrophobicity index,0
+P45052,random,ProtLearn,Average flexibility indices,0
+P45052,random,ProtLearn,Average volume of buried residue,143
+P45052,random,ProtLearn,Amino acid composition,5
+P45052,random,ProtLearn,Relative mutability,77
+P45052,random,ProtLearn,Composition,0
+P45052,random,ProtLearn,Polarity,8
+P45052,random,ProtLearn,Volume,76
+P45052,random,ProtLearn,Hydrophobicity,1
+P45052,random,ProtLearn,pK (-COOH),2
+P45052,random,ProtLearn,Hydropathy index,0
+P45106,random,ProtLearn,length,314
+P45106,random,ProtLearn,Hydrophobicity index,0
+P45106,random,ProtLearn,Average flexibility indices,0
+P45106,random,ProtLearn,Average volume of buried residue,146
+P45106,random,ProtLearn,Amino acid composition,5
+P45106,random,ProtLearn,Relative mutability,79
+P45106,random,ProtLearn,Composition,0
+P45106,random,ProtLearn,Polarity,8
+P45106,random,ProtLearn,Volume,79
+P45106,random,ProtLearn,Hydrophobicity,1
+P45106,random,ProtLearn,pK (-COOH),2
+P45106,random,ProtLearn,Hydropathy index,0
+A5UFV3,random,ProtLearn,length,375
+A5UFV3,random,ProtLearn,Hydrophobicity index,0
+A5UFV3,random,ProtLearn,Average flexibility indices,0
+A5UFV3,random,ProtLearn,Average volume of buried residue,138
+A5UFV3,random,ProtLearn,Amino acid composition,6
+A5UFV3,random,ProtLearn,Relative mutability,75
+A5UFV3,random,ProtLearn,Composition,0
+A5UFV3,random,ProtLearn,Polarity,8
+A5UFV3,random,ProtLearn,Volume,72
+A5UFV3,random,ProtLearn,Hydrophobicity,1
+A5UFV3,random,ProtLearn,pK (-COOH),2
+A5UFV3,random,ProtLearn,Hydropathy index,0
+P44809,random,ProtLearn,length,999
+P44809,random,ProtLearn,Hydrophobicity index,0
+P44809,random,ProtLearn,Average flexibility indices,0
+P44809,random,ProtLearn,Average volume of buried residue,146
+P44809,random,ProtLearn,Amino acid composition,5
+P44809,random,ProtLearn,Relative mutability,79
+P44809,random,ProtLearn,Composition,0
+P44809,random,ProtLearn,Polarity,8
+P44809,random,ProtLearn,Volume,79
+P44809,random,ProtLearn,Hydrophobicity,1
+P44809,random,ProtLearn,pK (-COOH),2
+P44809,random,ProtLearn,Hydropathy index,0
+A5UF06,random,ProtLearn,length,96
+A5UF06,random,ProtLearn,Hydrophobicity index,0
+A5UF06,random,ProtLearn,Average flexibility indices,0
+A5UF06,random,ProtLearn,Average volume of buried residue,147
+A5UF06,random,ProtLearn,Amino acid composition,5
+A5UF06,random,ProtLearn,Relative mutability,77
+A5UF06,random,ProtLearn,Composition,0
+A5UF06,random,ProtLearn,Polarity,8
+A5UF06,random,ProtLearn,Volume,81
+A5UF06,random,ProtLearn,Hydrophobicity,1
+A5UF06,random,ProtLearn,pK (-COOH),2
+A5UF06,random,ProtLearn,Hydropathy index,0
+P44029,random,ProtLearn,length,254
+P44029,random,ProtLearn,Hydrophobicity index,0
+P44029,random,ProtLearn,Average flexibility indices,0
+P44029,random,ProtLearn,Average volume of buried residue,147
+P44029,random,ProtLearn,Amino acid composition,5
+P44029,random,ProtLearn,Relative mutability,76
+P44029,random,ProtLearn,Composition,0
+P44029,random,ProtLearn,Polarity,8
+P44029,random,ProtLearn,Volume,82
+P44029,random,ProtLearn,Hydrophobicity,1
+P44029,random,ProtLearn,pK (-COOH),2
+P44029,random,ProtLearn,Hydropathy index,0
+P44189,random,ProtLearn,length,201
+P44189,random,ProtLearn,Hydrophobicity index,0
+P44189,random,ProtLearn,Average flexibility indices,0
+P44189,random,ProtLearn,Average volume of buried residue,152
+P44189,random,ProtLearn,Amino acid composition,5
+P44189,random,ProtLearn,Relative mutability,73
+P44189,random,ProtLearn,Composition,0
+P44189,random,ProtLearn,Polarity,8
+P44189,random,ProtLearn,Volume,85
+P44189,random,ProtLearn,Hydrophobicity,1
+P44189,random,ProtLearn,pK (-COOH),2
+P44189,random,ProtLearn,Hydropathy index,0
+A5UAI4,random,ProtLearn,length,139
+A5UAI4,random,ProtLearn,Hydrophobicity index,0
+A5UAI4,random,ProtLearn,Average flexibility indices,0
+A5UAI4,random,ProtLearn,Average volume of buried residue,142
+A5UAI4,random,ProtLearn,Amino acid composition,5
+A5UAI4,random,ProtLearn,Relative mutability,75
+A5UAI4,random,ProtLearn,Composition,0
+A5UAI4,random,ProtLearn,Polarity,8
+A5UAI4,random,ProtLearn,Volume,77
+A5UAI4,random,ProtLearn,Hydrophobicity,1
+A5UAI4,random,ProtLearn,pK (-COOH),2
+A5UAI4,random,ProtLearn,Hydropathy index,0
+P44659,random,ProtLearn,length,215
+P44659,random,ProtLearn,Hydrophobicity index,0
+P44659,random,ProtLearn,Average flexibility indices,0
+P44659,random,ProtLearn,Average volume of buried residue,150
+P44659,random,ProtLearn,Amino acid composition,5
+P44659,random,ProtLearn,Relative mutability,75
+P44659,random,ProtLearn,Composition,0
+P44659,random,ProtLearn,Polarity,8
+P44659,random,ProtLearn,Volume,83
+P44659,random,ProtLearn,Hydrophobicity,1
+P44659,random,ProtLearn,pK (-COOH),2
+P44659,random,ProtLearn,Hydropathy index,0
+A5UBA3,random,ProtLearn,length,551
+A5UBA3,random,ProtLearn,Hydrophobicity index,1
+A5UBA3,random,ProtLearn,Average flexibility indices,0
+A5UBA3,random,ProtLearn,Average volume of buried residue,141
+A5UBA3,random,ProtLearn,Amino acid composition,6
+A5UBA3,random,ProtLearn,Relative mutability,74
+A5UBA3,random,ProtLearn,Composition,0
+A5UBA3,random,ProtLearn,Polarity,7
+A5UBA3,random,ProtLearn,Volume,76
+A5UBA3,random,ProtLearn,Hydrophobicity,1
+A5UBA3,random,ProtLearn,pK (-COOH),2
+A5UBA3,random,ProtLearn,Hydropathy index,0
+P45255,random,ProtLearn,length,138
+P45255,random,ProtLearn,Hydrophobicity index,0
+P45255,random,ProtLearn,Average flexibility indices,0
+P45255,random,ProtLearn,Average volume of buried residue,142
+P45255,random,ProtLearn,Amino acid composition,5
+P45255,random,ProtLearn,Relative mutability,82
+P45255,random,ProtLearn,Composition,0
+P45255,random,ProtLearn,Polarity,8
+P45255,random,ProtLearn,Volume,75
+P45255,random,ProtLearn,Hydrophobicity,1
+P45255,random,ProtLearn,pK (-COOH),2
+P45255,random,ProtLearn,Hydropathy index,0
+P44978,random,ProtLearn,length,256
+P44978,random,ProtLearn,Hydrophobicity index,0
+P44978,random,ProtLearn,Average flexibility indices,0
+P44978,random,ProtLearn,Average volume of buried residue,144
+P44978,random,ProtLearn,Amino acid composition,5
+P44978,random,ProtLearn,Relative mutability,82
+P44978,random,ProtLearn,Composition,0
+P44978,random,ProtLearn,Polarity,8
+P44978,random,ProtLearn,Volume,79
+P44978,random,ProtLearn,Hydrophobicity,1
+P44978,random,ProtLearn,pK (-COOH),2
+P44978,random,ProtLearn,Hydropathy index,0
+P44842,random,ProtLearn,length,206
+P44842,random,ProtLearn,Hydrophobicity index,0
+P44842,random,ProtLearn,Average flexibility indices,0
+P44842,random,ProtLearn,Average volume of buried residue,143
+P44842,random,ProtLearn,Amino acid composition,6
+P44842,random,ProtLearn,Relative mutability,75
+P44842,random,ProtLearn,Composition,0
+P44842,random,ProtLearn,Polarity,8
+P44842,random,ProtLearn,Volume,77
+P44842,random,ProtLearn,Hydrophobicity,1
+P44842,random,ProtLearn,pK (-COOH),2
+P44842,random,ProtLearn,Hydropathy index,0
+P44297,random,ProtLearn,length,117
+P44297,random,ProtLearn,Hydrophobicity index,0
+P44297,random,ProtLearn,Average flexibility indices,0
+P44297,random,ProtLearn,Average volume of buried residue,147
+P44297,random,ProtLearn,Amino acid composition,5
+P44297,random,ProtLearn,Relative mutability,82
+P44297,random,ProtLearn,Composition,0
+P44297,random,ProtLearn,Polarity,8
+P44297,random,ProtLearn,Volume,81
+P44297,random,ProtLearn,Hydrophobicity,1
+P44297,random,ProtLearn,pK (-COOH),2
+P44297,random,ProtLearn,Hydropathy index,0
+Q57092,random,ProtLearn,length,287
+Q57092,random,ProtLearn,Hydrophobicity index,0
+Q57092,random,ProtLearn,Average flexibility indices,0
+Q57092,random,ProtLearn,Average volume of buried residue,143
+Q57092,random,ProtLearn,Amino acid composition,5
+Q57092,random,ProtLearn,Relative mutability,80
+Q57092,random,ProtLearn,Composition,0
+Q57092,random,ProtLearn,Polarity,8
+Q57092,random,ProtLearn,Volume,78
+Q57092,random,ProtLearn,Hydrophobicity,1
+Q57092,random,ProtLearn,pK (-COOH),2
+Q57092,random,ProtLearn,Hydropathy index,0
+A5U9U8,random,ProtLearn,length,125
+A5U9U8,random,ProtLearn,Hydrophobicity index,0
+A5U9U8,random,ProtLearn,Average flexibility indices,0
+A5U9U8,random,ProtLearn,Average volume of buried residue,149
+A5U9U8,random,ProtLearn,Amino acid composition,5
+A5U9U8,random,ProtLearn,Relative mutability,79
+A5U9U8,random,ProtLearn,Composition,0
+A5U9U8,random,ProtLearn,Polarity,8
+A5U9U8,random,ProtLearn,Volume,81
+A5U9U8,random,ProtLearn,Hydrophobicity,1
+A5U9U8,random,ProtLearn,pK (-COOH),2
+A5U9U8,random,ProtLearn,Hydropathy index,0
+P44679,random,ProtLearn,length,136
+P44679,random,ProtLearn,Hydrophobicity index,0
+P44679,random,ProtLearn,Average flexibility indices,0
+P44679,random,ProtLearn,Average volume of buried residue,149
+P44679,random,ProtLearn,Amino acid composition,5
+P44679,random,ProtLearn,Relative mutability,73
+P44679,random,ProtLearn,Composition,0
+P44679,random,ProtLearn,Polarity,8
+P44679,random,ProtLearn,Volume,84
+P44679,random,ProtLearn,Hydrophobicity,1
+P44679,random,ProtLearn,pK (-COOH),2
+P44679,random,ProtLearn,Hydropathy index,0
+P44613,random,ProtLearn,length,430
+P44613,random,ProtLearn,Hydrophobicity index,0
+P44613,random,ProtLearn,Average flexibility indices,0
+P44613,random,ProtLearn,Average volume of buried residue,146
+P44613,random,ProtLearn,Amino acid composition,5
+P44613,random,ProtLearn,Relative mutability,78
+P44613,random,ProtLearn,Composition,0
+P44613,random,ProtLearn,Polarity,8
+P44613,random,ProtLearn,Volume,80
+P44613,random,ProtLearn,Hydrophobicity,1
+P44613,random,ProtLearn,pK (-COOH),2
+P44613,random,ProtLearn,Hydropathy index,0
+A5UID3,random,ProtLearn,length,119
+A5UID3,random,ProtLearn,Hydrophobicity index,0
+A5UID3,random,ProtLearn,Average flexibility indices,0
+A5UID3,random,ProtLearn,Average volume of buried residue,155
+A5UID3,random,ProtLearn,Amino acid composition,5
+A5UID3,random,ProtLearn,Relative mutability,75
+A5UID3,random,ProtLearn,Composition,0
+A5UID3,random,ProtLearn,Polarity,8
+A5UID3,random,ProtLearn,Volume,88
+A5UID3,random,ProtLearn,Hydrophobicity,1
+A5UID3,random,ProtLearn,pK (-COOH),2
+A5UID3,random,ProtLearn,Hydropathy index,0
+P43858,random,ProtLearn,length,333
+P43858,random,ProtLearn,Hydrophobicity index,0
+P43858,random,ProtLearn,Average flexibility indices,0
+P43858,random,ProtLearn,Average volume of buried residue,138
+P43858,random,ProtLearn,Amino acid composition,6
+P43858,random,ProtLearn,Relative mutability,80
+P43858,random,ProtLearn,Composition,0
+P43858,random,ProtLearn,Polarity,8
+P43858,random,ProtLearn,Volume,72
+P43858,random,ProtLearn,Hydrophobicity,1
+P43858,random,ProtLearn,pK (-COOH),2
+P43858,random,ProtLearn,Hydropathy index,0
+P43995,random,ProtLearn,length,99
+P43995,random,ProtLearn,Hydrophobicity index,0
+P43995,random,ProtLearn,Average flexibility indices,0
+P43995,random,ProtLearn,Average volume of buried residue,144
+P43995,random,ProtLearn,Amino acid composition,6
+P43995,random,ProtLearn,Relative mutability,82
+P43995,random,ProtLearn,Composition,0
+P43995,random,ProtLearn,Polarity,8
+P43995,random,ProtLearn,Volume,79
+P43995,random,ProtLearn,Hydrophobicity,1
+P43995,random,ProtLearn,pK (-COOH),2
+P43995,random,ProtLearn,Hydropathy index,0
+P44994,random,ProtLearn,length,161
+P44994,random,ProtLearn,Hydrophobicity index,1
+P44994,random,ProtLearn,Average flexibility indices,0
+P44994,random,ProtLearn,Average volume of buried residue,149
+P44994,random,ProtLearn,Amino acid composition,5
+P44994,random,ProtLearn,Relative mutability,76
+P44994,random,ProtLearn,Composition,0
+P44994,random,ProtLearn,Polarity,7
+P44994,random,ProtLearn,Volume,85
+P44994,random,ProtLearn,Hydrophobicity,1
+P44994,random,ProtLearn,pK (-COOH),2
+P44994,random,ProtLearn,Hydropathy index,1
+P44654,random,ProtLearn,length,64
+P44654,random,ProtLearn,Hydrophobicity index,0
+P44654,random,ProtLearn,Average flexibility indices,0
+P44654,random,ProtLearn,Average volume of buried residue,143
+P44654,random,ProtLearn,Amino acid composition,5
+P44654,random,ProtLearn,Relative mutability,78
+P44654,random,ProtLearn,Composition,0
+P44654,random,ProtLearn,Polarity,8
+P44654,random,ProtLearn,Volume,73
+P44654,random,ProtLearn,Hydrophobicity,1
+P44654,random,ProtLearn,pK (-COOH),2
+P44654,random,ProtLearn,Hydropathy index,0
+P43769,random,ProtLearn,length,2960
+P43769,random,ProtLearn,Hydrophobicity index,0
+P43769,random,ProtLearn,Average flexibility indices,0
+P43769,random,ProtLearn,Average volume of buried residue,141
+P43769,random,ProtLearn,Amino acid composition,6
+P43769,random,ProtLearn,Relative mutability,77
+P43769,random,ProtLearn,Composition,0
+P43769,random,ProtLearn,Polarity,8
+P43769,random,ProtLearn,Volume,76
+P43769,random,ProtLearn,Hydrophobicity,1
+P43769,random,ProtLearn,pK (-COOH),2
+P43769,random,ProtLearn,Hydropathy index,0
+Q57124,random,ProtLearn,length,1032
+Q57124,random,ProtLearn,Hydrophobicity index,0
+Q57124,random,ProtLearn,Average flexibility indices,0
+Q57124,random,ProtLearn,Average volume of buried residue,141
+Q57124,random,ProtLearn,Amino acid composition,5
+Q57124,random,ProtLearn,Relative mutability,82
+Q57124,random,ProtLearn,Composition,0
+Q57124,random,ProtLearn,Polarity,8
+Q57124,random,ProtLearn,Volume,75
+Q57124,random,ProtLearn,Hydrophobicity,1
+Q57124,random,ProtLearn,pK (-COOH),2
+Q57124,random,ProtLearn,Hydropathy index,0
+P44615,random,ProtLearn,length,412
+P44615,random,ProtLearn,Hydrophobicity index,1
+P44615,random,ProtLearn,Average flexibility indices,0
+P44615,random,ProtLearn,Average volume of buried residue,147
+P44615,random,ProtLearn,Amino acid composition,5
+P44615,random,ProtLearn,Relative mutability,73
+P44615,random,ProtLearn,Composition,0
+P44615,random,ProtLearn,Polarity,7
+P44615,random,ProtLearn,Volume,82
+P44615,random,ProtLearn,Hydrophobicity,1
+P44615,random,ProtLearn,pK (-COOH),2
+P44615,random,ProtLearn,Hydropathy index,0
+P44017,random,ProtLearn,length,95
+P44017,random,ProtLearn,Hydrophobicity index,1
+P44017,random,ProtLearn,Average flexibility indices,0
+P44017,random,ProtLearn,Average volume of buried residue,149
+P44017,random,ProtLearn,Amino acid composition,5
+P44017,random,ProtLearn,Relative mutability,75
+P44017,random,ProtLearn,Composition,0
+P44017,random,ProtLearn,Polarity,8
+P44017,random,ProtLearn,Volume,84
+P44017,random,ProtLearn,Hydrophobicity,1
+P44017,random,ProtLearn,pK (-COOH),2
+P44017,random,ProtLearn,Hydropathy index,0
+A5UIG1,random,ProtLearn,length,332
+A5UIG1,random,ProtLearn,Hydrophobicity index,0
+A5UIG1,random,ProtLearn,Average flexibility indices,0
+A5UIG1,random,ProtLearn,Average volume of buried residue,143
+A5UIG1,random,ProtLearn,Amino acid composition,5
+A5UIG1,random,ProtLearn,Relative mutability,79
+A5UIG1,random,ProtLearn,Composition,0
+A5UIG1,random,ProtLearn,Polarity,8
+A5UIG1,random,ProtLearn,Volume,76
+A5UIG1,random,ProtLearn,Hydrophobicity,1
+A5UIG1,random,ProtLearn,pK (-COOH),2
+A5UIG1,random,ProtLearn,Hydropathy index,0
