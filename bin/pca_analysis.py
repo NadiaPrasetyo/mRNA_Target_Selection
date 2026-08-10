@@ -613,55 +613,6 @@ def plot_pca_biplot(pca_df, ipca, feature_enc, output_dir: str, scale=2.5, n_dir
     texts = []
 
     # =========================
-    # Plot representative vectors
-    # =========================
-    #for _, row in rep_df.iterrows():
-    #    x, y = row["PC1_loading"] * dynamic_scale, row["PC2_loading"] * dynamic_scale
-    #    
-    #    # Draw arrow
-    #    plt.arrow(
-    #        0, 0, x, y, color='red', alpha=0.7,
-    #        head_width=0.03 * dynamic_scale,
-    #        length_includes_head=True,
-    #        linewidth=1.5,
-    #        overhang=0.3
-    #    )
-    #    
-    #    # Add text label
-    #    text = plt.text(
-    #        x * 1.1, y * 1.1, row["feature"],
-    #        fontsize=9, color="darkred", weight='bold',
-    #        bbox=dict(
-    #            boxstyle="round,pad=0.3",
-    #            facecolor="white",
-    #            alpha=0.85,
-    #            edgecolor="red",
-    #            linewidth=0.5
-    #        )
-    #    )
-    #    texts.append(text)
-
-    # =========================
-    # Adjust labels
-    # =========================
-    #try:
-    #    adjust_text(
-    #        texts,
-    #        arrowprops=dict(arrowstyle="->", color='gray', lw=0.8, alpha=0.7),
-    #        expand_points=(1.5, 1.8),
-    #        expand_text=(1.3, 1.6),
-    #        force_points=(0.5, 0.8),
-    #        force_text=(0.8, 1.2),
-    #        va='center', ha='center',
-    #        only_move={'points':'xy', 'text':'xy', 'objects':'xy'},
-    #        avoid_points=True,
-    #        avoid_text=True,
-    #        lim=150
-    #    )
-    #except ImportError:
-    #    print("adjustText not available, using basic label placement")
-
-    # =========================
     # Axes and formatting
     # =========================
     plt.axhline(0, color='black', linewidth=0.8, linestyle='--', alpha=0.7)
@@ -708,7 +659,6 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
     norms = np.linalg.norm(loadings, axis=1)
     top_idx = np.argsort(norms)[-top_n:]
     
-    # Get the top feature names and their loadings
     top_features = [feature_names[i] for i in top_idx]
     top_loadings = loadings[top_idx]
 
@@ -716,20 +666,14 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
     plt.axhline(0, color='black', linewidth=0.8)
     plt.axvline(0, color='black', linewidth=0.8)
     
-    # Plot all points in light gray
     plt.scatter(loadings[:, 0], loadings[:, 1], alpha=0.3, color="lightgray", s=20, label="Other features")
-    
-    # Plot top points in red
     plt.scatter(top_loadings[:, 0], top_loadings[:, 1], color="red", s=80, label=f"Top {top_n} features")
     
-    # Add labels with adjustments to prevent overlap
     text_objects = []
     for i, (x, y) in enumerate(top_loadings):
-        # Determine the optimal text position
         offset_x = 0.02 * (1 if x >= 0 else -1)
         offset_y = 0.02 * (1 if y >= 0 else -1)
         
-        # Create annotation with arrow
         ann = plt.annotate(
             top_features[i], 
             xy=(x, y), 
@@ -742,7 +686,6 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
         )
         text_objects.append(ann)
     
-    # Adjust text positions to minimize overlaps
     adjust_text(text_objects, 
                 arrowprops=dict(arrowstyle="->", color='black', lw=0.5),
                 expand_points=(1.5, 1.5),
@@ -757,7 +700,6 @@ def plot_loading_scatter(ipca, feature_enc, output_dir: str, top_n=50):
     plt.legend(loc='best')
     plt.tight_layout()
     
-    # Save with high DPI for better quality
     plt.savefig(os.path.join(output_dir, "pca_loading_scatter.png"), dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -775,12 +717,13 @@ def plot_correlation_matrix(
     Plot Spearman correlation heatmap (clustered) for all features,
     and a separate heatmap for selected subsets of features.
     """
+    # Set Times New Roman globally for these plots
+    plt.rcParams["font.family"] = "serif"
+    plt.rcParams["font.serif"] = ["Times New Roman", "Liberation Serif", "DejaVu Serif"]
+
     os.makedirs(output_dir, exist_ok=True)
     n_features = X_scaled.shape[1]
 
-    # ----------------------
-    # Downsample high-dimensional data
-    # ----------------------
     if n_features > max_features:
         logging.warning(f"Too many features ({n_features}), downsampling to top {max_features} by variance.")
         if issparse(X_scaled):
@@ -789,57 +732,77 @@ def plot_correlation_matrix(
             ).ravel()
         else:
             col_var = X_scaled.var(axis=0)
-        top_idx = np.argpartition(col_var, -max_features)[-max_features:]
+
+        # Always keep features in subset_prefixes (the ones the subset
+        # heatmap is built from) so variance-based downsampling can't
+        # crowd them out with high-variance, unrelated features
+        # (e.g. thousands of per-site conservation columns).
+        all_feature_names = feature_enc.inverse_transform(np.arange(n_features))
+        protected_mask = np.array([
+            any(f.startswith(prefix) for prefix in subset_prefixes)
+            for f in all_feature_names
+        ])
+        protected_idx = np.where(protected_mask)[0]
+        n_protected = len(protected_idx)
+
+        if n_protected >= max_features:
+            logging.warning(
+                f"{n_protected} protected subset features already meet/exceed "
+                f"max_features={max_features}; keeping protected features only."
+            )
+            top_idx = protected_idx
+        else:
+            remaining_budget = max_features - n_protected
+            candidate_idx = np.where(~protected_mask)[0]
+            candidate_var = col_var[candidate_idx]
+            if len(candidate_idx) > remaining_budget:
+                top_candidates = candidate_idx[
+                    np.argpartition(candidate_var, -remaining_budget)[-remaining_budget:]
+                ]
+            else:
+                top_candidates = candidate_idx
+            top_idx = np.concatenate([protected_idx, top_candidates])
+
+        top_idx = np.sort(top_idx)
         X_scaled = X_scaled[:, top_idx]
         feature_names = feature_enc.inverse_transform(top_idx)
     else:
         feature_names = feature_enc.inverse_transform(np.arange(n_features))
 
-    # ----------------------
-    # Convert to dense for correlation computation
-    # ----------------------
     if issparse(X_scaled):
         X_dense = X_scaled.toarray().astype(np.float32)
     else:
         X_dense = X_scaled.astype(np.float32)
 
-    # ----------------------
-    # Spearman correlation
-    # ----------------------
     logging.info("Computing Spearman correlation matrix...")
     corr_matrix, _ = spearmanr(X_dense, axis=0)
     corr_df = pd.DataFrame(corr_matrix, index=feature_names, columns=feature_names)
 
-    # Identify and drop NaN columns (constant features)
     nan_cols = corr_df.columns[corr_df.isna().all()]
     if len(nan_cols) > 0:
         logging.warning(f"Constant features with NaN correlation dropped: {list(nan_cols)}")
         corr_df = corr_df.drop(index=nan_cols, columns=nan_cols)
 
-    # ----------------------
-    # Clustered heatmap for all features
-    # ----------------------
     logging.info("Plotting clustered correlation heatmap...")
     sns.set(style="white")
+    # sns.set() resets rcParams, so re-apply the font after it
+    plt.rcParams["font.family"] = "serif"
+    plt.rcParams["font.serif"] = ["Times New Roman", "Liberation Serif", "DejaVu Serif"]
     g = sns.clustermap(
         corr_df,
         cmap="coolwarm",
         center=0,
         figsize=(21, 18),
-        xticklabels=False,   # handled manually
-        yticklabels=False,   # handled manually
-        row_cluster=True,    # keep side dendrogram
-        col_cluster=True,   # keep top dendrogram
-        dendrogram_ratio=(0.1, 0),  # keep space for side dendrogram only
-        cbar_pos=None        # remove legend/colorbar
+        xticklabels=False,
+        yticklabels=False,
+        row_cluster=True,
+        col_cluster=True,
+        dendrogram_ratio=(0.1, 0),
+        cbar_pos=None
     )
 
-    # ----------------------
-    # Fix tick labels to match cluster order
-    # ----------------------
     clustered_features = corr_df.index[g.dendrogram_row.reordered_ind]
 
-    # Show only every Nth label if too many
     max_labels = 80
     step = max(1, len(clustered_features) // max_labels)
 
@@ -850,11 +813,9 @@ def plot_correlation_matrix(
         rotation=0
     )
 
-    # Only keep labels on the right
     g.ax_heatmap.yaxis.set_label_position("right")
     g.ax_heatmap.yaxis.tick_right()
 
-    # Clean up axes
     g.ax_heatmap.tick_params(
         left=False,
         labelleft=False,
@@ -866,25 +827,19 @@ def plot_correlation_matrix(
         pad=2
     )
 
-    plt.title("Spearman Correlation Matrix (Clustered)", fontsize=14, pad=20)
+    g.figure.suptitle(
+        "Spearman Correlation Matrix (Clustered)",
+        fontsize=26, x=0.5, ha="center", y=1.02
+    )
     plt.savefig(os.path.join(output_dir, "correlation_matrix_spearman.png"), dpi=600, bbox_inches="tight")
     plt.close()
 
-    # ----------------------
-    # Save correlation values
-    # ----------------------
     corr_df.to_csv(os.path.join(output_dir, "correlation_matrix_spearman.csv"))
 
     logging.info("Saved full correlation heatmap.")
 
-    # =====================================================================
-    #                     SUBSET HEATMAP SECTION
-    # =====================================================================
     logging.info("Creating subset correlation heatmap...")
 
-    # ----------------------
-    # Select features by prefix
-    # ----------------------
     selected_features = [
         f for f in corr_df.columns
         if any(f.startswith(prefix) for prefix in subset_prefixes)
@@ -896,9 +851,6 @@ def plot_correlation_matrix(
 
     corr_subset = corr_df.loc[selected_features, selected_features]
 
-    # ----------------------
-    # Drop NaN-only rows/cols (constant subset features)
-    # ----------------------
     nan_cols_subset = corr_subset.columns[corr_subset.isna().all()]
     if len(nan_cols_subset) > 0:
         logging.warning(f"Subset constant features dropped: {list(nan_cols_subset)}")
@@ -908,10 +860,10 @@ def plot_correlation_matrix(
         logging.warning("Subset correlation matrix has < 2 features after cleaning.")
         return
 
-    # ----------------------
-    # Clustered heatmap
-    # ----------------------
     sns.set(style="white")
+    # sns.set() resets rcParams, so re-apply the font after it
+    plt.rcParams["font.family"] = "serif"
+    plt.rcParams["font.serif"] = ["Times New Roman", "Liberation Serif", "DejaVu Serif"]
     g_sub = sns.clustermap(
         corr_subset,
         cmap="coolwarm",
@@ -921,20 +873,15 @@ def plot_correlation_matrix(
         yticklabels=False,
         row_cluster=True,
         col_cluster=True,
-        dendrogram_ratio=(0.1, 0),    # keep left dendrogram; no top dendrogram
+        dendrogram_ratio=(0.1, 0),
         cbar_pos=(-0.02, 0.8, 0.05, 0.18),
     )
 
-    # ----------------------
-    # Reorder labels based on clustering
-    # ----------------------
     clustered_features = corr_subset.index[g_sub.dendrogram_row.reordered_ind]
 
-    # Determine how many labels we can show
     max_labels = 80
     step = max(1, len(clustered_features) // max_labels)
 
-    # Apply y-axis labels (right side only)
     g_sub.ax_heatmap.set_yticks(np.arange(0, len(clustered_features), step))
     g_sub.ax_heatmap.set_yticklabels(
         clustered_features[::step],
@@ -942,11 +889,9 @@ def plot_correlation_matrix(
         rotation=0
     )
 
-    # Right-side labels only
     g_sub.ax_heatmap.yaxis.set_label_position("right")
     g_sub.ax_heatmap.yaxis.tick_right()
 
-    # Axis cleanup
     g_sub.ax_heatmap.tick_params(
         left=False,
         labelleft=False,
@@ -958,16 +903,15 @@ def plot_correlation_matrix(
         pad=2
     )
     
-    # Increase colorbar tick label size
     if g_sub.cax is not None:
-        g_sub.cax.tick_params(labelsize=20)   # bigger tick labels
+        g_sub.cax.tick_params(labelsize=20)
 
 
-    plt.title("Spearman Correlation (Selected Feature Subset)", fontsize=25, pad=20)
+    g_sub.figure.suptitle(
+        "Spearman Correlation (Selected Feature Subset)",
+        fontsize=32, x=0.5, ha="center", y=1.02
+    )
 
-    # ----------------------
-    # Save figure + matrix
-    # ----------------------
     plt.savefig(
         os.path.join(output_dir, "correlation_matrix_spearman_subset.png"),
         dpi=600, bbox_inches="tight"
@@ -1008,7 +952,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     )
 
     # ----------------------
-    # 🔥 Compute KS/AUROC BEFORE PCA (feature selection happens here)
+    # Compute KS/AUROC BEFORE PCA (feature selection happens here)
     # ----------------------
     logging.info("Computing KS/AUROC statistics (before PCA)...")
     results_df = compute_stats(all_data)
@@ -1025,15 +969,11 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
 
     logging.info(f"{len(selected_features):,} features passed KS > {ks_threshold}")
 
-    if len(selected_features) == 0:
-        logging.warning("No features exceed KS threshold. Skipping PCA.")
-        # Still plot KS/AUROC summaries
-        plot_ks_summary(results_df, output_dir)
-        plot_auroc_summary(results_df, output_dir)
-        return
-
     # ----------------------
     # Aggregate by accession
+    # (done unconditionally now so the full, unfiltered feature set is
+    #  always available for the correlation matrix, matching the original
+    #  behaviour, even when the KS filter yields no PCA-eligible features.)
     # ----------------------
     agg_df, accession_labels = aggregate_by_accession(all_data)
 
@@ -1041,13 +981,9 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     logging.info(f"Unique features: {agg_df['feature_subfeature'].nunique():,}")
 
     # ----------------------
-    # Apply KS filter to aggregated data (critical!)
-    # ----------------------
-    agg_df = agg_df[agg_df["feature_subfeature"].isin(selected_features)]
-    logging.info(f"After KS filtering: {len(agg_df['feature_subfeature'].unique()):,} features remain")
-
-    # ----------------------
-    # Encode rows (accessions) and columns (features)
+    # Encode rows (accessions) and columns (features) on the FULL,
+    # unfiltered feature set -- this is what the correlation matrix
+    # is built from, reverted back to original (VER1) behaviour.
     # ----------------------
     accession_enc = LabelEncoder()
     feature_enc = LabelEncoder()
@@ -1061,7 +997,7 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     ).tocsr()
 
     logging.info(f"Sparse matrix shape: {X_sparse.shape}, nnz={X_sparse.nnz:,}")
-    logging.info(f"Filtered features encoded: {len(feature_enc.classes_):,}")
+    logging.info(f"X_sparse unique features: {len(feature_enc.classes_):,}")
 
     # ----------------------
     # Metadata for plotting
@@ -1072,41 +1008,79 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
     }).set_index("accession")
 
     # ----------------------
-    # 🔥 Z-score Normalization (per feature)
+    # Z-score Normalization (per feature) on the FULL feature set
     # ----------------------
     logging.info("Applying Z-score normalization per feature...")
-    scaler = StandardScaler(with_mean=False)  # works with sparse matrices
+    scaler = StandardScaler(with_mean=False)  # works with sparse
     X_scaled = scaler.fit_transform(X_sparse)
 
-    logging.info(f"X_scaled shape: {X_scaled.shape}, nnz={X_scaled.nnz:,}")
+    logging.info(f"X_scaled shape after scaling: {X_scaled.shape}, nnz={X_scaled.nnz:,}")
+
+    # ----------------------
+    # Correlation matrix -- reverted to use the full, unfiltered
+    # X_scaled/feature_enc, exactly as in the original script.
+    # ----------------------
+    plot_correlation_matrix(X_scaled, feature_enc, output_dir)
+
+    if len(selected_features) == 0:
+        logging.warning("No features exceed KS threshold. Skipping PCA.")
+        plot_ks_summary(results_df, output_dir)
+        plot_auroc_summary(results_df, output_dir)
+        return
+
+    # ----------------------
+    # Build a KS-filtered matrix for PCA only (does not affect the
+    # correlation matrix, which already ran above on the full data).
+    # ----------------------
+    agg_df_filtered = agg_df[agg_df["feature_subfeature"].isin(selected_features)]
+    logging.info(f"After KS filtering: {len(agg_df_filtered['feature_subfeature'].unique()):,} features remain for PCA")
+
+    accession_enc_pca = LabelEncoder()
+    feature_enc_pca = LabelEncoder()
+
+    row_idx_pca = accession_enc_pca.fit_transform(agg_df_filtered["accession"])
+    col_idx_pca = feature_enc_pca.fit_transform(agg_df_filtered["feature_subfeature"])
+
+    X_sparse_pca = coo_matrix(
+        (agg_df_filtered["value"].astype(np.float32), (row_idx_pca, col_idx_pca)),
+        shape=(len(accession_enc_pca.classes_), len(feature_enc_pca.classes_))
+    ).tocsr()
+
+    meta_pca = pd.DataFrame({
+        "accession": accession_enc_pca.classes_,
+        "label": [accession_labels[a] for a in accession_enc_pca.classes_]
+    }).set_index("accession")
+
+    scaler_pca = StandardScaler(with_mean=False)
+    X_scaled_pca = scaler_pca.fit_transform(X_sparse_pca)
 
     # ----------------------
     # PCA
     # ----------------------
     logging.info("Running PCA on KS-filtered data...")
-    # Number of PCA components cannot exceed num_features
-    num_features = X_scaled.shape[1]
+    num_features = X_scaled_pca.shape[1]
     n_components = min(50, num_features)
-    
+
     if n_components < 2:
         logging.error(f"Not enough features ({num_features}) for PCA. Need at least 2.")
+        plot_ks_summary(results_df, output_dir)
+        plot_auroc_summary(results_df, output_dir)
         return
-    
+
     logging.info(f"Using n_components={n_components} for PCA (num_features={num_features})")
-    ipca = IncrementalPCA(n_components=n_components, batch_size=10000)    
-    pcs = ipca.fit_transform(X_scaled)
+    ipca = IncrementalPCA(n_components=n_components, batch_size=10000)
+    pcs = ipca.fit_transform(X_scaled_pca)
     pca_df = pd.DataFrame(
-        pcs[:, :2], columns=["PC1", "PC2"], index=accession_enc.classes_
-    ).join(meta)
+        pcs[:, :2], columns=["PC1", "PC2"], index=accession_enc_pca.classes_
+    ).join(meta_pca)
     logging.info(f"PCA output shape: {pcs.shape}")
 
     # ----------------------
     # Plots
     # ----------------------
     plot_scree(ipca, output_dir)
-    plot_pca_biplot(pca_df, ipca, feature_enc, output_dir)
-    plot_loading_scatter(ipca, feature_enc, output_dir)
-    plot_correlation_matrix(X_scaled, feature_enc, output_dir)
+    plot_pca_biplot(pca_df, ipca, feature_enc_pca, output_dir)
+    plot_loading_scatter(ipca, feature_enc_pca, output_dir)
 
     # KS and AUROC summary plots (computed earlier)
     plot_ks_summary(results_df, output_dir)
