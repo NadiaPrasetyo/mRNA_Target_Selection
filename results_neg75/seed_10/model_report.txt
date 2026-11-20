@@ -1,0 +1,44 @@
+*** SENSITIVITY CHECK: random negative subsampling ***
+Negatives available in training bacteria: 2375 (positives: 1219)
+Fraction of negatives kept: 0.75 | sampling seed: 10 | stage: pool
+Negatives were subsampled before the train/validation split, so the validation set has a different prevalence than in the original run (precision / PR-AUC are not directly comparable).
+
+Training bacteria: ['B.melitensis', 'C.burnetii', 'C.trachomatis', 'H.influenzae', 'H.pylori', 'N.gonorrhoeae', 'P.aeruginosa', 'S.enteritidis', 'S.pneumoniae', 'S.pyogenes', 'T.pallidum', 'V.cholerae']
+Target bacterium (prediction only, unlabelled): S.aureus_analysis
+Training samples: 2550 (pos=1036, neg=1514)
+Validation samples: 450 (pos=183, neg=267)
+Threshold: 0.44 -- MCC-optimised on out-of-bag training predictions (OOB MCC = 0.6882, 2550 samples)
+Note: the threshold was chosen without using the validation set; the CIs below do not include uncertainty in the threshold itself.
+
+======================================================================
+VALIDATION METRICS (hold-out set from training bacteria)
+======================================================================
+Classification threshold: P(antigen) >= 0.44
+Validation samples: 450 (pos=183, neg=267, prevalence=0.4067)
+Confidence intervals: 95% percentile bootstrap, 1000 resamples
+
+Confusion matrix at threshold 0.44 (rows = true, columns = predicted):
+                      Pred neg    Pred pos
+          True neg         236          31   (TN, FP)
+          True pos          34         149   (FN, TP)
+
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8142   [0.7565, 0.8659]
+Specificity (TNR)                       0.8839   [0.8450, 0.9205]
+Precision (PPV)                         0.8278   [0.7735, 0.8794]
+F1 score                                0.8209   [0.7756, 0.8608]
+Matthews correlation coefficient        0.7000   [0.6332, 0.7625]
+Accuracy                                0.8556   [0.8244, 0.8867]
+ROC-AUC                                 0.9244   [0.8991, 0.9461]
+PR-AUC (average precision)              0.9053   [0.8705, 0.9334]
+
+Note: ROC-AUC measures ranking quality across all thresholds; it is not precision or recall.
+PR-AUC should be compared with the no-skill baseline (= prevalence = 0.4067).
+======================================================================
+TARGET BACTERIUM PREDICTIONS: S.aureus_analysis
+======================================================================
+Target data are unlabelled, so no accuracy/AUC is reported for this bacterium.
+Target proteins scored: 1002
+Predicted antigens at threshold 0.44: 1000 (99.8%)
+Mean predicted probability: 0.6720

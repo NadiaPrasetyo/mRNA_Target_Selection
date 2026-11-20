@@ -1,0 +1,109 @@
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8142   [0.7565, 0.8659]
+Specificity (TNR)                       0.8839   [0.8450, 0.9205]
+Precision (PPV)                         0.8278   [0.7735, 0.8794]
+F1 score                                0.8209   [0.7756, 0.8608]
+Matthews correlation coefficient        0.7000   [0.6332, 0.7625]
+Accuracy                                0.8556   [0.8244, 0.8867]
+ROC-AUC                                 0.9244   [0.8991, 0.9461]
+PR-AUC (average precision)              0.9053   [0.8705, 0.9334]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8251   [0.7696, 0.8757]
+Specificity (TNR)                       0.8390   [0.7939, 0.8801]
+Precision (PPV)                         0.7784   [0.7214, 0.8358]
+F1 score                                0.8011   [0.7559, 0.8410]
+Matthews correlation coefficient        0.6587   [0.5847, 0.7259]
+Accuracy                                0.8333   [0.7978, 0.8667]
+ROC-AUC                                 0.9073   [0.8794, 0.9326]
+PR-AUC (average precision)              0.8804   [0.8407, 0.9157]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8525   [0.7979, 0.9000]
+Specificity (TNR)                       0.8577   [0.8159, 0.9000]
+Precision (PPV)                         0.8041   [0.7486, 0.8601]
+F1 score                                0.8276   [0.7859, 0.8663]
+Matthews correlation coefficient        0.7044   [0.6362, 0.7682]
+Accuracy                                0.8556   [0.8222, 0.8867]
+ROC-AUC                                 0.9331   [0.9101, 0.9542]
+PR-AUC (average precision)              0.9099   [0.8702, 0.9433]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8306   [0.7714, 0.8785]
+Specificity (TNR)                       0.8727   [0.8303, 0.9091]
+Precision (PPV)                         0.8172   [0.7600, 0.8696]
+F1 score                                0.8238   [0.7795, 0.8619]
+Matthews correlation coefficient        0.7015   [0.6337, 0.7653]
+Accuracy                                0.8556   [0.8222, 0.8867]
+ROC-AUC                                 0.9186   [0.8924, 0.9421]
+PR-AUC (average precision)              0.8991   [0.8642, 0.9294]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8251   [0.7692, 0.8744]
+Specificity (TNR)                       0.8914   [0.8513, 0.9275]
+Precision (PPV)                         0.8389   [0.7828, 0.8889]
+F1 score                                0.8320   [0.7899, 0.8700]
+Matthews correlation coefficient        0.7184   [0.6501, 0.7823]
+Accuracy                                0.8644   [0.8311, 0.8956]
+ROC-AUC                                 0.9303   [0.9058, 0.9509]
+PR-AUC (average precision)              0.9142   [0.8821, 0.9411]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.7869   [0.7255, 0.8424]
+Specificity (TNR)                       0.8764   [0.8327, 0.9151]
+Precision (PPV)                         0.8136   [0.7530, 0.8683]
+F1 score                                0.8000   [0.7527, 0.8413]
+Matthews correlation coefficient        0.6670   [0.5984, 0.7335]
+Accuracy                                0.8400   [0.8067, 0.8712]
+ROC-AUC                                 0.9139   [0.8855, 0.9380]
+PR-AUC (average precision)              0.8838   [0.8356, 0.9186]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8251   [0.7670, 0.8757]
+Specificity (TNR)                       0.8464   [0.8008, 0.8897]
+Precision (PPV)                         0.7865   [0.7258, 0.8449]
+F1 score                                0.8053   [0.7592, 0.8476]
+Matthews correlation coefficient        0.6670   [0.6013, 0.7352]
+Accuracy                                0.8378   [0.8044, 0.8711]
+ROC-AUC                                 0.9095   [0.8811, 0.9357]
+PR-AUC (average precision)              0.8868   [0.8462, 0.9219]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8197   [0.7637, 0.8706]
+Specificity (TNR)                       0.9026   [0.8656, 0.9380]
+Precision (PPV)                         0.8523   [0.7943, 0.9040]
+F1 score                                0.8357   [0.7929, 0.8743]
+Matthews correlation coefficient        0.7270   [0.6618, 0.7896]
+Accuracy                                0.8689   [0.8377, 0.9000]
+ROC-AUC                                 0.9305   [0.9058, 0.9523]
+PR-AUC (average precision)              0.8990   [0.8568, 0.9368]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8415   [0.7845, 0.8883]
+Specificity (TNR)                       0.8352   [0.7895, 0.8779]
+Precision (PPV)                         0.7778   [0.7166, 0.8351]
+F1 score                                0.8084   [0.7621, 0.8514]
+Matthews correlation coefficient        0.6697   [0.5998, 0.7378]
+Accuracy                                0.8378   [0.8022, 0.8711]
+ROC-AUC                                 0.9222   [0.8968, 0.9448]
+PR-AUC (average precision)              0.9027   [0.8695, 0.9325]
+--
+Metric                                Estimate   95% CI
+----------------------------------------------------------------------
+Sensitivity / Recall (TPR)              0.8361   [0.7816, 0.8824]
+Specificity (TNR)                       0.8689   [0.8261, 0.9067]
+Precision (PPV)                         0.8138   [0.7586, 0.8667]
+F1 score                                0.8248   [0.7816, 0.8629]
+Matthews correlation coefficient        0.7021   [0.6363, 0.7660]
+Accuracy                                0.8556   [0.8244, 0.8867]
+ROC-AUC                                 0.9300   [0.9075, 0.9516]
+PR-AUC (average precision)              0.9092   [0.8750, 0.9396]
