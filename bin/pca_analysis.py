@@ -34,6 +34,9 @@ Notes:
     - Aggregated data and labels are saved as debug CSVs for inspection.
     - Statistical tests are performed to compare "positive" labels against "random" labels.
     - Ensure that the input data is properly formatted and contains the required columns.
+    - Multiple-testing: KS and t-test p-values are adjusted with Benjamini-Hochberg FDR
+      (across all feature/subfeature tests); features are called significant at q < 0.05.
+      Raw p-values and q-values are both saved in ks_auroc_results.csv.
 Author: Nadia
 """
 import os
@@ -77,6 +80,34 @@ def setup_logging(verbose: bool) -> None:
         file_handler.setLevel(level)
         file_handler.setFormatter(logging.Formatter(format_str))
         logger.addHandler(file_handler)
+
+# ----------------------
+# Multiple-testing correction
+# ----------------------
+FDR_ALPHA = 0.05  # significance threshold applied to BH-adjusted p-values (q-values)
+
+
+def benjamini_hochberg(pvals) -> np.ndarray:
+    """Benjamini-Hochberg FDR correction.
+
+    NaN p-values are ignored (they are not counted in m) and returned as NaN.
+    Returns q-values (adjusted p-values) in the original order.
+    """
+    p = np.asarray(pvals, dtype=float)
+    q = np.full(p.shape, np.nan)
+    mask = ~np.isnan(p)
+    pv = p[mask]
+    m = len(pv)
+    if m == 0:
+        return q
+    order = np.argsort(pv)
+    ranked = pv[order] * m / np.arange(1, m + 1)
+    # enforce monotonicity: q_(i) = min_{j >= i} ranked_(j)
+    ranked = np.minimum.accumulate(ranked[::-1])[::-1]
+    out = np.empty(m)
+    out[order] = np.clip(ranked, 0, 1)
+    q[mask] = out
+    return q
 
 # ----------------------
 # Data loading
@@ -222,7 +253,24 @@ def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
             "t_pvalue": t_p,
             "auroc": auroc
         })
-    return pd.DataFrame(results)
+
+    results_df = pd.DataFrame(results)
+    if results_df.empty:
+        return results_df
+
+    # Correct across ALL feature/subfeature tests, separately for each test family
+    results_df["ks_qvalue"] = benjamini_hochberg(results_df["ks_pvalue"])
+    results_df["t_qvalue"] = benjamini_hochberg(results_df["t_pvalue"])
+
+    n_tests = results_df["ks_pvalue"].notna().sum()
+    logging.info(
+        f"Multiple testing (BH, m={n_tests:,} tests): "
+        f"KS p<0.05: {(results_df['ks_pvalue'] < 0.05).sum():,} -> "
+        f"q<{FDR_ALPHA}: {(results_df['ks_qvalue'] < FDR_ALPHA).sum():,}; "
+        f"t-test p<0.05: {(results_df['t_pvalue'] < 0.05).sum():,} -> "
+        f"q<{FDR_ALPHA}: {(results_df['t_qvalue'] < FDR_ALPHA).sum():,}"
+    )
+    return results_df
 
 # ----------------------
 # AUROC and KS plots
@@ -268,20 +316,117 @@ def _shorten_subfeature(subfeature):
 def _shorten_label(feature, subfeature):
     return f"{_display_feature_name(feature)} {_shorten_subfeature(subfeature)}"
 
+# ----------------------
+# Shared bar-plot style (ggplot2 theme_minimal-like)
+# ----------------------
+CATEGORY_PALETTE = {
+    "Subcellular localisation": "#0072B2",
+    "Allergenicity": "#D55E00",
+    "Immunogenicity": "#56B4E9",
+    "Conservation": "#CC79A7",
+    "Epitope Prediction": "#009E73",
+    "Structure Analysis": "#E69F00",
+    "Other": "#999999",
+}
+
+
+def _apply_serif_font():
+    plt.rcParams["font.family"] = "serif"
+    plt.rcParams["font.serif"] = ["Times New Roman", "Liberation Serif", "DejaVu Serif"]
+
+
+def _bar_summary_plot(df_subset, value_col, save_path, title, xlabel, xlim_min,
+                      subtitle="", short_labels=False, bar_height=0.6,
+                      title_fs=24, label_fs=16, tick_fs=13, legend_fs=12,
+                      legend_title_fs=13, value_fs=13, subtitle_gap=26):
+    """Horizontal bar summary in an R/ggplot (theme_minimal) style:
+    left-aligned bold title, subtitle below it, no spines, light x-grid only,
+    and tight padding between the top bar and the top of the axes.
+
+    subtitle_gap: points of space between title baseline and the subtitle
+                  (larger = subtitle sits further below the title).
+    """
+    _apply_serif_font()
+
+    colors = df_subset["category"].map(CATEGORY_PALETTE).fillna("#a6761d")
+    hatches = ['' if t >= 0 else '////' for t in df_subset["t_statistic"]]
+    labels = (
+        df_subset.apply(lambda r: _shorten_label(r["feature"], r["subfeature"]), axis=1)
+        if short_labels else df_subset["label"]
+    )
+
+    n = len(df_subset)
+    fig_height = max(4, bar_height * n) + 1.0  # +1 inch for title/subtitle block
+    fig, ax = plt.subplots(figsize=(12, fig_height))
+
+    y_pos = np.arange(n)
+    bars = ax.barh(y_pos, df_subset[value_col].values, color=colors, height=0.8)
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(labels)
+
+    for bar, hatch in zip(bars, hatches):
+        bar.set_hatch(hatch)
+
+    for bar in bars:
+        width = bar.get_width()
+        ax.text(
+            width + 0.01, bar.get_y() + bar.get_height() / 2, f"{width:.3f}",
+            va="center", ha="left", fontsize=value_fs, color="black",
+            bbox=dict(facecolor="white", edgecolor="none", boxstyle="square,pad=0.1"),
+            clip_on=False,
+        )
+
+    # ---- tight vertical padding: first bar almost touches the top of the axes ----
+    ax.margins(y=0)
+    ax.set_ylim(n - 0.5, -0.5)   # inverted (top bar first), only 0.1 bar-units of padding
+
+    x_max = df_subset[value_col].max() + 0.1
+    ax.set_xlim(xlim_min, x_max)
+
+    # ---- theme_minimal-like look ----
+    for spine in ax.spines.values():
+        spine.set_visible(True)
+        spine.set_color("black")
+        spine.set_linewidth(0.8)
+    ax.set_axisbelow(True)
+    ax.grid(False)                      # no x or y grid lines
+    ax.tick_params(axis="both", length=3, labelsize=tick_fs)
+    ax.set_xlabel(xlabel, fontsize=label_fs)
+    ax.set_ylabel("")
+
+    # ---- left-aligned title with the subtitle sitting lower, just above the axes ----
+    subtitle_fs = title_fs * 0.8
+    ax.set_title(title, fontsize=title_fs, fontweight="bold", loc="left",
+                 pad=subtitle_fs + subtitle_gap)
+    if subtitle:
+        ax.text(0.0, 1.015, subtitle.strip(), transform=ax.transAxes,
+                ha="left", va="bottom", fontsize=subtitle_fs)
+
+    # ---- legend (no frame, like theme_minimal) ----
+    handles = [mpatches.Patch(color=c, label=cat) for cat, c in CATEGORY_PALETTE.items()]
+    handles += [
+        mpatches.Patch(facecolor="white", edgecolor="black", hatch="////", label="Enriched in Random"),
+        mpatches.Patch(facecolor="white", edgecolor="black", label="Enriched in Positive"),
+    ]
+    ax.legend(handles=handles, title="Category / Directionality", loc="lower right",
+              fontsize=legend_fs, title_fontsize=legend_title_fs, frameon=False)
+
+    fig.tight_layout()
+    fig.savefig(save_path, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+
+
+# ----------------------
+# AUROC and KS plots
+# ----------------------
 def plot_auroc_summary(results_df, output_dir, prefix="all"):
-    """
-    Plot AUROC summary and Top 20 plot for significant features.
-    """
+    """Plot AUROC summary and Top 20 plot for significant features."""
     output_path_all = os.path.join(output_dir, f"auroc_summary_{prefix}.png")
     output_path_top20 = os.path.join(output_dir, f"auroc_summary_top20_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
 
-    # Set Times New Roman globally for this plot
-    plt.rcParams["font.family"] = "serif"
-    plt.rcParams["font.serif"] = ["Times New Roman", "Liberation Serif", "DejaVu Serif"]
-
-    df = results_df.dropna(subset=["auroc", "t_pvalue", "t_statistic"]).copy()
-    df = df[(df["auroc"] != 0.5) & (df["t_pvalue"] < 0.05)]
+    df = results_df.dropna(subset=["auroc", "t_qvalue", "t_statistic"]).copy()
+    df = df[(df["auroc"] != 0.5) & (df["t_qvalue"] < FDR_ALPHA)]
 
     if df.empty:
         logging.warning("No significant AUROC values to plot.")
@@ -289,193 +434,74 @@ def plot_auroc_summary(results_df, output_dir, prefix="all"):
 
     df["adjusted_auroc"] = df["auroc"].apply(lambda x: x if x >= 0.5 else 1 - x)
     df["label"] = df["feature"] + " / " + df["subfeature"]
-    df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
+    df["category"] = df.apply(lambda r: categorize_feature(r["feature"], r["subfeature"]), axis=1)
     df = df.sort_values("adjusted_auroc", ascending=False)
 
-    category_palette = {
-        "Subcellular localisation": "#0072B2",
-        "Allergenicity": "#D55E00",
-        "Immunogenicity": "#56B6E9" if False else "#56B4E9",
-        "Conservation": "#CC79A7",
-        "Epitope Prediction": "#009E73",
-        "Structure Analysis": "#E69F00",
-        "Other": "#999999"
-    }
-
-    def _plot(df_subset, save_path, title_suffix="", short_labels=False, bar_height=0.6,
-              title_fs=24, label_fs=16, tick_fs=13, legend_fs=12, legend_title_fs=13, value_fs=13):
-        colors = df_subset["category"].map(category_palette).fillna("#a6761d")
-        hatches = ['' if t >= 0 else '////' for t in df_subset["t_statistic"]]
-
-        labels = (
-            df_subset.apply(lambda row: _shorten_label(row["feature"], row["subfeature"]), axis=1)
-            if short_labels
-            else df_subset["label"]
-        )
-
-        fig_height = max(4, bar_height * len(df_subset))
-        plt.figure(figsize=(12, fig_height))
-        bars = plt.barh(labels, df_subset["adjusted_auroc"], color=colors)
-
-        for bar, hatch in zip(bars, hatches):
-            bar.set_hatch(hatch)
-
-        for bar in bars:
-            width = bar.get_width()
-            plt.text(
-                width + 0.01,
-                bar.get_y() + bar.get_height() / 2,
-                f"{width:.3f}",
-                va="center",
-                ha="left",
-                fontsize=value_fs,
-                color="black",
-                backgroundcolor="white",
-                bbox=dict(
-                    facecolor="white", edgecolor="none", boxstyle="square,pad=0.1"
-                ),
-                clip_on=False
-            )
-
-        handles = [mpatches.Patch(color=color, label=cat)
-                   for cat, color in category_palette.items()]
-        handles += [
-            mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
-            mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
-        ]
-
-        plt.legend(handles=handles, title="Category / Directionality", loc="lower right",
-                   fontsize=legend_fs, title_fontsize=legend_title_fs)
-        plt.xlabel("AUROC", fontsize=label_fs)
-        plt.ylabel("")
-        plt.title(f"AUROC Summary {title_suffix}".strip(), fontsize=title_fs, fontweight='bold')
-        plt.xticks(fontsize=tick_fs)
-        plt.yticks(fontsize=tick_fs)
-
-        x_max = max(df_subset["adjusted_auroc"]) + 0.1
-        plt.xlim(0.5, x_max)
-        plt.gca().invert_yaxis()
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300)
-        plt.close()
-
-    # "All features": full labels, original spacing/fonts
-    _plot(df, output_path_all, "(Significant Features)", short_labels=False, bar_height=0.3)
+    _bar_summary_plot(
+        df, "adjusted_auroc", output_path_all,
+        title="AUROC Summary", xlabel="AUROC", xlim_min=0.5,
+        subtitle=f"(Significant Features, FDR < {FDR_ALPHA})",
+        short_labels=False, bar_height=0.3,
+    )
     logging.info(f"AUROC summary plot saved to {output_path_all}")
 
-    # Top 20: shortened labels, taller bars, larger fonts
     df_top20 = df.head(20)
     if not df_top20.empty:
-        _plot(
-            df_top20, output_path_top20, "(Top 20 Features)",
-            short_labels=True, bar_height=0.9,
-            title_fs=24, label_fs=20, tick_fs=17, legend_fs=15, legend_title_fs=16, value_fs=16
+        _bar_summary_plot(
+            df_top20, "adjusted_auroc", output_path_top20,   # "ks_statistic" in the KS function
+            title="AUROC Summary", xlabel="AUROC", xlim_min=0.5,
+            subtitle=f"(Top 20 Features, FDR < {FDR_ALPHA})",
+            short_labels=True, bar_height=0.8,
+            title_fs=28,
+            label_fs=20,
+            tick_fs=17,
+            legend_fs=16,
+            legend_title_fs=16,
+            value_fs=16,
+            subtitle_gap=30
         )
-        logging.info(f"AUROC top 20 plot saved to {output_path_top20}")
 
 
 def plot_ks_summary(results_df, output_dir, prefix="all"):
-    """
-    Plot KS summary and Top 20 plot for significant features.
-    """
+    """Plot KS summary and Top 20 plot for significant features."""
     output_path_all = os.path.join(output_dir, f"ks_summary_{prefix}.png")
     output_path_top20 = os.path.join(output_dir, f"ks_summary_top20_{prefix}.png")
     os.makedirs(output_dir, exist_ok=True)
 
-    # Set Times New Roman globally for this plot
-    plt.rcParams["font.family"] = "serif"
-    plt.rcParams["font.serif"] = ["Times New Roman", "Liberation Serif", "DejaVu Serif"]
-
-    df = results_df.dropna(subset=["ks_statistic", "ks_pvalue", "t_statistic"]).copy()
-    df = df[df["ks_pvalue"] < 0.05]
+    df = results_df.dropna(subset=["ks_statistic", "ks_qvalue", "t_statistic"]).copy()
+    df = df[df["ks_qvalue"] < FDR_ALPHA]
 
     if df.empty:
         logging.warning("No significant KS statistics to plot.")
         return
 
     df["label"] = df["feature"] + " / " + df["subfeature"]
-    df["category"] = df.apply(lambda row: categorize_feature(row["feature"], row["subfeature"]), axis=1)
+    df["category"] = df.apply(lambda r: categorize_feature(r["feature"], r["subfeature"]), axis=1)
     df = df.sort_values("ks_statistic", ascending=False)
 
-    category_palette = {
-        "Subcellular localisation": "#0072B2",
-        "Allergenicity": "#D55E00",
-        "Immunogenicity": "#56B4E9",
-        "Conservation": "#CC79A7",
-        "Epitope Prediction": "#009E73",
-        "Structure Analysis": "#E69F00",
-        "Other": "#999999"
-    }
-
-    def _plot(df_subset, save_path, title_suffix="", short_labels=False, bar_height=0.6,
-              title_fs=24, label_fs=16, tick_fs=13, legend_fs=12, legend_title_fs=13, value_fs=13):
-        colors = df_subset["category"].map(category_palette).fillna("#a6761d")
-        hatches = ['' if t >= 0 else '////' for t in df_subset["t_statistic"]]
-
-        labels = (
-            df_subset.apply(lambda row: _shorten_label(row["feature"], row["subfeature"]), axis=1)
-            if short_labels
-            else df_subset["label"]
-        )
-
-        fig_height = max(4, bar_height * len(df_subset))
-        plt.figure(figsize=(12, fig_height))
-
-        bars = plt.barh(labels, df_subset["ks_statistic"], color=colors)
-
-        for bar, hatch in zip(bars, hatches):
-            bar.set_hatch(hatch)
-
-        for bar in bars:
-            width = bar.get_width()
-            plt.text(
-                width + 0.01,
-                bar.get_y() + bar.get_height() / 2,
-                f"{width:.3f}",
-                va="center",
-                ha="left",
-                fontsize=value_fs,
-                color="black",
-                backgroundcolor="white",
-                bbox=dict(
-                    facecolor="white", edgecolor="none", boxstyle="square,pad=0.1"
-                ),
-                clip_on=False
-            )
-
-        handles = [mpatches.Patch(color=color, label=cat)
-                   for cat, color in category_palette.items()]
-        handles += [
-            mpatches.Patch(facecolor='white', edgecolor='black', hatch='////', label='Enriched in Random'),
-            mpatches.Patch(facecolor='white', edgecolor='black', label='Enriched in Positive')
-        ]
-
-        plt.legend(handles=handles, title="Category / Directionality", loc="lower right",
-                   fontsize=legend_fs, title_fontsize=legend_title_fs)
-        plt.xlabel("KS Statistic", fontsize=label_fs)
-        plt.ylabel("")
-        plt.title(f"KS Statistics Summary {title_suffix}".strip(), fontsize=title_fs, fontweight='bold')
-        plt.xticks(fontsize=tick_fs)
-        plt.yticks(fontsize=tick_fs)
-
-        x_max = max(df_subset["ks_statistic"]) + 0.1
-        plt.xlim(0, x_max)
-        plt.gca().invert_yaxis()
-        plt.tight_layout()
-        plt.savefig(save_path, dpi=300)
-        plt.close()
-
-    # "All features": full labels, original spacing/fonts
-    _plot(df, output_path_all, "(Significant Features)", short_labels=False, bar_height=0.3)
+    _bar_summary_plot(
+        df, "ks_statistic", output_path_all,
+        title="KS Statistics Summary", xlabel="KS Statistic", xlim_min=0,
+        subtitle=f"(Significant Features, FDR < {FDR_ALPHA})",
+        short_labels=False, bar_height=0.3,
+    )
     logging.info(f"KS summary plot saved to {output_path_all}")
 
-    # Top 20: shortened labels, taller bars, larger fonts
     df_top20 = df.head(20)
     if not df_top20.empty:
-        _plot(
-            df_top20, output_path_top20, "(Top 20 Features)",
-            short_labels=True, bar_height=0.9,
-            title_fs=24, label_fs=20, tick_fs=17, legend_fs=15, legend_title_fs=16, value_fs=16
+        _bar_summary_plot(
+            df_top20, "ks_statistic", output_path_top20,
+            title="KS Statistics Summary", xlabel="KS Statistic", xlim_min=0,
+            subtitle=f"(Top 20 Features, FDR < {FDR_ALPHA})",
+            short_labels=True, bar_height=0.8,
+            title_fs=30,          # title (subtitle auto-scales to 60% of this)
+            label_fs=20,          # x-axis label ("AUROC" / "KS Statistic")
+            tick_fs=17,           # y-axis feature labels + x tick numbers
+            legend_fs=16,
+            legend_title_fs=16,
+            value_fs=16,          # numbers at the end of each bar
+            subtitle_gap=30,      # optional: slightly more room as the title grows
+            
         )
         logging.info(f"KS top 20 plot saved to {output_path_top20}")
 
@@ -960,14 +986,19 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
 
     # Threshold for PCA feature selection
     ks_threshold = 0.15
-    significant = results_df.loc[results_df["ks_statistic"] > ks_threshold].copy()
+    significant = results_df.loc[
+        (results_df["ks_statistic"] > ks_threshold)
+        & (results_df["ks_qvalue"] < FDR_ALPHA)
+    ].copy()
 
     significant["feature_subfeature"] = (
         significant["feature"].astype(str) + "_" + significant["subfeature"].astype(str)
     )
     selected_features = set(significant["feature_subfeature"])
 
-    logging.info(f"{len(selected_features):,} features passed KS > {ks_threshold}")
+    logging.info(
+        f"{len(selected_features):,} features passed KS > {ks_threshold} and FDR q < {FDR_ALPHA}"
+    )
 
     # ----------------------
     # Aggregate by accession
@@ -1093,10 +1124,10 @@ def main(base_dir: str, output_dir: str, input_dirs: list[str]) -> None:
 # ----------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run PCA and KS/AUROC analysis on bacterial data.")
-    parser.add_argument("--base-dir", type=str, default="./results")
-    parser.add_argument("--output-dir", type=str, default="./results")
-    parser.add_argument("--input-dir", nargs="+", required=True)
-    parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--base-dir", type=str, default="./results", help="Base directory containing input data")
+    parser.add_argument("--output-dir", type=str, default="./results", help="Directory to save output plots and CSVs")
+    parser.add_argument("--input-dir", nargs="+", required=True, help="List of input directories for each bacterium (e.g., B.melitensis C.burnetii ...)")
+    parser.add_argument("--verbose", action="store_true", help="Enable verbose logging")
     args = parser.parse_args()
 
     setup_logging(args.verbose)

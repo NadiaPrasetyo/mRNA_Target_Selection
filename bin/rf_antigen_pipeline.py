@@ -8,37 +8,49 @@ Each raw CSV is expected to contain at least these columns:
  - feature
  - subfeature
  - value
- - label (optional)
+ - label (required for training bacteria; not needed for the target bacterium)
 
 Pipeline:
  1) Load and concatenate data per bacterium
  2) Pivot to accession x feature_subfeature matrix (mean of replicates)
  3) Align feature columns across all bacteria (union of features, fill missing with 0)
- 4) Train RandomForest on all bacteria EXCEPT the test bacterium (default: S.aureus)
- 5) Validate on a small hold-out set from the training data
+ 4) Train RandomForest on all bacteria EXCEPT the target bacterium (default: S.aureus)
+ 5) Choose the classification threshold that maximises MCC on the out-of-bag (OOB)
+    predictions of the training split (or use a fixed --threshold if given), then validate
+    on a hold-out set drawn from the training bacteria at that threshold
+    (full metrics + bootstrap confidence intervals + confusion matrix)
  6) Compute feature importances (feature usefulness)
- 7) Predict probabilities on the test bacterium and save CSV sorted by probability (desc)
+ 7) Predict probabilities on the target bacterium (prediction only, no metrics because
+    the target bacterium is unlabelled) and save CSV sorted by probability (desc)
 
 Outputs (saved in output_dir):
- - <test_bacterium>_predictions.csv  (accession, prob_antigen, pred_label, true_label if available)
- - <test_bacterium>_features_with_probs.csv (full feature matrix with probabilities)
+ - <target_bacterium>_predictions.csv  (accession, prob_antigen, pred_label, protein/gene names)
+ - <target_bacterium>_features_with_probs.csv (full feature matrix with probabilities)
  - feature_importances.csv (feature, importance, rank)
- - model_report.txt        (train/test sizes, accuracy, AUC if labels exist on test)
+ - validation_metrics.csv  (metric, estimate, CI lower, CI upper)
+ - threshold_mcc_curve.csv (OOB MCC at each candidate threshold; only when threshold is MCC-optimised)
+ - model_report.txt        (train/validation sizes, confusion matrix, all validation metrics with CIs,
+                            target prediction summary)
 """
 
 import os
 import glob
 import argparse
 import logging
-from typing import List, Tuple
+from typing import Dict, List, Optional, Tuple
 import pandas as pd
 import numpy as np
 import requests
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import roc_auc_score, accuracy_score
+from sklearn.metrics import roc_auc_score, average_precision_score, confusion_matrix
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
+import matplotlib
+matplotlib.use("Agg")  # non-interactive backend, safe for headless runs
+import matplotlib.pyplot as plt
+
+RANDOM_STATE = 42
 
 # ----------------------
 # Logging setup
@@ -66,7 +78,7 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
     """
     folder = os.path.join(base_dir, bacterium, "raw_data")
     logging.info(f"Loading data for bacterium '{bacterium}' from: {folder}")
-    files = glob.glob(os.path.join(folder, "*_raw_data.csv"))
+    files = sorted(glob.glob(os.path.join(folder, "*_raw_data.csv")))
     if not files:
         logging.warning(f"No files found for {bacterium} at {folder}")
         return pd.DataFrame()
@@ -83,7 +95,7 @@ def load_bacterium_data(base_dir: str, bacterium: str) -> pd.DataFrame:
     if not dfs:
         return pd.DataFrame()
     out = pd.concat(dfs, ignore_index=True)
-    # Standardize column names lower-case
+    # Strip whitespace from column names
     out.columns = [c.strip() for c in out.columns]
     return out
 
@@ -98,10 +110,9 @@ def preprocess_and_pivot(df: pd.DataFrame):
 
     Returns (X_df, labels_series) where:
       - X_df.index = accession
-      - labels_series.index = accession (if label present), dtype object
+      - labels_series.index = accession (if label present, else None), dtype object
 
     Filters out accessions with <=4 characters.
-    Writes intermediate CSVs for debugging.
     """
     required_cols = {"accession", "feature", "subfeature", "value"}
     missing_cols = required_cols - set(df.columns)
@@ -170,10 +181,10 @@ def make_binary_labels(labels: pd.Series) -> Tuple[np.ndarray, LabelEncoder]:
     try:
         numeric = pd.to_numeric(labels.dropna().unique())
         unique_numeric = set(numeric.tolist())
-        if unique_numeric.issubset({0,1}):
+        if unique_numeric.issubset({0, 1}):
             y = labels.astype(int).to_numpy()
             le = LabelEncoder()
-            le.fit([0,1])
+            le.fit([0, 1])
             return y, le
     except Exception:
         pass
@@ -187,7 +198,7 @@ def make_binary_labels(labels: pd.Series) -> Tuple[np.ndarray, LabelEncoder]:
             mapping[u] = 1 if u in positive_vals else 0
         y = labels.map(mapping).astype(int).to_numpy()
         le = LabelEncoder()
-        le.fit(["0","1"])
+        le.fit(["0", "1"])
         return y, le
 
     # fallback: two classes -> map second encoded class to 1
@@ -203,11 +214,261 @@ def make_binary_labels(labels: pd.Series) -> Tuple[np.ndarray, LabelEncoder]:
 # ----------------------
 # Train Random Forest
 # ----------------------
-def train_rf(X_train: pd.DataFrame, y_train: np.ndarray, n_estimators:int=500, random_state:int=42) -> RandomForestClassifier:
+def train_rf(X_train: pd.DataFrame, y_train: np.ndarray, n_estimators: int = 500, random_state: int = RANDOM_STATE) -> RandomForestClassifier:
     logging.info(f"Training RandomForest on {X_train.shape[0]} samples and {X_train.shape[1]} features...")
-    rf = RandomForestClassifier(n_estimators=n_estimators, n_jobs=-1, random_state=random_state, class_weight='balanced')
+    rf = RandomForestClassifier(n_estimators=n_estimators, n_jobs=-1, random_state=random_state, class_weight='balanced', oob_score=True)
     rf.fit(X_train, y_train)
     return rf
+
+def print_model_details(rf: RandomForestClassifier, threshold: Optional[float],
+                        threshold_source: str, X_tr: pd.DataFrame,
+                        X_val: pd.DataFrame, random_state: int) -> None:
+    """Print the RandomForest configuration and evaluation-procedure details.
+
+    Args:
+        rf: Fitted RandomForestClassifier.
+        threshold: Decision threshold used for final predictions (None if not yet set).
+        threshold_source: Human-readable description of how the threshold was chosen.
+        X_tr: Training feature matrix.
+        X_val: Validation feature matrix.
+        random_state: Random seed used for splitting and model fitting.
+    """
+    # max_depth is None when trees are grown to purity (no depth limit)
+    max_depth = rf.max_depth if rf.max_depth is not None else "None (unlimited: grown to purity)"
+    max_features = rf.max_features
+
+    # Translate max_features into a human-readable sampling strategy
+    if max_features == "sqrt":
+        feature_strategy = f"sqrt (≈sqrt({X_tr.shape[1]}) ≈ {int(np.sqrt(X_tr.shape[1]))} features per split)"
+    elif max_features == "log2":
+        feature_strategy = f"log2 (≈{int(np.log2(X_tr.shape[1]))} features per split)"
+    elif isinstance(max_features, int):
+        feature_strategy = f"{max_features} features per split (fixed int)"
+    elif isinstance(max_features, float):
+        feature_strategy = f"{max_features:.2f} fraction of {X_tr.shape[1]} features per split"
+    else:
+        feature_strategy = str(max_features)
+
+    # Class weighting
+    class_weight = rf.class_weight if rf.class_weight is not None else "None (uniform)"
+
+    print("=" * 70)
+    print("MODEL DETAILS")
+    print("=" * 70)
+    print(f"Model type:                  RandomForestClassifier (scikit-learn)")
+    print(f"Number of trees:             {rf.n_estimators}")
+    print(f"Maximum tree depth:          {max_depth}")
+    print(f"Feature sampling strategy:   {feature_strategy}")
+    print(f"Class weighting:             {class_weight}")
+    print(f"OOB scoring enabled:         {rf.oob_score}")
+    print(f"Random seed:                 {random_state}")
+    print(f"Training matrix:             {X_tr.shape[0]} samples × {X_tr.shape[1]} features")
+    print(f"Validation matrix:           {X_val.shape[0]} samples × {X_val.shape[1]} features")
+    print("-" * 70)
+    print("Hyperparameter optimization procedure:")
+    print("  None. All hyperparameters are fixed defaults (n_estimators=500,")
+    print("  max_depth=None, max_features='sqrt', class_weight='balanced',")
+    print("  oob_score=True). No grid/random/Bayesian search was performed.")
+    print("-" * 70)
+    print(f"Threshold source:            {threshold_source}")
+    if threshold is not None:
+        print(f"Classification threshold:    {threshold:.2f}")
+    print("Tuning independent of eval?  Yes. The decision threshold was selected")
+    print("                             using out-of-bag predictions on the")
+    print("                             training split only. The validation")
+    print("                             (hold-out) set was never used for")
+    print("                             model fitting or threshold selection;")
+    print("                             it was used solely for reporting")
+    print("                             unbiased validation metrics.")
+    print("=" * 70)
+# ----------------------
+# Evaluation metrics (validation set only)
+# ----------------------
+METRIC_ORDER = [
+    "sensitivity_recall", "specificity", "precision", "f1", "mcc",
+    "accuracy", "roc_auc", "pr_auc",
+]
+METRIC_LABELS = {
+    "sensitivity_recall": "Sensitivity / Recall (TPR)",
+    "specificity": "Specificity (TNR)",
+    "precision": "Precision (PPV)",
+    "f1": "F1 score",
+    "mcc": "Matthews correlation coefficient",
+    "accuracy": "Accuracy",
+    "roc_auc": "ROC-AUC",
+    "pr_auc": "PR-AUC (average precision)",
+}
+
+
+def _safe_div(num: float, den: float) -> float:
+    return num / den if den > 0 else np.nan
+
+
+def point_metrics(y_true: np.ndarray, probs: np.ndarray, threshold: float) -> Dict[str, float]:
+    """Compute all metrics at a fixed classification threshold (AUCs are threshold-free).
+
+    Undefined values (e.g. precision when nothing is predicted positive) are returned as NaN.
+    """
+    preds = (probs >= threshold).astype(int)
+    tn, fp, fn, tp = confusion_matrix(y_true, preds, labels=[0, 1]).ravel()
+    tn, fp, fn, tp = float(tn), float(fp), float(fn), float(tp)
+
+    mcc_den = np.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
+    metrics = {
+        "tn": tn, "fp": fp, "fn": fn, "tp": tp,
+        "sensitivity_recall": _safe_div(tp, tp + fn),
+        "specificity": _safe_div(tn, tn + fp),
+        "precision": _safe_div(tp, tp + fp),
+        "f1": _safe_div(2 * tp, 2 * tp + fp + fn),
+        "mcc": _safe_div(tp * tn - fp * fn, mcc_den),
+        "accuracy": _safe_div(tp + tn, tp + tn + fp + fn),
+        "roc_auc": np.nan,
+        "pr_auc": np.nan,
+    }
+    if len(np.unique(y_true)) == 2:
+        metrics["roc_auc"] = roc_auc_score(y_true, probs)
+        metrics["pr_auc"] = average_precision_score(y_true, probs)
+    return metrics
+
+
+def select_threshold_mcc(y_true: np.ndarray, probs: np.ndarray,
+                         grid: Optional[np.ndarray] = None) -> Tuple[float, float, pd.DataFrame]:
+    """Pick the probability threshold that maximises MCC.
+
+    Should be run on predictions that were NOT used to fit the model (e.g. OOB predictions),
+    never on the validation set that is later used for reporting.
+    If several thresholds tie for the best MCC, the median of the tied thresholds is used.
+
+    Returns (best_threshold, best_mcc, curve_df[threshold, mcc]).
+    """
+    if grid is None:
+        grid = np.round(np.arange(0.01, 1.0, 0.01), 2)
+    mccs = []
+    for t in grid:
+        preds = probs >= t
+        tp = float(np.sum(preds & (y_true == 1)))
+        fp = float(np.sum(preds & (y_true == 0)))
+        fn = float(np.sum(~preds & (y_true == 1)))
+        tn = float(np.sum(~preds & (y_true == 0)))
+        den = np.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
+        mccs.append((tp * tn - fp * fn) / den if den > 0 else 0.0)
+    mccs = np.asarray(mccs)
+    best = mccs.max()
+    best_thr = float(np.median(grid[np.isclose(mccs, best)]))
+    return best_thr, float(best), pd.DataFrame({"threshold": grid, "mcc": mccs})
+
+
+def bootstrap_ci(y_true: np.ndarray, probs: np.ndarray, threshold: float,
+                 n_boot: int = 1000, ci_level: float = 0.95,
+                 random_state: int = RANDOM_STATE) -> Dict[str, Tuple[float, float]]:
+    """Percentile bootstrap confidence intervals (resampling validation samples with replacement).
+
+    Resamples containing only one class are skipped (AUCs undefined).
+    """
+    rng = np.random.default_rng(random_state)
+    n = len(y_true)
+    draws = {m: [] for m in METRIC_ORDER}
+    for _ in range(n_boot):
+        idx = rng.integers(0, n, n)
+        yb = y_true[idx]
+        if len(np.unique(yb)) < 2:
+            continue
+        m = point_metrics(yb, probs[idx], threshold)
+        for k in METRIC_ORDER:
+            draws[k].append(m[k])
+
+    alpha = (1.0 - ci_level) / 2.0
+    cis = {}
+    for k, vals in draws.items():
+        arr = np.asarray(vals, dtype=float)
+        if arr.size == 0 or np.all(np.isnan(arr)):
+            cis[k] = (np.nan, np.nan)
+        else:
+            cis[k] = (float(np.nanpercentile(arr, 100 * alpha)),
+                      float(np.nanpercentile(arr, 100 * (1 - alpha))))
+    return cis
+
+
+def _fmt(x: float) -> str:
+    return "n/a" if x is None or (isinstance(x, float) and np.isnan(x)) else f"{x:.4f}"
+
+
+def format_metrics_report(metrics: Dict[str, float], cis: Dict[str, Tuple[float, float]],
+                          threshold: float, ci_level: float, n_boot: int,
+                          n_pos: int, n_neg: int) -> str:
+    """Build the text block for the validation section of the report."""
+    tn, fp, fn, tp = (int(metrics[k]) for k in ("tn", "fp", "fn", "tp"))
+    prevalence = n_pos / (n_pos + n_neg) if (n_pos + n_neg) else np.nan
+    lines = [
+        "=" * 70,
+        "VALIDATION METRICS (hold-out set from training bacteria)",
+        "=" * 70,
+        f"Classification threshold: P(antigen) >= {threshold}",
+        f"Validation samples: {n_pos + n_neg} (pos={n_pos}, neg={n_neg}, prevalence={_fmt(prevalence)})",
+        f"Confidence intervals: {int(ci_level * 100)}% percentile bootstrap, {n_boot} resamples",
+        "",
+        f"Confusion matrix at threshold {threshold} (rows = true, columns = predicted):",
+        f"{'':>18}{'Pred neg':>12}{'Pred pos':>12}",
+        f"{'True neg':>18}{tn:>12d}{fp:>12d}   (TN, FP)",
+        f"{'True pos':>18}{fn:>12d}{tp:>12d}   (FN, TP)",
+        "",
+        f"{'Metric':<36}{'Estimate':>10}   {int(ci_level * 100)}% CI",
+        "-" * 70,
+    ]
+    for k in METRIC_ORDER:
+        lo, hi = cis[k]
+        lines.append(f"{METRIC_LABELS[k]:<36}{_fmt(metrics[k]):>10}   [{_fmt(lo)}, {_fmt(hi)}]")
+    lines += [
+        "",
+        f"Note: ROC-AUC measures ranking quality across all thresholds; it is not precision or recall.",
+        f"PR-AUC should be compared with the no-skill baseline (= prevalence = {_fmt(prevalence)}).",
+        "",
+    ]
+    return "\n".join(lines)
+
+def plot_confusion_matrix(y_true: np.ndarray, probs: np.ndarray, threshold: float,
+                          output_dir: str, title: str = "Validation confusion matrix") -> str:
+    """Save a heatmap plot of the validation confusion matrix to output_dir.
+
+    Returns the path of the saved PNG.
+    """
+    plt.rcParams["font.family"] = "serif"
+    plt.rcParams["font.serif"] = ["Times New Roman", "Liberation Serif", "DejaVu Serif"]
+    
+    cm = confusion_matrix(y_true, (probs >= threshold).astype(int), labels=[0, 1])
+    tn, fp, fn, tp = cm.ravel()
+
+    fig, ax = plt.subplots(figsize=(5.5, 4.5))
+    im = ax.imshow(cm, interpolation="nearest", cmap="Blues")
+    fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+
+    classes = ["Negative", "Positive"]
+    tick_marks = np.arange(len(classes))
+    ax.set_xticks(tick_marks)
+    ax.set_yticks(tick_marks)
+    ax.set_xticklabels(classes)
+    ax.set_yticklabels(classes)
+    ax.set_xlabel("Predicted label")
+    ax.set_ylabel("True label")
+    ax.set_title(f"{title}\n(threshold = {threshold:.2f})")
+
+    # Annotate cells with counts and row-normalised percentages
+    total = cm.sum()
+    for i in range(2):
+        for j in range(2):
+            count = cm[i, j]
+            pct = 100.0 * count / total if total > 0 else 0.0
+            ax.text(j, i, f"{count}\n({pct:.1f}%)",
+                    ha="center", va="center",
+                    color="white" if count > cm.max() / 2 else "black",
+                    fontsize=11)
+
+    fig.tight_layout()
+    out_path = os.path.join(output_dir, "confusion_matrix.png")
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    logging.info(f"Saved confusion matrix plot to {out_path}")
+    return out_path
 
 # ----------------------
 # Accession to Name mapping (optional)
@@ -216,24 +477,28 @@ def train_rf(X_train: pd.DataFrame, y_train: np.ndarray, n_estimators:int=500, r
 def load_accession_name_and_gene_fetch(df: pd.DataFrame) -> pd.DataFrame:
     """
     Fetch protein names and gene names from UniProt for given accessions.
-    
-    If 'name' or 'gene_names' columns exist, values are preserved and only missing entries are fetched.
-    
+
+    If 'protein_names' (or legacy 'name') or 'gene_names' columns exist, values are preserved
+    and only missing entries are fetched.
+
     Args:
         df (pd.DataFrame): DataFrame containing at least an 'accession' column,
-            and optionally 'name' and/or 'gene_names' columns.
-    
+            and optionally 'protein_names'/'name' and/or 'gene_names' columns.
+
     Returns:
-        pd.DataFrame: DataFrame indexed by 'accession' with columns ['accession', 'name', 'gene_names'].
+        pd.DataFrame: DataFrame indexed by 'accession' with columns ['protein_names', 'gene_names'].
     """
     if "accession" not in df.columns:
         raise ValueError("Input DataFrame must contain an 'accession' column.")
-    
+
     base_url = "https://rest.uniprot.org/uniprotkb/search"
     df = df.copy()
 
+    if "name" in df.columns and "protein_names" not in df.columns:
+        df = df.rename(columns={"name": "protein_names"})
+
     # Ensure required columns exist
-    for col in ["name", "gene_names"]:
+    for col in ["protein_names", "gene_names"]:
         if col not in df.columns:
             df[col] = None
 
@@ -242,7 +507,7 @@ def load_accession_name_and_gene_fetch(df: pd.DataFrame) -> pd.DataFrame:
     for accession in df["accession"].unique():
         row = df.loc[df["accession"] == accession].iloc[0]
 
-        if pd.notna(row["name"]) and pd.notna(row["gene_names"]):
+        if pd.notna(row["protein_names"]) and pd.notna(row["gene_names"]):
             continue  # Skip already known entries
 
         params = {
@@ -312,7 +577,7 @@ def load_accession_name_and_gene_fetch(df: pd.DataFrame) -> pd.DataFrame:
             df.loc[df["accession"] == accession, "protein_names"] = name_str
             df.loc[df["accession"] == accession, "gene_names"] = gene_str
 
-            logging.debug(f"Fetched {accession} → names: {name_str}; genes: {gene_str}")
+            logging.debug(f"Fetched {accession} -> names: {name_str}; genes: {gene_str}")
 
         except Exception as e:
             logging.warning(f"Failed to fetch data for accession {accession}: {e}")
@@ -323,15 +588,21 @@ def load_accession_name_and_gene_fetch(df: pd.DataFrame) -> pd.DataFrame:
 # ----------------------
 # Main pipeline
 # ----------------------
-def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: str, verbose: bool) -> None:
+def main(base_dir: str, output_dir: str, input_dirs: List[str], target_bacterium: str,
+         verbose: bool, threshold: Optional[float] = None, n_bootstrap: int = 1000,
+         ci_level: float = 0.95) -> None:
     """
     Main pipeline function.
     Args:
         base_dir (str): Base directory containing bacterium subdirectories.
         output_dir (str): Directory to save outputs.
         input_dirs (List[str]): List of bacterium names to include.
-        test_bacterium (str): Name of the bacterium to hold out for testing.
+        target_bacterium (str): Bacterium to predict on (excluded from training; unlabelled).
         verbose (bool): Whether to enable verbose logging.
+        threshold (Optional[float]): Fixed probability threshold. If None (default), the
+            threshold is chosen by maximising MCC on the training split's OOB predictions.
+        n_bootstrap (int): Number of bootstrap resamples for confidence intervals.
+        ci_level (float): Confidence level for intervals (e.g. 0.95).
     """
     setup_logging(verbose)
     os.makedirs(output_dir, exist_ok=True)
@@ -363,17 +634,17 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
         matrices[bacteria] = feature_matrix
         labels_per_bacteria[bacteria] = labels
 
-    if test_bacterium not in matrices:
-        logging.error(f"Test bacterium '{test_bacterium}' not found among loaded matrices. Available: {list(matrices.keys())}")
+    if target_bacterium not in matrices:
+        logging.error(f"Target bacterium '{target_bacterium}' not found among loaded matrices. Available: {list(matrices.keys())}")
         return
 
     # 3) Create training set = all other bacteria combined
-    train_bacts = [bacteria for bacteria in matrices.keys() if bacteria != test_bacterium]
+    train_bacts = [bacteria for bacteria in matrices.keys() if bacteria != target_bacterium]
     if not train_bacts:
-        logging.error("No bacteria left for training after excluding test bacterium.")
+        logging.error("No bacteria left for training after excluding target bacterium.")
         return
 
-    logging.info(f"Training on: {train_bacts}. Testing on: {test_bacterium}")
+    logging.info(f"Training on: {train_bacts}. Predicting on target: {target_bacterium}")
 
     # Align feature columns across all bacteria: union of columns, fill missing with 0
     all_features = sorted(set().union(*(matrices[bacteria].columns.tolist() for bacteria in matrices)))
@@ -397,7 +668,7 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
             logging.warning(f"No labels for bacterium {bacteria}; skipping those samples from training.")
             continue
         # Align labels index/order to feature_matrix index
-        labels = labels.reindex(feature_matrix.index).fillna(method="ffill")  # best-effort
+        labels = labels.reindex(feature_matrix.index).ffill()  # best-effort
         try:
             yb, le_b = make_binary_labels(labels)
         except Exception as e:
@@ -414,11 +685,24 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     y_train = pd.concat(y_train_list, axis=0).to_numpy()
     logging.info(f"Final training matrix: {X_train.shape}, labels: {np.bincount(y_train)}")
 
-    # Optional: split a small validation set from the combined training for quick check (stratify if possible)
+    # Split a validation set from the combined training data (stratify if possible)
     try:
-        X_tr, X_val, y_tr, y_val = train_test_split(X_train, y_train, test_size=0.15, stratify=y_train, random_state=42)
+        X_tr, X_val, y_tr, y_val = train_test_split(X_train, y_train, test_size=0.15, stratify=y_train, random_state=RANDOM_STATE)
     except Exception:
-        X_tr, X_val, y_tr, y_val = train_test_split(X_train, y_train, test_size=0.15, random_state=42)
+        X_tr, X_val, y_tr, y_val = train_test_split(X_train, y_train, test_size=0.15, random_state=RANDOM_STATE)
+
+    # ---- Print split summary ----
+    train_pos, train_neg = int((y_tr == 1).sum()), int((y_tr == 0).sum())
+    test_pos, test_neg = int((y_val == 1).sum()), int((y_val == 0).sum())
+    print("=" * 70)
+    print("DATA SPLIT SUMMARY")
+    print("=" * 70)
+    print(f"Random seed used: {RANDOM_STATE}")
+    print(f"Training set:   {X_tr.shape[0]} samples "
+          f"(positive={train_pos}, negative={train_neg})")
+    print(f"Test/Validation set: {X_val.shape[0]} samples "
+          f"(positive={test_pos}, negative={test_neg})")
+    print("=" * 70)
 
     # Impute if necessary (shouldn't be needed if we filled with zeros)
     imputer = SimpleImputer(strategy="median")
@@ -428,34 +712,97 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     # 4) Train Random Forest
     rf = train_rf(X_tr_imputed, y_tr)
 
+    # Choose threshold (MCC-optimised on OOB predictions, i.e. without touching the validation set)
+    if threshold is None:
+        oob_probs = rf.oob_decision_function_[:, 1]
+        ok = ~np.isnan(oob_probs)
+        threshold, oob_mcc, curve_df = select_threshold_mcc(y_tr[ok], oob_probs[ok])
+        curve_df.to_csv(os.path.join(output_dir, "threshold_mcc_curve.csv"), index=False)
+        threshold_source = (f"MCC-optimised on out-of-bag training predictions "
+                            f"(OOB MCC = {oob_mcc:.4f}, {int(ok.sum())} samples)")
+        logging.info(f"Selected threshold {threshold:.2f} by max OOB MCC ({oob_mcc:.4f})")
+    else:
+        threshold_source = "fixed value supplied via --threshold"
+        logging.info(f"Using fixed threshold {threshold}")
+
+        # ---- Print model configuration details ----
+    print_model_details(
+        rf=rf,
+        threshold=threshold,
+        threshold_source=threshold_source,
+        X_tr=X_tr_imputed,
+        X_val=X_val_imputed,
+        random_state=RANDOM_STATE,
+    )
+
         # Validate
     val_probs = rf.predict_proba(X_val_imputed)[:, 1]
-    val_preds = (val_probs >= 0.5).astype(int)
-    val_auc = None
-    try:
-        val_auc = roc_auc_score(y_val, val_probs)
-    except Exception:
-        val_auc = None
-    val_acc = accuracy_score(y_val, val_preds)
-    logging.info(f"Validation ACC: {val_acc:.4f} AUC: {val_auc if val_auc is None else val_auc:.4f}")
+    val_metrics = point_metrics(y_val, val_probs, threshold)
+    val_cis = bootstrap_ci(y_val, val_probs, threshold, n_boot=n_bootstrap, ci_level=ci_level)
 
-    # Compute class splits
-    def class_split(y: np.ndarray) -> Tuple[int, int]:
-        pos = int((y == 1).sum())
-        neg = int((y == 0).sum())
-        return pos, neg
+    # ---- Print test-set confusion matrix ----
+    cm = confusion_matrix(y_val, (val_probs >= threshold).astype(int), labels=[0, 1])
+    tn_cm, fp_cm, fn_cm, tp_cm = cm.ravel()
+    print(f"Test-set confusion matrix at threshold {threshold:.2f} "
+          f"(rows=true, cols=predicted):")
+    print(f"                 Pred neg   Pred pos")
+    print(f"  True neg     {tn_cm:>10d} {fp_cm:>10d}")
+    print(f"  True pos     {fn_cm:>10d} {tp_cm:>10d}")
+    print("=" * 70)
 
-    train_pos, train_neg = class_split(y_tr)
-    val_pos, val_neg = class_split(y_val)
+    # ---- Print validation metrics with 95% bootstrap CIs ----
+    ci_pct = int(ci_level * 100)
+    print(f"VALIDATION METRICS (with {ci_pct}% bootstrap CIs)")
+    print("=" * 70)
+    for k in METRIC_ORDER:
+        lo, hi = val_cis[k]
+        print(f"  {METRIC_LABELS[k]:<36} "
+              f"{_fmt(val_metrics[k]):>8}  [{_fmt(lo)}, {_fmt(hi)}]")
+    print("=" * 70)
+
+    # ---- Save confusion matrix plot ----
+    plot_confusion_matrix(
+        y_val, val_probs, threshold,
+        output_dir=output_dir,
+        title="Validation confusion matrix",
+    )
+
+    logging.info(
+        f"Validation @thr={threshold}: "
+        f"Sens={_fmt(val_metrics['sensitivity_recall'])} Spec={_fmt(val_metrics['specificity'])} "
+        f"Prec={_fmt(val_metrics['precision'])} F1={_fmt(val_metrics['f1'])} "
+        f"MCC={_fmt(val_metrics['mcc'])} ROC-AUC={_fmt(val_metrics['roc_auc'])} "
+        f"PR-AUC={_fmt(val_metrics['pr_auc'])}"
+    )
+
+    # Class splits (already computed above as train_pos/train_neg/test_pos/test_neg)
+    val_pos, val_neg = test_pos, test_neg
+    train_pos, train_neg = train_pos, train_neg
 
     # Save model report
     report_path = os.path.join(output_dir, "model_report.txt")
     with open(report_path, "w") as fh:
         fh.write(f"Training bacteria: {train_bacts}\n")
-        fh.write(f"Training samples: {X_tr.shape[0]} (pos={train_pos}, neg={train_neg})\n")   ### ADDED
-        fh.write(f"Validation samples: {X_val.shape[0]} (pos={val_pos}, neg={val_neg})\n")   ### ADDED
-        fh.write(f"Validation accuracy: {val_acc:.4f}\n")
-        fh.write(f"Validation AUC: {val_auc}\n")
+        fh.write(f"Target bacterium (prediction only, unlabelled): {target_bacterium}\n")
+        fh.write(f"Training samples: {X_tr.shape[0]} (pos={train_pos}, neg={train_neg})\n")
+        fh.write(f"Validation samples: {X_val.shape[0]} (pos={val_pos}, neg={val_neg})\n")
+        fh.write(f"Threshold: {threshold:.2f} -- {threshold_source}\n")
+        fh.write("Note: the threshold was chosen without using the validation set; the CIs below "
+                 "do not include uncertainty in the threshold itself.\n\n")
+        fh.write(format_metrics_report(val_metrics, val_cis, threshold, ci_level,
+                                       n_bootstrap, val_pos, val_neg))
+
+    # Save metrics as CSV too
+    rows = []
+    for k in METRIC_ORDER:
+        rows.append({"metric": METRIC_LABELS[k], "estimate": val_metrics[k],
+                     "ci_lower": val_cis[k][0], "ci_upper": val_cis[k][1],
+                     "threshold": threshold if k not in ("roc_auc", "pr_auc") else np.nan})
+    for k in ("tn", "fp", "fn", "tp"):
+        rows.append({"metric": k.upper(), "estimate": val_metrics[k],
+                     "ci_lower": np.nan, "ci_upper": np.nan, "threshold": threshold})
+    pd.DataFrame(rows).to_csv(os.path.join(output_dir, "validation_metrics.csv"), index=False)
+    logging.info("Saved validation metrics.")
 
     # 5) Feature importances
     importances = rf.feature_importances_
@@ -465,75 +812,62 @@ def main(base_dir: str, output_dir: str, input_dirs: List[str], test_bacterium: 
     feat_imp_df.to_csv(os.path.join(output_dir, "feature_importances.csv"), index=False)
     logging.info(f"Saved feature importances to {os.path.join(output_dir, 'feature_importances.csv')}")
 
-    # 6) Test on S.aureus (test_bacterium)
-    X_test_raw = align_df(matrices[test_bacterium])
-    # if labels exist for test, attempt to make binary labels using same heuristic
-    y_test_series = labels_per_bacteria.get(test_bacterium)
-    y_test = None
-    label_encoder_for_test = None
-    if y_test_series is not None:
-        try:
-            y_test, label_encoder_for_test = make_binary_labels(y_test_series.reindex(X_test_raw.index).fillna(method="ffill"))
-        except Exception as e:
-            logging.warning(f"Couldn't create binary labels for test bacterium: {e}. Continuing without true labels.")
-            y_test = None
+    # 6) Predict on the target bacterium (no labels / no AUC: prediction only)
+    X_target_raw = align_df(matrices[target_bacterium])
+    X_target_imputed = pd.DataFrame(imputer.transform(X_target_raw),
+                                    index=X_target_raw.index, columns=X_target_raw.columns)
 
-    X_test_imputed = pd.DataFrame(imputer.transform(X_test_raw), index=X_test_raw.index, columns=X_test_raw.columns)
-
-    # Predict probabilities
-    test_probs = rf.predict_proba(X_test_imputed)[:, 1]
-    test_preds = (test_probs >= 0.5).astype(int)
+    target_probs = rf.predict_proba(X_target_imputed)[:, 1]
+    target_preds = (target_probs >= threshold).astype(int)
     out_df = pd.DataFrame({
-        "accession": X_test_imputed.index,
-        "prob_antigen": test_probs,
-        "pred_label": test_preds
+        "accession": X_target_imputed.index,
+        "prob_antigen": target_probs,
+        "pred_label": target_preds
     }).set_index("accession")
-
-    if y_test is not None:
-        out_df["true_label"] = y_test
 
     # --- Add protein names using the existing function ---
     try:
-        logging.info("Fetching protein names for test accessions...")
+        logging.info("Fetching protein names for target accessions...")
         name_map = load_accession_name_and_gene_fetch(out_df.reset_index()[["accession"]])
-        # Merge the names back into the predictions
         out_df = out_df.merge(name_map, left_index=True, right_index=True, how="left")
         logging.info("Added protein names to predictions.")
     except Exception as e:
         logging.warning(f"Failed to add protein names: {e}")
 
-
     # Order from most likely antigenic -> least likely
     out_df = out_df.sort_values("prob_antigen", ascending=False)
-    out_csv = os.path.join(output_dir, f"{test_bacterium.replace('.','_')}_predictions.csv")
+    out_csv = os.path.join(output_dir, f"{target_bacterium.replace('.', '_')}_predictions.csv")
     out_df.to_csv(out_csv)
-    logging.info(f"Saved test predictions to {out_csv} (rows: {len(out_df)})")
+    logging.info(f"Saved target predictions to {out_csv} (rows: {len(out_df)})")
 
-    # Also save the feature values for the top N proteins (optional small sample)
-    # Save full X_test with probabilities
-    X_test_export = X_test_imputed.copy()
-    X_test_export["prob_antigen"] = test_probs
-    X_test_export = X_test_export.sort_values("prob_antigen", ascending=False)
-    X_test_export.to_csv(os.path.join(output_dir, f"{test_bacterium.replace('.','_')}_features_with_probs.csv"))
-    logging.info("Saved test features with probabilities.")
+    # Save full target feature matrix with probabilities
+    X_target_export = X_target_imputed.copy()
+    X_target_export["prob_antigen"] = target_probs
+    X_target_export = X_target_export.sort_values("prob_antigen", ascending=False)
+    X_target_export.to_csv(os.path.join(output_dir, f"{target_bacterium.replace('.', '_')}_features_with_probs.csv"))
+    logging.info("Saved target features with probabilities.")
 
-        # If test labels exist compute metrics
-    if y_test is not None:
-        try:
-            test_auc = roc_auc_score(y_test, test_probs)
-        except Exception:
-            test_auc = None
-        test_acc = accuracy_score(y_test, test_preds)
-
-        # Positive/negative counts for test set
-        test_pos, test_neg = class_split(y_test)
-
-        logging.info(f"Test ACC: {test_acc:.4f} AUC: {test_auc}")
-        with open(report_path, "a") as fh:
-            fh.write(f"Test bacterium: {test_bacterium}\n")
-            fh.write(f"Test samples: {X_test_imputed.shape[0]} (pos={test_pos}, neg={test_neg})\n") 
-            fh.write(f"Test accuracy: {test_acc:.4f}\n")
-            fh.write(f"Test AUC: {test_auc}\n")
+    # Target section of the report: prediction summary only (target is unlabelled)
+    n_pred_pos = int(target_preds.sum())
+    with open(report_path, "a") as fh:
+        fh.write("=" * 70 + "\n")
+        fh.write(f"TARGET BACTERIUM PREDICTIONS: {target_bacterium}\n")
+        fh.write("=" * 70 + "\n")
+        fh.write("Target data are unlabelled, so no accuracy/AUC is reported for this bacterium.\n")
+        fh.write(f"Target proteins scored: {len(out_df)}\n")
+        fh.write(f"Predicted antigens at threshold {threshold}: {n_pred_pos} "
+                 f"({n_pred_pos / len(out_df):.1%})\n")
+        fh.write(f"Mean predicted probability: {float(np.mean(target_probs)):.4f}\n")
+            # ---- Final summary ----
+        print("=" * 70)
+        print("SUMMARY OF EVALUATION OUTPUTS")
+        print("=" * 70)
+        print("The full confusion matrix (TN/FP/FN/TP) and 95% bootstrap confidence")
+        print("intervals for all validation metrics are available in:")
+        print(f"  - {os.path.join(output_dir, 'validation_metrics.csv')}")
+        print(f"  - {os.path.join(output_dir, 'confusion_matrix.png')}")
+        print(f"  - {os.path.join(output_dir, 'model_report.txt')}")
+        print("=" * 70)
 
     logging.info("Pipeline finished successfully.")
 
@@ -547,8 +881,13 @@ if __name__ == "__main__":
     parser.add_argument("--base-dir", type=str, default="./results", help="Base directory containing <bacterium>/raw_data/*_raw_data.csv")
     parser.add_argument("--output-dir", type=str, default="./results", help="Directory to save outputs")
     parser.add_argument("--input-dir", nargs="+", required=True, help="List of bacteria to load (folders under base_dir). e.g. E.coli S.aureus")
-    parser.add_argument("--test-bacterium", type=str, default="S.aureus", help="Bacterium to hold-out and test (default: S.aureus)")
+    parser.add_argument("--target-bacterium", type=str, default="S.aureus", help="Bacterium to hold out of training and predict on (default: S.aureus)")
+    parser.add_argument("--threshold", type=float, default=None, help="Fixed probability threshold. Default: choose the MCC-optimal threshold from out-of-bag training predictions")
+    parser.add_argument("--n-bootstrap", type=int, default=1000, help="Bootstrap resamples for confidence intervals (default: 1000)")
+    parser.add_argument("--ci-level", type=float, default=0.95, help="Confidence level for intervals (default: 0.95)")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
-    main(base_dir=args.base_dir, output_dir=args.output_dir, input_dirs=args.input_dir, test_bacterium=args.test_bacterium, verbose=args.verbose)
+    main(base_dir=args.base_dir, output_dir=args.output_dir, input_dirs=args.input_dir,
+         target_bacterium=args.target_bacterium, verbose=args.verbose,
+         threshold=args.threshold, n_bootstrap=args.n_bootstrap, ci_level=args.ci_level)

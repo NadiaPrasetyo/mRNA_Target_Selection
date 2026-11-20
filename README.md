@@ -376,7 +376,8 @@ Rscript bin/R/visualize_features.R
 ```bash
 # Random Forest antigen prediction
 python bin/rf_antigen_pipeline.py --base-dir results \
-    --input-dir S.aureus E.coli P.aeruginosa --test-bacterium S.aureus
+    --input-dir B.melitensis C.burnetii C.trachomatis H.influenzae H.pylori N.gonorrhoeae P.aeruginosa S.enteritidis S.pneumoniae S.pyogenes T.pallidum V.cholerae --test-bacterium S.aureus_analysis
+ 
 
 # PCA analysis
 python bin/pca_analysis.py --base-dir results \
