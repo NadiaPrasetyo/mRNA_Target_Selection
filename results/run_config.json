@@ -1,0 +1,47 @@
+{
+  "seed": 42,
+  "holdout_rank": "phylum",
+  "holdout_clade": "Campylobacterota",
+  "train_species": [
+    "B.melitensis",
+    "C.burnetii",
+    "C.trachomatis",
+    "H.influenzae",
+    "N.gonorrhoeae",
+    "P.aeruginosa",
+    "S.enteritidis",
+    "S.pneumoniae",
+    "S.pyogenes",
+    "T.pallidum",
+    "V.cholerae"
+  ],
+  "test_species": [
+    "H.pylori"
+  ],
+  "bacterium_of_interest": "S.aureus_analysis",
+  "threshold": 0.5,
+  "rf_params": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "class_weight": "balanced",
+    "criterion": "gini",
+    "max_depth": null,
+    "max_features": "sqrt",
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 500,
+    "n_jobs": -1,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "n_features": 87,
+  "n_bootstrap": 2000,
+  "command_line": "bin/rf_antigen_pipeline.py --base-dir results --train-bacteria B.melitensis C.burnetii C.trachomatis H.influenzae H.pylori N.gonorrhoeae P.aeruginosa S.enteritidis S.pneumoniae S.pyogenes T.pallidum V.cholerae --target-bacterium S.aureus_analysis --skip-annotation --holdout-clade Campylobacterota"
+}

@@ -1,0 +1,13 @@
+bacterium,kingdom,phylum,class,order,family,genus
+B.melitensis,Pseudomonadati (3379134),Pseudomonadota (1224),Alphaproteobacteria (28211),Hyphomicrobiales (356),Brucellaceae (118882),Brucella (234)
+C.burnetii,Pseudomonadati (3379134),Pseudomonadota (1224),Gammaproteobacteria (1236),Legionellales (118969),Coxiellaceae (118968),Coxiella (776)
+C.trachomatis,Pseudomonadati (3379134),Chlamydiota (204428),Chlamydiia (204429),Chlamydiales (51291),Chlamydiaceae (809),Chlamydia (810)
+H.influenzae,Pseudomonadati (3379134),Pseudomonadota (1224),Gammaproteobacteria (1236),Pasteurellales (135625),Pasteurellaceae (712),Haemophilus (724)
+H.pylori,Pseudomonadati (3379134),Campylobacterota (29547),Epsilonproteobacteria (3031852),Campylobacterales (213849),Helicobacteraceae (72293),Helicobacter (209)
+N.gonorrhoeae,Pseudomonadati (3379134),Pseudomonadota (1224),Betaproteobacteria (28216),Neisseriales (206351),Neisseriaceae (481),Neisseria (482)
+P.aeruginosa,Pseudomonadati (3379134),Pseudomonadota (1224),Gammaproteobacteria (1236),Pseudomonadales (72274),Pseudomonadaceae (135621),Pseudomonas (286)
+S.enteritidis,Pseudomonadati (3379134),Pseudomonadota (1224),Gammaproteobacteria (1236),Enterobacterales (91347),Enterobacteriaceae (543),Salmonella (590)
+S.pneumoniae,Bacillati (1783272),Bacillota (1239),Bacilli (91061),Lactobacillales (186826),Streptococcaceae (1300),Streptococcus (1301)
+S.pyogenes,Bacillati (1783272),Bacillota (1239),Bacilli (91061),Lactobacillales (186826),Streptococcaceae (1300),Streptococcus (1301)
+T.pallidum,Pseudomonadati (3379134),Spirochaetota (203691),Spirochaetia (203692),Treponematales (3120456),Treponemataceae (2845253),Treponema (157)
+V.cholerae,Pseudomonadati (3379134),Pseudomonadota (1224),Gammaproteobacteria (1236),Vibrionales (135623),Vibrionaceae (641),Vibrio (662)

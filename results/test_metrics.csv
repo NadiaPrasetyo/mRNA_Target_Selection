@@ -1,0 +1,9 @@
+metric,estimate,ci_lower_95,ci_upper_95,ci_method
+sensitivity_recall,0.8672654690618763,0.8448482396808332,0.8868774150390752,Wilson
+specificity,,,,Wilson
+precision,1.0,0.9955989042662061,1.0,Wilson
+f1,0.928915018706574,,,n/a (single class)
+mcc,0.0,,,n/a (single class)
+accuracy,0.8672654690618763,0.8448482396808332,0.8868774150390752,Wilson
+roc_auc,,,,n/a (single class)
+pr_auc,1.0,,,n/a (single class)
